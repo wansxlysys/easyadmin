@@ -91,12 +91,12 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin', "xmSelect"], function () {
+    layui.use(['easyAdmin', "xmSelect"], function () {
 
         var form = layui.form;
         var xmSelect = layui.xmSelect;
 
-        layui.easyadmin.http({
+        layui.easyAdmin.http({
             type: "GET",
             url: "{:url('menu/menu_tree')}",
             loading: false,
@@ -146,7 +146,7 @@
         form.on("submit", function (obj) {
             event.preventDefault();
 
-            layui.easyadmin.http({
+            layui.easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/menu/create')}",
                 data: obj.field,
@@ -155,7 +155,7 @@
                         icon: 1,
                     }, function () {
                         top.layer.close(lay);
-                        layui.easyadmin.close();
+                        layui.easyAdmin.close();
                     });
                 }
             });

@@ -18,7 +18,7 @@ class Backup extends \think\console\Command
     protected function configure()
     {
         $this->setName('backup')
-            ->addOption('saveName', null, Option::VALUE_REQUIRED, 'File SaveName', 'easyadmin')
+            ->addOption('saveName', null, Option::VALUE_REQUIRED, 'File SaveName', 'easyAdmin')
             ->setDescription('DataBases Backup');
     }
 

@@ -3,10 +3,7 @@
     /**
      * 资源目录路径
      */
-    var basePath = (function (src) {
-        src = document.scripts[document.scripts.length - 1].src;
-        return src.substring(0, src.lastIndexOf("/") + 1);
-    })();
+    var basePath = document.scripts[document.scripts.length - 1].src.substring(0, src.lastIndexOf("/") + 1);
 
     /**
      * 初始化全局配置
@@ -16,8 +13,11 @@
         version: true
     }).extend({
         xmSelect: "xmSelect/xmSelect",
-        easyadmin: "easyadmin/easyadmin",
-        treeTable: "treetable/treeTable",
+        easyAdmin: "easyAdmin/easyAdmin",
+        easyBuild: "easyAdmin/easyBuild",
+        easyHelper: "easyAdmin/easyHelper",
+        easyService: "easyAdmin/easyService",
+        treeTable: "treeTable/treeTable",
         uploadImage: "uploadImage/uploadImage",
     });
 

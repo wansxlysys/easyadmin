@@ -148,12 +148,12 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin'], function () {
+    layui.use(['easyAdmin'], function () {
         var form = layui.form;
 
         form.on('submit', function (obj) {
             event.preventDefault();
-            layui.easyadmin.http({
+            layui.easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/login/login')}",
                 data: obj.field,

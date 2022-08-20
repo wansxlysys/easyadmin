@@ -80,7 +80,7 @@
 
     var menuTable;
 
-    layui.use(['easyadmin', "treeTable"], function () {
+    layui.use(['easyAdmin', "treeTable"], function () {
 
         var form = layui.form,
             treeTable = layui.treeTable;
@@ -124,7 +124,7 @@
         treeTable.on('toolbar(table)', function (obj) {
             switch (obj.event) {
                 case 'create':
-                    layui.easyadmin.open("{:url('admin/menu/create')}");
+                    layui.easyAdmin.open("{:url('admin/menu/create')}");
                     break;
                 case 'expand':
                     menuTable.expandAll();
@@ -137,7 +137,7 @@
 
         // 菜单排序
         treeTable.on('edit(table)', function (obj) {
-            layui.easyadmin.http("POST", "{:url('admin/menu/sort')}", {
+            layui.easyAdmin.http("POST", "{:url('admin/menu/sort')}", {
                 id: obj.data.id,
                 sort: obj.value
             }, function (result) {
@@ -161,14 +161,14 @@
 
             switch (obj.event) {
                 case 'update':
-                    layui.easyadmin.open("{:url('admin/menu/update')}?id=" + data.id);
+                    layui.easyAdmin.open("{:url('admin/menu/update')}?id=" + data.id);
                     break;
 
                 case 'delete':
                     top.layer.confirm("确认删除 " + data.title + "？", {
                         icon: 3
                     }, function () {
-                        layui.easyadmin.http({
+                        layui.easyAdmin.http({
                             type: "POST",
                             url: "{:url('admin/menu/delete')}",
                             data: {

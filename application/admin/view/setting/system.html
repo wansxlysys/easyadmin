@@ -38,7 +38,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin', 'jquery', 'form'], function () {
+    layui.use(['easyAdmin', 'jquery', 'form'], function () {
 
         var $ = layui.jquery,
             form = layui.form;
@@ -46,7 +46,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            layui.easyadmin.http({
+            layui.easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/setting/system')}",
                 data: obj.field,

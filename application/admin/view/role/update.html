@@ -44,7 +44,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin', 'jquery', 'tree'], function () {
+    layui.use(['easyAdmin', 'jquery', 'tree'], function () {
 
         var tree = layui.tree,
             form = layui.form;
@@ -61,8 +61,8 @@
 
             var permission = tree.getChecked('permission');
 
-            permission = layui.easyadmin.treeToArray(permission)
-            permission = layui.easyadmin.objectColumn(permission, 'id');
+            permission = layui.easyAdmin.treeToArray(permission)
+            permission = layui.easyAdmin.objectColumn(permission, 'id');
 
             if (permission.length <= 0) {
                 layer.msg('请选择授权节点', {
@@ -73,7 +73,7 @@
 
             obj.field.permission = permission;
 
-            layui.easyadmin.http({
+            layui.easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/role/update')}",
                 data: obj.field,
@@ -83,7 +83,7 @@
                     }, function () {
                         parent.layui.table.reload("table");
                         top.layer.close(key);
-                        layui.easyadmin.close();
+                        layui.easyAdmin.close();
                     });
                 }
             });

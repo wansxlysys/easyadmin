@@ -80,7 +80,7 @@
 {block name="js"}
 <script type="text/javascript">
 
-    layui.use(['easyadmin'], function () {
+    layui.use(['easyAdmin'], function () {
         var form = layui.form,
             table = layui.table;
 
@@ -106,7 +106,7 @@
             var checkStatus = table.checkStatus(obj.config.id);
             switch (obj.event) {
                 case 'create':
-                    layui.easyadmin.open("{:url('admin/manager/create')}");
+                    layui.easyAdmin.open("{:url('admin/manager/create')}");
                     break;
             }
         });
@@ -116,14 +116,14 @@
             var data = obj.data;
             switch (obj.event) {
                 case "update":
-                    layui.easyadmin.open("{:url('admin/manager/update')}?id=" + data.id);
+                    layui.easyAdmin.open("{:url('admin/manager/update')}?id=" + data.id);
                     break;
 
                 case 'delete':
                     top.layer.confirm('确定删除吗？', {
                         icon: 3,
                     }, function () {
-                        layui.easyadmin.http({
+                        layui.easyAdmin.http({
                             type: "POST",
                             url: "{:url('admin/manager/delete')}",
                             data: {

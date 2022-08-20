@@ -47,7 +47,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin', "uploadImage"], function () {
+    layui.use(['easyAdmin', "uploadImage"], function () {
 
         var form = layui.form;
 
@@ -56,7 +56,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            layui.easyadmin.http({
+            layui.easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/index/profile')}",
                 data: obj.field,
@@ -65,7 +65,7 @@
                         icon: 1,
                     }, function () {
                         top.layer.close(key);
-                        layui.easyadmin.close();
+                        layui.easyAdmin.close();
                     });
                 }
             });

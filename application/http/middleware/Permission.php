@@ -76,8 +76,12 @@ class Permission
         $MenuService = new \app\admin\service\Menu();
         $currentMenu = $MenuService->getCurrentMenu();
 
-        if (!empty($currentMenu) && !$this->ManagerHelper->checkAccessByMenuId($currentMenu['id'])) {
-            $this->error('无权访问');
+        if (empty($currentMenu)) {
+            $this->error('系统菜单不存在');
+        }
+
+        if (!$this->ManagerHelper->checkAccessByMenuId($currentMenu['id'])) {
+            $this->error('您的账号未授权访问');
         }
     }
 
@@ -87,7 +91,7 @@ class Permission
     public function checkLogin()
     {
         if (!$this->ManagerHelper->isLogin()) {
-            $this->error('未登录', url('admin/login/login'));
+            $this->error('未登录', 'admin/login/login');
         }
     }
 

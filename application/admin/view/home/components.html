@@ -14,7 +14,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin'], function () {
+    layui.use(['easyAdmin'], function () {
 
         var loading = null;
 
@@ -42,7 +42,7 @@
             // 等待上传事件，可以用来loading
             before_send: function () {
                 console.log('等待请求中');
-                loading = layui.easyadmin.loading();
+                loading = layui.easyAdmin.loading();
             },
             // 上传进度事件
             progress: function (progress) {

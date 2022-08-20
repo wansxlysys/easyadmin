@@ -64,7 +64,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyadmin', "uploadImage"], function () {
+    layui.use(['easyAdmin', "uploadImage"], function () {
 
         var form = layui.form;
 
@@ -73,7 +73,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            layui.easyadmin.http({
+            layui.easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/manager/create')}",
                 data: obj.field,
@@ -83,7 +83,7 @@
                     }, function () {
                         parent.layui.table.reload("table");
                         top.layer.close(key);
-                        layui.easyadmin.close();
+                        layui.easyAdmin.close();
                     });
                 }
             });

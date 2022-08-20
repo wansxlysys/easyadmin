@@ -3,7 +3,7 @@ layui.define(["jquery", "uploadImage"], function (exports) {
     var $ = layui.$;
     var uploadImage = layui.uploadImage;
 
-    var Easyadmin = {
+    var EasyAdmin = {
         /**
          * http请求
          * @param options
@@ -257,7 +257,7 @@ layui.define(["jquery", "uploadImage"], function (exports) {
                 multiple: true,
                 url: globals.uploadImage,
                 before: function () {
-                    loading = Easyadmin.loading();
+                    loading = EasyAdmin.loading();
                 },
                 done: function (url) {
                     $(item).val(url);
@@ -292,7 +292,7 @@ layui.define(["jquery", "uploadImage"], function (exports) {
                 multiple: true,
                 url: globals.uploadImage,
                 before: function () {
-                    loading = Easyadmin.loading();
+                    loading = EasyAdmin.loading();
                 },
                 done: function (url) {
                     $(item).val(window[uploader].getAll().join(','));
@@ -316,5 +316,5 @@ layui.define(["jquery", "uploadImage"], function (exports) {
     /**
      * 导出
      */
-    exports("easyadmin", Easyadmin);
+    exports("easyAdmin", EasyAdmin);
 });

@@ -1,12 +1,9 @@
 {extend name="layout/layout" /}
 
-
 {block name="content"}
-
 {include file="layout/breadcrumb" /}
-
 <div class="layui-fluid layui-content">
-    <div class="layui-card article-container">
+    <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
             <form class="layui-form" action="">
@@ -31,7 +28,6 @@
         </div>
     </div>
 </div>
-
 
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
@@ -60,12 +56,11 @@
 {/block}
 
 {block name="js"}
-
 <script type="text/javascript">
-
-    layui.use(['easyAdmin'], function () {
-        var form = layui.form,
-            table = layui.table;
+    layui.use(['easyAdmin', 'form', 'table'], function () {
+        var form = layui.form;
+        var table = layui.table;
+        var easyAdmin = layui.easyAdmin;
 
         table.render({
             id: "table",
@@ -84,41 +79,37 @@
         });
 
         table.on('toolbar(table)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch (obj.event) {
-                case 'create':
-                    layui.easyAdmin.openLayer("{:url('admin/role/create')}");
-                    break;
+            if(obj.event === 'create') {
+                easyAdmin.openLayer("{:url('admin/role/create')}");
             }
         });
 
         table.on('tool(table)', function (obj) {
-            var data = obj.data;
-            switch (obj.event) {
-                case "update":
-                    layui.easyAdmin.openLayer("{:url('admin/role/update')}?id=" + data.id);
-                    break;
-                case 'delete':
-                    top.layer.confirm('确定删除吗？', {
-                        icon: 3,
-                    }, function () {
-                        layui.easyAdmin.http({
-                            type: "POST",
-                            url: "{:url('admin/role/delete')}",
-                            data: {
-                                id: obj.data.id
-                            },
-                            success: function (result) {
-                                var key = top.layer.alert(result.msg, {
-                                    icon: 1,
-                                }, function () {
-                                    layui.table.reload("table");
-                                    top.layer.close(key);
-                                });
-                            }
-                        });
+
+            if(obj.event === "update") {
+                easyAdmin.openLayer("{:url('admin/role/update')}?id=" + obj.data.id);
+            }
+
+            if(obj.event === "delete") {
+                top.layer.confirm('确定删除吗？', {
+                    icon: 3,
+                }, function () {
+                    easyAdmin.http({
+                        type: "POST",
+                        url: "{:url('admin/role/delete')}",
+                        data: {
+                            id: obj.data.id
+                        },
+                        success: function (result) {
+                            var key = top.layer.alert(result.msg, {
+                                icon: 1,
+                            }, function () {
+                                layui.table.reload("table");
+                                top.layer.close(key);
+                            });
+                        }
                     });
-                    break;
+                });
             }
         });
 

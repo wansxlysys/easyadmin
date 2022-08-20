@@ -42,7 +42,7 @@
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="create">
-            <i class="fa fa-fw fa-plus"></i>添加管理员
+            <i class="fa fa-fw fa-plus"></i>管理员添加
         </button>
     </div>
 </script>
@@ -81,8 +81,9 @@
 <script type="text/javascript">
 
     layui.use(['easyAdmin'], function () {
-        var form = layui.form,
-            table = layui.table;
+        var form = layui.form;
+        var table = layui.table;
+        var easyAdmin = layui.easyAdmin;
 
         table.render({
             id: "table",
@@ -103,44 +104,42 @@
 
         // 工具栏监听
         table.on('toolbar(table)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch (obj.event) {
-                case 'create':
-                    layui.easyAdmin.openLayer("{:url('admin/manager/create')}");
-                    break;
+
+            if (obj.event === 'create') {
+                easyAdmin.openLayer("{:url('admin/manager/create')}");
             }
+
         });
 
         // 行级监听
         table.on('tool(table)', function (obj) {
-            var data = obj.data;
-            switch (obj.event) {
-                case "update":
-                    layui.easyAdmin.openLayer("{:url('admin/manager/update')}?id=" + data.id);
-                    break;
 
-                case 'delete':
-                    top.layer.confirm('确定删除吗？', {
-                        icon: 3,
-                    }, function () {
-                        layui.easyAdmin.http({
-                            type: "POST",
-                            url: "{:url('admin/manager/delete')}",
-                            data: {
-                                id: obj.data.id
-                            },
-                            success: function (result) {
-                                var key = top.layer.alert(result.msg, {
-                                    icon: 1,
-                                }, function () {
-                                    layui.table.reload("table");
-                                    top.layer.close(key);
-                                });
-                            }
-                        });
-                    });
-                    break;
+            if (obj.event === 'update') {
+                easyAdmin.openLayer("{:url('admin/manager/update')}?id=" + obj.data.id);
             }
+
+            if (obj.event === 'delete') {
+                top.layer.confirm('确定删除吗？', {
+                    icon: 3,
+                }, function () {
+                    easyAdmin.http({
+                        type: "POST",
+                        url: "{:url('admin/manager/delete')}",
+                        data: {
+                            id: obj.data.id
+                        },
+                        success: function (result) {
+                            var key = top.layer.alert(result.msg, {
+                                icon: 1,
+                            }, function () {
+                                layui.table.reload("table");
+                                top.layer.close(key);
+                            });
+                        }
+                    });
+                });
+            }
+
         });
 
         // 表格排序

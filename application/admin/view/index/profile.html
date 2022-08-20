@@ -47,16 +47,17 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', "uploadImage"], function () {
+    layui.use(['easyAdmin', 'form', "uploadImage"], function () {
 
         var form = layui.form;
+        var easyAdmin = layui.easyAdmin;
 
         avatarUploader.uploader.config.url = "{:url('admin/manager/upload_avatar')}";
 
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            layui.easyAdmin.http({
+            easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/index/profile')}",
                 data: obj.field,
@@ -65,7 +66,7 @@
                         icon: 1,
                     }, function () {
                         top.layer.close(key);
-                        layui.easyAdmin.closeLayer();
+                        easyAdmin.closeLayer();
                     });
                 }
             });

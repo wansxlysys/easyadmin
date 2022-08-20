@@ -100,7 +100,7 @@
         box-shadow: 0 0 5px rgba(0, 0, 0, .05)
     }
 
-    .easy-user-login-captcha{
+    .easy-user-login-captcha {
         margin-left: 10px;
     }
 </style>
@@ -148,12 +148,16 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin'], function () {
+    layui.use(['easyAdmin', 'jquery'], function () {
+
+        var $ = layui.$;
         var form = layui.form;
+        var easyAdmin = layui.easyAdmin;
+        var captchaImg = $("#captchaImg");
 
         form.on('submit', function (obj) {
             event.preventDefault();
-            layui.easyAdmin.http({
+            easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/login/login')}",
                 data: obj.field,
@@ -166,12 +170,12 @@
             });
         });
 
-        $("#captchaImg").click(function () {
+        captchaImg.click(function () {
             refreshVerify();
         });
 
         function refreshVerify() {
-            $("#captchaImg").attr("src", "{:url('login/captcha')}?time=" + new Date().getTime());
+            captchaImg.attr("src", "{:url('login/captcha')}?time=" + new Date().getTime());
         }
     });
 </script>

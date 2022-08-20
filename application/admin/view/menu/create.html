@@ -91,7 +91,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', 'easyService'], function () {
+    layui.use(['easyAdmin', 'easyService', 'form'], function () {
 
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
@@ -123,6 +123,7 @@
                     var lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
+                        parent.table.reload("table");
                         top.layer.close(lay);
                         easyAdmin.closeLayer();
                     });

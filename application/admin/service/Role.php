@@ -68,21 +68,6 @@ class Role extends \app\common\service\Role
     }
 
     /**
-     * 通过ID获取角色和权限
-     * @param $id
-     * @return mixed
-     */
-    public function getByIdWithPermission($id)
-    {
-        $PermissionService = new \app\admin\service\Permission();
-
-        $role               = $this->RoleRepository->getById($id);
-        $role['permission'] = $PermissionService->getAllMenuIdByRoleId($role['id']);
-
-        return $role;
-    }
-
-    /**
      * 通过角色ID删除
      * @param $id
      * @return bool

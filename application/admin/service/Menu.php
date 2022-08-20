@@ -123,37 +123,6 @@ class Menu extends \app\common\service\Menu
     }
 
     /**
-     * 获取菜单树
-     * @param array $params
-     * @return array
-     */
-    public function getMenuTree(array $params = [])
-    {
-        $expands  = [];
-        $selected = [];
-
-        $menu = $this->getById($params['menu_id']);
-
-        if (!empty($menu)) {
-
-            $parent = $this->getById($menu['parent_id']);
-
-            if (!empty($parent)) {
-                $parents    = $this->getBreadcrumb($parent['parent_id']);
-                $expands    = array_column($parents, 'id');
-                $selected[] = $menu['parent_id'];
-            }
-        }
-
-        $lists = $this->getAllTree($selected);
-
-        return [
-            'lists'   => $lists,
-            'expands' => $expands
-        ];
-    }
-
-    /**
      * 获取全部菜单树
      * @param array $checked
      * @return array

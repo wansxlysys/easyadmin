@@ -16,6 +16,13 @@ class Admin extends \think\Controller
         $MenuService = new \app\admin\service\Menu();
         $currentMenu = $MenuService->getCurrentMenu();
 
+        /**
+         * 每个url必须设定一个菜单
+         */
+        if (empty($currentMenu)) {
+            $this->error('系统菜单不存在');
+        }
+
         if ($this->request->isAjax()) {
 
             Hook::add('app_end', \app\admin\behavior\Log::class);

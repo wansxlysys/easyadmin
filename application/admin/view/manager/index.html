@@ -106,7 +106,7 @@
             var checkStatus = table.checkStatus(obj.config.id);
             switch (obj.event) {
                 case 'create':
-                    layui.easyAdmin.open("{:url('admin/manager/create')}");
+                    layui.easyAdmin.openLayer("{:url('admin/manager/create')}");
                     break;
             }
         });
@@ -116,7 +116,7 @@
             var data = obj.data;
             switch (obj.event) {
                 case "update":
-                    layui.easyAdmin.open("{:url('admin/manager/update')}?id=" + data.id);
+                    layui.easyAdmin.openLayer("{:url('admin/manager/update')}?id=" + data.id);
                     break;
 
                 case 'delete':

@@ -22,6 +22,26 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery'], function (exports) {
                 }
             });
         },
+        menuTreeStruct: function (options) {
+            easyAdmin.http({
+                type: "GET",
+                url: apiUrl.getAllMenu,
+                loading: false,
+                success: function (result) {
+
+                    var defaults = {};
+                    var data = $.map(result.data, function (item) {
+                        return {
+                            id: item.id,
+                            title: item.title,
+                            parent_id: item.parent_id
+                        }
+                    });
+
+                    easyBuilder.treeStruct(options.elem, data, options.selected, $.extend(true, defaults, options.setting));
+                }
+            });
+        },
         siteTreeStruct: function (options) {
             easyAdmin.http({
                 type: "GET",
@@ -103,19 +123,6 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery'], function (exports) {
             easyAdmin.http({
                 type: "GET",
                 url: options.isContribute === true ? apiUrl.getColumnContribute : apiUrl.getPermissionColumn,
-                loading: false,
-                success: function (result) {
-
-                    var defaults = {};
-
-                    easyBuilder.treeStruct(options.elem, result.data, options.selected, $.extend(true, defaults, options.setting));
-                }
-            });
-        },
-        menuTreeStruct: function (options) {
-            easyAdmin.http({
-                type: "GET",
-                url: apiUrl.getAllMenu,
                 loading: false,
                 success: function (result) {
 

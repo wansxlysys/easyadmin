@@ -3,142 +3,110 @@ layui.define(["jquery", "uploadImage"], function (exports) {
     var $ = layui.$;
     var uploadImage = layui.uploadImage;
 
-    var EasyAdmin = {
-        /**
-         * http请求
-         * @param options
-         */
-        http: function (options) {
+    /**
+     * 加载等待
+     * @returns {*}
+     */
+    function showLoading() {
 
-            var defaults = {
-                url: "",
-                type: "GET",
-                data: {},
-                loading: true,
-                success: function () {
+        var html = '';
 
-                },
-                error: function () {
+        html += "<p style='color:#fff'>";
+        html += "<i class='layui-icon layui-icon-loading-1 layui-anim layui-anim-rotate layui-anim-loop' style='font-size:28px;color:#fff'></i>";
+        html += "<br>加载中</p>";
 
-                },
-                complete: function () {
+        return top.layer.msg(html, {
+            time: 10000000,
+            shade: 0.3
+        });
+    }
 
-                }
-            };
-
-            var config = $.extend({}, defaults, options);
-
-            var key = '';
-            if (config.loading) {
-                key = this.loading();
+    /**
+     * 打开一个子iframe页面
+     * @param options
+     * @returns {s.index}
+     */
+    function openLayer(options) {
+        if (typeof options == 'string') {
+            options = {
+                content: options
             }
+        }
 
-            $.ajax({
-                type: config.type,
-                url: config.url,
-                data: config.data,
-                success: function (result) {
-                    if (result.code === 1) {
-                        typeof config.success == 'function' && config.success(result);
-                    } else {
-                        typeof config.error == 'function' && config.error(result);
-                        top.layer.alert(result.msg, {
-                            icon: 2
-                        });
-                    }
-                },
-                error: function () {
-                    top.layer.alert("请求失败", {
+        var defaults = {
+            title: false,
+            type: 2,
+            shade: 0,
+            closeBtn: 0,
+            area: ['100%', '100%'],
+            skin: "easy-iframe-transparent",
+            content: "",
+        };
+
+        return layer.open($.extend(true, defaults, options));
+    }
+
+    /**
+     * 关闭当前弹出层
+     */
+    function closeLayer() {
+        parent.layer.close(parent.layer.getFrameIndex(window.name));
+    }
+
+    /**
+     * 发送http请求
+     * @param config
+     */
+    function http(config) {
+
+        var defaults = {
+            url: "",
+            type: "GET",
+            data: {},
+            loading: true,
+            success: function () {
+
+            },
+            error: function () {
+
+            },
+            complete: function () {
+
+            }
+        };
+
+        var key = '';
+        var options = $.extend(true, defaults, config);
+
+        if (options.loading) {
+            key = showLoading();
+        }
+
+        $.ajax({
+            type: options.type,
+            url: options.url,
+            data: options.data,
+            success: function (result) {
+                if (result.code === 1) {
+                    typeof options.success == 'function' && options.success(result);
+                } else {
+                    typeof options.error == 'function' && options.error(result);
+                    top.layer.alert(result.msg, {
                         icon: 2
                     });
-                },
-                complete: function () {
-                    typeof config.complete == 'function' && config.complete();
-                    top.layer.close(key);
                 }
-            });
-        },
-
-        /**
-         * layui加载等待
-         * @returns {*}
-         */
-        loading: function () {
-
-            var html = '';
-
-            html += "<p style='color:#fff'>";
-            html += "<i class='layui-icon layui-icon-loading-1 layui-anim layui-anim-rotate layui-anim-loop' style='font-size:28px;color:#fff'></i>";
-            html += "<br>加载中</p>";
-
-            return top.layer.msg(html, {
-                time: 10000000,
-                shade: 0.3
-            });
-        },
-        /**
-         * layui树组件扩展，获取选中节点ID
-         * @param tree
-         * @returns {[]}
-         */
-        treeToArray: function (tree) {
-            var result = [];
-            var getChild = function (tree) {
-                for (var i = 0; i < tree.length; i++) {
-                    if (tree[i].children.length > 0) {
-                        getChild(tree[i].children);
-                    }
-                    result.push(tree[i]);
-                }
-                return result;
-            };
-            return getChild(tree);
-        },
-        /**
-         * 获取对象的某一列
-         * @param data
-         * @param field
-         * @returns {[]}
-         */
-        objectColumn(data, field) {
-            var result = [];
-            for (var i = 0; i < data.length; i++) {
-                result.push(data[i][field]);
+            },
+            error: function () {
+                top.layer.alert("请求失败", {
+                    icon: 2
+                });
+            },
+            complete: function () {
+                typeof options.complete == 'function' && options.complete();
+                top.layer.close(key);
             }
-            return result;
-        },
-        /**
-         * 打开一个子iframe页面
-         * @param options
-         * @returns {s.index}
-         */
-        open: function (options) {
-            if (typeof options == 'string') {
-                options = {
-                    content: options
-                }
-            }
-
-            var defaults = {
-                title: false,
-                type: 2,
-                shade: 0,
-                closeBtn: 0,
-                area: ['100%', '100%'],
-                skin: "easy-iframe-transparent",
-                content: "",
-            };
-
-            var config = $.extend({}, defaults, options);
-            return layer.open(config);
-        },
-        /**
-         * 关闭当前弹出层
-         */
-        close: function () {
-            parent.layer.close(parent.layer.getFrameIndex(window.name));
-        }
-    };
+        });
+    }
 
     /**
      * alert关闭控制
@@ -257,7 +225,7 @@ layui.define(["jquery", "uploadImage"], function (exports) {
                 multiple: true,
                 url: globals.uploadImage,
                 before: function () {
-                    loading = EasyAdmin.loading();
+                    loading = showLoading();
                 },
                 done: function (url) {
                     $(item).val(url);
@@ -292,7 +260,7 @@ layui.define(["jquery", "uploadImage"], function (exports) {
                 multiple: true,
                 url: globals.uploadImage,
                 before: function () {
-                    loading = EasyAdmin.loading();
+                    loading = showLoading();
                 },
                 done: function (url) {
                     $(item).val(window[uploader].getAll().join(','));
@@ -316,5 +284,10 @@ layui.define(["jquery", "uploadImage"], function (exports) {
     /**
      * 导出
      */
-    exports("easyAdmin", EasyAdmin);
+    exports("easyAdmin", {
+        http: http,
+        openLayer: openLayer,
+        closeLayer: closeLayer,
+        showLoading: showLoading,
+    });
 });

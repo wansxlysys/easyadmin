@@ -1,10 +1,9 @@
-layui.define(['easyAdmin', 'helper', 'jquery', 'form', 'xmSelect'], function (exports) {
+layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
 
     var $ = layui.$;
     var form = layui.form;
-    var helper = layui.helper;
+    var easyHelper = layui.easyHelper;
     var xmSelect = layui.xmSelect;
-    var easyAdmin = layui.easyAdmin;
 
     /**
      * 获取所有父级元素ID
@@ -13,7 +12,7 @@ layui.define(['easyAdmin', 'helper', 'jquery', 'form', 'xmSelect'], function (ex
      * @returns {*[]}
      */
     function getParentsId(data, id) {
-        return easyAdmin.objectColumn(helper.getParents(data, id), "id");
+        return easyHelper.objectColumn(easyHelper.getParents(data, id), "id");
     }
 
     /**
@@ -77,7 +76,7 @@ layui.define(['easyAdmin', 'helper', 'jquery', 'form', 'xmSelect'], function (ex
 
         var options = $.extend(true, defaults, setting);
 
-        selected = helper.stringToArray(selected, ',');
+        selected = easyHelper.stringToArray(selected, ',');
 
         /**
          * 循环设置选中的节点
@@ -161,12 +160,12 @@ layui.define(['easyAdmin', 'helper', 'jquery', 'form', 'xmSelect'], function (ex
 
         options.tree.expandedKeys = getParentsId(options.data, selected);
 
-        options.data = helper.arrayToTree(options.data, 0, function (item) {
-            if (options.appendFirst === true && helper.equalsInt(item.id, selected)) {
+        options.data = easyHelper.arrayToTree(options.data, 0, function (item) {
+            if (options.appendFirst === true && easyHelper.equalsInt(item.id, selected)) {
                 item.selected = true;
             }
 
-            if (options.appendFirst === false && helper.equalsInt(item.id, selected)) {
+            if (options.appendFirst === false && easyHelper.equalsInt(item.id, selected)) {
                 item.selected = true;
             }
         });
@@ -175,7 +174,7 @@ layui.define(['easyAdmin', 'helper', 'jquery', 'form', 'xmSelect'], function (ex
          * 是否附加顶级数据
          */
         if (options.appendFirst) {
-            if (helper.equalsInt(selected, 0)) {
+            if (easyHelper.equalsInt(selected, 0)) {
                 options.appendFirstData.selected = true;
             }
             options.data.unshift(options.appendFirstData);
@@ -184,7 +183,7 @@ layui.define(['easyAdmin', 'helper', 'jquery', 'form', 'xmSelect'], function (ex
         options.done(xmSelect.render(options));
     }
 
-    exports("builder", {
+    exports("easyBuilder", {
         treeStruct: treeStruct,
         treeSelect: treeSelect,
         singleSelect: singleSelect,

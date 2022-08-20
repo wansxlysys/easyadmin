@@ -124,7 +124,7 @@
         treeTable.on('toolbar(table)', function (obj) {
             switch (obj.event) {
                 case 'create':
-                    layui.easyAdmin.open("{:url('admin/menu/create')}");
+                    layui.easyAdmin.openLayer("{:url('admin/menu/create')}");
                     break;
                 case 'expand':
                     menuTable.expandAll();
@@ -161,7 +161,7 @@
 
             switch (obj.event) {
                 case 'update':
-                    layui.easyAdmin.open("{:url('admin/menu/update')}?id=" + data.id);
+                    layui.easyAdmin.openLayer("{:url('admin/menu/update')}?id=" + data.id);
                     break;
 
                 case 'delete':

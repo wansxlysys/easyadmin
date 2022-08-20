@@ -112,7 +112,7 @@
             var data = obj.data;
             switch (obj.event) {
                 case "detail":
-                    layui.easyAdmin.open("{:url('admin/log/detail')}?id=" + data.id);
+                    layui.easyAdmin.openLayer("{:url('admin/log/detail')}?id=" + data.id);
                     break;
             }
         });

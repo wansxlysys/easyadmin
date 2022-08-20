@@ -20,19 +20,12 @@ class Role extends \app\common\controller\Admin
     protected $RoleService;
 
     /**
-     * 菜单服务类
-     * @var \app\admin\service\Menu
-     */
-    protected $MenuService;
-
-    /**
      * 初始化
      */
     public function initialize()
     {
         parent::initialize();
         $this->RoleService = new \app\admin\service\Role();
-        $this->MenuService = new \app\admin\service\Menu();
     }
 
     /**
@@ -84,12 +77,7 @@ class Role extends \app\common\controller\Admin
             $this->success('添加成功');
         }
 
-        $menu = $this->MenuService->getAllTree();
-        $menu = \helper\JsonArray::arrayToJson($menu);
-
-        return $this->fetch('', [
-            'menu' => $menu
-        ]);
+        return $this->fetch();
     }
 
     /**
@@ -122,14 +110,14 @@ class Role extends \app\common\controller\Admin
             $this->success('修改成功');
         }
 
-        $id   = $request->get('id');
-        $role = $this->RoleService->getByIdWithPermission($id);
-        $menu = $this->MenuService->getAllTree($role['permission']);
-        $menu = \helper\JsonArray::arrayToJson($menu);
+        $PermissionService = new \app\admin\service\Permission();
+
+        $role       = $this->RoleService->getById($request->get('id'));
+        $permission = $PermissionService->getAllMenuIdByRoleId($role['id']);
 
         return $this->fetch('', [
-            'menu' => $menu,
-            'role' => $role
+            'role'       => $role,
+            'permission' => $permission
         ]);
     }
 

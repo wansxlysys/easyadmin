@@ -3,20 +3,20 @@
     /**
      * 资源目录路径
      */
-    var basePath = document.scripts[document.scripts.length - 1].src.substring(0, src.lastIndexOf("/") + 1);
+    var basePath = window.location.origin + '/static/admin/plugin/';
 
     /**
      * 初始化全局配置
      */
     layui.config({
-        base: basePath + "plugin/",
+        base: basePath,
         version: true
     }).extend({
         xmSelect: "xmSelect/xmSelect",
         easyAdmin: "easyAdmin/easyAdmin",
-        easyBuild: "easyAdmin/easyBuild",
         easyHelper: "easyAdmin/easyHelper",
         easyService: "easyAdmin/easyService",
+        easyBuilder: "easyAdmin/easyBuilder",
         treeTable: "treeTable/treeTable",
         uploadImage: "uploadImage/uploadImage",
     });

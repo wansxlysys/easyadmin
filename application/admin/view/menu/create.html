@@ -91,48 +91,18 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', "xmSelect"], function () {
+    layui.use(['easyAdmin', 'easyService'], function () {
 
         var form = layui.form;
-        var xmSelect = layui.xmSelect;
+        var easyAdmin = layui.easyAdmin;
+        var easyService = layui.easyService;
 
-        layui.easyAdmin.http({
-            type: "GET",
-            url: "{:url('menu/menu_tree')}",
-            loading: false,
-            success: function (result) {
-                xmSelect.render({
-                    el: '#menuTree',
-                    data: result.data.lists,
-                    name: "parent_id",
-                    radio: true,
-                    clickClose: true,
-                    prop: {
-                        name: "title",
-                        value: "id",
-                    },
-                    model: {
-                        icon: 'hidden',
-                        label: {
-                            type: 'text'
-                        }
-                    },
-                    theme: {
-                        color: "#009688"
-                    },
-                    tree: {
-                        show: true,
-                        showFolderIcon: true,
-                        showLine: false,
-                        expandedKeys: [],
-                        strict: false,
-                        clickExpand: false,
-                        clickCheck: true,
-                    }
-                });
+        easyService.render.menuTreeSelect({
+            elem: "#menuTree",
+            setting: {
+                name: 'parent_id'
             }
         });
-
 
         form.on("radio(type)", function (data) {
             if (data.value === "3") {
@@ -142,11 +112,10 @@
             }
         });
 
-
         form.on("submit", function (obj) {
             event.preventDefault();
 
-            layui.easyAdmin.http({
+            easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/menu/create')}",
                 data: obj.field,
@@ -155,7 +124,7 @@
                         icon: 1,
                     }, function () {
                         top.layer.close(lay);
-                        layui.easyAdmin.close();
+                        easyAdmin.closeLayer();
                     });
                 }
             });

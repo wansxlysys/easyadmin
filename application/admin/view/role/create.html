@@ -27,7 +27,7 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label layui-required">权限</label>
                 <div class="layui-input-block">
-                    <div id="permission"></div>
+                    <div id="permission" class="ztree"></div>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -43,25 +43,33 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', 'jquery', 'tree'], function () {
+    layui.use(['easyAdmin', 'easyService', 'easyHelper', 'jquery'], function () {
 
-        var tree = layui.tree,
-            form = layui.form;
+        var form = layui.form;
+        var easyAdmin = layui.easyAdmin;
+        var easyHelper = layui.easyHelper;
+        var easyService = layui.easyService;
 
-        tree.render({
-            elem: '#permission',
-            id: 'permission',
-            data: JSON.parse('{$menu|raw}'),
-            showCheckbox: true
+        var permissionTree = null;
+
+        easyService.render.menuTreeStruct({
+            elem: "#permission",
+            setting: {
+                check: {
+                    enable: true
+                },
+                callback: {
+                    done: function (tree) {
+                        permissionTree = tree;
+                    }
+                }
+            }
         });
 
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            var permission = tree.getChecked('permission');
-
-            permission = layui.easyAdmin.treeToArray(permission)
-            permission = layui.easyAdmin.objectColumn(permission, 'id');
+            var permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
                 layer.msg('请选择授权节点', {
@@ -72,7 +80,7 @@
 
             obj.field.permission = permission;
 
-            layui.easyAdmin.http({
+            easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/role/create')}",
                 data: obj.field,
@@ -82,7 +90,7 @@
                     }, function () {
                         parent.layui.table.reload("table");
                         top.layer.close(key);
-                        layui.easyAdmin.close();
+                        easyAdmin.closeLayer();
                     });
                 }
             });

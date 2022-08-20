@@ -78,10 +78,23 @@ layui.define(['jquery'], function (exports) {
         return result;
     }
 
+    /**
+     * 获取数组对象的某一列
+     * @param data
+     * @param field
+     * @returns {[]}
+     */
+    function objectColumn(data, field) {
+        return $.map(data, function (item) {
+            return item[field];
+        });
+    }
+
     exports("easyHelper", {
         equalsInt: equalsInt,
         getParents: getParents,
         arrayToTree: arrayToTree,
+        objectColumn: objectColumn,
         stringToArray: stringToArray,
         arrayFindItem: arrayFindItem
     });

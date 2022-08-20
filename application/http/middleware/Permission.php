@@ -76,10 +76,6 @@ class Permission
         $MenuService = new \app\admin\service\Menu();
         $currentMenu = $MenuService->getCurrentMenu();
 
-        if (empty($currentMenu)) {
-            $this->error('系统菜单不存在');
-        }
-
         if (!$this->ManagerHelper->checkAccessByMenuId($currentMenu['id'])) {
             $this->error('您的账号未授权访问');
         }

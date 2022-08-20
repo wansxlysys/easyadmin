@@ -47,20 +47,15 @@ class Menu extends \app\common\controller\Admin
     }
 
     /**
-     * 获取全部树形菜单
+     * 获取全部菜单
      * @param Request $request
      */
-    public function menu_tree_action(Request $request)
+    public function get_all_action(Request $request)
     {
         if ($request->isAjax()) {
 
-            $params = [
-                'menu_id' => $request->get('menu_id')
-            ];
+            $this->success('获取成功', '', $this->MenuService->getAll());
 
-            $result = $this->MenuService->getMenuTree($params);
-
-            $this->success('获取成功', '', $result);
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace app\admin\behavior;
 
+use think\Response;
 use think\facade\Request;
 
 /**
@@ -14,7 +15,7 @@ class Log
      * 执行入口
      * @param $response
      */
-    public function run($response)
+    public function run(Response $response)
     {
         if (Request::isPost()) {
             $data = $response->getData();

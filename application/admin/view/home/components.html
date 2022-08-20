@@ -17,6 +17,7 @@
     layui.use(['easyAdmin'], function () {
 
         var loading = null;
+        var easyAdmin = layui.easyAdmin;
 
         let up = new fcup({
             id: "upload",
@@ -32,8 +33,8 @@
                 1003: "上传文件过大",
                 1004: "上传请求超时"
             },
-            start: function(){
-              console.log(1);
+            start: function () {
+                console.log(1);
             },
             // 错误提示
             error: function (message) {
@@ -42,7 +43,7 @@
             // 等待上传事件，可以用来loading
             before_send: function () {
                 console.log('等待请求中');
-                loading = layui.easyAdmin.loading();
+                loading = easyAdmin.showLoading();
             },
             // 上传进度事件
             progress: function (progress) {

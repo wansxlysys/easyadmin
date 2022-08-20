@@ -122,15 +122,15 @@
 
         treeTable.on('toolbar(table)', function (obj) {
 
-            if(obj.event === 'create') {
+            if (obj.event === 'create') {
                 easyAdmin.openLayer("{:url('admin/menu/create')}");
             }
 
-            if(obj.event === 'expand') {
+            if (obj.event === 'expand') {
                 table.expandAll();
             }
 
-            if(obj.event === 'fold') {
+            if (obj.event === 'fold') {
                 table.foldAll();
             }
 
@@ -138,19 +138,19 @@
 
         // 菜单排序
         treeTable.on('edit(table)', function (obj) {
-            easyAdmin.http("POST", "{:url('admin/menu/sort')}", {
-                id: obj.data.id,
-                sort: obj.value
-            }, function (result) {
-                if (result.code === 200) {
+            easyAdmin.http({
+                url: "{:url('admin/menu/sort')}",
+                type: "POST",
+                data: {
+                    id: obj.data.id,
+                    sort: obj.value
+                },
+                success: function (result) {
                     var lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
+                        table.reload();
                         top.layer.close(lay);
-                    });
-                } else {
-                    top.layer.alert(result.msg, {
-                        icon: 2,
                     });
                 }
             });
@@ -159,11 +159,11 @@
         // 工具栏监听
         treeTable.on('tool(table)', function (obj) {
 
-            if(obj.event === 'update') {
+            if (obj.event === 'update') {
                 easyAdmin.openLayer("{:url('admin/menu/update')}?id=" + obj.data.id);
             }
 
-            if(obj.event === 'delete') {
+            if (obj.event === 'delete') {
                 top.layer.confirm("确认删除 " + obj.data.title + "？", {
                     icon: 3
                 }, function () {

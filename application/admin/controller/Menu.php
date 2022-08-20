@@ -66,7 +66,6 @@ class Menu extends \app\common\controller\Admin
      */
     public function create_action(Request $request)
     {
-
         if ($request->isAjax()) {
 
             $params = [
@@ -108,7 +107,6 @@ class Menu extends \app\common\controller\Admin
      */
     public function update_action(Request $request)
     {
-
         if ($request->isAjax()) {
 
             $params = [
@@ -148,9 +146,14 @@ class Menu extends \app\common\controller\Admin
         ]);
     }
 
+    /**
+     * 菜单删除
+     * @param Request $request
+     */
     public function delete_action(Request $request)
     {
         if ($request->isAjax()) {
+
             $params = [
                 'id' => $request->post('id')
             ];
@@ -168,6 +171,35 @@ class Menu extends \app\common\controller\Admin
             }
 
             $this->success('删除成功');
+        }
+    }
+
+    /**
+     * 菜单排序
+     * @param Request $request
+     */
+    public function sort_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'id'   => $request->post('id'),
+                'sort' => $request->post('sort'),
+            ];
+
+            $MenuValidate = new \app\admin\validate\Menu();
+
+            if (!$MenuValidate->scene('sort')->check($params)) {
+                $this->error($MenuValidate->getError());
+            }
+
+            $result = $this->MenuService->updateByParamsId($params);
+
+            if (!$result) {
+                $this->error('修改失败');
+            }
+
+            $this->success('修改成功');
         }
     }
 }

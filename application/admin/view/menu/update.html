@@ -124,7 +124,7 @@
                     var lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
-                        parent.table.reload("table");
+                        parent.table.reload();
                         top.layer.close(lay);
                         easyAdmin.closeLayer();
                     });

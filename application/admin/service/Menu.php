@@ -161,11 +161,7 @@ class Menu extends \app\common\service\Menu
     {
         $params = $this->buildData($params);
 
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', '=', $params['id']];
-
-        return $this->MenuRepository->updateRecord($Query, $params);
+        return $this->MenuRepository->updateById($params);
     }
 
     /**
@@ -190,7 +186,7 @@ class Menu extends \app\common\service\Menu
     protected function buildData($params)
     {
         // 如果不是外链则清空链接地址
-        if ($params['type'] != 3) {
+        if (!empty($params['type']) && $params['type'] != 3) {
             $params['link'] = '';
         }
 

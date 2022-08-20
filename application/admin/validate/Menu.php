@@ -30,6 +30,15 @@ class Menu extends \app\common\validate\Menu
      */
     public function sceneDelete()
     {
-        return $this->only(['id'])->remove('id', 'integer');
+        return $this->only(['id']);
+    }
+
+    /**
+     * 排序菜单
+     * @return Menu
+     */
+    public function sceneSort()
+    {
+        return $this->only(['id', 'sort']);
     }
 }

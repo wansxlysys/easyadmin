@@ -1,0 +1,142 @@
+{extend name="admin@layout/layout" /}
+{block name="content"}
+{include file="admin@layout/breadcrumb" /}
+<div class="layui-fluid layui-content">
+    <div class="layui-card">
+        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">菜单名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="menu" class="layui-input" placeholder="请输入菜单名称">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">操作状态</label>
+                        <div class="layui-input-inline">
+                            <select name="status">
+                                <option value=""></option>
+                                <option value="1">操作成功</option>
+                                <option value="2">操作失败</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button type="reset" class="layui-btn layui-btn-danger" lay-submit="" lay-filter="reset">
+                            <i class="fa fa-fw fa-refresh"></i>重置
+                        </button>
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="search">
+                            <i class="fa fa-fw fa-search"></i>搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <table class="layui-hide" id="table" lay-filter="table"></table>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="clear">
+            <i class="fa fa-fw fa-trash"></i>清空日志
+        </button>
+    </div>
+</script>
+
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-sm" lay-event="detail">
+        <i class="fa fa-fw fa-search-plus"></i>详情
+    </a>
+    <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
+        <i class="fa fa-fw fa-trash"></i>删除
+    </a>
+</script>
+
+<script type="text/html" id="status">
+    {{#  if(d.status == 1){ }}
+    <span class="layui-badge layui-bg-green">操作成功</span>
+    {{#  } else { }}
+    <span class="layui-badge">操作失败</span>
+    {{#  } }}
+</script>
+{/block}
+
+{block name="js"}
+<script type="text/javascript">
+    layui.use(['easyadmin', 'form', 'table'], function () {
+        var form = layui.form,
+            table = layui.table;
+
+        table.render({
+            id: "table",
+            elem: '#table',
+            url: "{:url('admin/log/index')}",
+            toolbar: '#toolbar',
+            cols: [[
+                {type: 'checkbox'},
+                {field: 'id', title: 'ID', width: 80},
+                {field: 'menu', title: '菜单名称', width: 160},
+                {field: 'description', title: '操作详情'},
+                {field: 'url', title: '请求地址'},
+                {field: 'create_time', title: '操作时间', width: 180},
+                {field: 'status', title: '状态', width: 160, templet: "#status"},
+                {title: '操作', toolbar: '#bar', width: 180}
+            ]]
+        });
+
+        table.on('toolbar(table)', function (obj) {
+            switch (obj.event) {
+                case 'clear':
+                    top.layer.confirm("确认删除清空日志吗？", {
+                        icon: 3
+                    }, function () {
+                        layui.easyadmin.http({
+                            type: "POST",
+                            url: "{:url('admin/log/clear')}",
+                            success: function (result) {
+                                table.reload("table");
+                                top.layer.alert(result.msg, {
+                                    icon: 1,
+                                });
+                            }
+                        });
+                    });
+                    break;
+            }
+        });
+
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case "detail":
+                    layui.easyadmin.open("{:url('admin/log/detail')}?id=" + data.id);
+                    break;
+            }
+        });
+
+        // 表格搜索
+        form.on("submit(search)", function (obj) {
+            event.preventDefault();
+            table.reload("table", {
+                where: obj.field,
+                page: {
+                    curr: 1
+                },
+            });
+        });
+
+        // 表格重置
+        form.on("submit(reset)", function (obj) {
+            table.reload("table", {
+                where: {},
+                page: {
+                    curr: 1
+                },
+            });
+        });
+    });
+</script>
+{/block}

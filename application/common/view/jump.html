@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>跳转提示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            outline: 0;
+            color: #3498db;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        .easy-message {
+            padding: 100px 100px 100px;
+            background: #fff;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .easy-message h1 {
+            margin: 0 0 14px;
+            font-weight: normal;
+            font-size: 40px;
+            color: #444;
+        }
+
+        .easy-message .jump, .easy-message .image {
+            margin: 20px 0;
+            padding: 10px 0;
+        }
+
+        .easy-message .jump {
+            font-size: 14px;
+        }
+
+        .easy-message .jump a {
+            color: #333;
+        }
+
+        .easy-message p {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .easy-message .btn {
+            display: inline-block;
+            margin: 0 10px;
+            width: 138px;
+            height: 32px;
+            border: 1px solid #44a0e8;
+            border-radius: 30px;
+            color: #44a0e8;
+            text-align: center;
+            font-size: 16px;
+            line-height: 30px;
+        }
+
+        .easy-success .btn {
+            border-color: #2d8cf0;
+            color: #2d8cf0
+        }
+
+        .easy-error .btn {
+            border-color: #ed4014;
+            color: #ed4014
+        }
+
+        .easy-tips p {
+            width: 100%;
+            color: #919191;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 50px;
+        }
+
+        .easy-message .btn-grey {
+            border-color: #bbb;
+            color: #bbb
+        }
+
+        .clearfix:after {
+            clear: both;
+            display: table;
+            content: ""
+        }
+    </style>
+</head>
+<body>
+
+<div class="easy-message {if $code == 1}'easy-success' {else/} 'easy-error'{/if}">
+    {if $code == 1}
+    <div class="image">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHdpZHRoPSIxMDAwcHgiIGhlaWdodD0iMTAwMHB4IiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy43LjEgKDI4MjE1KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4NCiAgICA8dGl0bGU+R3JvdXAgMjwvdGl0bGU+DQogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+DQogICAgPGRlZnM+PC9kZWZzPg0KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8ZyBpZD0iR3JvdXAtMiI+DQogICAgICAgICAgICA8cGF0aCBkPSJNOTI4LjQyNDA0OSwyNDMuODE4Njc5IEM4OTkuODI1NjIyLDI3Ni4wMjg1MTIgODU4LjUzODQ3MSwyOTYuNzIwODkgODEyLjA3ODIyNywyOTYuNzIwODkxIEM3MjUuNzk0OTE1LDI5Ni43MjA4OTEgNjU1LjkwOTMzNywyMjYuODM1MzEzIDY1NS45MDkzMzcsMTQwLjU1MiBDNjU1LjkwOTMzNywxMDEuNzA0OTg5IDY3MC42NDc3NzYsNjYuNTY2OTg4OSA2OTQuMTcwNzE1LDM5LjIzNzQzMzYgQzYzNC4zMzg1MDksMTMuOTU3NTk0OSA1NjguNjQ5OTY5LDUuNjg0MzQxODllLTE0IDQ5OS43NDA0NDcsNS42ODQzNDE4OWUtMTQgQzIyMy43MTE5MzQsNS42ODQzNDE4OWUtMTQgMCwyMjMuODA5NTQgMCw0OTkuNzQwNDQ3IEMwLDc3NS43Njg5NTkgMjIzLjcxMTkzNCw5OTkuNDgwODk0IDQ5OS43NDA0NDcsOTk5LjQ4MDg5NCBDNzc1Ljc2ODk2MSw5OTkuNDgwODk0IDk5OS40ODA4OTUsNzc1Ljc2ODk2IDk5OS40ODA4OTQsNDk5Ljc0MDQ0NyBDOTk5LjQ4MDg5NCw0MDYuMTM2NzE4IDk3My4yMjUsMzE4Ljc3OTc0NiA5MjguNDI0MDQ5LDI0My44MTg2NzkgTDkyOC40MjQwNDksMjQzLjgxODY3OSBaIiBpZD0iU2hhcGUiIGZpbGw9IiNFM0ZDRDkiPjwvcGF0aD4NCiAgICAgICAgICAgIDxwYXRoIGQ9Ik04MTIuMDc4MjI3LDAuMTk1MjExMTY2IEM3MzQuNDgxODA5LDAuMTk1MjExMTY2IDY3MS41MjYyMjYsNjMuMTUwNzk1IDY3MS41MjYyMjUsMTQwLjc0NzIxMSBDNjcxLjUyNjIyNCwyMTguMzQzNjI4IDczNC40ODE4MDksMjgxLjI5OTIxMiA4MTIuMDc4MjI3LDI4MS4yOTkyMTMgQzg4OS42NzQ2NDQsMjgxLjI5OTIxNCA5NTIuNjMwMjI3LDIxOC4zNDM2MjkgOTUyLjYzMDIyNywxNDAuNzQ3MjExIEM5NTIuNjMwMjI3LDYzLjE1MDc5NCA4ODkuNjc0NjQzLDAuMTk1MjExMTY2IDgxMi4wNzgyMjcsMC4xOTUyMTExNjYgTDgxMi4wNzgyMjcsMC4xOTUyMTExNjYgWiBNODk0LjM1OTcxLDEwMi4xOTMwMTcgTDc5Ni45NDkzNjUsMTk5LjYwMzM2MiBDNzkxLjM4NTg0OCwyMDUuMTY2ODc5IDc4Mi4zMDg1MzEsMjA1LjE2Njg3OSA3NzYuODQyNjIxLDE5OS42MDMzNjIgTDcyOS43OTY3NDIsMTUyLjU1NzQ4NCBDNzI0LjIzMzIyNiwxNDYuOTkzOTY4IDcyNC4yMzMyMjYsMTM3LjkxNjY1MSA3MjkuNzk2NzQyLDEzMi40NTA3MzkgQzczNS4zNjAyNTksMTI2Ljg4NzIyMyA3NDQuNDM3NTc2LDEyNi44ODcyMjMgNzQ5LjkwMzQ4NywxMzIuNDUwNzM5IEw3ODEuNTI3Njg4LDE2NC4wNzQ5MzkgQzc4NC40NTU4NTQsMTY3LjAwMzEwNiA3ODkuMjM4NTI2LDE2Ny4wMDMxMDYgNzkyLjE2NjY5MywxNjQuMDc0OTM5IEw4NzQuMTU1MzYsODIuMDg2MjcyMiBDODc5LjcxODg3Nyw3Ni41MjI3NTU1IDg4OC43OTYxOTMsNzYuNTIyNzU1NSA4OTQuMjYyMTA1LDgyLjA4NjI3MjIgQzg5OS45MjMyMjcsODcuNTUyMTgyOSA4OTkuOTIzMjI3LDk2LjYyOTQ5OTcgODk0LjM1OTcxLDEwMi4xOTMwMTcgTDg5NC4zNTk3MSwxMDIuMTkzMDE3IFoiIGlkPSJTaGFwZSIgZmlsbD0iIzlBRDM4OCI+PC9wYXRoPg0KICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjIuNTM2NDEzLCAzNDAuNzA5OTIzKSIgZmlsbD0iIzlBRDM4OCI+DQogICAgICAgICAgICAgICAgPGVsbGlwc2UgaWQ9Ik92YWwtMSIgY3g9IjExMi44MTU4NTQiIGN5PSI2Ny44NDkxMTA3IiByeD0iNjcuODYwODA4NiIgcnk9IjY3Ljg0OTExMDciPjwvZWxsaXBzZT4NCiAgICAgICAgICAgICAgICA8ZWxsaXBzZSBpZD0iT3ZhbC0xLUNvcHkiIGN4PSI0NDEuODEwODIyIiBjeT0iNjcuODQ5MTEwNyIgcng9IjY3Ljg2MDgwODYiIHJ5PSI2Ny44NDkxMTA3Ij48L2VsbGlwc2U+DQogICAgICAgICAgICAgICAgPHBhdGggZD0iTTIuNjkzOTA3OCwyOTcuNjQxMDAxIEMtMy44MzgwNTMyNywyODMuNzA5OTYzIDIuMTM5NDM5MzIsMjY3LjEwMzYwNiAxNi4wMzkwNTI5LDI2MC41ODYxMzcgQzI5Ljg0OTkxMTksMjU0LjA5MzY0NCA0Ni40MTgxNTUyLDI2MC4wMjk2OTQgNTIuOTc5MDM1NiwyNzMuOTAyNzkxIEM1NS43NjEzNTE0LDI3OS43MjU5NTUgMTIyLjMwNjU3NCw0MTYuMDUyMzI3IDI3Ni43Njk5OTIsNDE2LjA1MjMyNyBDNDQ1LjMwNzU0MSw0MTYuMDUyMzI3IDQ5Ny41MzgyOTcsMjc5LjgwODg3MyA0OTkuNzA2MzA4LDI3NC4wMTY2NzcgQzUwNS4wMTU2NDUsMjU5LjYwODExOCA1MjAuOTE0NzM3LDI1Mi4yNTI0OSA1MzUuMzM5ODk5LDI1Ny40MzUyOTYgQzU0OS43MTQyMDIsMjYyLjcwMzAxNyA1NTcuMTYxNjM0LDI3OC41ODUxIDU1MS45NjA5OTYsMjkzLjAxODYzMyBDNTUxLjI5NjgzLDI5NC43Njk4NzggNDg1LjE5MjM5MSw0NzEuNzQ4NTA3IDI3Ni43Njk5OTEsNDcxLjc0ODUwNyBDODYuMzkwNzYxNSw0NzEuNzQ4NTA3IDYuMDAzNzY2NywzMDQuNzQzODgyIDIuNjkzOTA3OCwyOTcuNjQxMDAxIFoiIGlkPSJTaGFwZSI+PC9wYXRoPg0KICAgICAgICAgICAgPC9nPg0KICAgICAgICA8L2c+DQogICAgPC9nPg0KPC9zdmc+" alt="" width="150"/>
+    </div>
+    <h1>{$msg}</h1>
+    {else/}
+    <div class="image">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHdpZHRoPSIxMDAwcHgiIGhlaWdodD0iMTAwMHB4IiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy43LjEgKDI4MjE1KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4NCiAgICA8dGl0bGU+R3JvdXAgMzwvdGl0bGU+DQogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+DQogICAgPGRlZnM+PC9kZWZzPg0KICAgIDxnIGlkPSJQYWdlLTIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8ZyBpZD0iR3JvdXAtMyI+DQogICAgICAgICAgICA8cGF0aCBkPSJNODExLjc2NjYwNiwyOTYuNjA3MDI5IEM3MjUuNTE2NDA0LDI5Ni42MDcwMjkgNjU1LjY1NzY0MywyMjYuNzQ4MjY5IDY1NS42NTc2NDMsMTQwLjQ5ODA2NiBDNjU1LjY1NzY0MywxMDEuNjY1OTYxIDY3MC4zOTA0MjYsNjYuNTQxNDQ1IDY5My45MDQzMzksMzkuMjIyMzc2OSBDNjM0LjA5NTA5MiwxMy45NTIyMzg5IDU2OC40MzE3NiwwIDQ5OS41NDg2ODEsMCBDMjIzLjYyNjA4OSwwIDAsMjIzLjcyMzY1NyAwLDQ5OS41NDg2OCBDMCw3NzUuNDcxMjcxIDIyMy42MjYwODksOTk5LjA5NzM2MSA0OTkuNTQ4NjgxLDk5OS4wOTczNjEgQzc3NS40NzEyNzMsOTk5LjA5NzM2MSA5OTkuMDk3MzYyLDc3NS40NzEyNzIgOTk5LjA5NzM2MSw0OTkuNTQ4NjggQzk5OS4wOTczNjEsNDA1Ljk4MDg3MSA5NzIuODUxNTQxLDMxOC42NTc0MiA5MjguMDY3NzgzLDI0My43MjUxMTcgQzg5OS40ODAzMjksMjc1LjkyMjU5MSA4NTguMjA5MDIyLDI5Ni42MDcwMjggODExLjc2NjYwNiwyOTYuNjA3MDI5IFoiIGlkPSJTaGFwZSIgZmlsbD0iI0ZGQzRDOCI+PC9wYXRoPg0KICAgICAgICAgICAgPHBhdGggZD0iTTIzOC42NzUyOTEsNzY3LjI1NjkxNiBDMjMyLjQ2ODcxNyw3ODAuNDcwNzYgMjM4LjE0ODQ0NCw3OTYuMjIyMTkzIDI1MS4zNTU2NTUsODAyLjQwNDEzMSBDMjY0LjQ3ODUzMyw4MDguNTYyMzc5IDI4MC4yMjE0MzgsODAyLjkzMTkyNyAyODYuNDU1NDkxLDc4OS43NzMwNDEgQzI4OS4wOTkyMDcsNzg0LjI0OTY2NCAzNTIuMzI5NTEzLDY1NC45NDE2MDkgNDk5LjA5ODQxNCw2NTQuOTQxNjA5IEM2NTkuMjQwMzUxLDY1NC45NDE2MDkgNzA4Ljg2OTI1Nyw3ODQuMTcxMDE1IDcxMC45MjkyNzEsNzg5LjY2NTAxOCBDNzE1Ljk3NDEyNiw4MDMuMzMxOCA3MzEuMDgxMjEyLDgxMC4zMDg3NDggNzQ0Ljc4Nzc5Miw4MDUuMzkyNzYyIEM3NTguNDQ2MDQ2LDgwMC4zOTYyMzIgNzY1LjUyMjQ4OCw3ODUuMzMxNzg2IDc2MC41ODA5MTcsNzcxLjY0MTMxNiBDNzU5Ljk0OTgzNyw3NjkuOTgwMjI4IDY5Ny4xMzgzNTcsNjAyLjExMjc2NCA0OTkuMDk4NDEzLDYwMi4xMTI3NjQgQzMxOC4yMDI4MjksNjAyLjExMjc2NCAyNDEuODIwMjcxLDc2MC41MTk3MDMgMjM4LjY3NTI5MSw3NjcuMjU2OTE2IiBpZD0iU2hhcGUiIGZpbGw9IiNGRjg5OTIiPjwvcGF0aD4NCiAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjY3LjM4ODgxMywgMzQwLjU3OTE4MSkiIGZpbGw9IiNGRjg5OTIiPg0KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik02Ny44MzQ3NjgyLDEzNS42NDYxNDkgQzEwNS4yOTg4NzYsMTM1LjY0NjE0OSAxMzUuNjY5NTM2LDEwNS4yODA3MjUgMTM1LjY2OTUzNiw2Ny44MjMwNzQ3IEMxMzUuNjY5NTM2LDMwLjM2NTQyNDkgMTA1LjI5ODg3NiwwIDY3LjgzNDc2ODIsMCBDMzAuMzcwNjYwMiwwIDAsMzAuMzY1NDI0OSAwLDY3LjgyMzA3NDcgQzAsMTA1LjI4MDcyNSAzMC4zNzA2NjAyLDEzNS42NDYxNDkgNjcuODM0NzY4MiwxMzUuNjQ2MTQ5IFoiIGlkPSJPdmFsLTEiPjwvcGF0aD4NCiAgICAgICAgICAgICAgICA8ZWxsaXBzZSBpZD0iT3ZhbC0xLUNvcHkiIGN4PSIzOTYuNzAzNDkiIGN5PSI2Ny44MjMwNzQ3IiByeD0iNjcuODM0NzY4MiIgcnk9IjY3LjgyMzA3NDciPjwvZWxsaXBzZT4NCiAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgIDxnIGlkPSJHcm91cC0yIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NzEuMzE0NzQxLCAwLjAwMDAwMCkiPg0KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNDAuNTgyOTcyLDAgQzYzLjAxNjMzMSwwIDAuMDg0OTA2MjM3Myw2Mi45MzE0MjU3IDAuMDg0OTA1MjYxNCwxNDAuNDk4MDY2IEMwLjA4NDkwNDI4NTYsMjE4LjA2NDcwNiA2My4wMTYzMzEsMjgwLjk5NjEzMiAxNDAuNTgyOTcyLDI4MC45OTYxMzMgQzIxOC4xNDk2MTMsMjgwLjk5NjEzNCAyODEuMDgxMDM4LDIxOC4wNjQ3MDcgMjgxLjA4MTAzOCwxNDAuNDk4MDY2IEMyODEuMDgxMDM4LDYyLjkzMTQyNDggMjE4LjE0OTYxMiwwIDE0MC41ODI5NzIsMCBMMTQwLjU4Mjk3MiwwIFoiIGlkPSJTaGFwZSIgZmlsbD0iI0ZGODk5MiI+PC9wYXRoPg0KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNDAuODc4MDksMjI3LjAzNDMzMSBDMTMyLjkzNDMwNywyMjcuMDM0MzMxIDEyNi40OTQwMjQsMjIwLjYwODI0IDEyNi40OTQwMjQsMjEyLjY4MDc1IEMxMjYuNDk0MDI0LDIwNC43NTIyNzggMTMyLjkzNDMwNywxOTguMzI1MjAzIDE0MC44NzgwOSwxOTguMzI1MjAzIEMxNDguODIxODcyLDE5OC4zMjUyMDMgMTU1LjI2MjE1NSwyMDQuNzUyMjc4IDE1NS4yNjIxNTUsMjEyLjY4MDc1IEMxNTUuMjYyMTU1LDIyMC42MDgyNCAxNDguODIxODcyLDIyNy4wMzQzMzEgMTQwLjg3ODA5LDIyNy4wMzQzMzEgTDE0MC44NzgwOSwyMjcuMDM0MzMxIFoiIGlkPSJQYXRoIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+DQogICAgICAgICAgICAgICAgPHBhdGggZD0iTTE0MC44NzgwOSwxNzkuMTg2MjIyIEMxMzIuOTM0MzA3LDE3OS4xODYyMjIgMTI2LjQ5NDAyNCwxNzIuNzYwMTMxIDEyNi40OTQwMjQsMTY0LjgzMTY1OCBMMTI2LjQ5NDAyNCw2OS4xMzU0NDAzIEMxMjYuNDk0MDI0LDYxLjIwNzk1MDggMTMyLjkzNDMwNyw1NC43ODA4NzY1IDE0MC44NzgwOSw1NC43ODA4NzY1IEMxNDguODIxODcyLDU0Ljc4MDg3NjUgMTU1LjI2MjE1NSw2MS4yMDc5NTA4IDE1NS4yNjIxNTUsNjkuMTM1NDQwMyBMMTU1LjI2MjE1NSwxNjQuODMxNjU4IEMxNTUuMjYyMTU1LDE3Mi43NjAxMzEgMTQ4LjgyMTg3MiwxNzkuMTg2MjIyIDE0MC44NzgwOSwxNzkuMTg2MjIyIFoiIGlkPSJQYXRoIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+DQogICAgICAgICAgICA8L2c+DQogICAgICAgIDwvZz4NCiAgICA8L2c+DQo8L3N2Zz4=" alt="" width="150"/>
+    </div>
+    <h1>{$msg}</h1>
+    {/if}
+    <p class="jump">页面自动跳转，等待时间：<span id="wait">{$wait}</span> 秒</p>
+    <p class="clearfix">
+        <a href="javascript:;" id="close" class="btn btn-grey">关闭</a>
+        <a href="{$url}" id="redirect" class="btn btn-primary">跳转</a>
+    </p>
+    <div class="easy-tips">
+        <p>提示：等待时间结束后将会自动跳转，您也可以手动关闭或点击跳转</p>
+    </div>
+</div>
+
+<script src="{:register_static('admin/plugin/layui/layui.js')}"></script>
+<script type="text/javascript">
+    layui.use(['easyadmin', 'jquery'], function () {
+
+        var $ = layui.$;
+        var wait = $("#wait").text();
+        var redirect = $("#redirect").attr("href");
+        var index = parent.layer.getFrameIndex(window.name);
+
+        setInterval(function () {
+            wait--;
+            if (wait <= 0) {
+                if (index) {
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                } else {
+                    location.href = redirect;
+                }
+            }
+            $("#wait").text(wait);
+        }, 1000);
+
+        $("#close").click(function () {
+            if (index) {
+                parent.layer.close(parent.layer.getFrameIndex(window.name));
+            } else {
+                window.history.back(-1);
+            }
+        });
+    });
+</script>
+</body>
+</html>

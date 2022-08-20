@@ -1,0 +1,84 @@
+.split-group {
+    min-height: 200px;
+    height: calc(100vh - 140px);
+}
+
+.split-group:after {
+    content: "";
+    clear: both;
+}
+
+.split-group > .split-item {
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.split-group-vertical {
+    height: 458px;
+}
+
+.split-group-vertical > .split-item {
+    box-sizing: border-box;
+}
+
+.split-group > .split-item > .split-group-vertical {
+    height: 100%;
+}
+
+.split-group-vertical > .split-item > .split-group {
+    height: 100%;
+}
+
+.gutter {
+    position: relative;
+    background-color: #f8f8f9;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.gutter.gutter-horizontal {
+    float: left;
+    height: 100%;
+    cursor: col-resize;
+}
+
+.gutter.gutter-horizontal:before, .gutter.gutter-horizontal:after {
+    content: "";
+    height: 6px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.gutter.gutter-horizontal:before {
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -8px;
+}
+
+.gutter.gutter-horizontal:after {
+    margin-bottom: -8px;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+    text-align: center;
+}
+
+.gutter.gutter-vertical:before, .gutter.gutter-vertical:after {
+    content: "";
+    width: 6px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom: 0;
+    display: inline-block;
+    height: 100%;
+    margin: 0 3px;
+    vertical-align: top;
+}

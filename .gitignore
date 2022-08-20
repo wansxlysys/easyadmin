@@ -1,0 +1,12 @@
+/.idea
+/.vscode
+/vendor
+/runtime
+*.log
+thinkphp
+.env
+.DS_Store
+
+# 自定义
+/public/uploads
+/public/nginx.htaccess

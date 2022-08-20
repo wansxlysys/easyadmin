@@ -1,0 +1,169 @@
+{extend name="admin@layout/layout" /}
+
+{block name="content"}
+{include file="admin@layout/breadcrumb" close="show" /}
+<div class="layui-fluid layui-content">
+    <div class="layui-card">
+        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="">
+                <input type="hidden" name="id" value="{$menu.id}">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级节点</label>
+                    <div class="layui-input-block">
+                        <div id="menuTree"></div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">节点名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" placeholder="请输入节点名称" class="layui-input" value="{$menu.title}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">图标</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="icon" lay-verify="required" placeholder="请输入图标" class="layui-input" value="{$menu.icon}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="module" placeholder="请输入模块" class="layui-input" value="{$menu.module}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">控制器</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="controller" placeholder="请输入控制器" class="layui-input" value="{$menu.controller}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">操作</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="action" placeholder="请输入操作" class="layui-input" value="{$menu.action}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">参数</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="params" placeholder="请输入参数" class="layui-input" value="{$menu.params}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">菜单类型</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="type" value="1" title="菜单" lay-filter="type" {eq name="$menu.type" value="1" }checked{/eq}>
+                        <input type="radio" name="type" value="2" title="按钮" lay-filter="type" {eq name="$menu.type" value="2" }checked{/eq}>
+                        <input type="radio" name="type" value="3" title="外链" lay-filter="type" {eq name="$menu.type" value="3" }checked{/eq}>
+                    </div>
+                </div>
+                <div class="layui-form-item {if $menu.type != 3}layui-hide{/if}">
+                    <label class="layui-form-label">外链地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="link" placeholder="请输入外链地址" class="layui-input" value="{$menu.link}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">跳转方式</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="target" value="1" title="默认方式" lay-filter="target" {eq name="$menu.target" value="1" }checked{/eq}>
+                        <input type="radio" name="target" value="2" title="当前窗口" lay-filter="target" {eq name="$menu.target" value="2" }checked{/eq}>
+                        <input type="radio" name="target" value="3" title="新的窗口" lay-filter="target" {eq name="$menu.target" value="3" }checked{/eq}>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">排序</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sort" placeholder="请输入排序" class="layui-input" value="{$menu.sort}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit="">提交</button>
+                        <button type="button" class="layui-btn layui-btn-danger easy-close-this-layer">关闭</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use(['easyadmin', "xmSelect"], function () {
+
+        var form = layui.form;
+        var xmSelect = layui.xmSelect;
+        var menuTree = null;
+
+        layui.easyadmin.http({
+            type: "GET",
+            url: "{:url('menu/menu_tree')}",
+            data: {
+                menu_id: "{$menu.id}"
+            },
+            loading: false,
+            success: function (result) {
+                xmSelect.render({
+                    el: '#menuTree',
+                    data: result.data.lists,
+                    name: "parent_id",
+                    radio: true,
+                    clickClose: true,
+                    prop: {
+                        name: "title",
+                        value: "id",
+                    },
+                    model: {
+                        icon: 'hidden',
+                        label: {
+                            type: 'text'
+                        }
+                    },
+                    theme: {
+                        color: "#009688"
+                    },
+                    tree: {
+                        show: true,
+                        showFolderIcon: true,
+                        showLine: false,
+                        expandedKeys: result.data.expands,
+                        strict: false,
+                        clickExpand: false,
+                        clickCheck: true,
+                    }
+                });
+            }
+        });
+
+        form.on("radio(type)", function (data) {
+            if (data.value === "3") {
+                $("[name=link]").closest(".layui-form-item").removeClass("layui-hide");
+            } else {
+                $("[name=link]").closest(".layui-form-item").addClass("layui-hide");
+            }
+        });
+
+
+        form.on("submit", function (obj) {
+            event.preventDefault();
+            layui.easyadmin.http({
+                type: "POST",
+                url: "{:url('admin/menu/update')}",
+                data: obj.field,
+                success: function (result) {
+                    var lay = top.layer.alert(result.msg, {
+                        icon: 1,
+                    }, function () {
+                        top.layer.close(lay);
+                        layui.easyadmin.close();
+                    });
+                }
+            });
+        });
+
+    });
+</script>
+{/block}

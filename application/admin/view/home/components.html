@@ -1,0 +1,78 @@
+{extend name="layout/layout" /}
+
+{block name="content"}
+{include file="layout/breadcrumb" close="show" /}
+<div class="layui-fluid layui-content">
+    <div class="layui-card">
+        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-body">
+            <button type="button" class="layui-btn" id="upload">提交</button>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use(['easyadmin'], function () {
+
+        var loading = null;
+
+        let up = new fcup({
+            id: "upload",
+            url: "{:url('admin/home/upload')}",
+            check_url: "{:url('admin/home/check')}",
+            type: "zip",
+            shard_size: 2,
+            max_size: 200,
+            error_msg: {
+                1000: "未找到上传id",
+                1001: "类型不允许上传",
+                1002: "上传文件过小",
+                1003: "上传文件过大",
+                1004: "上传请求超时"
+            },
+            start: function(){
+              console.log(1);
+            },
+            // 错误提示
+            error: function (message) {
+                console.log(message);
+            },
+            // 等待上传事件，可以用来loading
+            before_send: function () {
+                console.log('等待请求中');
+                loading = layui.easyadmin.loading();
+            },
+            // 上传进度事件
+            progress: function (progress) {
+                console.log("上传进度：" + progress);
+            },
+            check_success: function (response) {
+
+                var result = JSON.parse(response);
+
+                if (result.code === 1101) {
+                    console.log(result.data.filePath);
+                    top.layer.alert(result.msg);
+                    return false;
+                }
+
+                return true;
+            },
+            success: function (response) {
+
+                var result = JSON.parse(response);
+
+                if (result.data.isDone) {
+                    top.layer.close(loading);
+                    console.log('上传完成', result);
+                }
+
+                return true;
+            }
+        });
+
+    });
+</script>
+{/block}

@@ -1,0 +1,83 @@
+/******************左侧导航主题*********************/
+.easy-layout .layui-bg-black {
+    background-color: #2c343f !important;
+}
+
+.easy-layout .layui-nav-itemed > .layui-nav-child,
+.easy-layout .layui-side .layui-nav-child {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.easy-layout .layui-side, .layui-nav,
+.easy-layout .layui-logo {
+    background-color: #2c343f;
+}
+
+.easy-layout .layui-nav-tree .layui-nav-item a {
+    height: 45px;
+    line-height: 45px;
+}
+
+.easy-layout .layui-nav-child {
+    padding: 0;
+}
+
+.easy-layout .layui-nav-tree > .layui-nav-item .layui-nav-child a {
+    padding-left: 30px;
+}
+
+.easy-layout .layui-nav-tree > .layui-nav-item .layui-nav-child .layui-nav-child a {
+    padding-left: 45px;
+}
+
+/*************************头部主题********************/
+.easy-layout .layui-header {
+    background-color: #fff;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.easy-layout .layui-header .layui-nav .layui-nav-item a {
+    color: #333;
+}
+
+/************************布局底部***************/
+.easy-layout .layui-footer {
+    display: none; /*隐藏版权位置*/
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.easy-layout.layui-layout-admin .layui-body {
+    padding-bottom: 0;
+}
+
+.easy-layout.easy-layout-hide-side .layui-footer {
+    left: 0;
+}
+
+/************************隐藏菜单******************/
+.easy-layout .layui-side,
+.easy-layout .layui-body,
+.easy-layout .layui-header .layui-logo,
+.easy-layout .layui-header .layui-layout-left {
+    transition: all 0.3s;
+}
+
+
+.easy-layout.easy-layout-hide-side .layui-side,
+.easy-layout.easy-layout-hide-side .layui-logo {
+    left: -200px;
+}
+
+.easy-layout.easy-layout-hide-side .layui-body,
+.easy-layout.easy-layout-hide-side .layui-header .layui-layout-left {
+    left: 0;
+}
+
+/*****************iframe******************/
+.easy-layout .easy-layout-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

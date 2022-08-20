@@ -1,0 +1,239 @@
+{extend name="layout/layout" /}
+
+{block name="css"}
+<link rel="stylesheet" href="{:register_static('admin/css/layout.css')}">
+{/block}
+
+{block name="content"}
+<div class="easy-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo layui-bg-black">{$settingSystem.name}</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item" lay-header-event="outdent">
+                <a href="javascript:;">
+                    <i class="fa fa-fw fa-outdent"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item" lay-header-event="refresh">
+                <a href="javascript:;">
+                    <i class="fa fa-fw fa-refresh"></i>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" lay-header-event="clearCache" lay-unselect>
+                <a href="javascript:;">
+                    <i class="fa fa-fw fa-trash"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item" lay-header-event="fullscreen" lay-unselect>
+                <a href="javascript:;">
+                    <i class="fa fa-fw fa-arrows-alt"></i>
+                </a>
+            </li>
+
+            <li class="layui-nav-item layui-nav-avatar">
+                <a href="javascript:;">
+                    <img src="{$manager.avatar}" class="layui-nav-img">
+                    {$manager.nickname}
+                </a>
+                <dl class="layui-nav-child" style="text-align: center">
+                    <dd lay-header-event="profile"><a href="">个人资料</a></dd>
+                    <dd lay-header-event="logout"><a href="">退出登录</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="system" lay-unselect>
+                <a href="javascript:;">
+                    <i class="fa fa-fw fa-info-circle"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                {volist name="menu" id="menu_level_1"}
+                <li class="layui-nav-item {if $menu_level_1.id == 75}layui-nav-itemed{/if}">
+                    {if empty($menu_level_1['children'])}
+                    <a href="{$menu_level_1.url}" data-target="{$menu_level_1['target']}">
+                        <i class="fa fa-fw {$menu_level_1['icon']}"></i>
+                        {$menu_level_1.title}
+                    </a>
+                    {else /}
+                    <a href="javascript:;">
+                        <i class="fa fa-fw {$menu_level_1['icon']}"></i>
+                        <span>{$menu_level_1.title}</span>
+                    </a>
+                    <dl class="layui-nav-child">
+                        {volist name="menu_level_1['children']" id="menu_level_2"}
+                        <dd {if $menu_level_2.id== 128}class="layui-this" {/if}>
+                        {if empty($menu_level_2['children'])}
+                        <a href="{$menu_level_2.url}" data-target="{$menu_level_2['target']}">
+                            <i class="fa fa-fw {$menu_level_2['icon']}"></i>
+                            <span>{$menu_level_2.title}</span>
+                        </a>
+                        {else /}
+                        <a href="javascript:;">
+                            <i class="fa fa-fw {$menu_level_2['icon']}"></i>
+                            <span>{$menu_level_2.title}</span>
+                        </a>
+                        <dl class="layui-nav-child">
+                            {volist name="menu_level_2['children']" id="menu_level_3"}
+                            <dd>
+                                <a href="{$menu_level_3.url}" data-target="{$menu_level_3['target']}">
+                                    <i class="fa fa-fw {$menu_level_3['icon']}"></i>
+                                    <span>{$menu_level_3.title}</span>
+                                </a>
+                            </dd>
+                            {/volist}
+                        </dl>
+                        {/if}
+                        </dd>
+                        {/volist}
+                    </dl>
+                    {/if}
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('home/console')}"></iframe>
+    </div>
+    <div class="layui-footer">
+        SPEEDADMIN版权所有
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use(['easyadmin', 'element', 'layer', 'util'], function () {
+
+        var util = layui.util,
+            layer = layui.layer;
+
+        // 手风琴导航
+        $('.layui-nav-tree>.layui-nav-item a').click(function (event) {
+
+            event.preventDefault();
+
+            if ($(this).parent().hasClass('layui-nav-itemed')) {
+                $(this).siblings('.layui-nav-child').css('display', 'none').stop().slideDown(300, function () {
+                    $(this).removeAttr('style');
+                });
+            } else {
+                $(this).siblings('.layui-nav-child').css('display', 'block').stop().slideUp(300, function () {
+                    $(this).removeAttr('style');
+                });
+            }
+
+            $(this).parent().siblings('.layui-nav-itemed').removeClass('layui-nav-itemed').children('.layui-nav-child').css('display', 'block').stop().slideUp(300, function () {
+                $(this).removeAttr('style');
+            });
+
+            // 链接跳转
+            if ($(this).siblings(".layui-nav-child").length <= 0) {
+                var href = $(this).attr("href");
+                switch ($(this).data('target')) {
+                    case 1:
+                        $("#easyLayoutIframe").attr("src", href);
+                        break;
+                    case 2:
+                        window.location.href = href;
+                        break;
+                    case 3:
+                        window.open(href);
+                        break;
+                }
+            }
+        });
+
+        //头部事件
+        util.event('lay-header-event', {
+            outdent: function () {
+                $(".easy-layout").toggleClass("easy-layout-hide-side");
+                $(this).find("i").toggleClass("fa-indent");
+            },
+            system: function () {
+                layer.open({
+                    type: 2,
+                    content: "{:url('admin/index/system')}",
+                    area: ['260px', '100%'],
+                    offset: 'rt',
+                    isOutAnim: false,
+                    shadeClose: true,
+                    move: false,
+                });
+            },
+            refresh: function () {
+                var $iframe = $("#easyLayoutIframe");
+                $iframe.attr("src", $iframe.attr("src"));
+            },
+            fullscreen: function () {
+                var doc = document.documentElement;
+                if ($(this).attr("data-fullscreen") === "true") {
+                    $(this).attr("data-fullscreen", "false");
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else if (document.webkitCancelFullScreen) {
+                        document.webkitCancelFullScreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                } else {
+                    $(this).attr("data-fullscreen", "true");
+                    if (doc.requestFullscreen) {
+                        doc.requestFullscreen();
+                    } else if (doc.webkitRequestFullScreen) {
+                        doc.webkitRequestFullScreen();
+                    } else if (doc.mozRequestFullScreen) {
+                        doc.mozRequestFullScreen();
+                    } else if (doc.msRequestFullscreen) {
+                        doc.msRequestFullscreen();
+                    }
+                }
+            },
+            profile: function () {
+                event.preventDefault();
+                window.frames[0].layui.easyadmin.open("{:url('admin/index/profile')}");
+            },
+            logout: function () {
+                event.preventDefault();
+
+                layui.easyadmin.http({
+                    type: "GET",
+                    url: "{:url('admin/index/logout')}",
+                    success: function (result) {
+                        top.layer.alert(result.msg, {
+                            icon: 1
+                        }, function () {
+                            window.location.href = "{:url('admin/login/login')}";
+                        });
+                    }
+                });
+            },
+            clearCache: function () {
+                layui.easyadmin.http({
+                    type: "GET",
+                    data: {
+                        cache: ["log", "cache", "temp"]
+                    },
+                    url: "{:url('admin/index/clear_cache')}",
+                    success: function (result) {
+                        top.layer.alert(result.msg, {
+                            icon: 1
+                        });
+                    }
+                });
+            }
+
+        });
+    });
+</script>
+
+{/block}

@@ -1,0 +1,92 @@
+{extend name="admin@layout/layout" /}
+
+{block name="content"}
+{include file="layout/breadcrumb" close="show" /}
+<div class="layui-card">
+    <div class="layui-card-header">{$currentMenu.title}</div>
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-required">角色名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" lay-verify="required" placeholder="请输入角色名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-required">角色标识</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" lay-verify="required" placeholder="请输入角色标识" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea name="remark" placeholder="请输入备注" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label layui-required">权限</label>
+                <div class="layui-input-block">
+                    <div id="permission"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit="">提交</button>
+                    <button type="button" class="layui-btn layui-btn-danger easy-close-this-layer">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use(['easyadmin', 'jquery', 'tree'], function () {
+
+        var tree = layui.tree,
+            form = layui.form;
+
+        tree.render({
+            elem: '#permission',
+            id: 'permission',
+            data: JSON.parse('{$menu|raw}'),
+            showCheckbox: true
+        });
+
+        form.on('submit', function (obj) {
+            event.preventDefault();
+
+            var permission = tree.getChecked('permission');
+
+            permission = layui.easyadmin.treeToArray(permission)
+            permission = layui.easyadmin.objectColumn(permission, 'id');
+
+            if (permission.length <= 0) {
+                layer.msg('请选择授权节点', {
+                    icon: 2
+                });
+                return false;
+            }
+
+            obj.field.permission = permission;
+
+            layui.easyadmin.http({
+                type: "POST",
+                url: "{:url('admin/role/create')}",
+                data: obj.field,
+                success: function (result) {
+                    var key = top.layer.alert(result.msg, {
+                        icon: 1,
+                    }, function () {
+                        parent.layui.table.reload("table");
+                        top.layer.close(key);
+                        layui.easyadmin.close();
+                    });
+                }
+            });
+        });
+    });
+</script>
+{/block}

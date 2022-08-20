@@ -1,0 +1,58 @@
+{extend name="layout/layout" /}
+
+{block name="content"}
+{include file="admin@layout/breadcrumb" close="show" /}
+<div class="layui-fluid layui-content">
+    <div class="layui-card">
+        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-body">
+            <div class="layui-form">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>数据名称</th>
+                        <th>数据详情</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>请求节点</td>
+                        <td>{$log.menu}</td>
+                    </tr>
+                    <tr>
+                        <td>操作详情</td>
+                        <td>{$log.description}</td>
+                    </tr>
+                    <tr>
+                        <td>请求地址</td>
+                        <td>{$log.url}</td>
+                    </tr>
+                    <tr>
+                        <td>请求参数</td>
+                        <td>
+                            <pre style="font-family: '微软雅黑';">{:json_encode(json_decode($log.params),JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)}</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>操作时间</td>
+                        <td>{$log.create_time}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use(['easyadmin', 'jquery'], function () {
+
+    });
+</script>
+{/block}

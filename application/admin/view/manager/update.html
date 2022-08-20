@@ -1,0 +1,94 @@
+{extend name="layout/layout" /}
+
+{block name="content"}
+{include file="layout/breadcrumb" close="show" /}
+<div class="layui-fluid layui-content">
+    <div class="layui-card">
+        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="">
+                <input type="hidden" name="id" value="{$manager.id}">
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">所属角色</label>
+                    <div class="layui-input-block">
+                        <select name="role_id" lay-verify="required">
+                            {volist name="roles" id="vo"}
+                            <option value="{$vo.id}" {eq name="$vo.id" value="$manager.role_id"}checked{/eq}>{$vo.title}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">头像</label>
+                    <div class="layui-input-block">
+                        <div id="avatar"></div>
+                        <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传头像" value="{$manager.avatar}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">昵称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="nickname" lay-verify="required" placeholder="请输入昵称" class="layui-input" value="{$manager.nickname}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" lay-verify="required" placeholder="请输入用户名" class="layui-input layui-disabled" disabled value="{$manager.username}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="password" placeholder="如无需修改请留空" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="status" value="1" title="启用" {eq name="$manager.status" value="1"}checked{/eq}>
+                        <input type="radio" name="status" value="2" title="禁用" {eq name="$manager.status" value="2"}checked{/eq}>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit="">提交</button>
+                        <button type="button" class="layui-btn layui-btn-danger easy-close-this-layer">关闭</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use(['easyadmin', "uploadImage"], function () {
+
+        var form = layui.form;
+
+        avatarUploader.uploader.config.url = "{:url('admin/manager/upload_avatar')}";
+
+        form.on('submit', function (obj) {
+            event.preventDefault();
+
+            layui.easyadmin.http({
+                type: "POST",
+                url: "{:url('admin/manager/update')}",
+                data: obj.field,
+                success: function (result) {
+                    var key = top.layer.alert(result.msg, {
+                        icon: 1,
+                    }, function () {
+                        parent.layui.table.reload("table");
+                        top.layer.close(key);
+                        layui.easyadmin.close();
+                    });
+                }
+            });
+        });
+
+    });
+</script>
+{/block}

@@ -7,6 +7,18 @@
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
             <button type="button" class="layui-btn" id="upload">提交</button>
+
+            <br>
+            <br>
+
+            <!--导入标签库-->
+            {taglib name="\app\admin\taglib\Permission" /}
+
+            {permission:allow menu="1,2" condition="and"}
+                <h1>已授权</h1>
+            {else/}
+                <h1>未授权</h1>
+            {/permission:allow}
         </div>
     </div>
 </div>

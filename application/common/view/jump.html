@@ -120,7 +120,7 @@
 
 <script src="{:register_static('admin/plugin/layui/layui.js')}"></script>
 <script type="text/javascript">
-    layui.use(['easyAdmin', 'jquery'], function () {
+    layui.use(['jquery'], function () {
 
         var $ = layui.$;
         var wait = $("#wait").text();
@@ -131,7 +131,7 @@
             wait--;
             if (wait <= 0) {
                 if (index) {
-                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    parent.layer.close(index);
                 } else {
                     location.href = redirect;
                 }
@@ -141,9 +141,9 @@
 
         $("#close").click(function () {
             if (index) {
-                parent.layer.close(parent.layer.getFrameIndex(window.name));
+                parent.layer.close(index);
             } else {
-                window.history.back(-1);
+                window.history.back();
             }
         });
     });

@@ -17,6 +17,16 @@ class Register
     private static $container = [];
 
     /**
+     * 检测容器变量是否存在
+     * @param $name
+     * @return bool
+     */
+    public static function has($name)
+    {
+        return isset(self::$container[$name]);
+    }
+
+    /**
      * 设置容器
      * @param $name
      * @param $value

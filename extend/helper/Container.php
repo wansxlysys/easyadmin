@@ -7,7 +7,7 @@ namespace helper;
  * 寄存器
  * @package helper
  */
-class Register
+class Container
 {
 
     /**

@@ -3,7 +3,7 @@
 
 namespace app\http\middleware;
 
-use helper\Register;
+use helper\Container;
 use traits\controller\Jump;
 use app\admin\helper\Manager;
 
@@ -53,9 +53,9 @@ class Permission
         $role       = $this->getRole($manager['role_id']);
         $permission = $this->getPermission($manager['role_id']);
 
-        Register::set(Manager::ROLE, $role);
-        Register::set(Manager::MANAGER, $manager);
-        Register::set(Manager::PERMISSION, $permission);
+        Container::set(Manager::ROLE, $role);
+        Container::set(Manager::MANAGER, $manager);
+        Container::set(Manager::PERMISSION, $permission);
     }
 
     /**

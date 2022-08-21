@@ -3,29 +3,12 @@
 
 namespace app\admin\helper;
 
-use helper\Register;
+
+use helper\Container;
 use think\facade\Session;
 
-class Manager
+class Manager extends \app\common\permission\Permission
 {
-    /**
-     * 管理员服务类
-     * @var \app\admin\service\Manager
-     */
-    protected $ManagerService;
-
-    /**
-     * 角色服务类
-     * @var \app\admin\service\Role
-     */
-    protected $RoleService;
-
-    /**
-     * 权限服务类
-     * @var \app\admin\service\Permission
-     */
-    protected $PermissionService;
-
     /**
      * 角色标识
      */
@@ -45,16 +28,6 @@ class Manager
      * 权限标识
      */
     const PERMISSION = 'PERMISSION';
-
-    /**
-     * 初始化
-     */
-    public function __construct()
-    {
-        $this->RoleService       = new \app\admin\service\Role();
-        $this->ManagerService    = new \app\admin\service\Manager();
-        $this->PermissionService = new \app\admin\service\Permission();
-    }
 
     /**
      * 设置登录信息
@@ -97,7 +70,7 @@ class Manager
      */
     public function getRole()
     {
-        return Register::get(self::ROLE);
+        return Container::get(self::ROLE);
     }
 
     /**
@@ -115,7 +88,7 @@ class Manager
      */
     public function getManager()
     {
-        return Register::get(self::MANAGER);
+        return Container::get(self::MANAGER);
     }
 
     /**
@@ -124,7 +97,7 @@ class Manager
      */
     public function getPermission()
     {
-        return Register::get(self::PERMISSION);
+        return Container::get(self::PERMISSION);
     }
 
     /**
@@ -133,7 +106,7 @@ class Manager
      */
     public function isSuper()
     {
-        return $this->getRole()['name'] == 'super';
+        return $this->getRoleName() == 'super';
     }
 
     /**
@@ -142,7 +115,7 @@ class Manager
      */
     public function isDisabled()
     {
-        return $this->getManager()['status'] == 2;
+        return $this->getManager()['status'] == \app\admin\service\Manager::STATUS_DISABLED;
     }
 
     /**
@@ -159,32 +132,4 @@ class Manager
         return $this->checkPermission($menuId, $permission, $condition);
     }
 
-    /**
-     * 权限检测
-     * @param array $allow
-     * @param array $permission
-     * @param string $condition
-     * @return bool
-     */
-    public function checkPermission(array $allow = [], array $permission = [], $condition = 'and')
-    {
-        if ($this->isSuper()) {
-            return true;
-        }
-
-        foreach ($allow as $key => $id) {
-
-            $result = in_array($id, $permission);
-
-            if ($result == true && $condition == 'or') {
-                return true;
-            }
-
-            if ($result == false && $condition === 'and') {
-                return false;
-            }
-        }
-
-        return $condition === 'and';
-    }
 }

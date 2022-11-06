@@ -3,6 +3,7 @@
 
 namespace app\admin\service;
 
+
 use app\common\helper\Encryption;
 
 class Manager extends \app\common\service\Manager
@@ -139,13 +140,15 @@ class Manager extends \app\common\service\Manager
         $manager = $this->getByUserName($params['username']);
 
         if (!$manager) {
-            $this->setMessage('管理员不存在');
-            return false;
+            return $this->setMessage('管理员不存在');
         }
 
-        if ($manager['status'] == 2) {
-            $this->setMessage('管理员已被禁用');
-            return false;
+        if ($manager['password'] != Encryption::encrypt($params['password'])) {
+            return $this->setMessage('密码错误');
+        }
+
+        if ($manager['status'] == static::STATUS_DISABLED) {
+            return $this->setMessage('管理员已被禁用');
         }
 
         $ManagerHelper = new \app\admin\helper\Manager();

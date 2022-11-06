@@ -6,5 +6,5 @@ namespace app\common\model;
 
 class Manager extends \app\common\model\Model
 {
-    protected $autoWriteTimestamp = true;
+
 }

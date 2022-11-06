@@ -165,8 +165,10 @@ class Manager extends \app\common\service\Manager
      */
     protected function buildData($params)
     {
-        // 如果不是外链则清空链接地址
-        if (!empty($params['password'])) {
+        // 如果不修改密码则释放密码变量
+        if (empty($params['password'])) {
+            unset($params['password']);
+        } else {
             $params['password'] = Encryption::encrypt($params['password']);
         }
 

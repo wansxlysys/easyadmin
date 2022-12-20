@@ -13,13 +13,15 @@
 // | 应用设置
 // +----------------------------------------------------------------------
 
+use think\facade\Env;
+
 return [
     // 应用名称
     'app_name'               => '',
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => Env::get('app.app_debug'),
     // 应用Trace
     'app_trace'              => false,
     // 是否支持多模块

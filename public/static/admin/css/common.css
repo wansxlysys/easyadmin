@@ -377,3 +377,17 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-alert.easy-alert-danger .easy-alert-close i {
     color: #FF5722;
 }
+
+/***********split********************/
+.split-group {
+    height: calc(100vh - 80px);
+}
+
+.split-group .split-item {
+    height: 100%;
+}
+
+.split-group .split-item > .layui-card {
+    height: 100%;
+    overflow: auto;
+}

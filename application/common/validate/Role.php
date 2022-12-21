@@ -6,6 +6,10 @@ namespace app\common\validate;
 
 class Role extends \app\common\validate\Validate
 {
+    /**
+     * 验证规则
+     * @var string[]
+     */
     protected $rule = [
         'id'         => 'require|integer',
         'title'      => 'require|max:32|unique:role',
@@ -13,6 +17,10 @@ class Role extends \app\common\validate\Validate
         'permission' => 'require',
     ];
 
+    /**
+     * 错误信息
+     * @var string[]
+     */
     protected $message = [
         'id.require'         => 'ID不能为空',
         'id.integer'         => 'ID必须为数字',

@@ -6,6 +6,10 @@ namespace app\common\validate;
 
 class Manager extends \app\common\validate\Validate
 {
+    /**
+     * 验证规则
+     * @var string[]
+     */
     protected $rule = [
         'id'       => 'require|integer',
         'role_id'  => 'require|integer',
@@ -17,6 +21,10 @@ class Manager extends \app\common\validate\Validate
         'captcha'  => 'require|captcha:login',
     ];
 
+    /**
+     * 错误信息
+     * @var string[]
+     */
     protected $message = [
         'id.require'       => 'ID不能为空',
         'id.integer'       => 'ID必须为数字',

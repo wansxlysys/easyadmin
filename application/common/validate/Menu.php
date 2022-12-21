@@ -6,6 +6,10 @@ namespace app\common\validate;
 
 class Menu extends \app\common\validate\Validate
 {
+    /**
+     * 验证规则
+     * @var string[]
+     */
     protected $rule = [
         'id'         => 'require|integer',
         'parent_id'  => 'integer',
@@ -21,6 +25,10 @@ class Menu extends \app\common\validate\Validate
         'sort'       => 'require|integer',
     ];
 
+    /**
+     * 错误信息
+     * @var string[]
+     */
     protected $message = [
         'id.require'        => 'ID不能为空',
         'id.integer'        => 'ID必须为整数',

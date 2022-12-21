@@ -2,42 +2,44 @@
 
 {block name="content"}
 {include file="layout/breadcrumb" close="show" /}
-<div class="layui-card">
-    <div class="layui-card-header">{$currentMenu.title}</div>
-    <div class="layui-card-body">
-        <form class="layui-form" action="">
-            <input type="hidden" name="id" value="{$role.id}">
-            <div class="layui-form-item">
-                <label class="layui-form-label layui-required">角色名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="required" placeholder="请输入角色名" class="layui-input" value="{$role.title}">
+<div class="layui-fluid layui-content">
+    <div class="layui-card">
+        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="">
+                <input type="hidden" name="id" value="{$role.id}">
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">角色名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="required" placeholder="请输入角色名" class="layui-input" value="{$role.title}">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label layui-required">角色标识</label>
-                <div class="layui-input-block">
-                    <input type="text" name="name" lay-verify="required" placeholder="请输入角色标识" class="layui-input layui-disabled" value="{$role.name}" disabled>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">角色标识</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" lay-verify="required" placeholder="请输入角色标识" class="layui-input layui-disabled" value="{$role.name}" disabled>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">备注</label>
-                <div class="layui-input-block">
-                    <textarea name="remark" placeholder="请输入备注" class="layui-textarea">{$role.remark}</textarea>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="remark" placeholder="请输入备注" class="layui-textarea">{$role.remark}</textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label layui-required">权限</label>
-                <div class="layui-input-block">
-                    <div id="permission" class="ztree"></div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label layui-required">权限</label>
+                    <div class="layui-input-block">
+                        <div id="permission" class="ztree"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button type="submit" class="layui-btn" lay-submit="">提交</button>
-                    <button type="button" class="layui-btn layui-btn-danger easy-close-this-layer">关闭</button>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit="">提交</button>
+                        <button type="button" class="layui-btn layui-btn-danger easy-close-this-layer">关闭</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 {/block}

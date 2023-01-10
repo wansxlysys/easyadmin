@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\permission;
+namespace app\common\helper;
 
 
 class Permission

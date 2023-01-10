@@ -7,7 +7,7 @@ namespace app\admin\helper;
 use helper\Container;
 use think\facade\Session;
 
-class Manager extends \app\common\permission\Permission
+class Manager extends \app\common\helper\Permission
 {
     /**
      * 角色标识

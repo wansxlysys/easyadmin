@@ -100,9 +100,11 @@
                         type: "POST",
                         url: "{:url('admin/log/clear')}",
                         success: function (result) {
-                            table.reload("table");
-                            top.layer.alert(result.msg, {
+                            var key = top.layer.alert(result.msg, {
                                 icon: 1,
+                            }, function () {
+                                layui.table.reload("table");
+                                top.layer.close(key);
                             });
                         }
                     });

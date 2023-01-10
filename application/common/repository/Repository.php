@@ -35,27 +35,6 @@ class Repository
     }
 
     /**
-     * 获取列表
-     * @param Query $Query
-     * @return mixed
-     */
-    public function getListWithPage(Query $Query)
-    {
-        $Model = $this->Model;
-        $Model = $Model->where($Query->where);
-        $Model = $Model->whereOr($Query->whereOr);
-        $Model = $Model->page($Query->page);
-        $Model = $Model->limit($Query->limit);
-        $Model = $Model->field($Query->field);
-        $Model = $Model->group($Query->group);
-        $Model = $Model->having($Query->having);
-        $Model = $Model->order($Query->order);
-        $Model = $Model->select();
-
-        return $Model->toArray();
-    }
-
-    /**
      * 获取列表偏移
      * @param Query $Query
      * @return mixed
@@ -65,6 +44,7 @@ class Repository
         $Model = $this->Model;
         $Model = $Model->where($Query->where);
         $Model = $Model->whereOr($Query->whereOr);
+        $Model = $Model->page($Query->page);
         $Model = $Model->limit($Query->limit);
         $Model = $Model->field($Query->field);
         $Model = $Model->group($Query->group);

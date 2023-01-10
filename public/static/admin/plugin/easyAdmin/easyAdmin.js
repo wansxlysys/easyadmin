@@ -1,6 +1,7 @@
-layui.define(["jquery", "uploadImage"], function (exports) {
+layui.define(["jquery", "laydate", "uploadImage"], function (exports) {
 
     var $ = layui.$;
+    var laydate = layui.laydate;
     var uploadImage = layui.uploadImage;
 
     /**

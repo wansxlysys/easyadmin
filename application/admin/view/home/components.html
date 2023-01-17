@@ -1,7 +1,6 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="content"}
-{include file="layout/breadcrumb" close="show" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
@@ -33,8 +32,8 @@
 
         let up = new fcup({
             id: "upload",
-            url: "{:url('admin/home/upload')}",
-            check_url: "{:url('admin/home/check')}",
+            url: "{:url('admin/Home/upload')}",
+            check_url: "{:url('admin/Home/check')}",
             type: "zip",
             shard_size: 2,
             max_size: 200,

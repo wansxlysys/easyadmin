@@ -87,7 +87,7 @@
         table = treeTable.render({
             elem: '#table',
             toolbar: '#toolbar',
-            url: "{:url('admin/menu/index')}",
+            url: "{:url('admin/Menu/index')}",
             cellMinWidth: 80,
             tree: {
                 iconIndex: 2,
@@ -123,7 +123,7 @@
         treeTable.on('toolbar(table)', function (obj) {
 
             if (obj.event === 'create') {
-                easyAdmin.openLayer("{:url('admin/menu/create')}");
+                easyAdmin.openLayer("{:url('admin/Menu/create')}");
             }
 
             if (obj.event === 'expand') {
@@ -139,7 +139,7 @@
         // 菜单排序
         treeTable.on('edit(table)', function (obj) {
             easyAdmin.http({
-                url: "{:url('admin/menu/sort')}",
+                url: "{:url('admin/Menu/sort')}",
                 type: "POST",
                 data: {
                     id: obj.data.id,
@@ -160,7 +160,7 @@
         treeTable.on('tool(table)', function (obj) {
 
             if (obj.event === 'update') {
-                easyAdmin.openLayer("{:url('admin/menu/update')}?id=" + obj.data.id);
+                easyAdmin.openLayer("{:url('admin/Menu/update')}?id=" + obj.data.id);
             }
 
             if (obj.event === 'delete') {
@@ -169,7 +169,7 @@
                 }, function () {
                     easyAdmin.http({
                         type: "POST",
-                        url: "{:url('admin/menu/delete')}",
+                        url: "{:url('admin/Menu/delete')}",
                         data: {
                             id: obj.data.id
                         },

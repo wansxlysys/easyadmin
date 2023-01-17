@@ -4,6 +4,9 @@
 namespace app\admin\service;
 
 
+use helper\Container;
+use think\facade\Request;
+
 class Menu extends \app\common\service\Menu
 {
 
@@ -55,21 +58,21 @@ class Menu extends \app\common\service\Menu
      */
     public function getCurrentMenu()
     {
-        static $currentMenu = null;
+        $currentMenu = 'currentMenu';
 
-        if ($currentMenu) {
-            return $currentMenu;
+        if (Container::has($currentMenu)) {
+            return Container::get($currentMenu);
         }
 
         $Query = new \app\common\repository\Query();
 
-        $Query->where[] = ['module', '=', request()->module()];
-        $Query->where[] = ['controller', '=', request()->controller()];
-        $Query->where[] = ['action', '=', request()->action()];
+        $Query->where[] = ['module', '=', Request::module()];
+        $Query->where[] = ['controller', '=', Request::controller()];
+        $Query->where[] = ['action', '=', Request::action()];
 
-        $currentMenu = $this->MenuRepository->getOne($Query);
+        Container::set($currentMenu, $this->MenuRepository->getOne($Query));
 
-        return $currentMenu;
+        return Container::get($currentMenu);
     }
 
     /**

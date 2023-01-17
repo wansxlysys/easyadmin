@@ -1,4 +1,4 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="content"}
 {include file="admin@layout/breadcrumb" close="show" /}
@@ -24,7 +24,7 @@
                         <td>{$log.menu}</td>
                     </tr>
                     <tr>
-                        <td>操作详情</td>
+                        <td>请求详情</td>
                         <td>{$log.description}</td>
                     </tr>
                     <tr>
@@ -38,7 +38,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>操作时间</td>
+                        <td>请求时间</td>
                         <td>{$log.create_time}</td>
                     </tr>
                     </tbody>

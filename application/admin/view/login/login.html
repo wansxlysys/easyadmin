@@ -1,4 +1,4 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="css"}
 <style>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="layui-col-xs5">
                             <div class="easy-user-login-captcha">
-                                <img src="{:url('admin/login/captcha')}" class="easy-user-login-codeimg" id="captchaImg">
+                                <img src="{:url('admin/Login/captcha')}" class="easy-user-login-codeimg" id="captchaImg">
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
             event.preventDefault();
             easyAdmin.http({
                 type: "POST",
-                url: "{:url('admin/login/login')}",
+                url: "{:url('admin/Login/login')}",
                 data: obj.field,
                 success: function (result) {
                     window.location.href = result.url;
@@ -175,7 +175,7 @@
         });
 
         function refreshVerify() {
-            captchaImg.attr("src", "{:url('login/captcha')}?time=" + new Date().getTime());
+            captchaImg.attr("src", "{:url('admin/Login/captcha')}?time=" + new Date().getTime());
         }
     });
 </script>

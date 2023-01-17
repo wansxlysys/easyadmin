@@ -1,7 +1,7 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="content"}
-{include file="layout/breadcrumb" /}
+{include file="admin@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
@@ -20,12 +20,6 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">文章详情</label>
-                    <div class="layui-input-block">
-                        <script id="content" name="content" class="layui-builder-ueditor" type="text/plain"></script>
-                    </div>
-                </div>
-                <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn" lay-submit="">保存</button>
                     </div>
@@ -41,21 +35,20 @@
     layui.use(['easyAdmin', 'jquery', 'form'], function () {
 
         var form = layui.form;
-        var easyAdmin = layui.form;
+        var easyAdmin = layui.easyAdmin;
 
         form.on('submit', function (obj) {
             event.preventDefault();
 
             easyAdmin.http({
                 type: "POST",
-                url: "{:url('admin/setting/system')}",
+                url: "{:url('admin/Setting/system')}",
                 data: obj.field,
                 success: function (result) {
                     var key = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
                         top.layer.close(key);
-                        window.location.reload();
                     });
                 }
             });

@@ -1,7 +1,7 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="content"}
-{include file="layout/breadcrumb" /}
+{include file="admin@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
@@ -65,7 +65,7 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/role/index')}",
+            url: "{:url('admin/Role/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
@@ -80,14 +80,14 @@
 
         table.on('toolbar(table)', function (obj) {
             if(obj.event === 'create') {
-                easyAdmin.openLayer("{:url('admin/role/create')}");
+                easyAdmin.openLayer("{:url('admin/Role/create')}");
             }
         });
 
         table.on('tool(table)', function (obj) {
 
             if(obj.event === "update") {
-                easyAdmin.openLayer("{:url('admin/role/update')}?id=" + obj.data.id);
+                easyAdmin.openLayer("{:url('admin/Role/update')}?id=" + obj.data.id);
             }
 
             if(obj.event === "delete") {
@@ -96,7 +96,7 @@
                 }, function () {
                     easyAdmin.http({
                         type: "POST",
-                        url: "{:url('admin/role/delete')}",
+                        url: "{:url('admin/Role/delete')}",
                         data: {
                             id: obj.data.id
                         },

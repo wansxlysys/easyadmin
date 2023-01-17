@@ -1,4 +1,4 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="css"}
 <link rel="stylesheet" href="{:register_static('admin/css/layout.css')}">
@@ -100,7 +100,7 @@
         </div>
     </div>
     <div class="layui-body">
-        <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('home/console')}"></iframe>
+        <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('admin/Home/console')}"></iframe>
     </div>
     <div class="layui-footer">
         SPEEDADMIN版权所有
@@ -161,7 +161,7 @@
             system: function () {
                 layer.open({
                     type: 2,
-                    content: "{:url('admin/index/system')}",
+                    content: "{:url('admin/Index/system')}",
                     area: ['260px', '100%'],
                     offset: 'rt',
                     isOutAnim: false,
@@ -201,19 +201,19 @@
             },
             profile: function () {
                 event.preventDefault();
-                window.frames[0].layui.easyAdmin.openLayer("{:url('admin/index/profile')}");
+                window.frames[0].layui.easyAdmin.openLayer("{:url('admin/Index/profile')}");
             },
             logout: function () {
                 event.preventDefault();
 
                 easyAdmin.http({
                     type: "GET",
-                    url: "{:url('admin/index/logout')}",
+                    url: "{:url('admin/Index/logout')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {
                             icon: 1
                         }, function () {
-                            window.location.href = "{:url('admin/login/login')}";
+                            window.location.href = "{:url('admin/Login/login')}";
                         });
                     }
                 });
@@ -224,7 +224,7 @@
                     data: {
                         cache: ["log", "cache", "temp"]
                     },
-                    url: "{:url('admin/index/clear_cache')}",
+                    url: "{:url('admin/Index/clear_cache')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {
                             icon: 1

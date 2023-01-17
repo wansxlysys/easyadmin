@@ -12,8 +12,8 @@ class Role extends \app\common\validate\Validate
      */
     protected $rule = [
         'id'         => 'require|integer',
-        'title'      => 'require|max:32|unique:role',
-        'name'       => 'require|max:32|unique:role',
+        'title'      => 'require|max:32|unique:Role',
+        'name'       => 'require|max:32|unique:Role',
         'permission' => 'require',
     ];
 

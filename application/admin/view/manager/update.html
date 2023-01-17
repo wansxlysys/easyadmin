@@ -1,7 +1,7 @@
-{extend name="layout/layout" /}
+{extend name="admin@layout/layout" /}
 
 {block name="content"}
-{include file="layout/breadcrumb" close="show" /}
+{include file="admin@layout/breadcrumb" close="show" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
@@ -32,9 +32,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">用户名</label>
+                    <label class="layui-form-label layui-required">账号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="username" lay-verify="required" placeholder="请输入用户名" class="layui-input layui-disabled" disabled value="{$manager.username}">
+                        <input type="text" name="username" lay-verify="required" placeholder="请输入账号" class="layui-input layui-disabled" disabled value="{$manager.username}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -69,14 +69,14 @@
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
 
-        avatarUploader.uploader.config.url = "{:url('admin/manager/upload_avatar')}";
+        avatarUploader.uploader.config.url = "{:url('admin/Manager/upload_avatar')}";
 
         form.on('submit', function (obj) {
             event.preventDefault();
 
             easyAdmin.http({
                 type: "POST",
-                url: "{:url('admin/manager/update')}",
+                url: "{:url('admin/Manager/update')}",
                 data: obj.field,
                 success: function (result) {
                     var key = top.layer.alert(result.msg, {

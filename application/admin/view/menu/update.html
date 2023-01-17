@@ -118,7 +118,7 @@
             event.preventDefault();
             easyAdmin.http({
                 type: "POST",
-                url: "{:url('admin/menu/update')}",
+                url: "{:url('admin/Menu/update')}",
                 data: obj.field,
                 success: function (result) {
                     var lay = top.layer.alert(result.msg, {

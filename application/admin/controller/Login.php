@@ -3,10 +3,25 @@
 
 namespace app\admin\controller;
 
+
 use think\Request;
 
 class Login extends \app\common\controller\Common
 {
+    /**
+     * 初始化
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $ManagerHelper = new \app\admin\helper\Manager();
+
+        if ($ManagerHelper->isLogin()) {
+            $this->redirect('admin/Index/index');
+        }
+    }
+
     /**
      * 登录
      * @param Request $request
@@ -33,7 +48,7 @@ class Login extends \app\common\controller\Common
                 $this->error($ManagerService->getMessage());
             }
 
-            $this->success('登录成功', 'admin/index/index');
+            $this->success('登录成功', 'admin/Index/index');
         }
 
         $SettingSystem = new \app\admin\service\SettingSystem();
@@ -52,9 +67,11 @@ class Login extends \app\common\controller\Common
     public function captcha_action()
     {
         $captcha = new \think\captcha\Captcha([
-            'codeSet' => '0123456789',
             'length'  => 4,
+            'fontttf' => '4.ttf',
+            'codeSet' => '0123456789'
         ]);
+
         return $captcha->entry('login');
     }
 }

@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1:3306	Database: easyadmin
 -- ------------------------------------------------------
 -- Server version 	5.7.26
--- Date: Tue, 17 Jan 2023 10:24:39 +0800
+-- Date: Tue, 17 Jan 2023 10:28:31 +0800
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `easy_log` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,12 +43,12 @@ CREATE TABLE `easy_log` (
 LOCK TABLES `easy_log` WRITE;
 /*!40000 ALTER TABLE `easy_log` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `easy_log` VALUES (187,1,'日志清空','系统自动记录：清空成功','/admin/log/clear.html','[]',1,'2022-11-06 14:32:01','2023-01-17 09:58:42'),(188,1,'系统设置','系统自动记录：修改成功','/admin/setting/system.html','{\"name\":\"EASYADMIN\",\"slogan\":\"PHP后台快速开发系统\"}',1,'2023-01-17 10:03:14','2023-01-17 10:03:14');
+INSERT INTO `easy_log` VALUES (187,1,'日志清空','系统自动记录：清空成功','/admin/log/clear.html','[]',1,'2022-11-06 14:32:01','2023-01-17 09:58:42'),(188,1,'系统设置','系统自动记录：修改成功','/admin/setting/system.html','{\"name\":\"EASYADMIN\",\"slogan\":\"PHP后台快速开发系统\"}',1,'2023-01-17 10:03:14','2023-01-17 10:03:14'),(189,1,'菜单修改','系统自动记录：修改成功','/admin/menu/update.html','{\"id\":\"137\",\"parent_id\":\"143\",\"title\":\"系统菜单\",\"icon\":\"fa-shield\",\"module\":\"admin\",\"controller\":\"\",\"action\":\"\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100000\"}',1,'2023-01-17 10:26:24','2023-01-17 10:26:24'),(190,1,'菜单添加','系统自动记录：添加成功','/admin/menu/create.html','{\"parent_id\":\"143\",\"title\":\"公共权限\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"\",\"action\":\"\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\"}',1,'2023-01-17 10:26:46','2023-01-17 10:26:46'),(191,1,'菜单修改','系统自动记录：修改成功','/admin/menu/update.html','{\"id\":\"144\",\"parent_id\":\"146\",\"title\":\"百度编辑器\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"Editor\",\"action\":\"ueditor\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\"}',1,'2023-01-17 10:26:53','2023-01-17 10:26:53'),(192,1,'菜单修改','系统自动记录：修改成功','/admin/menu/update.html','{\"id\":\"137\",\"parent_id\":\"143\",\"title\":\"系统菜单\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"\",\"action\":\"\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100000\"}',1,'2023-01-17 10:27:03','2023-01-17 10:27:03'),(193,1,'菜单添加','系统自动记录：添加成功','/admin/menu/create.html','{\"parent_id\":\"146\",\"title\":\"退出登录\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"Index\",\"action\":\"logout\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\"}',1,'2023-01-17 10:27:41','2023-01-17 10:27:41'),(194,1,'菜单添加','系统自动记录：添加成功','/admin/menu/create.html','{\"parent_id\":\"146\",\"title\":\"清除缓存\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"Index\",\"action\":\"clear_cache\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\"}',1,'2023-01-17 10:27:57','2023-01-17 10:27:57');
 /*!40000 ALTER TABLE `easy_log` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `easy_log` with 2 row(s)
+-- Dumped table `easy_log` with 8 row(s)
 --
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `easy_menu` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb4 COMMENT='系统节点';
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb4 COMMENT='系统节点';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,12 +120,12 @@ CREATE TABLE `easy_menu` (
 LOCK TABLES `easy_menu` WRITE;
 /*!40000 ALTER TABLE `easy_menu` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `easy_menu` VALUES (1,64,'系统管理','fa-cogs','admin','','','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(2,1,'系统设置','fa-cog','admin','Setting','system','',1,'',1,0,'2022-11-06 14:28:59','2023-01-17 10:13:20'),(64,0,'系统模块','fa fa-fw fa-cogs','admin','','','',1,'',1,20,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(69,145,'菜单设置','fa-bars','admin','Menu','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:17'),(72,64,'权限管理','fa-users','admin','','','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(73,72,'管理员','fa-user','admin','Manager','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:13'),(74,72,'角色管理','fa-user-plus','admin','Role','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:09'),(75,0,'系统主页','fa-home','admin','Index','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:07'),(76,69,'菜单添加','fa-link','admin','Menu','create','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:03'),(79,69,'菜单删除','fa-link','admin','Menu','delete','',2,'',1,30,'2022-11-06 14:28:59','2023-01-17 10:13:00'),(80,69,'菜单修改','fa-link','admin','Menu','update','',2,'',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:58'),(81,73,'管理员添加','fa-link','admin','Manager','create','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:54'),(82,74,'角色添加','fa-link','admin','Role','create','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:51'),(83,74,'角色修改','fa-link','admin','Role','update','',2,'',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:47'),(84,74,'角色删除','fa-link','admin','Role','delete','',2,'',1,30,'2022-11-06 14:28:59','2023-01-17 10:12:43'),(85,73,'管理员修改','fa-link','admin','Manager','update','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:39'),(86,73,'管理员删除','fa-link','admin','Manager','delete','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:36'),(99,75,'门户统计','fa-bar-chart','admin','Home','dashboard','',1,'https://www.baidu.com/',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:32'),(114,1,'系统日志','fa-book','admin','Log','index','',1,'',1,30,'2022-11-06 14:28:59','2023-01-17 10:12:30'),(121,114,'日志详情','fa-link','admin','Log','detail','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:26'),(122,114,'日志清空','fa-link','admin','Log','clear','',2,'',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:23'),(128,75,'控制台','fa-dashboard','admin','Home','console','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:20'),(134,69,'菜单排序','fa-link','admin','Menu','sort','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:17'),(136,137,'系统信息','fa-link','admin','Index','system','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:13'),(137,0,'其他菜单','fa-shield','admin','','','',2,'',1,100000,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(138,137,'个人资料','fa-link','admin','Index','profile','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:05'),(139,72,'部门管理','fa-archive','admin','Department','index','',1,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:01'),(140,139,'部门添加','fa-link','admin','Department','create','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:58'),(141,75,'UI组件','fa-pie-chart','admin','Home','components','',1,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:52'),(142,69,'全部菜单','fa-link','admin','Menu','get_all','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:49'),(143,0,'公共权限','fa-folder-open','admin','','','',2,'',1,10000,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(144,143,'百度编辑器','fa-link','admin','Editor','ueditor','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:45'),(145,64,'运维管理','fa-server','admin','','','',1,'',1,100,'2022-11-06 14:28:59','2023-01-17 09:59:13');
+INSERT INTO `easy_menu` VALUES (1,64,'系统管理','fa-cogs','admin','','','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(2,1,'系统设置','fa-cog','admin','Setting','system','',1,'',1,0,'2022-11-06 14:28:59','2023-01-17 10:13:20'),(64,0,'系统模块','fa fa-fw fa-cogs','admin','','','',1,'',1,20,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(69,145,'菜单设置','fa-bars','admin','Menu','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:17'),(72,64,'权限管理','fa-users','admin','','','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(73,72,'管理员','fa-user','admin','Manager','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:13'),(74,72,'角色管理','fa-user-plus','admin','Role','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:09'),(75,0,'系统主页','fa-home','admin','Index','index','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:07'),(76,69,'菜单添加','fa-link','admin','Menu','create','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:13:03'),(79,69,'菜单删除','fa-link','admin','Menu','delete','',2,'',1,30,'2022-11-06 14:28:59','2023-01-17 10:13:00'),(80,69,'菜单修改','fa-link','admin','Menu','update','',2,'',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:58'),(81,73,'管理员添加','fa-link','admin','Manager','create','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:54'),(82,74,'角色添加','fa-link','admin','Role','create','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:51'),(83,74,'角色修改','fa-link','admin','Role','update','',2,'',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:47'),(84,74,'角色删除','fa-link','admin','Role','delete','',2,'',1,30,'2022-11-06 14:28:59','2023-01-17 10:12:43'),(85,73,'管理员修改','fa-link','admin','Manager','update','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:39'),(86,73,'管理员删除','fa-link','admin','Manager','delete','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:36'),(99,75,'门户统计','fa-bar-chart','admin','Home','dashboard','',1,'https://www.baidu.com/',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:32'),(114,1,'系统日志','fa-book','admin','Log','index','',1,'',1,30,'2022-11-06 14:28:59','2023-01-17 10:12:30'),(121,114,'日志详情','fa-link','admin','Log','detail','',2,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:26'),(122,114,'日志清空','fa-link','admin','Log','clear','',2,'',1,20,'2022-11-06 14:28:59','2023-01-17 10:12:23'),(128,75,'控制台','fa-dashboard','admin','Home','console','',1,'',1,10,'2022-11-06 14:28:59','2023-01-17 10:12:20'),(134,69,'菜单排序','fa-link','admin','Menu','sort','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:17'),(136,137,'系统信息','fa-link','admin','Index','system','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:13'),(137,143,'系统菜单','fa-link','admin','','','',2,'',1,100000,'2022-11-06 14:28:59','2023-01-17 10:27:03'),(138,137,'个人资料','fa-link','admin','Index','profile','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:05'),(139,72,'部门管理','fa-archive','admin','Department','index','',1,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:12:01'),(140,139,'部门添加','fa-link','admin','Department','create','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:58'),(141,75,'UI组件','fa-pie-chart','admin','Home','components','',1,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:52'),(142,69,'全部菜单','fa-link','admin','Menu','get_all','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:11:49'),(143,0,'公共权限','fa-folder-open','admin','','','',2,'',1,10000,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(144,146,'百度编辑器','fa-link','admin','Editor','ueditor','',2,'',1,100,'2022-11-06 14:28:59','2023-01-17 10:26:53'),(145,64,'运维管理','fa-server','admin','','','',1,'',1,100,'2022-11-06 14:28:59','2023-01-17 09:59:13'),(146,143,'公共权限','fa-link','admin','','','',2,'',1,100,'2023-01-17 10:26:46','2023-01-17 10:26:46'),(147,146,'退出登录','fa-link','admin','Index','logout','',2,'',1,100,'2023-01-17 10:27:41','2023-01-17 10:27:41'),(148,146,'清除缓存','fa-link','admin','Index','clear_cache','',2,'',1,100,'2023-01-17 10:27:57','2023-01-17 10:27:57');
 /*!40000 ALTER TABLE `easy_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `easy_menu` with 33 row(s)
+-- Dumped table `easy_menu` with 36 row(s)
 --
 
 --
@@ -266,4 +266,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Tue, 17 Jan 2023 10:24:39 +0800
+-- Dump completed on: Tue, 17 Jan 2023 10:28:31 +0800

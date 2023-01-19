@@ -44,10 +44,10 @@ class Manager extends \app\common\service\Manager
         $Query->page  = !empty($params['page']) ? $params['page'] : 1;
         $Query->limit = !empty($params['limit']) ? $params['limit'] : 10;
 
-        $lists = $this->ManagerRepository->getList($Query);
+        $list = $this->ManagerRepository->getList($Query);
         $total = $this->ManagerRepository->getTotal($Query);
 
-        return ['lists' => $lists, 'total' => $total];
+        return ['list' => $list, 'total' => $total];
     }
 
     /**

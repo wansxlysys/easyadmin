@@ -39,10 +39,10 @@ class Role extends \app\common\service\Role
         $Query->page  = !empty($params['page']) ? $params['page'] : 1;
         $Query->limit = !empty($params['limit']) ? $params['limit'] : 10;
 
-        $lists = $this->RoleRepository->getList($Query);
+        $list = $this->RoleRepository->getList($Query);
         $total = $this->RoleRepository->getTotal($Query);
 
-        return ['lists' => $lists, 'total' => $total];
+        return ['list' => $list, 'total' => $total];
     }
 
     /**

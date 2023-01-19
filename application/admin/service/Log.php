@@ -44,10 +44,10 @@ class Log extends \app\common\service\Log
         $Query->limit = !empty($params['limit']) ? $params['limit'] : 10;
         $Query->order = ['id' => 'desc'];
 
-        $lists = $this->LogRepository->getList($Query);
+        $list = $this->LogRepository->getList($Query);
         $total = $this->LogRepository->getTotal($Query);
 
-        return ['lists' => $lists, 'total' => $total];
+        return ['list' => $list, 'total' => $total];
     }
 
     /**

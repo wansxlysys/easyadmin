@@ -38,9 +38,9 @@ class Menu extends \app\common\controller\Admin
     {
         if ($request->isAjax()) {
 
-            $lists = $this->MenuService->getAll();
+            $list = $this->MenuService->getAll();
 
-            $this->success('获取成功', '', ['lists' => $lists]);
+            $this->success('获取成功', '', ['list' => $list]);
         }
 
         return $this->fetch();

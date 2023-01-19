@@ -38,10 +38,10 @@
         page: true,
         parseData: function (result) {
             return {
-                "code": result.code,
                 "msg": result.msg,
-                "count": result.data.total,
-                "lists": result.data.lists
+                "code": result.code,
+                "list": result.data.list,
+                "count": result.data.total
             };
         },
         limit: 15,
@@ -49,9 +49,9 @@
         response: {
             msgName: 'msg',
             statusCode: 1,
-            dataName: 'lists',
+            dataName: 'list',
             countName: 'count',
-            statusName: 'code',
+            statusName: 'code'
         }
     });
 

@@ -3,6 +3,7 @@
 
 namespace app\admin\controller;
 
+
 use think\Request;
 
 class Index extends \app\common\controller\Admin

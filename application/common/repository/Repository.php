@@ -4,8 +4,6 @@
 namespace app\common\repository;
 
 
-use app\common\repository\Query;
-
 /**
  * 存储库基类
  * @package app\common\repository

@@ -5,9 +5,6 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use think\Db;
-use think\facade\Env;
-use think\response\Json;
 
 class Home extends \app\common\controller\Admin
 {

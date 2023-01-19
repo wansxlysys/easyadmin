@@ -1,6 +1,8 @@
 <?php
 
+
 namespace app\admin\behavior;
+
 
 use think\Response;
 use think\facade\Request;

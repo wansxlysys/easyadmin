@@ -21,18 +21,11 @@ class Manager extends \app\common\controller\Admin
     protected $ManagerService;
 
     /**
-     * 角色服务类
-     * @var \app\admin\service\Role
-     */
-    protected $RoleService;
-
-    /**
      * 初始化
      */
     public function initialize()
     {
         parent::initialize();
-        $this->RoleService    = new \app\admin\service\Role();
         $this->ManagerService = new \app\admin\service\Manager();
     }
 
@@ -91,11 +84,7 @@ class Manager extends \app\common\controller\Admin
             $this->success('添加成功');
         }
 
-        $roles = $this->RoleService->getAll();
-
-        return $this->fetch('', [
-            'roles' => $roles
-        ]);
+        return $this->fetch();
     }
 
     /**
@@ -131,12 +120,9 @@ class Manager extends \app\common\controller\Admin
             $this->success('修改成功');
         }
 
-        $id      = $request->get('id');
-        $roles   = $this->RoleService->getAll();
-        $manager = $this->ManagerService->getById($id);
+        $manager = $this->ManagerService->getById($request->get('id'));
 
         return $this->fetch('', [
-            'roles'   => $roles,
             'manager' => $manager
         ]);
     }

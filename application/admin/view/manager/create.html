@@ -10,12 +10,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">所属角色</label>
                     <div class="layui-input-block">
-                        <select name="role_id" lay-verify="required">
-                            <option value=""></option>
-                            {volist name="roles" id="vo"}
-                            <option value="{$vo.id}">{$vo.title}</option>
-                            {/volist}
-                        </select>
+                        <div id="role_id"></div>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -64,12 +59,21 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', "uploadImage"], function () {
+    layui.use(['easyAdmin', 'easyService', "uploadImage"], function () {
 
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
+        var easyService = layui.easyService;
 
         avatarUploader.uploader.config.url = "{:url('admin/Manager/upload_avatar')}";
+
+        easyService.render.roleSingleSelect({
+            elem: '#role_id',
+            setting: {
+                name: 'role_id',
+                layVerify: 'required'
+            }
+        });
 
         form.on('submit', function (obj) {
             event.preventDefault();

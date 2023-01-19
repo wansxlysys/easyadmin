@@ -128,6 +128,7 @@ class Role extends \app\common\controller\Admin
     public function delete_action(Request $request)
     {
         if ($request->isAjax()) {
+
             $params = [
                 'id' => $request->post('id')
             ];
@@ -145,6 +146,17 @@ class Role extends \app\common\controller\Admin
             }
 
             $this->success('删除成功');
+        }
+    }
+
+    /**
+     * 获取全部角色
+     * @param Request $request
+     */
+    public function get_all_action(Request $request)
+    {
+        if ($request->isAjax()) {
+            $this->success('获取成功', '', $this->RoleService->getAll());
         }
     }
 }

@@ -72,11 +72,23 @@ class Model extends \app\common\repository\Repository
     }
 
     /**
-     * 设置表名
-     * @param $name
+     * 通过ID获取分表表名
+     * @param $id
+     * @return string
      */
-    public function setName($name)
+    public function getSubNameById($id)
     {
-        $this->name = $name;
+        return "{$this->name}_{$this->getByMod($id, 100)}";
+    }
+
+    /**
+     * 取余方式分表
+     * @param $key
+     * @param $total
+     * @return int
+     */
+    public function getByMod($key, $total)
+    {
+        return ($key % $total) + 1;
     }
 }

@@ -4,53 +4,38 @@
 namespace app\common\repository;
 
 
+use think\Db;
+use app\common\exception\RepositoryException;
+
 /**
- * 存储库基类
+ * 存储类
  * @package app\common\repository
  */
-class Repository
+abstract class Repository
 {
     /**
-     * 对应模型
-     * @var mixed|null
+     * 对应表名
+     * @var string
      */
-    protected $Model = null;
+    protected $name = '';
 
     /**
-     * Repository constructor.
-     */
-    public function __construct()
-    {
-        $this->initialize();
-    }
-
-    /**
-     * 初始化
-     */
-    protected function initialize()
-    {
-
-    }
-
-    /**
-     * 获取列表偏移
+     * 获取列表
      * @param Query $Query
-     * @return mixed
+     * @return array
      */
     public function getList(Query $Query)
     {
-        $Model = $this->Model;
-        $Model = $Model->where($Query->where);
-        $Model = $Model->whereOr($Query->whereOr);
-        $Model = $Model->page($Query->page);
-        $Model = $Model->limit($Query->limit);
-        $Model = $Model->field($Query->field);
-        $Model = $Model->group($Query->group);
-        $Model = $Model->having($Query->having);
-        $Model = $Model->order($Query->order);
-        $Model = $Model->select();
+        try {
 
-        return $Model->toArray();
+            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
+                ->page($Query->getPage())->limit($Query->getLimit())->field($Query->getField())
+                ->group($Query->getGroup())->having($Query->getHaving())->order($Query->getOrder())
+                ->select();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
     }
 
     /**
@@ -60,15 +45,13 @@ class Repository
      */
     public function getTotal(Query $Query)
     {
-        $Model = $this->Model;
-        $Model = $Model->where($Query->where);
-        $Model = $Model->whereOr($Query->whereOr);
-        $Model = $Model->field($Query->field);
-        $Model = $Model->group($Query->group);
-        $Model = $Model->having($Query->having);
-        $Model = $Model->select();
+        try {
 
-        return $Model->count();
+            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())->count();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
     }
 
     /**
@@ -78,16 +61,15 @@ class Repository
      */
     public function getAll(Query $Query)
     {
-        $Model = $this->Model;
-        $Model = $Model->where($Query->where);
-        $Model = $Model->whereOr($Query->whereOr);
-        $Model = $Model->field($Query->field);
-        $Model = $Model->group($Query->group);
-        $Model = $Model->having($Query->having);
-        $Model = $Model->order($Query->order);
-        $Model = $Model->select();
+        try {
 
-        return $Model->toArray();
+            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
+                ->field($Query->getField())->group($Query->getGroup())->having($Query->getHaving())
+                ->order($Query->getOrder())->select();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
     }
 
     /**
@@ -97,56 +79,15 @@ class Repository
      */
     public function getOne(Query $Query)
     {
-        $Model = $this->Model;
-        $Model = $Model->where($Query->where);
-        $Model = $Model->whereOr($Query->whereOr);
-        $Model = $Model->field($Query->field);
-        $Model = $Model->order($Query->order);
-        $Model = $Model->findOrEmpty();
+        try {
 
-        return $Model->toArray();
-    }
+            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
+                ->field($Query->getField())->group($Query->getGroup())->order($Query->getOrder())
+                ->select();
 
-    /**
-     * 通过ID获取
-     * @param $id
-     * @return mixed
-     */
-    public function getById($id)
-    {
-        $Query = new Query();
-
-        $Query->where[] = ['id', '=', $id];
-
-        return $this->getOne($Query);
-    }
-
-    /**
-     * 通过参数ID更新
-     * @param array $params
-     * @return bool
-     */
-    public function updateById(array $params)
-    {
-        $Query = new Query();
-
-        $Query->where[] = ['id', '=', $params['id']];
-
-        return $this->updateRecord($Query, $params);
-    }
-
-    /**
-     * 通过参数ID删除
-     * @param $id
-     * @return bool
-     */
-    public function deleteById($id)
-    {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', 'IN', $id];
-
-        return $this->deleteRecord($Query);
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
     }
 
     /**
@@ -156,7 +97,23 @@ class Repository
      */
     public function createRecord(array $params = [])
     {
-        return $this->Model->create($params);
+        try {
+
+            return Db::name(static::getName())->insertGetId($params);
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
+     * 批量创建
+     * @param array $params
+     * @return mixed
+     */
+    public function createAll(array $params = [])
+    {
+        return Db::name(static::getName())->insertAll($params);
     }
 
     /**
@@ -167,7 +124,14 @@ class Repository
      */
     public function updateRecord(Query $Query, array $params = [])
     {
-        return false !== $this->Model->where($Query->where)->whereOr($Query->whereOr)->update($params);
+        try {
+
+            return false !== Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
+                    ->update($params);
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
     }
 
     /**
@@ -177,19 +141,13 @@ class Repository
      */
     public function deleteRecord(Query $Query)
     {
-        return $this->Model->destroy(function ($query) use ($Query) {
-            $query->where($Query->where);
-            $query->whereOr($Query->whereOr);
-        });
-    }
+        try {
 
-    /**
-     * 批量新增
-     * @param array $params
-     * @return mixed
-     */
-    public function insertAll(array $params = [])
-    {
-        return $this->Model->insertAll($params);
+            return false !== Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
+                    ->delete();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
 
-namespace app\admin\helper;
+namespace app\common\helper;
 
 
-use helper\Container;
 use think\facade\Session;
 
 class Manager
@@ -50,7 +49,7 @@ class Manager
      */
     public static function getRole()
     {
-        return Container::get(\app\common\constant\Manager::CONTAINER_ROLE);
+        return Storage::get(\app\common\constant\Manager::CONTAINER_ROLE);
     }
 
     /**
@@ -68,7 +67,7 @@ class Manager
      */
     public static function getManager()
     {
-        return Container::get(\app\common\constant\Manager::CONTAINER_MANAGER);
+        return Storage::get(\app\common\constant\Manager::CONTAINER_MANAGER);
     }
 
     /**
@@ -77,7 +76,7 @@ class Manager
      */
     public static function getPermission()
     {
-        return Container::get(\app\common\constant\Manager::CONTAINER_PERMISSION);
+        return Storage::get(\app\common\constant\Manager::CONTAINER_PERMISSION);
     }
 
     /**

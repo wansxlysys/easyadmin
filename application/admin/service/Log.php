@@ -4,7 +4,6 @@
 namespace app\admin\service;
 
 
-use helper\JsonArray;
 use think\facade\Request;
 
 class Log extends \app\common\service\Log
@@ -13,7 +12,7 @@ class Log extends \app\common\service\Log
      * 日志存储类
      * @var \app\admin\model\Log
      */
-    protected $LogRepository;
+    protected $LogModel;
 
     /**
      * 初始化
@@ -21,7 +20,7 @@ class Log extends \app\common\service\Log
     public function initialize()
     {
         parent::initialize();
-        $this->LogRepository = new \app\admin\model\Log();
+        $this->LogModel = new \app\admin\model\Log();
     }
 
     /**
@@ -31,22 +30,22 @@ class Log extends \app\common\service\Log
      */
     public function getListWithTotal(array $params = [])
     {
-        $Query = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
         if (!empty($params['menu'])) {
-            $Query->where[] = ['menu', 'LIKE', "%{$params['menu']}%"];
+            $Query->addWhere(['menu', 'LIKE', "%{$params['menu']}%"]);
         }
 
         if (!empty($params['status'])) {
-            $Query->where[] = ['status', '=', $params['status']];
+            $Query->addWhere(['status', '=', $params['status']]);
         }
 
-        $Query->page  = !empty($params['page']) ? $params['page'] : 1;
-        $Query->limit = !empty($params['limit']) ? $params['limit'] : 10;
-        $Query->order = ['id' => 'desc'];
+        $Query->setPage($params['page']);
+        $Query->setLimit($params['limit']);
+        $Query->setOrder(['id' => 'desc']);
 
-        $list = $this->LogRepository->getList($Query);
-        $total = $this->LogRepository->getTotal($Query);
+        $list  = $this->LogModel->getList($Query);
+        $total = $this->LogModel->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -58,7 +57,7 @@ class Log extends \app\common\service\Log
      */
     public function getById($id)
     {
-        return $this->LogRepository->getById($id);
+        return $this->LogModel->getById($id);
     }
 
     /**
@@ -69,27 +68,28 @@ class Log extends \app\common\service\Log
      */
     public function writeLog($description, $status)
     {
-        $MenuService   = new \app\admin\service\Menu();
-        $ManagerHelper = new \app\admin\helper\Manager();
+        $MenuService = new \app\admin\service\Menu();
 
-        $manager     = $ManagerHelper->getManager();
         $currentMenu = $MenuService->getCurrentMenu();
 
         if (!$currentMenu) {
             return false;
         }
 
+        $manager = \app\common\helper\Manager::getManager();
+        $params  = \app\common\helper\JsonArray::arrayToJson(Request::post());
+
         $data = [
             'url'         => Request::url(),
             'menu'        => $currentMenu['title'],
             'manager_id'  => $manager['id'],
             'username'    => $manager['username'],
-            'params'      => JsonArray::arrayToJson(Request::post()),
+            'params'      => $params,
             'description' => $description,
             'status'      => $status
         ];
 
-        return $this->LogRepository->createRecord($data);
+        return $this->LogModel->createRecord($data);
     }
 
     /**
@@ -98,6 +98,6 @@ class Log extends \app\common\service\Log
      */
     public function clear()
     {
-        return $this->LogRepository->clear();
+        return $this->LogModel->clear();
     }
 }

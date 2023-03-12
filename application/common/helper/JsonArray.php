@@ -1,6 +1,8 @@
 <?php
 
-namespace helper;
+
+namespace app\common\helper;
+
 
 class JsonArray
 {

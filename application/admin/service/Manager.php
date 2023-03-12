@@ -151,9 +151,7 @@ class Manager extends \app\common\service\Manager
             return $this->setMessage('管理员已被禁用');
         }
 
-        $ManagerHelper = new \app\admin\helper\Manager();
-
-        $ManagerHelper->login($manager['id']);
+        \app\common\helper\Manager::login($manager['id']);
 
         return true;
     }

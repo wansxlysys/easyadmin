@@ -21,19 +21,12 @@ class Index extends \app\common\controller\Admin
     protected $MenuService;
 
     /**
-     * 管理员服务类
-     * @var \app\admin\helper\Manager
-     */
-    protected $ManagerHelper;
-
-    /**
      * 初始化
      */
     public function initialize()
     {
         parent::initialize();
-        $this->MenuService   = new \app\admin\service\Menu();
-        $this->ManagerHelper = new \app\admin\helper\Manager();
+        $this->MenuService = new \app\admin\service\Menu();
     }
 
     /**
@@ -43,7 +36,7 @@ class Index extends \app\common\controller\Admin
     public function index_action()
     {
         $menu    = $this->MenuService->getLeftMenu();
-        $manager = $this->ManagerHelper->getManager();
+        $manager = \app\common\helper\Manager::getManager();
 
         return $this->fetch('', [
             'menu'    => $menu,
@@ -61,11 +54,12 @@ class Index extends \app\common\controller\Admin
         if ($request->isAjax()) {
 
             $params = [
-                'id'       => $this->ManagerHelper->getManagerId(),
                 'avatar'   => $request->post('avatar'),
                 'nickname' => $request->post('nickname'),
                 'password' => $request->post('password'),
             ];
+
+            $params['id'] = \app\common\helper\Manager::getManagerId();
 
             $ManagerValidate = new \app\admin\validate\Manager();
 
@@ -82,7 +76,7 @@ class Index extends \app\common\controller\Admin
             $this->success('修改成功');
         }
 
-        $manager = $this->ManagerHelper->getManager();
+        $manager = \app\common\helper\Manager::getManager();
 
         return $this->fetch('', [
             'manager' => $manager
@@ -98,7 +92,7 @@ class Index extends \app\common\controller\Admin
     {
         if ($request->isAjax()) {
 
-            $this->ManagerHelper->logout();
+            \app\common\helper\Manager::logout();
 
             $this->success('退出成功');
         }

@@ -15,9 +15,7 @@ class Login extends \app\common\controller\Common
     {
         parent::initialize();
 
-        $ManagerHelper = new \app\admin\helper\Manager();
-
-        if ($ManagerHelper->isLogin()) {
+        if (\app\common\helper\Manager::isLogin()) {
             $this->redirect('admin/Index/index');
         }
     }

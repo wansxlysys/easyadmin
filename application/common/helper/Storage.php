@@ -1,20 +1,16 @@
 <?php
 
 
-namespace helper;
+namespace app\common\helper;
 
-/**
- * 寄存器
- * @package helper
- */
-class Container
+
+class Storage
 {
-
     /**
      * 容器
      * @var array
      */
-    private static $container = [];
+    private static $store = [];
 
     /**
      * 检测容器变量是否存在
@@ -23,7 +19,7 @@ class Container
      */
     public static function has($name)
     {
-        return isset(self::$container[$name]);
+        return isset(static::$store[$name]);
     }
 
     /**
@@ -33,7 +29,7 @@ class Container
      */
     public static function set($name, $value)
     {
-        self::$container[$name] = $value;
+        static::$store[$name] = $value;
     }
 
     /**
@@ -45,10 +41,22 @@ class Container
     public static function get($name, callable $resolve = null)
     {
         if (!is_null($resolve)) {
-            self::set($name, $resolve());
+            static::set($name, $resolve());
         }
 
-        return isset(self::$container[$name]) ? self::$container[$name] : null;
+        return isset(static::$store[$name]) ?: null;
+    }
+
+    /**
+     * 删除缓存
+     * @param $name
+     * @return void
+     */
+    public function del($name)
+    {
+        if (isset(static::$store[$name])) {
+            unset(static::$store[$name]);
+        }
     }
 
     /**
@@ -57,6 +65,14 @@ class Container
      */
     public static function getAll()
     {
-        return self::$container;
+        return static::$store;
+    }
+
+    /**
+     * 清除全部缓存
+     */
+    public static function clear()
+    {
+        static::$store = [];
     }
 }

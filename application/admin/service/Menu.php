@@ -4,8 +4,8 @@
 namespace app\admin\service;
 
 
-use helper\Container;
 use think\facade\Request;
+use app\common\helper\Storage;
 
 class Menu extends \app\common\service\Menu
 {
@@ -31,9 +31,7 @@ class Menu extends \app\common\service\Menu
      */
     public function getLeftMenu()
     {
-        $ManagerHelper = new \app\admin\helper\Manager();
-
-        $permission = $ManagerHelper->getPermission();
+        $permission =  \app\common\helper\Manager::getPermission();
 
         $Query = new \app\common\repository\Query();
 
@@ -47,7 +45,7 @@ class Menu extends \app\common\service\Menu
             $item = $this->formatData($item);
         };
 
-        $TreeArray = new \helper\TreeArray();
+        $TreeArray = new \app\common\helper\TreeArray();
 
         return $TreeArray->arrayToTree($menu, '', 0, $resolve);
     }
@@ -60,8 +58,8 @@ class Menu extends \app\common\service\Menu
     {
         $currentMenu = 'currentMenu';
 
-        if (Container::has($currentMenu)) {
-            return Container::get($currentMenu);
+        if (Storage::has($currentMenu)) {
+            return Storage::get($currentMenu);
         }
 
         $Query = new \app\common\repository\Query();
@@ -70,9 +68,9 @@ class Menu extends \app\common\service\Menu
         $Query->where[] = ['controller', '=', Request::controller()];
         $Query->where[] = ['action', '=', Request::action()];
 
-        Container::set($currentMenu, $this->MenuRepository->getOne($Query));
+        Storage::set($currentMenu, $this->MenuRepository->getOne($Query));
 
-        return Container::get($currentMenu);
+        return Storage::get($currentMenu);
     }
 
     /**
@@ -133,7 +131,7 @@ class Menu extends \app\common\service\Menu
     public function getAllTree(array $checked = [])
     {
         $menuList  = $this->getAll();
-        $TreeArray = new \helper\TreeArray();
+        $TreeArray = new \app\common\helper\TreeArray();
 
         $resolve = function (&$item) use ($checked) {
             $item['selected'] = in_array($item['id'], $checked);

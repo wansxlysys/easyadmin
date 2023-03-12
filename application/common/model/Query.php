@@ -168,11 +168,12 @@ class Query
 
     /**
      * 添加排序
+     * @param $field
      * @param $order
      */
-    public function addOrder($order)
+    public function addOrder($field, $order)
     {
-        $this->order[] = $order;
+        $this->order[$field] = $order;
     }
 
     /**

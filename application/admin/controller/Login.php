@@ -30,7 +30,7 @@ class Login extends \app\common\controller\Common
         if ($request->isAjax()) {
 
             $params = [
-                'username' => $request->post('username'),
+                'account' => $request->post('account'),
                 'password' => $request->post('password'),
                 'captcha'  => $request->post('captcha'),
             ];

@@ -7,18 +7,16 @@ namespace app\admin\model;
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class Manager extends \app\common\model\Manager
+class SystemLoginLog extends \app\common\model\SystemLoginLog
 {
     /**
-     * 通过账号查询
-     * @param $account
-     * @return mixed
+     * 清空系统登录日志
      */
-    public function getByAccount($account)
+    public function clearSystemLoginLog()
     {
         try {
 
-            return Db::name(static::getName())->where('account', $account)->find();
+            return false !== Db::name(static::getName())->where('id', '>', 0)->delete();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

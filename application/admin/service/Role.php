@@ -221,11 +221,11 @@ class Role extends \app\common\service\Role
     {
         $Query = new \app\common\model\Query();
 
-        $Query->addWhere(['name', '=', $name]);
-
         if (!empty($id)) {
             $Query->addWhere(['id', '<>', $id]);
         }
+
+        $Query->addWhere(['name', '=', $name]);
 
         return $this->RoleModel->getOne($Query);
     }

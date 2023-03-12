@@ -26,7 +26,6 @@ class Backup extends \think\console\Command
      * 执行命令
      * @param Input $input
      * @param Output $output
-     * @return int|void|null
      */
     protected function execute(Input $input, Output $output)
     {
@@ -44,10 +43,10 @@ class Backup extends \think\console\Command
             $MysqlDump = new \Ifsnop\Mysqldump\Mysqldump($connect, $username, $password);
             $MysqlDump->start($rootPath . "data/{$saveName}.sql");
 
+            $output->writeln("备份成功");
+
         } catch (\Exception $exception) {
             $output->writeln("备份失败：{$exception->getMessage()}");
         }
-
-        $output->writeln("备份成功");
     }
 }

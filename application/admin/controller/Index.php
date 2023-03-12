@@ -69,7 +69,7 @@ class Index extends \app\common\controller\Admin
 
             $ManagerService = new \app\admin\service\Manager();
 
-            if (!$ManagerService->updateByParamsId($params)) {
+            if (!$ManagerService->updateManager($params)) {
                 $this->error('修改失败');
             }
 

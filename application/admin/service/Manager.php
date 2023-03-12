@@ -79,9 +79,16 @@ class Manager extends \app\common\service\Manager
      * @param array $params
      * @return mixed
      */
-    public function createRecord(array $params)
+    public function createManager(array $params)
     {
-        $params = $this->buildData($params);
+        /**
+         * 检测账号是否存在
+         */
+        if ($this->checkExistByAccount($params['account'])) {
+            return $this->setMessage('账号已存在');
+        }
+
+        $params['password'] = Encryption::encrypt($params['password']);
 
         return $this->ManagerModel->createRecord($params);
     }
@@ -91,9 +98,34 @@ class Manager extends \app\common\service\Manager
      * @param array $params
      * @return bool
      */
-    public function updateByParamsId(array $params)
+    public function updateManager(array $params)
     {
-        return $this->ManagerModel->updateById($params['id'], $this->buildData($params));
+        /**
+         * 检测管理员是否存在
+         */
+        $manager = $this->getById($params['id']);
+
+        if (empty($manager)) {
+            return $this->setMessage('管理员不存在');
+        }
+
+        /**
+         * 检测账号是否存在
+         */
+        if ($this->checkExistByAccount($params['account'], $params['id'])) {
+            return $this->setMessage('账号已存在');
+        }
+
+        /**
+         * 如果密码不为空则加密密码
+         */
+        if (empty($params['password'])) {
+            unset($params['password']);
+        } else {
+            $params['password'] = Encryption::encrypt($params['password']);
+        }
+
+        return $this->ManagerModel->updateById($params['id'], $params);
     }
 
     /**
@@ -101,7 +133,7 @@ class Manager extends \app\common\service\Manager
      * @param array $params
      * @return mixed
      */
-    public function deleteByParamsId(array $params)
+    public function deleteManager(array $params)
     {
         return $this->ManagerModel->deleteById($params['id']);
     }
@@ -113,7 +145,7 @@ class Manager extends \app\common\service\Manager
      */
     public function login(array $params)
     {
-        $manager = $this->ManagerModel->getByUserName($params['username']);
+        $manager = $this->ManagerModel->getByAccount($params['account']);
 
         if (!$manager) {
             return $this->setMessage('管理员不存在');
@@ -133,19 +165,21 @@ class Manager extends \app\common\service\Manager
     }
 
     /**
-     * 构建储存数据
-     * @param $params
+     * 检测账号是否存在
+     * @param string $account
+     * @param string $id
      * @return mixed
      */
-    protected function buildData($params)
+    protected function checkExistByAccount($account, $id = '')
     {
-        // 如果不修改密码则释放密码变量
-        if (empty($params['password'])) {
-            unset($params['password']);
-        } else {
-            $params['password'] = Encryption::encrypt($params['password']);
+        $Query = new \app\common\model\Query();
+
+        if (!empty($id)) {
+            $Query->addWhere(['id', '<>', $id]);
         }
 
-        return $params;
+        $Query->addWhere(['account', '=', $account]);
+
+        return $this->ManagerModel->getOne($Query);
     }
 }

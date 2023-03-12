@@ -12,7 +12,7 @@ class Manager extends \app\common\validate\Manager
      */
     public function sceneLogin()
     {
-        return $this->only(['username', 'password', 'captcha'])->remove('username', 'unique');
+        return $this->only(['account', 'password', 'captcha'])->remove('account', 'unique');
     }
 
     /**
@@ -21,7 +21,7 @@ class Manager extends \app\common\validate\Manager
      */
     public function sceneCreate()
     {
-        return $this->only(['role_id', 'avatar', 'nickname', 'username', 'password', 'status']);
+        return $this->only(['role_id', 'avatar', 'nickname', 'account', 'password', 'status']);
     }
 
     /**

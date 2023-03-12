@@ -64,7 +64,7 @@ class Manager extends \app\common\controller\Admin
                 'role_id'  => $request->post('role_id'),
                 'avatar'   => $request->post('avatar'),
                 'nickname' => $request->post('nickname'),
-                'username' => $request->post('username'),
+                'account' => $request->post('account'),
                 'password' => $request->post('password'),
                 'status'   => $request->post('status'),
             ];
@@ -75,7 +75,7 @@ class Manager extends \app\common\controller\Admin
                 $this->error($ManagerValidate->getError());
             }
 
-            $result = $this->ManagerService->createRecord($params);
+            $result = $this->ManagerService->createManager($params);
 
             if (!$result) {
                 $this->error('添加失败');
@@ -111,7 +111,7 @@ class Manager extends \app\common\controller\Admin
                 $this->error($ManagerValidate->getError());
             }
 
-            $result = $this->ManagerService->updateByParamsId($params);
+            $result = $this->ManagerService->updateManager($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -145,7 +145,7 @@ class Manager extends \app\common\controller\Admin
                 $this->error($ManagerValidate->getError());
             }
 
-            $result = $this->ManagerService->deleteByParamsId($params);
+            $result = $this->ManagerService->deleteManager($params);
 
             if (!$result) {
                 $this->error('删除失败');

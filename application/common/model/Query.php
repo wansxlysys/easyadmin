@@ -200,7 +200,7 @@ class Query
      */
     public function addField($field)
     {
-        $this->field = $field;
+        $this->field[] = $field;
     }
 
     /**

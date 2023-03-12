@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\admin\taglib;
+namespace app\common\taglib;
 
 
 class Permission extends \app\common\taglib\TagLib

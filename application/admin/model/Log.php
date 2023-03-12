@@ -1,24 +1,23 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\admin\model;
 
 
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class Upload extends \app\common\model\Model
+class Log extends \app\common\model\Log
 {
     /**
-     * 通过MD5查询
-     * @param $md5
+     * 清空全部
      * @return mixed
      */
-    public function getByMd5($md5)
+    public function clear()
     {
         try {
 
-            return Db::name(static::getName())->where('md5', $md5)->find();
+            return Db::name(static::getName())->where('id', '>', 0)->delete();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

@@ -11,7 +11,7 @@ use app\common\exception\RepositoryException;
  * 模型类
  * @package app\common\model
  */
-class Model extends \app\common\repository\Repository
+class Model extends \app\common\model\Repository
 {
     /**
      * 通过ID获取
@@ -69,26 +69,5 @@ class Model extends \app\common\repository\Repository
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * 通过ID获取分表表名
-     * @param $id
-     * @return string
-     */
-    public function getSubNameById($id)
-    {
-        return "{$this->name}_{$this->getByMod($id, 100)}";
-    }
-
-    /**
-     * 取余方式分表
-     * @param $key
-     * @param $total
-     * @return int
-     */
-    public function getByMod($key, $total)
-    {
-        return ($key % $total) + 1;
     }
 }

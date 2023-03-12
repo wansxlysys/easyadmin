@@ -13,7 +13,7 @@ class Permission
      * @param string $condition
      * @return bool
      */
-    public function checkPermission($allow, array $permission = [], $condition = 'and')
+    public static function checkPermission($allow, array $permission = [], $condition = 'and')
     {
         if (!is_array($allow)) {
             $allow = !empty($allow) ? explode(',', $allow) : [];

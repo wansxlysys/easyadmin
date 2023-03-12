@@ -9,7 +9,7 @@ class Permission extends \app\common\service\Permission
 
     /**
      * 角色存储嘞
-     * @var \app\admin\repository\Permission
+     * @var \app\admin\model\Permission
      */
     protected $PermissionRepository;
 
@@ -19,7 +19,7 @@ class Permission extends \app\common\service\Permission
     public function initialize()
     {
         parent::initialize();
-        $this->PermissionRepository = new \app\admin\repository\Permission();
+        $this->PermissionRepository = new \app\admin\model\Permission();
     }
 
     /**

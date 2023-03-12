@@ -11,7 +11,7 @@ class Log extends \app\common\service\Log
 {
     /**
      * 日志存储类
-     * @var \app\admin\repository\Log
+     * @var \app\admin\model\Log
      */
     protected $LogRepository;
 
@@ -21,7 +21,7 @@ class Log extends \app\common\service\Log
     public function initialize()
     {
         parent::initialize();
-        $this->LogRepository = new \app\admin\repository\Log();
+        $this->LogRepository = new \app\admin\model\Log();
     }
 
     /**

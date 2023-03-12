@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\traits;
+namespace app\common\service;
 
 
 trait Business

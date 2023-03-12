@@ -11,7 +11,7 @@ class Manager extends \app\common\service\Manager
 
     /**
      * 角色存储嘞
-     * @var \app\admin\repository\Role
+     * @var \app\admin\model\Role
      */
     protected $ManagerRepository;
 
@@ -21,7 +21,7 @@ class Manager extends \app\common\service\Manager
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerRepository = new \app\admin\repository\Manager();
+        $this->ManagerRepository = new \app\admin\model\Manager();
     }
 
     /**
@@ -147,7 +147,7 @@ class Manager extends \app\common\service\Manager
             return $this->setMessage('密码错误');
         }
 
-        if ($manager['status'] == static::STATUS_DISABLED) {
+        if ($manager['status'] == \app\common\constant\Manager::STATUS_DISABLED) {
             return $this->setMessage('管理员已被禁用');
         }
 

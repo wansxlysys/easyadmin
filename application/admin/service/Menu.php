@@ -12,7 +12,7 @@ class Menu extends \app\common\service\Menu
 
     /**
      * 菜单存储类
-     * @var \app\admin\repository\Menu
+     * @var \app\admin\model\Menu
      */
     protected $MenuRepository;
 
@@ -22,7 +22,7 @@ class Menu extends \app\common\service\Menu
     public function initialize()
     {
         parent::initialize();
-        $this->MenuRepository = new \app\admin\repository\Menu();
+        $this->MenuRepository = new \app\admin\model\Menu();
     }
 
     /**

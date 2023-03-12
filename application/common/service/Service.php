@@ -4,8 +4,6 @@
 namespace app\common\service;
 
 
-use app\common\traits\Business;
-
 class Service
 {
     /*

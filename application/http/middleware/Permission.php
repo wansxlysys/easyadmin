@@ -3,9 +3,9 @@
 
 namespace app\http\middleware;
 
+
 use helper\Container;
 use traits\controller\Jump;
-use app\admin\helper\Manager;
 
 class Permission
 {
@@ -13,20 +13,6 @@ class Permission
      * 跳转操作
      */
     use Jump;
-
-    /**
-     * 管理员助手类
-     * @var Manager
-     */
-    protected $ManagerHelper;
-
-    /**
-     * 初始化
-     */
-    public function __construct()
-    {
-        $this->ManagerHelper = new Manager();
-    }
 
     /**
      * 句柄
@@ -53,9 +39,9 @@ class Permission
         $role       = $this->getRole($manager['role_id']);
         $permission = $this->getPermission($manager['role_id']);
 
-        Container::set(Manager::ROLE, $role);
-        Container::set(Manager::MANAGER, $manager);
-        Container::set(Manager::PERMISSION, $permission);
+        Container::set(\app\common\constant\Manager::CONTAINER_ROLE, $role);
+        Container::set(\app\common\constant\Manager::CONTAINER_MANAGER, $manager);
+        Container::set(\app\common\constant\Manager::CONTAINER_PERMISSION, $permission);
     }
 
     /**
@@ -63,7 +49,7 @@ class Permission
      */
     public function checkDisabled()
     {
-        if ($this->ManagerHelper->isDisabled()) {
+        if (\app\admin\helper\Manager::isDisabled()) {
             $this->error('账号被禁用');
         }
     }
@@ -76,7 +62,7 @@ class Permission
         $MenuService = new \app\admin\service\Menu();
         $currentMenu = $MenuService->getCurrentMenu();
 
-        if (!$this->ManagerHelper->checkAccessByMenuId($currentMenu['id'])) {
+        if (!\app\admin\helper\Manager::checkAccessByMenuId($currentMenu['id'])) {
             $this->error('您的账号未授权访问');
         }
     }
@@ -86,7 +72,7 @@ class Permission
      */
     public function checkLogin()
     {
-        if (!$this->ManagerHelper->isLogin()) {
+        if (!\app\admin\helper\Manager::isLogin()) {
             $this->error('未登录', 'admin/login/login');
         }
     }
@@ -99,7 +85,7 @@ class Permission
     {
         $ManagerService = new \app\admin\service\Manager();
 
-        return $ManagerService->getById($this->ManagerHelper->getManagerId());
+        return $ManagerService->getById(\app\admin\helper\Manager::getManagerId());
     }
 
     /**

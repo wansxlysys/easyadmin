@@ -8,7 +8,7 @@ class SettingSystem extends \app\common\service\SettingSystem
 {
     /**
      * 系统配置存储类
-     * @var \app\admin\repository\SettingSystem
+     * @var \app\admin\model\SettingSystem
      */
     protected $SettingSystemRepository;
 
@@ -18,7 +18,7 @@ class SettingSystem extends \app\common\service\SettingSystem
     public function initialize()
     {
         parent::initialize();
-        $this->SettingSystemRepository = new \app\admin\repository\SettingSystem();
+        $this->SettingSystemRepository = new \app\admin\model\SettingSystem();
     }
 
     /**

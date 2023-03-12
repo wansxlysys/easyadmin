@@ -10,7 +10,7 @@ class Upload extends \app\common\service\Upload
 {
     /**
      * 系统配置存储类
-     * @var \app\admin\repository\Upload
+     * @var \app\admin\model\Upload
      */
     protected $UploadRepository;
 
@@ -20,7 +20,7 @@ class Upload extends \app\common\service\Upload
     public function initialize()
     {
         parent::initialize();
-        $this->UploadRepository = new \app\admin\repository\Upload();
+        $this->UploadRepository = new \app\admin\model\Upload();
     }
 
     /**

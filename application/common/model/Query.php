@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\repository;
+namespace app\common\model;
 
 
 /**

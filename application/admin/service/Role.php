@@ -10,7 +10,7 @@ class Role extends \app\common\service\Role
 {
     /**
      * 角色存储嘞
-     * @var \app\admin\repository\Role
+     * @var \app\admin\model\Role
      */
     protected $RoleRepository;
 
@@ -20,7 +20,7 @@ class Role extends \app\common\service\Role
     public function initialize()
     {
         parent::initialize();
-        $this->RoleRepository = new \app\admin\repository\Role();
+        $this->RoleRepository = new \app\admin\model\Role();
     }
 
     /**

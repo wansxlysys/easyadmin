@@ -4,6 +4,8 @@
 namespace app\admin\service;
 
 
+use think\Db;
+
 class Permission extends \app\common\service\Permission
 {
 
@@ -55,7 +57,7 @@ class Permission extends \app\common\service\Permission
             $params[$key]['role_id'] = $roleId;
         }
 
-        return $this->PermissionModel->insertAll($params);
+        return $this->PermissionModel->createAll($params);
     }
 
     /**
@@ -68,32 +70,43 @@ class Permission extends \app\common\service\Permission
     {
         $permission = $this->getAllMenuIdByRoleId($roleId);
 
-        // 获取差集和补集
-        $delete = array_diff($permission, $menuId);
-        $create = array_diff($menuId, $permission);
+        $deleteMenuId = array_diff($permission, $menuId);
+        $createMenuId = array_diff($menuId, $permission);
 
-        $where[] = ['role_id', '=', $roleId];
-        $where[] = ['menu_id', 'IN', $delete];
+        Db::startTrans();
 
-        if (!$this->deleteByWhere($where)) {
-            return false;
+        try {
+
+            /**
+             * 删除权限
+             */
+            $Query = new \app\common\model\Query();
+
+            $Query->addWhere(['role_id', '=', $roleId]);
+            $Query->addWhere(['menu_id', 'IN', $deleteMenuId]);
+
+            if (!$this->PermissionModel->deleteRecord($Query)) {
+                throw new \RuntimeException('权限删除失败');
+            }
+
+            /**
+             * 创建权限
+             */
+            if (!$this->createRecord($roleId, $createMenuId)) {
+                throw new \RuntimeException('权限创建失败');
+            }
+
+            Db::commit();
+
+        } catch (\Throwable $throwable) {
+
+            Db::rollback();
+
+            return $this->setMessage($throwable->getMessage());
         }
 
-        return $this->createRecord($roleId, $create);
-    }
 
-    /**
-     * 通过条件删除
-     * @param array $where
-     * @return mixed
-     */
-    public function deleteByWhere(array $where = [])
-    {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where = $where;
-
-        return $this->PermissionModel->deleteRecord($Query);
+        return true;
     }
 
     /**
@@ -103,9 +116,10 @@ class Permission extends \app\common\service\Permission
      */
     public function deleteByRoleId($roleId)
     {
-        $where[] = ['role_id', '=', $roleId];
+        $Query = new \app\common\model\Query();
 
-        return $this->deleteByWhere($where);
+        $Query->addWhere(['role_id', '=', $roleId]);
+
+        return $this->PermissionModel->deleteById($Query);
     }
-
 }

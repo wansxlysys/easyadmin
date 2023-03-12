@@ -83,7 +83,6 @@ class Log extends \app\common\service\Log
             'url'         => Request::url(),
             'menu'        => $currentMenu['title'],
             'manager_id'  => $manager['id'],
-            'username'    => $manager['username'],
             'params'      => $params,
             'description' => $description,
             'status'      => $status

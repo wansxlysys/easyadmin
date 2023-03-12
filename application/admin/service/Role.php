@@ -110,14 +110,23 @@ class Role extends \app\common\service\Role
      */
     public function createRecord(array $params)
     {
-        $permission        = $params['permission'];
-        $PermissionService = new \app\admin\service\Permission();
-
-        unset($params['permission']);
+        /**
+         * 检测角标识是否重复
+         */
+        if ($this->checkExistByName($params['name'])) {
+            return $this->setMessage('角色标识已存在');
+        }
 
         Db::startTrans();
 
         try {
+
+            /**
+             * 创建角色
+             */
+            $roleData['name']   = $params['name'];
+            $roleData['title']  = $params['title'];
+            $roleData['remark'] = $params['remark'];
 
             $role = $this->RoleModel->createRecord($params);
 
@@ -125,7 +134,12 @@ class Role extends \app\common\service\Role
                 throw new \Exception('角色创建失败');
             }
 
-            $result = $PermissionService->createRecord($role['id'], $permission);
+            /**
+             * 创建权限
+             */
+            $PermissionService = new \app\admin\service\Permission();
+
+            $result = $PermissionService->createRecord($role['id'], $params['permission']);
 
             if (!$result) {
                 throw new \Exception('权限创建失败');
@@ -150,22 +164,36 @@ class Role extends \app\common\service\Role
      */
     public function updateByParamsId(array $params)
     {
-        $permission        = $params['permission'];
-        $PermissionService = new \app\admin\service\Permission();
-
-        unset($params['permission']);
+        /**
+         * 检测角标识是否重复
+         */
+        if ($this->checkExistByName($params['name'], $params['id'])) {
+            return $this->setMessage('角色标识已存在');
+        }
 
         Db::startTrans();
 
         try {
 
-            $result = $this->RoleModel->updateById($params['id'], $params);
+            /**
+             * 更新角色
+             */
+            $roleData['name']   = $params['name'];
+            $roleData['title']  = $params['title'];
+            $roleData['remark'] = $params['remark'];
+
+            $result = $this->RoleModel->updateById($params['id'], $roleData);
 
             if (!$result) {
                 throw new \Exception('角色修改失败');
             }
 
-            $result = $PermissionService->updateRecord($params['id'], $permission);
+            /**
+             * 更新权限
+             */
+            $PermissionService = new \app\admin\service\Permission();
+
+            $result = $PermissionService->updateRecord($params['id'], $params['permission']);
 
             if (!$result) {
                 throw new \Exception('权限修改失败');
@@ -181,5 +209,24 @@ class Role extends \app\common\service\Role
         }
 
         return true;
+    }
+
+    /**
+     * 通过标识检测是否存在
+     * @param string $name 角色标识
+     * @param string $id 排除ID
+     * @return mixed
+     */
+    protected function checkExistByName($name, $id = '')
+    {
+        $Query = new \app\common\model\Query();
+
+        $Query->addWhere(['name', '=', $name]);
+
+        if (!empty($id)) {
+            $Query->addWhere(['id', '<>', $id]);
+        }
+
+        return $this->RoleModel->getOne($Query);
     }
 }

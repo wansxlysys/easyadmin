@@ -45,7 +45,7 @@ class Model extends \app\common\model\Repository
     {
         try {
 
-            return Db::name(static::getName())->where('id', 'IN', $id)->update($params);
+            return false !== Db::name(static::getName())->where('id', 'IN', $id)->update($params);
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
@@ -61,7 +61,7 @@ class Model extends \app\common\model\Repository
     {
         try {
 
-            return Db::name(static::getName())->where('id', 'IN', $id)->delete();
+            return false !== Db::name(static::getName())->where('id', 'IN', $id)->delete();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

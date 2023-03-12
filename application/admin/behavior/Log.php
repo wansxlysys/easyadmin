@@ -14,31 +14,26 @@ use think\facade\Request;
 class Log
 {
     /**
-     * 执行入口
+     * 执行句柄
      * @param $response
      */
     public function run(Response $response)
     {
         if (Request::isPost()) {
-            $data = $response->getData();
-            if (isset($data['code'])) {
-                log_write('系统自动记录：' . $data['msg'], $this->getCode($data['code']));
+
+            $responseData = $response->getData();
+
+            if (isset($responseData['code'])) {
+
+                /**
+                 * 框架响应状态码转系统状态码
+                 */
+                $codeMap = [1 => 1, 0 => 2];
+
+                $LogService = new \app\admin\service\Log();
+
+                $LogService->writeLog("系统自动记录：{$responseData['msg']}", $codeMap[$responseData['code']]);
             }
         }
-    }
-
-    /**
-     * 获取status
-     * @param $code
-     * @return int
-     */
-    public function getCode($code)
-    {
-        $statusMap = [
-            0 => 2,
-            1 => 1
-        ];
-
-        return $statusMap[$code];
     }
 }

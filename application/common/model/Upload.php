@@ -10,6 +10,12 @@ use app\common\exception\RepositoryException;
 class Upload extends \app\common\model\Model
 {
     /**
+     * 数据表名
+     * @var string
+     */
+    protected $name = 'Upload';
+
+    /**
      * 通过MD5查询
      * @param $md5
      * @return mixed

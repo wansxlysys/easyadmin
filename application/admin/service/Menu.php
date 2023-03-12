@@ -14,7 +14,7 @@ class Menu extends \app\common\service\Menu
      * 菜单存储类
      * @var \app\admin\model\Menu
      */
-    protected $MenuRepository;
+    protected $MenuModel;
 
     /**
      * 初始化
@@ -22,7 +22,7 @@ class Menu extends \app\common\service\Menu
     public function initialize()
     {
         parent::initialize();
-        $this->MenuRepository = new \app\admin\model\Menu();
+        $this->MenuModel = new \app\admin\model\Menu();
     }
 
     /**
@@ -31,23 +31,17 @@ class Menu extends \app\common\service\Menu
      */
     public function getLeftMenu()
     {
-        $permission =  \app\common\helper\Manager::getPermission();
+        $Query = new \app\common\model\Query();
 
-        $Query = new \app\common\repository\Query();
-
-        $Query->order   = ['sort' => 'asc'];
-        $Query->where[] = ['type', 'in', '1,3'];
-        $Query->where[] = ['id', 'in', $permission];
-
-        $menu = $this->MenuRepository->getAll($Query);
-
-        $resolve = function (&$item) {
-            $item = $this->formatData($item);
-        };
+        $Query->setOrder(['sort' => 'asc']);
+        $Query->addWhere(['type', 'in', '1,3']);
+        $Query->addWhere(['id', 'in', \app\common\helper\Manager::getPermission()]);
 
         $TreeArray = new \app\common\helper\TreeArray();
 
-        return $TreeArray->arrayToTree($menu, '', 0, $resolve);
+        return $TreeArray->arrayToTree($this->MenuModel->getAll($Query), 0, 1, function (&$item) {
+            $item = $this->formatData($item);
+        });
     }
 
     /**
@@ -62,13 +56,13 @@ class Menu extends \app\common\service\Menu
             return Storage::get($currentMenu);
         }
 
-        $Query = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
-        $Query->where[] = ['module', '=', Request::module()];
-        $Query->where[] = ['controller', '=', Request::controller()];
-        $Query->where[] = ['action', '=', Request::action()];
+        $Query->addWhere(['module', '=', Request::module()]);
+        $Query->addWhere(['controller', '=', Request::controller()]);
+        $Query->addWhere(['action', '=', Request::action()]);
 
-        Storage::set($currentMenu, $this->MenuRepository->getOne($Query));
+        Storage::set($currentMenu, $this->MenuModel->getOne($Query));
 
         return Storage::get($currentMenu);
     }
@@ -81,16 +75,13 @@ class Menu extends \app\common\service\Menu
      */
     public function getBreadcrumb($menuId, &$breadcrumb = [])
     {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', '=', $menuId];
-
-        $menu = $this->MenuRepository->getOne($Query);
+        $menu = $this->MenuModel->getById($menuId);
 
         if ($menu) {
             $breadcrumb[] = $menu;
             $this->getBreadcrumb($menu['parent_id'], $breadcrumb);
         }
+
         return array_reverse($breadcrumb);
     }
 
@@ -100,11 +91,11 @@ class Menu extends \app\common\service\Menu
      */
     public function getAll()
     {
-        $Query = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
-        $Query->order = ['sort' => 'asc'];
+        $Query->setOrder(['sort' => 'asc']);
 
-        return $this->MenuRepository->getAll($Query);
+        return $this->MenuModel->getAll($Query);
     }
 
     /**
@@ -114,31 +105,7 @@ class Menu extends \app\common\service\Menu
      */
     public function getById($id)
     {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', '=', $id];
-
-        $data = $this->MenuRepository->getOne($Query);
-
-        return $this->formatData($data);
-    }
-
-    /**
-     * 获取全部菜单树
-     * @param array $checked
-     * @return array
-     */
-    public function getAllTree(array $checked = [])
-    {
-        $menuList  = $this->getAll();
-        $TreeArray = new \app\common\helper\TreeArray();
-
-        $resolve = function (&$item) use ($checked) {
-            $item['selected'] = in_array($item['id'], $checked);
-            $item['checked']  = in_array($item['id'], $checked) && empty($item['children']);
-        };
-
-        return $TreeArray->arrayToTree($menuList, 0, 0, $resolve);
+        return $this->formatData($this->MenuModel->getById($id));
     }
 
     /**
@@ -150,7 +117,7 @@ class Menu extends \app\common\service\Menu
     {
         $params = $this->buildData($params);
 
-        return $this->MenuRepository->createRecord($params);
+        return $this->MenuModel->createRecord($params);
     }
 
     /**
@@ -162,7 +129,7 @@ class Menu extends \app\common\service\Menu
     {
         $params = $this->buildData($params);
 
-        return $this->MenuRepository->updateById($params);
+        return $this->MenuModel->updateById($params['id'], $params);
     }
 
     /**
@@ -172,11 +139,7 @@ class Menu extends \app\common\service\Menu
      */
     public function deleteByParamsId(array $params)
     {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', '=', $params['id']];
-
-        return $this->MenuRepository->deleteRecord($Query);
+        return $this->MenuModel->deleteById($params['id']);
     }
 
     /**
@@ -215,21 +178,14 @@ class Menu extends \app\common\service\Menu
      */
     protected function buildUrl($menu)
     {
-        // 检测是否为外部链接
-        if ($menu['type'] == 3) {
+        if ($menu['type'] == \app\common\constant\Menu::TYPE_LINK) {
             return $menu['link'];
         }
-
-        $params = [];
 
         $url[] = $menu['module'];
         $url[] = $menu['controller'];
         $url[] = $menu['action'];
 
-        if (!empty($menu['params'])) {
-            $params = $menu['params'];
-        }
-
-        return url(implode('/', $url), $params);
+        return url(implode('/', $url), $menu['params']);
     }
 }

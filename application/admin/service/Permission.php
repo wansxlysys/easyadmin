@@ -11,7 +11,7 @@ class Permission extends \app\common\service\Permission
      * 角色存储嘞
      * @var \app\admin\model\Permission
      */
-    protected $PermissionRepository;
+    protected $PermissionModel;
 
     /**
      * 初始化
@@ -19,7 +19,7 @@ class Permission extends \app\common\service\Permission
     public function initialize()
     {
         parent::initialize();
-        $this->PermissionRepository = new \app\admin\model\Permission();
+        $this->PermissionModel = new \app\admin\model\Permission();
     }
 
     /**
@@ -29,18 +29,11 @@ class Permission extends \app\common\service\Permission
      */
     public function getAllMenuIdByRoleId($roleId)
     {
-        $result = [];
-        $Query  = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
-        $Query->where[] = ['role_id', '=', $roleId];
+        $Query->addWhere(['role_id', '=', $roleId]);
 
-        $data = $this->PermissionRepository->getAll($Query);
-
-        foreach ($data as $key => $vo) {
-            $result[] = $vo['menu_id'];
-        }
-
-        return $result;
+        return array_column($this->PermissionModel->getAll($Query), 'menu_id');
     }
 
     /**
@@ -62,7 +55,7 @@ class Permission extends \app\common\service\Permission
             $params[$key]['role_id'] = $roleId;
         }
 
-        return $this->PermissionRepository->insertAll($params);
+        return $this->PermissionModel->insertAll($params);
     }
 
     /**
@@ -100,7 +93,7 @@ class Permission extends \app\common\service\Permission
 
         $Query->where = $where;
 
-        return $this->PermissionRepository->deleteRecord($Query);
+        return $this->PermissionModel->deleteRecord($Query);
     }
 
     /**

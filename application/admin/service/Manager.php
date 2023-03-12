@@ -11,9 +11,9 @@ class Manager extends \app\common\service\Manager
 
     /**
      * 角色存储嘞
-     * @var \app\admin\model\Role
+     * @var \app\admin\model\Manager
      */
-    protected $ManagerRepository;
+    protected $ManagerModel;
 
     /**
      * 初始化
@@ -21,7 +21,7 @@ class Manager extends \app\common\service\Manager
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerRepository = new \app\admin\model\Manager();
+        $this->ManagerModel = new \app\admin\model\Manager();
     }
 
     /**
@@ -31,21 +31,21 @@ class Manager extends \app\common\service\Manager
      */
     public function getListWithTotal(array $params = [])
     {
-        $Query = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
         if (!empty($params['status'])) {
-            $Query->where[] = ['status', '=', $params['status']];
+            $Query->addWhere(['status', '=', $params['status']]);
         }
 
         if (!empty($params['nickname'])) {
-            $Query->where[] = ['nickname', 'LIKE', "%{$params['nickname']}%"];
+            $Query->addWhere(['nickname', 'LIKE', "%{$params['nickname']}%"]);
         }
 
-        $Query->page  = !empty($params['page']) ? $params['page'] : 1;
-        $Query->limit = !empty($params['limit']) ? $params['limit'] : 10;
+        $Query->setPage($params['page']);
+        $Query->setLimit($params['limit']);
 
-        $list = $this->ManagerRepository->getList($Query);
-        $total = $this->ManagerRepository->getTotal($Query);
+        $list  = $this->ManagerModel->getList($Query);
+        $total = $this->ManagerModel->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -57,21 +57,7 @@ class Manager extends \app\common\service\Manager
      */
     public function getById($id)
     {
-        return $this->ManagerRepository->getById($id);
-    }
-
-    /**
-     * 通过昵称获取
-     * @param $userName
-     * @return mixed
-     */
-    public function getByUserName($userName)
-    {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['username', '=', $userName];
-
-        return $this->ManagerRepository->getOne($Query);
+        return $this->ManagerModel->getById($id);
     }
 
     /**
@@ -81,11 +67,11 @@ class Manager extends \app\common\service\Manager
      */
     public function getByRoleId($roleId)
     {
-        $Query = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
-        $Query->where[] = ['role_id', '=', $roleId];
+        $Query->addWhere(['role_id', '=', $roleId]);
 
-        return $this->ManagerRepository->getOne($Query);
+        return $this->ManagerModel->getOne($Query);
     }
 
     /**
@@ -97,7 +83,7 @@ class Manager extends \app\common\service\Manager
     {
         $params = $this->buildData($params);
 
-        return $this->ManagerRepository->createRecord($params);
+        return $this->ManagerModel->createRecord($params);
     }
 
     /**
@@ -107,13 +93,7 @@ class Manager extends \app\common\service\Manager
      */
     public function updateByParamsId(array $params)
     {
-        $params = $this->buildData($params);
-
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', '=', $params['id']];
-
-        return $this->ManagerRepository->updateRecord($Query, $params);
+        return $this->ManagerModel->updateById($params['id'], $this->buildData($params));
     }
 
     /**
@@ -123,11 +103,7 @@ class Manager extends \app\common\service\Manager
      */
     public function deleteByParamsId(array $params)
     {
-        $Query = new \app\common\repository\Query();
-
-        $Query->where[] = ['id', '=', $params['id']];
-
-        return $this->ManagerRepository->deleteRecord($Query);
+        return $this->ManagerModel->deleteById($params['id']);
     }
 
     /**
@@ -137,7 +113,7 @@ class Manager extends \app\common\service\Manager
      */
     public function login(array $params)
     {
-        $manager = $this->getByUserName($params['username']);
+        $manager = $this->ManagerModel->getByUserName($params['username']);
 
         if (!$manager) {
             return $this->setMessage('管理员不存在');

@@ -6,5 +6,9 @@ namespace app\common\model;
 
 class Permission extends \app\common\model\Model
 {
-
+    /**
+     * 数据表名
+     * @var string
+     */
+    protected $name = 'Permission';
 }

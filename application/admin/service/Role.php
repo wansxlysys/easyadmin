@@ -12,7 +12,7 @@ class Role extends \app\common\service\Role
      * 角色存储嘞
      * @var \app\admin\model\Role
      */
-    protected $RoleRepository;
+    protected $RoleModel;
 
     /**
      * 初始化
@@ -20,7 +20,7 @@ class Role extends \app\common\service\Role
     public function initialize()
     {
         parent::initialize();
-        $this->RoleRepository = new \app\admin\model\Role();
+        $this->RoleModel = new \app\admin\model\Role();
     }
 
     /**
@@ -30,17 +30,17 @@ class Role extends \app\common\service\Role
      */
     public function getListWithTotal(array $params = [])
     {
-        $Query = new \app\common\repository\Query();
+        $Query = new \app\common\model\Query();
 
         if (!empty($params['title'])) {
-            $Query->where[] = ['title', 'LIKE', "%{$params['title']}%"];
+            $Query->addWhere(['title', 'LIKE', "%{$params['title']}%"]);
         }
 
-        $Query->page  = !empty($params['page']) ? $params['page'] : 1;
-        $Query->limit = !empty($params['limit']) ? $params['limit'] : 10;
+        $Query->setPage($params['page']);
+        $Query->setLimit($params['limit']);
 
-        $list = $this->RoleRepository->getList($Query);
-        $total = $this->RoleRepository->getTotal($Query);
+        $list  = $this->RoleModel->getList($Query);
+        $total = $this->RoleModel->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -52,9 +52,7 @@ class Role extends \app\common\service\Role
      */
     public function getAll(array $params = [])
     {
-        $Query = new \app\common\repository\Query();
-
-        return $this->RoleRepository->getAll($Query);
+        return $this->RoleModel->getAll(new \app\common\model\Query());
     }
 
     /**
@@ -64,7 +62,7 @@ class Role extends \app\common\service\Role
      */
     public function getById($id)
     {
-        return $this->RoleRepository->getById($id);
+        return $this->RoleModel->getById($id);
     }
 
     /**
@@ -78,8 +76,7 @@ class Role extends \app\common\service\Role
         $PermissionService = new \app\admin\service\Permission();
 
         if ($ManagerService->getByRoleId($id)) {
-            $this->setMessage('角色下存在管理员，禁止删除');
-            return false;
+            return $this->setMessage('角色下存在管理员，禁止删除');
         }
 
         Db::startTrans();
@@ -90,23 +87,17 @@ class Role extends \app\common\service\Role
                 throw new \Exception('权限删除失败');
             }
 
-            $Query = new \app\common\repository\Query();
-
-            $Query->where[] = ['id', '=', $id];
-
-            if (!$this->RoleRepository->deleteRecord($Query)) {
+            if (!$this->RoleModel->deleteById($id)) {
                 throw new \Exception('角色删除失败');
             }
 
             Db::commit();
 
-        } catch (\Exception $Exception) {
+        } catch (\Throwable $throwable) {
 
             Db::rollback();
 
-            $this->setMessage($Exception->getMessage());
-
-            return false;
+            return $this->setMessage($throwable->getMessage());
         }
 
         return true;
@@ -128,7 +119,7 @@ class Role extends \app\common\service\Role
 
         try {
 
-            $role = $this->RoleRepository->createRecord($params);
+            $role = $this->RoleModel->createRecord($params);
 
             if (!$role) {
                 throw new \Exception('角色创建失败');
@@ -142,13 +133,11 @@ class Role extends \app\common\service\Role
 
             Db::commit();
 
-        } catch (\Exception $Exception) {
+        } catch (\Throwable $throwable) {
 
             Db::rollback();
 
-            $this->setMessage($Exception->getMessage());
-
-            return false;
+            return $this->setMessage($throwable->getMessage());
         }
 
         return true;
@@ -170,11 +159,7 @@ class Role extends \app\common\service\Role
 
         try {
 
-            $Query = new \app\common\repository\Query();
-
-            $Query->where[] = ['id', '=', $params['id']];
-
-            $result = $this->RoleRepository->updateRecord($Query, $params);
+            $result = $this->RoleModel->updateById($params['id'], $params);
 
             if (!$result) {
                 throw new \Exception('角色修改失败');
@@ -188,13 +173,11 @@ class Role extends \app\common\service\Role
 
             Db::commit();
 
-        } catch (\Exception $Exception) {
+        } catch (\Throwable $throwable) {
 
             Db::rollback();
 
-            $this->setMessage($Exception->getMessage());
-
-            return false;
+            return $this->setMessage($throwable->getMessage());
         }
 
         return true;

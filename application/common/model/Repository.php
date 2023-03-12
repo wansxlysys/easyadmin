@@ -14,12 +14,6 @@ use app\common\exception\RepositoryException;
 abstract class Repository
 {
     /**
-     * 对应表名
-     * @var string
-     */
-    protected $name = '';
-
-    /**
      * 获取列表
      * @param Query $Query
      * @return array
@@ -83,7 +77,7 @@ abstract class Repository
 
             return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
                 ->field($Query->getField())->group($Query->getGroup())->order($Query->getOrder())
-                ->select();
+                ->find();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

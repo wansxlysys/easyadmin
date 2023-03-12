@@ -14,6 +14,12 @@ use app\common\exception\RepositoryException;
 class Model extends \app\common\model\Repository
 {
     /**
+     * 数据表名
+     * @var string
+     */
+    protected $name = '';
+
+    /**
      * 通过ID获取
      * @param $id
      * @return mixed

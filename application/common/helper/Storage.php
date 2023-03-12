@@ -44,7 +44,7 @@ class Storage
             static::set($name, $resolve());
         }
 
-        return isset(static::$store[$name]) ?: null;
+        return isset(static::$store[$name]) ? static::$store[$name] : null;
     }
 
     /**

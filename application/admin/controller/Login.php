@@ -27,7 +27,8 @@ class Login extends \app\common\controller\Common
      */
     public function login_action(Request $request)
     {
-        if ($request->isPost()) {
+        if ($request->isAjax()) {
+
             $params = [
                 'username' => $request->post('username'),
                 'password' => $request->post('password'),
@@ -51,16 +52,14 @@ class Login extends \app\common\controller\Common
 
         $SettingSystem = new \app\admin\service\SettingSystem();
 
-        $settingSystem = $SettingSystem->getSetting();
-
         return $this->fetch('', [
-            'settingSystem' => $settingSystem
+            'settingSystem' => $SettingSystem->getSetting()
         ]);
     }
 
     /**
      * 登录验证码
-     * @return \think\Response
+     * @return mixed
      */
     public function captcha_action()
     {

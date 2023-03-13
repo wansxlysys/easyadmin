@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1:3306	Database: easyadmin
 -- ------------------------------------------------------
 -- Server version 	5.7.26
--- Date: Sun, 12 Mar 2023 21:22:52 +0800
+-- Date: Mon, 13 Mar 2023 08:22:43 +0800
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -11,6 +11,7 @@
 /*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
+/*!40101 SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
@@ -32,7 +33,7 @@ CREATE TABLE `easy_log` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '操作状态：1-成功，2-失败',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,12 +43,12 @@ CREATE TABLE `easy_log` (
 LOCK TABLES `easy_log` WRITE;
 /*!40000 ALTER TABLE `easy_log` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `easy_log` VALUES (187,1,'日志清空','系统自动记录：清空成功','/admin/log/clear.html','[]',1,'2022-11-06 14:32:01'),(188,1,'角色修改','系统自动记录：角色标识已存在','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',2,'2023-03-12 13:12:23'),(189,1,'角色修改','系统自动记录：角色标识已存在','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',2,'2023-03-12 13:12:40'),(190,1,'角色修改','系统自动记录：角色标识已存在','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',2,'2023-03-12 13:12:56'),(191,1,'角色修改','系统自动记录：角色修改失败','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',2,'2023-03-12 13:13:13'),(192,1,'角色修改','系统自动记录：修改成功','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',1,'2023-03-12 13:13:53'),(193,1,'角色修改','系统自动记录：修改成功','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限1\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',1,'2023-03-12 13:13:59'),(194,1,'角色修改','系统自动记录：修改成功','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',1,'2023-03-12 13:14:02');
+INSERT INTO `easy_log` VALUES (187,1,'日志清空','系统自动记录：清空成功','/admin/log/clear.html','[]',1,'2022-11-06 14:32:01');
 /*!40000 ALTER TABLE `easy_log` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `easy_log` with 8 row(s)
+-- Dumped table `easy_log` with 1 row(s)
 --
 
 --
@@ -68,7 +69,7 @@ CREATE TABLE `easy_manager` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`account`)
+  UNIQUE KEY `account` (`account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='管理员';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,7 +80,7 @@ CREATE TABLE `easy_manager` (
 LOCK TABLES `easy_manager` WRITE;
 /*!40000 ALTER TABLE `easy_manager` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `easy_manager` VALUES (1,1,'/uploads/images/20220227/024757163b86acf4fe41710642fd1d54.jpg','黎明','admin','21232f297a57a5a743894a0e4a801fc3',1,1,'2022-11-06 14:29:39','2022-11-06 14:29:39'),(10,1,'/uploads/images/20220227/047f8122f2040b206ba8ee713e6c235d.jpg','测试管理员','test','098f6bcd4621d373cade4e832627b4f6',2,1,'2022-11-06 14:29:39','2022-11-06 14:29:39');
+INSERT INTO `easy_manager` VALUES (1,1,'/uploads/images/20220227/024757163b86acf4fe41710642fd1d54.jpg','黎明','admin','21232f297a57a5a743894a0e4a801fc3',1,1,'2022-11-06 14:29:39','2023-03-13 08:20:43'),(10,1,'/uploads/images/20220227/047f8122f2040b206ba8ee713e6c235d.jpg','测试管理员','test','098f6bcd4621d373cade4e832627b4f6',2,1,'2022-11-06 14:29:39','2023-03-13 08:20:46');
 /*!40000 ALTER TABLE `easy_manager` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -181,7 +182,7 @@ CREATE TABLE `easy_role` (
 LOCK TABLES `easy_role` WRITE;
 /*!40000 ALTER TABLE `easy_role` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `easy_role` VALUES (1,'超级管理员','super','拥有最高权限',1,1,'2022-11-06 14:28:28','2023-03-12 13:14:02'),(5,'普通管理员','common','普通权限',2,2,'2022-11-06 14:28:28','2022-11-06 14:28:28'),(6,'部门管理员','department','部门管理员',2,2,'2022-11-06 14:28:28','2022-11-06 14:28:28');
+INSERT INTO `easy_role` VALUES (1,'超级管理员','super','拥有最高权限',1,1,'2022-11-06 14:28:28','2022-11-06 14:28:28'),(5,'普通管理员','common','普通权限',2,2,'2022-11-06 14:28:28','2022-11-06 14:28:28'),(6,'部门管理员','department','部门管理员',2,2,'2022-11-06 14:28:28','2022-11-06 14:28:28');
 /*!40000 ALTER TABLE `easy_role` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -286,6 +287,7 @@ COMMIT;
 --
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+/*!40101 SET AUTOCOMMIT=@OLD_AUTOCOMMIT */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -294,4 +296,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sun, 12 Mar 2023 21:22:52 +0800
+-- Dump completed on: Mon, 13 Mar 2023 08:22:43 +0800

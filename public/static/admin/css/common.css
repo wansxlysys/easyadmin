@@ -216,8 +216,8 @@ label.layui-required:before {
     position: relative;
 }
 
-.layui-breadcrumb {
-    visibility: visible;
+.layui-breadcrumb a {
+    color: #666 !important;
 }
 
 .easy-breadcrumb-close {

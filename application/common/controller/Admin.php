@@ -31,12 +31,12 @@ class Admin extends \think\Controller
 
             $SettingSystemService = new \app\admin\service\SettingSystem();
 
-            $settingSystem = $SettingSystemService->getSetting();
-            $breadcrumb    = $MenuService->getBreadcrumb($currentMenu['id']);
+            $settingSystem  = $SettingSystemService->getSetting();
+            $breadcrumbMenu = $MenuService->getBreadcrumbMenu($currentMenu['id']);
 
-            $this->assign('breadcrumb', $breadcrumb);
             $this->assign('currentMenu', $currentMenu);
             $this->assign('settingSystem', $settingSystem);
+            $this->assign('breadcrumbMenu', $breadcrumbMenu);
         }
     }
 }

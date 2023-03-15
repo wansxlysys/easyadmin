@@ -73,13 +73,13 @@ class Menu extends \app\common\service\Menu
      * @param array $breadcrumb
      * @return array
      */
-    public function getBreadcrumb($menuId, &$breadcrumb = [])
+    public function getBreadcrumbMenu($menuId, &$breadcrumb = [])
     {
         $menu = $this->MenuRepository->getById($menuId);
 
         if ($menu) {
             $breadcrumb[] = $menu;
-            $this->getBreadcrumb($menu['parent_id'], $breadcrumb);
+            $this->getBreadcrumbMenu($menu['parent_id'], $breadcrumb);
         }
 
         return array_reverse($breadcrumb);

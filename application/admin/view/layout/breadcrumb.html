@@ -1,12 +1,7 @@
 <div class="layui-row layui-breadcrumb-container">
     <div class="layui-breadcrumb">
-        {assign name="breadcrumbTotal" value="count($breadcrumb) - 1" /}
-        {volist name="breadcrumb" id="vo"}
-        {if $breadcrumbTotal < $key}
-        <a href="javascript:void(0);"><cite>{$vo.title}</cite></a>
-        {else/}
+        {volist name="$breadcrumbMenu" id="vo"}
         <a href="javascript:void(0);">{$vo.title}</a>
-        {/if}
         {/volist}
     </div>
     <a href="javascript:;" class="easy-breadcrumb-close easy-close-this-layer easy-breadcrumb-close-[close]">

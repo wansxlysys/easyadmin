@@ -110,13 +110,6 @@ class Role extends \app\common\service\Role
      */
     public function createRecord(array $params)
     {
-        /**
-         * 检测角标识是否重复
-         */
-        if ($this->checkExistByName($params['name'])) {
-            return $this->setMessage('角色标识已存在');
-        }
-
         Db::startTrans();
 
         try {
@@ -164,13 +157,6 @@ class Role extends \app\common\service\Role
      */
     public function updateByParamsId(array $params)
     {
-        /**
-         * 检测角标识是否重复
-         */
-        if ($this->checkExistByName($params['name'], $params['id'])) {
-            return $this->setMessage('角色标识已存在');
-        }
-
         Db::startTrans();
 
         try {
@@ -209,24 +195,5 @@ class Role extends \app\common\service\Role
         }
 
         return true;
-    }
-
-    /**
-     * 通过标识检测是否存在
-     * @param string $name 角色标识
-     * @param string $id 排除ID
-     * @return mixed
-     */
-    protected function checkExistByName($name, $id = '')
-    {
-        $Query = new \app\common\repository\Query();
-
-        if (!empty($id)) {
-            $Query->addWhere(['id', '<>', $id]);
-        }
-
-        $Query->addWhere(['name', '=', $name]);
-
-        return $this->RoleRepository->getOne($Query);
     }
 }

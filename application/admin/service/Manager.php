@@ -81,13 +81,6 @@ class Manager extends \app\common\service\Manager
      */
     public function createManager(array $params)
     {
-        /**
-         * 检测账号是否存在
-         */
-        if ($this->checkExistByAccount($params['account'])) {
-            return $this->setMessage('账号已存在');
-        }
-
         $params['password'] = Encryption::encrypt($params['password']);
 
         return $this->ManagerRepository->createRecord($params);
@@ -107,13 +100,6 @@ class Manager extends \app\common\service\Manager
 
         if (empty($manager)) {
             return $this->setMessage('管理员不存在');
-        }
-
-        /**
-         * 检测账号是否存在
-         */
-        if ($this->checkExistByAccount($params['account'], $params['id'])) {
-            return $this->setMessage('账号已存在');
         }
 
         /**
@@ -162,24 +148,5 @@ class Manager extends \app\common\service\Manager
         \app\common\helper\Manager::login($manager['id']);
 
         return true;
-    }
-
-    /**
-     * 检测账号是否存在
-     * @param string $account
-     * @param string $id
-     * @return mixed
-     */
-    protected function checkExistByAccount($account, $id = '')
-    {
-        $Query = new \app\common\repository\Query();
-
-        if (!empty($id)) {
-            $Query->addWhere(['id', '<>', $id]);
-        }
-
-        $Query->addWhere(['account', '=', $account]);
-
-        return $this->ManagerRepository->getOne($Query);
     }
 }

@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1:3306	Database: easyadmin
 -- ------------------------------------------------------
 -- Server version 	5.7.26
--- Date: Mon, 13 Mar 2023 08:22:43 +0800
+-- Date: Wed, 15 Mar 2023 12:12:05 +0800
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `easy_log` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '操作状态：1-成功，2-失败',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,12 +43,12 @@ CREATE TABLE `easy_log` (
 LOCK TABLES `easy_log` WRITE;
 /*!40000 ALTER TABLE `easy_log` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `easy_log` VALUES (187,1,'日志清空','系统自动记录：清空成功','/admin/log/clear.html','[]',1,'2022-11-06 14:32:01');
+INSERT INTO `easy_log` VALUES (187,1,'日志清空','系统自动记录：清空成功','/admin/log/clear.html','[]',1,'2022-11-06 14:32:01'),(188,1,'角色修改','系统自动记录：修改成功','/admin/role/update.html','{\"id\":\"1\",\"title\":\"超级管理员\",\"name\":\"super\",\"remark\":\"拥有最高权限\",\"permission\":[\"75\",\"128\",\"99\",\"141\",\"64\",\"1\",\"2\",\"114\",\"121\",\"122\",\"72\",\"73\",\"81\",\"85\",\"86\",\"74\",\"82\",\"83\",\"84\",\"139\",\"140\",\"145\",\"69\",\"76\",\"80\",\"79\",\"134\",\"142\",\"143\",\"144\",\"137\",\"136\",\"138\"]}',1,'2023-03-15 12:11:41'),(189,1,'角色添加','系统自动记录：角色标识已存在','/admin/role/create.html','{\"title\":\"super\",\"name\":\"super\",\"remark\":\"super\",\"permission\":[\"75\",\"128\",\"99\",\"141\"]}',2,'2023-03-15 12:11:45');
 /*!40000 ALTER TABLE `easy_log` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `easy_log` with 1 row(s)
+-- Dumped table `easy_log` with 3 row(s)
 --
 
 --
@@ -296,4 +296,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Mon, 13 Mar 2023 08:22:43 +0800
+-- Dump completed on: Wed, 15 Mar 2023 12:12:05 +0800

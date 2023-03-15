@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\common\repository;
 
 
 use think\Db;
@@ -11,7 +11,7 @@ use app\common\exception\RepositoryException;
  * 模型类
  * @package app\common\model
  */
-class Model extends \app\common\model\Repository
+class Model extends \app\common\repository\Repository
 {
     /**
      * 数据表名

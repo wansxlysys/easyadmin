@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\admin\model;
+namespace app\admin\repository;
 
 
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class Log extends \app\common\model\Log
+class Log extends \app\common\repository\Log
 {
     /**
      * 清空全部

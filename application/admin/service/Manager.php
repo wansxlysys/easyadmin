@@ -11,9 +11,9 @@ class Manager extends \app\common\service\Manager
 
     /**
      * 角色存储嘞
-     * @var \app\admin\model\Manager
+     * @var \app\admin\repository\Manager
      */
-    protected $ManagerModel;
+    protected $ManagerRepository;
 
     /**
      * 初始化
@@ -21,7 +21,7 @@ class Manager extends \app\common\service\Manager
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerModel = new \app\admin\model\Manager();
+        $this->ManagerRepository = new \app\admin\repository\Manager();
     }
 
     /**
@@ -31,7 +31,7 @@ class Manager extends \app\common\service\Manager
      */
     public function getListWithTotal(array $params = [])
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         if (!empty($params['status'])) {
             $Query->addWhere(['status', '=', $params['status']]);
@@ -44,8 +44,8 @@ class Manager extends \app\common\service\Manager
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
 
-        $list  = $this->ManagerModel->getList($Query);
-        $total = $this->ManagerModel->getTotal($Query);
+        $list  = $this->ManagerRepository->getList($Query);
+        $total = $this->ManagerRepository->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -57,7 +57,7 @@ class Manager extends \app\common\service\Manager
      */
     public function getById($id)
     {
-        return $this->ManagerModel->getById($id);
+        return $this->ManagerRepository->getById($id);
     }
 
     /**
@@ -67,11 +67,11 @@ class Manager extends \app\common\service\Manager
      */
     public function getByRoleId($roleId)
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         $Query->addWhere(['role_id', '=', $roleId]);
 
-        return $this->ManagerModel->getOne($Query);
+        return $this->ManagerRepository->getOne($Query);
     }
 
     /**
@@ -90,7 +90,7 @@ class Manager extends \app\common\service\Manager
 
         $params['password'] = Encryption::encrypt($params['password']);
 
-        return $this->ManagerModel->createRecord($params);
+        return $this->ManagerRepository->createRecord($params);
     }
 
     /**
@@ -125,7 +125,7 @@ class Manager extends \app\common\service\Manager
             $params['password'] = Encryption::encrypt($params['password']);
         }
 
-        return $this->ManagerModel->updateById($params['id'], $params);
+        return $this->ManagerRepository->updateById($params['id'], $params);
     }
 
     /**
@@ -135,7 +135,7 @@ class Manager extends \app\common\service\Manager
      */
     public function deleteManager(array $params)
     {
-        return $this->ManagerModel->deleteById($params['id']);
+        return $this->ManagerRepository->deleteById($params['id']);
     }
 
     /**
@@ -145,7 +145,7 @@ class Manager extends \app\common\service\Manager
      */
     public function login(array $params)
     {
-        $manager = $this->ManagerModel->getByAccount($params['account']);
+        $manager = $this->ManagerRepository->getByAccount($params['account']);
 
         if (!$manager) {
             return $this->setMessage('管理员不存在');
@@ -172,7 +172,7 @@ class Manager extends \app\common\service\Manager
      */
     protected function checkExistByAccount($account, $id = '')
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         if (!empty($id)) {
             $Query->addWhere(['id', '<>', $id]);
@@ -180,6 +180,6 @@ class Manager extends \app\common\service\Manager
 
         $Query->addWhere(['account', '=', $account]);
 
-        return $this->ManagerModel->getOne($Query);
+        return $this->ManagerRepository->getOne($Query);
     }
 }

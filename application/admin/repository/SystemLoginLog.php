@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\admin\model;
+namespace app\admin\repository;
 
 
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class SystemLoginLog extends \app\common\model\SystemLoginLog
+class SystemLoginLog extends \app\common\repository\SystemLoginLog
 {
     /**
      * 清空系统登录日志

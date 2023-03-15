@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\common\repository;
 
 
-class SettingSystem extends \app\common\model\Model
+class SettingSystem extends \app\common\repository\Model
 {
     /**
      * 数据表名

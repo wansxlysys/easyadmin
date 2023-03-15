@@ -10,9 +10,9 @@ class Log extends \app\common\service\Log
 {
     /**
      * 日志存储类
-     * @var \app\admin\model\Log
+     * @var \app\admin\repository\Log
      */
-    protected $LogModel;
+    protected $LogRepository;
 
     /**
      * 初始化
@@ -20,7 +20,7 @@ class Log extends \app\common\service\Log
     public function initialize()
     {
         parent::initialize();
-        $this->LogModel = new \app\admin\model\Log();
+        $this->LogRepository = new \app\admin\repository\Log();
     }
 
     /**
@@ -30,7 +30,7 @@ class Log extends \app\common\service\Log
      */
     public function getListWithTotal(array $params = [])
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         if (!empty($params['menu'])) {
             $Query->addWhere(['menu', 'LIKE', "%{$params['menu']}%"]);
@@ -44,8 +44,8 @@ class Log extends \app\common\service\Log
         $Query->setLimit($params['limit']);
         $Query->setOrder(['id' => 'desc']);
 
-        $list  = $this->LogModel->getList($Query);
-        $total = $this->LogModel->getTotal($Query);
+        $list  = $this->LogRepository->getList($Query);
+        $total = $this->LogRepository->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -57,7 +57,7 @@ class Log extends \app\common\service\Log
      */
     public function getById($id)
     {
-        return $this->LogModel->getById($id);
+        return $this->LogRepository->getById($id);
     }
 
     /**
@@ -88,7 +88,7 @@ class Log extends \app\common\service\Log
             'status'      => $status
         ];
 
-        return $this->LogModel->createRecord($data);
+        return $this->LogRepository->createRecord($data);
     }
 
     /**
@@ -97,6 +97,6 @@ class Log extends \app\common\service\Log
      */
     public function clear()
     {
-        return $this->LogModel->clear();
+        return $this->LogRepository->clear();
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\common\repository;
 
 
-class Role extends \app\common\model\Model
+class Role extends \app\common\repository\Model
 {
     /**
      * 数据表名

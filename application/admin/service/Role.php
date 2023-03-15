@@ -10,9 +10,9 @@ class Role extends \app\common\service\Role
 {
     /**
      * 角色存储嘞
-     * @var \app\admin\model\Role
+     * @var \app\admin\repository\Role
      */
-    protected $RoleModel;
+    protected $RoleRepository;
 
     /**
      * 初始化
@@ -20,7 +20,7 @@ class Role extends \app\common\service\Role
     public function initialize()
     {
         parent::initialize();
-        $this->RoleModel = new \app\admin\model\Role();
+        $this->RoleRepository = new \app\admin\repository\Role();
     }
 
     /**
@@ -30,7 +30,7 @@ class Role extends \app\common\service\Role
      */
     public function getListWithTotal(array $params = [])
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         if (!empty($params['title'])) {
             $Query->addWhere(['title', 'LIKE', "%{$params['title']}%"]);
@@ -39,8 +39,8 @@ class Role extends \app\common\service\Role
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
 
-        $list  = $this->RoleModel->getList($Query);
-        $total = $this->RoleModel->getTotal($Query);
+        $list  = $this->RoleRepository->getList($Query);
+        $total = $this->RoleRepository->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -52,7 +52,7 @@ class Role extends \app\common\service\Role
      */
     public function getAll(array $params = [])
     {
-        return $this->RoleModel->getAll(new \app\common\model\Query());
+        return $this->RoleRepository->getAll(new \app\common\repository\Query());
     }
 
     /**
@@ -62,7 +62,7 @@ class Role extends \app\common\service\Role
      */
     public function getById($id)
     {
-        return $this->RoleModel->getById($id);
+        return $this->RoleRepository->getById($id);
     }
 
     /**
@@ -87,7 +87,7 @@ class Role extends \app\common\service\Role
                 throw new \Exception('权限删除失败');
             }
 
-            if (!$this->RoleModel->deleteById($id)) {
+            if (!$this->RoleRepository->deleteById($id)) {
                 throw new \Exception('角色删除失败');
             }
 
@@ -128,7 +128,7 @@ class Role extends \app\common\service\Role
             $roleData['title']  = $params['title'];
             $roleData['remark'] = $params['remark'];
 
-            $role = $this->RoleModel->createRecord($params);
+            $role = $this->RoleRepository->createRecord($params);
 
             if (!$role) {
                 throw new \Exception('角色创建失败');
@@ -182,7 +182,7 @@ class Role extends \app\common\service\Role
             $roleData['title']  = $params['title'];
             $roleData['remark'] = $params['remark'];
 
-            $result = $this->RoleModel->updateById($params['id'], $roleData);
+            $result = $this->RoleRepository->updateById($params['id'], $roleData);
 
             if (!$result) {
                 throw new \Exception('角色修改失败');
@@ -219,7 +219,7 @@ class Role extends \app\common\service\Role
      */
     protected function checkExistByName($name, $id = '')
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         if (!empty($id)) {
             $Query->addWhere(['id', '<>', $id]);
@@ -227,6 +227,6 @@ class Role extends \app\common\service\Role
 
         $Query->addWhere(['name', '=', $name]);
 
-        return $this->RoleModel->getOne($Query);
+        return $this->RoleRepository->getOne($Query);
     }
 }

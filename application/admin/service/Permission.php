@@ -11,9 +11,9 @@ class Permission extends \app\common\service\Permission
 
     /**
      * 角色存储嘞
-     * @var \app\admin\model\Permission
+     * @var \app\admin\repository\Permission
      */
-    protected $PermissionModel;
+    protected $PermissionRepository;
 
     /**
      * 初始化
@@ -21,7 +21,7 @@ class Permission extends \app\common\service\Permission
     public function initialize()
     {
         parent::initialize();
-        $this->PermissionModel = new \app\admin\model\Permission();
+        $this->PermissionRepository = new \app\admin\repository\Permission();
     }
 
     /**
@@ -31,11 +31,11 @@ class Permission extends \app\common\service\Permission
      */
     public function getAllMenuIdByRoleId($roleId)
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         $Query->addWhere(['role_id', '=', $roleId]);
 
-        return array_column($this->PermissionModel->getAll($Query), 'menu_id');
+        return array_column($this->PermissionRepository->getAll($Query), 'menu_id');
     }
 
     /**
@@ -57,7 +57,7 @@ class Permission extends \app\common\service\Permission
             $params[$key]['role_id'] = $roleId;
         }
 
-        return $this->PermissionModel->createAll($params);
+        return $this->PermissionRepository->createAll($params);
     }
 
     /**
@@ -80,12 +80,12 @@ class Permission extends \app\common\service\Permission
             /**
              * 删除权限
              */
-            $Query = new \app\common\model\Query();
+            $Query = new \app\common\repository\Query();
 
             $Query->addWhere(['role_id', '=', $roleId]);
             $Query->addWhere(['menu_id', 'IN', $deleteMenuId]);
 
-            if (!$this->PermissionModel->deleteRecord($Query)) {
+            if (!$this->PermissionRepository->deleteRecord($Query)) {
                 throw new \RuntimeException('权限删除失败');
             }
 
@@ -116,10 +116,10 @@ class Permission extends \app\common\service\Permission
      */
     public function deleteByRoleId($roleId)
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         $Query->addWhere(['role_id', '=', $roleId]);
 
-        return $this->PermissionModel->deleteById($Query);
+        return $this->PermissionRepository->deleteById($Query);
     }
 }

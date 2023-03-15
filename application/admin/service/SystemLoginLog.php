@@ -8,9 +8,9 @@ class SystemLoginLog extends \app\common\service\SystemLoginLog
 {
     /**
      * 系统登录日志
-     * @var \app\admin\model\SystemLoginLog
+     * @var \app\admin\repository\SystemLoginLog
      */
-    protected $SystemLoginLogModel;
+    protected $SystemLoginLogRepository;
 
     /**
      * 初始化
@@ -18,7 +18,7 @@ class SystemLoginLog extends \app\common\service\SystemLoginLog
     public function initialize()
     {
         parent::initialize();
-        $this->SystemLoginLogModel = new \app\admin\model\SystemLoginLog();
+        $this->SystemLoginLogRepository = new \app\admin\repository\SystemLoginLog();
     }
 
     /**
@@ -52,7 +52,7 @@ class SystemLoginLog extends \app\common\service\SystemLoginLog
         $params['status']   = $status;
         $params['login_ip'] = Request::ip();
 
-        return $this->SystemLoginLogModel->createRecord($params);
+        return $this->SystemLoginLogRepository->createRecord($params);
     }
 
     /**
@@ -61,6 +61,6 @@ class SystemLoginLog extends \app\common\service\SystemLoginLog
      */
     public function clearSystemLoginLog()
     {
-        return $this->SystemLoginLogModel->clearSystemLoginLog();
+        return $this->SystemLoginLogRepository->clearSystemLoginLog();
     }
 }

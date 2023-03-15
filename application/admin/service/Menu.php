@@ -12,9 +12,9 @@ class Menu extends \app\common\service\Menu
 
     /**
      * 菜单存储类
-     * @var \app\admin\model\Menu
+     * @var \app\admin\repository\Menu
      */
-    protected $MenuModel;
+    protected $MenuRepository;
 
     /**
      * 初始化
@@ -22,7 +22,7 @@ class Menu extends \app\common\service\Menu
     public function initialize()
     {
         parent::initialize();
-        $this->MenuModel = new \app\admin\model\Menu();
+        $this->MenuRepository = new \app\admin\repository\Menu();
     }
 
     /**
@@ -31,7 +31,7 @@ class Menu extends \app\common\service\Menu
      */
     public function getLeftMenu()
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         $Query->setOrder(['sort' => 'asc']);
         $Query->addWhere(['type', 'in', '1,3']);
@@ -39,7 +39,7 @@ class Menu extends \app\common\service\Menu
 
         $TreeArray = new \app\common\helper\TreeArray();
 
-        return $TreeArray->arrayToTree($this->MenuModel->getAll($Query), 0, 1, function (&$item) {
+        return $TreeArray->arrayToTree($this->MenuRepository->getAll($Query), 0, 1, function (&$item) {
             $item = $this->formatData($item);
         });
     }
@@ -56,13 +56,13 @@ class Menu extends \app\common\service\Menu
             return Storage::get($currentMenu);
         }
 
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         $Query->addWhere(['module', '=', Request::module()]);
         $Query->addWhere(['controller', '=', Request::controller()]);
         $Query->addWhere(['action', '=', Request::action()]);
 
-        Storage::set($currentMenu, $this->MenuModel->getOne($Query));
+        Storage::set($currentMenu, $this->MenuRepository->getOne($Query));
 
         return Storage::get($currentMenu);
     }
@@ -75,7 +75,7 @@ class Menu extends \app\common\service\Menu
      */
     public function getBreadcrumb($menuId, &$breadcrumb = [])
     {
-        $menu = $this->MenuModel->getById($menuId);
+        $menu = $this->MenuRepository->getById($menuId);
 
         if ($menu) {
             $breadcrumb[] = $menu;
@@ -91,11 +91,11 @@ class Menu extends \app\common\service\Menu
      */
     public function getAll()
     {
-        $Query = new \app\common\model\Query();
+        $Query = new \app\common\repository\Query();
 
         $Query->setOrder(['sort' => 'asc']);
 
-        return $this->MenuModel->getAll($Query);
+        return $this->MenuRepository->getAll($Query);
     }
 
     /**
@@ -105,7 +105,7 @@ class Menu extends \app\common\service\Menu
      */
     public function getById($id)
     {
-        return $this->formatData($this->MenuModel->getById($id));
+        return $this->formatData($this->MenuRepository->getById($id));
     }
 
     /**
@@ -117,7 +117,7 @@ class Menu extends \app\common\service\Menu
     {
         $params = $this->buildData($params);
 
-        return $this->MenuModel->createRecord($params);
+        return $this->MenuRepository->createRecord($params);
     }
 
     /**
@@ -129,7 +129,7 @@ class Menu extends \app\common\service\Menu
     {
         $params = $this->buildData($params);
 
-        return $this->MenuModel->updateById($params['id'], $params);
+        return $this->MenuRepository->updateById($params['id'], $params);
     }
 
     /**
@@ -139,7 +139,7 @@ class Menu extends \app\common\service\Menu
      */
     public function deleteByParamsId(array $params)
     {
-        return $this->MenuModel->deleteById($params['id']);
+        return $this->MenuRepository->deleteById($params['id']);
     }
 
     /**

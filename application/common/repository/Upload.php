@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\common\repository;
 
 
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class Upload extends \app\common\model\Model
+class Upload extends \app\common\repository\Model
 {
     /**
      * 数据表名

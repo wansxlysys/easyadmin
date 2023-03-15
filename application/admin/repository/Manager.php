@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\admin\model;
+namespace app\admin\repository;
 
 
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class Manager extends \app\common\model\Manager
+class Manager extends \app\common\repository\Manager
 {
     /**
      * 通过账号查询

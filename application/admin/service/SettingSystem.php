@@ -8,9 +8,9 @@ class SettingSystem extends \app\common\service\SettingSystem
 {
     /**
      * 系统配置存储类
-     * @var \app\admin\model\SettingSystem
+     * @var \app\admin\repository\SettingSystem
      */
-    protected $SettingSystemModel;
+    protected $SettingSystemRepository;
 
     /**
      * 初始化
@@ -18,7 +18,7 @@ class SettingSystem extends \app\common\service\SettingSystem
     public function initialize()
     {
         parent::initialize();
-        $this->SettingSystemModel = new \app\admin\model\SettingSystem();
+        $this->SettingSystemRepository = new \app\admin\repository\SettingSystem();
     }
 
     /**
@@ -27,7 +27,7 @@ class SettingSystem extends \app\common\service\SettingSystem
      */
     public function getSetting()
     {
-        return $this->SettingSystemModel->getById(1);
+        return $this->SettingSystemRepository->getById(1);
     }
 
     /**
@@ -37,6 +37,6 @@ class SettingSystem extends \app\common\service\SettingSystem
      */
     public function setSetting(array $params = [])
     {
-        return $this->SettingSystemModel->updateById($params['id'], $params);
+        return $this->SettingSystemRepository->updateById($params['id'], $params);
     }
 }

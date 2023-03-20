@@ -1,32 +1,32 @@
-.sp-upload-hide {
+.easy-upload-hide {
     display: none;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item {
     position: relative;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item,
-.sp-upload-image .sp-upload-image-btn {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item,
+.easy-upload-image .easy-upload-image-btn {
     float: left;
     margin-right: 10px;
     margin-bottom: 10px;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item img {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item img {
     width: 120px;
     height: 120px;
     object-fit: cover;
     cursor: zoom-in;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item .sp-upload-image-item-icon {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item .easy-upload-image-item-icon {
     position: absolute;
     top: 0;
     right: 0;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item span {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item span {
     color: #fff;
     float: left;
     padding: 5px;
@@ -36,15 +36,15 @@
     display: none;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item:hover span {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item:hover span {
     display: block;
 }
 
-.sp-upload-image .sp-upload-image-list .sp-upload-image-item span:hover {
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item span:hover {
     opacity: 0.8;
 }
 
-.sp-upload-image .sp-upload-image-btn button {
+.easy-upload-image .easy-upload-image-btn button {
     width: 120px;
     height: 120px;
     background-color: #fff;
@@ -56,12 +56,12 @@
     cursor: pointer;
 }
 
-.sp-upload-image .sp-upload-image-btn button:hover {
+.easy-upload-image .easy-upload-image-btn button:hover {
     border-color: #009688;
     color: #009688;
 }
 
-.sp-upload-image .sp-upload-image-btn button[disabled]:hover{
+.easy-upload-image .easy-upload-image-btn button[disabled]:hover{
     border-color: #e6e6e6;
     color: #ccc;
     cursor: no-drop;

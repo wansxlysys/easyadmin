@@ -36,7 +36,7 @@
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn" lay-submit="">保存</button>
-                        <button type="button" class="layui-btn layui-btn-danger easy-close-this-layer">关闭</button>
+                        <button type="button" class="layui-btn layui-btn-danger easy-close-layer">关闭</button>
                     </div>
                 </div>
             </form>
@@ -51,8 +51,14 @@
 
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
+        var easyCreate = layui.easyCreate;
 
-        avatarUploader.uploader.config.url = "{:url('admin/Manager/upload_avatar')}";
+        /**
+         * 设置上传路径
+         */
+        easyCreate.getUploader('avatar', function (uploader) {
+            uploader.config.url = "{:url('admin/Manager/avatar')}";
+        });
 
         form.on('submit', function (obj) {
             event.preventDefault();

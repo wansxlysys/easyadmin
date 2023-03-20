@@ -32,20 +32,25 @@ class Log extends \app\common\service\Log
     {
         $Query = new \app\common\repository\Query();
 
-        if (!empty($params['menu'])) {
-            $Query->addWhere(['menu', 'LIKE', "%{$params['menu']}%"]);
+        if (!empty($params['status'])) {
+            $Query->addWhere(['log.status', '=', $params['status']]);
         }
 
-        if (!empty($params['status'])) {
-            $Query->addWhere(['status', '=', $params['status']]);
+        if (!empty($params['menu'])) {
+            $Query->addWhere(['log.menu', 'LIKE', "%{$params['menu']}%"]);
+        }
+
+        if (!empty($params['account'])) {
+            $Query->addWhere(['manager.account', 'LIKE', "%{$params['account']}%"]);
         }
 
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
-        $Query->setOrder(['id' => 'desc']);
+        $Query->setOrder(['log.id' => 'desc']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.account']);
 
-        $list  = $this->LogRepository->getList($Query);
-        $total = $this->LogRepository->getTotal($Query);
+        $list  = $this->LogRepository->getListWithManager($Query);
+        $total = $this->LogRepository->getTotalWithManager($Query);
 
         return ['list' => $list, 'total' => $total];
     }

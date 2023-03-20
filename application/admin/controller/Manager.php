@@ -64,7 +64,7 @@ class Manager extends \app\common\controller\Admin
                 'role_id'  => $request->post('role_id'),
                 'avatar'   => $request->post('avatar'),
                 'nickname' => $request->post('nickname'),
-                'account' => $request->post('account'),
+                'account'  => $request->post('account'),
                 'password' => $request->post('password'),
                 'status'   => $request->post('status'),
             ];
@@ -159,28 +159,26 @@ class Manager extends \app\common\controller\Admin
      * 头像上传
      * @param Request $request
      */
-    public function upload_avatar_action(Request $request)
+    public function avatar_action(Request $request)
     {
         if ($request->isAjax()) {
 
-            $UploadHelper = new \app\common\helper\Upload();
+            $UploadService = new \app\admin\service\Upload();
 
-            $fileInfo = $UploadHelper->image('file');
+            $fileInfo = $UploadService->uploadImage($request->file('file'));
 
             if (!$fileInfo) {
-                $this->error($UploadHelper->getMessage());
+                $this->error($UploadService->getMessage());
             }
 
-            $result = \think\Image::open($fileInfo['savepath'])
-                ->thumb(200, 200, 5)
-                ->save($fileInfo['savepath']);
+            $result = \think\Image::open($fileInfo['savePath'])->thumb(200, 200, 5)->save($fileInfo['savePath']);
 
             if (!$result) {
                 $this->error('文件上传失败');
             }
 
             $this->success('上传成功', '', [
-                'filepath' => $fileInfo['filepath']
+                'filePath' => $fileInfo['filePath']
             ]);
         }
     }

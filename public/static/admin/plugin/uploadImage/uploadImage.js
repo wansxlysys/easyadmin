@@ -29,7 +29,7 @@ layui.define(["jquery", "upload"], function (exports) {
 
         },
         update: function () {
-            
+
         }
     };
 
@@ -56,8 +56,8 @@ layui.define(["jquery", "upload"], function (exports) {
         var that = this;
 
         // 向前移动一位
-        this.$elem.on("click", ".sp-upload-image-item-icon-left", function () {
-            var item = $(this).closest(".sp-upload-image-item");
+        this.$elem.on("click", ".easy-upload-image-item-icon-left", function () {
+            var item = $(this).closest(".easy-upload-image-item");
             if (item.prevAll().length >= 1) {
                 item.prev().before(item);
                 that.options.update();
@@ -65,8 +65,8 @@ layui.define(["jquery", "upload"], function (exports) {
         });
 
         // 向后移动一位
-        this.$elem.on("click", ".sp-upload-image-item-icon-right", function () {
-            var item = $(this).closest(".sp-upload-image-item");
+        this.$elem.on("click", ".easy-upload-image-item-icon-right", function () {
+            var item = $(this).closest(".easy-upload-image-item");
             if (item.nextAll().length >= 1) {
                 item.next().after(item);
                 that.options.update();
@@ -74,8 +74,8 @@ layui.define(["jquery", "upload"], function (exports) {
         });
 
         // 删除一个
-        this.$elem.on("click", ".sp-upload-image-item-icon-trash", function () {
-            $(this).closest(".sp-upload-image-item").remove();
+        this.$elem.on("click", ".easy-upload-image-item-icon-trash", function () {
+            $(this).closest(".easy-upload-image-item").remove();
             that.toggleButton();
             that.viewer.update();
             that.options.update();
@@ -89,12 +89,11 @@ layui.define(["jquery", "upload"], function (exports) {
 
         var html = "";
 
-        html += '<div class="sp-upload-image">';
-        html += '<div class="sp-upload-image-list">';
-        html += '</div>';
-        html += '<div class="sp-upload-image-btn">';
-        html += '<button type="button"><i class="fa fa-fw fa-picture-o"></i></button>';
-        html += '</div>';
+        html += '<div class="easy-upload-image">';
+        html += '    <div class="easy-upload-image-list"></div>';
+        html += '    <div class="easy-upload-image-btn">';
+        html += '        <button type="button"><i class="fa fa-fw fa-picture-o"></i></button>';
+        html += '    </div>';
         html += '</div>';
 
         this.$elem.html(html);
@@ -108,7 +107,7 @@ layui.define(["jquery", "upload"], function (exports) {
         var that = this;
 
         this.uploader = upload.render({
-            elem: this.$elem.find(".sp-upload-image-btn button").get(0),
+            elem: this.$elem.find(".easy-upload-image-btn button").get(0),
             url: this.options.url,
             size: this.options.size,
             data: this.options.append,
@@ -121,8 +120,14 @@ layui.define(["jquery", "upload"], function (exports) {
                 typeof that.options.allDone === "function" && that.options.allDone(obj);
             },
             done: function (result) {
-                that.append(result.data.filepath);
-                typeof that.options.done === "function" && that.options.done(result.data.filepath);
+                if (result.code === 1) {
+                    that.append(result.data.filePath);
+                    typeof that.options.done === "function" && that.options.done(result.data.filePath);
+                } else {
+                    top.layer.alert(result.msg, {
+                        icon: 2
+                    })
+                }
             },
             error: function () {
                 typeof that.options.error === "function" && that.options.error();
@@ -137,18 +142,18 @@ layui.define(["jquery", "upload"], function (exports) {
     UploadImage.prototype.append = function (url) {
 
         var html = "";
-        var list = this.$elem.find(".sp-upload-image-list");
+        var list = this.$elem.find(".easy-upload-image-list");
 
-        html += '<div class="sp-upload-image-item">';
-        html += '<div class="sp-upload-image-item-icon">';
-        html += '<span class="sp-upload-image-item-icon-left fa fw fa-arrow-circle-o-left"></span>';
-        html += '<span class="sp-upload-image-item-icon-right fa fw fa-arrow-circle-o-right"></span>';
-        html += '<span class="sp-upload-image-item-icon-trash fa fw fa fa-fw fa-trash"></span>';
-        html += '</div>';
-        html += '<img src="' + url + '" alt="">';
+        html += '<div class="easy-upload-image-item">';
+        html += '    <div class="easy-upload-image-item-icon">';
+        html += '        <span class="easy-upload-image-item-icon-left fa fw fa-arrow-circle-o-left"></span>';
+        html += '        <span class="easy-upload-image-item-icon-right fa fw fa-arrow-circle-o-right"></span>';
+        html += '        <span class="easy-upload-image-item-icon-trash fa fw fa fa-fw fa-trash"></span>';
+        html += '    </div>';
+        html += '    <img src="' + url + '" alt="">';
         html += '</div>';
 
-        if (list.find(".sp-upload-image-item").length + 1 > this.options.number) {
+        if (list.find(".easy-upload-image-item").length + 1 > this.options.number) {
             layer.alert("最多允许上传 " + this.options.number + "张", {
                 icon: 2
             });
@@ -163,7 +168,7 @@ layui.define(["jquery", "upload"], function (exports) {
      * 清空已上传的图片
      */
     UploadImage.prototype.clear = function () {
-        this.$elem.find(".sp-upload-image-list").empty();
+        this.$elem.find(".easy-upload-image-list").empty();
         this.toggleButton();
         this.viewer.update();
     };
@@ -173,7 +178,7 @@ layui.define(["jquery", "upload"], function (exports) {
      * @param index
      */
     UploadImage.prototype.delete = function (index) {
-        this.$elem.find(".sp-upload-image-list .sp-upload-image-item").eq(index).remove();
+        this.$elem.find(".easy-upload-image-list .easy-upload-image-item").eq(index).remove();
         this.toggleButton();
         this.viewer.update();
     };
@@ -182,10 +187,10 @@ layui.define(["jquery", "upload"], function (exports) {
      * 切换显示和隐藏上传按钮
      */
     UploadImage.prototype.toggleButton = function () {
-        if (this.$elem.find(".sp-upload-image-item").length >= this.options.number) {
-            this.$elem.find(".sp-upload-image-btn").hide();
+        if (this.$elem.find(".easy-upload-image-item").length >= this.options.number) {
+            this.$elem.find(".easy-upload-image-btn").hide();
         } else {
-            this.$elem.find(".sp-upload-image-btn").show();
+            this.$elem.find(".easy-upload-image-btn").show();
         }
     };
 
@@ -195,7 +200,7 @@ layui.define(["jquery", "upload"], function (exports) {
      */
     UploadImage.prototype.getAll = function () {
         var result = [];
-        var list = this.$elem.find(".sp-upload-image-item img");
+        var list = this.$elem.find(".easy-upload-image-item img");
 
         for (var i = 0; i < list.length; i++) {
             result.push($(list[i]).attr("src"));
@@ -206,7 +211,6 @@ layui.define(["jquery", "upload"], function (exports) {
 
     /**
      * 工厂模式
-     * @type {{render: (function(*=): UploadImage)}}
      */
     var uploadImage = {
         render: function (options) {

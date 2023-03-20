@@ -21,6 +21,14 @@
                     <tbody>
                     <tr>
                         <td>请求节点</td>
+                        <td><img src="{$manager.avatar}" width="35" class="layui-circle"></td>
+                    </tr>
+                    <tr>
+                        <td>请求节点</td>
+                        <td>{$manager.account}</td>
+                    </tr>
+                    <tr>
+                        <td>请求节点</td>
                         <td>{$log.menu}</td>
                     </tr>
                     <tr>
@@ -34,7 +42,7 @@
                     <tr>
                         <td>请求参数</td>
                         <td>
-                            <pre style="font-family: '微软雅黑';">{:json_encode(json_decode($log.params),JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)}</pre>
+                            <pre>{:json_encode(json_decode($log.params),JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)}</pre>
                         </td>
                     </tr>
                     <tr>

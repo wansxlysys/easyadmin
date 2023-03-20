@@ -6,6 +6,12 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
     var uploadImage = layui.uploadImage;
 
     /**
+     * 图片上传变量后缀
+     * @type {string}
+     */
+    var uploadImageVarSuffix = 'ImageUploader';
+
+    /**
      * alert关闭控制
      */
     $(".easy-alert-close").click(function () {
@@ -22,16 +28,8 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
     /**
      * 关闭当前所在弹出层
      */
-    $(".easy-close-this-layer").click(function () {
+    $(".easy-close-layer").click(function () {
         parent.layer.close(parent.layer.getFrameIndex(window.name));
-    });
-
-    /**
-     * 书组件选中
-     */
-    $("body").on("click", ".layui-tree-txt", function () {
-        $(this).closest(".layui-tree-default").find(".layui-tree-active").removeClass("layui-tree-active");
-        $(this).addClass("layui-tree-active");
     });
 
     /**
@@ -48,9 +46,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
         laydate.render({
             elem: $(item).get(0),
             done: function (value) {
-                // 修复取值为上次选择的值
                 $(item).val(value);
-                // 修复js动态修改无法监听到change事件问题
                 $(item).trigger("change");
             }
         });
@@ -64,9 +60,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
             elem: $(item).get(0),
             type: "time",
             done: function (value) {
-                // 修复取值为上次选择的值
                 $(item).val(value);
-                // 修复js动态修改无法监听到change事件问题
                 $(item).trigger("change");
             }
         });
@@ -80,9 +74,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
             elem: $(item).get(0),
             type: "datetime",
             done: function (value) {
-                // 修复取值为上次选择的值
                 $(item).val(value);
-                // 修复js动态修改无法监听到change事件问题
                 $(item).trigger("change");
             }
         });
@@ -97,9 +89,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
             type: "datetime",
             range: true,
             done: function (value) {
-                // 修复取值为上次选择的值
                 $(item).val(value);
-                // 修复js动态修改无法监听到change事件问题
                 $(item).trigger("change");
             }
         });
@@ -113,7 +103,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
             var name = $(item).attr("name");
             var value = $(item).val();
             var loading = null;
-            var uploader = name + 'Uploader';
+            var uploader = name + uploadImageVarSuffix;
 
             window[uploader] = uploadImage.render({
                 elem: "#" + name,
@@ -148,7 +138,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
             var name = $(item).attr("name");
             var value = $(item).val();
             var loading = null;
-            var uploader = name + 'Uploader';
+            var uploader = name + uploadImageVarSuffix;
 
             window[uploader] = uploadImage.render({
                 elem: "#" + name,
@@ -179,7 +169,23 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadImage'], function (export
     });
 
     /**
+     * 获取上传实例
+     */
+    function getUploader(name, fn) {
+
+        var uploader = window[name + uploadImageVarSuffix];
+
+        if (typeof fn === 'function') {
+            fn(uploader.uploader);
+        } else {
+            return uploader.uploader;
+        }
+    }
+
+    /**
      * 导出
      */
-    exports("easyCreate", {});
+    exports("easyCreate", {
+        getUploader: getUploader
+    });
 });

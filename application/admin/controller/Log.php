@@ -39,10 +39,11 @@ class Log extends \app\common\controller\Admin
         if ($request->isAjax()) {
 
             $params = [
-                'menu'   => $request->get('menu'),
-                'page'   => $request->get('page'),
-                'limit'  => $request->get('limit'),
-                'status' => $request->get('status'),
+                'menu'    => $request->get('menu'),
+                'page'    => $request->get('page'),
+                'limit'   => $request->get('limit'),
+                'status'  => $request->get('status'),
+                'account' => $request->get('account')
             ];
 
             $this->success('获取成功', '', $this->LogService->getListWithTotal($params));
@@ -58,11 +59,14 @@ class Log extends \app\common\controller\Admin
      */
     public function detail_action(Request $request)
     {
-        $id  = $request->get('id');
-        $log = $this->LogService->getById($id);
+        $ManagerService = new \app\admin\service\Manager();
+
+        $log     = $this->LogService->getById($request->get('id'));
+        $manager = $ManagerService->getById($log['manager_id']);
 
         return $this->fetch('', [
-            'log' => $log
+            'log'     => $log,
+            'manager' => $manager
         ]);
     }
 

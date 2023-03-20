@@ -45,7 +45,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', 'easyService', 'easyHelper', 'jquery'], function () {
+    layui.use(['easyModule'], function () {
 
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
@@ -60,10 +60,8 @@
                 check: {
                     enable: true
                 },
-                callback: {
-                    done: function (tree) {
-                        permissionTree = tree;
-                    }
+                ready: function(tree) {
+                    permissionTree = tree;
                 }
             }
         });

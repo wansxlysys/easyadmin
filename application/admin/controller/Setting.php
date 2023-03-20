@@ -45,7 +45,7 @@ class Setting extends \app\common\controller\Admin
 
             $SettingSystemValidate = new \app\admin\validate\SettingSystem();
 
-            if (!$SettingSystemValidate->scene('system')->check($params)) {
+            if (!$SettingSystemValidate->scene('System')->check($params)) {
                 $this->error($SettingSystemValidate->getError());
             }
 

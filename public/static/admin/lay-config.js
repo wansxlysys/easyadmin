@@ -14,9 +14,11 @@
     }).extend({
         xmSelect: "xmSelect/xmSelect",
         easyAdmin: "easyAdmin/easyAdmin",
+        easyCreate: "easyAdmin/easyCreate",
         easyHelper: "easyAdmin/easyHelper",
         easyService: "easyAdmin/easyService",
         easyBuilder: "easyAdmin/easyBuilder",
+        easyModule: "easyAdmin/easyModule",
         treeTable: "treeTable/treeTable",
         uploadImage: "uploadImage/uploadImage",
     });

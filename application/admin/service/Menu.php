@@ -6,6 +6,7 @@ namespace app\admin\service;
 
 use think\facade\Request;
 use app\common\helper\Storage;
+use app\common\constant\Menu as MenuConstant;
 
 class Menu extends \app\common\service\Menu
 {
@@ -50,10 +51,8 @@ class Menu extends \app\common\service\Menu
      */
     public function getCurrentMenu()
     {
-        $currentMenu = 'currentMenu';
-
-        if (Storage::has($currentMenu)) {
-            return Storage::get($currentMenu);
+        if (Storage::has(MenuConstant::CONTAINER_MENU)) {
+            return Storage::get(MenuConstant::CONTAINER_MENU);
         }
 
         $Query = new \app\common\repository\Query();
@@ -62,9 +61,9 @@ class Menu extends \app\common\service\Menu
         $Query->addWhere(['controller', '=', Request::controller()]);
         $Query->addWhere(['action', '=', Request::action()]);
 
-        Storage::set($currentMenu, $this->MenuRepository->getOne($Query));
+        Storage::set(MenuConstant::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
 
-        return Storage::get($currentMenu);
+        return Storage::get(MenuConstant::CONTAINER_MENU);
     }
 
     /**
@@ -149,7 +148,9 @@ class Menu extends \app\common\service\Menu
      */
     protected function buildData($params)
     {
-        // 如果不是外链则清空链接地址
+        /**
+         * 如果不是外链则清空链接地址
+         */
         if (!empty($params['type']) && $params['type'] != 3) {
             $params['link'] = '';
         }
@@ -178,7 +179,7 @@ class Menu extends \app\common\service\Menu
      */
     protected function buildUrl($menu)
     {
-        if ($menu['type'] == \app\common\constant\Menu::TYPE_LINK) {
+        if ($menu['type'] == MenuConstant::TYPE_LINK) {
             return $menu['link'];
         }
 

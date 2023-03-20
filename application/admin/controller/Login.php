@@ -37,7 +37,7 @@ class Login extends \app\common\controller\Common
 
             $ManagerValidate = new \app\admin\validate\Manager();
 
-            if (!$ManagerValidate->scene('login')->check($params)) {
+            if (!$ManagerValidate->scene('Login')->check($params)) {
                 $this->error($ManagerValidate->getError());
             }
 

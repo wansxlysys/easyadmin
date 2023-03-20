@@ -54,17 +54,14 @@
 </script>
 
 <script type="text/html" id="status">
-    {{#  if(d.status == 1){ }}
-    <span class="layui-badge layui-bg-green">操作成功</span>
-    {{#  } else { }}
-    <span class="layui-badge">操作失败</span>
-    {{#  } }}
+    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">操作成功</span>{{#  } }}
+    {{#  if(d.status == 2){ }}<span class="layui-badge">操作失败</span>{{#  } }}
 </script>
 {/block}
 
 {block name="js"}
 <script type="text/javascript">
-    layui.use(['easyAdmin', 'form', 'table'], function () {
+    layui.use(['easyModule', 'form', 'table'], function () {
 
         var form = layui.form;
         var table = layui.table;
@@ -88,7 +85,6 @@
         });
 
         table.on('toolbar(table)', function (obj) {
-
             if(obj.event === 'clear') {
                 top.layer.confirm("确认删除清空日志吗？", {
                     icon: 3
@@ -107,18 +103,14 @@
                     });
                 });
             }
-
         });
 
         table.on('tool(table)', function (obj) {
-
             if(obj.event === 'detail') {
                 easyAdmin.openLayer("{:url('admin/Log/detail')}?id=" + obj.data.id);
             }
-
         });
 
-        // 表格搜索
         form.on("submit(search)", function (obj) {
             event.preventDefault();
             table.reload("table", {
@@ -129,7 +121,6 @@
             });
         });
 
-        // 表格重置
         form.on("submit(reset)", function (obj) {
             table.reload("table", {
                 where: {},

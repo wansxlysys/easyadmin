@@ -63,7 +63,7 @@ class Index extends \app\common\controller\Admin
 
             $ManagerValidate = new \app\admin\validate\Manager();
 
-            if (!$ManagerValidate->scene('profile')->check($params)) {
+            if (!$ManagerValidate->scene('Profile')->check($params)) {
                 $this->error($ManagerValidate->getError());
             }
 

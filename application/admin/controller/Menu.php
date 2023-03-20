@@ -84,7 +84,7 @@ class Menu extends \app\common\controller\Admin
 
             $MenuValidate = new \app\admin\validate\Menu();
 
-            if (!$MenuValidate->scene('create')->check($params)) {
+            if (!$MenuValidate->scene('Create')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
@@ -126,7 +126,7 @@ class Menu extends \app\common\controller\Admin
 
             $MenuValidate = new \app\admin\validate\Menu();
 
-            if (!$MenuValidate->scene('update')->check($params)) {
+            if (!$MenuValidate->scene('Update')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
@@ -160,7 +160,7 @@ class Menu extends \app\common\controller\Admin
 
             $MenuValidate = new \app\admin\validate\Menu();
 
-            if (!$MenuValidate->scene('delete')->check($params)) {
+            if (!$MenuValidate->scene('Delete')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
@@ -189,7 +189,7 @@ class Menu extends \app\common\controller\Admin
 
             $MenuValidate = new \app\admin\validate\Menu();
 
-            if (!$MenuValidate->scene('sort')->check($params)) {
+            if (!$MenuValidate->scene('Sort')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 

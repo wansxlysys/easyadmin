@@ -67,7 +67,7 @@ class Role extends \app\common\controller\Admin
 
             $RoleValidate = new \app\admin\validate\Role();
 
-            if (!$RoleValidate->scene('create')->check($params)) {
+            if (!$RoleValidate->scene('Create')->check($params)) {
                 $this->error($RoleValidate->getError());
             }
 
@@ -100,7 +100,7 @@ class Role extends \app\common\controller\Admin
 
             $RoleValidate = new \app\admin\validate\Role();
 
-            if (!$RoleValidate->scene('update')->check($params)) {
+            if (!$RoleValidate->scene('Update')->check($params)) {
                 $this->error($RoleValidate->getError());
             }
 
@@ -136,7 +136,7 @@ class Role extends \app\common\controller\Admin
 
             $RoleValidate = new \app\admin\validate\Role();
 
-            if (!$RoleValidate->scene('delete')->check($params)) {
+            if (!$RoleValidate->scene('Delete')->check($params)) {
                 $this->error($RoleValidate->getError());
             }
 

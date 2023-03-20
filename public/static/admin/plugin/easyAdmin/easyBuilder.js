@@ -67,10 +67,10 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
             callback: {
                 onClick: function (event, treeId, treeNode) {
 
-                },
-                done: function (tree) {
-
                 }
+            },
+            ready: function (tree) {
+
             }
         };
 
@@ -87,7 +87,7 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
             }
         });
 
-        options.callback.done($.fn.zTree.init($(el), options, data));
+        options.ready($.fn.zTree.init($(el), options, data));
     }
 
     /**
@@ -148,7 +148,7 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
             on: function (data) {
 
             },
-            done: function (tree) {
+            ready: function (tree) {
 
             },
             appendFirst: false,
@@ -180,7 +180,7 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
             options.data.unshift(options.appendFirstData);
         }
 
-        options.done(xmSelect.render(options));
+        options.ready(xmSelect.render(options));
     }
 
     exports("easyBuilder", {

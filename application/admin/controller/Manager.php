@@ -71,7 +71,7 @@ class Manager extends \app\common\controller\Admin
 
             $ManagerValidate = new \app\admin\validate\Manager();
 
-            if (!$ManagerValidate->scene('create')->check($params)) {
+            if (!$ManagerValidate->scene('Create')->check($params)) {
                 $this->error($ManagerValidate->getError());
             }
 
@@ -107,7 +107,7 @@ class Manager extends \app\common\controller\Admin
 
             $ManagerValidate = new \app\admin\validate\Manager();
 
-            if (!$ManagerValidate->scene('update')->check($params)) {
+            if (!$ManagerValidate->scene('Update')->check($params)) {
                 $this->error($ManagerValidate->getError());
             }
 
@@ -141,7 +141,7 @@ class Manager extends \app\common\controller\Admin
 
             $ManagerValidate = new \app\admin\validate\Manager();
 
-            if (!$ManagerValidate->scene('delete')->check($params)) {
+            if (!$ManagerValidate->scene('Delete')->check($params)) {
                 $this->error($ManagerValidate->getError());
             }
 

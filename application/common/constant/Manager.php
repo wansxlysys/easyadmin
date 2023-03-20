@@ -12,7 +12,7 @@ class Manager
     const SESSION_ID = 'admin_id'; // 缓存ID
 
     /**
-     * 缓存容器标识
+     * 缓存标识
      */
     const CONTAINER_ROLE       = 'admin_role'; // 角色
     const CONTAINER_MANAGER    = 'admin_manager'; // 管理员

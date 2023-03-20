@@ -100,6 +100,7 @@ class Upload extends \app\common\service\Upload
         $filePath = $savePath . '/' . date('Ymd') . '/' . $params['md5'] . '.' . $params['suffix'];
         $rootPath = Env::get('root_path') . "public" . $filePath;
         $dirPath  = pathinfo($rootPath, PATHINFO_DIRNAME);
+        $isDone   = $params['index'] >= $params['total'];
 
         try {
             /**
@@ -119,7 +120,7 @@ class Upload extends \app\common\service\Upload
             /**
              * 检测是否上传完成
              */
-            if ($params['index'] >= $params['total']) {
+            if (true === $isDone) {
 
                 $fileData['md5']    = $params['md5'];
                 $fileData['name']   = $params['name'];
@@ -136,7 +137,7 @@ class Upload extends \app\common\service\Upload
             return $this->setMessage($throwable->getMessage());
         }
 
-        return ['isDone' => $params['index'] >= $params['total'], 'filePath' => $filePath, 'savePath' => $rootPath];
+        return ['isDone' => $isDone, 'filePath' => $filePath, 'savePath' => $rootPath];
     }
 
     /**

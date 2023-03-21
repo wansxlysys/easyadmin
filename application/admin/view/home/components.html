@@ -35,14 +35,12 @@
 <script>
     layui.use(['easyModule'], function () {
 
-        var easyAdmin = layui.easyAdmin;
         var uploadFile = layui.uploadFile;
 
         new uploadFile({
             id: "upload",
             url: "{:url('admin/Upload/file')}",
-            check_url: "{:url('admin/Upload/check')}",
-            type: "jpg",
+            check_url: "{:url('admin/Upload/check')}"
         });
     });
 </script>

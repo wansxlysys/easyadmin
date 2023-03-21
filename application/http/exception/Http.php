@@ -4,24 +4,30 @@
 namespace app\http\exception;
 
 
+use think\facade\Env;
+use think\facade\Config;
+
 class Http extends \think\exception\Handle
 {
-
-    public function render(\Exception $e)
+    /*
+     * 异常处理
+     */
+    public function render(\Exception $exception)
     {
-//        // 系统异常
-//        if ($e instanceof \think\Exception) {
-//            $result = ['code' => 0, 'msg' => $e->getMessage()];
-//            return json($result);
-//        }
-//
-//        // 页面不存在
-//        if ($e instanceof \think\exception\HttpException) {
-//            $result = ['code' => 404, 'msg' => $e->getMessage()];
-//            return json($result);
-//        }
+        /**
+         * 非调试模式
+         */
+        if (!Config::get('app.app_debug')) {
 
-        //可以在此交由系统处理
-        return parent::render($e);
+            /**
+             * 非http异常，报错信息全部隐藏
+             */
+            if (false === ($exception instanceof \think\exception\HttpException)) {
+                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/exception.html');
+            }
+        }
+
+
+        return parent::render($exception);
     }
 }

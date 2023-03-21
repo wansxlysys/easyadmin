@@ -8,11 +8,16 @@ use think\Db;
 use app\common\exception\RepositoryException;
 
 /**
- * 模型类
+ * 模型基础类
  * @package app\common\model
  */
 class Model extends \app\common\repository\Repository
 {
+    /**
+     * 导入分表特征类
+     */
+    use SubTable;
+
     /**
      * 数据表名
      * @var string
@@ -45,6 +50,23 @@ class Model extends \app\common\repository\Repository
         try {
 
             return Db::name(static::getName())->where('id', $id)->findOrFail();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
+     * 通过条件查询
+     * @param array $where
+     * @param bool $fail
+     * @return mixed
+     */
+    public function getByWhere(array $where, $fail = false)
+    {
+        try {
+
+            return Db::name(static::getName())->where($where)->failException($fail)->findOrFail();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
@@ -90,6 +112,13 @@ class Model extends \app\common\repository\Repository
      */
     public function getName()
     {
-        return $this->name;
+        /**
+         * 如果无需分表则返回主表名
+         */
+        if (false === $this->isSub) {
+            return $this->name;
+        }
+
+        return static::getSubName();
     }
 }

@@ -8,7 +8,7 @@ use think\Db;
 use app\common\exception\RepositoryException;
 
 /**
- * 存储类
+ * 存储基础类
  * @package app\common\repository
  */
 abstract class Repository

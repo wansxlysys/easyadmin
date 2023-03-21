@@ -13,6 +13,11 @@ class Index
 
     public function test_action()
     {
+//        $ManagerRepository = new \app\admin\repository\Manager();
+//
+//        $manager = $ManagerRepository->setSub(true)->setSubData(['id' => 1])->getById(1);
+//
+//        var_dump($manager);
 
 //        $result = \think\Db::name('Manager')->where('create_time', '>=', 'today')->select(false);
 

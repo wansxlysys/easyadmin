@@ -14,7 +14,7 @@ class Manager
      */
     public static function login($managerId)
     {
-        Session::set(\app\common\constant\Manager::SESSION_ID, $managerId);
+        Session::set(\app\admin\service\Manager::SESSION_ID, $managerId);
     }
 
     /**
@@ -22,7 +22,7 @@ class Manager
      */
     public static function logout()
     {
-        Session::delete(\app\common\constant\Manager::SESSION_ID);
+        Session::delete(\app\admin\service\Manager::SESSION_ID);
     }
 
     /**
@@ -31,7 +31,7 @@ class Manager
      */
     public static function getManagerId()
     {
-        return Session::get(\app\common\constant\Manager::SESSION_ID);
+        return Session::get(\app\admin\service\Manager::SESSION_ID);
     }
 
     /**
@@ -40,7 +40,7 @@ class Manager
      */
     public static function isLogin()
     {
-        return Session::has(\app\common\constant\Manager::SESSION_ID);
+        return Session::has(\app\admin\service\Manager::SESSION_ID);
     }
 
     /**
@@ -49,7 +49,7 @@ class Manager
      */
     public static function getRole()
     {
-        return Storage::get(\app\common\constant\Manager::CONTAINER_ROLE);
+        return Storage::get(\app\admin\service\Manager::CONTAINER_ROLE);
     }
 
     /**
@@ -67,7 +67,7 @@ class Manager
      */
     public static function getManager()
     {
-        return Storage::get(\app\common\constant\Manager::CONTAINER_MANAGER);
+        return Storage::get(\app\admin\service\Manager::CONTAINER_MANAGER);
     }
 
     /**
@@ -76,7 +76,7 @@ class Manager
      */
     public static function getPermission()
     {
-        return Storage::get(\app\common\constant\Manager::CONTAINER_PERMISSION);
+        return Storage::get(\app\admin\service\Manager::CONTAINER_PERMISSION);
     }
 
     /**
@@ -94,7 +94,7 @@ class Manager
      */
     public static function isDisabled()
     {
-        return static::getManager()['status'] == \app\common\constant\Manager::STATUS_DISABLED;
+        return static::getManager()['status'] == \app\admin\service\Manager::STATUS_DISABLED;
     }
 
     /**

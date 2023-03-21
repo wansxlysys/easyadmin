@@ -39,9 +39,9 @@ class Permission
         $role       = $this->getRole($manager['role_id']);
         $permission = $this->getPermission($manager['role_id']);
 
-        Storage::set(\app\common\constant\Manager::CONTAINER_ROLE, $role);
-        Storage::set(\app\common\constant\Manager::CONTAINER_MANAGER, $manager);
-        Storage::set(\app\common\constant\Manager::CONTAINER_PERMISSION, $permission);
+        Storage::set(\app\admin\service\Manager::CONTAINER_ROLE, $role);
+        Storage::set(\app\admin\service\Manager::CONTAINER_MANAGER, $manager);
+        Storage::set(\app\admin\service\Manager::CONTAINER_PERMISSION, $permission);
     }
 
     /**

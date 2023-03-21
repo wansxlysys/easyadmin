@@ -51,8 +51,8 @@ class Menu extends \app\common\service\Menu
      */
     public function getCurrentMenu()
     {
-        if (Storage::has(MenuConstant::CONTAINER_MENU)) {
-            return Storage::get(MenuConstant::CONTAINER_MENU);
+        if (Storage::has(static::CONTAINER_MENU)) {
+            return Storage::get(static::CONTAINER_MENU);
         }
 
         $Query = new \app\common\repository\Query();
@@ -61,9 +61,9 @@ class Menu extends \app\common\service\Menu
         $Query->addWhere(['controller', '=', Request::controller()]);
         $Query->addWhere(['action', '=', Request::action()]);
 
-        Storage::set(MenuConstant::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
+        Storage::set(static::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
 
-        return Storage::get(MenuConstant::CONTAINER_MENU);
+        return Storage::get(static::CONTAINER_MENU);
     }
 
     /**
@@ -179,7 +179,7 @@ class Menu extends \app\common\service\Menu
      */
     protected function buildUrl($menu)
     {
-        if ($menu['type'] == MenuConstant::TYPE_LINK) {
+        if ($menu['type'] == static::TYPE_LINK) {
             return $menu['link'];
         }
 

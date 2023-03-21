@@ -6,7 +6,6 @@ namespace app\admin\service;
 
 use think\facade\Cache;
 use app\common\helper\Encryption;
-use app\common\constant\Manager as ManagerConstant;
 
 class Manager extends \app\common\service\Manager
 {
@@ -145,21 +144,21 @@ class Manager extends \app\common\service\Manager
         /**
          * 组合缓存key
          */
-        $cacheKey = ManagerConstant::CACHE_LOGIN_ERROR_NUMBER . $manager['id'];
+        $cacheKey = static::CACHE_LOGIN_ERROR_NUMBER . $manager['id'];
 
         try {
 
             /**
              * 检测管理员是否被禁用
              */
-            if ($manager['status'] == ManagerConstant::STATUS_DISABLED) {
+            if ($manager['status'] == static::STATUS_DISABLED) {
                 throw new \RuntimeException('管理员已被禁用');
             }
 
             /**
              * 检测管理员已被锁定
              */
-            if ($manager['status'] == ManagerConstant::STATUS_LOCKED) {
+            if ($manager['status'] == static::STATUS_LOCKED) {
                 throw new \RuntimeException('管理员已被锁定');
             }
 
@@ -179,12 +178,12 @@ class Manager extends \app\common\service\Manager
                  */
                 $errorNumber = Cache::get($cacheKey, 1);
 
-                if ($errorNumber >= ManagerConstant::LOCK_LOGIN_ERROR_NUMBER) {
+                if ($errorNumber >= static::LOCK_LOGIN_ERROR_NUMBER) {
 
                     /**
                      * 更新管理员为锁定状态
                      */
-                    $this->ManagerRepository->updateById($manager['id'], ['status' => ManagerConstant::STATUS_LOCKED]);
+                    $this->ManagerRepository->updateById($manager['id'], ['status' => static::STATUS_LOCKED]);
 
                     /**
                      * 清除登录锁定缓存

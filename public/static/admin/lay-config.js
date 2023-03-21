@@ -20,6 +20,7 @@
         easyBuilder: "easyAdmin/easyBuilder",
         easyModule: "easyAdmin/easyModule",
         treeTable: "treeTable/treeTable",
+        uploadFile: "uploadFile/uploadFile",
         uploadImage: "uploadImage/uploadImage",
     });
 

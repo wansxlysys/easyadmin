@@ -417,3 +417,15 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     height: 100%;
     overflow: auto;
 }
+
+/********************layui-form-item-button***************************/
+.layui-form-item-button .layui-input-block {
+    position: relative;
+    padding-right: 95px;
+}
+
+.layui-form-item-button .layui-input-block button {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

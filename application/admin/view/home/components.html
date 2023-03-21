@@ -5,7 +5,15 @@
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
-            <button type="button" class="layui-btn" id="upload">提交</button>
+            <div class="layui-form-item layui-form-item-button">
+                <label class="layui-form-label">文件选择</label>
+                <div class="layui-input-block">
+                    <input type="text" name="file_path" placeholder="请选择文件" readonly class="layui-input">
+                    <button type="button" class="layui-btn" id="upload">
+                        <i class="layui-icon layui-icon-upload-drag"></i>上传
+                    </button>
+                </div>
+            </div>
 
             <br>
             <br>
@@ -27,64 +35,15 @@
 <script>
     layui.use(['easyModule'], function () {
 
-        var loading = null;
         var easyAdmin = layui.easyAdmin;
+        var uploadFile = layui.uploadFile;
 
-        let up = new fcup({
+        new uploadFile({
             id: "upload",
-            url: "{:url('admin/Home/upload')}",
-            check_url: "{:url('admin/Home/check')}",
-            type: "zip",
-            shard_size: 2,
-            max_size: 200,
-            error_msg: {
-                1000: "未找到上传id",
-                1001: "类型不允许上传",
-                1002: "上传文件过小",
-                1003: "上传文件过大",
-                1004: "上传请求超时"
-            },
-            start: function () {
-                console.log(1);
-            },
-            // 错误提示
-            error: function (message) {
-                console.log(message);
-            },
-            // 等待上传事件，可以用来loading
-            before_send: function () {
-                console.log('等待请求中');
-                loading = easyAdmin.showLoading();
-            },
-            // 上传进度事件
-            progress: function (progress) {
-                console.log("上传进度：" + progress);
-            },
-            check_success: function (response) {
-
-                var result = JSON.parse(response);
-
-                if (result.code === 1101) {
-                    console.log(result.data.filePath);
-                    top.layer.alert(result.msg);
-                    return false;
-                }
-
-                return true;
-            },
-            success: function (response) {
-
-                var result = JSON.parse(response);
-
-                if (result.data.isDone) {
-                    top.layer.close(loading);
-                    console.log('上传完成', result);
-                }
-
-                return true;
-            }
+            url: "{:url('admin/Upload/file')}",
+            check_url: "{:url('admin/Upload/check')}",
+            type: "jpg",
         });
-
     });
 </script>
 {/block}

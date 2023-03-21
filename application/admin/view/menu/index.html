@@ -44,32 +44,24 @@
 </script>
 
 <script type="text/html" id="target">
-    {{#  if(d.target == 1){ }}
-    <span class="layui-badge layui-bg-green">默认方式</span>
-    {{#  } else if(d.target == 2) { }}
-    <span class="layui-badge layui-bg-orange">当前窗口</span>
-    {{#  } else if(d.target == 3) { }}
-    <span class="layui-badge">新窗口</span>
-    {{#  } }}
+    {{#  if(d.target == 1){ }}<span class="layui-badge layui-bg-green">默认方式</span>{{#  } }}
+    {{#  if(d.target == 2){ }}<span class="layui-badge layui-bg-orange">当前窗口</span>{{#  } }}
+    {{#  if(d.target == 3){ }}<span class="layui-badge layui-bg-green">新的窗口</span>{{#  } }}
 </script>
 
 <script type="text/html" id="type">
-    {{#  if(d.type == 1){ }}
-    <span class="layui-badge layui-bg-green">菜单</span>
-    {{#  } else if(d.type == 2) { }}
-    <span class="layui-badge layui-bg-orange">按钮</span>
-    {{#  } else if(d.type == 3) { }}
-    <span class="layui-badge">外链</span>
-    {{#  } }}
+    {{#  if(d.type == 1){ }}<span class="layui-badge layui-bg-green">菜单</span>{{#  } }}
+    {{#  if(d.type == 2){ }}<span class="layui-badge layui-bg-orange">按钮</span>{{#  } }}
+    {{#  if(d.type == 3){ }}<span class="layui-badge">外链</span>{{#  } }}
 </script>
 
 <script type="text/html" id="bar">
-    <a class="layui-btn layui-btn-sm" lay-event="update">
+    <button class="layui-btn layui-btn-sm" lay-event="update">
         <i class="fa fa-fw fa-edit"></i>编辑
-    </a>
-    <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
+    </button>
+    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
         <i class="fa fa-fw fa-trash"></i>删除
-    </a>
+    </button>
 </script>
 {/block}
 
@@ -119,9 +111,7 @@
             }
         });
 
-
         treeTable.on('toolbar(table)', function (obj) {
-
             if (obj.event === 'create') {
                 easyAdmin.openLayer("{:url('admin/Menu/create')}");
             }
@@ -133,10 +123,8 @@
             if (obj.event === 'fold') {
                 table.foldAll();
             }
-
         });
 
-        // 菜单排序
         treeTable.on('edit(table)', function (obj) {
             easyAdmin.http({
                 url: "{:url('admin/Menu/sort')}",
@@ -156,7 +144,6 @@
             });
         });
 
-        // 工具栏监听
         treeTable.on('tool(table)', function (obj) {
 
             if (obj.event === 'update') {

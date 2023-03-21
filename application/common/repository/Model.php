@@ -36,6 +36,22 @@ class Model extends \app\common\repository\Repository
     }
 
     /**
+     * 通过ID获取或抛出异常
+     * @param $id
+     * @return mixed
+     */
+    public function getByIdOrFail($id)
+    {
+        try {
+
+            return Db::name(static::getName())->where('id', $id)->findOrFail();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
      * 通过ID更新
      * @param $id
      * @param array $params

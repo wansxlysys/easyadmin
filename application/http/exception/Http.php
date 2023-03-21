@@ -27,7 +27,6 @@ class Http extends \think\exception\Handle
             }
         }
 
-
         return parent::render($exception);
     }
 }

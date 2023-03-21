@@ -22,9 +22,16 @@ abstract class Repository
     {
         try {
 
-            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
-                ->page($Query->getPage())->limit($Query->getLimit())->field($Query->getField())
-                ->group($Query->getGroup())->having($Query->getHaving())->order($Query->getOrder())
+            return Db::name(static::getName())
+                ->where($Query->getWhere())
+                ->whereOr($Query->getWhereOr())
+                ->page($Query->getPage())
+                ->limit($Query->getLimit())
+                ->field($Query->getField())
+                ->group($Query->getGroup())
+                ->having($Query->getHaving())
+                ->order($Query->getOrder())
+                ->failException($Query->getFailException())
                 ->select();
 
         } catch (\Throwable $throwable) {
@@ -41,7 +48,10 @@ abstract class Repository
     {
         try {
 
-            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())->count();
+            return Db::name(static::getName())
+                ->where($Query->getWhere())
+                ->whereOr($Query->getWhereOr())
+                ->count();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
@@ -57,9 +67,15 @@ abstract class Repository
     {
         try {
 
-            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
-                ->field($Query->getField())->group($Query->getGroup())->having($Query->getHaving())
-                ->order($Query->getOrder())->select();
+            return Db::name(static::getName())
+                ->where($Query->getWhere())
+                ->whereOr($Query->getWhereOr())
+                ->field($Query->getField())
+                ->group($Query->getGroup())
+                ->having($Query->getHaving())
+                ->order($Query->getOrder())
+                ->failException($Query->getFailException())
+                ->select();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
@@ -75,8 +91,13 @@ abstract class Repository
     {
         try {
 
-            return Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
-                ->field($Query->getField())->group($Query->getGroup())->order($Query->getOrder())
+            return Db::name(static::getName())
+                ->where($Query->getWhere())
+                ->whereOr($Query->getWhereOr())
+                ->field($Query->getField())
+                ->group($Query->getGroup())
+                ->order($Query->getOrder())
+                ->failException($Query->getFailException())
                 ->find();
 
         } catch (\Throwable $throwable) {

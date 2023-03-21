@@ -38,20 +38,17 @@
 </script>
 
 <script type="text/html" id="bar">
-    <a class="layui-btn layui-btn-sm" lay-event="update">
+    <button class="layui-btn layui-btn-sm" lay-event="update">
         <i class="fa fa-fw fa-edit"></i>编辑
-    </a>
-    <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
+    </button>
+    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
         <i class="fa fa-fw fa-trash"></i>删除
-    </a>
+    </button>
 </script>
 
 <script type="text/html" id="is_system">
-    {{#  if(d.is_system == 1){ }}
-    <span class="layui-badge layui-bg-green">是</span>
-    {{#  } else { }}
-    <span class="layui-badge">否</span>
-    {{#  } }}
+    {{#  if(d.is_system == 1){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
+    {{#  if(d.is_system == 2){ }}<span class="layui-badge layui-bg-green">否</span>{{#  } }}
 </script>
 {/block}
 

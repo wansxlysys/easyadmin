@@ -48,12 +48,12 @@
 </script>
 
 <script type="text/html" id="bar">
-    <a class="layui-btn layui-btn-sm" lay-event="update">
+    <button class="layui-btn layui-btn-sm" lay-event="update">
         <i class="fa fa-fw fa-edit"></i>修改
-    </a>
-    <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
+    </button>
+    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
         <i class="fa fa-fw fa-trash"></i>删除
-    </a>
+    </button>
 </script>
 
 <script type="text/html" id="avatar">
@@ -88,11 +88,12 @@
             cols: [[
                 {type: 'checkbox'},
                 {field: 'id', title: 'ID', width: 80},
-                {field: 'avatar', title: '头像', width: 100, templet: "#avatar"},
+                {field: 'avatar', title: '头像', width: 80, templet: "#avatar"},
                 {field: 'account', title: '账号', width: 240},
                 {field: 'nickname', title: '昵称'},
-                {field: 'is_system', title: '系统内置', width: 140, templet: "#is_system"},
-                {field: 'status', title: '状态', width: 140, templet: "#status"},
+                {field: 'is_system', title: '系统内置', width: 120, templet: "#is_system"},
+                {field: 'status', title: '状态', width: 100, templet: "#status"},
+                {field: 'login_time', title: '登录时间', width: 160},
                 {title: '操作', toolbar: '#bar', width: 170}
             ]]
         });

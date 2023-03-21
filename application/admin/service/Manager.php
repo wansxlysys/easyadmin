@@ -138,7 +138,14 @@ class Manager extends \app\common\service\Manager
          * 检测账号是否存在
          */
         if (!$manager) {
-            throw new \RuntimeException('管理员不存在');
+            return $this->setMessage('管理员不存在');
+        }
+
+        /**
+         * 更新最后登录时间
+         */
+        if (!$this->ManagerRepository->updateById($manager['id'], ['login_time' => date('Y-m-d H:i:s')])) {
+            return $this->setMessage('登录时间更新失败');
         }
 
         /**

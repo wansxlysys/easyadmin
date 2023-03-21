@@ -59,6 +59,12 @@ class Query
     protected $having = '';
 
     /**
+     * 空数据是否抛出异常
+     * @var bool
+     */
+    protected $failException = false;
+
+    /**
      * 获取where
      * @return array
      */
@@ -246,5 +252,23 @@ class Query
     public function setHaving($having)
     {
         $this->having = $having;
+    }
+
+    /**
+     * 获取空数据是否抛出异常
+     * @return bool
+     */
+    public function getFailException()
+    {
+        return $this->failException;
+    }
+
+    /**
+     * 设置空数据是否抛出异常
+     * @param $failException
+     */
+    public function setFailException($failException)
+    {
+        $this->failException = $failException;
     }
 }

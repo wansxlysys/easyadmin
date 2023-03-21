@@ -4,7 +4,9 @@
 namespace app\admin\service;
 
 
+use think\facade\Cache;
 use app\common\helper\Encryption;
+use app\common\constant\Manager as ManagerConstant;
 
 class Manager extends \app\common\service\Manager
 {
@@ -133,19 +135,103 @@ class Manager extends \app\common\service\Manager
     {
         $manager = $this->ManagerRepository->getByAccount($params['account']);
 
+        /**
+         * 检测账号是否存在
+         */
         if (!$manager) {
-            return $this->setMessage('管理员不存在');
+            throw new \RuntimeException('管理员不存在');
         }
 
-        if ($manager['password'] != Encryption::encrypt($params['password'])) {
-            return $this->setMessage('密码错误');
+        /**
+         * 组合缓存key
+         */
+        $cacheKey = ManagerConstant::CACHE_LOGIN_ERROR_NUMBER . $manager['id'];
+
+        try {
+
+            /**
+             * 检测管理员是否被禁用
+             */
+            if ($manager['status'] == ManagerConstant::STATUS_DISABLED) {
+                throw new \RuntimeException('管理员已被禁用');
+            }
+
+            /**
+             * 检测管理员已被锁定
+             */
+            if ($manager['status'] == ManagerConstant::STATUS_LOCKED) {
+                throw new \RuntimeException('管理员已被锁定');
+            }
+
+            try {
+
+                /**
+                 * 检测密码是否正确
+                 */
+                if ($manager['password'] != Encryption::encrypt($params['password'])) {
+                    throw new \RuntimeException('密码错误');
+                }
+
+            } catch (\Throwable $throwable) {
+
+                /**
+                 * 记录登录次数和锁定状态
+                 */
+                $errorNumber = Cache::get($cacheKey, 1);
+
+                if ($errorNumber >= ManagerConstant::LOCK_LOGIN_ERROR_NUMBER) {
+
+                    /**
+                     * 更新管理员为锁定状态
+                     */
+                    $this->ManagerRepository->updateById($manager['id'], ['status' => ManagerConstant::STATUS_LOCKED]);
+
+                    /**
+                     * 清除登录锁定缓存
+                     */
+                    Cache::rm($cacheKey);
+
+                } else {
+
+                    /**
+                     * 递增失败次数
+                     */
+                    Cache::set($cacheKey, $errorNumber + 1);
+                }
+
+                throw new \RuntimeException($throwable->getMessage());
+            }
+
+        } catch (\Throwable $throwable) {
+
+            /**
+             * 登录失败日志
+             */
+            \app\admin\behavior\SystemLoginLog::error([
+                'manager_id'  => $manager['id'],
+                'description' => $throwable->getMessage()
+            ]);
+
+            return $this->setMessage($throwable->getMessage());
         }
 
-        if ($manager['status'] == \app\common\constant\Manager::STATUS_DISABLED) {
-            return $this->setMessage('管理员已被禁用');
-        }
+        /**
+         * 清除登录锁定缓存
+         */
+        Cache::rm($cacheKey);
 
+        /**
+         * 设置登录缓存
+         */
         \app\common\helper\Manager::login($manager['id']);
+
+        /**
+         * 登录成功日志
+         */
+        \app\admin\behavior\SystemLoginLog::success([
+            'manager_id'  => $manager['id'],
+            'description' => '登录成功'
+        ]);
 
         return true;
     }

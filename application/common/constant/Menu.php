@@ -16,5 +16,5 @@ class Menu
     /**
      * 缓存标识
      */
-    const CONTAINER_MENU = 'admin_menu';
+    const CONTAINER_MENU = 'system.menu';
 }

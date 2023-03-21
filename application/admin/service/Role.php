@@ -84,11 +84,11 @@ class Role extends \app\common\service\Role
         try {
 
             if (!$PermissionService->deleteByRoleId($id)) {
-                throw new \Exception('权限删除失败');
+                throw new \RuntimeException('权限删除失败');
             }
 
             if (!$this->RoleRepository->deleteById($id)) {
-                throw new \Exception('角色删除失败');
+                throw new \RuntimeException('角色删除失败');
             }
 
             Db::commit();
@@ -124,7 +124,7 @@ class Role extends \app\common\service\Role
             $role = $this->RoleRepository->createRecord($params);
 
             if (!$role) {
-                throw new \Exception('角色创建失败');
+                throw new \RuntimeException('角色创建失败');
             }
 
             /**
@@ -135,7 +135,7 @@ class Role extends \app\common\service\Role
             $result = $PermissionService->createRecord($role['id'], $params['permission']);
 
             if (!$result) {
-                throw new \Exception('权限创建失败');
+                throw new \RuntimeException('权限创建失败');
             }
 
             Db::commit();
@@ -171,7 +171,7 @@ class Role extends \app\common\service\Role
             $result = $this->RoleRepository->updateById($params['id'], $roleData);
 
             if (!$result) {
-                throw new \Exception('角色修改失败');
+                throw new \RuntimeException('角色修改失败');
             }
 
             /**
@@ -182,7 +182,7 @@ class Role extends \app\common\service\Role
             $result = $PermissionService->updateRecord($params['id'], $params['permission']);
 
             if (!$result) {
-                throw new \Exception('权限修改失败');
+                throw new \RuntimeException('权限修改失败');
             }
 
             Db::commit();

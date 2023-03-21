@@ -6,21 +6,27 @@
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
-            <form class="layui-form" action="">
+            <form class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">账号</label>
+                        <label class="layui-form-label">登录账号</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="account" class="layui-input" placeholder="请输入账号">
+                            <input type="text" name="username" class="layui-input" placeholder="请输入登录账号">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">状态</label>
+                        <label class="layui-form-label">登录昵称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="nickname" class="layui-input" placeholder="请输入登录昵称">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">登录状态</label>
                         <div class="layui-input-inline">
                             <select name="status">
                                 <option value=""></option>
-                                <option value="1">启用</option>
-                                <option value="2">禁用</option>
+                                <option value="1">登录成功</option>
+                                <option value="2">登录失败</option>
                             </select>
                         </div>
                     </div>
@@ -41,40 +47,25 @@
 
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="create">
-            <i class="fa fa-fw fa-plus"></i>管理员添加
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="clear">
+            <i class="fa fa-fw fa-trash"></i>清空日志
         </button>
     </div>
-</script>
-
-<script type="text/html" id="bar">
-    <a class="layui-btn layui-btn-sm" lay-event="update">
-        <i class="fa fa-fw fa-edit"></i>修改
-    </a>
-    <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
-        <i class="fa fa-fw fa-trash"></i>删除
-    </a>
 </script>
 
 <script type="text/html" id="avatar">
     <img src="{{d.avatar}}" width="35" class="layui-circle">
 </script>
 
-<script type="text/html" id="is_system">
-    {{#  if(d.is_system == 1){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
-    {{#  if(d.is_system == 2){ }}<span class="layui-badge">否</span>{{#  } }}
-</script>
-
 <script type="text/html" id="status">
-    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
-    {{#  if(d.status == 2){ }}<span class="layui-badge">禁用</span>{{#  } }}
-    {{#  if(d.status == 3){ }}<span class="layui-badge layui-bg-orange">锁定</span>{{#  } }}
+    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">登录成功</span>{{#  } }}
+    {{#  if(d.status == 2){ }}<span class="layui-badge">登录失败</span>{{#  } }}
 </script>
 {/block}
 
 {block name="js"}
 <script type="text/javascript">
-    layui.use(['easyModule'], function () {
+    layui.use(['easyAdmin', 'form', 'table'], function () {
 
         var form = layui.form;
         var table = layui.table;
@@ -83,41 +74,29 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/Manager/index')}",
+            url: "{:url('admin/SystemLoginLog/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
                 {field: 'id', title: 'ID', width: 80},
-                {field: 'avatar', title: '头像', width: 100, templet: "#avatar"},
-                {field: 'account', title: '账号', width: 240},
-                {field: 'nickname', title: '昵称'},
-                {field: 'is_system', title: '系统内置', width: 140, templet: "#is_system"},
-                {field: 'status', title: '状态', width: 140, templet: "#status"},
-                {title: '操作', toolbar: '#bar', width: 170}
+                {field: 'avatar', title: '头像', width: 80, templet: "#avatar"},
+                {field: 'nickname', title: '登录昵称', width: 140},
+                {field: 'account', title: '登录账号', width: 140},
+                {field: 'description', title: '操作详情'},
+                {field: 'login_ip', title: '登录IP', width: 140},
+                {field: 'status', title: '状态', width: 100, templet: "#status"},
+                {field: 'create_time', title: '登录时间', width: 160}
             ]]
         });
 
         table.on('toolbar(table)', function (obj) {
-            if (obj.event === 'create') {
-                easyAdmin.openLayer("{:url('admin/Manager/create')}");
-            }
-        });
-
-        table.on('tool(table)', function (obj) {
-            if (obj.event === 'update') {
-                easyAdmin.openLayer("{:url('admin/Manager/update')}?id=" + obj.data.id);
-            }
-
-            if (obj.event === 'delete') {
-                top.layer.confirm('确定删除吗？', {
-                    icon: 3,
+            if (obj.event === 'clear') {
+                top.layer.confirm("确认清空日志吗？", {
+                    icon: 3
                 }, function () {
                     easyAdmin.http({
                         type: "POST",
-                        url: "{:url('admin/Manager/delete')}",
-                        data: {
-                            id: obj.data.id
-                        },
+                        url: "{:url('admin/SystemLoginLog/clear')}",
                         success: function (result) {
                             var key = top.layer.alert(result.msg, {
                                 icon: 1,
@@ -137,7 +116,7 @@
                 where: obj.field,
                 page: {
                     curr: 1
-                },
+                }
             });
         });
 
@@ -146,7 +125,7 @@
                 where: {},
                 page: {
                     curr: 1
-                },
+                }
             });
         });
     });

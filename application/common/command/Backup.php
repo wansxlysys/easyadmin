@@ -45,8 +45,8 @@ class Backup extends \think\console\Command
 
             $output->writeln("备份成功");
 
-        } catch (\Exception $exception) {
-            $output->writeln("备份失败：{$exception->getMessage()}");
+        } catch (\Throwable $throwable) {
+            $output->writeln("备份失败：{$throwable->getMessage()}");
         }
     }
 }

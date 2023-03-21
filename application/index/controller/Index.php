@@ -20,7 +20,7 @@ class Index
 
 //        try {
 //
-//            throw new \Exception('eee');
+//            throw new \RuntimeException('eee');
 //
 //        } catch (\Throwable $throwable) {
 //            throw new \RuntimeException($throwable->getMessage());

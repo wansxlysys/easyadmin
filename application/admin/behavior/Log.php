@@ -14,10 +14,10 @@ use think\facade\Request;
 class Log
 {
     /**
-     * 执行句柄
+     * 应用结束时执行
      * @param $response
      */
-    public function run(Response $response)
+    public static function appEnd(Response $response)
     {
         if (Request::isPost()) {
 

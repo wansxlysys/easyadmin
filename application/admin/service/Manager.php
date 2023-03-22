@@ -38,8 +38,8 @@ class Manager extends \app\common\service\Manager
             $Query->addWhere(['status', '=', $params['status']]);
         }
 
-        if (!empty($params['nickname'])) {
-            $Query->addWhere(['nickname', 'LIKE', "%{$params['nickname']}%"]);
+        if (!empty($params['real_name'])) {
+            $Query->addWhere(['real_name', 'LIKE', "%{$params['real_name']}%"]);
         }
 
         $Query->setPage($params['page']);
@@ -213,7 +213,7 @@ class Manager extends \app\common\service\Manager
             /**
              * 登录失败日志
              */
-            \app\admin\behavior\SystemLoginLog::error([
+            \app\admin\behavior\SystemLoginLog::loginError([
                 'manager_id'  => $manager['id'],
                 'description' => $throwable->getMessage()
             ]);
@@ -234,7 +234,7 @@ class Manager extends \app\common\service\Manager
         /**
          * 登录成功日志
          */
-        \app\admin\behavior\SystemLoginLog::success([
+        \app\admin\behavior\SystemLoginLog::loginSuccess([
             'manager_id'  => $manager['id'],
             'description' => '登录成功'
         ]);

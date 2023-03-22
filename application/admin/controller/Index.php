@@ -55,7 +55,7 @@ class Index extends \app\common\controller\Admin
 
             $params = [
                 'avatar'   => $request->post('avatar'),
-                'nickname' => $request->post('nickname'),
+                'real_name' => $request->post('real_name'),
                 'password' => $request->post('password'),
             ];
 

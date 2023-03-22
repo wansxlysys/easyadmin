@@ -38,13 +38,13 @@ class SystemLoginLog extends \app\common\service\SystemLoginLog
             $Query->setWhere(['manager.account', 'LIKE', "%{$params['account']}%"]);
         }
 
-        if (!empty($params['nickname'])) {
-            $Query->setWhere(['manager.nickname', 'LIKE', "%{$params['nickname']}%"]);
+        if (!empty($params['real_name'])) {
+            $Query->setWhere(['manager.real_name', 'LIKE', "%{$params['real_name']}%"]);
         }
 
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.nickname', 'manager.account']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
         $Query->setOrder(['log.create_time' => 'desc']);
 
         $list  = $this->SystemLoginLogRepository->getListWithManager($Query);

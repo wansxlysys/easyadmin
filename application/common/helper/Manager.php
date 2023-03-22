@@ -105,10 +105,8 @@ class Manager
      */
     public static function checkAccessByMenuId($menuId, $condition = 'and')
     {
-        $menuId     = !empty($menuId) ? explode(',', $menuId) : [];
-        $permission = static::getPermission();
+        $menuId = !empty($menuId) ? explode(',', $menuId) : [];
 
-        return \app\common\helper\Permission::checkPermission($menuId, $permission, $condition);
+        return \app\common\helper\Permission::checkPermission($menuId, static::getPermission(), $condition);
     }
-
 }

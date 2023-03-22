@@ -21,7 +21,7 @@ class Manager extends \app\common\validate\Manager
      */
     public function sceneCreate()
     {
-        return $this->only(['role_id', 'avatar', 'nickname', 'account', 'password', 'status']);
+        return $this->only(['role_id', 'avatar', 'real_name', 'account', 'password', 'status']);
     }
 
     /**
@@ -30,7 +30,7 @@ class Manager extends \app\common\validate\Manager
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'role_id', 'avatar', 'nickname', 'status']);
+        return $this->only(['id', 'role_id', 'avatar', 'real_name', 'status']);
     }
 
     /**
@@ -48,6 +48,6 @@ class Manager extends \app\common\validate\Manager
      */
     public function sceneProfile()
     {
-        return $this->only(['avatar', 'nickname']);
+        return $this->only(['avatar', 'real_name']);
     }
 }

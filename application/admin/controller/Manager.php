@@ -39,10 +39,10 @@ class Manager extends \app\common\controller\Admin
         if ($request->isAjax()) {
 
             $params = [
-                'page'     => $request->get('page'),
-                'limit'    => $request->get('limit'),
-                'status'   => $request->get('status'),
-                'nickname' => $request->get('nickname'),
+                'page'      => $request->get('page'),
+                'limit'     => $request->get('limit'),
+                'status'    => $request->get('status'),
+                'real_name' => $request->get('real_name'),
             ];
 
             $this->success('获取成功', '', $this->ManagerService->getListWithTotal($params));
@@ -61,12 +61,12 @@ class Manager extends \app\common\controller\Admin
         if ($request->isAjax()) {
 
             $params = [
-                'role_id'  => $request->post('role_id'),
-                'avatar'   => $request->post('avatar'),
-                'nickname' => $request->post('nickname'),
-                'account'  => $request->post('account'),
-                'password' => $request->post('password'),
-                'status'   => $request->post('status'),
+                'role_id'   => $request->post('role_id'),
+                'avatar'    => $request->post('avatar'),
+                'real_name' => $request->post('real_name'),
+                'account'   => $request->post('account'),
+                'password'  => $request->post('password'),
+                'status'    => $request->post('status'),
             ];
 
             $ManagerValidate = new \app\admin\validate\Manager();
@@ -97,12 +97,12 @@ class Manager extends \app\common\controller\Admin
         if ($request->isAjax()) {
 
             $params = [
-                'id'       => $request->post('id'),
-                'role_id'  => $request->post('role_id'),
-                'avatar'   => $request->post('avatar'),
-                'nickname' => $request->post('nickname'),
-                'password' => $request->post('password'),
-                'status'   => $request->post('status'),
+                'id'        => $request->post('id'),
+                'role_id'   => $request->post('role_id'),
+                'avatar'    => $request->post('avatar'),
+                'real_name' => $request->post('real_name'),
+                'password'  => $request->post('password'),
+                'status'    => $request->post('status'),
             ];
 
             $ManagerValidate = new \app\admin\validate\Manager();

@@ -47,6 +47,17 @@ trait SubTable
     }
 
     /**
+     * 设置分表规则
+     * @param array $rule
+     * @return $this
+     */
+    public function setSubRule(array $rule)
+    {
+        $this->subRule = $rule;
+        return $this;
+    }
+
+    /**
      * 获取分表表名（分表需要重写该方法）
      */
     public function getSubName()

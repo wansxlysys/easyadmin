@@ -13,7 +13,7 @@ class SystemLoginLog
      * @param array $params
      * @return mixed
      */
-    public static function success(array $params)
+    public static function loginSuccess(array $params)
     {
         $SystemLoginLog = new \app\admin\service\SystemLoginLog();
 
@@ -30,7 +30,7 @@ class SystemLoginLog
      * @param array $params
      * @return mixed
      */
-    public static function error(array $params)
+    public static function loginError(array $params)
     {
         $SystemLoginLog = new \app\admin\service\SystemLoginLog();
 

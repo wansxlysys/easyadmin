@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1:3306	Database: easyadmin
 -- ------------------------------------------------------
 -- Server version 	5.7.26
--- Date: Wed, 22 Mar 2023 08:27:59 +0800
+-- Date: Wed, 22 Mar 2023 14:02:09 +0800
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -298,4 +298,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Wed, 22 Mar 2023 08:27:59 +0800
+-- Dump completed on: Wed, 22 Mar 2023 14:02:09 +0800

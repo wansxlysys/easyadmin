@@ -77,11 +77,11 @@ class Menu extends \app\common\service\Menu
         $menu = $this->MenuRepository->getById($menuId);
 
         if ($menu) {
-            $breadcrumb[] = $menu;
             $this->getBreadcrumbMenu($menu['parent_id'], $breadcrumb);
+			$breadcrumb[] = $menu;
         }
 
-        return array_reverse($breadcrumb);
+        return $breadcrumb;
     }
 
     /**

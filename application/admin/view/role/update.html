@@ -17,7 +17,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">角色标识</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" lay-verify="required" placeholder="请输入角色标识" class="layui-input layui-disabled" value="{$role.name}" disabled>
+                        <input type="text" name="name" lay-verify="required" placeholder="请输入角色标识" class="layui-input" value="{$role.name}">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
@@ -74,7 +74,7 @@
             var permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
-                layer.msg('请选择授权节点', {
+                layer.alert('请选择授权节点', {
                     icon: 2
                 });
                 return false;

@@ -72,7 +72,7 @@
             var permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
-                layer.msg('请选择授权节点', {
+                layer.alert('请选择授权节点', {
                     icon: 2
                 });
                 return false;

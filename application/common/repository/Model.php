@@ -66,7 +66,7 @@ class Model extends \app\common\repository\Repository
     {
         try {
 
-            return Db::name(static::getName())->where($where)->failException($fail)->findOrFail();
+            return Db::name(static::getName())->where($where)->failException($fail)->find();
 
         } catch (\Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

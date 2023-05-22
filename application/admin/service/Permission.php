@@ -73,38 +73,24 @@ class Permission extends \app\common\service\Permission
         $deleteMenuId = array_diff($permission, $menuId);
         $createMenuId = array_diff($menuId, $permission);
 
-        Db::startTrans();
+        /**
+         * 删除权限
+         */
+        $Query = new \app\common\repository\Query();
 
-        try {
+        $Query->addWhere(['role_id', '=', $roleId]);
+        $Query->addWhere(['menu_id', 'IN', $deleteMenuId]);
 
-            /**
-             * 删除权限
-             */
-            $Query = new \app\common\repository\Query();
-
-            $Query->addWhere(['role_id', '=', $roleId]);
-            $Query->addWhere(['menu_id', 'IN', $deleteMenuId]);
-
-            if (!$this->PermissionRepository->deleteRecord($Query)) {
-                throw new \RuntimeException('权限删除失败');
-            }
-
-            /**
-             * 创建权限
-             */
-            if (!$this->createRecord($roleId, $createMenuId)) {
-                throw new \RuntimeException('权限创建失败');
-            }
-
-            Db::commit();
-
-        } catch (\Throwable $throwable) {
-
-            Db::rollback();
-
-            return $this->setMessage($throwable->getMessage());
+        if (!$this->PermissionRepository->deleteRecord($Query)) {
+            throw new \RuntimeException('权限删除失败');
         }
 
+        /**
+         * 创建权限
+         */
+        if (!$this->createRecord($roleId, $createMenuId)) {
+            throw new \RuntimeException('权限创建失败');
+        }
 
         return true;
     }

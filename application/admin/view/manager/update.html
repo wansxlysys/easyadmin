@@ -7,7 +7,6 @@
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
             <form class="layui-form" action="">
-                <input type="hidden" name="id" value="{$manager.id}">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">所属角色</label>
                     <div class="layui-input-block">
@@ -86,6 +85,8 @@
 
         form.on('submit', function (obj) {
             event.preventDefault();
+
+            obj.field.id = '{$manager.id}';
 
             easyAdmin.http({
                 type: "POST",

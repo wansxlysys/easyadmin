@@ -7,7 +7,6 @@
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
             <form class="layui-form" action="">
-                <input type="hidden" name="id" value="{$role.id}">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">角色名</label>
                     <div class="layui-input-block">
@@ -80,6 +79,7 @@
                 return false;
             }
 
+            obj.field.id = '{$role.id}';
             obj.field.permission = permission;
 
             easyAdmin.http({

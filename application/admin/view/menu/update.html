@@ -7,7 +7,6 @@
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
             <form class="layui-form" action="">
-                <input type="hidden" name="id" value="{$menu.id}">
                 <div class="layui-form-item">
                     <label class="layui-form-label">上级节点</label>
                     <div class="layui-input-block">
@@ -116,6 +115,9 @@
 
         form.on("submit", function (obj) {
             event.preventDefault();
+
+            obj.field.id = '{$menu.id}';
+
             easyAdmin.http({
                 type: "POST",
                 url: "{:url('admin/Menu/update')}",

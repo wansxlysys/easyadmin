@@ -121,7 +121,7 @@ class Role extends \app\common\service\Role
             $roleData['title']  = $params['title'];
             $roleData['remark'] = $params['remark'];
 
-            $role = $this->RoleRepository->createRecord($params);
+            $role = $this->RoleRepository->createRecord($roleData);
 
             if (!$role) {
                 throw new \RuntimeException('角色创建失败');

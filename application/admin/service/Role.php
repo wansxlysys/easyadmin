@@ -121,9 +121,9 @@ class Role extends \app\common\service\Role
             $roleData['title']  = $params['title'];
             $roleData['remark'] = $params['remark'];
 
-            $role = $this->RoleRepository->createRecord($roleData);
+            $roleId = $this->RoleRepository->createRecord($roleData);
 
-            if (!$role) {
+            if (!$roleId) {
                 throw new \RuntimeException('角色创建失败');
             }
 
@@ -132,7 +132,7 @@ class Role extends \app\common\service\Role
              */
             $PermissionService = new \app\admin\service\Permission();
 
-            $result = $PermissionService->createRecord($role['id'], $params['permission']);
+            $result = $PermissionService->createRecord($roleId, $params['permission']);
 
             if (!$result) {
                 throw new \RuntimeException('权限创建失败');

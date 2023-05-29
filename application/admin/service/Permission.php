@@ -106,6 +106,6 @@ class Permission extends \app\common\service\Permission
 
         $Query->addWhere(['role_id', '=', $roleId]);
 
-        return $this->PermissionRepository->deleteById($Query);
+        return $this->PermissionRepository->deleteRecord($Query);
     }
 }

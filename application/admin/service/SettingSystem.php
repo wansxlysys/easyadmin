@@ -35,7 +35,7 @@ class SettingSystem extends \app\common\service\SettingSystem
      * @param array $params
      * @return bool
      */
-    public function setSetting(array $params = [])
+    public function setSetting(array $params)
     {
         return $this->SettingSystemRepository->updateById(1, $params);
     }

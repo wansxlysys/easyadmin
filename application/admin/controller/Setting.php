@@ -49,7 +49,7 @@ class Setting extends \app\common\controller\Admin
                 $this->error($SettingSystemValidate->getError());
             }
 
-            $result = $this->SettingSystemService->setSetting();
+            $result = $this->SettingSystemService->setSetting($params);
 
             if (!$result) {
                 $this->error('修改失败');

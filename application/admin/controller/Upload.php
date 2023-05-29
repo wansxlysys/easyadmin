@@ -78,7 +78,7 @@ class Upload extends \app\common\controller\Admin
 
             $UploadService = new \app\admin\service\Upload();
 
-            $file = $UploadService->uploadImage('file');
+            $file = $UploadService->uploadImage($request->file('file'));
 
             if (!$file) {
                 $this->error($UploadService->getMessage());

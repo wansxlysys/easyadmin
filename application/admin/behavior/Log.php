@@ -30,7 +30,7 @@ class Log
                  */
                 $codeMap = [1 => 1, 0 => 2];
 
-                $LogService = new \app\admin\service\Log();
+                $LogService = new \app\admin\service\LogService();
 
                 $LogService->writeLog("系统自动记录：{$responseData['msg']}", $codeMap[$responseData['code']]);
             }

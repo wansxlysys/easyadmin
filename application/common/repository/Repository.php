@@ -5,6 +5,7 @@ namespace app\common\repository;
 
 
 use think\Db;
+use Throwable;
 use app\common\exception\RepositoryException;
 
 /**
@@ -34,7 +35,7 @@ abstract class Repository
                 ->failException($Query->getFailException())
                 ->select();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -53,7 +54,7 @@ abstract class Repository
                 ->whereOr($Query->getWhereOr())
                 ->count();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -77,7 +78,7 @@ abstract class Repository
                 ->failException($Query->getFailException())
                 ->select();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -100,7 +101,7 @@ abstract class Repository
                 ->failException($Query->getFailException())
                 ->find();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -116,7 +117,7 @@ abstract class Repository
 
             return Db::name(static::getName())->insertGetId($params);
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -144,7 +145,7 @@ abstract class Repository
             return false !== Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
                     ->update($params);
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -161,7 +162,7 @@ abstract class Repository
             return false !== Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
                     ->delete();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }

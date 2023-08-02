@@ -10,7 +10,7 @@ use think\response\Json;
  * 接口基类
  * @package app\common\controller
  */
-class Api extends \think\Controller
+class Api extends Common
 {
     /**
      * 返回接口数据格式

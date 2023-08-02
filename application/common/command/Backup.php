@@ -9,6 +9,7 @@ use think\facade\Config;
 use think\console\Input;
 use think\console\Output;
 use think\console\input\Option;
+use Ifsnop\Mysqldump\Mysqldump;
 
 class Backup extends \think\console\Command
 {
@@ -40,7 +41,7 @@ class Backup extends \think\console\Command
             $password = Config::get('database.password');
             $connect  = "mysql:host={$hostname}:{$hostport};dbname={$database}";
 
-            $MysqlDump = new \Ifsnop\Mysqldump\Mysqldump($connect, $username, $password);
+            $MysqlDump = new Mysqldump($connect, $username, $password);
             $MysqlDump->start($rootPath . "data/{$saveName}.sql");
 
             $output->writeln("备份成功");

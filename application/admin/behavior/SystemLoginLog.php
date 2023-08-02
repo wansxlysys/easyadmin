@@ -15,7 +15,7 @@ class SystemLoginLog
      */
     public static function loginSuccess(array $params)
     {
-        $SystemLoginLog = new \app\admin\service\SystemLoginLog();
+        $SystemLoginLog = new \app\admin\service\SystemLoginLogService();
 
         $loginLog['status']      = 1;
         $loginLog['login_ip']    = Request::ip();
@@ -32,7 +32,7 @@ class SystemLoginLog
      */
     public static function loginError(array $params)
     {
-        $SystemLoginLog = new \app\admin\service\SystemLoginLog();
+        $SystemLoginLog = new \app\admin\service\SystemLoginLogService();
 
         $loginLog['status']      = 2;
         $loginLog['login_ip']    = Request::ip();

@@ -5,15 +5,18 @@ namespace app\common\controller;
 
 
 use think\facade\Hook;
+use app\admin\behavior\Log;
+use app\admin\service\MenuService;
+use app\admin\service\SettingSystemService;
 
-class Admin extends \think\Controller
+class Admin extends Common
 {
     /**
      * 初始化
      */
     public function initialize()
     {
-        $MenuService = new \app\admin\service\Menu();
+        $MenuService = new MenuService();
         $currentMenu = $MenuService->getCurrentMenu();
 
         /**
@@ -25,11 +28,11 @@ class Admin extends \think\Controller
 
         if ($this->request->isAjax()) {
 
-            Hook::add('app_end', \app\admin\behavior\Log::class);
+            Hook::add('app_end', Log::class);
 
         } else {
 
-            $SettingSystemService = new \app\admin\service\SettingSystem();
+            $SettingSystemService = new SettingSystemService();
 
             $settingSystem  = $SettingSystemService->getSetting();
             $breadcrumbMenu = $MenuService->getBreadcrumbMenu($currentMenu['id']);

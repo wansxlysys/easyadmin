@@ -6,6 +6,7 @@ namespace app\http\exception;
 
 use think\facade\Env;
 use think\facade\Config;
+use think\exception\HttpException;
 
 class Http extends \think\exception\Handle
 {
@@ -22,7 +23,7 @@ class Http extends \think\exception\Handle
             /**
              * 非http异常，报错信息全部隐藏
              */
-            if (false === ($exception instanceof \think\exception\HttpException)) {
+            if (false === ($exception instanceof HttpException)) {
                 Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/exception.html');
             }
         }

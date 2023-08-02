@@ -5,13 +5,14 @@ namespace app\common\repository;
 
 
 use think\Db;
+use Throwable;
 use app\common\exception\RepositoryException;
 
 /**
  * 模型基础类
  * @package app\common\model
  */
-class Model extends \app\common\repository\Repository
+class Model extends Repository
 {
     /**
      * 导入分表特征类
@@ -35,7 +36,7 @@ class Model extends \app\common\repository\Repository
 
             return Db::name(static::getName())->where('id', $id)->find();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -51,7 +52,7 @@ class Model extends \app\common\repository\Repository
 
             return Db::name(static::getName())->where('id', $id)->findOrFail();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -68,7 +69,7 @@ class Model extends \app\common\repository\Repository
 
             return Db::name(static::getName())->where($where)->failException($fail)->find();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -85,7 +86,7 @@ class Model extends \app\common\repository\Repository
 
             return false !== Db::name(static::getName())->where('id', 'IN', $id)->update($params);
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }
@@ -101,7 +102,7 @@ class Model extends \app\common\repository\Repository
 
             return false !== Db::name(static::getName())->where('id', 'IN', $id)->delete();
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());
         }
     }

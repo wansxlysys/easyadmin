@@ -4,7 +4,7 @@
 namespace app\common\taglib;
 
 
-class Permission extends \app\common\taglib\TagLib
+class Permission extends TagLib
 {
     /**
      * 标签定义

@@ -1,5 +1,9 @@
 <?php
 
+
+use app\admin\service\LogService;
+
+
 if (!function_exists('register_static')) {
     /**
      * 引入静态文件并加入版本号
@@ -21,7 +25,7 @@ if (!function_exists('log_write')) {
      */
     function log_write($description = '', $status = 1)
     {
-        return (new \app\admin\service\Log())->writeLog($description, $status);
+        return (new LogService())->writeLog($description, $status);
     }
 }
 

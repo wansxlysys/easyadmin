@@ -5,7 +5,7 @@ namespace app\http\middleware;
 
 
 use traits\controller\Jump;
-use app\common\helper\Storage;
+use app\common\helper\StorageHelper;
 
 class Permission
 {
@@ -39,9 +39,9 @@ class Permission
         $role       = $this->getRole($manager['role_id']);
         $permission = $this->getPermission($manager['role_id']);
 
-        Storage::set(\app\admin\service\Manager::CONTAINER_ROLE, $role);
-        Storage::set(\app\admin\service\Manager::CONTAINER_MANAGER, $manager);
-        Storage::set(\app\admin\service\Manager::CONTAINER_PERMISSION, $permission);
+        StorageHelper::set(\app\admin\service\ManagerService::CONTAINER_ROLE, $role);
+        StorageHelper::set(\app\admin\service\ManagerService::CONTAINER_MANAGER, $manager);
+        StorageHelper::set(\app\admin\service\ManagerService::CONTAINER_PERMISSION, $permission);
     }
 
     /**
@@ -49,7 +49,7 @@ class Permission
      */
     public function checkDisabled()
     {
-        if (\app\common\helper\Manager::isDisabled()) {
+        if (\app\common\helper\ManagerHelper::isDisabled()) {
             $this->error('账号被禁用');
         }
     }
@@ -59,10 +59,10 @@ class Permission
      */
     public function checkAuth()
     {
-        $MenuService = new \app\admin\service\Menu();
+        $MenuService = new \app\admin\service\MenuService();
         $currentMenu = $MenuService->getCurrentMenu();
 
-        if (!\app\common\helper\Manager::checkAccessByMenuId($currentMenu['id'])) {
+        if (!\app\common\helper\ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
             $this->error('您的账号未授权访问');
         }
     }
@@ -72,7 +72,7 @@ class Permission
      */
     public function checkLogin()
     {
-        if (!\app\common\helper\Manager::isLogin()) {
+        if (!\app\common\helper\ManagerHelper::isLogin()) {
             $this->error('未登录', 'admin/login/login');
         }
     }
@@ -83,9 +83,9 @@ class Permission
      */
     protected function getManager()
     {
-        $ManagerService = new \app\admin\service\Manager();
+        $ManagerService = new \app\admin\service\ManagerService();
 
-        return $ManagerService->getById(\app\common\helper\Manager::getManagerId());
+        return $ManagerService->getById(\app\common\helper\ManagerHelper::getManagerId());
     }
 
     /**
@@ -95,7 +95,7 @@ class Permission
      */
     protected function getRole($roleId)
     {
-        $RoleService = new \app\admin\service\Role();
+        $RoleService = new \app\admin\service\RoleService();
 
         return $RoleService->getById($roleId);
     }
@@ -107,7 +107,7 @@ class Permission
      */
     protected function getPermission($roleId)
     {
-        $PermissionService = new \app\admin\service\Permission();
+        $PermissionService = new \app\admin\service\PermissionService();
 
         return $PermissionService->getAllMenuIdByRoleId($roleId);
     }

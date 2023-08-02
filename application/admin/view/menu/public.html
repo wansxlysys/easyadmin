@@ -1,0 +1,50 @@
+<script>
+
+    var menuData = {
+        parentId: 0
+    }
+
+    var menuService = {
+        /**
+         * 初始化
+         */
+        initService: function () {
+            menuService.listenType();
+            menuService.renderMenuSelect();
+        },
+        /**
+         * 创建菜单选择器
+         */
+        renderMenuSelect: function () {
+            layui.easyService.render.menuTreeSelect({
+                elem: "#menuTree",
+                selected: menuData.parentId,
+                setting: {
+                    name: 'parent_id',
+                    layVerify: 'required'
+                }
+            });
+        },
+        /**
+         * 未通过原因
+         */
+        renderLink: function (type) {
+            if (layui.easyHelper.equalsInt(3, type)) {
+                $("input[name=link]").attr('lay-verify', 'required').closest(".layui-form-item").removeClass("layui-hide");
+            } else {
+                $("input[name=link]").removeAttr('lay-verify').closest(".layui-form-item").addClass("layui-hide");
+            }
+        },
+        /**
+         * 监听状态
+         */
+        listenType: function (type) {
+            layui.form.on("radio(type)", function (obj) {
+                menuService.renderLink(obj.value);
+            });
+
+            menuService.renderLink(type);
+        }
+    }
+
+</script>

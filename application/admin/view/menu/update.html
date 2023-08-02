@@ -1,14 +1,15 @@
 {extend name="admin@layout/layout" /}
 
 {block name="content"}
+{include file="admin@menu/public" /}
 {include file="admin@layout/breadcrumb" close="show" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
-            <form class="layui-form" action="">
+            <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">上级节点</label>
+                    <label class="layui-form-label layui-required">上级节点</label>
                     <div class="layui-input-block">
                         <div id="menuTree"></div>
                     </div>
@@ -95,23 +96,9 @@
 
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
-        var easyService = layui.easyService;
 
-        easyService.render.menuTreeSelect({
-            elem: "#menuTree",
-            selected: "{$menu.parent_id}",
-            setting: {
-                name: 'parent_id'
-            }
-        });
-
-        form.on("radio(type)", function (data) {
-            if (data.value === "3") {
-                $("[name=link]").closest(".layui-form-item").removeClass("layui-hide");
-            } else {
-                $("[name=link]").closest(".layui-form-item").addClass("layui-hide");
-            }
-        });
+        menuData.parentId = '{$menu.parent_id}';
+        menuService.initService();
 
         form.on("submit", function (obj) {
             event.preventDefault();
@@ -133,7 +120,6 @@
                 }
             });
         });
-
     });
 </script>
 {/block}

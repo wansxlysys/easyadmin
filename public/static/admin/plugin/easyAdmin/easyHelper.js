@@ -59,6 +59,22 @@ layui.define(['jquery'], function (exports) {
     }
 
     /**
+     * 查找索引
+     * @param data
+     * @param id
+     */
+    function arrayFindIndex(data, id) {
+
+        for (var i = 0; i < data.length; i++) {
+            if (equalsInt(data[i].id) === equalsInt(id)) {
+                return i;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * 获取所有父级元素
      * @param data
      * @param parentId
@@ -90,12 +106,76 @@ layui.define(['jquery'], function (exports) {
         });
     }
 
+    /**
+     * 节流函数
+     * @param fn
+     * @param wait
+     * @returns {Function}
+     */
+    function throttle(fn, wait) {
+        var timer = null;
+        return function () {
+            var context = this, args = arguments;
+            if (!timer) {
+                timer = setTimeout(function () {
+                    fn.apply(context, args);
+                    timer = null;
+                }, wait)
+            }
+        }
+    }
+
+    /**
+     * 数组位置交换
+     * @returns {*}
+     */
+    function swapArray(data, key, index) {
+
+        if (data[index]) {
+            data[key] = data.splice(index, 1, data[key])[0];
+        }
+
+        return data;
+    }
+
+    /**
+     * base64转object对象
+     * @param base64
+     */
+    function base64ToObject(base64) {
+        return JSON.parse($.base64.decode(base64));
+    }
+
+    /**
+     * 获取数组第一个
+     * @param data
+     * @returns {*}
+     */
+    function arrayFirst(data) {
+        return data[0];
+    }
+
+    /**
+     * 获取数组最后一个
+     * @param data
+     * @returns {*}
+     */
+    function arrayLast(data) {
+        return data[data.length - 1];
+    }
+
     exports("easyHelper", {
+        throttle: throttle,
+        arrayLast: arrayLast,
+        arrayFirst: arrayFirst,
         equalsInt: equalsInt,
+        swapArray: swapArray,
         getParents: getParents,
         arrayToTree: arrayToTree,
         objectColumn: objectColumn,
         stringToArray: stringToArray,
-        arrayFindItem: arrayFindItem
+        arrayFindItem: arrayFindItem,
+        arrayFindIndex: arrayFindIndex,
+        base64ToObject: base64ToObject
     });
 });

@@ -125,6 +125,7 @@ class Index extends \app\common\controller\Admin
     public function clear_cache_action(Request $request)
     {
         if ($request->isAjax()) {
+
             $params = [
                 'cache' => $request->post('cache', ['log', 'cache', 'temp'])
             ];

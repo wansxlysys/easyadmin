@@ -40,6 +40,10 @@ body {
     padding: 15px;
 }
 
+.layui-circle {
+    object-fit: cover;
+}
+
 /***********表单************************/
 .layui-input:focus,
 .layui-textarea:focus {

@@ -24,3 +24,15 @@ if (!function_exists('log_write')) {
         return (new \app\admin\service\Log())->writeLog($description, $status);
     }
 }
+
+if (!function_exists('array_to_base64')) {
+    /**
+     * 数组转base64输出
+     * @param array $data
+     * @return bool|mixed
+     */
+    function array_to_base64(array $data)
+    {
+        return base64_encode(json_encode($data));
+    }
+}

@@ -6,7 +6,7 @@ namespace app\admin\controller;
 use think\Request;
 use app\admin\service\UploadService;
 
-class UploadController extends \app\common\controller\Admin
+class UploadController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

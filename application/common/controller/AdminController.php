@@ -9,7 +9,7 @@ use app\admin\behavior\LogBehavior;
 use app\admin\service\MenuService;
 use app\admin\service\SettingSystemService;
 
-class Admin extends Common
+class AdminController extends CommonController
 {
     /**
      * 初始化

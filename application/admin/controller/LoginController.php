@@ -11,7 +11,7 @@ use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 use app\admin\service\SettingSystemService;
 
-class LoginController extends \app\common\controller\Common
+class LoginController extends \app\common\controller\CommonController
 {
     /**
      * 初始化

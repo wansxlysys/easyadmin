@@ -8,7 +8,7 @@ use think\Request;
 use app\admin\service\SettingSystemService;
 use app\admin\validate\SettingSystemValidate;
 
-class SettingController extends \app\common\controller\Admin
+class SettingController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

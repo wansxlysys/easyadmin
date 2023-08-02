@@ -7,7 +7,7 @@ namespace app\admin\controller;
 use think\Request;
 use app\admin\service\SystemLoginLogService;
 
-class SystemLoginLogController extends \app\common\controller\Admin
+class SystemLoginLogController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

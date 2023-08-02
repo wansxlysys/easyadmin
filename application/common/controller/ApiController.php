@@ -7,7 +7,7 @@ namespace app\common\controller;
 use think\response\Json;
 
 
-class Api extends Common
+class ApiController extends CommonController
 {
     /**
      * 返回接口数据格式

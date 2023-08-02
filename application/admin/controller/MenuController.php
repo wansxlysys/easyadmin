@@ -8,7 +8,7 @@ use think\Request;
 use app\admin\service\MenuService;
 use app\admin\validate\MenuValidate;
 
-class MenuController extends \app\common\controller\Admin
+class MenuController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

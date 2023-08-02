@@ -9,7 +9,7 @@ use app\admin\service\RoleService;
 use app\admin\validate\RoleValidate;
 use app\admin\service\PermissionService;
 
-class RoleController extends \app\common\controller\Admin
+class RoleController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

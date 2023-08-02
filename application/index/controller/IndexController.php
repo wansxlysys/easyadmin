@@ -4,7 +4,7 @@
 namespace app\index\controller;
 
 
-class Index
+class IndexController
 {
     public function index_action()
     {

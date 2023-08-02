@@ -10,7 +10,7 @@ use app\admin\service\UploadService;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 
-class ManagerController extends \app\common\controller\Admin
+class ManagerController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

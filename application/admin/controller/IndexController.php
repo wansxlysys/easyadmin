@@ -11,7 +11,7 @@ use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 use Symfony\Component\Filesystem\Filesystem;
 
-class IndexController extends \app\common\controller\Admin
+class IndexController extends \app\common\controller\AdminController
 {
     /**
      * 中间件

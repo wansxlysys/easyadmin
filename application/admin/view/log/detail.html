@@ -6,51 +6,54 @@
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.title}</div>
         <div class="layui-card-body">
-            <div class="layui-form">
-                <table class="layui-table">
-                    <colgroup>
-                        <col width="200">
-                        <col>
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>数据名称</th>
-                        <th>数据详情</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>请求节点</td>
-                        <td><img src="{$manager.avatar}" width="35" height="35" class="layui-circle"></td>
-                    </tr>
-                    <tr>
-                        <td>请求节点</td>
-                        <td>{$manager.account}</td>
-                    </tr>
-                    <tr>
-                        <td>请求节点</td>
-                        <td>{$log.menu}</td>
-                    </tr>
-                    <tr>
-                        <td>请求详情</td>
-                        <td>{$log.description}</td>
-                    </tr>
-                    <tr>
-                        <td>请求地址</td>
-                        <td>{$log.url}</td>
-                    </tr>
-                    <tr>
-                        <td>请求参数</td>
-                        <td>
-                            <pre>{:json_encode(json_decode($log.params),JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)}</pre>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>请求时间</td>
-                        <td>{$log.create_time}</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="detail">
+                <div class="detail-cell detail-cell-middle detail-cell-100">
+                    <div class="detail-cell-left">操作头像：</div>
+                    <div class="detail-cell-right">
+                        <img src="{$log.avatar}" width="35" height="35" class="layui-circle">
+                    </div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">操作姓名：</div>
+                    <div class="detail-cell-right">{$log.real_name}</div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">操作账号：</div>
+                    <div class="detail-cell-right">{$log.account}</div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">登录IP：</div>
+                    <div class="detail-cell-right">{$log.request_ip}</div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">操作节点：</div>
+                    <div class="detail-cell-right">{$log.menu}</div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">请求地址：</div>
+                    <div class="detail-cell-right">{$log.url}</div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">操作状态：</div>
+                    <div class="detail-cell-right">
+                        {eq name="$log.status" value="1"}<span class="layui-badge layui-bg-green">操作成功</span>{/eq}
+                        {eq name="$log.status" value="2"}<span class="layui-badge">操作失败</span>{/eq}
+                    </div>
+                </div>
+                <div class="detail-cell">
+                    <div class="detail-cell-left">操作时间：</div>
+                    <div class="detail-cell-right">{$log.create_time}</div>
+                </div>
+                <div class="detail-cell detail-cell-100">
+                    <div class="detail-cell-left">操作信息：</div>
+                    <div class="detail-cell-right">{$log.description}</div>
+                </div>
+                <div class="detail-cell detail-cell-100">
+                    <div class="detail-cell-left">请求参数：</div>
+                    <div class="detail-cell-right">
+                        <pre>{:json_encode(json_decode($log.params),JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)}</pre>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

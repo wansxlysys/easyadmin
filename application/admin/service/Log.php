@@ -4,6 +4,7 @@
 namespace app\admin\service;
 
 
+use app\common\repository\Query;
 use think\facade\Request;
 
 class Log extends \app\common\service\Log
@@ -47,7 +48,7 @@ class Log extends \app\common\service\Log
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
         $Query->setOrder(['log.id' => 'desc']);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.account']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
 
         $list  = $this->LogRepository->getListWithManager($Query);
         $total = $this->LogRepository->getTotalWithManager($Query);
@@ -60,9 +61,14 @@ class Log extends \app\common\service\Log
      * @param $id
      * @return mixed
      */
-    public function getById($id)
+    public function getDetail($id)
     {
-        return $this->LogRepository->getById($id);
+        $Query = new Query();
+
+        $Query->addWhere('log.id', '=', $id);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
+
+        return $this->LogRepository->getWithManager($Query);
     }
 
     /**
@@ -86,6 +92,7 @@ class Log extends \app\common\service\Log
 
         $data = [
             'url'         => Request::url(),
+            'request_ip'  => Request::ip(),
             'menu'        => $currentMenu['title'],
             'manager_id'  => $manager['id'],
             'params'      => $params,

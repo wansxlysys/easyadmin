@@ -547,7 +547,15 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     margin: 10px 0;
 }
 
-.detail .detail-cell.detail-cell-100 {
+.detail .detail-cell-middle {
+    align-items: center;
+}
+
+.detail .detail-cell-50 {
+    width: 50%;
+}
+
+.detail .detail-cell-100 {
     width: 100%;
 }
 

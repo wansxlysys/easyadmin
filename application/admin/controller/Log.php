@@ -59,14 +59,10 @@ class Log extends \app\common\controller\Admin
      */
     public function detail_action(Request $request)
     {
-        $ManagerService = new \app\admin\service\Manager();
-
-        $log     = $this->LogService->getById($request->get('id'));
-        $manager = $ManagerService->getById($log['manager_id']);
+        $log = $this->LogService->getDetail($request->get('id'));
 
         return $this->fetch('', [
-            'log'     => $log,
-            'manager' => $manager
+            'log' => $log
         ]);
     }
 

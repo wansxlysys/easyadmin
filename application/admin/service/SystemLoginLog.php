@@ -4,6 +4,8 @@
 namespace app\admin\service;
 
 
+use app\common\repository\Query;
+
 class SystemLoginLog extends \app\common\service\SystemLoginLog
 {
     /**
@@ -61,6 +63,21 @@ class SystemLoginLog extends \app\common\service\SystemLoginLog
     public function getById($id)
     {
         return $this->SystemLoginLogRepository->getById($id);
+    }
+
+    /**
+     * 获取详情
+     * @param $id
+     * @return mixed
+     */
+    public function getDetail($id)
+    {
+        $Query = new Query();
+
+        $Query->addWhere('log.id', '=', $id);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
+
+        return $this->SystemLoginLogRepository->getWithManager($Query);
     }
 
     /**

@@ -59,6 +59,28 @@ class SystemLoginLog extends \app\common\repository\SystemLoginLog
     }
 
     /**
+     * 获取关联管理员列表
+     * @param Query $Query
+     * @return mixed
+     */
+    public function getWithManager(Query $Query)
+    {
+        try {
+
+            return Db::name(static::getName())
+                ->alias('log')
+                ->join('Manager manager', 'log.manager_id = manager.id')
+                ->where($Query->getWhere())
+                ->whereOr($Query->getWhereOr())
+                ->field($Query->getField())
+                ->find();
+
+        } catch (\Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
      * 清空系统登录日志
      */
     public function clearSystemLoginLog()

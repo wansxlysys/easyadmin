@@ -3,10 +3,7 @@
 
 namespace app\common\util;
 
-/**
- * 数组树形转换类
- * @package helper
- */
+
 class TreeArrayUtil
 {
     /**

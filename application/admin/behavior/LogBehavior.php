@@ -7,11 +7,8 @@ namespace app\admin\behavior;
 use think\Response;
 use think\facade\Request;
 
-/**
- * 日志钩子
- * @package app\admin\behavior
- */
-class Log
+
+class LogBehavior
 {
     /**
      * 应用结束时执行

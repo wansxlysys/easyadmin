@@ -7,7 +7,7 @@ namespace app\common\helper;
 class StorageHelper
 {
     /**
-     * 容器
+     * 缓存
      * @var array
      */
     private static $store = [];

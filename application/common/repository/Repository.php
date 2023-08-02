@@ -8,10 +8,7 @@ use think\Db;
 use Throwable;
 use app\common\exception\RepositoryException;
 
-/**
- * 存储基础类
- * @package app\common\repository
- */
+
 abstract class Repository
 {
     /**

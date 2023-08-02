@@ -4,8 +4,14 @@
 namespace app\http\middleware;
 
 
+use Closure;
 use traits\controller\Jump;
+use app\admin\service\MenuService;
+use app\admin\service\RoleService;
 use app\common\helper\StorageHelper;
+use app\common\helper\ManagerHelper;
+use app\admin\service\ManagerService;
+use app\admin\service\PermissionService;
 
 class Permission
 {
@@ -17,10 +23,10 @@ class Permission
     /**
      * 句柄
      * @param $request
-     * @param \Closure $next
+     * @param Closure $next
      * @return mixed
      */
-    public function handle($request, \Closure $next)
+    public function handle($request, Closure $next)
     {
         $this->checkLogin();
         $this->initialize();
@@ -39,9 +45,9 @@ class Permission
         $role       = $this->getRole($manager['role_id']);
         $permission = $this->getPermission($manager['role_id']);
 
-        StorageHelper::set(\app\admin\service\ManagerService::CONTAINER_ROLE, $role);
-        StorageHelper::set(\app\admin\service\ManagerService::CONTAINER_MANAGER, $manager);
-        StorageHelper::set(\app\admin\service\ManagerService::CONTAINER_PERMISSION, $permission);
+        StorageHelper::set(ManagerService::CONTAINER_ROLE, $role);
+        StorageHelper::set(ManagerService::CONTAINER_MANAGER, $manager);
+        StorageHelper::set(ManagerService::CONTAINER_PERMISSION, $permission);
     }
 
     /**
@@ -49,7 +55,7 @@ class Permission
      */
     public function checkDisabled()
     {
-        if (\app\common\helper\ManagerHelper::isDisabled()) {
+        if (ManagerHelper::isDisabled()) {
             $this->error('账号被禁用');
         }
     }
@@ -59,10 +65,10 @@ class Permission
      */
     public function checkAuth()
     {
-        $MenuService = new \app\admin\service\MenuService();
+        $MenuService = new MenuService();
         $currentMenu = $MenuService->getCurrentMenu();
 
-        if (!\app\common\helper\ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
+        if (!ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
             $this->error('您的账号未授权访问');
         }
     }
@@ -72,7 +78,7 @@ class Permission
      */
     public function checkLogin()
     {
-        if (!\app\common\helper\ManagerHelper::isLogin()) {
+        if (!ManagerHelper::isLogin()) {
             $this->error('未登录', 'admin/login/login');
         }
     }
@@ -83,9 +89,9 @@ class Permission
      */
     protected function getManager()
     {
-        $ManagerService = new \app\admin\service\ManagerService();
+        $ManagerService = new ManagerService();
 
-        return $ManagerService->getById(\app\common\helper\ManagerHelper::getManagerId());
+        return $ManagerService->getById(ManagerHelper::getManagerId());
     }
 
     /**
@@ -95,7 +101,7 @@ class Permission
      */
     protected function getRole($roleId)
     {
-        $RoleService = new \app\admin\service\RoleService();
+        $RoleService = new RoleService();
 
         return $RoleService->getById($roleId);
     }
@@ -107,7 +113,7 @@ class Permission
      */
     protected function getPermission($roleId)
     {
-        $PermissionService = new \app\admin\service\PermissionService();
+        $PermissionService = new PermissionService();
 
         return $PermissionService->getAllMenuIdByRoleId($roleId);
     }

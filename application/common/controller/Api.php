@@ -6,10 +6,7 @@ namespace app\common\controller;
 
 use think\response\Json;
 
-/**
- * 接口基类
- * @package app\common\controller
- */
+
 class Api extends Common
 {
     /**

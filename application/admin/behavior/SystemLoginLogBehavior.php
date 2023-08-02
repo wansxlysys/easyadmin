@@ -5,8 +5,9 @@ namespace app\admin\behavior;
 
 
 use think\facade\Request;
+use app\admin\service\SystemLoginLogService;
 
-class SystemLoginLog
+class SystemLoginLogBehavior
 {
     /**
      * 登录成功
@@ -15,7 +16,7 @@ class SystemLoginLog
      */
     public static function loginSuccess(array $params)
     {
-        $SystemLoginLog = new \app\admin\service\SystemLoginLogService();
+        $SystemLoginLog = new SystemLoginLogService();
 
         $loginLog['status']      = 1;
         $loginLog['login_ip']    = Request::ip();
@@ -32,7 +33,7 @@ class SystemLoginLog
      */
     public static function loginError(array $params)
     {
-        $SystemLoginLog = new \app\admin\service\SystemLoginLogService();
+        $SystemLoginLog = new SystemLoginLogService();
 
         $loginLog['status']      = 2;
         $loginLog['login_ip']    = Request::ip();

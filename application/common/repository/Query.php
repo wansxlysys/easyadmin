@@ -4,10 +4,6 @@
 namespace app\common\repository;
 
 
-/**
- * 查询构建器
- * @package app\common\repository
- */
 class Query
 {
     /**

@@ -9,7 +9,7 @@ use RuntimeException;
 use think\facade\Cache;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
-use app\admin\behavior\SystemLoginLog;
+use app\admin\behavior\SystemLoginLogBehavior;
 use app\common\helper\EncryptionHelper;
 use app\admin\repository\ManagerRepository;
 
@@ -219,7 +219,7 @@ class ManagerService extends \app\common\service\ManagerService
             /**
              * 登录失败日志
              */
-            SystemLoginLog::loginError([
+            SystemLoginLogBehavior::loginError([
                 'manager_id'  => $manager['id'],
                 'description' => $throwable->getMessage()
             ]);
@@ -240,7 +240,7 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 登录成功日志
          */
-        SystemLoginLog::loginSuccess([
+        SystemLoginLogBehavior::loginSuccess([
             'manager_id'  => $manager['id'],
             'description' => '登录成功'
         ]);

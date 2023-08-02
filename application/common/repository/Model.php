@@ -8,10 +8,7 @@ use think\Db;
 use Throwable;
 use app\common\exception\RepositoryException;
 
-/**
- * 模型基础类
- * @package app\common\model
- */
+
 class Model extends Repository
 {
     /**

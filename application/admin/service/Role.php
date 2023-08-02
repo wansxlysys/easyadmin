@@ -34,7 +34,7 @@ class Role extends \app\common\service\Role
         $Query = new \app\common\repository\Query();
 
         if (!empty($params['title'])) {
-            $Query->addWhere(['title', 'LIKE', "%{$params['title']}%"]);
+            $Query->addWhere('title', 'LIKE', "%{$params['title']}%");
         }
 
         $Query->setPage($params['page']);
@@ -56,7 +56,7 @@ class Role extends \app\common\service\Role
         $Query = new \app\common\repository\Query();
 
         if (false === ManagerHelper::isSuper()) {
-            $Query->addWhere(['is_system', '=', static::IS_SYSTEM_NOT]);
+            $Query->addWhere('is_system', '=', static::IS_SYSTEM_NOT);
         }
 
         return $this->RoleRepository->getAll($Query);

@@ -35,11 +35,11 @@ class Manager extends \app\common\service\Manager
         $Query = new \app\common\repository\Query();
 
         if (!empty($params['status'])) {
-            $Query->addWhere(['status', '=', $params['status']]);
+            $Query->addWhere('status', '=', $params['status']);
         }
 
         if (!empty($params['real_name'])) {
-            $Query->addWhere(['real_name', 'LIKE', "%{$params['real_name']}%"]);
+            $Query->addWhere('real_name', 'LIKE', "%{$params['real_name']}%");
         }
 
         $Query->setPage($params['page']);
@@ -70,7 +70,7 @@ class Manager extends \app\common\service\Manager
     {
         $Query = new \app\common\repository\Query();
 
-        $Query->addWhere(['role_id', '=', $roleId]);
+        $Query->addWhere('role_id', '=', $roleId);
 
         return $this->ManagerRepository->getOne($Query);
     }

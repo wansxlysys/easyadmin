@@ -33,7 +33,7 @@ class Permission extends \app\common\service\Permission
     {
         $Query = new \app\common\repository\Query();
 
-        $Query->addWhere(['role_id', '=', $roleId]);
+        $Query->addWhere('role_id', '=', $roleId);
 
         return array_column($this->PermissionRepository->getAll($Query), 'menu_id');
     }
@@ -78,8 +78,8 @@ class Permission extends \app\common\service\Permission
          */
         $Query = new \app\common\repository\Query();
 
-        $Query->addWhere(['role_id', '=', $roleId]);
-        $Query->addWhere(['menu_id', 'IN', $deleteMenuId]);
+        $Query->addWhere('role_id', '=', $roleId);
+        $Query->addWhere('menu_id', 'IN', $deleteMenuId);
 
         if (!$this->PermissionRepository->deleteRecord($Query)) {
             throw new \RuntimeException('权限删除失败');
@@ -104,7 +104,7 @@ class Permission extends \app\common\service\Permission
     {
         $Query = new \app\common\repository\Query();
 
-        $Query->addWhere(['role_id', '=', $roleId]);
+        $Query->addWhere('role_id', '=', $roleId);
 
         return $this->PermissionRepository->deleteRecord($Query);
     }

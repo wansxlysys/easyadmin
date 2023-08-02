@@ -35,8 +35,8 @@ class Menu extends \app\common\service\Menu
         $Query = new \app\common\repository\Query();
 
         $Query->setOrder(['sort' => 'asc']);
-        $Query->addWhere(['type', 'in', '1,3']);
-        $Query->addWhere(['id', 'in', \app\common\helper\Manager::getPermission()]);
+        $Query->addWhere('type', 'in', '1,3');
+        $Query->addWhere('id', 'in', \app\common\helper\Manager::getPermission());
 
         $TreeArray = new \app\common\util\TreeArray();
 
@@ -57,9 +57,9 @@ class Menu extends \app\common\service\Menu
 
         $Query = new \app\common\repository\Query();
 
-        $Query->addWhere(['module', '=', Request::module()]);
-        $Query->addWhere(['controller', '=', Request::controller()]);
-        $Query->addWhere(['action', '=', Request::action()]);
+        $Query->addWhere('module', '=', Request::module());
+        $Query->addWhere('controller', '=', Request::controller());
+        $Query->addWhere('action', '=', Request::action());
 
         Storage::set(static::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
 

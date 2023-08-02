@@ -84,11 +84,13 @@ class Query
 
     /**
      * 添加where
-     * @param array $where
+     * @param $field
+     * @param $condition
+     * @param $value
      */
-    public function addWhere(array $where)
+    public function addWhere($field, $condition, $value)
     {
-        $this->where[] = $where;
+        $this->where[] = [$field, $condition, $value];
     }
 
     /**
@@ -111,11 +113,13 @@ class Query
 
     /**
      * 添加where
-     * @param array $whereOr
+     * @param $field
+     * @param $condition
+     * @param $value
      */
-    public function addWhereOr(array $whereOr)
+    public function addWhereOr($field, $condition, $value)
     {
-        $this->whereOr[] = $whereOr;
+        $this->whereOr[] = [$field, $condition, $value];
     }
 
     /**

@@ -127,13 +127,13 @@ class Index extends \app\common\controller\Admin
         if ($request->isAjax()) {
 
             $params = [
-                'cache' => $request->post('cache', ['log', 'cache', 'temp'])
+                'cache' => $request->post('cache')
             ];
 
             $Filesystem = new \Symfony\Component\Filesystem\Filesystem();
 
-            foreach ($params['cache'] as $key => $vo) {
-                $Filesystem->remove(env('runtime_path') . $vo);
+            foreach ($params['cache'] as $key => $dir) {
+                $Filesystem->remove(env('runtime_path') . $dir);
             }
 
             $this->success("清除成功");

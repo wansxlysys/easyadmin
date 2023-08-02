@@ -33,15 +33,15 @@ class Log extends \app\common\service\Log
         $Query = new \app\common\repository\Query();
 
         if (!empty($params['status'])) {
-            $Query->addWhere(['log.status', '=', $params['status']]);
+            $Query->addWhere('log.status', '=', $params['status']);
         }
 
         if (!empty($params['menu'])) {
-            $Query->addWhere(['log.menu', 'LIKE', "%{$params['menu']}%"]);
+            $Query->addWhere('log.menu', 'LIKE', "%{$params['menu']}%");
         }
 
         if (!empty($params['account'])) {
-            $Query->addWhere(['manager.account', 'LIKE', "%{$params['account']}%"]);
+            $Query->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
         }
 
         $Query->setPage($params['page']);

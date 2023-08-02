@@ -82,7 +82,7 @@ class Log extends \app\common\service\Log
         }
 
         $manager = \app\common\helper\Manager::getManager();
-        $params  = \app\common\helper\JsonArray::arrayToJson(Request::post());
+        $params  = \app\common\util\JsonArray::arrayToJson(Request::post());
 
         $data = [
             'url'         => Request::url(),

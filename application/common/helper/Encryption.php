@@ -15,5 +15,4 @@ class Encryption
     {
         return md5($content);
     }
-
 }

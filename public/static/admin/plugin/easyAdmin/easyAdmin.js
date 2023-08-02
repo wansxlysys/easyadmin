@@ -38,7 +38,7 @@ layui.define(['jquery'], function (exports) {
             shade: 0,
             closeBtn: 0,
             area: ['100%', '100%'],
-            skin: "easy-iframe-transparent",
+            skin: "easy-iframe easy-iframe-transparent",
             content: "",
         };
 
@@ -50,6 +50,13 @@ layui.define(['jquery'], function (exports) {
      */
     function closeLayer() {
         parent.layer.close(parent.layer.getFrameIndex(window.name));
+    }
+
+    /**
+     * 删除弹出层透明类
+     */
+    function removeLayerClass() {
+        $(window.parent.document).find('.easy-iframe-transparent').removeClass('easy-iframe-transparent');
     }
 
     /**
@@ -115,5 +122,6 @@ layui.define(['jquery'], function (exports) {
         openLayer: openLayer,
         closeLayer: closeLayer,
         showLoading: showLoading,
+        removeLayerClass: removeLayerClass
     });
 });

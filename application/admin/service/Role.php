@@ -5,6 +5,7 @@ namespace app\admin\service;
 
 
 use think\Db;
+use app\common\helper\Manager as ManagerHelper;
 
 class Role extends \app\common\service\Role
 {
@@ -52,7 +53,13 @@ class Role extends \app\common\service\Role
      */
     public function getAll(array $params = [])
     {
-        return $this->RoleRepository->getAll(new \app\common\repository\Query());
+        $Query = new \app\common\repository\Query();
+
+        if (false === ManagerHelper::isSuper()) {
+            $Query->addWhere(['is_system', '=', static::IS_SYSTEM_NOT]);
+        }
+
+        return $this->RoleRepository->getAll($Query);
     }
 
     /**

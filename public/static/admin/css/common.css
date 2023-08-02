@@ -284,8 +284,11 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     -webkit-transition: none;
 }
 
-
 /*******************弹出曾自定义主题************/
+.easy-iframe.layui-layer-border {
+    border: none;
+}
+
 .easy-iframe-transparent .layui-layer-load {
     background-color: rgba(255, 255, 255, 0.3) !important;
 }
@@ -432,4 +435,130 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     position: absolute;
     right: 0;
     top: 0;
+}
+
+/************选项卡**********************/
+.layui-tab {
+    margin-top: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #f6f6f6;
+}
+
+.layui-tab .layui-tab-content {
+    padding: 10px 15px;
+    line-height: 24px;
+}
+
+.layui-tab .layui-tab-title {
+    margin: 0 10px;
+}
+
+.layui-tab .layui-tab-title li {
+    line-height: 42px;
+    margin-left: 10px;
+}
+
+.layui-tab .layui-tab-title li:first-child {
+    margin-left: 0;
+}
+
+/***********************步骤***************************/
+.easy-step {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.easy-step .easy-step-item {
+    width: 200px;
+    position: relative;
+}
+
+.easy-step .easy-step-item:before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #c7c7c7;
+    position: absolute;
+    top: 16px;
+    left: 0;
+}
+
+.easy-step .easy-step-over:before {
+    background-color: #009688;
+}
+
+.easy-step .easy-step-item:first-child:before {
+    left: 50%;
+    width: 50%;
+}
+
+.easy-step .easy-step-item:last-child:before {
+    width: 50%;
+}
+
+.easy-step .easy-step-item .easy-step-item-number {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #009688;
+    border-radius: 50%;
+    overflow: hidden;
+    font-size: 16px;
+    color: #009688;
+    line-height: 30px;
+    text-align: center;
+    background-color: #fff;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+}
+
+.easy-step .easy-step-over .easy-step-item-number {
+    background-color: #009688;
+    color: #fff;
+}
+
+.easy-step .easy-step-item .easy-step-item-title {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+}
+
+.easy-step .easy-step-over .easy-step-item-title {
+    color: #009688;
+}
+
+.easy-step .easy-step-item .easy-step-item-tips {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+
+/***********详情**************/
+.detail {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail .detail-cell {
+    width: 25%;
+    display: flex;
+    margin: 10px 0;
+}
+
+.detail .detail-cell.detail-cell-100 {
+    width: 100%;
+}
+
+.detail .detail-cell .detail-cell-left {
+    width: 100px;
+    min-width: 100px;
+    color: #333;
+}
+
+.detail .detail-cell .detail-cell-right {
+    color: #666;
+    word-break: break-all;
+    padding-right: 15px;
 }

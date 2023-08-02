@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\common\util;
 
 /**
  * 数组树形转换类

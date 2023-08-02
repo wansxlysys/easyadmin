@@ -38,7 +38,7 @@ class Menu extends \app\common\service\Menu
         $Query->addWhere(['type', 'in', '1,3']);
         $Query->addWhere(['id', 'in', \app\common\helper\Manager::getPermission()]);
 
-        $TreeArray = new \app\common\helper\TreeArray();
+        $TreeArray = new \app\common\util\TreeArray();
 
         return $TreeArray->arrayToTree($this->MenuRepository->getAll($Query), 0, 1, function (&$item) {
             $item = $this->formatData($item);

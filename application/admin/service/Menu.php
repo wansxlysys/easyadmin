@@ -112,11 +112,9 @@ class Menu extends \app\common\service\Menu
      * @param array $params
      * @return mixed
      */
-    public function createRecord(array $params)
+    public function createMenu(array $params)
     {
-        $params = $this->buildData($params);
-
-        return $this->MenuRepository->createRecord($params);
+        return $this->MenuRepository->createRecord($this->buildData($params));
     }
 
     /**
@@ -124,11 +122,9 @@ class Menu extends \app\common\service\Menu
      * @param array $params
      * @return bool
      */
-    public function updateByParamsId(array $params)
+    public function updateMenu(array $params)
     {
-        $params = $this->buildData($params);
-
-        return $this->MenuRepository->updateById($params['id'], $params);
+        return $this->MenuRepository->updateById($params['id'], $this->buildData($params));
     }
 
     /**
@@ -136,7 +132,7 @@ class Menu extends \app\common\service\Menu
      * @param array $params
      * @return mixed
      */
-    public function deleteByParamsId(array $params)
+    public function deleteMenu(array $params)
     {
         return $this->MenuRepository->deleteById($params['id']);
     }

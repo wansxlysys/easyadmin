@@ -88,7 +88,7 @@ class Menu extends \app\common\controller\Admin
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->createRecord($params);
+            $result = $this->MenuService->createMenu($params);
 
             if (!$result) {
                 $this->error('添加失败');
@@ -130,7 +130,7 @@ class Menu extends \app\common\controller\Admin
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->updateByParamsId($params);
+            $result = $this->MenuService->updateMenu($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -164,7 +164,7 @@ class Menu extends \app\common\controller\Admin
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->deleteByParamsId($params);
+            $result = $this->MenuService->deleteMenu($params);
 
             if (!$result) {
                 $this->error('删除失败');
@@ -193,7 +193,7 @@ class Menu extends \app\common\controller\Admin
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->updateByParamsId($params);
+            $result = $this->MenuService->updateMenu($params);
 
             if (!$result) {
                 $this->error('修改失败');

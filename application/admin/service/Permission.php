@@ -44,7 +44,7 @@ class Permission extends \app\common\service\Permission
      * @param array $menuId
      * @return mixed
      */
-    public function createRecord($roleId, array $menuId)
+    public function createPermission($roleId, array $menuId)
     {
         if (empty($menuId)) {
             return true;
@@ -88,7 +88,7 @@ class Permission extends \app\common\service\Permission
         /**
          * 创建权限
          */
-        if (!$this->createRecord($roleId, $createMenuId)) {
+        if (!$this->createPermission($roleId, $createMenuId)) {
             throw new \RuntimeException('权限创建失败');
         }
 

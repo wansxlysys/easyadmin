@@ -71,7 +71,7 @@ class Role extends \app\common\controller\Admin
                 $this->error($RoleValidate->getError());
             }
 
-            if (!$this->RoleService->createRecord($params)) {
+            if (!$this->RoleService->createRole($params)) {
                 $this->error('添加失败');
             }
 
@@ -104,7 +104,7 @@ class Role extends \app\common\controller\Admin
                 $this->error($RoleValidate->getError());
             }
 
-            if (!$this->RoleService->updateByParamsId($params)) {
+            if (!$this->RoleService->updateRole($params)) {
                 $this->error($this->RoleService->getMessage());
             }
 
@@ -140,7 +140,7 @@ class Role extends \app\common\controller\Admin
                 $this->error($RoleValidate->getError());
             }
 
-            $result = $this->RoleService->deleteByParamsId($params['id']);
+            $result = $this->RoleService->deleteRole($params['id']);
 
             if (!$result) {
                 $this->error($this->RoleService->getMessage());

@@ -77,7 +77,7 @@ class Role extends \app\common\service\Role
      * @param $id
      * @return bool
      */
-    public function deleteByParamsId($id)
+    public function deleteRole($id)
     {
         $ManagerService    = new \app\admin\service\Manager();
         $PermissionService = new \app\admin\service\Permission();
@@ -115,7 +115,7 @@ class Role extends \app\common\service\Role
      * @param array $params
      * @return mixed
      */
-    public function createRecord(array $params)
+    public function createRole(array $params)
     {
         Db::startTrans();
 
@@ -139,7 +139,7 @@ class Role extends \app\common\service\Role
              */
             $PermissionService = new \app\admin\service\Permission();
 
-            $result = $PermissionService->createRecord($roleId, $params['permission']);
+            $result = $PermissionService->createPermission($roleId, $params['permission']);
 
             if (!$result) {
                 throw new \RuntimeException('权限创建失败');
@@ -162,7 +162,7 @@ class Role extends \app\common\service\Role
      * @param array $params
      * @return mixed
      */
-    public function updateByParamsId(array $params)
+    public function updateRole(array $params)
     {
         Db::startTrans();
 

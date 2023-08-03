@@ -13,7 +13,6 @@ use app\admin\repository\MenuRepository;
 
 class MenuService extends \app\common\service\MenuService
 {
-
     /**
      * 菜单存储类
      * @var MenuRepository

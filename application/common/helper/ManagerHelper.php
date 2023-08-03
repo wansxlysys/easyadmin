@@ -5,6 +5,7 @@ namespace app\common\helper;
 
 
 use think\facade\Session;
+use app\admin\service\RoleService;
 use app\admin\service\ManagerService;
 
 class ManagerHelper
@@ -86,7 +87,7 @@ class ManagerHelper
      */
     public static function isSuper()
     {
-        return static::getRoleName() == 'super';
+        return static::getRoleName() == RoleService::SUPER_NAME;
     }
 
     /**

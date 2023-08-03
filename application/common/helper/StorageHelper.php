@@ -10,10 +10,10 @@ class StorageHelper
      * 缓存
      * @var array
      */
-    private static $store = [];
+    protected static $store = [];
 
     /**
-     * 检测容器变量是否存在
+     * 检测缓存变量是否存在
      * @param $name
      * @return bool
      */
@@ -23,7 +23,7 @@ class StorageHelper
     }
 
     /**
-     * 设置容器
+     * 设置缓存
      * @param $name
      * @param $value
      */
@@ -33,17 +33,12 @@ class StorageHelper
     }
 
     /**
-     * 获取容器
+     * 获取缓存
      * @param $name
-     * @param callable|null $resolve
      * @return mixed|null
      */
-    public static function get($name, callable $resolve = null)
+    public static function get($name)
     {
-        if (!is_null($resolve)) {
-            static::set($name, $resolve());
-        }
-
         return isset(static::$store[$name]) ? static::$store[$name] : null;
     }
 

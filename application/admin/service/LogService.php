@@ -5,8 +5,8 @@ namespace app\admin\service;
 
 
 use think\facade\Request;
+use app\common\util\ArrayUtil;
 use app\common\repository\Query;
-use app\common\util\JsonArrayUtil;
 use app\common\helper\ManagerHelper;
 use app\admin\repository\LogRepository;
 
@@ -91,7 +91,7 @@ class LogService extends \app\common\service\LogService
         }
 
         $manager = ManagerHelper::getManager();
-        $params  = JsonArrayUtil::arrayToJson(Request::post());
+        $params  = ArrayUtil::toJson(Request::post());
 
         $data = [
             'url'         => Request::url(),

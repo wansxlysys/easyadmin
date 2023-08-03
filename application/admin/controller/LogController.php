@@ -75,9 +75,7 @@ class LogController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            $result = $this->LogService->clear();
-
-            if ($result === true) {
+            if ($this->LogService->clear()) {
                 $this->success('清空成功');
             }
 

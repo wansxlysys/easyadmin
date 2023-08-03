@@ -180,7 +180,7 @@ class ManagerService extends \app\common\service\ManagerService
                 /**
                  * 检测密码是否正确
                  */
-                if ($manager['password'] != EncryptionHelper::encrypt($params['password'])) {
+                if (!EncryptionHelper::equals($params['password'], $manager['password'])) {
                     throw new RuntimeException('密码错误');
                 }
 

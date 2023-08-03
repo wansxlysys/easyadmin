@@ -42,6 +42,7 @@ class TreeArrayUtil
     {
         $result = [];
         foreach ($data as $key => $item) {
+
             if ($item[$this->parentId] == $parentId) {
 
                 $item[$this->children] = $this->arrayToTree($data, $item[$this->id], $level + 1, $resolve);
@@ -92,6 +93,7 @@ class TreeArrayUtil
     public function arrayToTreeStruct($data, $id = 0, $level = 1, $resolve = null, &$result = [])
     {
         foreach ($data as $key => $item) {
+
             if ($item[$this->parentId] == $id) {
 
                 $item['level']  = $level;

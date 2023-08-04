@@ -4,6 +4,8 @@
 namespace app\common\service;
 
 
+use app\common\repository\RoleRepository;
+
 class RoleService extends Service
 {
     /**
@@ -16,4 +18,19 @@ class RoleService extends Service
      */
     const IS_SYSTEM_YES = 1; // 是
     const IS_SYSTEM_NOT = 2; // 否
+
+    /**
+     * 角色存储嘞
+     * @var RoleRepository
+     */
+    protected $RoleRepository;
+
+    /**
+     * 初始化
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->RoleRepository = new RoleRepository();
+    }
 }

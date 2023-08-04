@@ -9,25 +9,9 @@ use app\common\repository\Query;
 use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
 use app\common\helper\StorageHelper;
-use app\admin\repository\MenuRepository;
 
 class MenuService extends \app\common\service\MenuService
 {
-    /**
-     * 菜单存储类
-     * @var MenuRepository
-     */
-    protected $MenuRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->MenuRepository = new MenuRepository();
-    }
-
     /**
      * 获取左侧菜单
      * @return array

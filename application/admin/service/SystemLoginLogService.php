@@ -5,25 +5,9 @@ namespace app\admin\service;
 
 
 use app\common\repository\Query;
-use app\admin\repository\SystemLoginLogRepository;
 
 class SystemLoginLogService extends \app\common\service\SystemLoginLogService
 {
-    /**
-     * 系统登录日志
-     * @var SystemLoginLogRepository
-     */
-    protected $SystemLoginLogRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemLoginLogRepository = new SystemLoginLogRepository();
-    }
-
     /**
      * 获取列表和总数
      * @param array $params

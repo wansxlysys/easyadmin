@@ -6,25 +6,9 @@ namespace app\admin\service;
 
 use think\Validate;
 use think\facade\Env;
-use app\admin\repository\UploadRepository;
 
 class UploadService extends \app\common\service\UploadService
 {
-    /**
-     * 系统配置存储类
-     * @var UploadRepository
-     */
-    protected $UploadRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->UploadRepository = new UploadRepository();
-    }
-
     /**
      * 图片上传
      * @param $file

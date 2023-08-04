@@ -4,6 +4,8 @@
 namespace app\common\service;
 
 
+use app\common\repository\ManagerRepository;
+
 class ManagerService extends Service
 {
     /**
@@ -34,4 +36,19 @@ class ManagerService extends Service
     const STATUS_ENABLED  = 1; // 启用
     const STATUS_DISABLED = 2; // 禁用
     const STATUS_LOCKED   = 3; // 锁定
+
+    /**
+     * 角色存储类
+     * @var ManagerRepository
+     */
+    protected $ManagerRepository;
+
+    /**
+     * 初始化
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->ManagerRepository = new ManagerRepository();
+    }
 }

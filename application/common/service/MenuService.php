@@ -4,6 +4,8 @@
 namespace app\common\service;
 
 
+use app\common\repository\MenuRepository;
+
 class MenuService extends Service
 {
     /**
@@ -17,4 +19,19 @@ class MenuService extends Service
      * 缓存标识
      */
     const CONTAINER_MENU = 'system.menu';
+
+    /**
+     * 菜单存储类
+     * @var MenuRepository
+     */
+    protected $MenuRepository;
+
+    /**
+     * 初始化
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->MenuRepository = new MenuRepository();
+    }
 }

@@ -6,26 +6,9 @@ namespace app\admin\service;
 
 use RuntimeException;
 use app\common\repository\Query;
-use app\admin\repository\PermissionRepository;
 
 class PermissionService extends \app\common\service\PermissionService
 {
-
-    /**
-     * 角色存储嘞
-     * @var PermissionRepository
-     */
-    protected $PermissionRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->PermissionRepository = new PermissionRepository();
-    }
-
     /**
      * 通过角色ID获取权限
      * @param $roleId

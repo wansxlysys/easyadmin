@@ -8,25 +8,9 @@ use think\facade\Request;
 use app\common\util\ArrayUtil;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
-use app\admin\repository\LogRepository;
 
 class LogService extends \app\common\service\LogService
 {
-    /**
-     * 日志存储类
-     * @var LogRepository
-     */
-    protected $LogRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->LogRepository = new LogRepository();
-    }
-
     /**
      * 获取列表和总数
      * @param array $params

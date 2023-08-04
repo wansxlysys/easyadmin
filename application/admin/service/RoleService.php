@@ -9,25 +9,9 @@ use Throwable;
 use RuntimeException;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
-use app\admin\repository\RoleRepository;
 
 class RoleService extends \app\common\service\RoleService
 {
-    /**
-     * 角色存储嘞
-     * @var RoleRepository
-     */
-    protected $RoleRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->RoleRepository = new RoleRepository();
-    }
-
     /**
      * 获取列表和总数
      * @param array $params

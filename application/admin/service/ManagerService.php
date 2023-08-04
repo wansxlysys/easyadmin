@@ -9,28 +9,11 @@ use RuntimeException;
 use think\facade\Cache;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
-use app\admin\behavior\SystemLoginLogBehavior;
 use app\common\helper\EncryptionHelper;
-use app\admin\repository\ManagerRepository;
+use app\admin\behavior\SystemLoginLogBehavior;
 
 class ManagerService extends \app\common\service\ManagerService
 {
-
-    /**
-     * 角色存储嘞
-     * @var ManagerRepository
-     */
-    protected $ManagerRepository;
-
-    /**
-     * 初始化
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->ManagerRepository = new ManagerRepository();
-    }
-
     /**
      * 获取列表和总数
      * @param array $params

@@ -8,7 +8,6 @@ use think\Db;
 use Throwable;
 use app\common\exception\RepositoryException;
 
-
 class Model extends Repository
 {
     /**

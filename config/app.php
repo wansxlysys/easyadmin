@@ -132,8 +132,8 @@ return [
     'route_cache_option'      => [],
 
     // 默认跳转页面对应的模板文件
-    'dispatch_success_tmpl'   => Env::get('app_path') . 'common/view/jump.html',
-    'dispatch_error_tmpl'     => Env::get('app_path') . 'common/view/jump.html',
+    'dispatch_success_tmpl'   => Env::get('app_path') . 'common/view/system/jump.html',
+    'dispatch_error_tmpl'     => Env::get('app_path') . 'common/view/system/jump.html',
 
     // 异常页面的模板文件
     'exception_tmpl'          => Env::get('think_path') . 'tpl/think_exception.tpl',
@@ -147,6 +147,6 @@ return [
     // http异常
     'http_exception_template' => [
         // 定义404错误的模板文件地址
-        404 => Env::get('app_path') . 'common/view/404.html',
+        404 => Env::get('app_path') . 'common/view/system/404.html',
     ]
 ];

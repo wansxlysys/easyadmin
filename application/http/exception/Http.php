@@ -24,7 +24,7 @@ class Http extends \think\exception\Handle
              * 非http异常，报错信息全部隐藏
              */
             if (false === ($exception instanceof HttpException)) {
-                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/exception.html');
+                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/system/exception.html');
             }
         }
 

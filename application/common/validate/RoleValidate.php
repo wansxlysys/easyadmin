@@ -11,7 +11,7 @@ class RoleValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'id'         => 'require|integer',
+        'id'         => 'require|number',
         'title'      => 'require|max:32|unique:Role',
         'name'       => 'require|max:32|unique:Role',
         'permission' => 'require',
@@ -23,7 +23,7 @@ class RoleValidate extends Validate
      */
     protected $message = [
         'id.require'         => 'ID不能为空',
-        'id.integer'         => 'ID必须为数字',
+        'id.number'          => 'ID必须为正整数',
         'title.require'      => '角色名不能为空',
         'title.max'          => '角色名不能超过32个字符',
         'title.unique'       => '角色名已存在',

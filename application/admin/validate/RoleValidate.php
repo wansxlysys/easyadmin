@@ -30,6 +30,6 @@ class RoleValidate extends \app\common\validate\RoleValidate
      */
     public function sceneDelete()
     {
-        return $this->only(['id'])->remove('id', 'integer');
+        return $this->only(['id'])->remove('id', 'number');
     }
 }

@@ -11,13 +11,13 @@ class ManagerValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'id'        => 'require|integer',
-        'role_id'   => 'require|integer',
+        'id'        => 'require|number',
+        'role_id'   => 'require|number',
         'avatar'    => 'require',
         'real_name' => 'require|max:32|unique:Manager',
         'account'   => 'require|max:32|unique:Manager',
         'password'  => 'require',
-        'status'    => 'require|integer',
+        'status'    => 'require|number',
         'captcha'   => 'require|captcha:login',
     ];
 
@@ -27,9 +27,9 @@ class ManagerValidate extends Validate
      */
     protected $message = [
         'id.require'        => 'ID不能为空',
-        'id.integer'        => 'ID必须为数字',
+        'id.number'        => 'ID必须为正整数',
         'role_id.require'   => '角色ID不能为空',
-        'role_id.integer'   => '角色ID必须为数字',
+        'role_id.number'   => '角色ID必须为正整数',
         'avatar.require'    => '头像不能为空',
         'real_name.require' => '姓名不能为空',
         'real_name.max'     => '姓名不能超过32个字符',
@@ -39,7 +39,7 @@ class ManagerValidate extends Validate
         'account.unique'    => '账号已存在',
         'password.require'  => '密码不能为空',
         'status.require'    => '状态不能为空',
-        'status.integer'    => '状态必须为数字',
+        'status.number'    => '状态必须为正整数',
         'captcha.require'   => '验证码不能为空',
         'captcha.captcha'   => '验证码错误',
     ];

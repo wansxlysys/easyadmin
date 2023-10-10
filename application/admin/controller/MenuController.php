@@ -17,7 +17,7 @@ class MenuController extends \app\common\controller\AdminController
     protected $middleware = ['Permission'];
 
     /**
-     * 菜单服务类
+     * 服务类
      * @var MenuService
      */
     protected $MenuService;

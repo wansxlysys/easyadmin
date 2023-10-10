@@ -9,7 +9,7 @@ use app\common\repository\LogRepository;
 class LogService extends Service
 {
     /**
-     * 日志存储类
+     * 存储类
      * @var LogRepository
      */
     protected $LogRepository;

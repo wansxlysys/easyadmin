@@ -18,7 +18,7 @@ class RoleController extends \app\common\controller\AdminController
     protected $middleware = ['Permission'];
 
     /**
-     * 角色服务类
+     * 服务类
      * @var RoleService
      */
     protected $RoleService;

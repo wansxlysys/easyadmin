@@ -9,7 +9,7 @@ use app\common\repository\PermissionRepository;
 class PermissionService extends Service
 {
     /**
-     * 角色存储类
+     * 存储类
      * @var PermissionRepository
      */
     protected $PermissionRepository;

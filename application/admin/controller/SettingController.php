@@ -17,7 +17,7 @@ class SettingController extends \app\common\controller\AdminController
     protected $middleware = ['Permission'];
 
     /**
-     * 系统设置服务类
+     * 服务类
      * @var SettingSystemService
      */
     protected $SettingSystemService;

@@ -9,7 +9,7 @@ use app\common\repository\SettingSystemRepository;
 class SettingSystemService extends Service
 {
     /**
-     * 系统配置存储类
+     * 存储类
      * @var SettingSystemRepository
      */
     protected $SettingSystemRepository;

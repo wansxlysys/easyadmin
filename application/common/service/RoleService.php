@@ -20,7 +20,7 @@ class RoleService extends Service
     const IS_SYSTEM_NOT = 2; // 否
 
     /**
-     * 角色存储嘞
+     * 存储类
      * @var RoleRepository
      */
     protected $RoleRepository;

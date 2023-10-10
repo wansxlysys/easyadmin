@@ -9,7 +9,7 @@ use app\common\repository\UploadRepository;
 class UploadService extends Service
 {
     /**
-     * 系统配置存储类
+     * 存储类
      * @var UploadRepository
      */
     protected $UploadRepository;

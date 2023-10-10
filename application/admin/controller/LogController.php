@@ -16,7 +16,7 @@ class LogController extends \app\common\controller\AdminController
     protected $middleware = ['Permission'];
 
     /**
-     * 日志服务类
+     * 服务类
      * @var LogService
      */
     protected $LogService;

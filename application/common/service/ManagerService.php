@@ -38,7 +38,7 @@ class ManagerService extends Service
     const STATUS_LOCKED   = 3; // 锁定
 
     /**
-     * 角色存储类
+     * 存储类
      * @var ManagerRepository
      */
     protected $ManagerRepository;

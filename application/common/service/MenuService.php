@@ -21,7 +21,7 @@ class MenuService extends Service
     const CONTAINER_MENU = 'system.menu';
 
     /**
-     * 菜单存储类
+     * 存储类
      * @var MenuRepository
      */
     protected $MenuRepository;

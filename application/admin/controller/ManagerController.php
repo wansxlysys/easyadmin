@@ -19,7 +19,7 @@ class ManagerController extends \app\common\controller\AdminController
     protected $middleware = ['Permission'];
 
     /**
-     * 管理员服务类
+     * 服务类
      * @var ManagerService
      */
     protected $ManagerService;

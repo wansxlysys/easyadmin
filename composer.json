@@ -16,21 +16,22 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.4.0",
+        "ext-json": "*",
+        "ext-openssl": "*",
         "topthink/framework": "5.1.*",
         "topthink/think-captcha": "2.0.*",
         "topthink/think-image": "^1.0",
         "topthink/think-helper": "1.0.*",
         "symfony/filesystem": "3.4",
         "phpmailer/phpmailer": "^6.5",
-        "phpoffice/phpspreadsheet": "1.8.2",
-        "ext-json": "*",
-        "ext-openssl": "*",
+        "phpoffice/phpspreadsheet": "^1.12",
         "predis/predis": "^1.1",
         "endroid/qr-code": "3.9.6",
         "topthink/think-testing": "2.0.*",
         "ifsnop/mysqldump-php": "^2.9",
-        "overtrue/wechat": "~5.0"
+        "overtrue/wechat": "~5.0",
+        "nesbot/carbon": "^2.68"
     },
     "autoload": {
         "psr-4": {
@@ -42,6 +43,13 @@
         "think-path": "thinkphp"
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "platform": {
+            "php": "7.4"
+        },
+        "allow-plugins": {
+            "topthink/think-installer": true,
+            "easywechat-composer/easywechat-composer": true
+        }
     }
 }

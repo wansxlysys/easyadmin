@@ -72,7 +72,7 @@ class MenuController extends \app\common\controller\AdminController
 
             $params = [
                 'parent_id'  => $request->post('parent_id'),
-                'title'      => $request->post('title'),
+                'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
                 'module'     => $request->post('module'),
                 'controller' => $request->post('controller'),
@@ -114,7 +114,7 @@ class MenuController extends \app\common\controller\AdminController
             $params = [
                 'id'         => $request->post('id'),
                 'parent_id'  => $request->post('parent_id'),
-                'title'      => $request->post('title'),
+                'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
                 'module'     => $request->post('module'),
                 'controller' => $request->post('controller'),

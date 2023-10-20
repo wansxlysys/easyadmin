@@ -12,7 +12,7 @@ class MenuValidate extends \app\common\validate\MenuValidate
      */
     public function sceneCreate()
     {
-        return $this->only(['parent_id', 'title', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
+        return $this->only(['parent_id', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
     }
 
     /**
@@ -21,7 +21,7 @@ class MenuValidate extends \app\common\validate\MenuValidate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'parent_id', 'title', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
+        return $this->only(['id', 'parent_id', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
     }
 
     /**

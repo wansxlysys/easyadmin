@@ -1,6 +1,7 @@
 <script>
 
     var menuData = {
+        type: 1,
         parentId: 0
     }
 
@@ -9,8 +10,8 @@
          * 初始化
          */
         initService: function () {
-            menuService.listenType();
             menuService.renderMenuSelect();
+            menuService.listenType(menuData.type);
         },
         /**
          * 创建菜单选择器
@@ -26,7 +27,7 @@
             });
         },
         /**
-         * 未通过原因
+         * 渲染链接地址
          */
         renderLink: function (type) {
             if (layui.easyHelper.equalsInt(3, type)) {
@@ -36,7 +37,7 @@
             }
         },
         /**
-         * 监听状态
+         * 监听菜单类型
          */
         listenType: function (type) {
             layui.form.on("radio(type)", function (obj) {

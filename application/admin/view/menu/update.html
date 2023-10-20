@@ -9,15 +9,15 @@
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">上级节点</label>
+                    <label class="layui-form-label layui-required">上级菜单</label>
                     <div class="layui-input-block">
                         <div id="menuTree"></div>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">节点名称</label>
+                    <label class="layui-form-label layui-required">菜单名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" placeholder="请输入节点名称" class="layui-input" value="{$menu.title}">
+                        <input type="text" name="name" placeholder="请输入菜单名称" class="layui-input" value="{$menu.name}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -58,7 +58,7 @@
                         <input type="radio" name="type" value="3" title="外链" lay-filter="type" {eq name="$menu.type" value="3" }checked{/eq}>
                     </div>
                 </div>
-                <div class="layui-form-item {if $menu.type != 3}layui-hide{/if}">
+                <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">外链地址</label>
                     <div class="layui-input-block">
                         <input type="text" name="link" placeholder="请输入外链地址" class="layui-input" value="{$menu.link}">
@@ -97,7 +97,9 @@
         var form = layui.form;
         var easyAdmin = layui.easyAdmin;
 
+        menuData.type = '{$menu.type}';
         menuData.parentId = '{$menu.parent_id}';
+
         menuService.initService();
 
         form.on("submit", function (obj) {

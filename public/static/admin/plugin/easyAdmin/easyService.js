@@ -4,8 +4,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery'], function (exports) {
     var easyAdmin = layui.easyAdmin;
     var easyBuilder = layui.easyBuilder;
 
-    // 渲染器
-    var render = {
+    var easyService = {
         menuTreeSelect: function (options) {
             easyAdmin.http({
                 type: "GET",
@@ -15,7 +14,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery'], function (exports) {
 
                     var defaults = {
                         appendFirst: true,
-                        appendFirstData: {id: 0, title: '顶级菜单', parent_id: 0}
+                        appendFirstData: {id: 0, name: '顶级菜单', parent_id: 0}
                     };
 
                     easyBuilder.treeSelect(options.elem, result.data, options.selected, $.extend(true, defaults, options.setting));
@@ -33,7 +32,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery'], function (exports) {
                     var data = $.map(result.data, function (item) {
                         return {
                             id: item.id,
-                            title: item.title,
+                            name: item.name,
                             parent_id: item.parent_id
                         }
                     });
@@ -57,7 +56,5 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery'], function (exports) {
         },
     };
 
-    exports("easyService", {
-        render: render,
-    });
+    exports("easyService", easyService);
 });

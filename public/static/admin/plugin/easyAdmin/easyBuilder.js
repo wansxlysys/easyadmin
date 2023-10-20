@@ -53,7 +53,7 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
         var defaults = {
             data: {
                 key: {
-                    name: 'title'
+                    name: 'name'
                 },
                 simpleData: {
                     enable: true,
@@ -124,7 +124,7 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
             height: "450px",
             disabled: false,
             prop: {
-                name: 'title',
+                name: 'name',
                 value: 'id'
             },
             model: {

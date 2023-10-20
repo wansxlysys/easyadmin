@@ -12,7 +12,7 @@ class RoleValidate extends \app\common\validate\RoleValidate
      */
     public function sceneCreate()
     {
-        return $this->only(['title', 'name', 'permission']);
+        return $this->only(['name', 'identify', 'permission']);
     }
 
     /**
@@ -21,7 +21,7 @@ class RoleValidate extends \app\common\validate\RoleValidate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'title', 'name', 'permission']);
+        return $this->only(['id', 'name', 'identify', 'permission']);
     }
 
     /**

@@ -80,7 +80,7 @@ class LogService extends \app\common\service\LogService
         $data = [
             'url'         => Request::url(),
             'request_ip'  => Request::ip(),
-            'menu'        => $currentMenu['title'],
+            'menu'        => $currentMenu['name'],
             'manager_id'  => $manager['id'],
             'params'      => $params,
             'description' => $description,

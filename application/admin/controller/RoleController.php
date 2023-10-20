@@ -44,7 +44,7 @@ class RoleController extends \app\common\controller\AdminController
             $params = [
                 'page'  => $request->get('page'),
                 'limit' => $request->get('limit'),
-                'title' => $request->get('title'),
+                'name'  => $request->get('name'),
             ];
 
             $this->success('获取成功', '', $this->RoleService->getListWithTotal($params));
@@ -62,8 +62,8 @@ class RoleController extends \app\common\controller\AdminController
         if ($request->isAjax()) {
 
             $params = [
-                'title'      => $request->post('title'),
                 'name'       => $request->post('name'),
+                'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
             ];
@@ -95,8 +95,8 @@ class RoleController extends \app\common\controller\AdminController
 
             $params = [
                 'id'         => $request->post('id'),
-                'title'      => $request->post('title'),
                 'name'       => $request->post('name'),
+                'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
             ];

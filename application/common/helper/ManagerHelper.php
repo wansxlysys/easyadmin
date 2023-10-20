@@ -58,9 +58,9 @@ class ManagerHelper
      * 获取角色名称
      * @return mixed
      */
-    public static function getRoleName()
+    public static function getIdentify()
     {
-        return static::getRole()['name'];
+        return static::getRole()['identify'];
     }
 
     /**
@@ -82,12 +82,21 @@ class ManagerHelper
     }
 
     /**
-     * 检测是否为超级管理员
+     * 是否为超级管理员
      * @return bool
      */
     public static function isSuper()
     {
-        return static::getRoleName() == RoleService::SUPER_NAME;
+        return static::getIdentify() == RoleService::SUPER_NAME;
+    }
+
+    /**
+     * 是否非超级管理员
+     * @return bool
+     */
+    public static function isNotSuper()
+    {
+        return static::getIdentify() != RoleService::SUPER_NAME;
     }
 
     /**

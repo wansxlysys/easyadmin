@@ -59,9 +59,9 @@ class IndexController extends \app\common\controller\AdminController
         if ($request->isAjax()) {
 
             $params = [
-                'avatar'   => $request->post('avatar'),
+                'avatar'    => $request->post('avatar'),
                 'real_name' => $request->post('real_name'),
-                'password' => $request->post('password'),
+                'password'  => $request->post('password'),
             ];
 
             $params['id'] = ManagerHelper::getManagerId();
@@ -131,13 +131,11 @@ class IndexController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            $params = [
-                'cache' => $request->post('cache')
-            ];
+            $cache = ['cache', 'temp'];
 
             $Filesystem = new Filesystem();
 
-            foreach ($params['cache'] as $key => $dir) {
+            foreach ($cache as $key => $dir) {
                 $Filesystem->remove(env('runtime_path') . $dir);
             }
 

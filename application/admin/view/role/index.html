@@ -4,7 +4,7 @@
 {include file="admin@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
-        <div class="layui-card-header">{$currentMenu.title}</div>
+        <div class="layui-card-header">{$currentMenu.name}</div>
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
@@ -32,7 +32,7 @@
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm layui-btn-default" lay-event="create">
-            <i class="fa fa-fw fa-plus"></i>添加角色
+            <i class="fa fa-fw fa-plus"></i>角色添加
         </button>
     </div>
 </script>
@@ -67,8 +67,8 @@
             cols: [[
                 {type: 'checkbox'},
                 {field: 'id', title: 'ID', width: 80},
-                {field: 'title', title: '角色名称', width: 240},
-                {field: 'name', title: '角色标识', width: 160},
+                {field: 'name', title: '角色名称', width: 240},
+                {field: 'identify', title: '角色标识', width: 160},
                 {field: 'remark', title: '备注'},
                 {field: 'is_system', title: '系统内置', width: 140, templet: "#is_system"},
                 {title: '操作', toolbar: '#bar', width: 180}

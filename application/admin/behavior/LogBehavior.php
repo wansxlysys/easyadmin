@@ -6,7 +6,7 @@ namespace app\admin\behavior;
 
 use think\Response;
 use think\facade\Request;
-
+use app\admin\service\LogService;
 
 class LogBehavior
 {
@@ -27,7 +27,7 @@ class LogBehavior
                  */
                 $codeMap = [1 => 1, 0 => 2];
 
-                $LogService = new \app\admin\service\LogService();
+                $LogService = new LogService();
 
                 $LogService->writeLog("系统自动记录：{$responseData['msg']}", $codeMap[$responseData['code']]);
             }

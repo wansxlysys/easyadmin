@@ -59,12 +59,12 @@
                     {if empty($menu_level_1['children'])}
                     <a href="{$menu_level_1.url}" data-target="{$menu_level_1['target']}">
                         <i class="fa fa-fw {$menu_level_1['icon']}"></i>
-                        {$menu_level_1.title}
+                        {$menu_level_1.name}
                     </a>
                     {else /}
                     <a href="javascript:;">
                         <i class="fa fa-fw {$menu_level_1['icon']}"></i>
-                        <span>{$menu_level_1.title}</span>
+                        <span>{$menu_level_1.name}</span>
                     </a>
                     <dl class="layui-nav-child">
                         {volist name="menu_level_1['children']" id="menu_level_2"}
@@ -72,19 +72,19 @@
                         {if empty($menu_level_2['children'])}
                         <a href="{$menu_level_2.url}" data-target="{$menu_level_2['target']}">
                             <i class="fa fa-fw {$menu_level_2['icon']}"></i>
-                            <span>{$menu_level_2.title}</span>
+                            <span>{$menu_level_2.name}</span>
                         </a>
                         {else /}
                         <a href="javascript:;">
                             <i class="fa fa-fw {$menu_level_2['icon']}"></i>
-                            <span>{$menu_level_2.title}</span>
+                            <span>{$menu_level_2.name}</span>
                         </a>
                         <dl class="layui-nav-child">
                             {volist name="menu_level_2['children']" id="menu_level_3"}
                             <dd>
                                 <a href="{$menu_level_3.url}" data-target="{$menu_level_3['target']}">
                                     <i class="fa fa-fw {$menu_level_3['icon']}"></i>
-                                    <span>{$menu_level_3.title}</span>
+                                    <span>{$menu_level_3.name}</span>
                                 </a>
                             </dd>
                             {/volist}
@@ -207,7 +207,7 @@
                 event.preventDefault();
 
                 easyAdmin.http({
-                    type: "GET",
+                    type: "POST",
                     url: "{:url('admin/Index/logout')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {
@@ -220,10 +220,7 @@
             },
             clearCache: function () {
                 easyAdmin.http({
-                    type: "GET",
-                    data: {
-                        cache: ["log", "cache", "temp"]
-                    },
+                    type: "POST",
                     url: "{:url('admin/Index/clear_cache')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {

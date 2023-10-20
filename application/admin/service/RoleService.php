@@ -27,6 +27,7 @@ class RoleService extends \app\common\service\RoleService
 
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
+        $Query->addOrder('sort', 'asc');
 
         $list  = $this->RoleRepository->getList($Query);
         $total = $this->RoleRepository->getTotal($Query);
@@ -46,6 +47,8 @@ class RoleService extends \app\common\service\RoleService
         if (false === ManagerHelper::isSuper()) {
             $Query->addWhere('is_system', '=', static::IS_SYSTEM_NOT);
         }
+
+        $Query->addOrder('sort', 'asc');
 
         return $this->RoleRepository->getAll($Query);
     }

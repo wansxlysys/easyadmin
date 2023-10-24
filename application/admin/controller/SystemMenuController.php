@@ -5,10 +5,10 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\MenuService;
-use app\admin\validate\MenuValidate;
+use app\admin\service\SystemMenuService;
+use app\admin\validate\SystemMenuValidate;
 
-class MenuController extends \app\common\controller\AdminController
+class SystemMenuController extends \app\common\controller\AdminController
 {
     /**
      * 中间件
@@ -18,9 +18,9 @@ class MenuController extends \app\common\controller\AdminController
 
     /**
      * 服务类
-     * @var MenuService
+     * @var SystemMenuService
      */
-    protected $MenuService;
+    protected $SystemMenuService;
 
     /**
      * 初始化
@@ -28,7 +28,7 @@ class MenuController extends \app\common\controller\AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->MenuService = new MenuService();
+        $this->SystemMenuService = new SystemMenuService();
     }
 
     /**
@@ -40,7 +40,7 @@ class MenuController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            $list = $this->MenuService->getAll();
+            $list = $this->SystemMenuService->getAll();
 
             $this->success('获取成功', '', ['list' => $list]);
         }
@@ -71,13 +71,13 @@ class MenuController extends \app\common\controller\AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $MenuValidate = new MenuValidate();
+            $MenuValidate = new SystemMenuValidate();
 
             if (!$MenuValidate->scene('Create')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->createMenu($params);
+            $result = $this->SystemMenuService->createMenu($params);
 
             if (!$result) {
                 $this->error('添加失败');
@@ -113,13 +113,13 @@ class MenuController extends \app\common\controller\AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $MenuValidate = new MenuValidate();
+            $MenuValidate = new SystemMenuValidate();
 
             if (!$MenuValidate->scene('Update')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->updateMenu($params);
+            $result = $this->SystemMenuService->updateMenu($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -128,7 +128,7 @@ class MenuController extends \app\common\controller\AdminController
             $this->success('修改成功');
         }
 
-        $menu = $this->MenuService->getById($request->get('id'));
+        $menu = $this->SystemMenuService->getById($request->get('id'));
 
         return $this->fetch('', [
             'menu' => $menu
@@ -147,13 +147,13 @@ class MenuController extends \app\common\controller\AdminController
                 'id' => $request->post('id')
             ];
 
-            $MenuValidate = new MenuValidate();
+            $MenuValidate = new SystemMenuValidate();
 
             if (!$MenuValidate->scene('Delete')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->deleteMenu($params);
+            $result = $this->SystemMenuService->deleteMenu($params);
 
             if (!$result) {
                 $this->error('删除失败');
@@ -176,13 +176,13 @@ class MenuController extends \app\common\controller\AdminController
                 'sort' => $request->post('sort'),
             ];
 
-            $MenuValidate = new MenuValidate();
+            $MenuValidate = new SystemMenuValidate();
 
             if (!$MenuValidate->scene('Sort')->check($params)) {
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->sortMenu($params);
+            $result = $this->SystemMenuService->sortMenu($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -199,7 +199,7 @@ class MenuController extends \app\common\controller\AdminController
     public function get_all_action(Request $request)
     {
         if ($request->isAjax()) {
-            $this->success('获取成功', '', $this->MenuService->getAll());
+            $this->success('获取成功', '', $this->SystemMenuService->getAll());
         }
     }
 }

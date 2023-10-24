@@ -4,7 +4,7 @@
 namespace app\admin\service;
 
 
-class SettingSystemService extends \app\common\service\SettingSystemService
+class SystemSettingService extends \app\common\service\SystemSettingService
 {
     /**
      * 获取配置
@@ -12,7 +12,7 @@ class SettingSystemService extends \app\common\service\SettingSystemService
      */
     public function getSetting()
     {
-        return $this->SettingSystemRepository->getById(1);
+        return $this->SystemSettingRepository->getById(1);
     }
 
     /**
@@ -22,6 +22,6 @@ class SettingSystemService extends \app\common\service\SettingSystemService
      */
     public function setSetting(array $params)
     {
-        return $this->SettingSystemRepository->updateById(1, $params);
+        return $this->SystemSettingRepository->updateById(1, $params);
     }
 }

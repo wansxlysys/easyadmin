@@ -7,13 +7,13 @@ namespace app\common\repository;
 use think\Db;
 use app\common\exception\RepositoryException;
 
-class UploadRepository extends Model
+class SystemUploadRepository extends Model
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'Upload';
+    protected $name = 'SystemUpload';
 
     /**
      * 通过MD5查询

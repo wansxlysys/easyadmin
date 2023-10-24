@@ -71,7 +71,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      */
     public function writeLog($description, $status)
     {
-        $MenuService = new MenuService();
+        $MenuService = new SystemMenuService();
 
         $currentMenu = $MenuService->getCurrentMenu();
 

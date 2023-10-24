@@ -4,7 +4,7 @@
 namespace app\common\validate;
 
 
-class MenuValidate extends Validate
+class SystemMenuValidate extends Validate
 {
     /**
      * 验证规则
@@ -51,5 +51,4 @@ class MenuValidate extends Validate
         'sort.require'     => '排序不能为空',
         'sort.number'      => '排序必须是整数',
     ];
-
 }

@@ -4,11 +4,11 @@
 namespace app\common\repository;
 
 
-class MenuRepository extends Model
+class SystemSettingRepository extends Model
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'Menu';
+    protected $name = 'SystemSetting';
 }

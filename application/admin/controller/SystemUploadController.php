@@ -4,15 +4,30 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\UploadService;
+use app\admin\service\SystemUploadService;
 
-class UploadController extends \app\common\controller\AdminController
+class SystemUploadController extends \app\common\controller\AdminController
 {
     /**
      * 中间件
      * @var array
      */
     protected $middleware = ['Permission'];
+
+    /**
+     * 服务类
+     * @var SystemUploadService
+     */
+    protected $SystemUploadService;
+
+    /**
+     * 初始化
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->SystemUploadService = new SystemUploadService();
+    }
 
     /**
      * 文件上传
@@ -32,12 +47,10 @@ class UploadController extends \app\common\controller\AdminController
                 'suffix' => $request->post('file_suffix'),
             ];
 
-            $UploadService = new UploadService();
-
-            $result = $UploadService->uploadFile($params);
+            $result = $this->SystemUploadService->uploadFile($params);
 
             if (!$result) {
-                $this->error('上传失败');
+                $this->error($this->SystemUploadService->getMessage());
             }
 
             $this->success('上传成功', '', $result);
@@ -57,9 +70,7 @@ class UploadController extends \app\common\controller\AdminController
                 'name' => $request->post('file_name'),
             ];
 
-            $UploadService = new UploadService();
-
-            $file = $UploadService->getFileByMd5($params['md5']);
+            $file = $this->SystemUploadService->getFileByMd5($params['md5']);
 
             if (!$file) {
                 $this->error('文件不存在');
@@ -77,12 +88,10 @@ class UploadController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            $UploadService = new UploadService();
-
-            $file = $UploadService->uploadImage($request->file('file'));
+            $file = $this->SystemUploadService->uploadImage($request->file('file'));
 
             if (!$file) {
-                $this->error($UploadService->getMessage());
+                $this->error($this->SystemUploadService->getMessage());
             }
 
             $this->success('上传成功', '', [

@@ -1,8 +1,10 @@
 <?php
 
+
 namespace editor\ueditor;
 
-use editor\ueditor\Uploader;
+
+use think\response\Json;
 
 class Ueditor
 {
@@ -23,36 +25,51 @@ class Ueditor
 
     /**
      * 操作入口
-     * @return \think\response\Json
+     * @return Json
      */
     public function action()
     {
         switch (request()->param('action')) {
 
-            // 获取配置
+            /**
+             * 获取配置
+             */
             case 'config':
                 return json($this->config);
 
-            // 上传图片
+            /**
+             * 上传图片
+             */
             case 'uploadimage':
                 return $this->uploadImage();
 
-            // 上传视频
+            /**
+             * 上传视频
+             */
             case 'uploadvideo':
                 return $this->uploadVideo();
 
-            // 上传文件
+            /**
+             * 上传文件
+             */
             case 'uploadfile':
                 return $this->uploadFile();
 
-            // 列出图片
+            /**
+             * 列出图片
+             */
             case 'listimage':
                 return $this->listImage();
 
-            // 列出文件
+            /**
+             * 列出文件
+             */
             case 'listFile':
                 return $this->listFile();
 
+            /**
+             * 其他情况
+             */
             default:
                 return json([
                     'state' => '请求类型出错',
@@ -62,7 +79,7 @@ class Ueditor
 
     /**
      * 图片上传
-     * @return \think\response\Json
+     * @return Json
      */
     protected function uploadImage()
     {
@@ -80,7 +97,7 @@ class Ueditor
 
     /**
      * 视频上传
-     * @return \think\response\Json
+     * @return Json
      */
     protected function uploadVideo()
     {
@@ -98,7 +115,7 @@ class Ueditor
 
     /**
      * 文件上传
-     * @return \think\response\Json
+     * @return Json
      */
     protected function uploadFile()
     {
@@ -116,14 +133,12 @@ class Ueditor
 
     /**
      * 列出图片
-     * @return \think\response\Json
+     * @return Json
      */
     protected function listImage()
     {
-        $result = $this->listAnnex($this->config['imageManagerAllowFiles'], $this->config['imageManagerListSize'],
-            $this->config['imageManagerListPath']);
-
-        return json($result);
+        return json($this->listAnnex($this->config['imageManagerAllowFiles'], $this->config['imageManagerListSize'],
+            $this->config['imageManagerListPath']));
     }
 
     /**
@@ -170,12 +185,11 @@ class Ueditor
 
     /**
      * 列出文件列表
-     * @return \think\response\Json
+     * @return Json
      */
     protected function listFile()
     {
-        $result = $this->listAnnex($this->config['fileManagerAllowFiles'], $this->config['fileManagerListSize'], $this->config['fileManagerListPath']);
-        return json($result);
+        return json($this->listAnnex($this->config['fileManagerAllowFiles'], $this->config['fileManagerListSize'], $this->config['fileManagerListPath']));
     }
 
     /**

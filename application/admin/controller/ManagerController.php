@@ -6,7 +6,7 @@ namespace app\admin\controller;
 
 use think\Image;
 use think\Request;
-use app\admin\service\UploadService;
+use app\admin\service\SystemUploadService;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 
@@ -168,7 +168,7 @@ class ManagerController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            $UploadService = new UploadService();
+            $UploadService = new SystemUploadService();
 
             $fileInfo = $UploadService->uploadImage($request->file('file'));
 

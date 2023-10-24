@@ -4,11 +4,11 @@
 namespace app\admin\validate;
 
 
-class SettingSystemValidate extends \app\common\validate\SettingSystemValidate
+class SystemSettingValidate extends \app\common\validate\SystemSettingValidate
 {
     /**
      * 全局配置
-     * @return SettingSystemValidate
+     * @return SystemSettingValidate
      */
     public function sceneSystem()
     {
@@ -17,7 +17,7 @@ class SettingSystemValidate extends \app\common\validate\SettingSystemValidate
 
     /**
      * 系统设置
-     * @return SettingSystemValidate
+     * @return SystemSettingValidate
      */
     public function sceneConfig()
     {

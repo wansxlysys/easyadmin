@@ -7,7 +7,7 @@ namespace app\http\middleware;
 use Closure;
 use traits\controller\Jump;
 use app\common\enum\ManagerEnum;
-use app\admin\service\MenuService;
+use app\admin\service\SystemMenuService;
 use app\common\helper\StorageHelper;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
@@ -66,7 +66,7 @@ class Permission
      */
     public function checkAuth()
     {
-        $MenuService = new MenuService();
+        $MenuService = new SystemMenuService();
         $currentMenu = $MenuService->getCurrentMenu();
 
         if (!ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {

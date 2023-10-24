@@ -9,7 +9,7 @@ use think\captcha\Captcha;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
-use app\admin\service\SettingSystemService;
+use app\admin\service\SystemSettingService;
 
 class LoginController extends \app\common\controller\CommonController
 {
@@ -55,7 +55,7 @@ class LoginController extends \app\common\controller\CommonController
             $this->success('登录成功', 'admin/Index/index');
         }
 
-        $SettingSystem = new SettingSystemService();
+        $SettingSystem = new SystemSettingService();
 
         return $this->fetch('', [
             'settingSystem' => $SettingSystem->getSetting()

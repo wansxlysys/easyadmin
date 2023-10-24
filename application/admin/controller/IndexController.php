@@ -5,7 +5,7 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\MenuService;
+use app\admin\service\SystemMenuService;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
@@ -21,7 +21,7 @@ class IndexController extends \app\common\controller\AdminController
 
     /**
      * 服务类
-     * @var MenuService
+     * @var SystemMenuService
      */
     protected $MenuService;
 
@@ -31,7 +31,7 @@ class IndexController extends \app\common\controller\AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->MenuService = new MenuService();
+        $this->MenuService = new SystemMenuService();
     }
 
     /**

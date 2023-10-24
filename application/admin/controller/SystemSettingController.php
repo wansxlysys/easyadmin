@@ -5,10 +5,10 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\SettingSystemService;
-use app\admin\validate\SettingSystemValidate;
+use app\admin\service\SystemSettingService;
+use app\admin\validate\SystemSettingValidate;
 
-class SettingController extends \app\common\controller\AdminController
+class SystemSettingController extends \app\common\controller\AdminController
 {
     /**
      * 中间件
@@ -18,9 +18,9 @@ class SettingController extends \app\common\controller\AdminController
 
     /**
      * 服务类
-     * @var SettingSystemService
+     * @var SystemSettingService
      */
-    protected $SettingSystemService;
+    protected $SystemSettingService;
 
     /**
      * 初始化
@@ -28,7 +28,7 @@ class SettingController extends \app\common\controller\AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->SettingSystemService = new SettingSystemService();
+        $this->SystemSettingService = new SystemSettingService();
     }
 
     /**
@@ -44,13 +44,13 @@ class SettingController extends \app\common\controller\AdminController
                 'content' => $request->post('content'),
             ];
 
-            $SettingSystemValidate = new SettingSystemValidate();
+            $SystemSettingValidate = new SystemSettingValidate();
 
-            if (!$SettingSystemValidate->scene('Config')->check($params)) {
-                $this->error($SettingSystemValidate->getError());
+            if (!$SystemSettingValidate->scene('Config')->check($params)) {
+                $this->error($SystemSettingValidate->getError());
             }
 
-            $result = $this->SettingSystemService->setSetting($params);
+            $result = $this->SystemSettingService->setSetting($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -59,7 +59,7 @@ class SettingController extends \app\common\controller\AdminController
             $this->success('修改成功');
         }
 
-        $setting = $this->SettingSystemService->getSetting();
+        $setting = $this->SystemSettingService->getSetting();
 
         return $this->fetch('', [
             'setting' => $setting
@@ -80,13 +80,13 @@ class SettingController extends \app\common\controller\AdminController
                 'slogan' => $request->post('slogan'),
             ];
 
-            $SettingSystemValidate = new SettingSystemValidate();
+            $SystemSettingValidate = new SystemSettingValidate();
 
-            if (!$SettingSystemValidate->scene('System')->check($params)) {
-                $this->error($SettingSystemValidate->getError());
+            if (!$SystemSettingValidate->scene('System')->check($params)) {
+                $this->error($SystemSettingValidate->getError());
             }
 
-            $result = $this->SettingSystemService->setSetting($params);
+            $result = $this->SystemSettingService->setSetting($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -95,7 +95,7 @@ class SettingController extends \app\common\controller\AdminController
             $this->success('修改成功');
         }
 
-        $setting = $this->SettingSystemService->getSetting();
+        $setting = $this->SystemSettingService->getSetting();
 
         return $this->fetch('', [
             'setting' => $setting

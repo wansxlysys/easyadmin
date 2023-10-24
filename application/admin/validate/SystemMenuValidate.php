@@ -4,11 +4,11 @@
 namespace app\admin\validate;
 
 
-class MenuValidate extends \app\common\validate\MenuValidate
+class SystemMenuValidate extends \app\common\validate\SystemMenuValidate
 {
     /**
-     * 添加菜单
-     * @return MenuValidate
+     * 添加
+     * @return SystemMenuValidate
      */
     public function sceneCreate()
     {
@@ -16,8 +16,8 @@ class MenuValidate extends \app\common\validate\MenuValidate
     }
 
     /**
-     * 修改菜单
-     * @return MenuValidate
+     * 修改
+     * @return SystemMenuValidate
      */
     public function sceneUpdate()
     {
@@ -25,8 +25,8 @@ class MenuValidate extends \app\common\validate\MenuValidate
     }
 
     /**
-     * 删除菜单
-     * @return MenuValidate
+     * 删除
+     * @return SystemMenuValidate
      */
     public function sceneDelete()
     {
@@ -34,8 +34,8 @@ class MenuValidate extends \app\common\validate\MenuValidate
     }
 
     /**
-     * 排序菜单
-     * @return MenuValidate
+     * 排序
+     * @return SystemMenuValidate
      */
     public function sceneSort()
     {

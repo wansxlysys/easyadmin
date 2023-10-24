@@ -5,9 +5,9 @@ namespace app\common\controller;
 
 
 use think\facade\Hook;
-use app\admin\service\MenuService;
+use app\admin\service\SystemMenuService;
 use app\admin\behavior\SystemLogBehavior;
-use app\admin\service\SettingSystemService;
+use app\admin\service\SystemSettingService;
 
 class AdminController extends CommonController
 {
@@ -16,7 +16,7 @@ class AdminController extends CommonController
      */
     public function initialize()
     {
-        $MenuService = new MenuService();
+        $MenuService = new SystemMenuService();
         $currentMenu = $MenuService->getCurrentMenu();
 
         /**
@@ -32,7 +32,7 @@ class AdminController extends CommonController
 
         } else {
 
-            $SettingSystemService = new SettingSystemService();
+            $SettingSystemService = new SystemSettingService();
 
             $settingSystem  = $SettingSystemService->getSetting();
             $breadcrumbMenu = $MenuService->getBreadcrumbMenu($currentMenu['id']);

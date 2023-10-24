@@ -36,7 +36,7 @@
 
             easyAdmin.http({
                 type: "POST",
-                url: "{:url('admin/Setting/config')}",
+                url: "{:url('admin/SystemSetting/config')}",
                 data: obj.field,
                 success: function (result) {
                     var key = top.layer.alert(result.msg, {

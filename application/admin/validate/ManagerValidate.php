@@ -25,7 +25,7 @@ class ManagerValidate extends \app\common\validate\ManagerValidate
     }
 
     /**
-     * 更新
+     * 修改
      * @return ManagerValidate
      */
     public function sceneUpdate()
@@ -43,7 +43,7 @@ class ManagerValidate extends \app\common\validate\ManagerValidate
     }
 
     /**
-     * 修改个人信息
+     * 个人信息
      * @return ManagerValidate
      */
     public function sceneProfile()

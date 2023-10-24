@@ -11,7 +11,7 @@ use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
 use app\common\helper\StorageHelper;
 
-class MenuService extends \app\common\service\MenuService
+class SystemMenuService extends \app\common\service\SystemMenuService
 {
     /**
      * 获取左侧菜单
@@ -27,7 +27,7 @@ class MenuService extends \app\common\service\MenuService
 
         $TreeArrayUtil = new TreeArrayUtil();
 
-        return $TreeArrayUtil->arrayToTree($this->MenuRepository->getAll($Query), 0, 1, function (&$item) {
+        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Query), 0, 1, function (&$item) {
             $item = $this->formatData($item);
         });
     }
@@ -48,7 +48,7 @@ class MenuService extends \app\common\service\MenuService
         $Query->addWhere('controller', '=', Request::controller());
         $Query->addWhere('action', '=', Request::action());
 
-        StorageHelper::set(MenuEnum::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
+        StorageHelper::set(MenuEnum::CONTAINER_MENU, $this->SystemMenuRepository->getOne($Query));
 
         return StorageHelper::get(MenuEnum::CONTAINER_MENU);
     }
@@ -61,7 +61,7 @@ class MenuService extends \app\common\service\MenuService
      */
     public function getBreadcrumbMenu($menuId, &$breadcrumb = [])
     {
-        $menu = $this->MenuRepository->getById($menuId);
+        $menu = $this->SystemMenuRepository->getById($menuId);
 
         if ($menu) {
             $this->getBreadcrumbMenu($menu['parent_id'], $breadcrumb);
@@ -81,7 +81,7 @@ class MenuService extends \app\common\service\MenuService
 
         $Query->setOrder(['sort' => 'asc']);
 
-        return $this->MenuRepository->getAll($Query);
+        return $this->SystemMenuRepository->getAll($Query);
     }
 
     /**
@@ -91,7 +91,7 @@ class MenuService extends \app\common\service\MenuService
      */
     public function getById($id)
     {
-        return $this->formatData($this->MenuRepository->getById($id));
+        return $this->formatData($this->SystemMenuRepository->getById($id));
     }
 
     /**
@@ -101,7 +101,7 @@ class MenuService extends \app\common\service\MenuService
      */
     public function createMenu(array $params)
     {
-        return $this->MenuRepository->createRecord($this->buildData($params));
+        return $this->SystemMenuRepository->createRecord($this->buildData($params));
     }
 
     /**
@@ -111,7 +111,7 @@ class MenuService extends \app\common\service\MenuService
      */
     public function updateMenu(array $params)
     {
-        return $this->MenuRepository->updateById($params['id'], $this->buildData($params));
+        return $this->SystemMenuRepository->updateById($params['id'], $this->buildData($params));
     }
 
     /**
@@ -121,7 +121,7 @@ class MenuService extends \app\common\service\MenuService
      */
     public function sortMenu(array $params)
     {
-        return $this->MenuRepository->updateById($params['id'], ['sort' => $params['sort']]);
+        return $this->SystemMenuRepository->updateById($params['id'], ['sort' => $params['sort']]);
     }
 
     /**
@@ -131,7 +131,7 @@ class MenuService extends \app\common\service\MenuService
      */
     public function deleteMenu(array $params)
     {
-        return $this->MenuRepository->deleteById($params['id']);
+        return $this->SystemMenuRepository->deleteById($params['id']);
     }
 
     /**

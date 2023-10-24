@@ -7,7 +7,7 @@ namespace app\admin\service;
 use think\Validate;
 use think\facade\Env;
 
-class UploadService extends \app\common\service\UploadService
+class SystemUploadService extends \app\common\service\SystemUploadService
 {
     /**
      * 图片上传
@@ -67,7 +67,7 @@ class UploadService extends \app\common\service\UploadService
         $fileData['path']   = $filePath;
         $fileData['suffix'] = $fileInfo->getExtension();
 
-        if (!$this->UploadRepository->createRecord($fileData)) {
+        if (!$this->SystemUploadRepository->createRecord($fileData)) {
             return $this->setMessage('执行错误，文件保存失败');
         }
 
@@ -113,7 +113,7 @@ class UploadService extends \app\common\service\UploadService
                 $fileData['path']   = $filePath;
                 $fileData['suffix'] = $params['suffix'];
 
-                if (!$this->UploadRepository->createRecord($fileData)) {
+                if (!$this->SystemUploadRepository->createRecord($fileData)) {
                     throw new \RuntimeException('文件保存失败');
                 }
             }
@@ -132,7 +132,7 @@ class UploadService extends \app\common\service\UploadService
      */
     public function getFileByMd5($md5)
     {
-        return $this->UploadRepository->getByMd5($md5);
+        return $this->SystemUploadRepository->getByMd5($md5);
     }
 
     /**

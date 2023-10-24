@@ -4,7 +4,7 @@
 namespace app\common\validate;
 
 
-class SettingSystemValidate extends Validate
+class SystemSettingValidate extends Validate
 {
     /**
      * 验证规则

@@ -29,7 +29,7 @@
         "predis/predis": "^1.1",
         "endroid/qr-code": "3.9.6",
         "topthink/think-testing": "2.0.*",
-        "ifsnop/mysqldump-php": "^2.9",
+        "ifsnop/mysqldump-php": "^2.12",
         "overtrue/wechat": "~5.0",
         "nesbot/carbon": "^2.68"
     },

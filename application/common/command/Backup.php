@@ -4,6 +4,7 @@
 namespace app\common\command;
 
 
+use Throwable;
 use think\facade\Env;
 use think\facade\Config;
 use think\console\Input;
@@ -30,23 +31,23 @@ class Backup extends \think\console\Command
      */
     protected function execute(Input $input, Output $output)
     {
-        $rootPath = Env::get('root_path');
         $saveName = $input->getOption('saveName');
 
         try {
+
             $hostname = Config::get('database.hostname');
             $hostport = Config::get('database.hostport');
             $database = Config::get('database.database');
             $username = Config::get('database.username');
             $password = Config::get('database.password');
-            $connect  = "mysql:host={$hostname}:{$hostport};dbname={$database}";
+            $connects = "mysql:host={$hostname}:{$hostport};dbname={$database}";
 
-            $MysqlDump = new Mysqldump($connect, $username, $password);
-            $MysqlDump->start($rootPath . "data/{$saveName}.sql");
+            $MysqlDump = new Mysqldump($connects, $username, $password);
+            $MysqlDump->start(Env::get('root_path') . "data/{$saveName}.sql");
 
             $output->writeln("备份成功");
 
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             $output->writeln("备份失败：{$throwable->getMessage()}");
         }
     }

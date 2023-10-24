@@ -46,12 +46,21 @@ class ManagerHelper
     }
 
     /**
+     * 获取管理员
+     * @return mixed|null
+     */
+    public static function getManager()
+    {
+        return StorageHelper::get(ManagerEnum::CONTAINER_MANAGER);
+    }
+
+    /**
      * 获取角色
      * @return mixed|null
      */
     public static function getRole()
     {
-        return StorageHelper::get(ManagerEnum::CONTAINER_ROLE);
+        return StorageHelper::get(ManagerEnum::CONTAINER_MANAGER_ROLE);
     }
 
     /**
@@ -64,21 +73,12 @@ class ManagerHelper
     }
 
     /**
-     * 获取管理员
-     * @return mixed|null
-     */
-    public static function getManager()
-    {
-        return StorageHelper::get(ManagerEnum::CONTAINER_MANAGER);
-    }
-
-    /**
      * 获取权限
      * @return mixed|null
      */
     public static function getPermission()
     {
-        return StorageHelper::get(ManagerEnum::CONTAINER_PERMISSION);
+        return static::getRole()['permission'];
     }
 
     /**

@@ -56,7 +56,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * @param $id
      * @return mixed
      */
-    public function getManagerRole($id)
+    public function getRole($id)
     {
         $role = $this->ManagerRoleRepository->getById($id);
 

@@ -19,9 +19,8 @@ class ManagerEnum
     /**
      * 缓存标识
      */
-    const CONTAINER_ROLE       = 'system.role'; // 角色
-    const CONTAINER_MANAGER    = 'system.manager'; // 管理员
-    const CONTAINER_PERMISSION = 'system.permission'; // 权限
+    const CONTAINER_MANAGER      = 'system.manager'; // 管理员
+    const CONTAINER_MANAGER_ROLE = 'system.manager_role'; // 管理员角色
 
     /**
      * 登录错误次数锁定

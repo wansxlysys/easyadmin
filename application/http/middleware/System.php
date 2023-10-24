@@ -29,7 +29,7 @@ class System
     public function handle($request, Closure $next)
     {
         $this->checkLogin();
-        $this->initialize();
+        $this->checkData();
         $this->checkAuth();
         $this->checkDisabled();
 
@@ -37,26 +37,28 @@ class System
     }
 
     /**
-     * 注册变量
+     * 登录校验
      */
-    public function initialize()
+    public function checkLogin()
     {
-        $manager     = $this->getManager();
-        $managerRole = $this->getManagerRole($manager['role_id']);
-
-        StorageHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
-        StorageHelper::set(ManagerEnum::CONTAINER_ROLE, $managerRole);
-        StorageHelper::set(ManagerEnum::CONTAINER_PERMISSION, $managerRole['permission']);
+        if (!ManagerHelper::isLogin()) {
+            $this->error('未登录', 'admin/login/login');
+        }
     }
 
     /**
-     * 检测账号是否被禁用
+     * 注册变量
      */
-    public function checkDisabled()
+    public function checkData()
     {
-        if (ManagerHelper::isDisabled()) {
-            $this->error('账号被禁用');
-        }
+        $ManagerService     = new ManagerService();
+        $ManagerRoleService = new ManagerRoleService();
+
+        $manager     = $ManagerService->getById(ManagerHelper::getManagerId());
+        $managerRole = $ManagerRoleService->getRole($manager['role_id']);
+
+        StorageHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
+        StorageHelper::set(ManagerEnum::CONTAINER_MANAGER_ROLE, $managerRole);
     }
 
     /**
@@ -73,35 +75,12 @@ class System
     }
 
     /**
-     * 登录校验
+     * 检测账号是否被禁用
      */
-    public function checkLogin()
+    public function checkDisabled()
     {
-        if (!ManagerHelper::isLogin()) {
-            $this->error('未登录', 'admin/login/login');
+        if (ManagerHelper::isDisabled()) {
+            $this->error('账号被禁用');
         }
-    }
-
-    /**
-     * 获取管理员信息
-     * @return mixed
-     */
-    protected function getManager()
-    {
-        $ManagerService = new ManagerService();
-
-        return $ManagerService->getById(ManagerHelper::getManagerId());
-    }
-
-    /**
-     * 获取角色信息
-     * @param $roleId
-     * @return mixed
-     */
-    protected function getManagerRole($roleId)
-    {
-        $ManagerRoleService = new ManagerRoleService();
-
-        return $ManagerRoleService->getManagerRole($roleId);
     }
 }

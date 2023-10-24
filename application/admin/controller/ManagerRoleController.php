@@ -5,7 +5,6 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\PermissionService;
 use app\admin\service\ManagerRoleService;
 use app\admin\validate\ManagerRoleValidate;
 
@@ -15,7 +14,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
      * 中间件
      * @var array
      */
-    protected $middleware = ['Permission'];
+    protected $middleware = ['System'];
 
     /**
      * 服务类
@@ -49,6 +48,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
 
             $this->success('获取成功', '', $this->ManagerRoleService->getListWithTotal($params));
         }
+
         return $this->fetch();
     }
 
@@ -63,8 +63,8 @@ class ManagerRoleController extends \app\common\controller\AdminController
 
             $params = [
                 'name'       => $request->post('name'),
-                'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
+                'identify'   => $request->post('identify'),
                 'permission' => $request->post('permission'),
             ];
 
@@ -114,14 +114,10 @@ class ManagerRoleController extends \app\common\controller\AdminController
             $this->success('修改成功');
         }
 
-        $PermissionService = new PermissionService();
-
-        $role       = $this->ManagerRoleService->getById($request->get('id'));
-        $permission = $PermissionService->getAllMenuIdByRoleId($role['id']);
+        $role = $this->ManagerRoleService->getById($request->get('id'));
 
         return $this->fetch('', [
-            'role'       => $role,
-            'permission' => $permission
+            'role' => $role
         ]);
     }
 

@@ -4,9 +4,6 @@
 namespace app\admin\service;
 
 
-use think\Db;
-use Throwable;
-use RuntimeException;
 use app\common\repository\Query;
 use app\common\enum\ManagerRoleEnum;
 use app\common\helper\ManagerHelper;
@@ -55,6 +52,18 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     }
 
     /**
+     * 获取角色
+     * @param $id
+     * @return mixed
+     */
+    public function getManagerRole($id)
+    {
+        $role = $this->ManagerRoleRepository->getById($id);
+
+        return $this->formatData($role);
+    }
+
+    /**
      * 通过ID获取角色
      * @param $id
      * @return mixed
@@ -71,41 +80,22 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      */
     public function deleteRole($params)
     {
-        $ManagerService    = new ManagerService();
-        $PermissionService = new PermissionService();
+        $ManagerService = new ManagerService();
 
         if ($ManagerService->getByRoleId($params['id'])) {
             return $this->setMessage('禁止删除，角色下存在管理员');
         }
 
+        /**
+         * 超级管理员角色禁止删除
+         */
         $role = $this->ManagerRoleRepository->getById($params['id']);
 
         if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
             return $this->setMessage('禁止删除，超级管理员角色');
         }
 
-        Db::startTrans();
-
-        try {
-
-            if (!$PermissionService->deleteByRoleId($params['id'])) {
-                throw new RuntimeException('执行错误，权限删除失败');
-            }
-
-            if (!$this->ManagerRoleRepository->deleteById($params['id'])) {
-                throw new RuntimeException('执行错误，角色删除失败');
-            }
-
-            Db::commit();
-
-        } catch (Throwable $throwable) {
-
-            Db::rollback();
-
-            return $this->setMessage($throwable->getMessage());
-        }
-
-        return true;
+        return $this->ManagerRoleRepository->deleteById($params['id']);
     }
 
     /**
@@ -115,44 +105,12 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      */
     public function createRole(array $params)
     {
-        Db::startTrans();
+        $roleData['name']       = $params['name'];
+        $roleData['remark']     = $params['remark'];
+        $roleData['identify']   = $params['identify'];
+        $roleData['permission'] = $params['permission'];
 
-        try {
-
-            /**
-             * 创建角色
-             */
-            $roleData['name']     = $params['name'];
-            $roleData['remark']   = $params['remark'];
-            $roleData['identify'] = $params['identify'];
-
-            $roleId = $this->ManagerRoleRepository->createRecord($roleData);
-
-            if (!$roleId) {
-                throw new RuntimeException('角色创建失败');
-            }
-
-            /**
-             * 创建权限
-             */
-            $PermissionService = new PermissionService();
-
-            $result = $PermissionService->createPermission($roleId, $params['permission']);
-
-            if (!$result) {
-                throw new RuntimeException('权限创建失败');
-            }
-
-            Db::commit();
-
-        } catch (Throwable $throwable) {
-
-            Db::rollback();
-
-            return $this->setMessage($throwable->getMessage());
-        }
-
-        return true;
+        return $this->ManagerRoleRepository->createRecord($roleData);
     }
 
     /**
@@ -162,43 +120,23 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      */
     public function updateRole(array $params)
     {
-        Db::startTrans();
+        $roleData['name']       = $params['name'];
+        $roleData['remark']     = $params['remark'];
+        $roleData['identify']   = $params['identify'];
+        $roleData['permission'] = $params['permission'];
 
-        try {
+        return $this->ManagerRoleRepository->updateById($params['id'], $roleData);
+    }
 
-            /**
-             * 更新角色
-             */
-            $roleData['name']     = $params['name'];
-            $roleData['remark']   = $params['remark'];
-            $roleData['identify'] = $params['identify'];
+    /**
+     * 格式化数据
+     * @param $data
+     * @return mixed
+     */
+    public function formatData($data)
+    {
+        $data['permission'] = !empty($data['permission']) ? explode(',', $data['permission']) : [];
 
-            $result = $this->ManagerRoleRepository->updateById($params['id'], $roleData);
-
-            if (!$result) {
-                throw new RuntimeException('角色修改失败');
-            }
-
-            /**
-             * 更新权限
-             */
-            $PermissionService = new PermissionService();
-
-            $result = $PermissionService->updatePermission($params['id'], $params['permission']);
-
-            if (!$result) {
-                throw new RuntimeException('权限修改失败');
-            }
-
-            Db::commit();
-
-        } catch (Throwable $throwable) {
-
-            Db::rollback();
-
-            return $this->setMessage($throwable->getMessage());
-        }
-
-        return true;
+        return $data;
     }
 }

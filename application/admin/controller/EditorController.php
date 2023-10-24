@@ -13,7 +13,7 @@ class EditorController extends \app\common\controller\AdminController
      * 中间件
      * @var array
      */
-    protected $middleware = ['Permission'];
+    protected $middleware = ['System'];
 
     /**
      * 百度富文本编辑器

@@ -14,7 +14,7 @@ class SystemMenuController extends \app\common\controller\AdminController
      * 中间件
      * @var array
      */
-    protected $middleware = ['Permission'];
+    protected $middleware = ['System'];
 
     /**
      * 服务类

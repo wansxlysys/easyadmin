@@ -72,13 +72,12 @@
             var permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
-                layer.alert('请选择授权菜单', {
+                return layer.alert('请选择授权菜单', {
                     icon: 2
                 });
-                return false;
             }
 
-            obj.field.permission = permission;
+            obj.field.permission = permission.join(',');
 
             easyAdmin.http({
                 type: "POST",

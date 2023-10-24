@@ -7,14 +7,13 @@ namespace app\http\middleware;
 use Closure;
 use traits\controller\Jump;
 use app\common\enum\ManagerEnum;
-use app\admin\service\SystemMenuService;
 use app\common\helper\StorageHelper;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
-use app\admin\service\PermissionService;
+use app\admin\service\SystemMenuService;
 use app\admin\service\ManagerRoleService;
 
-class Permission
+class System
 {
     /**
      * 跳转操作
@@ -42,13 +41,12 @@ class Permission
      */
     public function initialize()
     {
-        $manager    = $this->getManager();
-        $role       = $this->getRole($manager['role_id']);
-        $permission = $this->getPermission($manager['role_id']);
+        $manager     = $this->getManager();
+        $managerRole = $this->getManagerRole($manager['role_id']);
 
-        StorageHelper::set(ManagerEnum::CONTAINER_ROLE, $role);
         StorageHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
-        StorageHelper::set(ManagerEnum::CONTAINER_PERMISSION, $permission);
+        StorageHelper::set(ManagerEnum::CONTAINER_ROLE, $managerRole);
+        StorageHelper::set(ManagerEnum::CONTAINER_PERMISSION, $managerRole['permission']);
     }
 
     /**
@@ -100,22 +98,10 @@ class Permission
      * @param $roleId
      * @return mixed
      */
-    protected function getRole($roleId)
+    protected function getManagerRole($roleId)
     {
-        $RoleService = new ManagerRoleService();
+        $ManagerRoleService = new ManagerRoleService();
 
-        return $RoleService->getById($roleId);
-    }
-
-    /**
-     * 获取权限
-     * @param $roleId
-     * @return mixed
-     */
-    protected function getPermission($roleId)
-    {
-        $PermissionService = new PermissionService();
-
-        return $PermissionService->getAllMenuIdByRoleId($roleId);
+        return $ManagerRoleService->getManagerRole($roleId);
     }
 }

@@ -56,12 +56,12 @@
 
         easyService.menuTreeStruct({
             elem: "#permission",
-            selected: "{:implode(',', $permission)}",
+            selected: "{$role.permission}",
             setting: {
                 check: {
                     enable: true
                 },
-                ready: function(tree) {
+                ready: function (tree) {
                     permissionTree = tree;
                 }
             }
@@ -73,14 +73,13 @@
             var permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
-                layer.alert('请选择授权菜单', {
+                return layer.alert('请选择授权菜单', {
                     icon: 2
                 });
-                return false;
             }
 
             obj.field.id = '{$role.id}';
-            obj.field.permission = permission;
+            obj.field.permission = permission.join(',');
 
             easyAdmin.http({
                 type: "POST",

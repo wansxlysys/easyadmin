@@ -7,11 +7,27 @@ namespace app\common\util;
 class ArrayUtil
 {
     /**
+     * 转字符串
+     * @param array $array
+     * @param string $symbol
+     * @param string $default
+     * @return array|string
+     */
+    public static function toString(array $array, $symbol = ',', $default = '')
+    {
+        if (empty($array)) {
+            return $default;
+        }
+
+        return implode($symbol, $array);
+    }
+
+    /**
      * 数组转json
      * @param $array
      * @return false|string
      */
-    public static function toJson($array)
+    public static function toJson(array $array)
     {
         return json_encode($array, JSON_UNESCAPED_UNICODE);
     }
@@ -22,7 +38,7 @@ class ArrayUtil
      * @param $callback
      * @return bool
      */
-    public static function every($array, $callback)
+    public static function every(array $array, $callback)
     {
         $resolve = function ($carry, $item) use ($callback) {
             return $carry && call_user_func($callback, $item);
@@ -37,7 +53,7 @@ class ArrayUtil
      * @param $callback
      * @return bool
      */
-    public static function some($array, $callback)
+    public static function some(array $array, $callback)
     {
         $resolve = function ($carry, $item) use ($callback) {
             return $carry || call_user_func($callback, $item);

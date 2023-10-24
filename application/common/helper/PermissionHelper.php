@@ -4,6 +4,8 @@
 namespace app\common\helper;
 
 
+use app\common\util\StringUtil;
+
 class PermissionHelper
 {
     /**
@@ -16,7 +18,7 @@ class PermissionHelper
     public static function checkPermission($allow, array $permission = [], $condition = 'and')
     {
         if (!is_array($allow)) {
-            $allow = !empty($allow) ? explode(',', $allow) : [];
+            $allow = StringUtil::toArray($allow);
         }
 
         foreach ($allow as $key => $id) {

@@ -5,6 +5,7 @@ namespace app\common\helper;
 
 
 use think\facade\Session;
+use app\common\util\StringUtil;
 use app\common\enum\ManagerEnum;
 use app\common\enum\ManagerRoleEnum;
 
@@ -116,8 +117,7 @@ class ManagerHelper
      */
     public static function checkAccessByMenuId($menuId, $condition = 'and')
     {
-        $menuId = !empty($menuId) ? explode(',', $menuId) : [];
-
-        return PermissionHelper::checkPermission($menuId, static::getPermission(), $condition);
+        return PermissionHelper::checkPermission(StringUtil::toArray($menuId),
+            static::getPermission(), $condition);
     }
 }

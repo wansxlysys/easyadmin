@@ -1,6 +1,9 @@
 <?php
 
 
+use app\common\util\ArrayUtil;
+use app\common\util\StringUtil;
+
 if (!function_exists('register_static')) {
     /**
      * 引入静态文件并加入版本号
@@ -35,21 +38,17 @@ if (!function_exists('file_prefix')) {
      */
     function file_prefix($filePath, $toArray = false, $perfix = 'system_domain')
     {
-        if (empty($filePath)) {
-            return $filePath;
-        }
-
         $domain = config('system.' . $perfix);
 
         if (!is_array($filePath)) {
-            $filePath = explode(',', $filePath);
+            $filePath = StringUtil::toArray($filePath);
         }
 
         foreach ($filePath as $key => $file) {
             $filePath[$key] = $domain . $file;
         }
 
-        return $toArray ? $filePath : implode(',', $filePath);
+        return $toArray ? $filePath : ArrayUtil::toString($filePath);
     }
 }
 

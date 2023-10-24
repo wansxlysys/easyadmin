@@ -4,6 +4,7 @@
 namespace app\admin\service;
 
 
+use app\common\util\StringUtil;
 use app\common\repository\Query;
 use app\common\enum\ManagerRoleEnum;
 use app\common\helper\ManagerHelper;
@@ -135,7 +136,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      */
     public function formatData($data)
     {
-        $data['permission'] = !empty($data['permission']) ? explode(',', $data['permission']) : [];
+        $data['permission'] = StringUtil::toArray($data['permission']);
 
         return $data;
     }

@@ -6,6 +6,7 @@ namespace app\admin\service;
 
 use think\facade\Request;
 use app\common\enum\MenuEnum;
+use app\common\util\ArrayUtil;
 use app\common\repository\Query;
 use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
@@ -180,6 +181,6 @@ class SystemMenuService extends \app\common\service\SystemMenuService
         $url[] = $menu['controller'];
         $url[] = $menu['action'];
 
-        return url(implode('/', $url), $menu['params']);
+        return url(ArrayUtil::toString($url, '/'), $menu['params']);
     }
 }

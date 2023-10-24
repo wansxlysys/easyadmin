@@ -99,8 +99,8 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 清空日志
      * @return mixed
      */
-    public function clear()
+    public function clearLog()
     {
-        return $this->SystemLogRepository->clear();
+        return $this->SystemLogRepository->clearLog();
     }
 }

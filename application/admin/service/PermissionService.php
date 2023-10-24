@@ -51,7 +51,7 @@ class PermissionService extends \app\common\service\PermissionService
      * @param array $menuId
      * @return bool|mixed
      */
-    public function updateRecord($roleId, array $menuId)
+    public function updatePermission($roleId, array $menuId)
     {
         $permission = $this->getAllMenuIdByRoleId($roleId);
 

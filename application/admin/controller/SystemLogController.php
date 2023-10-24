@@ -75,7 +75,7 @@ class SystemLogController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            if ($this->SystemLogService->clear()) {
+            if ($this->SystemLogService->clearLog()) {
                 $this->success('清空成功');
             }
 

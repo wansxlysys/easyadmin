@@ -90,7 +90,7 @@ class SystemLogRepository extends Model
      * 清空全部
      * @return mixed
      */
-    public function clear()
+    public function clearLog()
     {
         try {
 

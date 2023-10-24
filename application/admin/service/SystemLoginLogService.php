@@ -47,16 +47,6 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
     }
 
     /**
-     * 通过ID查询
-     * @param $id
-     * @return mixed
-     */
-    public function getById($id)
-    {
-        return $this->SystemLoginLogRepository->getById($id);
-    }
-
-    /**
      * 获取详情
      * @param $id
      * @return mixed

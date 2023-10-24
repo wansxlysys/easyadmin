@@ -182,7 +182,7 @@ class MenuController extends \app\common\controller\AdminController
                 $this->error($MenuValidate->getError());
             }
 
-            $result = $this->MenuService->updateMenu($params);
+            $result = $this->MenuService->sortMenu($params);
 
             if (!$result) {
                 $this->error('修改失败');

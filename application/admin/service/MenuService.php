@@ -105,13 +105,23 @@ class MenuService extends \app\common\service\MenuService
     }
 
     /**
-     * 通过ID更新数据
+     * 更新菜单
      * @param array $params
      * @return bool
      */
     public function updateMenu(array $params)
     {
         return $this->MenuRepository->updateById($params['id'], $this->buildData($params));
+    }
+
+    /**
+     * 更新排序
+     * @param array $params
+     * @return bool
+     */
+    public function sortMenu(array $params)
+    {
+        return $this->MenuRepository->updateById($params['id'], ['sort' => $params['sort']]);
     }
 
     /**
@@ -134,7 +144,7 @@ class MenuService extends \app\common\service\MenuService
         /**
          * 如果不是外链则清空链接地址
          */
-        if (!empty($params['type']) && $params['type'] != 3) {
+        if ($params['type'] != MenuEnum::TYPE_LINK) {
             $params['link'] = '';
         }
 

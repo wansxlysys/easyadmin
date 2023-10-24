@@ -184,7 +184,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
              */
             $PermissionService = new PermissionService();
 
-            $result = $PermissionService->updateRecord($params['id'], $params['permission']);
+            $result = $PermissionService->updatePermission($params['id'], $params['permission']);
 
             if (!$result) {
                 throw new RuntimeException('权限修改失败');

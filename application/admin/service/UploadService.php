@@ -53,7 +53,7 @@ class UploadService extends \app\common\service\UploadService
         $fileInfo = $params['file']->move(Env::get('root_path') . 'public' . $savePath);
 
         if (!$fileInfo) {
-            return $this->setMessage('文件上传失败');
+            return $this->setMessage('执行错误，文件上传失败');
         }
 
         /**
@@ -68,7 +68,7 @@ class UploadService extends \app\common\service\UploadService
         $fileData['suffix'] = $fileInfo->getExtension();
 
         if (!$this->UploadRepository->createRecord($fileData)) {
-            return $this->setMessage('文件保存失败');
+            return $this->setMessage('执行错误，文件保存失败');
         }
 
         return ['filePath' => $filePath, 'savePath' => $fileInfo->getPathName()];

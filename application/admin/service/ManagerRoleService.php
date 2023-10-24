@@ -66,19 +66,19 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
 
     /**
      * 通过角色ID删除
-     * @param $id
+     * @param $params
      * @return bool
      */
-    public function deleteRole($id)
+    public function deleteRole($params)
     {
         $ManagerService    = new ManagerService();
         $PermissionService = new PermissionService();
 
-        if ($ManagerService->getByRoleId($id)) {
+        if ($ManagerService->getByRoleId($params['id'])) {
             return $this->setMessage('禁止删除，角色下存在管理员');
         }
 
-        $role = $this->ManagerRoleRepository->getById($id);
+        $role = $this->ManagerRoleRepository->getById($params['id']);
 
         if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
             return $this->setMessage('禁止删除，超级管理员角色');
@@ -88,11 +88,11 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
 
         try {
 
-            if (!$PermissionService->deleteByRoleId($id)) {
+            if (!$PermissionService->deleteByRoleId($params['id'])) {
                 throw new RuntimeException('执行错误，权限删除失败');
             }
 
-            if (!$this->ManagerRoleRepository->deleteById($id)) {
+            if (!$this->ManagerRoleRepository->deleteById($params['id'])) {
                 throw new RuntimeException('执行错误，角色删除失败');
             }
 

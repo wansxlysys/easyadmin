@@ -32,7 +32,7 @@ class MenuController extends \app\common\controller\AdminController
     }
 
     /**
-     * 菜单首页
+     * 首页
      * @param Request $request
      * @return mixed
      */
@@ -49,20 +49,7 @@ class MenuController extends \app\common\controller\AdminController
     }
 
     /**
-     * 获取全部菜单
-     * @param Request $request
-     */
-    public function get_all_action(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $this->success('获取成功', '', $this->MenuService->getAll());
-
-        }
-    }
-
-    /**
-     * 创建菜单
+     * 添加
      * @param Request $request
      * @return mixed
      */
@@ -103,7 +90,7 @@ class MenuController extends \app\common\controller\AdminController
     }
 
     /**
-     * 更新菜单
+     * 修改
      * @param Request $request
      * @return mixed
      */
@@ -149,7 +136,7 @@ class MenuController extends \app\common\controller\AdminController
     }
 
     /**
-     * 菜单删除
+     * 删除
      * @param Request $request
      */
     public function delete_action(Request $request)
@@ -177,7 +164,7 @@ class MenuController extends \app\common\controller\AdminController
     }
 
     /**
-     * 菜单排序
+     * 排序
      * @param Request $request
      */
     public function sort_action(Request $request)
@@ -202,6 +189,17 @@ class MenuController extends \app\common\controller\AdminController
             }
 
             $this->success('修改成功');
+        }
+    }
+
+    /**
+     * 全部
+     * @param Request $request
+     */
+    public function get_all_action(Request $request)
+    {
+        if ($request->isAjax()) {
+            $this->success('获取成功', '', $this->MenuService->getAll());
         }
     }
 }

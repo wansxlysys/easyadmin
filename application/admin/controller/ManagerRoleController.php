@@ -53,7 +53,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
     }
 
     /**
-     * 添加角色
+     * 添加
      * @param Request $request
      * @return mixed
      */
@@ -85,7 +85,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
     }
 
     /**
-     * 修改角色
+     * 修改
      * @param Request $request
      * @return mixed
      */
@@ -126,7 +126,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
     }
 
     /**
-     * 删除角色
+     * 删除
      * @param Request $request
      */
     public function delete_action(Request $request)
@@ -143,7 +143,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
                 $this->error($RoleValidate->getError());
             }
 
-            $result = $this->ManagerRoleService->deleteRole($params['id']);
+            $result = $this->ManagerRoleService->deleteRole($params);
 
             if (!$result) {
                 $this->error($this->ManagerRoleService->getMessage());
@@ -154,7 +154,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
     }
 
     /**
-     * 获取全部角色
+     * 全部
      * @param Request $request
      */
     public function get_all_action(Request $request)

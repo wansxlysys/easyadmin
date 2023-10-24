@@ -57,7 +57,7 @@ class ManagerController extends \app\common\controller\AdminController
     }
 
     /**
-     * 添加管理员
+     * 添加
      * @param Request $request
      * @return mixed
      */
@@ -93,7 +93,7 @@ class ManagerController extends \app\common\controller\AdminController
     }
 
     /**
-     * 更新管理员
+     * 修改
      * @param Request $request
      * @return mixed
      */
@@ -133,7 +133,7 @@ class ManagerController extends \app\common\controller\AdminController
     }
 
     /**
-     * 删除管理员
+     * 删除
      * @param Request $request
      */
     public function delete_action(Request $request)

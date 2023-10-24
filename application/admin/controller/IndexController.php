@@ -50,7 +50,7 @@ class IndexController extends \app\common\controller\AdminController
     }
 
     /**
-     * 修改个人资料
+     * 个人资料
      * @param Request $request
      * @return mixed
      */
@@ -87,7 +87,6 @@ class IndexController extends \app\common\controller\AdminController
             'manager' => $manager
         ]);
     }
-
 
     /**
      * 退出登录

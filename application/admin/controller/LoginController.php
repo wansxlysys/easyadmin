@@ -63,7 +63,7 @@ class LoginController extends \app\common\controller\CommonController
     }
 
     /**
-     * 登录验证码
+     * 验证码
      * @return mixed
      */
     public function captcha_action()

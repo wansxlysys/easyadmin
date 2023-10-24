@@ -9,7 +9,7 @@ use app\common\repository\SystemLoginLogRepository;
 class SystemLoginLogService extends Service
 {
     /**
-     * 系统登录日志
+     * 存储类
      * @var SystemLoginLogRepository
      */
     protected $SystemLoginLogRepository;

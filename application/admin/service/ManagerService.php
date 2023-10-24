@@ -105,7 +105,7 @@ class ManagerService extends \app\common\service\ManagerService
         $manager = $this->getById($params['id']);
 
         if (empty($manager)) {
-            return $this->setMessage('管理员不存在');
+            return $this->setMessage('修改失败，管理员不存在');
         }
 
         /**
@@ -147,14 +147,14 @@ class ManagerService extends \app\common\service\ManagerService
          * 检测账号是否存在
          */
         if (!$manager) {
-            return $this->setMessage('管理员不存在');
+            return $this->setMessage('登录失败，管理员不存在');
         }
 
         /**
          * 更新最后登录时间
          */
         if (!$this->ManagerRepository->updateById($manager['id'], ['login_time' => date('Y-m-d H:i:s')])) {
-            return $this->setMessage('登录时间更新失败');
+            return $this->setMessage('执行失败，登录时间更新失败');
         }
 
         /**
@@ -168,14 +168,14 @@ class ManagerService extends \app\common\service\ManagerService
              * 检测管理员是否被禁用
              */
             if ($manager['status'] == ManagerEnum::STATUS_DISABLED) {
-                throw new RuntimeException('管理员已被禁用');
+                throw new RuntimeException('登录失败，管理员已被禁用');
             }
 
             /**
              * 检测管理员已被锁定
              */
             if ($manager['status'] == ManagerEnum::STATUS_LOCKED) {
-                throw new RuntimeException('管理员已被锁定');
+                throw new RuntimeException('登录失败，管理员已被锁定');
             }
 
             try {
@@ -184,7 +184,7 @@ class ManagerService extends \app\common\service\ManagerService
                  * 检测密码是否正确
                  */
                 if (!EncryptionHelper::equals($params['password'], $manager['password'])) {
-                    throw new RuntimeException('密码错误');
+                    throw new RuntimeException('登录失败，密码输入错误');
                 }
 
             } catch (Throwable $throwable) {

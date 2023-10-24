@@ -54,7 +54,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
     }
 
     /**
-     * 日志详情
+     * 详情
      * @param Request $request
      * @return mixed
      */
@@ -68,7 +68,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
     }
 
     /**
-     * 清空日志
+     * 清空
      * @param Request $request
      */
     public function clear_action(Request $request)

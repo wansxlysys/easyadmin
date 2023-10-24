@@ -32,7 +32,42 @@ class SettingController extends \app\common\controller\AdminController
     }
 
     /**
-     * 系统配置
+     * 系统设置
+     * @param Request $request
+     * @return mixed
+     */
+    public function config_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'content' => $request->post('content'),
+            ];
+
+            $SettingSystemValidate = new SettingSystemValidate();
+
+            if (!$SettingSystemValidate->scene('Config')->check($params)) {
+                $this->error($SettingSystemValidate->getError());
+            }
+
+            $result = $this->SettingSystemService->setSetting($params);
+
+            if (!$result) {
+                $this->error('修改失败');
+            }
+
+            $this->success('修改成功');
+        }
+
+        $setting = $this->SettingSystemService->getSetting();
+
+        return $this->fetch('', [
+            'setting' => $setting
+        ]);
+    }
+
+    /**
+     * 全局设置
      * @param Request $request
      * @return mixed
      */

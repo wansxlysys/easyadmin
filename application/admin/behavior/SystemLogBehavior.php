@@ -6,9 +6,9 @@ namespace app\admin\behavior;
 
 use think\Response;
 use think\facade\Request;
-use app\admin\service\LogService;
+use app\admin\service\SystemLogService;
 
-class LogBehavior
+class SystemLogBehavior
 {
     /**
      * 应用结束时执行
@@ -27,9 +27,9 @@ class LogBehavior
                  */
                 $codeMap = [1 => 1, 0 => 2];
 
-                $LogService = new LogService();
+                $SystemLogService = new SystemLogService();
 
-                $LogService->writeLog("系统自动记录：{$responseData['msg']}", $codeMap[$responseData['code']]);
+                $SystemLogService->writeLog("系统自动记录：{$responseData['msg']}", $codeMap[$responseData['code']]);
             }
         }
     }

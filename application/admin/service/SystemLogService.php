@@ -9,7 +9,7 @@ use app\common\util\ArrayUtil;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
 
-class LogService extends \app\common\service\LogService
+class SystemLogService extends \app\common\service\SystemLogService
 {
     /**
      * 获取列表和总数
@@ -37,8 +37,8 @@ class LogService extends \app\common\service\LogService
         $Query->setOrder(['log.id' => 'desc']);
         $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
 
-        $list  = $this->LogRepository->getListWithManager($Query);
-        $total = $this->LogRepository->getTotalWithManager($Query);
+        $list  = $this->SystemLogRepository->getListWithManager($Query);
+        $total = $this->SystemLogRepository->getTotalWithManager($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -55,7 +55,7 @@ class LogService extends \app\common\service\LogService
         $Query->addWhere('log.id', '=', $id);
         $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
 
-        return $this->LogRepository->getWithManager($Query);
+        return $this->SystemLogRepository->getWithManager($Query);
     }
 
     /**
@@ -87,7 +87,7 @@ class LogService extends \app\common\service\LogService
             'status'      => $status
         ];
 
-        return $this->LogRepository->createRecord($data);
+        return $this->SystemLogRepository->createRecord($data);
     }
 
     /**
@@ -96,6 +96,6 @@ class LogService extends \app\common\service\LogService
      */
     public function clear()
     {
-        return $this->LogRepository->clear();
+        return $this->SystemLogRepository->clear();
     }
 }

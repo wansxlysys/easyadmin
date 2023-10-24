@@ -5,8 +5,8 @@ namespace app\common\controller;
 
 
 use think\facade\Hook;
-use app\admin\behavior\LogBehavior;
 use app\admin\service\MenuService;
+use app\admin\behavior\SystemLogBehavior;
 use app\admin\service\SettingSystemService;
 
 class AdminController extends CommonController
@@ -28,7 +28,7 @@ class AdminController extends CommonController
 
         if ($this->request->isAjax()) {
 
-            Hook::add('app_end', LogBehavior::class);
+            Hook::add('app_end', SystemLogBehavior::class);
 
         } else {
 

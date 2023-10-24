@@ -5,9 +5,9 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\LogService;
+use app\admin\service\SystemLogService;
 
-class LogController extends \app\common\controller\AdminController
+class SystemLogController extends \app\common\controller\AdminController
 {
     /**
      * 中间件
@@ -17,9 +17,9 @@ class LogController extends \app\common\controller\AdminController
 
     /**
      * 服务类
-     * @var LogService
+     * @var SystemLogService
      */
-    protected $LogService;
+    protected $SystemLogService;
 
     /**
      * 初始化
@@ -27,7 +27,7 @@ class LogController extends \app\common\controller\AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->LogService = new LogService();
+        $this->SystemLogService = new SystemLogService();
     }
 
     /**
@@ -47,7 +47,7 @@ class LogController extends \app\common\controller\AdminController
                 'account' => $request->get('account')
             ];
 
-            $this->success('获取成功', '', $this->LogService->getListWithTotal($params));
+            $this->success('获取成功', '', $this->SystemLogService->getListWithTotal($params));
         }
 
         return $this->fetch();
@@ -60,7 +60,7 @@ class LogController extends \app\common\controller\AdminController
      */
     public function detail_action(Request $request)
     {
-        $log = $this->LogService->getDetail($request->get('id'));
+        $log = $this->SystemLogService->getDetail($request->get('id'));
 
         return $this->fetch('', [
             'log' => $log
@@ -75,7 +75,7 @@ class LogController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            if ($this->LogService->clear()) {
+            if ($this->SystemLogService->clear()) {
                 $this->success('清空成功');
             }
 

@@ -8,13 +8,13 @@ use think\Db;
 use Throwable;
 use app\common\exception\RepositoryException;
 
-class LogRepository extends Model
+class SystemLogRepository extends Model
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'Log';
+    protected $name = 'SystemLog';
 
     /**
      * 获取关联管理员列表

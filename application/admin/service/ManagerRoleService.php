@@ -45,8 +45,8 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     {
         $Query = new Query();
 
-        if (false === ManagerHelper::isSuper()) {
-            $Query->addWhere('is_system', '=', ManagerRoleEnum::IS_SYSTEM_NOT);
+        if (ManagerHelper::isNotSuper()) {
+            $Query->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
         }
 
         $Query->addOrder('sort', 'asc');
@@ -75,7 +75,13 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         $PermissionService = new PermissionService();
 
         if ($ManagerService->getByRoleId($id)) {
-            return $this->setMessage('角色下存在管理员，禁止删除');
+            return $this->setMessage('禁止删除，角色下存在管理员');
+        }
+
+        $role = $this->ManagerRoleRepository->getById($id);
+
+        if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
+            return $this->setMessage('禁止删除，超级管理员角色');
         }
 
         Db::startTrans();
@@ -83,11 +89,11 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         try {
 
             if (!$PermissionService->deleteByRoleId($id)) {
-                throw new RuntimeException('权限删除失败');
+                throw new RuntimeException('执行错误，权限删除失败');
             }
 
             if (!$this->ManagerRoleRepository->deleteById($id)) {
-                throw new RuntimeException('角色删除失败');
+                throw new RuntimeException('执行错误，角色删除失败');
             }
 
             Db::commit();

@@ -45,11 +45,6 @@
         <i class="fa fa-fw fa-trash"></i>删除
     </button>
 </script>
-
-<script type="text/html" id="is_system">
-    {{#  if(d.is_system == 1){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
-    {{#  if(d.is_system == 2){ }}<span class="layui-badge layui-bg-orange">否</span>{{#  } }}
-</script>
 {/block}
 
 {block name="js"}
@@ -68,9 +63,8 @@
                 {type: 'checkbox'},
                 {field: 'id', title: 'ID', width: 80},
                 {field: 'name', title: '角色名称', width: 240},
-                {field: 'identify', title: '角色标识', width: 160},
+                {field: 'identify', title: '角色标识', width: 240},
                 {field: 'remark', title: '备注'},
-                {field: 'is_system', title: '系统内置', width: 140, templet: "#is_system"},
                 {title: '操作', toolbar: '#bar', width: 180}
             ]]
         });

@@ -7,6 +7,7 @@ namespace app\admin\service;
 use Throwable;
 use RuntimeException;
 use think\facade\Cache;
+use app\common\enum\ManagerEnum;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
 use app\common\helper\EncryptionHelper;
@@ -140,21 +141,21 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 组合缓存key
          */
-        $cacheKey = static::CACHE_LOGIN_ERROR_NUMBER . $manager['id'];
+        $cacheKey = ManagerEnum::CACHE_LOGIN_ERROR_NUMBER . $manager['id'];
 
         try {
 
             /**
              * 检测管理员是否被禁用
              */
-            if ($manager['status'] == static::STATUS_DISABLED) {
+            if ($manager['status'] == ManagerEnum::STATUS_DISABLED) {
                 throw new RuntimeException('管理员已被禁用');
             }
 
             /**
              * 检测管理员已被锁定
              */
-            if ($manager['status'] == static::STATUS_LOCKED) {
+            if ($manager['status'] == ManagerEnum::STATUS_LOCKED) {
                 throw new RuntimeException('管理员已被锁定');
             }
 
@@ -174,12 +175,12 @@ class ManagerService extends \app\common\service\ManagerService
                  */
                 $errorNumber = Cache::get($cacheKey, 1);
 
-                if ($errorNumber >= static::LOCK_LOGIN_ERROR_NUMBER) {
+                if ($errorNumber >= ManagerEnum::LOCK_LOGIN_ERROR_NUMBER) {
 
                     /**
                      * 更新管理员为锁定状态
                      */
-                    $this->ManagerRepository->updateById($manager['id'], ['status' => static::STATUS_LOCKED]);
+                    $this->ManagerRepository->updateById($manager['id'], ['status' => ManagerEnum::STATUS_LOCKED]);
 
                     /**
                      * 清除登录锁定缓存

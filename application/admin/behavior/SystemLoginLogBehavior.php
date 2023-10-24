@@ -5,6 +5,7 @@ namespace app\admin\behavior;
 
 
 use think\facade\Request;
+use app\common\enum\SystemLoginLogEnum;
 use app\admin\service\SystemLoginLogService;
 
 class SystemLoginLogBehavior
@@ -18,7 +19,7 @@ class SystemLoginLogBehavior
     {
         $SystemLoginLog = new SystemLoginLogService();
 
-        $loginLog['status']      = 1;
+        $loginLog['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
         $loginLog['login_ip']    = Request::ip();
         $loginLog['manager_id']  = $params['manager_id'];
         $loginLog['description'] = $params['description'];
@@ -35,7 +36,7 @@ class SystemLoginLogBehavior
     {
         $SystemLoginLog = new SystemLoginLogService();
 
-        $loginLog['status']      = 2;
+        $loginLog['status']      = SystemLoginLogEnum::STATUS_ERROR;
         $loginLog['login_ip']    = Request::ip();
         $loginLog['manager_id']  = $params['manager_id'];
         $loginLog['description'] = $params['description'];

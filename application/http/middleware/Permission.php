@@ -6,12 +6,13 @@ namespace app\http\middleware;
 
 use Closure;
 use traits\controller\Jump;
+use app\common\enum\ManagerEnum;
 use app\admin\service\MenuService;
-use app\admin\service\ManagerRoleService;
 use app\common\helper\StorageHelper;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\service\PermissionService;
+use app\admin\service\ManagerRoleService;
 
 class Permission
 {
@@ -45,9 +46,9 @@ class Permission
         $role       = $this->getRole($manager['role_id']);
         $permission = $this->getPermission($manager['role_id']);
 
-        StorageHelper::set(ManagerService::CONTAINER_ROLE, $role);
-        StorageHelper::set(ManagerService::CONTAINER_MANAGER, $manager);
-        StorageHelper::set(ManagerService::CONTAINER_PERMISSION, $permission);
+        StorageHelper::set(ManagerEnum::CONTAINER_ROLE, $role);
+        StorageHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
+        StorageHelper::set(ManagerEnum::CONTAINER_PERMISSION, $permission);
     }
 
     /**

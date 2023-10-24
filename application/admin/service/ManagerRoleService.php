@@ -8,6 +8,7 @@ use think\Db;
 use Throwable;
 use RuntimeException;
 use app\common\repository\Query;
+use app\common\enum\ManagerRoleEnum;
 use app\common\helper\ManagerHelper;
 
 class ManagerRoleService extends \app\common\service\ManagerRoleService
@@ -45,7 +46,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         $Query = new Query();
 
         if (false === ManagerHelper::isSuper()) {
-            $Query->addWhere('is_system', '=', static::IS_SYSTEM_NOT);
+            $Query->addWhere('is_system', '=', ManagerRoleEnum::IS_SYSTEM_NOT);
         }
 
         $Query->addOrder('sort', 'asc');

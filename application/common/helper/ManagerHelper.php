@@ -5,8 +5,8 @@ namespace app\common\helper;
 
 
 use think\facade\Session;
-use app\admin\service\ManagerRoleService;
-use app\admin\service\ManagerService;
+use app\common\enum\ManagerEnum;
+use app\common\enum\ManagerRoleEnum;
 
 class ManagerHelper
 {
@@ -16,7 +16,7 @@ class ManagerHelper
      */
     public static function login($managerId)
     {
-        Session::set(ManagerService::SESSION_ID, $managerId);
+        Session::set(ManagerEnum::SESSION_ID, $managerId);
     }
 
     /**
@@ -24,7 +24,7 @@ class ManagerHelper
      */
     public static function logout()
     {
-        Session::delete(ManagerService::SESSION_ID);
+        Session::delete(ManagerEnum::SESSION_ID);
     }
 
     /**
@@ -33,7 +33,7 @@ class ManagerHelper
      */
     public static function getManagerId()
     {
-        return Session::get(ManagerService::SESSION_ID);
+        return Session::get(ManagerEnum::SESSION_ID);
     }
 
     /**
@@ -42,7 +42,7 @@ class ManagerHelper
      */
     public static function isLogin()
     {
-        return Session::has(ManagerService::SESSION_ID);
+        return Session::has(ManagerEnum::SESSION_ID);
     }
 
     /**
@@ -51,7 +51,7 @@ class ManagerHelper
      */
     public static function getRole()
     {
-        return StorageHelper::get(ManagerService::CONTAINER_ROLE);
+        return StorageHelper::get(ManagerEnum::CONTAINER_ROLE);
     }
 
     /**
@@ -69,7 +69,7 @@ class ManagerHelper
      */
     public static function getManager()
     {
-        return StorageHelper::get(ManagerService::CONTAINER_MANAGER);
+        return StorageHelper::get(ManagerEnum::CONTAINER_MANAGER);
     }
 
     /**
@@ -78,7 +78,7 @@ class ManagerHelper
      */
     public static function getPermission()
     {
-        return StorageHelper::get(ManagerService::CONTAINER_PERMISSION);
+        return StorageHelper::get(ManagerEnum::CONTAINER_PERMISSION);
     }
 
     /**
@@ -87,7 +87,7 @@ class ManagerHelper
      */
     public static function isSuper()
     {
-        return static::getIdentify() == ManagerRoleService::SUPER_NAME;
+        return static::getIdentify() == ManagerRoleEnum::SUPER_NAME;
     }
 
     /**
@@ -96,7 +96,7 @@ class ManagerHelper
      */
     public static function isNotSuper()
     {
-        return static::getIdentify() != ManagerRoleService::SUPER_NAME;
+        return static::getIdentify() != ManagerRoleEnum::SUPER_NAME;
     }
 
     /**
@@ -105,7 +105,7 @@ class ManagerHelper
      */
     public static function isDisabled()
     {
-        return static::getManager()['status'] == ManagerService::STATUS_DISABLED;
+        return static::getManager()['status'] == ManagerEnum::STATUS_DISABLED;
     }
 
     /**

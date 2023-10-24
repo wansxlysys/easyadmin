@@ -5,6 +5,7 @@ namespace app\admin\service;
 
 
 use think\facade\Request;
+use app\common\enum\MenuEnum;
 use app\common\repository\Query;
 use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
@@ -37,8 +38,8 @@ class MenuService extends \app\common\service\MenuService
      */
     public function getCurrentMenu()
     {
-        if (StorageHelper::has(static::CONTAINER_MENU)) {
-            return StorageHelper::get(static::CONTAINER_MENU);
+        if (StorageHelper::has(MenuEnum::CONTAINER_MENU)) {
+            return StorageHelper::get(MenuEnum::CONTAINER_MENU);
         }
 
         $Query = new Query();
@@ -47,9 +48,9 @@ class MenuService extends \app\common\service\MenuService
         $Query->addWhere('controller', '=', Request::controller());
         $Query->addWhere('action', '=', Request::action());
 
-        StorageHelper::set(static::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
+        StorageHelper::set(MenuEnum::CONTAINER_MENU, $this->MenuRepository->getOne($Query));
 
-        return StorageHelper::get(static::CONTAINER_MENU);
+        return StorageHelper::get(MenuEnum::CONTAINER_MENU);
     }
 
     /**
@@ -161,7 +162,7 @@ class MenuService extends \app\common\service\MenuService
      */
     protected function buildUrl($menu)
     {
-        if ($menu['type'] == static::TYPE_LINK) {
+        if ($menu['type'] == MenuEnum::TYPE_LINK) {
             return $menu['link'];
         }
 

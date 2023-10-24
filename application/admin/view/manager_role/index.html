@@ -62,7 +62,7 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/Role/index')}",
+            url: "{:url('admin/ManagerRole/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
@@ -77,14 +77,14 @@
 
         table.on('toolbar(table)', function (obj) {
             if(obj.event === 'create') {
-                easyAdmin.openLayer("{:url('admin/Role/create')}");
+                easyAdmin.openLayer("{:url('admin/ManagerRole/create')}");
             }
         });
 
         table.on('tool(table)', function (obj) {
 
             if(obj.event === "update") {
-                easyAdmin.openLayer("{:url('admin/Role/update')}?id=" + obj.data.id);
+                easyAdmin.openLayer("{:url('admin/ManagerRole/update')}?id=" + obj.data.id);
             }
 
             if(obj.event === "delete") {
@@ -93,7 +93,7 @@
                 }, function () {
                     easyAdmin.http({
                         type: "POST",
-                        url: "{:url('admin/Role/delete')}",
+                        url: "{:url('admin/ManagerRole/delete')}",
                         data: {
                             id: obj.data.id
                         },

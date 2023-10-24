@@ -82,7 +82,7 @@
 
             easyAdmin.http({
                 type: "POST",
-                url: "{:url('admin/Role/create')}",
+                url: "{:url('admin/ManagerRole/create')}",
                 data: obj.field,
                 success: function (result) {
                     var key = top.layer.alert(result.msg, {

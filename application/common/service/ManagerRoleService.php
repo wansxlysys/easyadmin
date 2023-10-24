@@ -4,9 +4,9 @@
 namespace app\common\service;
 
 
-use app\common\repository\RoleRepository;
+use app\common\repository\ManagerRoleRepository;
 
-class RoleService extends Service
+class ManagerRoleService extends Service
 {
     /**
      * 超管角色名
@@ -21,9 +21,9 @@ class RoleService extends Service
 
     /**
      * 存储类
-     * @var RoleRepository
+     * @var ManagerRoleRepository
      */
-    protected $RoleRepository;
+    protected $ManagerRoleRepository;
 
     /**
      * 初始化
@@ -31,6 +31,6 @@ class RoleService extends Service
     public function initialize()
     {
         parent::initialize();
-        $this->RoleRepository = new RoleRepository();
+        $this->ManagerRoleRepository = new ManagerRoleRepository();
     }
 }

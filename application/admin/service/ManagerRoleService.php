@@ -10,7 +10,7 @@ use RuntimeException;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
 
-class RoleService extends \app\common\service\RoleService
+class ManagerRoleService extends \app\common\service\ManagerRoleService
 {
     /**
      * 获取列表和总数
@@ -29,8 +29,8 @@ class RoleService extends \app\common\service\RoleService
         $Query->setLimit($params['limit']);
         $Query->addOrder('sort', 'asc');
 
-        $list  = $this->RoleRepository->getList($Query);
-        $total = $this->RoleRepository->getTotal($Query);
+        $list  = $this->ManagerRoleRepository->getList($Query);
+        $total = $this->ManagerRoleRepository->getTotal($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -50,7 +50,7 @@ class RoleService extends \app\common\service\RoleService
 
         $Query->addOrder('sort', 'asc');
 
-        return $this->RoleRepository->getAll($Query);
+        return $this->ManagerRoleRepository->getAll($Query);
     }
 
     /**
@@ -60,7 +60,7 @@ class RoleService extends \app\common\service\RoleService
      */
     public function getById($id)
     {
-        return $this->RoleRepository->getById($id);
+        return $this->ManagerRoleRepository->getById($id);
     }
 
     /**
@@ -85,7 +85,7 @@ class RoleService extends \app\common\service\RoleService
                 throw new RuntimeException('权限删除失败');
             }
 
-            if (!$this->RoleRepository->deleteById($id)) {
+            if (!$this->ManagerRoleRepository->deleteById($id)) {
                 throw new RuntimeException('角色删除失败');
             }
 
@@ -119,7 +119,7 @@ class RoleService extends \app\common\service\RoleService
             $roleData['title']  = $params['title'];
             $roleData['remark'] = $params['remark'];
 
-            $roleId = $this->RoleRepository->createRecord($roleData);
+            $roleId = $this->ManagerRoleRepository->createRecord($roleData);
 
             if (!$roleId) {
                 throw new RuntimeException('角色创建失败');
@@ -166,7 +166,7 @@ class RoleService extends \app\common\service\RoleService
             $roleData['title']  = $params['title'];
             $roleData['remark'] = $params['remark'];
 
-            $result = $this->RoleRepository->updateById($params['id'], $roleData);
+            $result = $this->ManagerRoleRepository->updateById($params['id'], $roleData);
 
             if (!$result) {
                 throw new RuntimeException('角色修改失败');

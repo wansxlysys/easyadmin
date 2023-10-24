@@ -4,11 +4,11 @@
 namespace app\admin\validate;
 
 
-class RoleValidate extends \app\common\validate\RoleValidate
+class ManagerRoleValidate extends \app\common\validate\ManagerRoleValidate
 {
     /**
      * 添加
-     * @return RoleValidate
+     * @return ManagerRoleValidate
      */
     public function sceneCreate()
     {
@@ -17,7 +17,7 @@ class RoleValidate extends \app\common\validate\RoleValidate
 
     /**
      * 修改
-     * @return RoleValidate
+     * @return ManagerRoleValidate
      */
     public function sceneUpdate()
     {
@@ -26,7 +26,7 @@ class RoleValidate extends \app\common\validate\RoleValidate
 
     /**
      * 删除
-     * @return RoleValidate
+     * @return ManagerRoleValidate
      */
     public function sceneDelete()
     {

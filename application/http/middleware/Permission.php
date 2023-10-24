@@ -7,7 +7,7 @@ namespace app\http\middleware;
 use Closure;
 use traits\controller\Jump;
 use app\admin\service\MenuService;
-use app\admin\service\RoleService;
+use app\admin\service\ManagerRoleService;
 use app\common\helper\StorageHelper;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
@@ -101,7 +101,7 @@ class Permission
      */
     protected function getRole($roleId)
     {
-        $RoleService = new RoleService();
+        $RoleService = new ManagerRoleService();
 
         return $RoleService->getById($roleId);
     }

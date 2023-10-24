@@ -4,7 +4,7 @@
 namespace app\common\validate;
 
 
-class RoleValidate extends Validate
+class ManagerRoleValidate extends Validate
 {
     /**
      * 验证规则

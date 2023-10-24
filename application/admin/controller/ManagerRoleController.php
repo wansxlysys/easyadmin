@@ -5,11 +5,11 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\RoleService;
-use app\admin\validate\RoleValidate;
 use app\admin\service\PermissionService;
+use app\admin\service\ManagerRoleService;
+use app\admin\validate\ManagerRoleValidate;
 
-class RoleController extends \app\common\controller\AdminController
+class ManagerRoleController extends \app\common\controller\AdminController
 {
     /**
      * 中间件
@@ -19,9 +19,9 @@ class RoleController extends \app\common\controller\AdminController
 
     /**
      * 服务类
-     * @var RoleService
+     * @var ManagerRoleService
      */
-    protected $RoleService;
+    protected $ManagerRoleService;
 
     /**
      * 初始化
@@ -29,7 +29,7 @@ class RoleController extends \app\common\controller\AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->RoleService = new RoleService();
+        $this->ManagerRoleService = new ManagerRoleService();
     }
 
     /**
@@ -47,7 +47,7 @@ class RoleController extends \app\common\controller\AdminController
                 'name'  => $request->get('name'),
             ];
 
-            $this->success('获取成功', '', $this->RoleService->getListWithTotal($params));
+            $this->success('获取成功', '', $this->ManagerRoleService->getListWithTotal($params));
         }
         return $this->fetch();
     }
@@ -68,13 +68,13 @@ class RoleController extends \app\common\controller\AdminController
                 'permission' => $request->post('permission'),
             ];
 
-            $RoleValidate = new RoleValidate();
+            $RoleValidate = new ManagerRoleValidate();
 
             if (!$RoleValidate->scene('Create')->check($params)) {
                 $this->error($RoleValidate->getError());
             }
 
-            if (!$this->RoleService->createRole($params)) {
+            if (!$this->ManagerRoleService->createRole($params)) {
                 $this->error('添加失败');
             }
 
@@ -101,14 +101,14 @@ class RoleController extends \app\common\controller\AdminController
                 'permission' => $request->post('permission'),
             ];
 
-            $RoleValidate = new RoleValidate();
+            $RoleValidate = new ManagerRoleValidate();
 
             if (!$RoleValidate->scene('Update')->check($params)) {
                 $this->error($RoleValidate->getError());
             }
 
-            if (!$this->RoleService->updateRole($params)) {
-                $this->error($this->RoleService->getMessage());
+            if (!$this->ManagerRoleService->updateRole($params)) {
+                $this->error($this->ManagerRoleService->getMessage());
             }
 
             $this->success('修改成功');
@@ -116,7 +116,7 @@ class RoleController extends \app\common\controller\AdminController
 
         $PermissionService = new PermissionService();
 
-        $role       = $this->RoleService->getById($request->get('id'));
+        $role       = $this->ManagerRoleService->getById($request->get('id'));
         $permission = $PermissionService->getAllMenuIdByRoleId($role['id']);
 
         return $this->fetch('', [
@@ -137,16 +137,16 @@ class RoleController extends \app\common\controller\AdminController
                 'id' => $request->post('id')
             ];
 
-            $RoleValidate = new RoleValidate();
+            $RoleValidate = new ManagerRoleValidate();
 
             if (!$RoleValidate->scene('Delete')->check($params)) {
                 $this->error($RoleValidate->getError());
             }
 
-            $result = $this->RoleService->deleteRole($params['id']);
+            $result = $this->ManagerRoleService->deleteRole($params['id']);
 
             if (!$result) {
-                $this->error($this->RoleService->getMessage());
+                $this->error($this->ManagerRoleService->getMessage());
             }
 
             $this->success('删除成功');
@@ -160,7 +160,7 @@ class RoleController extends \app\common\controller\AdminController
     public function get_all_action(Request $request)
     {
         if ($request->isAjax()) {
-            $this->success('获取成功', '', $this->RoleService->getAll());
+            $this->success('获取成功', '', $this->ManagerRoleService->getAll());
         }
     }
 }

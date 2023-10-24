@@ -25,18 +25,33 @@ class ManagerService extends \app\common\service\ManagerService
         $Query = new Query();
 
         if (!empty($params['status'])) {
-            $Query->addWhere('status', '=', $params['status']);
+            $Query->addWhere('manager.status', '=', $params['status']);
+        }
+
+        if (!empty($params['role_id'])) {
+            $Query->addWhere('manager.role_id', '=', $params['role_id']);
         }
 
         if (!empty($params['real_name'])) {
-            $Query->addWhere('real_name', 'LIKE', "%{$params['real_name']}%");
+            $Query->addWhere('manager.real_name', 'LIKE', "%{$params['real_name']}%");
         }
 
+        if (ManagerHelper::isNotSuper()) {
+            $Query->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
+        }
+
+        $field = [
+            'manager.id', 'manager.avatar', 'manager.account', 'manager.real_name', 'manager.status',
+            'manager.login_time', 'role.name role_name'
+        ];
+
+        $Query->setField($field);
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
+        $Query->addOrder('manager.id', 'asc');
 
-        $list  = $this->ManagerRepository->getList($Query);
-        $total = $this->ManagerRepository->getTotal($Query);
+        $list  = $this->ManagerRepository->getListWithRole($Query);
+        $total = $this->ManagerRepository->getTotalWithRole($Query);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -112,6 +127,10 @@ class ManagerService extends \app\common\service\ManagerService
      */
     public function deleteManager(array $params)
     {
+        if ($params['id'] == ManagerEnum::SUPER_ID) {
+            return $this->setMessage('删除失败，超级管理员禁止删除');
+        }
+
         return $this->ManagerRepository->deleteById($params['id']);
     }
 

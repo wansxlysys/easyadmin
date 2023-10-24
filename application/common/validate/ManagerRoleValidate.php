@@ -12,8 +12,8 @@ class ManagerRoleValidate extends Validate
      */
     protected $rule = [
         'id'         => 'require|number',
-        'name'       => 'require|max:32|unique:Role',
-        'identify'   => 'require|max:32|unique:Role',
+        'name'       => 'require|max:32|unique:ManagerRole',
+        'identify'   => 'require|max:32|unique:ManagerRole',
         'permission' => 'require',
     ];
 

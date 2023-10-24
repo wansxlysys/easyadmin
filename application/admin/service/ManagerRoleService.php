@@ -122,9 +122,9 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
             /**
              * 创建角色
              */
-            $roleData['name']   = $params['name'];
-            $roleData['title']  = $params['title'];
-            $roleData['remark'] = $params['remark'];
+            $roleData['name']     = $params['name'];
+            $roleData['remark']   = $params['remark'];
+            $roleData['identify'] = $params['identify'];
 
             $roleId = $this->ManagerRoleRepository->createRecord($roleData);
 
@@ -169,9 +169,9 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
             /**
              * 更新角色
              */
-            $roleData['name']   = $params['name'];
-            $roleData['title']  = $params['title'];
-            $roleData['remark'] = $params['remark'];
+            $roleData['name']     = $params['name'];
+            $roleData['remark']   = $params['remark'];
+            $roleData['identify'] = $params['identify'];
 
             $result = $this->ManagerRoleRepository->updateById($params['id'], $roleData);
 

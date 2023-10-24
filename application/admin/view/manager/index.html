@@ -25,6 +25,12 @@
                         </div>
                     </div>
                     <div class="layui-inline">
+                        <label class="layui-form-label">角色</label>
+                        <div class="layui-input-inline">
+                            <div id="role"></div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
                         <button type="reset" class="layui-btn layui-btn-danger" lay-submit="" lay-filter="reset">
                             <i class="fa fa-fw fa-refresh"></i>重置
                         </button>
@@ -60,11 +66,6 @@
     <img src="{{d.avatar}}" width="35" height="35" class="layui-circle">
 </script>
 
-<script type="text/html" id="is_system">
-    {{#  if(d.is_system == 1){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
-    {{#  if(d.is_system == 2){ }}<span class="layui-badge">否</span>{{#  } }}
-</script>
-
 <script type="text/html" id="status">
     {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
     {{#  if(d.status == 2){ }}<span class="layui-badge">禁用</span>{{#  } }}
@@ -79,6 +80,20 @@
         var form = layui.form;
         var table = layui.table;
         var easyAdmin = layui.easyAdmin;
+        var easyService = layui.easyService;
+
+        var roleSelect = null;
+
+        easyService.roleSingleSelect({
+            elem: '#role',
+            setting: {
+                name: 'role_id',
+                layVerify: 'required',
+                ready: function (singleSelect) {
+                    roleSelect = singleSelect;
+                }
+            }
+        });
 
         table.render({
             id: "table",
@@ -90,8 +105,8 @@
                 {field: 'id', title: 'ID', width: 80},
                 {field: 'avatar', title: '头像', width: 80, templet: "#avatar"},
                 {field: 'account', title: '账号', width: 240},
+                {field: 'role_name', title: '角色名称', width: 240},
                 {field: 'real_name', title: '姓名'},
-                {field: 'is_system', title: '系统内置', width: 120, templet: "#is_system"},
                 {field: 'status', title: '状态', width: 100, templet: "#status"},
                 {field: 'login_time', title: '登录时间', width: 160},
                 {title: '操作', toolbar: '#bar', width: 170}
@@ -143,6 +158,7 @@
         });
 
         form.on("submit(reset)", function (obj) {
+            roleSelect.setValue([]);
             table.reload("table", {
                 where: {},
                 page: {

@@ -46,6 +46,7 @@ class ManagerController extends \app\common\controller\AdminController
                 'page'      => $request->get('page'),
                 'limit'     => $request->get('limit'),
                 'status'    => $request->get('status'),
+                'role_id'   => $request->get('role_id'),
                 'real_name' => $request->get('real_name'),
             ];
 
@@ -152,7 +153,7 @@ class ManagerController extends \app\common\controller\AdminController
             $result = $this->ManagerService->deleteManager($params);
 
             if (!$result) {
-                $this->error('删除失败');
+                $this->error($this->ManagerService->getMessage());
             }
 
             $this->success('删除成功');

@@ -7,6 +7,7 @@ namespace app\admin\service;
 use think\facade\Request;
 use app\common\util\ArrayUtil;
 use app\common\repository\Query;
+use app\common\enum\ManagerEnum;
 use app\common\helper\ManagerHelper;
 
 class SystemLogService extends \app\common\service\SystemLogService
@@ -30,6 +31,10 @@ class SystemLogService extends \app\common\service\SystemLogService
 
         if (!empty($params['account'])) {
             $Query->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
+        }
+
+        if (ManagerHelper::isNotSuper()) {
+            $Query->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
         $Query->setPage($params['page']);

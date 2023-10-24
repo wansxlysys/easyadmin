@@ -7,6 +7,11 @@ namespace app\common\enum;
 class ManagerEnum
 {
     /**
+     * 超级管理员ID
+     */
+    const SUPER_ID = 1;
+
+    /**
      * 缓存标识
      */
     const SESSION_ID = 'system.id'; // 缓存ID

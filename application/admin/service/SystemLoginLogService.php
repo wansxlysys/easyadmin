@@ -5,6 +5,8 @@ namespace app\admin\service;
 
 
 use app\common\repository\Query;
+use app\common\enum\ManagerEnum;
+use app\common\helper\ManagerHelper;
 
 class SystemLoginLogService extends \app\common\service\SystemLoginLogService
 {
@@ -27,6 +29,10 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
 
         if (!empty($params['real_name'])) {
             $Query->setWhere(['manager.real_name', 'LIKE', "%{$params['real_name']}%"]);
+        }
+
+        if (ManagerHelper::isNotSuper()) {
+            $Query->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
         $Query->setPage($params['page']);

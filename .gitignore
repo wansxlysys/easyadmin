@@ -7,5 +7,5 @@ thinkphp
 .DS_Store
 
 # 自定义
-/public/uploads
+/public/upload
 /public/nginx.htaccess

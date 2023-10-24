@@ -15,7 +15,7 @@ class UploadService extends \app\common\service\UploadService
      * @param string $savePath
      * @return array|bool
      */
-    public function uploadImage($file, $savePath = '/uploads/images')
+    public function uploadImage($file, $savePath = '/upload/image')
     {
         $params = [
             'file' => $file
@@ -80,7 +80,7 @@ class UploadService extends \app\common\service\UploadService
      * @param string $savePath
      * @return bool|string[]
      */
-    public function uploadFile(array $params, $savePath = '/uploads/file')
+    public function uploadFile(array $params, $savePath = '/upload/file')
     {
         $filePath = $savePath . '/' . date('Ymd') . '/' . $params['md5'] . '.' . $params['suffix'];
         $rootPath = Env::get('root_path') . "public" . $filePath;

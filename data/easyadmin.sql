@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1:3306	Database: easyadmin
 -- ------------------------------------------------------
 -- Server version 	5.7.26
--- Date: Tue, 24 Oct 2023 15:04:54 +0800
+-- Date: Wed, 25 Oct 2023 10:07:07 +0800
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -242,7 +242,7 @@ CREATE TABLE `easy_system_upload` (
   `md5` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件MD5',
   `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件名称',
   `size` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '文件大小',
-  `suffix` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件后缀',
+  `ext` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件后缀',
   `path` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '保存位置',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -276,4 +276,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Tue, 24 Oct 2023 15:04:54 +0800
+-- Dump completed on: Wed, 25 Oct 2023 10:07:07 +0800

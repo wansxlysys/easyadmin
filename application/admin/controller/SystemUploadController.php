@@ -1,10 +1,12 @@
 <?php
 
+
 namespace app\admin\controller;
 
 
 use think\Request;
 use app\admin\service\SystemUploadService;
+use app\admin\validate\SystemUploadValidate;
 
 class SystemUploadController extends \app\common\controller\AdminController
 {
@@ -27,6 +29,34 @@ class SystemUploadController extends \app\common\controller\AdminController
     {
         parent::initialize();
         $this->SystemUploadService = new SystemUploadService();
+    }
+
+    /**
+     * 文件检测
+     * @param Request $request
+     */
+    public function check_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'md5' => $request->post('file_md5'),
+            ];
+
+            $SystemUploadValidate = new SystemUploadValidate();
+
+            if (!$SystemUploadValidate->scene('Check')->check($params)) {
+                $this->error($SystemUploadValidate->getError());
+            }
+
+            $file = $this->SystemUploadService->getFileByMd5($params['md5']);
+
+            if (!$file) {
+                $this->error('文件不存在');
+            }
+
+            $this->success('文件已存在', '', ['filePath' => $file['path']]);
+        }
     }
 
     /**
@@ -54,29 +84,6 @@ class SystemUploadController extends \app\common\controller\AdminController
             }
 
             $this->success('上传成功', '', $result);
-        }
-    }
-
-    /**
-     * 文件检测
-     * @param Request $request
-     */
-    public function check_action(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $params = [
-                'md5'  => $request->post('file_md5'),
-                'name' => $request->post('file_name'),
-            ];
-
-            $file = $this->SystemUploadService->getFileByMd5($params['md5']);
-
-            if (!$file) {
-                $this->error('文件不存在');
-            }
-
-            $this->success('文件已存在', '', ['filePath' => $file['path']]);
         }
     }
 

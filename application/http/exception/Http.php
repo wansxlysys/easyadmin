@@ -4,16 +4,18 @@
 namespace app\http\exception;
 
 
+use Exception;
 use think\facade\Env;
 use think\facade\Config;
+use think\exception\Handle;
 use think\exception\HttpException;
 
-class Http extends \think\exception\Handle
+class Http extends Handle
 {
     /*
      * 异常处理
      */
-    public function render(\Exception $exception)
+    public function render(Exception $exception)
     {
         /**
          * 非调试模式

@@ -38,32 +38,15 @@ class Model extends Repository
     }
 
     /**
-     * 通过ID获取或抛出异常
-     * @param $id
-     * @return mixed
-     */
-    public function getByIdOrFail($id)
-    {
-        try {
-
-            return Db::name(static::getName())->where('id', $id)->findOrFail();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
-    }
-
-    /**
      * 通过条件查询
      * @param array $where
-     * @param bool $fail
      * @return mixed
      */
-    public function getByWhere(array $where, $fail = false)
+    public function getByWhere(array $where)
     {
         try {
 
-            return Db::name(static::getName())->where($where)->failException($fail)->find();
+            return Db::name(static::getName())->where($where)->find();
 
         } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

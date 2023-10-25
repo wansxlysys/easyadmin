@@ -36,7 +36,6 @@ class ManagerRepository extends Model
                 ->group($Query->getGroup())
                 ->having($Query->getHaving())
                 ->order($Query->getOrder())
-                ->failException($Query->getFailException())
                 ->select();
 
         } catch (Throwable $throwable) {

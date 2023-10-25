@@ -4,7 +4,9 @@
 namespace app\common\exception;
 
 
-class RepositoryException extends \RuntimeException
+use RuntimeException;
+
+class RepositoryException extends RuntimeException
 {
 
 }

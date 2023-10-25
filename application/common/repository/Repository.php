@@ -8,7 +8,6 @@ use think\Db;
 use Throwable;
 use app\common\exception\RepositoryException;
 
-
 abstract class Repository
 {
     /**
@@ -29,7 +28,6 @@ abstract class Repository
                 ->group($Query->getGroup())
                 ->having($Query->getHaving())
                 ->order($Query->getOrder())
-                ->failException($Query->getFailException())
                 ->select();
 
         } catch (Throwable $throwable) {
@@ -72,7 +70,6 @@ abstract class Repository
                 ->group($Query->getGroup())
                 ->having($Query->getHaving())
                 ->order($Query->getOrder())
-                ->failException($Query->getFailException())
                 ->select();
 
         } catch (Throwable $throwable) {
@@ -95,7 +92,6 @@ abstract class Repository
                 ->field($Query->getField())
                 ->group($Query->getGroup())
                 ->order($Query->getOrder())
-                ->failException($Query->getFailException())
                 ->find();
 
         } catch (Throwable $throwable) {

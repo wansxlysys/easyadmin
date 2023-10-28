@@ -542,7 +542,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .detail .detail-cell {
-    width: 25%;
+    width: 100%;
     display: flex;
     margin: 10px 0;
 }
@@ -551,8 +551,16 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     align-items: center;
 }
 
+.detail .detail-cell-25 {
+    width: 25%;
+}
+
 .detail .detail-cell-50 {
     width: 50%;
+}
+
+.detail .detail-cell-75 {
+    width: 75%;
 }
 
 .detail .detail-cell-100 {

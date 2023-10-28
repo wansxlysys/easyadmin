@@ -4,7 +4,7 @@
 namespace app\common\render;
 
 
-class TabRender
+class LinkTabRender
 {
     /**
      * 渲染

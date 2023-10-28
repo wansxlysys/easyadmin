@@ -6,8 +6,8 @@ namespace app\admin\service;
 
 use app\common\util\StringUtil;
 use app\common\repository\Query;
-use app\common\enum\ManagerRoleEnum;
 use app\common\helper\ManagerHelper;
+use app\common\enum\ManagerRoleEnum;
 
 class ManagerRoleService extends \app\common\service\ManagerRoleService
 {
@@ -20,8 +20,8 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     {
         $Query = new Query();
 
-        if (!empty($params['title'])) {
-            $Query->addWhere('title', 'LIKE', "%{$params['title']}%");
+        if (!empty($params['name'])) {
+            $Query->addWhere('name', 'LIKE', "%{$params['name']}%");
         }
 
         $Query->setPage($params['page']);
@@ -75,7 +75,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     }
 
     /**
-     * 通过角色ID删除
+     * 删除
      * @param $params
      * @return bool
      */
@@ -100,33 +100,23 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     }
 
     /**
-     * 创建角色
+     * 创建
      * @param array $params
      * @return mixed
      */
     public function createRole(array $params)
     {
-        $roleData['name']       = $params['name'];
-        $roleData['remark']     = $params['remark'];
-        $roleData['identify']   = $params['identify'];
-        $roleData['permission'] = $params['permission'];
-
-        return $this->ManagerRoleRepository->createRecord($roleData);
+        return $this->ManagerRoleRepository->createRecord($params);
     }
 
     /**
-     * 创建角色
+     * 修改
      * @param array $params
      * @return mixed
      */
     public function updateRole(array $params)
     {
-        $roleData['name']       = $params['name'];
-        $roleData['remark']     = $params['remark'];
-        $roleData['identify']   = $params['identify'];
-        $roleData['permission'] = $params['permission'];
-
-        return $this->ManagerRoleRepository->updateById($params['id'], $roleData);
+        return $this->ManagerRoleRepository->updateById($params['id'], $params);
     }
 
     /**

@@ -92,6 +92,7 @@ abstract class Repository
                 ->field($Query->getField())
                 ->group($Query->getGroup())
                 ->order($Query->getOrder())
+				->limit(1)
                 ->find();
 
         } catch (Throwable $throwable) {

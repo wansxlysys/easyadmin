@@ -111,7 +111,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
                 name: "file",
                 number: 1,
                 multiple: true,
-                url: globals.uploadImage,
+                url: apiUrl.uploadImage,
                 before: function () {
                     loading = easyAdmin.showLoading();
                 },
@@ -146,7 +146,7 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
                 name: "file",
                 number: 10,
                 multiple: true,
-                url: globals.uploadImage,
+                url: apiUrl.uploadImage,
                 before: function () {
                     loading = easyAdmin.showLoading();
                 },

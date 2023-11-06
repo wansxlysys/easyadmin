@@ -451,6 +451,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 
 .layui-tab .layui-tab-title {
     margin: 0 10px;
+    border-bottom: 1px solid #f6f6f6;
 }
 
 .layui-tab .layui-tab-title li {

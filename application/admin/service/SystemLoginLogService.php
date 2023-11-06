@@ -20,15 +20,15 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
         $Query = new Query();
 
         if (!empty($params['status'])) {
-            $Query->setWhere(['log.status', '=', $params['status']]);
+            $Query->addWhere('log.status', '=', $params['status']);
         }
 
         if (!empty($params['username'])) {
-            $Query->setWhere(['manager.account', 'LIKE', "%{$params['account']}%"]);
+            $Query->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
         }
 
         if (!empty($params['real_name'])) {
-            $Query->setWhere(['manager.real_name', 'LIKE', "%{$params['real_name']}%"]);
+            $Query->addWhere('manager.real_name', 'LIKE', "%{$params['real_name']}%");
         }
 
         if (ManagerHelper::isNotSuper()) {

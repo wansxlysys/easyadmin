@@ -8,6 +8,7 @@ use think\facade\Request;
 use app\common\util\ArrayUtil;
 use app\common\repository\Query;
 use app\common\enum\ManagerEnum;
+use app\common\enum\SystemLogEnum;
 use app\common\helper\ManagerHelper;
 
 class SystemLogService extends \app\common\service\SystemLogService
@@ -102,5 +103,20 @@ class SystemLogService extends \app\common\service\SystemLogService
     public function clearLog()
     {
         return $this->SystemLogRepository->clearLog();
+    }
+
+    /**
+     * 转换状态码
+     * @param $code
+     * @return int
+     */
+    public function translateCode($code)
+    {
+        $codeMap = [
+            0 => SystemLogEnum::STATUS_ERROR,
+            1 => SystemLogEnum::STATUS_SUCCESS
+        ];
+
+        return isset($codeMap[$code]) ? $codeMap[$code] : SystemLogEnum::STATUS_ERROR;
     }
 }

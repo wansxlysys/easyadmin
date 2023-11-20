@@ -1,14 +1,14 @@
 <?php
 
 
-namespace app\admin\behavior;
+namespace app\admin\event;
 
 
 use think\facade\Request;
 use app\common\enum\SystemLoginLogEnum;
 use app\admin\service\SystemLoginLogService;
 
-class SystemLoginLogBehavior
+class SystemLoginLogEvent
 {
     /**
      * 登录成功

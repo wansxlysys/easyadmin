@@ -11,7 +11,7 @@ use app\common\enum\ManagerEnum;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
 use app\common\helper\EncryptionHelper;
-use app\admin\behavior\SystemLoginLogBehavior;
+use app\admin\event\SystemLoginLogEvent;
 
 class ManagerService extends \app\common\service\ManagerService
 {
@@ -222,7 +222,7 @@ class ManagerService extends \app\common\service\ManagerService
             /**
              * 登录失败日志
              */
-            SystemLoginLogBehavior::loginError([
+            SystemLoginLogEvent::loginError([
                 'manager_id'  => $manager['id'],
                 'description' => $throwable->getMessage()
             ]);
@@ -243,7 +243,7 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 登录成功日志
          */
-        SystemLoginLogBehavior::loginSuccess([
+        SystemLoginLogEvent::loginSuccess([
             'manager_id'  => $manager['id'],
             'description' => '登录成功'
         ]);

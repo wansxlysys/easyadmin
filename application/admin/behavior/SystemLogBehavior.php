@@ -22,14 +22,9 @@ class SystemLogBehavior
 
             if (isset($responseData['code'])) {
 
-                /**
-                 * 框架响应状态码转系统状态码
-                 */
-                $codeMap = [1 => 1, 0 => 2];
-
                 $SystemLogService = new SystemLogService();
 
-                $SystemLogService->writeLog("系统自动记录：{$responseData['msg']}", $codeMap[$responseData['code']]);
+                $SystemLogService->writeLog("系统自动记录：{$responseData['msg']}", $SystemLogService->translateCode($responseData['code']));
             }
         }
     }

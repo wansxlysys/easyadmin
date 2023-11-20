@@ -50,7 +50,7 @@ layui.define(['jquery'], function (exports) {
     function arrayFindItem(data, id) {
 
         for (var i = 0; i < data.length; i++) {
-            if (equalsInt(data[i].id) === equalsInt(id)) {
+            if (equalsInt(data[i].id, id)) {
                 return data[i];
             }
         }
@@ -66,7 +66,7 @@ layui.define(['jquery'], function (exports) {
     function arrayFindIndex(data, id) {
 
         for (var i = 0; i < data.length; i++) {
-            if (equalsInt(data[i].id) === equalsInt(id)) {
+			if (equalsInt(data[i].id, id)) {
                 return i;
             }
         }

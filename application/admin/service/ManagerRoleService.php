@@ -21,7 +21,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         $Query = new Query();
 
         if (!empty($params['name'])) {
-            $Query->addWhere('name', 'LIKE', "%{$params['name']}%");
+            $Query->addWhere('name', 'LIKE', $params['name'] . '%');
         }
 
         $Query->setPage($params['page']);

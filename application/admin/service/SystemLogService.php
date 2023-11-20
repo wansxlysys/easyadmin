@@ -26,11 +26,11 @@ class SystemLogService extends \app\common\service\SystemLogService
         }
 
         if (!empty($params['menu'])) {
-            $Query->addWhere('log.menu', 'LIKE', "%{$params['menu']}%");
+            $Query->addWhere('log.menu', 'LIKE', $params['menu'] . '%');
         }
 
         if (!empty($params['account'])) {
-            $Query->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
+            $Query->addWhere('manager.account', 'LIKE', $params['account'] . '%');
         }
 
         if (ManagerHelper::isNotSuper()) {

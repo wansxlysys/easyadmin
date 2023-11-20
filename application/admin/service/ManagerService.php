@@ -33,7 +33,7 @@ class ManagerService extends \app\common\service\ManagerService
         }
 
         if (!empty($params['real_name'])) {
-            $Query->addWhere('manager.real_name', 'LIKE', "%{$params['real_name']}%");
+            $Query->addWhere('manager.real_name', 'LIKE', $params['real_name'] . '%');
         }
 
         if (ManagerHelper::isNotSuper()) {

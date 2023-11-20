@@ -39,7 +39,8 @@ layui.define(['jquery'], function (exports) {
             closeBtn: 0,
             area: ['100%', '100%'],
             skin: "easy-iframe easy-iframe-transparent",
-            content: "",
+			scrollbar: false,
+            content: ""
         };
 
         return layer.open($.extend(true, defaults, options));

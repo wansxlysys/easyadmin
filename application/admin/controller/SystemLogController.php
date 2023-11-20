@@ -47,7 +47,7 @@ class SystemLogController extends \app\common\controller\AdminController
                 'account' => $request->get('account')
             ];
 
-            $this->success('获取成功', '', $this->SystemLogService->getListWithTotal($params));
+            $this->success('获取成功', '', $this->SystemLogService->listLog($params));
         }
 
         return $this->fetch();
@@ -60,7 +60,7 @@ class SystemLogController extends \app\common\controller\AdminController
      */
     public function detail_action(Request $request)
     {
-        $log = $this->SystemLogService->getDetail($request->get('id'));
+        $log = $this->SystemLogService->detailLog($request->get('id'));
 
         return $this->fetch('', [
             'log' => $log

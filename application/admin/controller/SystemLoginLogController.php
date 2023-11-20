@@ -47,7 +47,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
                 'account' => $request->get('account')
             ];
 
-            $this->success('获取成功', '', $this->SystemLoginLogService->getListWithTotal($params));
+            $this->success('获取成功', '', $this->SystemLoginLogService->listLog($params));
         }
 
         return $this->fetch();
@@ -60,7 +60,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
      */
     public function detail_action(Request $request)
     {
-        $log = $this->SystemLoginLogService->getDetail($request->get('id'));
+        $log = $this->SystemLoginLogService->detailLog($request->get('id'));
 
         return $this->fetch('', [
             'log' => $log
@@ -75,7 +75,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            if ($this->SystemLoginLogService->clearSystemLoginLog()) {
+            if ($this->SystemLoginLogService->clearLog()) {
                 $this->success('清空成功');
             }
 

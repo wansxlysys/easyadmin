@@ -24,7 +24,7 @@ class SystemLoginLogBehavior
         $loginLog['manager_id']  = $params['manager_id'];
         $loginLog['description'] = $params['description'];
 
-        return $SystemLoginLog->createSystemLoginLog($loginLog);
+        return $SystemLoginLog->createLog($loginLog);
     }
 
     /**
@@ -41,6 +41,6 @@ class SystemLoginLogBehavior
         $loginLog['manager_id']  = $params['manager_id'];
         $loginLog['description'] = $params['description'];
 
-        return $SystemLoginLog->createSystemLoginLog($loginLog);
+        return $SystemLoginLog->createLog($loginLog);
     }
 }

@@ -12,11 +12,11 @@ use app\common\enum\ManagerRoleEnum;
 class ManagerRoleService extends \app\common\service\ManagerRoleService
 {
     /**
-     * 获取列表和总数
+     * 获取列表
      * @param array $params
      * @return array
      */
-    public function getListWithTotal(array $params = [])
+    public function listRole(array $params = [])
     {
         $Query = new Query();
 

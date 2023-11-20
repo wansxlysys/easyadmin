@@ -16,11 +16,11 @@ use app\admin\behavior\SystemLoginLogBehavior;
 class ManagerService extends \app\common\service\ManagerService
 {
     /**
-     * 获取列表和总数
+     * 获取列表
      * @param array $params
      * @return array
      */
-    public function getListWithTotal(array $params = [])
+    public function listManager(array $params = [])
     {
         $Query = new Query();
 

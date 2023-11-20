@@ -13,11 +13,11 @@ use app\common\helper\ManagerHelper;
 class SystemLogService extends \app\common\service\SystemLogService
 {
     /**
-     * 获取列表和总数
+     * 获取列表
      * @param array $params
      * @return array
      */
-    public function getListWithTotal(array $params = [])
+    public function listLog(array $params = [])
     {
         $Query = new Query();
 
@@ -53,7 +53,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * @param $id
      * @return mixed
      */
-    public function getDetail($id)
+    public function detailLog($id)
     {
         $Query = new Query();
 

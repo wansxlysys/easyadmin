@@ -15,7 +15,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      * @param array $params
      * @return array
      */
-    public function getListWithTotal(array $params = [])
+    public function listLog(array $params = [])
     {
         $Query = new Query();
 
@@ -51,7 +51,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      * @param $id
      * @return mixed
      */
-    public function getDetail($id)
+    public function detailLog($id)
     {
         $Query = new Query();
 
@@ -66,7 +66,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      * @param array $params
      * @return mixed
      */
-    public function createSystemLoginLog(array $params)
+    public function createLog(array $params)
     {
         return $this->SystemLoginLogRepository->createRecord($params);
     }
@@ -75,7 +75,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      * 清空日志
      * @return mixed
      */
-    public function clearSystemLoginLog()
+    public function clearLog()
     {
         return $this->SystemLoginLogRepository->clearSystemLoginLog();
     }

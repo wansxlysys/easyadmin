@@ -50,7 +50,7 @@ class ManagerController extends \app\common\controller\AdminController
                 'real_name' => $request->get('real_name'),
             ];
 
-            $this->success('获取成功', '', $this->ManagerService->getListWithTotal($params));
+            $this->success('获取成功', '', $this->ManagerService->listManager($params));
         }
 
         return $this->fetch();

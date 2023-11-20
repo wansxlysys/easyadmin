@@ -46,7 +46,7 @@ class ManagerRoleController extends \app\common\controller\AdminController
                 'name'  => $request->get('name'),
             ];
 
-            $this->success('获取成功', '', $this->ManagerRoleService->getListWithTotal($params));
+            $this->success('获取成功', '', $this->ManagerRoleService->listRole($params));
         }
 
         return $this->fetch();

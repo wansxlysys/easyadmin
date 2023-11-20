@@ -28,7 +28,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
 
         $TreeArrayUtil = new TreeArrayUtil();
 
-        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Query), 0, 1, function (&$item) {
+        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Query), 0, function (&$item) {
             $item = $this->formatData($item);
         });
     }

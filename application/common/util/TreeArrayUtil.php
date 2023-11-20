@@ -32,41 +32,62 @@ class TreeArrayUtil
 
     /**
      * 数组转树形组件
-     * @param $data
+     * @param $array
      * @param int $parentId
-     * @param int $level
      * @param null $resolve
      * @return array
      */
-    public function arrayToTree($data, $parentId = 0, $level = 1, $resolve = null)
+    public function arrayToTree($array, $parentId = 0, $resolve = null)
     {
-        $result = [];
-        foreach ($data as $key => $item) {
+        $arrayMap  = [];
+        $treeArray = [];
 
-            if ($item[$this->parentId] == $parentId) {
+        foreach ($array as $key => $item) {
 
-                $item[$this->children] = $this->arrayToTree($data, $item[$this->id], $level + 1, $resolve);
+            /**
+             * 调用函数
+             */
+            if (is_callable($resolve)) {
+                $resolve($array[$key]);
+            }
 
-                if (is_callable($resolve)) {
-                    $resolve($item, $level);
-                }
+            /**
+             * 设置映射
+             */
+            $arrayMap[$item[$this->id]] = &$array[$key];
+        }
 
-                $result[] = $item;
+        foreach ($array as $key => $item) {
+
+            /**
+             * 过滤上级
+             */
+            if ($parentId == $item[$this->parentId]) {
+                $treeArray[$item[$this->id]] = &$array[$key];
+            }
+
+            /**
+             * 生成上级
+             */
+            if (isset($arrayMap[$item[$this->parentId]])) {
+                $parent                    = &$arrayMap[$item[$this->parentId]];
+                $parent[$this->children][] = &$array[$key];
             }
         }
-        return $result;
+
+        return $treeArray;
     }
 
     /**
      * 树形组件转数组
-     * @param array $data 树形数组
+     * @param array $tree 树形数组
      * @param bool $removeChild 是否删除子级
      * @param array $result
      * @return array
      */
-    public function treeToArray($data, $removeChild = true, &$result = [])
+    public function treeToArray($tree, $removeChild = true, &$result = [])
     {
-        foreach ($data as $key => $item) {
+        foreach ($tree as $key => $item) {
 
             if (!empty($item[$this->children])) {
                 $this->treeToArray($item[$this->children], $removeChild, $result);
@@ -78,26 +99,27 @@ class TreeArrayUtil
 
             $result[] = $item;
         }
+
         return $result;
     }
 
     /**
      * 获取树形结构
-     * @param $data
+     * @param $array
      * @param int $id
      * @param int $level
      * @param null $resolve
      * @param array $result
      * @return array
      */
-    public function arrayToTreeStruct($data, $id = 0, $level = 1, $resolve = null, &$result = [])
+    public function arrayToTreeStruct($array, $id = 0, $level = 1, $resolve = null, &$result = [])
     {
-        foreach ($data as $key => $item) {
+        foreach ($array as $key => $item) {
 
             if ($item[$this->parentId] == $id) {
 
                 $item['level']  = $level;
-                $item['struct'] = $this->getStruct($level);
+                $item['struct'] = str_repeat('　' . $this->struct, $level - 1);
 
                 if (is_callable($resolve)) {
                     $resolve($item, $level);
@@ -105,20 +127,10 @@ class TreeArrayUtil
 
                 $result[] = $item;
 
-                $this->arrayToTreeStruct($data, $item[$this->id], $level + 1, $resolve, $result);
+                $this->arrayToTreeStruct($array, $item[$this->id], $level + 1, $resolve, $result);
             }
         }
 
         return $result;
-    }
-
-    /**
-     * 获取结构
-     * @param int $level
-     * @return string
-     */
-    protected function getStruct($level = 1)
-    {
-        return str_repeat('　' . $this->struct, $level - 1);
     }
 }

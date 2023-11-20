@@ -28,11 +28,21 @@ layui.define(['jquery'], function (exports) {
      * @returns {[]}
      */
     function arrayToTree(data, parentId = 0, callFunction) {
+
+        var map = {};
         var result = [];
 
         $.each(data, function (key, item) {
-            if (equalsInt(item.parent_id, parentId)) {
-                item.children = arrayToTree(data, item.id);
+            map[item.id] = item;
+        });
+
+        $.each(data, function (key, item) {
+
+            var parent = map[item.parent_id];
+
+            if (parent) {
+                (parent.children || (parent.children = [])).push(item);
+            } else {
                 result.push(item);
             }
 

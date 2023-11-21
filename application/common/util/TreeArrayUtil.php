@@ -7,28 +7,40 @@ namespace app\common\util;
 class TreeArrayUtil
 {
     /**
-     * ID标识
+     * ID名称
      * @var string
      */
     public $id = 'id';
 
     /**
-     * 上级ID
+     * 上级ID名称
      * @var string
      */
     public $parentId = 'parent_id';
 
     /**
-     * 子元素标识
+     * 子元素名称
      * @var string
      */
     public $children = 'children';
 
     /**
+     * 级别名称
+     * @var int
+     */
+    public $level = 'level';
+
+    /**
+     * 结构名称
+     * @var string
+     */
+    public $struct = 'struct';
+
+    /**
      * 结构符号
      * @var string
      */
-    public $struct = '├─';
+    public $symbol = '├─';
 
     /**
      * 数组转树形组件
@@ -45,19 +57,19 @@ class TreeArrayUtil
         foreach ($array as $key => $item) {
 
             /**
-             * 调用函数
-             */
-            if (is_callable($resolve)) {
-                $resolve($array[$key]);
-            }
-
-            /**
              * 设置映射
              */
             $arrayMap[$item[$this->id]] = &$array[$key];
         }
 
         foreach ($array as $key => $item) {
+
+            /**
+             * 获取下级
+             */
+            if (isset($arrayMap[$item[$this->parentId]])) {
+                $arrayMap[$item[$this->parentId]][$this->children][] = &$array[$key];
+            }
 
             /**
              * 过滤上级
@@ -67,11 +79,15 @@ class TreeArrayUtil
             }
 
             /**
-             * 生成上级
+             * 获取级别
              */
-            if (isset($arrayMap[$item[$this->parentId]])) {
-                $parent                    = &$arrayMap[$item[$this->parentId]];
-                $parent[$this->children][] = &$array[$key];
+            $array[$key][$this->level] = $this->getLevel($arrayMap, $item[$this->parentId]);
+
+            /**
+             * 回调函数
+             */
+            if (is_callable($resolve)) {
+                $resolve($array[$key]);
             }
         }
 
@@ -80,8 +96,8 @@ class TreeArrayUtil
 
     /**
      * 树形组件转数组
-     * @param array $tree 树形数组
-     * @param bool $removeChild 是否删除子级
+     * @param array $tree
+     * @param bool $removeChild
      * @param array $result
      * @return array
      */
@@ -106,20 +122,20 @@ class TreeArrayUtil
     /**
      * 获取树形结构
      * @param $array
-     * @param int $id
+     * @param int $parentId
      * @param int $level
      * @param null $resolve
      * @param array $result
      * @return array
      */
-    public function arrayToTreeStruct($array, $id = 0, $level = 1, $resolve = null, &$result = [])
+    public function arrayToTreeStruct($array, $parentId = 0, $level = 1, $resolve = null, &$result = [])
     {
         foreach ($array as $key => $item) {
 
-            if ($item[$this->parentId] == $id) {
+            if ($item[$this->parentId] == $parentId) {
 
-                $item['level']  = $level;
-                $item['struct'] = str_repeat('　' . $this->struct, $level - 1);
+                $item[$this->level]  = $level;
+                $item[$this->struct] = str_repeat('　' . $this->symbol, $level - 1);
 
                 if (is_callable($resolve)) {
                     $resolve($item, $level);
@@ -132,5 +148,21 @@ class TreeArrayUtil
         }
 
         return $result;
+    }
+
+    /**
+     * 获取级别
+     * @param $arrayMap
+     * @param $parentId
+     * @param int $level
+     * @return int
+     */
+    protected function getLevel(&$arrayMap, $parentId, $level = 1)
+    {
+        if (isset($arrayMap[$parentId])) {
+            return $this->getLevel($arrayMap, $arrayMap[$parentId][$this->parentId], $level + 1);
+        }
+
+        return $level;
     }
 }

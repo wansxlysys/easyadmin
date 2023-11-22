@@ -9,10 +9,11 @@ use think\facade\Env;
 use think\facade\Config;
 use think\console\Input;
 use think\console\Output;
+use think\console\Command;
 use think\console\input\Option;
 use Ifsnop\Mysqldump\Mysqldump;
 
-class Backup extends \think\console\Command
+class Backup extends Command
 {
     /**
      * 配置命令

@@ -41,10 +41,10 @@
         page: true,
         parseData: function (result) {
             return {
-                "msg": result.msg,
-                "code": result.code,
-                "list": result.data.list,
-                "count": result.data.total
+                msg: result.msg,
+                code: result.code,
+                list: result.data.list,
+                total: result.data.total
             };
         },
         limit: 15,
@@ -53,7 +53,7 @@
             msgName: 'msg',
             statusCode: 1,
             dataName: 'list',
-            countName: 'count',
+            countName: 'total',
             statusName: 'code'
         }
     });

@@ -4,11 +4,14 @@
 namespace app\admin\service;
 
 
+use app\common\exception\SystemException;
+
 class SystemSettingService extends \app\common\service\SystemSettingService
 {
     /**
      * 获取配置
      * @return mixed
+     * @throws SystemException
      */
     public function getSetting()
     {
@@ -19,6 +22,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
      * 更新配置
      * @param array $params
      * @return bool
+     * @throws SystemException
      */
     public function setSetting(array $params)
     {

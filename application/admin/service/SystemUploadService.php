@@ -4,11 +4,11 @@
 namespace app\admin\service;
 
 
-use Throwable;
 use think\Validate;
 use think\facade\Env;
-use RuntimeException;
 use app\common\util\FileUtil;
+use app\common\exception\SystemException;
+use app\common\exception\ServiceException;
 
 class SystemUploadService extends \app\common\service\SystemUploadService
 {
@@ -35,6 +35,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @param $image
      * @param string $subDir
      * @return array|bool
+     * @throws SystemException
      */
     public function uploadImage($image, $subDir = 'image')
     {
@@ -113,14 +114,14 @@ class SystemUploadService extends \app\common\service\SystemUploadService
              * 创建文件夹
              */
             if (!is_dir($dirPath) && !mkdir($dirPath, 0777, true)) {
-                throw new RuntimeException('目录创建失败');
+                throw new ServiceException('目录创建失败');
             }
 
             /**
              * 追加写入数据
              */
             if (!file_put_contents($rootPath, file_get_contents($params['file']->getRealPath()), FILE_APPEND)) {
-                throw new RuntimeException('文件写入失败');
+                throw new ServiceException('文件写入失败');
             }
 
             /**
@@ -135,12 +136,12 @@ class SystemUploadService extends \app\common\service\SystemUploadService
                 $fileData['path'] = $filePath;
 
                 if (!$this->SystemUploadRepository->createRecord($fileData)) {
-                    throw new RuntimeException('文件保存失败');
+                    throw new ServiceException('文件保存失败');
                 }
             }
 
-        } catch (Throwable $throwable) {
-            return $this->setMessage($throwable->getMessage());
+        } catch (SystemException $systemException) {
+            return $this->setMessage($systemException->getMessage());
         }
 
         return ['isDone' => $isDone, 'filePath' => $filePath, 'savePath' => $rootPath];
@@ -150,6 +151,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * 通过Md5获取文件
      * @param $md5
      * @return mixed
+     * @throws SystemException
      */
     public function getFileByMd5($md5)
     {

@@ -5,6 +5,7 @@ namespace app\admin\controller;
 
 
 use think\Request;
+use app\common\exception\SystemException;
 use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
 
@@ -35,6 +36,7 @@ class SystemSettingController extends \app\common\controller\AdminController
      * 系统设置
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function config_action(Request $request)
     {
@@ -70,6 +72,7 @@ class SystemSettingController extends \app\common\controller\AdminController
      * 全局设置
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function system_action(Request $request)
     {

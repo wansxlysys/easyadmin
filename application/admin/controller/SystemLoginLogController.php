@@ -5,6 +5,7 @@ namespace app\admin\controller;
 
 
 use think\Request;
+use app\common\exception\SystemException;
 use app\admin\service\SystemLoginLogService;
 
 class SystemLoginLogController extends \app\common\controller\AdminController
@@ -34,6 +35,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
      * 首页
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function index_action(Request $request)
     {
@@ -57,6 +59,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
      * 详情
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function detail_action(Request $request)
     {
@@ -70,6 +73,7 @@ class SystemLoginLogController extends \app\common\controller\AdminController
     /**
      * 清空
      * @param Request $request
+     * @throws SystemException
      */
     public function clear_action(Request $request)
     {

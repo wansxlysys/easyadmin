@@ -6,6 +6,7 @@ namespace app\admin\event;
 
 use think\facade\Request;
 use app\common\enum\SystemLoginLogEnum;
+use app\common\exception\SystemException;
 use app\admin\service\SystemLoginLogService;
 
 class SystemLoginLogEvent
@@ -14,6 +15,7 @@ class SystemLoginLogEvent
      * 登录成功
      * @param array $params
      * @return mixed
+     * @throws SystemException
      */
     public static function loginSuccess(array $params)
     {
@@ -31,6 +33,7 @@ class SystemLoginLogEvent
      * 登录失败
      * @param array $params
      * @return mixed
+     * @throws SystemException
      */
     public static function loginError(array $params)
     {

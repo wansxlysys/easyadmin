@@ -12,6 +12,7 @@ use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
 use app\common\helper\EncryptionHelper;
 use app\admin\event\SystemLoginLogEvent;
+use app\common\exception\SystemException;
 
 class ManagerService extends \app\common\service\ManagerService
 {
@@ -19,6 +20,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 获取列表
      * @param array $params
      * @return array
+     * @throws SystemException
      */
     public function listManager(array $params = [])
     {
@@ -60,6 +62,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过ID获取管理员
      * @param $id
      * @return mixed
+     * @throws SystemException
      */
     public function getById($id)
     {
@@ -70,6 +73,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过角色ID获取管理员列表
      * @param $roleId
      * @return mixed
+     * @throws SystemException
      */
     public function getByRoleId($roleId)
     {
@@ -84,6 +88,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 添加菜单
      * @param array $params
      * @return mixed
+     * @throws SystemException
      */
     public function createManager(array $params)
     {
@@ -96,6 +101,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过ID更新数据
      * @param array $params
      * @return bool
+     * @throws SystemException
      */
     public function updateManager(array $params)
     {
@@ -124,6 +130,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 删除管理员
      * @param array $params
      * @return mixed
+     * @throws SystemException
      */
     public function deleteManager(array $params)
     {
@@ -138,6 +145,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 管理员登录
      * @param array $params
      * @return bool
+     * @throws SystemException
      */
     public function login(array $params)
     {

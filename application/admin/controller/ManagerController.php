@@ -6,9 +6,10 @@ namespace app\admin\controller;
 
 use think\Image;
 use think\Request;
-use app\admin\service\SystemUploadService;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
+use app\common\exception\SystemException;
+use app\admin\service\SystemUploadService;
 
 class ManagerController extends \app\common\controller\AdminController
 {
@@ -37,6 +38,7 @@ class ManagerController extends \app\common\controller\AdminController
      * 首页
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function index_action(Request $request)
     {
@@ -60,6 +62,7 @@ class ManagerController extends \app\common\controller\AdminController
      * 添加
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function create_action(Request $request)
     {
@@ -96,6 +99,7 @@ class ManagerController extends \app\common\controller\AdminController
      * 修改
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function update_action(Request $request)
     {
@@ -135,6 +139,7 @@ class ManagerController extends \app\common\controller\AdminController
     /**
      * 删除
      * @param Request $request
+     * @throws SystemException
      */
     public function delete_action(Request $request)
     {
@@ -163,6 +168,7 @@ class ManagerController extends \app\common\controller\AdminController
     /**
      * 头像上传
      * @param Request $request
+     * @throws SystemException
      */
     public function avatar_action(Request $request)
     {
@@ -187,5 +193,4 @@ class ManagerController extends \app\common\controller\AdminController
             ]);
         }
     }
-
 }

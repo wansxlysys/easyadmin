@@ -12,6 +12,7 @@ use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\service\SystemMenuService;
 use app\admin\service\ManagerRoleService;
+use app\common\exception\SystemException;
 
 class System
 {
@@ -25,6 +26,7 @@ class System
      * @param $request
      * @param Closure $next
      * @return mixed
+     * @throws SystemException
      */
     public function handle($request, Closure $next)
     {
@@ -48,6 +50,7 @@ class System
 
     /**
      * 注册变量
+     * @throws SystemException
      */
     public function checkData()
     {
@@ -63,6 +66,7 @@ class System
 
     /**
      * 权限校验
+     * @throws SystemException
      */
     public function checkAuth()
     {

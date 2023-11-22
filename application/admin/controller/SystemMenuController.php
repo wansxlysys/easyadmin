@@ -6,6 +6,7 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\admin\service\SystemMenuService;
+use app\common\exception\SystemException;
 use app\admin\validate\SystemMenuValidate;
 
 class SystemMenuController extends \app\common\controller\AdminController
@@ -35,6 +36,7 @@ class SystemMenuController extends \app\common\controller\AdminController
      * 首页
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function index_action(Request $request)
     {
@@ -52,6 +54,7 @@ class SystemMenuController extends \app\common\controller\AdminController
      * 添加
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function create_action(Request $request)
     {
@@ -93,6 +96,7 @@ class SystemMenuController extends \app\common\controller\AdminController
      * 修改
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function update_action(Request $request)
     {
@@ -138,6 +142,7 @@ class SystemMenuController extends \app\common\controller\AdminController
     /**
      * 删除
      * @param Request $request
+     * @throws SystemException
      */
     public function delete_action(Request $request)
     {
@@ -166,6 +171,7 @@ class SystemMenuController extends \app\common\controller\AdminController
     /**
      * 排序
      * @param Request $request
+     * @throws SystemException
      */
     public function sort_action(Request $request)
     {
@@ -195,6 +201,7 @@ class SystemMenuController extends \app\common\controller\AdminController
     /**
      * 全部
      * @param Request $request
+     * @throws SystemException
      */
     public function get_all_action(Request $request)
     {

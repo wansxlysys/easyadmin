@@ -14,6 +14,7 @@ abstract class Repository
      * 获取列表
      * @param Query $Query
      * @return array
+     * @throws RepositoryException
      */
     public function getList(Query $Query)
     {
@@ -39,6 +40,7 @@ abstract class Repository
      * 获取总数
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getTotal(Query $Query)
     {
@@ -58,6 +60,7 @@ abstract class Repository
      * 获取全部
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getAll(Query $Query)
     {
@@ -81,6 +84,7 @@ abstract class Repository
      * 获取单个
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getOne(Query $Query)
     {
@@ -104,6 +108,7 @@ abstract class Repository
      * 创建数据
      * @param array $params
      * @return mixed
+     * @throws RepositoryException
      */
     public function createRecord(array $params = [])
     {
@@ -131,6 +136,7 @@ abstract class Repository
      * @param Query $Query
      * @param array $params
      * @return bool
+     * @throws RepositoryException
      */
     public function updateRecord(Query $Query, array $params = [])
     {
@@ -148,6 +154,7 @@ abstract class Repository
      * 删除数据
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function deleteRecord(Query $Query)
     {

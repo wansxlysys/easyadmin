@@ -7,12 +7,14 @@ namespace app\admin\behavior;
 use think\Response;
 use think\facade\Request;
 use app\admin\service\SystemLogService;
+use app\common\exception\SystemException;
 
 class SystemLogBehavior
 {
     /**
      * 应用结束时执行
      * @param $response
+     * @throws SystemException
      */
     public static function appEnd(Response $response)
     {

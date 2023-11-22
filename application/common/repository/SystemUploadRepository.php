@@ -19,6 +19,7 @@ class SystemUploadRepository extends Model
      * 通过MD5查询
      * @param $md5
      * @return mixed
+     * @throws RepositoryException
      */
     public function getByMd5($md5)
     {

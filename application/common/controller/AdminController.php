@@ -6,6 +6,7 @@ namespace app\common\controller;
 
 use think\facade\Hook;
 use app\admin\service\SystemMenuService;
+use app\common\exception\SystemException;
 use app\admin\behavior\SystemLogBehavior;
 use app\admin\service\SystemSettingService;
 
@@ -13,6 +14,7 @@ class AdminController extends CommonController
 {
     /**
      * 初始化
+     * @throws SystemException
      */
     public function initialize()
     {
@@ -28,10 +30,16 @@ class AdminController extends CommonController
 
         if ($this->request->isAjax()) {
 
+            /**
+             * 添加结束钩子
+             */
             Hook::add('app_end', SystemLogBehavior::class);
 
         } else {
 
+            /**
+             * 初始化视图变量
+             */
             $SettingSystemService = new SystemSettingService();
 
             $settingSystem  = $SettingSystemService->getSetting();

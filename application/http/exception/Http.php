@@ -24,17 +24,17 @@ class Http extends Handle
         if (!Config::get('app.app_debug')) {
 
             /**
-             * 非http异常，报错信息全部隐藏
-             */
-            if (false === ($exception instanceof HttpException)) {
-                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/system/exception.html');
-            }
-
-            /**
-             * 如果是AJAX请求，则返回JSON
+             * AJAX请求返回JSON
              */
             if (Request::isAjax()) {
                 return json(['code' => 0, 'msg' => $exception->getMessage(), 'data' => []]);
+            }
+
+            /**
+             * 非http异常返回500页面
+             */
+            if (false === ($exception instanceof HttpException)) {
+                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/system/exception.html');
             }
         }
 

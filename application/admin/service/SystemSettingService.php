@@ -4,6 +4,7 @@
 namespace app\admin\service;
 
 
+use app\common\enum\SystemSettingEnum;
 use app\common\exception\SystemException;
 
 class SystemSettingService extends \app\common\service\SystemSettingService
@@ -15,7 +16,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
      */
     public function getSetting()
     {
-        return $this->SystemSettingRepository->getById(1);
+        return $this->SystemSettingRepository->getById(SystemSettingEnum::ID);
     }
 
     /**
@@ -26,6 +27,6 @@ class SystemSettingService extends \app\common\service\SystemSettingService
      */
     public function setSetting(array $params)
     {
-        return $this->SystemSettingRepository->updateById(1, $params);
+        return $this->SystemSettingRepository->updateById(SystemSettingEnum::ID, $params);
     }
 }

@@ -22,11 +22,6 @@
         </ul>
 
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item" lay-header-event="clearCache" lay-unselect>
-                <a href="javascript:;">
-                    <i class="fa fa-fw fa-trash"></i>
-                </a>
-            </li>
             <li class="layui-nav-item" lay-header-event="fullscreen" lay-unselect>
                 <a href="javascript:;">
                     <i class="fa fa-fw fa-arrows-alt"></i>
@@ -217,19 +212,7 @@
                         });
                     }
                 });
-            },
-            clearCache: function () {
-                easyAdmin.http({
-                    type: "POST",
-                    url: "{:url('admin/Index/clear_cache')}",
-                    success: function (result) {
-                        top.layer.alert(result.msg, {
-                            icon: 1
-                        });
-                    }
-                });
             }
-
         });
     });
 </script>

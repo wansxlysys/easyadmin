@@ -20,6 +20,7 @@ class ManagerRepository extends Model
      * 获取列表
      * @param Query $Query
      * @return array
+     * @throws RepositoryException
      */
     public function getListWithRole(Query $Query)
     {
@@ -47,6 +48,7 @@ class ManagerRepository extends Model
      * 获取总数
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getTotalWithRole(Query $Query)
     {
@@ -68,6 +70,7 @@ class ManagerRepository extends Model
      * 通过账号查询
      * @param $account
      * @return mixed
+     * @throws RepositoryException
      */
     public function getByAccount($account)
     {

@@ -11,12 +11,14 @@ use app\common\repository\Query;
 use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
 use app\common\helper\StorageHelper;
+use app\common\exception\SystemException;
 
 class SystemMenuService extends \app\common\service\SystemMenuService
 {
     /**
      * 获取左侧菜单
      * @return array
+     * @throws SystemException
      */
     public function getLeftMenu()
     {
@@ -36,6 +38,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 获取当前请求菜单
      * @return mixed|null
+     * @throws SystemException
      */
     public function getCurrentMenu()
     {
@@ -59,6 +62,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      * @param $menuId
      * @param array $breadcrumb
      * @return array
+     * @throws SystemException
      */
     public function getBreadcrumbMenu($menuId, &$breadcrumb = [])
     {
@@ -75,6 +79,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 获取全部菜单
      * @return mixed
+     * @throws SystemException
      */
     public function getAll()
     {
@@ -89,6 +94,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      * 通过ID获取菜单
      * @param $id
      * @return mixed
+     * @throws SystemException
      */
     public function getById($id)
     {
@@ -99,6 +105,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      * 添加菜单
      * @param array $params
      * @return mixed
+     * @throws SystemException
      */
     public function createMenu(array $params)
     {
@@ -109,6 +116,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      * 更新菜单
      * @param array $params
      * @return bool
+     * @throws SystemException
      */
     public function updateMenu(array $params)
     {
@@ -119,6 +127,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      * 更新排序
      * @param array $params
      * @return bool
+     * @throws SystemException
      */
     public function sortMenu(array $params)
     {
@@ -129,6 +138,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      * 删除菜单
      * @param array $params
      * @return mixed
+     * @throws SystemException
      */
     public function deleteMenu(array $params)
     {

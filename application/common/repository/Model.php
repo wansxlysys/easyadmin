@@ -25,6 +25,7 @@ class Model extends Repository
      * 通过ID获取
      * @param $id
      * @return mixed
+     * @throws RepositoryException
      */
     public function getById($id)
     {
@@ -41,6 +42,7 @@ class Model extends Repository
      * 通过条件查询
      * @param array $where
      * @return mixed
+     * @throws RepositoryException
      */
     public function getByWhere(array $where)
     {
@@ -54,10 +56,28 @@ class Model extends Repository
     }
 
     /**
+     * 条件查询全部
+     * @param array $where
+     * @return mixed
+     * @throws RepositoryException
+     */
+    public function getAllByWhere(array $where)
+    {
+        try {
+
+            return Db::name(static::getName())->where($where)->select();
+
+        } catch (Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
      * 通过ID更新
      * @param $id
      * @param array $params
      * @return bool
+     * @throws RepositoryException
      */
     public function updateById($id, array $params)
     {
@@ -71,15 +91,51 @@ class Model extends Repository
     }
 
     /**
+     * 通过条件更新
+     * @param array $where
+     * @param array $params
+     * @return bool
+     * @throws RepositoryException
+     */
+    public function updateByWhere(array $where, array $params)
+    {
+        try {
+
+            return false !== Db::name(static::getName())->where($where)->update($params);
+
+        } catch (Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
      * 通过ID删除
      * @param $id
      * @return bool
+     * @throws RepositoryException
      */
     public function deleteById($id)
     {
         try {
 
             return false !== Db::name(static::getName())->where('id', 'IN', $id)->delete();
+
+        } catch (Throwable $throwable) {
+            throw new RepositoryException($throwable->getMessage());
+        }
+    }
+
+    /**
+     * 条件删除
+     * @param array $where
+     * @return bool
+     * @throws RepositoryException
+     */
+    public function deleteByWhere(array $where)
+    {
+        try {
+
+            return false !== Db::name(static::getName())->where($where)->delete();
 
         } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

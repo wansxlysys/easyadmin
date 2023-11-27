@@ -5,11 +5,11 @@ namespace app\admin\controller;
 
 
 use think\Request;
-use app\admin\service\SystemMenuService;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
-use Symfony\Component\Filesystem\Filesystem;
+use app\admin\service\SystemMenuService;
+use app\common\exception\SystemException;
 
 class IndexController extends \app\common\controller\AdminController
 {
@@ -37,6 +37,7 @@ class IndexController extends \app\common\controller\AdminController
     /**
      * 首页
      * @return mixed
+     * @throws SystemException
      */
     public function index_action()
     {
@@ -53,6 +54,7 @@ class IndexController extends \app\common\controller\AdminController
      * 个人资料
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function profile_action(Request $request)
     {
@@ -120,25 +122,5 @@ class IndexController extends \app\common\controller\AdminController
         return $this->fetch('system', [
             'system' => $system
         ]);
-    }
-
-    /**
-     * 清除缓存
-     * @param Request $request
-     */
-    public function clear_cache_action(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $cache = ['cache', 'temp'];
-
-            $Filesystem = new Filesystem();
-
-            foreach ($cache as $key => $dir) {
-                $Filesystem->remove(env('runtime_path') . $dir);
-            }
-
-            $this->success("清除成功");
-        }
     }
 }

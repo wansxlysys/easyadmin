@@ -20,6 +20,7 @@ class SystemLogRepository extends Model
      * 获取关联管理员列表
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getListWithManager(Query $Query)
     {
@@ -47,6 +48,7 @@ class SystemLogRepository extends Model
      * 获取关联管理员总数
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getTotalWithManager(Query $Query)
     {
@@ -68,6 +70,7 @@ class SystemLogRepository extends Model
      * 获取关联管理员列表
      * @param Query $Query
      * @return mixed
+     * @throws RepositoryException
      */
     public function getWithManager(Query $Query)
     {
@@ -89,6 +92,7 @@ class SystemLogRepository extends Model
     /**
      * 清空全部
      * @return mixed
+     * @throws RepositoryException
      */
     public function clearLog()
     {

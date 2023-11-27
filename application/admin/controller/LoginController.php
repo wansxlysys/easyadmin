@@ -9,6 +9,7 @@ use think\captcha\Captcha;
 use app\common\helper\ManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
+use app\common\exception\SystemException;
 use app\admin\service\SystemSettingService;
 
 class LoginController extends \app\common\controller\CommonController
@@ -19,7 +20,6 @@ class LoginController extends \app\common\controller\CommonController
     public function initialize()
     {
         parent::initialize();
-
         if (ManagerHelper::isLogin()) {
             $this->redirect('admin/Index/index');
         }
@@ -29,6 +29,7 @@ class LoginController extends \app\common\controller\CommonController
      * 登录
      * @param Request $request
      * @return mixed
+     * @throws SystemException
      */
     public function login_action(Request $request)
     {

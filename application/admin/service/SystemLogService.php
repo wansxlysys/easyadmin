@@ -10,6 +10,7 @@ use app\common\repository\Query;
 use app\common\enum\ManagerEnum;
 use app\common\enum\SystemLogEnum;
 use app\common\helper\ManagerHelper;
+use app\common\exception\SystemException;
 
 class SystemLogService extends \app\common\service\SystemLogService
 {
@@ -17,6 +18,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 获取列表
      * @param array $params
      * @return array
+     * @throws SystemException
      */
     public function listLog(array $params = [])
     {
@@ -53,6 +55,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 获取详情
      * @param $id
      * @return mixed
+     * @throws SystemException
      */
     public function detailLog($id)
     {
@@ -68,7 +71,8 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 日志写入
      * @param $description
      * @param $status
-     * @return bool|mixed
+     * @return mixed
+     * @throws SystemException
      */
     public function writeLog($description, $status)
     {
@@ -99,6 +103,7 @@ class SystemLogService extends \app\common\service\SystemLogService
     /**
      * 清空日志
      * @return mixed
+     * @throws SystemException
      */
     public function clearLog()
     {

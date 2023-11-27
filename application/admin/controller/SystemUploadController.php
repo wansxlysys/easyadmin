@@ -5,6 +5,7 @@ namespace app\admin\controller;
 
 
 use think\Request;
+use app\common\exception\SystemException;
 use app\admin\service\SystemUploadService;
 use app\admin\validate\SystemUploadValidate;
 
@@ -34,6 +35,7 @@ class SystemUploadController extends \app\common\controller\AdminController
     /**
      * 文件检测
      * @param Request $request
+     * @throws SystemException
      */
     public function check_action(Request $request)
     {
@@ -90,6 +92,7 @@ class SystemUploadController extends \app\common\controller\AdminController
     /**
      * 图片上传
      * @param Request $request
+     * @throws SystemException
      */
     public function image_action(Request $request)
     {

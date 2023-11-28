@@ -16,12 +16,12 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
         let elem = [];
         let size = [];
 
-        $(this).addClass('split-' + direction);
-
         $(this).find('.split-item').each(function () {
             elem.push(this);
             size.push($(this).data('size'));
         });
+
+        $(this).addClass('split-' + direction);
 
         Split(elem, {
             sizes: size,

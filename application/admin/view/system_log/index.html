@@ -70,7 +70,7 @@
 {/block}
 
 {block name="js"}
-<script type="text/javascript">
+<script>
     layui.use(['easyModule', 'form', 'table'], function () {
 
         var form = layui.form;
@@ -108,7 +108,7 @@
                             var key = top.layer.alert(result.msg, {
                                 icon: 1,
                             }, function () {
-                                layui.table.reload("table");
+                                table.reloadData("table");
                                 top.layer.close(key);
                             });
                         }

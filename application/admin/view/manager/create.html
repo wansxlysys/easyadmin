@@ -60,6 +60,7 @@
 
 {block name="js"}
 <script>
+
     layui.use(['easyModule'], function () {
 
         var form = layui.form;
@@ -93,7 +94,7 @@
                     var key = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
-                        parent.layui.table.reload("table");
+                        parent.layui.table.reloadData("table");
                         top.layer.close(key);
                         easyAdmin.closeLayer();
                     });

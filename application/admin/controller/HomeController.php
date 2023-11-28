@@ -23,4 +23,14 @@ class HomeController extends \app\common\controller\AdminController
     {
         return $this->fetch();
     }
+
+    /**
+     * ui组件
+     * @param Request $request
+     * @return mixed
+     */
+    public function components_action(Request $request)
+    {
+        return $this->fetch();
+    }
 }

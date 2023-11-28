@@ -19,11 +19,9 @@
         easyService: "easyAdmin/easyService",
         easyBuilder: "easyAdmin/easyBuilder",
         easyModule: "easyAdmin/easyModule",
-        treeTable: "treeTable/treeTable",
         uploadFile: "uploadFile/uploadFile",
         uploadImage: "uploadImage/uploadImage",
     });
-
 
     /**
      * 弹窗默认配置
@@ -38,6 +36,27 @@
      * 表格默认参数
      */
     layui.table.set({
+        page: true,
+        parseData: function (result) {
+            return {
+                msg: result.msg,
+                code: result.code,
+                list: result.data.list,
+                total: result.data.total
+            };
+        },
+        limit: 15,
+        limits: [15, 30, 45, 60, 75, 90, 100],
+        response: {
+            msgName: 'msg',
+            statusCode: 1,
+            dataName: 'list',
+            countName: 'total',
+            statusName: 'code'
+        }
+    });
+
+    layui.treeTable.set({
         page: true,
         parseData: function (result) {
             return {

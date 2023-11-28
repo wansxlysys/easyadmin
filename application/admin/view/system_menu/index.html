@@ -11,7 +11,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">菜单名称</label>
                         <div class="layui-input-inline">
-                            <input value="" type="text" name="title" class="layui-input" placeholder="请输入菜单名称">
+                            <input type="text" name="name" class="layui-input" placeholder="请输入菜单名称">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -66,9 +66,7 @@
 {/block}
 
 {block name="js"}
-<script type="text/javascript">
-
-    var table;
+<script>
 
     layui.use(['easyModule', 'form', 'treeTable'], function () {
 
@@ -76,24 +74,26 @@
         var easyAdmin = layui.easyAdmin;
         var treeTable = layui.treeTable;
 
-        table = treeTable.render({
+        treeTable.render({
+            id: "table",
             elem: '#table',
             toolbar: '#toolbar',
             url: "{:url('admin/SystemMenu/index')}",
-            cellMinWidth: 80,
             tree: {
-                iconIndex: 2,
-                idName: "id",
-                pidName: "parent_id",
-                isPidData: true,
-                getIcon: function (d) {
-                    return '<i class="fa fa-fw ' + d.icon + '"></i> ';
+                data: {
+                    isSimpleData: true
+                },
+                view: {
+                    dblClickExpand: false
+                },
+                customName: {
+                    pid: 'parent_id'
                 }
             },
             cols: [[
                 {type: 'checkbox'},
                 {field: 'id', title: 'ID', width: 80},
-                {field: 'name', minWidth: 160, title: '菜单名称'},
+                {field: 'name', minWidth: 240, title: '菜单名称'},
                 {field: 'module', title: "模块"},
                 {field: 'controller', title: "控制器"},
                 {field: 'action', title: "操作"},
@@ -102,13 +102,7 @@
                 {field: 'sort', title: '排序', width: 120, edit: "text"},
                 {fixed: 'right', title: '操作', toolbar: '#bar', width: 180}
             ]],
-            parseData: function (result) {
-                return {
-                    "msg": result.msg,
-                    "data": result.data.list,
-                    "code": result.code === 1 ? 0 : result.code
-                }
-            }
+            page: false
         });
 
         treeTable.on('toolbar(table)', function (obj) {
@@ -117,11 +111,11 @@
             }
 
             if (obj.event === 'expand') {
-                table.expandAll();
+                treeTable.expandAll('table', true);
             }
 
             if (obj.event === 'fold') {
-                table.foldAll();
+                treeTable.expandAll('table', false);
             }
         });
 
@@ -137,7 +131,7 @@
                     var lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
-                        table.reload();
+                        treeTable.reload('table');
                         top.layer.close(lay);
                     });
                 }
@@ -164,23 +158,26 @@
                             var lay = top.layer.alert(result.msg, {
                                 icon: 1,
                             }, function () {
+                                obj.del();
                                 top.layer.close(lay);
                             });
-                            obj.del();
                         }
                     });
                 });
             }
-
         });
 
         form.on("submit(search)", function (obj) {
             event.preventDefault();
-            table.filterData(obj.field.title);
+            treeTable.reloadData('table', {
+                where: obj.field
+            });
         });
 
         form.on("submit(reset)", function (obj) {
-            table.clearFilter();
+            treeTable.reloadData('table', {
+                where: {}
+            });
         });
     });
 </script>

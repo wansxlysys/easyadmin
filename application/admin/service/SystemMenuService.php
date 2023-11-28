@@ -16,6 +16,31 @@ use app\common\exception\SystemException;
 class SystemMenuService extends \app\common\service\SystemMenuService
 {
     /**
+     * 菜单列表
+     * @return array
+     * @throws SystemException
+     */
+    public function listMenu(array $params = [])
+    {
+        $Query = new Query();
+
+        $Query->setOrder(['sort' => 'asc']);
+
+        if (!empty($params['name'])) {
+            $Query->addWhere('name', 'LIKE', $params['name'] . '%');
+        }
+
+        $list  = $this->SystemMenuRepository->getAll($Query);
+        $total = $this->SystemMenuRepository->getTotal($Query);
+
+        foreach ($list as $key => $item) {
+            $list[$key]['icon'] = "<i class='fa fa-fw {$item['icon']}'></i>";
+        }
+
+        return ['list' => $list, 'total' => $total];
+    }
+
+    /**
      * 获取左侧菜单
      * @return array
      * @throws SystemException

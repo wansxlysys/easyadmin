@@ -412,20 +412,6 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     color: #FF5722;
 }
 
-/***********split********************/
-.split-group {
-    height: calc(100vh - 80px);
-}
-
-.split-group .split-item {
-    height: 100%;
-}
-
-.split-group .split-item > .layui-card {
-    height: 100%;
-    overflow: auto;
-}
-
 /********************layui-form-item-button***************************/
 .layui-form-item-button .layui-input-block {
     position: relative;
@@ -579,4 +565,64 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     color: #666;
     word-break: break-all;
     padding-right: 15px;
+}
+
+/**************************split.js***************************************/
+.split {
+    display: none;
+}
+
+.split-fill {
+    height: 100%;
+    overflow: auto;
+}
+
+.split-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.split-horizontal .gutter-horizontal {
+    background-color: #f8f8f9;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    cursor: col-resize;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.split-horizontal .gutter-horizontal:before,
+.split-horizontal .gutter-horizontal:after {
+    content: "";
+    height: 6px;
+    width: 100%;
+    margin: 3px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+/*横向*/
+.split-vertical {
+    display: block;
+}
+
+.split-vertical .gutter-vertical {
+    background-color: #f8f8f9;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    cursor: row-resize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.split-vertical .gutter-vertical:before,
+.split-vertical .gutter-vertical:after {
+    content: "";
+    width: 6px;
+    height: 100%;
+    margin: 0 3px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 }

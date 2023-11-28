@@ -25,6 +25,7 @@ class SystemMenuController extends \app\common\controller\AdminController
 
     /**
      * 初始化
+     * @throws SystemException
      */
     public function initialize()
     {
@@ -42,9 +43,11 @@ class SystemMenuController extends \app\common\controller\AdminController
     {
         if ($request->isAjax()) {
 
-            $list = $this->SystemMenuService->getAll();
+            $params = [
+                'name' => $request->get('name')
+            ];
 
-            $this->success('获取成功', '', ['list' => $list]);
+            $this->success('获取成功', '', $this->SystemMenuService->listMenu($params));
         }
 
         return $this->fetch();

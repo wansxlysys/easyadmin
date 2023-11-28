@@ -25,6 +25,7 @@ class SystemUploadController extends \app\common\controller\AdminController
 
     /**
      * 初始化
+     * @throws SystemException
      */
     public function initialize()
     {

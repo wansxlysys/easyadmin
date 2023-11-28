@@ -7,6 +7,31 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
     var uploadImage = layui.uploadImage;
 
     /**
+     * 面板分割
+     */
+    $('.split').each(function () {
+
+        let direction = $(this).data('direction');
+
+        let elem = [];
+        let size = [];
+
+        $(this).addClass('split-' + direction);
+
+        $(this).find('.split-item').each(function () {
+            elem.push(this);
+            size.push($(this).data('size'));
+        });
+
+        Split(elem, {
+            sizes: size,
+            minSize: 200,
+            gutterSize: 6,
+            direction: direction
+        });
+    });
+
+    /**
      * 图片上传变量后缀
      * @type {string}
      */

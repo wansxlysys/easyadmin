@@ -21,6 +21,6 @@ class EditorController extends \app\common\controller\AdminController
      */
     public function ueditor_action()
     {
-        return (new Ueditor(Config::pull('ueditor')))->action();
+        return (new Ueditor(Config::pull('ueditor')))->dispatch();
     }
 }

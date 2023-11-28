@@ -5,6 +5,7 @@ namespace editor\ueditor;
 
 
 use think\response\Json;
+use think\facade\Request;
 
 class Ueditor
 {
@@ -27,54 +28,53 @@ class Ueditor
      * 操作入口
      * @return Json
      */
-    public function action()
+    public function dispatch()
     {
-        switch (request()->param('action')) {
+        $action = Request::get('action');
 
-            /**
-             * 获取配置
-             */
-            case 'config':
-                return json($this->config);
-
-            /**
-             * 上传图片
-             */
-            case 'uploadimage':
-                return $this->uploadImage();
-
-            /**
-             * 上传视频
-             */
-            case 'uploadvideo':
-                return $this->uploadVideo();
-
-            /**
-             * 上传文件
-             */
-            case 'uploadfile':
-                return $this->uploadFile();
-
-            /**
-             * 列出图片
-             */
-            case 'listimage':
-                return $this->listImage();
-
-            /**
-             * 列出文件
-             */
-            case 'listFile':
-                return $this->listFile();
-
-            /**
-             * 其他情况
-             */
-            default:
-                return json([
-                    'state' => '请求类型出错',
-                ]);
+        /**
+         * 获取配置
+         */
+        if ($action == 'config') {
+            return json($this->config);
         }
+
+        /**
+         * 上传图片
+         */
+        if ($action == 'image') {
+            return $this->uploadImage();
+        }
+
+        /**
+         * 上传视频
+         */
+        if ($action == 'video') {
+            return $this->uploadVideo();
+        }
+
+        /**
+         * 上传文件
+         */
+        if ($action == 'file') {
+            return $this->uploadFile();
+        }
+
+        /**
+         * 列出图片
+         */
+        if ($action == 'listImage') {
+            return $this->listImage();
+        }
+
+        /**
+         * 列出文件
+         */
+        if ($action == 'listFile') {
+            return $this->listFile();
+        }
+
+        return json(['state' => '请求类型出错']);
     }
 
     /**
@@ -84,9 +84,9 @@ class Ueditor
     protected function uploadImage()
     {
         $config = [
-            "pathFormat" => $this->config['imagePathFormat'],
             "maxSize"    => $this->config['imageMaxSize'],
             "allowFiles" => $this->config['imageAllowFiles'],
+            "pathFormat" => $this->config['imagePathFormat'],
         ];
 
         $fieldName = $this->config['imageFieldName'];

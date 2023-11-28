@@ -1,142 +1,70 @@
 <?php
 
 return [
-    /* 上传图片配置项 */
-    // 执行上传图片的action名称
-    "imageActionName"         => "uploadimage",
-    //提交的图片表单名称
-    "imageFieldName"          => "upfile",
-    //上传大小限制，单位B
-    "imageMaxSize"            => 2048000,
-    //上传图片格式显示
-    "imageAllowFiles"         => [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
-    //是否压缩图片,默认是true
-    "imageCompressEnable"     => true,
-    //图片压缩最长边限制
-    "imageCompressBorder"     => 1600,
-    //插入的图片浮动方式
-    "imageInsertAlign"        => "none",
-    //图片访问路径前缀
-    "imageUrlPrefix"          => "",
-    //上传保存路径,可以自定义保存路径和文件名格式
-    "imagePathFormat"         => "/uploads/images/{yyyy}{mm}{dd}/{md5}", /*  */
-    /* {filename} 会替换成原文件名,配置这项需要注意中文乱码问题 */
-    /* {rand:6} 会替换成随机数,后面的数字是随机数的位数 */
-    /* {time} 会替换成时间戳 */
-    /* {yyyy} 会替换成四位年份 */
-    /* {yy} 会替换成两位年份 */
-    /* {mm} 会替换成两位月份 */
-    /* {dd} 会替换成两位日期 */
-    /* {hh} 会替换成两位小时 */
-    /* {ii} 会替换成两位分钟 */
-    /* {ss} 会替换成两位秒 */
-    /* 非法字符 \ : * ? " < > | */
-    /* 具请体看线上文档: fex.baidu.com/ueditor/#use-format_upload_filename */
+    // 上传图片配置项
+    'imageActionName'         => 'image',
+    'imageFieldName'          => 'file',
+    'imageMaxSize'            => 1024 * 1024 * 10,
+    'imageAllowFiles'         => ['.jpg', '.png', '.jpeg'],
+    'imageCompressEnable'     => true,
+    'imageCompressBorder'     => 5000,
+    'imageInsertAlign'        => 'none',
+    'imageUrlPrefix'          => '',
 
-    /* 涂鸦图片上传配置项 */
-    //执行上传涂鸦的action名称
-    "scrawlActionName"        => "uploadscrawl",
-    //提交的图片表单名称
-    "scrawlFieldName"         => "upfile",
-    //上传保存路径,可以自定义保存路径和文件名格式
-    "scrawlPathFormat"        => "/uploads/images/{yyyy}{mm}{dd}/{md5}",
-    //上传大小限制，单位B
-    "scrawlMaxSize"           => 2048000,
-    //图片访问路径前缀
-    "scrawlUrlPrefix"         => "",
-    //插入的图片浮动方式
-    "scrawlInsertAlign"       => "none",
+    // 涂鸦图片上传配置项
+    'scrawlActionName'        => 'crawl',
+    'scrawlFieldName'         => 'file',
+    'scrawlMaxSize'           => 1024 * 1024 * 10,
+    'scrawlUrlPrefix'         => '',
+    'scrawlInsertAlign'       => 'none',
 
-    /* 截图工具上传 */
-    //执行上传截图的action名称
-    "snapscreenActionName"    => "uploadimage",
-    //上传保存路径,可以自定义保存路径和文件名格式
-    "snapscreenPathFormat"    => "/uploads/images/{yyyy}{mm}{dd}/{md5}",
-    //图片访问路径前缀
-    "snapscreenUrlPrefix"     => "",
-    //插入的图片浮动方式
-    "snapscreenInsertAlign"   => "none",
+    // 截图工具上传
+    'snapscreenActionName'    => 'snap',
+    'snapscreenUrlPrefix'     => '',
+    'snapscreenInsertAlign'   => 'none',
 
-    /* 抓取远程图片配置 */
-    "catcherLocalDomain"      => ["127.0.0.1", "localhost", "img.baidu.com"],
-    //执行抓取远程图片的action名称
-    "catcherActionName"       => "catchimage",
-    //提交的图片列表表单名称
-    "catcherFieldName"        => "source",
-    //上传保存路径,可以自定义保存路径和文件名格式
-    "catcherPathFormat"       => "/uploads/images/{yyyy}{mm}{dd}/{md5}",
-    //图片访问路径前缀
-    "catcherUrlPrefix"        => "",
-    //上传大小限制，单位B
-    "catcherMaxSize"          => 2048000,
-    //抓取图片格式显示
-    "catcherAllowFiles"       => [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
-
-    /* 上传视频配置 */
-    //执行上传视频的action名称
-    "videoActionName"         => "uploadvideo",
-    //提交的视频表单名称
-    "videoFieldName"          => "upfile",
-    //上传保存路径,可以自定义保存路径和文件名格式
-    "videoPathFormat"         => "/uploads/videos/{yyyy}{mm}{dd}/{md5}",
-    //视频访问路径前缀
-    "videoUrlPrefix"          => "",
-    //上传大小限制，单位B，默认100MB
-    "videoMaxSize"            => 102400000,
-    //上传视频格式显示
-    "videoAllowFiles"         => [
-        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid"],
-
-    /* 上传文件配置 */
-    // controller里,执行上传视频的action名称
-    "fileActionName"          => "uploadfile",
-    //提交的文件表单名称
-    "fileFieldName"           => "upfile",
-    //上传保存路径,可以自定义保存路径和文件名格式
-    "filePathFormat"          => "/uploads/files/{yyyy}{mm}{dd}/{md5}",
-    //文件访问路径前缀
-    "fileUrlPrefix"           => "",
-    //上传大小限制，单位B，默认50MB
-    "fileMaxSize"             => 51200000,
-    //上传文件格式显示
-    "fileAllowFiles"          => [
-        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
-        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
-        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml",
-    ], /*  */
-
-    /* 列出指定目录下的图片 */
-    //执行图片管理的action名称
-    "imageManagerActionName"  => "listimage",
-    //指定要列出图片的目录
-    "imageManagerListPath"    => "/uploads/images/",
-    //每次列出文件数量
-    "imageManagerListSize"    => 40,
-    //图片访问路径前缀
-    "imageManagerUrlPrefix"   => "",
-    //插入的图片浮动方式
-    "imageManagerInsertAlign" => "none",
-    //列出的文件类型
-    "imageManagerAllowFiles"  => [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
-
-    /* 列出指定目录下的文件 */
-    //执行文件管理的action名称
-    "fileManagerActionName"   => "listfile",
-    //指定要列出文件的目录
-    "fileManagerListPath"     => "/uploads/files/",
-    //文件访问路径前缀
-    "fileManagerUrlPrefix"    => "",
-    //每次列出文件数量
-    "fileManagerListSize"     => 40,
-    //列出的文件类型
-    "fileManagerAllowFiles"   => [
-        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
-        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
-        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml",
+    // 抓取
+    'catcherLocalDomain'      => [
+        '127.0.0.1',
+        'localhost',
     ],
+    'catcherActionName'       => 'catch',
+    'catcherFieldName'        => 'source',
+    'catcherUrlPrefix'        => '',
+    'catcherMaxSize'          => 1024 * 1024 * 10,
+    'catcherAllowFiles'       => ['.jpg', '.png', '.jpeg'],
+
+    // 上传视频配置
+    'videoActionName'         => 'video',
+    'videoFieldName'          => 'file',
+    'videoUrlPrefix'          => '',
+    'videoMaxSize'            => 1024 * 1024 * 100,
+    'videoAllowFiles'         => ['.mp4'],
+
+    // 上传音频配置
+    'audioActionName'         => 'audio',
+    'audioFieldName'          => 'file',
+    'audioUrlPrefix'          => '',
+    'audioMaxSize'            => 1024 * 1024 * 100,
+    'audioAllowFiles'         => ['.mp3'],
+
+    // 上传文件配置
+    'fileActionName'          => 'file',
+    'fileFieldName'           => 'file',
+    'fileUrlPrefix'           => '',
+    'fileMaxSize'             => 1024 * 1024 * 100,
+    'fileAllowFiles'          => ['.zip', '.pdf', '.doc'],
+
+    // 列出图片
+    'imageManagerActionName'  => 'listImage',
+    'imageManagerListSize'    => 20,
+    'imageManagerUrlPrefix'   => '',
+    'imageManagerInsertAlign' => 'none',
+    'imageManagerAllowFiles'  => ['.jpg', '.png', '.jpeg'],
+
+    // 列出指定目录下的文件
+    'fileManagerActionName'   => 'listFile',
+    'fileManagerUrlPrefix'    => '',
+    'fileManagerListSize'     => 20,
+    'fileManagerAllowFiles'   => ['.zip', '.pdf', '.doc'],
 ];

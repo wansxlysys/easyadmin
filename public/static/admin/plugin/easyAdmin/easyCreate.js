@@ -32,6 +32,17 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
     });
 
     /**
+     * 富文本编辑器
+     */
+    $(".ueditor").each(function () {
+        UE.getEditor(this, {
+            serverUrl: apiUrl.ueditor,
+            initialFrameWidth: '100%',
+            initialFrameHeight: '500'
+        });
+    });
+
+    /**
      * 图片上传变量后缀
      * @type {string}
      */
@@ -56,13 +67,6 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
      */
     $(".easy-close-layer").click(function () {
         parent.layer.close(parent.layer.getFrameIndex(window.name));
-    });
-
-    /**
-     * 富文本编辑器
-     */
-    $(".layui-builder-ueditor").each(function (key, item) {
-        UE.getEditor($(item).attr("id"));
     });
 
     /**

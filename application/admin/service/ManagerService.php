@@ -4,8 +4,6 @@
 namespace app\admin\service;
 
 
-use Throwable;
-use RuntimeException;
 use think\facade\Cache;
 use app\common\enum\ManagerEnum;
 use app\common\repository\Query;
@@ -13,6 +11,7 @@ use app\common\helper\ManagerHelper;
 use app\common\helper\EncryptionHelper;
 use app\admin\event\SystemLoginLogEvent;
 use app\common\exception\SystemException;
+use app\common\exception\ServiceException;
 
 class ManagerService extends \app\common\service\ManagerService
 {
@@ -70,6 +69,27 @@ class ManagerService extends \app\common\service\ManagerService
     }
 
     /**
+     * 获取管理员
+     * @param $id
+     * @return array
+     * @throws SystemException
+     */
+    public function getManager($id)
+    {
+        $Query = new Query();
+
+        $field = [
+            'manager.id', 'manager.role_id', 'manager.avatar', 'manager.real_name', 'manager.account', 'manager.account',
+            'manager.is_system', 'manager.status', 'role.identify', 'permission',
+        ];
+
+        $Query->setField($field);
+        $Query->addWhere('manager.id', '=', $id);
+
+        return $this->ManagerRepository->getWithRole($Query);
+    }
+
+    /**
      * 通过角色ID获取管理员列表
      * @param $roleId
      * @return mixed
@@ -80,6 +100,21 @@ class ManagerService extends \app\common\service\ManagerService
         $Query = new Query();
 
         $Query->addWhere('role_id', '=', $roleId);
+
+        return $this->ManagerRepository->getOne($Query);
+    }
+
+    /**
+     * 通过账号查询
+     * @param $account
+     * @return mixed
+     * @throws SystemException
+     */
+    public function getByAccount($account)
+    {
+        $Query = new Query();
+
+        $Query->addWhere('account', '=', $account);
 
         return $this->ManagerRepository->getOne($Query);
     }
@@ -149,7 +184,7 @@ class ManagerService extends \app\common\service\ManagerService
      */
     public function login(array $params)
     {
-        $manager = $this->ManagerRepository->getByAccount($params['account']);
+        $manager = $this->getByAccount($params['account']);
 
         /**
          * 检测账号是否存在
@@ -176,14 +211,14 @@ class ManagerService extends \app\common\service\ManagerService
              * 检测管理员是否被禁用
              */
             if ($manager['status'] == ManagerEnum::STATUS_DISABLED) {
-                throw new RuntimeException('登录失败，管理员已被禁用');
+                throw new ServiceException('登录失败，管理员已被禁用');
             }
 
             /**
              * 检测管理员已被锁定
              */
             if ($manager['status'] == ManagerEnum::STATUS_LOCKED) {
-                throw new RuntimeException('登录失败，管理员已被锁定');
+                throw new ServiceException('登录失败，管理员已被锁定');
             }
 
             try {
@@ -192,10 +227,10 @@ class ManagerService extends \app\common\service\ManagerService
                  * 检测密码是否正确
                  */
                 if (!EncryptionHelper::equals($params['password'], $manager['password'])) {
-                    throw new RuntimeException('登录失败，密码输入错误');
+                    throw new ServiceException('登录失败，密码输入错误');
                 }
 
-            } catch (Throwable $throwable) {
+            } catch (SystemException $systemException) {
 
                 /**
                  * 记录登录次数和锁定状态
@@ -222,20 +257,20 @@ class ManagerService extends \app\common\service\ManagerService
                     Cache::set($cacheKey, $errorNumber + 1);
                 }
 
-                throw new RuntimeException($throwable->getMessage());
+                throw new ServiceException($systemException->getMessage());
             }
 
-        } catch (Throwable $throwable) {
+        } catch (SystemException $systemException) {
 
             /**
              * 登录失败日志
              */
             SystemLoginLogEvent::loginError([
                 'manager_id'  => $manager['id'],
-                'description' => $throwable->getMessage()
+                'description' => $systemException->getMessage()
             ]);
 
-            return $this->setMessage($throwable->getMessage());
+            return $this->setMessage($systemException->getMessage());
         }
 
         /**

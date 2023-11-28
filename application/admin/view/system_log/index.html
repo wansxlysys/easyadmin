@@ -125,7 +125,7 @@
 
         form.on("submit(search)", function (obj) {
             event.preventDefault();
-            table.reload("table", {
+            table.reloadData("table", {
                 where: obj.field,
                 page: {
                     curr: 1
@@ -134,7 +134,7 @@
         });
 
         form.on("submit(reset)", function (obj) {
-            table.reload("table", {
+            table.reloadData("table", {
                 where: {},
                 page: {
                     curr: 1

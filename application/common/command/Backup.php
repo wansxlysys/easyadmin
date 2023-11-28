@@ -44,7 +44,7 @@ class Backup extends Command
             $connects = "mysql:host={$hostname}:{$hostport};dbname={$database}";
 
             $MysqlDump = new Mysqldump($connects, $username, $password);
-            $MysqlDump->start(Env::get('root_path') . "data/{$saveName}.sql");
+            $MysqlDump->start(Env::get('root_path') . "data/database/{$saveName}.sql");
 
             $output->writeln("备份成功");
 

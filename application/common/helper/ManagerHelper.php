@@ -56,21 +56,12 @@ class ManagerHelper
     }
 
     /**
-     * 获取角色
-     * @return mixed|null
-     */
-    public static function getRole()
-    {
-        return StorageHelper::get(ManagerEnum::CONTAINER_MANAGER_ROLE);
-    }
-
-    /**
      * 获取角色名称
      * @return mixed
      */
     public static function getIdentify()
     {
-        return static::getRole()['identify'];
+        return static::getManager()['identify'];
     }
 
     /**
@@ -79,7 +70,7 @@ class ManagerHelper
      */
     public static function getPermission()
     {
-        return static::getRole()['permission'];
+        return static::getManager()['permission'];
     }
 
     /**
@@ -117,7 +108,6 @@ class ManagerHelper
      */
     public static function checkAccessByMenuId($menuId, $condition = 'and')
     {
-        return PermissionHelper::checkPermission(StringUtil::toArray($menuId),
-            static::getPermission(), $condition);
+        return PermissionHelper::checkPermission(StringUtil::toArray($menuId), static::getPermission(), $condition);
     }
 }

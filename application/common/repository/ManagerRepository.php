@@ -67,16 +67,23 @@ class ManagerRepository extends Model
     }
 
     /**
-     * 通过账号查询
-     * @param $account
-     * @return mixed
+     * 获取关联角色
+     * @param Query $Query
+     * @return array
      * @throws RepositoryException
      */
-    public function getByAccount($account)
+    public function getWithRole(Query $Query)
     {
         try {
 
-            return Db::name(static::getName())->where('account', $account)->find();
+            return Db::name(static::getName())
+                ->alias('manager')
+                ->join('ManagerRole role', 'role.id = manager.role_id')
+                ->where($Query->getWhere())
+                ->whereOr($Query->getWhereOr())
+                ->field($Query->getField())
+                ->order($Query->getOrder())
+                ->find();
 
         } catch (Throwable $throwable) {
             throw new RepositoryException($throwable->getMessage());

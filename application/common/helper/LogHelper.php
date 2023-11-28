@@ -6,7 +6,7 @@ namespace app\common\helper;
 
 use think\facade\Log;
 
-class LogHelper
+class LogHelper extends Log
 {
     /**
      * 写入任务日志
@@ -15,6 +15,6 @@ class LogHelper
      */
     public static function queue($message, array $context = [])
     {
-        Log::log('queue', $message, $context);
+        static::log('queue', $message, $context);
     }
 }

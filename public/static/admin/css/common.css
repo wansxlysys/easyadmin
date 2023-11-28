@@ -46,17 +46,6 @@ body {
 }
 
 /***********表单************************/
-.layui-input:focus,
-.layui-textarea:focus {
-    border-color: #009688 !important;
-}
-
-.layui-form-danger + .layui-form-select .layui-input,
-.layui-form-danger:focus {
-    border-color: #FF5722 !important;
-}
-
-
 label.layui-required:before {
     content: "*";
     color: red;
@@ -567,7 +556,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     padding-right: 15px;
 }
 
-/**************************split.js***************************************/
+/***********************************面板分割*************************************/
 .split {
     display: none;
 }
@@ -625,4 +614,15 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     margin: 0 3px;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
+}
+
+/*************************下拉菜单*********************************/
+.easy-menu .layui-menu {
+    margin: 0;
+}
+
+.easy-menu .layui-menu li {
+    margin: 0;
+    padding: 6px 15px 6px 10px;
+    border-bottom: 1px solid #eee;
 }

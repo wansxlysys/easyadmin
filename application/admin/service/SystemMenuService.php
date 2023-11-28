@@ -17,6 +17,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
 {
     /**
      * 菜单列表
+     * @param array $params
      * @return array
      * @throws SystemException
      */

@@ -92,7 +92,7 @@ layui.define(["jquery", "upload"], function (exports) {
         html += '<div class="easy-upload-image">';
         html += '    <div class="easy-upload-image-list"></div>';
         html += '    <div class="easy-upload-image-btn">';
-        html += '        <button type="button"><i class="fa fa-fw fa-picture-o"></i></button>';
+        html += '        <button type="button"><i class="fa-fw fa-regular fa-image"></i></button>';
         html += '    </div>';
         html += '</div>';
 

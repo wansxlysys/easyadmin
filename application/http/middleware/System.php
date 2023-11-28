@@ -54,14 +54,11 @@ class System
      */
     public function checkData()
     {
-        $ManagerService     = new ManagerService();
-        $ManagerRoleService = new ManagerRoleService();
+        $ManagerService = new ManagerService();
 
-        $manager     = $ManagerService->getById(ManagerHelper::getManagerId());
-        $managerRole = $ManagerRoleService->getRole($manager['role_id']);
+        $manager = $ManagerService->getManager(ManagerHelper::getManagerId());
 
         StorageHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
-        StorageHelper::set(ManagerEnum::CONTAINER_MANAGER_ROLE, $managerRole);
     }
 
     /**

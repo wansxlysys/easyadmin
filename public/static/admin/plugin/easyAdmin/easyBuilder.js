@@ -2,8 +2,9 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
 
     var $ = layui.$;
     var form = layui.form;
-    var easyHelper = layui.easyHelper;
+    var dropdown = layui.dropdown;
     var xmSelect = layui.xmSelect;
+    var easyHelper = layui.easyHelper;
 
     /**
      * 获取所有父级元素ID
@@ -183,7 +184,36 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
         options.ready(xmSelect.render(options));
     }
 
+    /**
+     * 创建下拉菜单
+     * @param el
+     * @param data
+     * @param setting
+     */
+    function dropMenu(el, data, setting) {
+
+        var defaults = {
+            elem: el,
+            show: true,
+            className: 'easy-menu',
+            align: 'right',
+            click: function (data) {
+
+            },
+        };
+
+        var options = $.extend(true, defaults, setting);
+
+        options.data = $.map(data, function (item) {
+            item.templet = '<i class="fa fa-fw ' + item.icon + '"></i><span>{{d.title}}</span>'
+            return item;
+        });
+
+        dropdown.render(options);
+    }
+
     exports("easyBuilder", {
+        dropMenu: dropMenu,
         treeStruct: treeStruct,
         treeSelect: treeSelect,
         singleSelect: singleSelect,

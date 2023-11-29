@@ -6,10 +6,11 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\common\exception\SystemException;
+use app\common\controller\AdminController;
 use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
 
-class SystemSettingController extends \app\common\controller\AdminController
+class SystemSettingController extends AdminController
 {
     /**
      * 中间件

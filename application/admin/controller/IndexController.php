@@ -10,8 +10,9 @@ use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 use app\admin\service\SystemMenuService;
 use app\common\exception\SystemException;
+use app\common\controller\AdminController;
 
-class IndexController extends \app\common\controller\AdminController
+class IndexController extends AdminController
 {
     /**
      * 中间件

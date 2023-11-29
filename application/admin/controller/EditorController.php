@@ -6,8 +6,9 @@ namespace app\admin\controller;
 
 use think\facade\Config;
 use editor\ueditor\Ueditor;
+use app\common\controller\AdminController;
 
-class EditorController extends \app\common\controller\AdminController
+class EditorController extends AdminController
 {
     /**
      * 中间件

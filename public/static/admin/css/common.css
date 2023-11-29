@@ -1,8 +1,4 @@
-/************样式重置****************/
-body {
-    background-color: #f5f7f9;
-}
-
+/***************************滚动条样式***************************/
 ::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -29,189 +25,27 @@ body {
     background: rgba(0, 0, 0, 0.2);
 }
 
-.clearfix:before,
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.layui-content {
-    padding: 15px;
-}
-
-.layui-circle,
-.layui-square {
-    object-fit: cover;
-}
-
-/***********表单************************/
-label.layui-required:before {
-    content: "*";
-    color: red;
-    margin-right: 2px;
-}
-
-.layui-form-item > .layui-form-label {
-    width: 120px;
-}
-
-.layui-form-item > .layui-input-block {
-    margin-left: 150px;
-}
-
-/*********************分页****************************/
-.paginator .layui-laypage {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-}
-
-.paginator .layui-laypage a,
-.paginator .layui-laypage span {
-    margin: 0 5px;
-}
-
-/******************alert*****************************/
-.alert {
-    border: 1px solid #cccccc;
-    background-color: #e8e8e8;
-    border-radius: 2px;
+/********************layui-form-item-button***************************/
+.layui-form-item-button .layui-input-block {
     position: relative;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding-right: 95px;
 }
 
-.alert::after,
-.alert::before {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.alert .alert-icon {
-    width: 70px;
-    float: left;
-    color: #999;
-}
-
-.alert .alert-icon i {
-    font-size: 46px;
-}
-
-.alert .alert-content {
-    padding-right: 30px;
-}
-
-.alert .alert-icon + .alert-content {
-    margin-left: 70px;
-}
-
-.alert .alert-content h3 {
-    color: #666;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.alert .alert-content p {
-    color: #666;
-}
-
-.alert .alert-close {
+.layui-form-item-button .layui-input-block button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
+    right: 0;
+    top: 0;
 }
 
-.alert .alert-close i {
-    color: #666;
-    font-size: 16px;
-    opacity: 0.4;
-}
-
-.alert .alert-close:hover i {
-    opacity: 1;
-}
-
-/*default*/
-.alert.alert-default {
-    border: 1px solid #2d8cf0;
-    background-color: #cfe7ff;
-}
-
-.alert.alert-default .alert-icon,
-.alert.alert-default .alert-content h3,
-.alert.alert-default .alert-content p,
-.alert.alert-default .alert-close i {
-    color: #2d8cf0;
-}
-
-
-/*success*/
-.alert.alert-success {
-    border: 1px solid #19be6b;
-    background-color: #d0ffe7;
-}
-
-.alert.alert-success .alert-icon,
-.alert.alert-success .alert-content h3,
-.alert.alert-success .alert-content p,
-.alert.alert-success .alert-close i {
-    color: #19be6b;
-}
-
-/*info*/
-.alert.alert-info {
-    border: 1px solid #2db7f5;
-    background-color: #d3f1ff;
-}
-
-.alert.alert-info .alert-icon,
-.alert.alert-info .alert-content h3,
-.alert.alert-info .alert-content p,
-.alert.alert-info .alert-close i {
-    color: #2db7f5;
-}
-
-/*warning*/
-.alert.alert-warning {
-    border: 1px solid #ff9900;
-    background-color: #ffefd7;
-}
-
-.alert.alert-warning .alert-icon,
-.alert.alert-warning .alert-content h3,
-.alert.alert-warning .alert-content p,
-.alert.alert-warning .alert-close i {
-    color: #ff9900;
-}
-
-/*error*/
-.alert.alert-error {
-    border: 1px solid #ed4014;
-    background-color: #ffd2c6;
-}
-
-.alert.alert-error .alert-icon,
-.alert.alert-error .alert-content h3,
-.alert.alert-error .alert-content p,
-.alert.alert-error .alert-close i {
-    color: #ed4014;
-}
-
-
-/**
-  面包屑导航
- */
-.layui-breadcrumb-container {
+/***************************************面包屑导航********************************/
+.easy-breadcrumb {
     padding: 15px;
     background-color: #fff;
     position: relative;
 }
 
-.layui-breadcrumb a {
-    color: #666 !important;
+.easy-breadcrumb a {
+    color: #333 !important;
 }
 
 .easy-breadcrumb-close {
@@ -237,22 +71,24 @@ label.layui-required:before {
     background-color: #e7e7e7;
 }
 
-/*********************表格*******************/
-.layui-table-cell {
-    height: auto;
+/*******************************弹出iframe框主题**************************/
+.easy-iframe.layui-layer-border {
+    border: none;
 }
 
-.layui-table {
-    color: #333;
+.easy-iframe-transparent .layui-layer-load {
+    background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/********************treeTable*************************/
-.ew-tree-table .ew-tree-table-tool {
-    background-color: #fafafa !important;
+.easy-iframe-transparent.layui-layer {
+    background-color: transparent !important;
+}
+
+.easy-iframe-transparent.layui-layer-border {
+    border: none;
 }
 
 /***********************xmSelect*******************/
-
 xm-select > .xm-body {
     animation-name: layui-upbit !important;
 }
@@ -272,23 +108,6 @@ xm-select > .xm-body .xm-body-tree .selected .xm-tree-icon {
 xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     transition: none;
     -webkit-transition: none;
-}
-
-/*******************弹出曾自定义主题************/
-.easy-iframe.layui-layer-border {
-    border: none;
-}
-
-.easy-iframe-transparent .layui-layer-load {
-    background-color: rgba(255, 255, 255, 0.3) !important;
-}
-
-.easy-iframe-transparent.layui-layer {
-    background-color: transparent !important;
-}
-
-.easy-iframe-transparent.layui-layer-border {
-    border: none;
 }
 
 /********************弹出层*****************************/
@@ -401,45 +220,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     color: #FF5722;
 }
 
-/********************layui-form-item-button***************************/
-.layui-form-item-button .layui-input-block {
-    position: relative;
-    padding-right: 95px;
-}
-
-.layui-form-item-button .layui-input-block button {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-/************选项卡**********************/
-.layui-tab {
-    margin-top: 0;
-    background-color: #fff;
-    border-bottom: 1px solid #f6f6f6;
-}
-
-.layui-tab .layui-tab-content {
-    padding: 10px 15px;
-    line-height: 24px;
-}
-
-.layui-tab .layui-tab-title {
-    margin: 0 10px;
-    border-bottom: 1px solid #f6f6f6;
-}
-
-.layui-tab .layui-tab-title li {
-    line-height: 42px;
-    margin-left: 10px;
-}
-
-.layui-tab .layui-tab-title li:first-child {
-    margin-left: 0;
-}
-
-/***********************步骤***************************/
+/**************************************步骤条*******************************************/
 .easy-step {
     display: flex;
     justify-content: center;
@@ -513,44 +294,43 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 /***********详情**************/
-.detail {
+.easy-info {
     display: flex;
     flex-wrap: wrap;
 }
 
-.detail .detail-cell {
-    width: 100%;
+.easy-info .easy-info-grid {
     display: flex;
     margin: 10px 0;
 }
 
-.detail .detail-cell-middle {
+.easy-info .easy-info-grid-center {
     align-items: center;
 }
 
-.detail .detail-cell-25 {
+.easy-info .easy-info-grid-25 {
     width: 25%;
 }
 
-.detail .detail-cell-50 {
+.easy-info .easy-info-grid-50 {
     width: 50%;
 }
 
-.detail .detail-cell-75 {
+.easy-info .easy-info-grid-75 {
     width: 75%;
 }
 
-.detail .detail-cell-100 {
+.easy-info .easy-info-grid-100 {
     width: 100%;
 }
 
-.detail .detail-cell .detail-cell-left {
+.easy-info .easy-info-grid .easy-info-grid-left {
     width: 100px;
     min-width: 100px;
     color: #333;
 }
 
-.detail .detail-cell .detail-cell-right {
+.easy-info .easy-info-grid .easy-info-grid-right {
     color: #666;
     word-break: break-all;
     padding-right: 15px;

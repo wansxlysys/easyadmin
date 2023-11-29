@@ -7,8 +7,9 @@ namespace app\admin\controller;
 use think\Request;
 use app\admin\service\SystemLogService;
 use app\common\exception\SystemException;
+use app\common\controller\AdminController;
 
-class SystemLogController extends \app\common\controller\AdminController
+class SystemLogController extends AdminController
 {
     /**
      * 中间件

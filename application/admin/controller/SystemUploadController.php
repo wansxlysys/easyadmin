@@ -7,9 +7,10 @@ namespace app\admin\controller;
 use think\Request;
 use app\common\exception\SystemException;
 use app\admin\service\SystemUploadService;
+use app\common\controller\AdminController;
 use app\admin\validate\SystemUploadValidate;
 
-class SystemUploadController extends \app\common\controller\AdminController
+class SystemUploadController extends AdminController
 {
     /**
      * 中间件

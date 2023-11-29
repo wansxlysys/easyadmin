@@ -5,6 +5,7 @@ namespace app\admin\service;
 
 
 use think\facade\Cache;
+use app\common\util\StringUtil;
 use app\common\enum\ManagerEnum;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
@@ -86,7 +87,18 @@ class ManagerService extends \app\common\service\ManagerService
         $Query->setField($field);
         $Query->addWhere('manager.id', '=', $id);
 
-        return $this->ManagerRepository->getWithRole($Query);
+        $manager = $this->ManagerRepository->getWithRole($Query);
+
+        if (!$manager) {
+            throw new ServiceException('管理员不存在');
+        }
+
+        /**
+         * 格式化权限为数组
+         */
+        $manager['permission'] = StringUtil::toArray($manager['permission']);
+
+        return $manager;
     }
 
     /**

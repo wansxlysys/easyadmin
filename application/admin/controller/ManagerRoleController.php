@@ -7,9 +7,10 @@ namespace app\admin\controller;
 use think\Request;
 use app\common\exception\SystemException;
 use app\admin\service\ManagerRoleService;
+use app\common\controller\AdminController;
 use app\admin\validate\ManagerRoleValidate;
 
-class ManagerRoleController extends \app\common\controller\AdminController
+class ManagerRoleController extends AdminController
 {
     /**
      * 中间件

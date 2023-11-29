@@ -86,12 +86,6 @@
             border-color: #bbb;
             color: #bbb
         }
-
-        .clearfix:after {
-            clear: both;
-            display: table;
-            content: ""
-        }
     </style>
 </head>
 <body>
@@ -109,7 +103,7 @@
     <h1>{$msg}</h1>
     {/if}
     <p class="jump">页面自动跳转，等待时间：<span id="wait">{$wait}</span> 秒</p>
-    <p class="clearfix">
+    <p>
         <a href="javascript:;" id="close" class="btn btn-grey">关闭</a>
         <a href="{$url}" id="redirect" class="btn btn-primary">跳转</a>
     </p>

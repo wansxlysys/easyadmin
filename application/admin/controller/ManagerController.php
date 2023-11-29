@@ -9,9 +9,10 @@ use think\Request;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 use app\common\exception\SystemException;
+use app\common\controller\AdminController;
 use app\admin\service\SystemUploadService;
 
-class ManagerController extends \app\common\controller\AdminController
+class ManagerController extends AdminController
 {
     /**
      * 中间件

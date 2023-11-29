@@ -56,19 +56,6 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     }
 
     /**
-     * 获取角色
-     * @param $id
-     * @return mixed
-     * @throws SystemException
-     */
-    public function getRole($id)
-    {
-        $role = $this->ManagerRoleRepository->getById($id);
-
-        return $this->formatData($role);
-    }
-
-    /**
      * 通过ID获取角色
      * @param $id
      * @return mixed
@@ -125,17 +112,5 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     public function updateRole(array $params)
     {
         return $this->ManagerRoleRepository->updateById($params['id'], $params);
-    }
-
-    /**
-     * 格式化数据
-     * @param $data
-     * @return mixed
-     */
-    public function formatData($data)
-    {
-        $data['permission'] = StringUtil::toArray($data['permission']);
-
-        return $data;
     }
 }

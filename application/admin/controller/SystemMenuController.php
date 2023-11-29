@@ -8,8 +8,9 @@ use think\Request;
 use app\admin\service\SystemMenuService;
 use app\common\exception\SystemException;
 use app\admin\validate\SystemMenuValidate;
+use app\common\controller\AdminController;
 
-class SystemMenuController extends \app\common\controller\AdminController
+class SystemMenuController extends AdminController
 {
     /**
      * 中间件

@@ -101,8 +101,7 @@
                 top.layer.confirm("确认清空日志吗？", {
                     icon: 3
                 }, function () {
-                    easyAdmin.http({
-                        type: "POST",
+                    easyAdmin.ajaxPost({
                         url: "{:url('admin/SystemLoginLog/clear')}",
                         success: function (result) {
                             var key = top.layer.alert(result.msg, {
@@ -119,7 +118,9 @@
 
         table.on('tool(table)', function (obj) {
             if (obj.event === 'detail') {
-                easyAdmin.openLayer("{:url('admin/SystemLoginLog/detail')}?id=" + obj.data.id);
+                easyAdmin.openFrame({
+                    content: "{:url('admin/SystemLoginLog/detail')}?id=" + obj.data.id
+                });
             }
         });
 

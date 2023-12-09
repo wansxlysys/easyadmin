@@ -35,8 +35,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            easyAdmin.http({
-                type: "POST",
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/SystemSetting/config')}",
                 data: obj.field,
                 success: function (result) {

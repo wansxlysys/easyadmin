@@ -103,8 +103,7 @@
         form.on("submit", function (obj) {
             event.preventDefault();
 
-            easyAdmin.http({
-                type: "POST",
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/SystemMenu/create')}",
                 data: obj.field,
                 success: function (result) {
@@ -113,7 +112,7 @@
                     }, function () {
                         parent.layui.treeTable.reloadData('table');
                         top.layer.close(lay);
-                        easyAdmin.closeLayer();
+                        easyAdmin.closeFrame();
                     });
                 }
             });

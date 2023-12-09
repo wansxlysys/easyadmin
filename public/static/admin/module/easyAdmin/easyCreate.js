@@ -1,9 +1,7 @@
 layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], function (exports) {
 
-    var $ = layui.$;
     var laydate = layui.laydate;
     var easyAdmin = layui.easyAdmin;
-    var uploadFile = layui.uploadFile;
     var uploadImage = layui.uploadImage;
 
     /**

@@ -3,7 +3,7 @@
     /**
      * 资源目录路径
      */
-    var basePath = window.location.origin + '/static/admin/plugin/';
+    var basePath = window.location.origin + '/static/admin/module/';
 
     /**
      * 初始化全局配置

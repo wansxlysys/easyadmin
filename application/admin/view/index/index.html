@@ -146,12 +146,13 @@
             },
             profile: function () {
                 event.preventDefault();
-                frames[0].layui.easyAdmin.openLayer("{:url('admin/Index/profile')}");
+                frames[0].layui.easyAdmin.openFrame({
+                    content: "{:url('admin/Index/profile')}"
+                });
             },
             logout: function () {
                 event.preventDefault();
-                easyAdmin.http({
-                    type: "POST",
+                easyAdmin.ajaxPost({
                     url: "{:url('admin/Index/logout')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {

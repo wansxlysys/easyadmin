@@ -107,7 +107,9 @@
 
         treeTable.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
-                easyAdmin.openLayer("{:url('admin/SystemMenu/create')}");
+                easyAdmin.openFrame({
+                    content: "{:url('admin/SystemMenu/create')}"
+                });
             }
 
             if (obj.event === 'expand') {
@@ -120,9 +122,8 @@
         });
 
         treeTable.on('edit(table)', function (obj) {
-            easyAdmin.http({
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/SystemMenu/sort')}",
-                type: "POST",
                 data: {
                     id: obj.data.id,
                     sort: obj.value
@@ -141,15 +142,16 @@
         treeTable.on('tool(table)', function (obj) {
 
             if (obj.event === 'update') {
-                easyAdmin.openLayer("{:url('admin/SystemMenu/update')}?id=" + obj.data.id);
+                easyAdmin.openFrame({
+                    content: "{:url('admin/SystemMenu/update')}?id=" + obj.data.id
+                });
             }
 
             if (obj.event === 'delete') {
                 top.layer.confirm("确认删除吗？", {
                     icon: 3
                 }, function () {
-                    easyAdmin.http({
-                        type: "POST",
+                    easyAdmin.ajaxPost({
                         url: "{:url('admin/SystemMenu/delete')}",
                         data: {
                             id: obj.data.id

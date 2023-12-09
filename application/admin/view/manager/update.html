@@ -89,8 +89,7 @@
 
             obj.field.id = '{$manager.id}';
 
-            easyAdmin.http({
-                type: "POST",
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/Manager/update')}",
                 data: obj.field,
                 success: function (result) {
@@ -99,7 +98,7 @@
                     }, function () {
                         parent.layui.table.reloadData("table");
                         top.layer.close(key);
-                        easyAdmin.closeLayer();
+                        easyAdmin.closeFrame();
                     });
                 }
             });

@@ -65,8 +65,7 @@
 
             obj.field.id = '{$manager.id}';
 
-            easyAdmin.http({
-                type: "POST",
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/Index/profile')}",
                 data: obj.field,
                 success: function (result) {
@@ -74,7 +73,7 @@
                         icon: 1,
                     }, function () {
                         top.layer.close(key);
-                        easyAdmin.closeLayer();
+                        easyAdmin.closeFrame();
                     });
                 }
             });

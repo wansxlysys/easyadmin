@@ -57,13 +57,12 @@
 
         easyService.menuTreeStruct({
             elem: "#permission",
-            setting: {
-                check: {
-                    enable: true
-                },
-                ready: function(tree) {
-                    permissionTree = tree;
-                }
+            ready: function (tree) {
+                permissionTree = tree;
+            }
+        }, {
+            check: {
+                enable: true
             }
         });
 
@@ -80,8 +79,7 @@
 
             obj.field.permission = permission.join(',');
 
-            easyAdmin.http({
-                type: "POST",
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/ManagerRole/create')}",
                 data: obj.field,
                 success: function (result) {
@@ -90,7 +88,7 @@
                     }, function () {
                         parent.layui.table.reloadData("table");
                         top.layer.close(key);
-                        easyAdmin.closeLayer();
+                        easyAdmin.closeFrame();
                     });
                 }
             });

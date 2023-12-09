@@ -30,7 +30,7 @@
          * 渲染链接地址
          */
         renderLink: function (type) {
-            if (layui.easyHelper.equalsInt(3, type)) {
+            if (type == 3) {
                 $("input[name=link]").attr('lay-verify', 'required').closest(".layui-form-item").removeClass("layui-hide");
             } else {
                 $("input[name=link]").removeAttr('lay-verify').closest(".layui-form-item").addClass("layui-hide");

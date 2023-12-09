@@ -115,21 +115,24 @@
 
         table.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
-                easyAdmin.openLayer("{:url('admin/Manager/create')}");
+                easyAdmin.openFrame({
+                    content: "{:url('admin/Manager/create')}"
+                });
             }
         });
 
         table.on('tool(table)', function (obj) {
             if (obj.event === 'update') {
-                easyAdmin.openLayer("{:url('admin/Manager/update')}?id=" + obj.data.id);
+                easyAdmin.openFrame({
+                    content: "{:url('admin/Manager/update')}?id=" + obj.data.id
+                });
             }
 
             if (obj.event === 'delete') {
                 top.layer.confirm('确定删除吗？', {
                     icon: 3,
                 }, function () {
-                    easyAdmin.http({
-                        type: "POST",
+                    easyAdmin.ajaxPost({
                         url: "{:url('admin/Manager/delete')}",
                         data: {
                             id: obj.data.id

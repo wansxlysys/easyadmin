@@ -57,14 +57,13 @@
 
         easyService.menuTreeStruct({
             elem: "#permission",
-            selected: "{$role.permission}",
-            setting: {
-                check: {
-                    enable: true
-                },
-                ready: function (tree) {
-                    permissionTree = tree;
-                }
+            checked: "{$role.permission}",
+            ready: function (tree) {
+                permissionTree = tree;
+            }
+        }, {
+            check: {
+                enable: true
             }
         });
 
@@ -82,8 +81,7 @@
             obj.field.id = '{$role.id}';
             obj.field.permission = permission.join(',');
 
-            easyAdmin.http({
-                type: "POST",
+            easyAdmin.ajaxPost({
                 url: "{:url('admin/ManagerRole/update')}",
                 data: obj.field,
                 success: function (result) {
@@ -92,7 +90,7 @@
                     }, function () {
                         parent.layui.table.reloadData("table");
                         top.layer.close(key);
-                        easyAdmin.closeLayer();
+                        easyAdmin.closeFrame();
                     });
                 }
             });

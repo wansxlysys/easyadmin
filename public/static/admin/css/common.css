@@ -25,6 +25,16 @@
     background: rgba(0, 0, 0, 0.2);
 }
 
+/*********************加载等待*****************************/
+.easy-loading {
+    color: #fff;
+    padding: 5px 0;
+}
+
+.easy-loading .layui-icon {
+    font-size: 28px;
+}
+
 /********************layui-form-item-button***************************/
 .layui-form-item-button .layui-input-block {
     position: relative;
@@ -72,19 +82,19 @@
 }
 
 /*******************************弹出iframe框主题**************************/
-.easy-iframe.layui-layer-border {
+.easy-frame.layui-layer-border {
     border: none;
 }
 
-.easy-iframe-transparent .layui-layer-load {
+.easy-frame-transparent .layui-layer-load {
     background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-.easy-iframe-transparent.layui-layer {
+.easy-frame-transparent.layui-layer {
     background-color: transparent !important;
 }
 
-.easy-iframe-transparent.layui-layer-border {
+.easy-frame-transparent.layui-layer-border {
     border: none;
 }
 

@@ -37,6 +37,7 @@
      */
     layui.table.set({
         page: true,
+		scrollPos: 'reset',
         parseData: function (result) {
             return {
                 msg: result.msg,

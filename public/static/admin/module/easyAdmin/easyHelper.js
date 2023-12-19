@@ -46,7 +46,7 @@ layui.define(function (exports) {
         $.each(data, function (key, item) {
             if (item.id == parentId) {
                 result.push(item);
-                getParents(data, item.parent_id);
+                easyHelper.getParents(data, item.parent_id);
             }
         });
 

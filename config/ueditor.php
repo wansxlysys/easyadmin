@@ -1,70 +1,43 @@
 <?php
 
+
 return [
-    // 上传图片配置项
-    'imageActionName'         => 'image',
-    'imageFieldName'          => 'file',
-    'imageMaxSize'            => 1024 * 1024 * 10,
-    'imageAllowFiles'         => ['.jpg', '.png', '.jpeg'],
-    'imageCompressEnable'     => true,
-    'imageCompressBorder'     => 5000,
-    'imageInsertAlign'        => 'none',
-    'imageUrlPrefix'          => '',
+    // 图片上传
+    'imageActionName'     => 'image',
+    'imageFieldName'      => 'file',
+    'imageMaxSize'        => 1024 * 1024 * 10,
+    'imageAllowFiles'     => ['.jpg', '.png', '.jpeg'],
+    'imageCompressEnable' => true,
+    'imageCompressBorder' => 5000,
+    'imageInsertAlign'    => 'none',
+    'imageUrlPrefix'      => '',
 
-    // 涂鸦图片上传配置项
-    'scrawlActionName'        => 'crawl',
-    'scrawlFieldName'         => 'file',
-    'scrawlMaxSize'           => 1024 * 1024 * 10,
-    'scrawlUrlPrefix'         => '',
-    'scrawlInsertAlign'       => 'none',
+    // 图片抓取
+    'catcherLocalDomain'  => ['127.0.0.1', 'localhost',],
+    'catcherActionName'   => 'catch',
+    'catcherFieldName'    => 'source',
+    'catcherUrlPrefix'    => '',
+    'catcherMaxSize'      => 1024 * 1024 * 10,
+    'catcherAllowFiles'   => ['.jpg', '.png', '.jpeg'],
 
-    // 截图工具上传
-    'snapscreenActionName'    => 'snap',
-    'snapscreenUrlPrefix'     => '',
-    'snapscreenInsertAlign'   => 'none',
+    // 上传视频
+    'videoActionName'     => 'video',
+    'videoFieldName'      => 'file',
+    'videoUrlPrefix'      => '',
+    'videoMaxSize'        => 1024 * 1024 * 100,
+    'videoAllowFiles'     => ['.mp4'],
 
-    // 抓取
-    'catcherLocalDomain'      => [
-        '127.0.0.1',
-        'localhost',
-    ],
-    'catcherActionName'       => 'catch',
-    'catcherFieldName'        => 'source',
-    'catcherUrlPrefix'        => '',
-    'catcherMaxSize'          => 1024 * 1024 * 10,
-    'catcherAllowFiles'       => ['.jpg', '.png', '.jpeg'],
+    // 上传音频
+    'audioActionName'     => 'audio',
+    'audioFieldName'      => 'file',
+    'audioUrlPrefix'      => '',
+    'audioMaxSize'        => 1024 * 1024 * 100,
+    'audioAllowFiles'     => ['.mp3'],
 
-    // 上传视频配置
-    'videoActionName'         => 'video',
-    'videoFieldName'          => 'file',
-    'videoUrlPrefix'          => '',
-    'videoMaxSize'            => 1024 * 1024 * 100,
-    'videoAllowFiles'         => ['.mp4'],
-
-    // 上传音频配置
-    'audioActionName'         => 'audio',
-    'audioFieldName'          => 'file',
-    'audioUrlPrefix'          => '',
-    'audioMaxSize'            => 1024 * 1024 * 100,
-    'audioAllowFiles'         => ['.mp3'],
-
-    // 上传文件配置
-    'fileActionName'          => 'file',
-    'fileFieldName'           => 'file',
-    'fileUrlPrefix'           => '',
-    'fileMaxSize'             => 1024 * 1024 * 100,
-    'fileAllowFiles'          => ['.zip', '.pdf', '.doc'],
-
-    // 列出图片
-    'imageManagerActionName'  => 'listImage',
-    'imageManagerListSize'    => 20,
-    'imageManagerUrlPrefix'   => '',
-    'imageManagerInsertAlign' => 'none',
-    'imageManagerAllowFiles'  => ['.jpg', '.png', '.jpeg'],
-
-    // 列出指定目录下的文件
-    'fileManagerActionName'   => 'listFile',
-    'fileManagerUrlPrefix'    => '',
-    'fileManagerListSize'     => 20,
-    'fileManagerAllowFiles'   => ['.zip', '.pdf', '.doc'],
+    // 上传文件
+    'fileActionName'      => 'file',
+    'fileFieldName'       => 'file',
+    'fileUrlPrefix'       => '',
+    'fileMaxSize'         => 1024 * 1024 * 100,
+    'fileAllowFiles'      => ['.zip', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
 ];

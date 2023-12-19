@@ -1,9 +1,8 @@
-layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
+layui.define(['easyHelper', 'xmSelect'], function (exports) {
 
-    var form = layui.form;
-    var dropdown = layui.dropdown;
-    var xmSelect = layui.xmSelect;
-    var easyHelper = layui.easyHelper;
+    const dropdown = layui.dropdown;
+    const xmSelect = layui.xmSelect;
+    const easyHelper = layui.easyHelper;
 
     const easyBuilder = {};
 
@@ -25,7 +24,8 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
      */
     easyBuilder.treeStruct = (options, setting, data) => {
 
-        var defaultOptions = {
+        const defaultOptions = {
+            elem: '',
             checked: ''
         }
 
@@ -75,6 +75,7 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
     easyBuilder.treeSelect = (options, setting, data) => {
 
         const defaultOptions = {
+            elem: '',
             checked: ''
         }
 
@@ -146,13 +147,51 @@ layui.define(['easyHelper', 'jquery', 'form', 'xmSelect'], function (exports) {
             className: 'easy-menu'
         };
 
-        const configs = Object.assign(defaults, options);
+        options = Object.assign(defaults, options);
 
-        configs.data.forEach(item => {
+        options.data.forEach(item => {
             item.templet = `<i class="fa fa-fw ${item.icon}"></i><span>{{d.title}}</span>`;
         });
 
-        dropdown.render(configs);
+        dropdown.render(options);
+    }
+
+    /**
+     * 富文本编辑器
+     * @param options
+     * @param setting
+     * @constructor
+     */
+    easyBuilder.UEditor = (options, setting) => {
+
+        const defaultOptions = {
+            elem: ''
+        };
+
+        const defaultSetting = {
+            serverUrl: apiUrl.ueditor,
+            initialFrameWidth: '100%',
+            initialFrameHeight: '500',
+            imageConfig: {
+                disableOnline: true
+            },
+            toolbars: [[
+                "fullscreen", "source", "|", "undo", "redo", "bold", "italic", "underline", "fontborder",
+                "strikethrough", "superscript", "subscript", "removeformat", "formatmatch",
+                "autotypeset", "blockquote", "pasteplain", "|", "forecolor", "backcolor",
+                "insertorderedlist", "insertunorderedlist", "|", "rowspacingtop", "rowspacingbottom",
+                "lineheight", "|", "paragraph", "fontfamily", "fontsize", "indent", "justifyleft",
+                "justifycenter", "justifyright", "justifyjustify", "|", "link", "anchor", "|",
+                "simpleupload", "insertimage", "insertvideo", "insertaudio", "attachment", "insertframe",
+                "inserttable", "insertcode", "background", "|", "horizontal", "date", "time", "spechars",
+                "print", "searchreplace",
+            ]]
+        };
+
+        options = Object.assign(defaultOptions, options);
+        setting = Object.assign(defaultSetting, setting);
+
+        UE.getEditor(options.elem, setting);
     }
 
     exports("easyBuilder", easyBuilder);

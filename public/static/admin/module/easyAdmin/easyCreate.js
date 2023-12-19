@@ -1,8 +1,9 @@
-layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], function (exports) {
+layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], function (exports) {
 
     var laydate = layui.laydate;
     var easyAdmin = layui.easyAdmin;
     var uploadImage = layui.uploadImage;
+    var easyBuilder = layui.easyBuilder;
 
     /**
      * 面板分割
@@ -32,11 +33,9 @@ layui.define(['easyAdmin', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], fu
     /**
      * 富文本编辑器
      */
-    $(".ueditor").each(function () {
-        UE.getEditor(this, {
-            serverUrl: apiUrl.ueditor,
-            initialFrameWidth: '100%',
-            initialFrameHeight: '500'
+    $(".easy-ueditor").each(function () {
+        easyBuilder.UEditor({
+            elem: this
         });
     });
 

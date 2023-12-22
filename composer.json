@@ -31,7 +31,8 @@
         "topthink/think-testing": "2.0.*",
         "ifsnop/mysqldump-php": "^2.12",
         "overtrue/wechat": "~5.0",
-        "nesbot/carbon": "^2.68"
+        "nesbot/carbon": "^2.68",
+        "topthink/think-queue": "^2.0"
     },
     "autoload": {
         "psr-4": {

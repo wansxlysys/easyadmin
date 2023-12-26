@@ -4,7 +4,6 @@
 namespace app\admin\service;
 
 
-use app\common\util\StringUtil;
 use app\common\repository\Query;
 use app\common\helper\ManagerHelper;
 use app\common\enum\ManagerRoleEnum;

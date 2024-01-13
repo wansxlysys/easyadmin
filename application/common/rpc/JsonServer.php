@@ -99,10 +99,12 @@ class JsonServer
                 throw new RuntimeException('target server not exists');
             }
 
+            $target = new $this->server[$this->target];
+
             if (empty($this->params)) {
-                $data = call_user_func([new $this->server[$this->target], $this->method]);
+                $data = call_user_func([$target, $this->method]);
             } else {
-                $data = call_user_func_array([new $this->server[$this->target], $this->method], $this->params);
+                $data = call_user_func_array([$target, $this->method], $this->params);
             }
 
             return $this->response(static::SUCCESS, $data);

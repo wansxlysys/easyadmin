@@ -145,7 +145,7 @@ class JsonClient
         /**
          * 发起请求
          */
-        $response = $client->get($this->uri, [
+        $response = $client->post($this->uri, [
             'query'   => $query,
             'headers' => $this->header,
             'json'    => $this->params

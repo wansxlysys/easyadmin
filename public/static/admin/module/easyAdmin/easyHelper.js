@@ -55,14 +55,14 @@ layui.define(function (exports) {
 
     /**
      * 获取数组对象的某一列
-     * @param data
+     * @param array
      * @param field
      * @returns {[]}
      */
-    easyHelper.objectColumn = (data, field) => {
-        return $.map(data, function (item) {
-            return item[field];
-        });
+    easyHelper.objectColumn = (array, field) => {
+        return array.map(item => {
+            return item[field]
+        })
     }
 
     /**

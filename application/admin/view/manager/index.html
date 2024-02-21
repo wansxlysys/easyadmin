@@ -86,13 +86,11 @@
 
         easyService.roleSingleSelect({
             elem: '#role',
-            setting: {
-                name: 'role_id',
-                layVerify: 'required',
-                ready: function (singleSelect) {
-                    roleSelect = singleSelect;
-                }
+            ready: function (singleSelect) {
+                roleSelect = singleSelect;
             }
+        }, {
+            name: 'role_id'
         });
 
         table.render({

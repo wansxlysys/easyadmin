@@ -30,7 +30,7 @@ class ManagerValidate extends \app\common\validate\ManagerValidate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'role_id', 'avatar', 'real_name', 'status']);
+        return $this->only(['id', 'role_id', 'avatar', 'real_name', 'account', 'status']);
     }
 
     /**

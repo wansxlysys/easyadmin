@@ -8,19 +8,21 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
     /**
      * 菜单树形选择器
      * @param options
+     * @param setting
      */
-    easyService.menuTreeSelect = (options) => {
+    easyService.menuTreeSelect = (options, setting) => {
         easyAdmin.ajaxGet({
             loading: false,
             url: apiUrl.getAllMenu,
             success(result) {
 
-                let defaults = {
-                    appendFirst: true,
-                    appendFirstData: {id: 0, name: '顶级菜单', parent_id: 0}
+                let defaultOptions = {
+                    append: {id: 0, name: '顶级菜单', parent_id: 0}
                 };
 
-                easyBuilder.treeSelect(options.elem, result.data, options.selected, Object.assign(defaults, options.setting));
+                let defaultSetting = {};
+
+                easyBuilder.treeSelect(Object.assign(defaultOptions, options), Object.assign(defaultSetting, setting), result.data);
             }
         });
     }

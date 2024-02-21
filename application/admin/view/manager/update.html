@@ -29,7 +29,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">账号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="account" lay-verify="required" placeholder="请输入账号" class="layui-input layui-disabled" disabled value="{$manager.account}">
+                        <input type="text" name="account" lay-verify="required" placeholder="请输入账号" class="layui-input" value="{$manager.account}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -77,11 +77,10 @@
 
         easyService.roleSingleSelect({
             elem: '#role',
-            selected: '{$manager.role_id}',
-            setting: {
-                name: 'role_id',
-                layVerify: 'required'
-            }
+            checked: '{$manager.role_id}',
+        }, {
+            name: 'role_id',
+            layVerify: 'required'
         });
 
         form.on('submit', function (obj) {

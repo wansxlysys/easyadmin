@@ -19,11 +19,10 @@
         renderMenuSelect: function () {
             layui.easyService.menuTreeSelect({
                 elem: "#menu",
-                selected: menuData.parentId,
-                setting: {
-                    name: 'parent_id',
-                    layVerify: 'required'
-                }
+                checked: menuData.parentId
+            }, {
+                name: 'parent_id',
+                layVerify: 'required'
             });
         },
         /**

@@ -76,11 +76,10 @@
         });
 
         easyService.roleSingleSelect({
-            elem: '#role',
-            setting: {
-                name: 'role_id',
-                layVerify: 'required'
-            }
+            elem: '#role'
+        }, {
+            name: 'role_id',
+            layVerify: 'required'
         });
 
         form.on('submit', function (obj) {

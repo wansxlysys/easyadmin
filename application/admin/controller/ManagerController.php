@@ -112,6 +112,7 @@ class ManagerController extends AdminController
                 'role_id'   => $request->post('role_id'),
                 'avatar'    => $request->post('avatar'),
                 'real_name' => $request->post('real_name'),
+                'account'   => $request->post('account'),
                 'password'  => $request->post('password'),
                 'status'    => $request->post('status'),
             ];

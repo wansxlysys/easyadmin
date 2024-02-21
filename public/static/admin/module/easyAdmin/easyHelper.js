@@ -4,22 +4,22 @@ layui.define(function (exports) {
 
     /**
      * 数组转树形结构
-     * @param data
-     * @param callFunction
+     * @param arrayList
+     * @param func
      * @returns {[]}
      */
-    easyHelper.arrayToTree = (data, callFunction) => {
+    easyHelper.arrayToTree = (arrayList, func) => {
 
-        var map = {};
-        var result = [];
+        const map = {};
+        const result = [];
 
-        $.each(data, function (key, item) {
+        arrayList.forEach(item => {
             map[item.id] = item;
         });
 
-        $.each(data, function (key, item) {
+        arrayList.forEach(item => {
 
-            var parent = map[item.parent_id];
+            const parent = map[item.parent_id];
 
             if (parent) {
                 (parent.children || (parent.children = [])).push(item);
@@ -27,27 +27,7 @@ layui.define(function (exports) {
                 result.push(item);
             }
 
-            typeof callFunction === "function" && callFunction(item);
-        });
-
-        return result;
-    }
-
-    /**
-     * 获取所有父级元素
-     * @param data
-     * @param parentId
-     * @returns {[]}
-     */
-    easyHelper.getParents = (data, parentId) => {
-
-        var result = [];
-
-        $.each(data, function (key, item) {
-            if (item.id == parentId) {
-                result.push(item);
-                easyHelper.getParents(data, item.parent_id);
-            }
+            typeof func === "function" && func(item);
         });
 
         return result;
@@ -61,26 +41,47 @@ layui.define(function (exports) {
      */
     easyHelper.objectColumn = (array, field) => {
         return array.map(item => {
-            return item[field]
-        })
+            return item[field];
+        });
     }
 
     /**
-     * 节流函数
-     * @param fn
+     * 节流
+     * @param func
      * @param wait
-     * @returns {Function}
+     * @returns {function(...[*]=)}
      */
-    easyHelper.throttle = (fn, wait) => {
-        var timer = null;
+    easyHelper.throttle = (func, wait) => {
+        let timeout;
         return function () {
-            var context = this, args = arguments;
-            if (!timer) {
-                timer = setTimeout(function () {
-                    fn.apply(context, args);
-                    timer = null;
-                }, wait)
+            let context = this;
+            let args = arguments;
+            if (!timeout) {
+                timeout = setTimeout(() => {
+                    timeout = null;
+                    func.apply(context, args);
+                }, wait);
             }
+        }
+    }
+
+    /**
+     * 防抖
+     * @param func
+     * @param wait
+     * @returns {function(...[*]=)}
+     */
+    easyHelper.debounce = (func, wait) => {
+        let timeout;
+        return function () {
+            let context = this;
+            let args = arguments;
+
+            if (timeout) clearTimeout(timeout);
+
+            timeout = setTimeout(() => {
+                func.apply(context, args)
+            }, wait);
         }
     }
 

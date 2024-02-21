@@ -7,16 +7,6 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
     const easyBuilder = {};
 
     /**
-     * 获取所有父级元素ID
-     * @param data
-     * @param id
-     * @returns {*[]}
-     */
-    function getParentsId(data, id) {
-        return easyHelper.objectColumn(easyHelper.getParents(data, id), "id");
-    }
-
-    /**
      * 创建树结构选择器
      * @param options
      * @param setting
@@ -113,19 +103,19 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
         options = Object.assign(defaultOptions, options);
         setting = Object.assign(defaultSetting, setting);
 
-        if (options.append) {
-            setting.data = setting.data.concat(options.append);
-        }
-
         if (options.single) {
             setting.data.forEach(item => {
                 item.selected = item.id == options.checked;
             });
         } else {
-            setting.tree.expandedKeys = getParentsId(setting.data, options.checked);
-            setting.data = easyHelper.arrayToTree(setting.data, (item) => {
+            setting.tree.expandedKeys = [options.checked];
+            setting.data = easyHelper.arrayToTree(setting.data, item => {
                 item.selected = item.id == options.checked;
             });
+        }
+
+        if (options.append) {
+            setting.data.unshift(options.append);
         }
 
         const treeSelect = xmSelect.render(setting);

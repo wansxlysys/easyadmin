@@ -92,15 +92,15 @@
             },
             cols: [[
                 {type: 'checkbox'},
-                {field: 'id', title: 'ID', width: 80},
-                {field: 'name', minWidth: 240, title: '菜单名称'},
-                {field: 'module', title: "模块"},
-                {field: 'controller', title: "控制器"},
-                {field: 'action', title: "操作"},
-                {field: 'target', title: "打开方式", toolbar: '#target', width: 140},
-                {field: 'type', title: "菜单类型", toolbar: '#type', width: 120},
-                {field: 'sort', title: '排序', width: 120, edit: "text"},
-                {fixed: 'right', title: '操作', toolbar: '#bar', width: 180}
+                {title: 'ID', field: 'id', width: 80},
+                {title: '菜单名称', field: 'name', minWidth: 240},
+                {title: "模块", field: 'module'},
+                {title: "控制器", field: 'controller'},
+                {title: "操作", field: 'action'},
+                {title: "打开方式", field: 'target', toolbar: '#target', width: 140},
+                {title: "菜单类型", field: 'type', toolbar: '#type', width: 120},
+                {title: '排序', field: 'sort', width: 120, edit: "text"},
+                {title: '操作', fixed: 'right', toolbar: '#bar', width: 180}
             ]],
             page: false
         });

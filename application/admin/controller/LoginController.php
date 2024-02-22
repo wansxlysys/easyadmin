@@ -57,10 +57,10 @@ class LoginController extends CommonController
             $this->success('登录成功', 'admin/Index/index');
         }
 
-        $SettingSystem = new SystemSettingService();
+        $systemSetting = new SystemSettingService();
 
         return $this->fetch('', [
-            'settingSystem' => $SettingSystem->getSetting()
+            'settingSystem' => $systemSetting->getSetting()
         ]);
     }
 

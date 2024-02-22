@@ -40,13 +40,13 @@ class AdminController extends CommonController
             /**
              * 初始化视图变量
              */
-            $SettingSystemService = new SystemSettingService();
+            $SystemSettingService = new SystemSettingService();
 
-            $settingSystem  = $SettingSystemService->getSetting();
+            $systemSetting  = $SystemSettingService->getSetting();
             $breadcrumbMenu = $MenuService->getBreadcrumbMenu($currentMenu['id']);
 
             $this->assign('currentMenu', $currentMenu);
-            $this->assign('settingSystem', $settingSystem);
+            $this->assign('systemSetting', $systemSetting);
             $this->assign('breadcrumbMenu', $breadcrumbMenu);
         }
     }

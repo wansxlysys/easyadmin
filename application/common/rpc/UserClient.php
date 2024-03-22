@@ -1,19 +1,18 @@
 <?php
 
 
-namespace app\index\rpc;
+namespace app\common\rpc;
 
 
 use Throwable;
-use app\common\rpc\JsonRpc;
 
-class UserRpc extends JsonRpc
+class UserClient extends Client
 {
     /**
-     * 命名空间
+     * 请求服务
      * @var string
      */
-    protected $target = 'test';
+    protected $target = 'userServer';
 
     /**
      * 通过用户ID查询
@@ -28,15 +27,5 @@ class UserRpc extends JsonRpc
         ];
 
         return $this->sendRequest('getUserById', $params);
-    }
-
-    /**
-     * 通过用户ID查询
-     * @return mixed
-     * @throws Throwable
-     */
-    public function getUserInfo()
-    {
-        return $this->sendRequest('getUserInfo');
     }
 }

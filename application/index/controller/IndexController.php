@@ -35,10 +35,15 @@ class IndexController
             $RpcServer = new RpcServer();
 
             /**
+             * 服务配置
+             */
+            $RpcServer->addServer('DemoServer', DemoServer::class);
+            // 更多服务....
+
+            /**
              * 本地配置
              */
             $RpcServer->setRpcKey(Config::get('rpc.key'));
-            $RpcServer->addServer('DemoServer', DemoServer::class);
 
             /**
              * 请求传入
@@ -64,6 +69,10 @@ class IndexController
     {
         $DemoClient = new DemoClient();
 
-        dump($DemoClient->getInfo(1, ['key' => 185]));
+        $data['key'] = 10;
+        $data['sex'] = 11;
+        $data['age'] = 18;
+
+        dump($DemoClient->getInfo(1, $data));
     }
 }

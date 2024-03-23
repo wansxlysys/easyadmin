@@ -7,15 +7,15 @@ return [
     // 连接参数
     'params'  => [
         // 服务器地址
-        'host'     => Env::get('redis.host'),
+        'host'     => Env::get('REDIS_HOSTNAME'),
         // 数据库名
-        'database' => Env::get('redis.database'),
+        'database' => Env::get('REDIS_DATABASE'),
         // 密码
-        'password' => Env::get('redis.password'),
+        'password' => Env::get('REDIS_PASSWORD'),
     ],
     // 连接选项
     'options' => [
         // KEY前缀
-        'prefix' => Env::get('redis.prefix'),
+        'prefix' => Env::get('REDIS_PREFIX'),
     ]
 ];

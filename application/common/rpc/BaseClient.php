@@ -6,10 +6,9 @@ namespace app\common\rpc;
 
 use Throwable;
 use rpc\RpcClient;
-use RuntimeException;
 use think\facade\Config;
 
-abstract class Client
+abstract class BaseClient
 {
     /**
      * 请求服务
@@ -26,13 +25,11 @@ abstract class Client
      */
     public function sendRequest($method, array $params = [])
     {
-        $url    = Config::get('rpc.url');
-        $reqKey = Config::get('rpc.key');
-
         $RpcClient = new RpcClient();
 
-        $RpcClient->setUrl($url);
-        $RpcClient->setReqkey($reqKey);
+        $RpcClient->setReqUrl(Config::get('rpc.url'));
+        $RpcClient->setReqkey(Config::get('rpc.key'));
+
         $RpcClient->setMethod($method);
         $RpcClient->setParams($params);
         $RpcClient->setTarget($this->target);

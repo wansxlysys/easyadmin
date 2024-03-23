@@ -9,8 +9,8 @@ use rpc\RpcServer;
 use think\Request;
 use think\facade\Config;
 use think\response\Json;
-use app\index\rpc\UserServer;
-use app\common\rpc\UserClient;
+use app\common\rpc\DemoClient;
+use app\common\rpc\DemoServer;
 
 class IndexController
 {
@@ -38,7 +38,7 @@ class IndexController
              * 本地配置
              */
             $RpcServer->setRpcKey(Config::get('rpc.key'));
-            $RpcServer->addServer('userServer', UserServer::class);
+            $RpcServer->addServer('DemoServer', DemoServer::class);
 
             /**
              * 请求传入
@@ -48,7 +48,7 @@ class IndexController
             $RpcServer->setTarget($request->get('target'));
             $RpcServer->setMethod($request->get('method'));
 
-            return json($RpcServer->dispatch(), 500);
+            return json($RpcServer->dispatch(), 200);
 
         } catch (Throwable $throwable) {
             return json($throwable->getMessage(), 500);
@@ -62,8 +62,8 @@ class IndexController
      */
     public function client_action(Request $request)
     {
-        $UserClient = new UserClient();
+        $DemoClient = new DemoClient();
 
-        dump($UserClient->getUserById(1));
+        dump($DemoClient->getInfo(1, ['key' => 185]));
     }
 }

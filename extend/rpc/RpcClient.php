@@ -14,7 +14,7 @@ class RpcClient
      * 服务地址
      * @var string
      */
-    protected $url = '';
+    protected $reqUrl = '';
 
     /**
      * 密钥
@@ -45,9 +45,9 @@ class RpcClient
      * @param $url
      * @return RpcClient
      */
-    public function setUrl($url)
+    public function setReqUrl($url)
     {
-        $this->url = $url;
+        $this->reqUrl = $url;
         return $this;
     }
 
@@ -108,7 +108,7 @@ class RpcClient
         /**
          * 发起请求
          */
-        $response = (new Client())->post($this->url, [
+        $response = (new Client())->post($this->reqUrl, [
             'query' => $query,
             'json'  => $this->params
         ]);

@@ -3,7 +3,7 @@
     /**
      * 资源目录路径
      */
-    var basePath = window.location.origin + '/static/admin/module/';
+    const basePath = window.location.origin + '/static/admin/module/';
 
     /**
      * 初始化全局配置
@@ -37,8 +37,8 @@
      */
     layui.table.set({
         page: true,
-		scrollPos: 'reset',
-        parseData: function (result) {
+        scrollPos: 'reset',
+        parseData(result) {
             return {
                 msg: result.msg,
                 code: result.code,
@@ -59,7 +59,7 @@
 
     layui.treeTable.set({
         page: true,
-        parseData: function (result) {
+        parseData(result) {
             return {
                 msg: result.msg,
                 code: result.code,

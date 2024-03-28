@@ -7,6 +7,7 @@ namespace rpc;
 use Throwable;
 use RuntimeException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class RpcClient
 {
@@ -14,7 +15,7 @@ class RpcClient
      * 服务地址
      * @var string
      */
-    protected $reqUrl = '';
+    protected $requrl = '';
 
     /**
      * 密钥
@@ -45,9 +46,9 @@ class RpcClient
      * @param $url
      * @return RpcClient
      */
-    public function setReqUrl($url)
+    public function setRequrl($url)
     {
-        $this->reqUrl = $url;
+        $this->requrl = $url;
         return $this;
     }
 
@@ -105,24 +106,22 @@ class RpcClient
         $query['method'] = $this->method;
         $query['reqkey'] = $this->reqkey;
 
-        /**
-         * 发起请求
-         */
-        $response = (new Client())->post($this->reqUrl, [
-            'query' => $query,
-            'json'  => $this->params
-        ]);
+        try {
+            /**
+             * 发起请求
+             */
+            $response = (new Client())->post($this->requrl, [
+                'query' => $query,
+                'json'  => $this->params
+            ]);
 
-        /**
-         * 检测状态码
-         */
-        if ($response->getStatusCode() != 200) {
-            throw new RuntimeException($response->getBody());
+            /**
+             * 返回响应结果
+             */
+            return json_decode($response->getBody(), true);
+
+        } catch (RequestException $requestException) {
+            throw new RuntimeException($requestException->getResponse()->getBody());
         }
-
-        /**
-         * 返回响应结果
-         */
-        return json_decode($response->getBody(), true);
     }
 }

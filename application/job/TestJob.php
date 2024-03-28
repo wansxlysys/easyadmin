@@ -17,7 +17,10 @@ class TestJob
      */
     public function fire(Job $job, $data)
     {
-        // php think queue:listen --sleep 1 --tries 3 --memory 256
+        /*开发环境，性能底，支持代码热更新*/
+        // php think queue:listen
+        /*生产环境，性能高，不支持代码热更新*/
+        // php think queue:work --daemon
     }
 
     /**

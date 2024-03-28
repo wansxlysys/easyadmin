@@ -27,7 +27,7 @@ abstract class BaseClient
     {
         $RpcClient = new RpcClient();
 
-        $RpcClient->setReqUrl(Config::get('rpc.url'));
+        $RpcClient->setRequrl(Config::get('rpc.url'));
         $RpcClient->setReqkey(Config::get('rpc.key'));
 
         $RpcClient->setMethod($method);

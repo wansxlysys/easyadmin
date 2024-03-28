@@ -52,14 +52,14 @@ layui.define(["jquery", "element"], function (exports) {
                     return false;
                 }
 
-                if (result.data.isDone) {
+                if (result.data.is_finish) {
                     this.complete(result);
                 }
 
                 return true;
             },
             complete: function (result) {
-                that.setValue(result.data.filePath);
+                that.setValue(result.data.view_path);
                 that.hideProgress();
             }
         };
@@ -112,8 +112,8 @@ layui.define(["jquery", "element"], function (exports) {
     /**
      * 隐藏上传进度条
      */
-    UploadFile.prototype.setValue = function (filePath) {
-        this.$elem.siblings("input").val(filePath);
+    UploadFile.prototype.setValue = function (viewPath) {
+        this.$elem.siblings("input").val(viewPath);
     };
 
     /**

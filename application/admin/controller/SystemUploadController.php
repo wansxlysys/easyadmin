@@ -8,7 +8,6 @@ use think\Request;
 use app\common\exception\SystemException;
 use app\admin\service\SystemUploadService;
 use app\common\controller\AdminController;
-use app\admin\validate\SystemUploadValidate;
 
 class SystemUploadController extends AdminController
 {
@@ -35,39 +34,11 @@ class SystemUploadController extends AdminController
     }
 
     /**
-     * 文件检测
+     * 文件上传
      * @param Request $request
      * @throws SystemException
      */
-    public function check_action(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $params = [
-                'md5' => $request->post('file_md5'),
-            ];
-
-            $SystemUploadValidate = new SystemUploadValidate();
-
-            if (!$SystemUploadValidate->scene('Check')->check($params)) {
-                $this->error($SystemUploadValidate->getError());
-            }
-
-            $file = $this->SystemUploadService->getFileByMd5($params['md5']);
-
-            if (!$file) {
-                $this->error('文件不存在');
-            }
-
-            $this->success('文件已存在', '', ['filePath' => $file['path']]);
-        }
-    }
-
-    /**
-     * 文件上传
-     * @param Request $request
-     */
-    public function file_action(Request $request)
+    public function slice_action(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -81,13 +52,55 @@ class SystemUploadController extends AdminController
                 'suffix' => $request->post('file_suffix'),
             ];
 
-            $result = $this->SystemUploadService->uploadFile($params);
+            $result = $this->SystemUploadService->uploadSlice($params);
 
             if (!$result) {
                 $this->error($this->SystemUploadService->getMessage());
             }
 
             $this->success('上传成功', '', $result);
+        }
+    }
+
+    /**
+     * 文件检测
+     * @param Request $request
+     * @throws SystemException
+     */
+    public function check_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'md5' => $request->post('file_md5')
+            ];
+
+            $file = $this->SystemUploadService->getFileByMd5($params['md5']);
+
+            if (!$file) {
+                $this->error('文件不存在');
+            }
+
+            $this->success('文件已存在', '', ['view_path' => $file['path']]);
+        }
+    }
+
+    /**
+     * 文件上传
+     * @param Request $request
+     * @throws SystemException
+     */
+    public function file_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $file = $this->SystemUploadService->uploadFile($request->file('file'));
+
+            if (!$file) {
+                $this->error($this->SystemUploadService->getMessage());
+            }
+
+            $this->success('上传成功', '', ['view_path' => $file['view_path']]);
         }
     }
 
@@ -100,15 +113,13 @@ class SystemUploadController extends AdminController
     {
         if ($request->isAjax()) {
 
-            $file = $this->SystemUploadService->uploadImage($request->file('file'));
+            $image = $this->SystemUploadService->uploadImage($request->file('image'));
 
-            if (!$file) {
+            if (!$image) {
                 $this->error($this->SystemUploadService->getMessage());
             }
 
-            $this->success('上传成功', '', [
-                'filePath' => $file['filePath']
-            ]);
+            $this->success('上传成功', '', ['view_path' => $image['view_path']]);
         }
     }
 }

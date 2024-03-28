@@ -121,8 +121,8 @@ layui.define(["jquery", "upload"], function (exports) {
             },
             done: function (result) {
                 if (result.code === 1) {
-                    that.append(result.data.filePath);
-                    typeof that.options.done === "function" && that.options.done(result.data.filePath);
+                    that.append(result.data.view_path);
+                    typeof that.options.done === "function" && that.options.done(result.data.view_path);
                 } else {
                     top.layer.alert(result.msg, {
                         icon: 2
@@ -146,9 +146,9 @@ layui.define(["jquery", "upload"], function (exports) {
 
         html += '<div class="easy-upload-image-item">';
         html += '    <div class="easy-upload-image-item-icon">';
-        html += '        <span class="easy-upload-image-item-icon-left fa fw fa-arrow-circle-o-left"></span>';
-        html += '        <span class="easy-upload-image-item-icon-right fa fw fa-arrow-circle-o-right"></span>';
-        html += '        <span class="easy-upload-image-item-icon-trash fa fw fa fa-fw fa-trash"></span>';
+        html += '        <span class="easy-upload-image-item-icon-left fa fa-fw fa-circle-arrow-left"></span>';
+        html += '        <span class="easy-upload-image-item-icon-right fa fa-fw fa-circle-arrow-right"></span>';
+        html += '        <span class="easy-upload-image-item-icon-trash fa fa-fw fa-trash"></span>';
         html += '    </div>';
         html += '    <img src="' + url + '" alt="">';
         html += '</div>';

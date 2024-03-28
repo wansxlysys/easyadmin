@@ -17,7 +17,7 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
             success(result) {
 
                 let defaultOptions = {
-                    append: {id: 0, name: '顶级菜单', parent_id: 0}
+                    append: {id: 0, name: '顶级菜单'}
                 };
 
                 let defaultSetting = {};

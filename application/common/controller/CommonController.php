@@ -4,7 +4,9 @@
 namespace app\common\controller;
 
 
-class CommonController extends \think\Controller
+use think\Controller;
+
+class CommonController extends Controller
 {
 
 }

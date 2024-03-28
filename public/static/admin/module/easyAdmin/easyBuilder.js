@@ -103,6 +103,10 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
         options = Object.assign(defaultOptions, options);
         setting = Object.assign(defaultSetting, setting);
 
+        if (options.append) {
+            setting.data.unshift(options.append);
+        }
+
         if (options.single) {
             setting.data.forEach(item => {
                 item.selected = item.id == options.checked;
@@ -112,10 +116,6 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
             setting.data = easyHelper.arrayToTree(setting.data, item => {
                 item.selected = item.id == options.checked;
             });
-        }
-
-        if (options.append) {
-            setting.data.unshift(options.append);
         }
 
         const treeSelect = xmSelect.render(setting);

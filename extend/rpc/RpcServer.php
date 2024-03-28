@@ -12,13 +12,13 @@ class RpcServer
      * 校验密钥
      * @var string
      */
-    protected $rpcKey = '';
+    protected $rpckey = '';
 
     /**
      * 请求密钥
      * @var string
      */
-    protected $reqKey = '';
+    protected $reqkey = '';
 
     /**
      * 请求方法
@@ -102,23 +102,23 @@ class RpcServer
 
     /**
      * 设置请求密钥
-     * @param $rpcKey
+     * @param $rpckey
      * @return $this
      */
-    public function setRpcKey($rpcKey)
+    public function setRpckey($rpckey)
     {
-        $this->rpcKey = $rpcKey;
+        $this->rpckey = $rpckey;
         return $this;
     }
 
     /**
      * 设置请求密钥
-     * @param $reqKey
+     * @param $reqkey
      * @return $this
      */
-    public function setReqKey($reqKey)
+    public function setReqkey($reqkey)
     {
-        $this->reqKey = $reqKey;
+        $this->reqkey = $reqkey;
         return $this;
     }
 
@@ -128,7 +128,7 @@ class RpcServer
      */
     public function dispatch()
     {
-        if ($this->rpcKey != $this->reqKey) {
+        if ($this->rpckey != $this->reqkey) {
             throw new RuntimeException('rpckey error');
         }
 

@@ -43,13 +43,13 @@ class IndexController
             /**
              * 本地配置
              */
-            $RpcServer->setRpcKey(Config::get('rpc.key'));
+            $RpcServer->setRpckey(Config::get('rpc.key'));
 
             /**
              * 请求传入
              */
             $RpcServer->setParams($request->post());
-            $RpcServer->setReqKey($request->get('reqkey'));
+            $RpcServer->setReqkey($request->get('reqkey'));
             $RpcServer->setTarget($request->get('target'));
             $RpcServer->setMethod($request->get('method'));
 

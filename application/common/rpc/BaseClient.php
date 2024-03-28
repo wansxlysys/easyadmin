@@ -23,7 +23,7 @@ abstract class BaseClient
      * @return mixed
      * @throws Throwable
      */
-    public function sendRequest($method, array $params = [])
+    public function dispatch($method, array $params = [])
     {
         $RpcClient = new RpcClient();
 

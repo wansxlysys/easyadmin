@@ -28,6 +28,6 @@ class DemoClient extends BaseClient
             'data' => $data
         ];
 
-        return $this->sendRequest('getInfo', $params);
+        return $this->dispatch('getInfo', $params);
     }
 }

@@ -45,6 +45,70 @@ class SystemUploadService extends \app\common\service\SystemUploadService
     }
 
     /**
+     * 视频上传
+     * @param $video
+     * @param string $fileType
+     * @return array|bool
+     * @throws SystemException
+     */
+    public function uploadVideo(File $video, $fileType = 'video')
+    {
+        $params = [
+            'video' => $video
+        ];
+
+        $rule = [
+            'video' => 'require|fileExt:' . UploadEnum::VIDEO_FILE_EXT . '|fileSize:' . UploadEnum::VIDEO_MAX_SIZE,
+        ];
+
+        $msg = [
+            'video.require'  => '视频不能为空',
+            'video.fileExt'  => '视频格式必须' . UploadEnum::IMAGE_FILE_EXT,
+            'video.fileSize' => '视频不能超过' . FileUtil::formatBytes(UploadEnum::VIDEO_MAX_SIZE),
+        ];
+
+        $Validate = Validate::make($rule, $msg);
+
+        if (!$Validate->check($params)) {
+            return $this->setMessage($Validate->getError());
+        }
+
+        return $this->saveFile($video, $fileType);
+    }
+
+    /**
+     * 音频上传
+     * @param $audio
+     * @param string $fileType
+     * @return array|bool
+     * @throws SystemException
+     */
+    public function uploadAudio(File $audio, $fileType = 'audio')
+    {
+        $params = [
+            'audio' => $audio
+        ];
+
+        $rule = [
+            'audio' => 'require|fileExt:' . UploadEnum::AUDIO_FILE_EXT . '|fileSize:' . UploadEnum::AUDIO_MAX_SIZE,
+        ];
+
+        $msg = [
+            'audio.require'  => '音频不能为空',
+            'audio.fileExt'  => '音频格式必须' . UploadEnum::IMAGE_FILE_EXT,
+            'audio.fileSize' => '音频不能超过' . FileUtil::formatBytes(UploadEnum::AUDIO_MAX_SIZE),
+        ];
+
+        $Validate = Validate::make($rule, $msg);
+
+        if (!$Validate->check($params)) {
+            return $this->setMessage($Validate->getError());
+        }
+
+        return $this->saveFile($audio, $fileType);
+    }
+
+    /**
      * 文件上传
      * @param $file
      * @param string $fileType
@@ -83,7 +147,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @return mixed
      * @throws SystemException
      */
-    public function uploadSlice(array $params, $fileType = 'slice')
+    public function uploadSlice(array $params, $fileType = 'file')
     {
         $rule = [
             'size'   => 'require|elt:' . UploadEnum::SLICE_MAX_SIZE,

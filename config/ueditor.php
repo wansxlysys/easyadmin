@@ -3,8 +3,8 @@
 
 return [
     // 图片上传
-    'imageActionName'     => 'image',
-    'imageFieldName'      => 'file',
+    'imageActionName'     => 'uploadImage',
+    'imageFieldName'      => 'image',
     'imageMaxSize'        => 1024 * 1024 * 10,
     'imageAllowFiles'     => ['.jpg', '.png', '.jpeg'],
     'imageCompressEnable' => true,
@@ -21,21 +21,21 @@ return [
     'catcherAllowFiles'   => ['.jpg', '.png', '.jpeg'],
 
     // 上传视频
-    'videoActionName'     => 'video',
-    'videoFieldName'      => 'file',
+    'videoActionName'     => 'uploadVideo',
+    'videoFieldName'      => 'video',
     'videoUrlPrefix'      => '',
     'videoMaxSize'        => 1024 * 1024 * 100,
     'videoAllowFiles'     => ['.mp4'],
 
     // 上传音频
-    'audioActionName'     => 'audio',
-    'audioFieldName'      => 'file',
+    'audioActionName'     => 'uploadAudio',
+    'audioFieldName'      => 'audio',
     'audioUrlPrefix'      => '',
     'audioMaxSize'        => 1024 * 1024 * 100,
     'audioAllowFiles'     => ['.mp3'],
 
     // 上传文件
-    'fileActionName'      => 'file',
+    'fileActionName'      => 'uploadFile',
     'fileFieldName'       => 'file',
     'fileUrlPrefix'       => '',
     'fileMaxSize'         => 1024 * 1024 * 100,

@@ -17,7 +17,7 @@ class TestJob
      */
     public function fire(Job $job, $data)
     {
-        /*开发环境，性能底，支持代码热更新*/
+        /*开发环境，性能低，支持代码热更新*/
         // php think queue:listen
         /*生产环境，性能高，不支持代码热更新*/
         // php think queue:work --daemon

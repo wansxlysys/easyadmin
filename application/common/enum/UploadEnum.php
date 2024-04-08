@@ -22,6 +22,26 @@ class UploadEnum
     const IMAGE_FILE_EXT = 'jpg,jpeg,png';
 
     /**
+     * 视频大小
+     */
+    const VIDEO_MAX_SIZE = 10485760;
+
+    /**
+     * 视频后缀
+     */
+    const VIDEO_FILE_EXT = 'mp4';
+
+    /**
+     * 音频大小
+     */
+    const AUDIO_MAX_SIZE = 10485760;
+
+    /**
+     * 音频后缀
+     */
+    const AUDIO_FILE_EXT = 'mp3';
+
+    /**
      * 文件大小
      */
     const FILE_MAX_SIZE = 10485760;

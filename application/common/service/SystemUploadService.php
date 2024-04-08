@@ -42,7 +42,11 @@ class SystemUploadService extends Service
         $exists = $this->getFileByMd5($file->hash('md5'));
 
         if ($exists) {
-            return ['view_path' => $exists['path'], 'save_path' => FileHelper::getFilePath($exists['path'])];
+            return [
+                'file_name' => $exists['name'],
+                'view_path' => $exists['path'],
+                'save_path' => FileHelper::getFilePath($exists['path'])
+            ];
         }
 
         /**
@@ -71,7 +75,7 @@ class SystemUploadService extends Service
             return $this->setMessage('文件保存失败');
         }
 
-        return ['view_path' => $viewPath, 'save_path' => $savePath];
+        return ['view_path' => $viewPath, 'save_path' => $savePath, 'file_name' => $fileData['name']];
     }
 
     /**
@@ -126,7 +130,7 @@ class SystemUploadService extends Service
                 throw new ServiceException('文件保存失败');
             }
 
-            return ['is_finish' => true, 'view_path' => $viewPath, 'save_path' => $savePath];
+            return ['is_finish' => true, 'view_path' => $viewPath, 'save_path' => $savePath, 'file_name' => $fileData['name']];
         }
 
         return ['is_finish' => false];

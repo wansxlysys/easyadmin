@@ -162,6 +162,10 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
             serverUrl: apiUrl.ueditor,
             initialFrameWidth: '100%',
             initialFrameHeight: '500',
+            imageConfig: {
+                disableOnline: true
+            },
+            catchRemoteImageEnable: false,
             toolbars: [[
                 "fullscreen", "source", "|", "undo", "redo", "bold", "italic", "underline", "fontborder",
                 "strikethrough", "superscript", "subscript", "removeformat", "formatmatch",

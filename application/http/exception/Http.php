@@ -35,7 +35,7 @@ class Http extends Handle
              * 非http异常返回500页面
              */
             if (false === ($throwable instanceof HttpException)) {
-                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/system/exception.html');
+                Config::set('app.exception_tmpl', Env::get('app_path') . 'common/view/system/exception.php');
             }
         }
 

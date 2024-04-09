@@ -6,7 +6,6 @@ namespace app\common\controller;
 
 use think\response\Json;
 
-
 class ApiController extends CommonController
 {
     /**

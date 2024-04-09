@@ -17,56 +17,56 @@ class ManagerRepository extends Model
 
     /**
      * 获取列表
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return array
      * @throws Exception
      */
-    public function getListWithRole(Query $Query)
+    public function getListWithRole(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('manager')
             ->join('ManagerRole role', 'role.id = manager.roleId')
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->page($Query->getPage())
-            ->limit($Query->getLimit())
-            ->field($Query->getField())
-            ->group($Query->getGroup())
-            ->having($Query->getHaving())
-            ->order($Query->getOrder())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->page($Wrapper->getPage())
+            ->limit($Wrapper->getLimit())
+            ->field($Wrapper->getField())
+            ->group($Wrapper->getGroup())
+            ->having($Wrapper->getHaving())
+            ->order($Wrapper->getOrder())
             ->select();
     }
 
     /**
      * 获取总数
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      */
-    public function getTotalWithRole(Query $Query)
+    public function getTotalWithRole(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('manager')
             ->join('ManagerRole role', 'role.id = manager.roleId')
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
             ->count();
     }
 
     /**
      * 获取关联角色
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return array
      * @throws Exception
      */
-    public function getWithRole(Query $Query)
+    public function getWithRole(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('manager')
             ->join('ManagerRole role', 'role.id = manager.roleId')
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->field($Query->getField())
-            ->order($Query->getOrder())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->field($Wrapper->getField())
+            ->order($Wrapper->getOrder())
             ->find();
     }
 }

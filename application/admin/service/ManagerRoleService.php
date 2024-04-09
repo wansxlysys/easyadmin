@@ -6,9 +6,9 @@ namespace app\admin\service;
 
 use Throwable;
 
-use app\common\repository\Query;
 use app\common\enum\ManagerRoleEnum;
 use app\common\helper\ManagerHelper;
+use app\common\repository\Wrapper;
 
 class ManagerRoleService extends \app\common\service\ManagerRoleService
 {
@@ -20,18 +20,18 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      */
     public function listRole(array $params = [])
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
         if (!empty($params['name'])) {
-            $Query->addWhere('name', 'LIKE', $params['name'] . '%');
+            $Wrapper->addWhere('name', 'LIKE', $params['name'] . '%');
         }
 
-        $Query->setPage($params['page']);
-        $Query->setLimit($params['limit']);
-        $Query->addOrder('sort', 'asc');
+        $Wrapper->setPage($params['page']);
+        $Wrapper->setLimit($params['limit']);
+        $Wrapper->addOrder('sort', 'asc');
 
-        $list  = $this->ManagerRoleRepository->getList($Query);
-        $total = $this->ManagerRoleRepository->getTotal($Query);
+        $list  = $this->ManagerRoleRepository->getList($Wrapper);
+        $total = $this->ManagerRoleRepository->getTotal($Wrapper);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -44,15 +44,15 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      */
     public function getAll(array $params = [])
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
         if (ManagerHelper::isNotSuper()) {
-            $Query->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
+            $Wrapper->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
         }
 
-        $Query->addOrder('sort', 'asc');
+        $Wrapper->addOrder('sort', 'asc');
 
-        return $this->ManagerRoleRepository->getAll($Query);
+        return $this->ManagerRoleRepository->getAll($Wrapper);
     }
 
     /**

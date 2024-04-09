@@ -10,7 +10,7 @@ use think\facade\Cache;
 
 use app\common\util\StringUtil;
 use app\common\enum\ManagerEnum;
-use app\common\repository\Query;
+use app\common\repository\Wrapper;
 use app\common\util\EncryptionUtil;
 use app\common\helper\ManagerHelper;
 
@@ -27,22 +27,22 @@ class ManagerService extends \app\common\service\ManagerService
      */
     public function listManager(array $params = [])
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
         if (!empty($params['status'])) {
-            $Query->addWhere('manager.status', '=', $params['status']);
+            $Wrapper->addWhere('manager.status', '=', $params['status']);
         }
 
         if (!empty($params['roleId'])) {
-            $Query->addWhere('manager.roleId', '=', $params['roleId']);
+            $Wrapper->addWhere('manager.roleId', '=', $params['roleId']);
         }
 
         if (!empty($params['realName'])) {
-            $Query->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
+            $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
         if (ManagerHelper::isNotSuper()) {
-            $Query->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
         $field = [
@@ -50,13 +50,13 @@ class ManagerService extends \app\common\service\ManagerService
             'manager.loginTime', 'role.name role_name'
         ];
 
-        $Query->setField($field);
-        $Query->setPage($params['page']);
-        $Query->setLimit($params['limit']);
-        $Query->addOrder('manager.id', 'asc');
+        $Wrapper->setField($field);
+        $Wrapper->setPage($params['page']);
+        $Wrapper->setLimit($params['limit']);
+        $Wrapper->addOrder('manager.id', 'asc');
 
-        $list  = $this->ManagerRepository->getListWithRole($Query);
-        $total = $this->ManagerRepository->getTotalWithRole($Query);
+        $list  = $this->ManagerRepository->getListWithRole($Wrapper);
+        $total = $this->ManagerRepository->getTotalWithRole($Wrapper);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -80,17 +80,17 @@ class ManagerService extends \app\common\service\ManagerService
      */
     public function getManager($id)
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
         $field = [
             'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account', 'manager.account',
             'manager.isSystem', 'manager.status', 'role.identify', 'permission',
         ];
 
-        $Query->setField($field);
-        $Query->addWhere('manager.id', '=', $id);
+        $Wrapper->setField($field);
+        $Wrapper->addWhere('manager.id', '=', $id);
 
-        $manager = $this->ManagerRepository->getWithRole($Query);
+        $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
         if (!$manager) {
             throw new ServiceException('管理员不存在');
@@ -112,11 +112,11 @@ class ManagerService extends \app\common\service\ManagerService
      */
     public function getByRoleId($roleId)
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->addWhere('roleId', '=', $roleId);
+        $Wrapper->addWhere('roleId', '=', $roleId);
 
-        return $this->ManagerRepository->getOne($Query);
+        return $this->ManagerRepository->getOne($Wrapper);
     }
 
     /**
@@ -127,11 +127,11 @@ class ManagerService extends \app\common\service\ManagerService
      */
     public function getByAccount($account)
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->addWhere('account', '=', $account);
+        $Wrapper->addWhere('account', '=', $account);
 
-        return $this->ManagerRepository->getOne($Query);
+        return $this->ManagerRepository->getOne($Wrapper);
     }
 
     /**

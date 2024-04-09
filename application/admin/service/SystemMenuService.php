@@ -9,10 +9,10 @@ use Throwable;
 use think\facade\Request;
 use app\common\enum\MenuEnum;
 use app\common\util\ArrayUtil;
-use app\common\repository\Query;
 use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
 use app\common\helper\StorageHelper;
+use app\common\repository\Wrapper;
 
 class SystemMenuService extends \app\common\service\SystemMenuService
 {
@@ -24,16 +24,16 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     public function listMenu(array $params = [])
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->setOrder(['sort' => 'asc']);
+        $Wrapper->setOrder(['sort' => 'asc']);
 
         if (!empty($params['name'])) {
-            $Query->addWhere('name', 'LIKE', $params['name'] . '%');
+            $Wrapper->addWhere('name', 'LIKE', $params['name'] . '%');
         }
 
-        $list  = $this->SystemMenuRepository->getAll($Query);
-        $total = $this->SystemMenuRepository->getTotal($Query);
+        $list  = $this->SystemMenuRepository->getAll($Wrapper);
+        $total = $this->SystemMenuRepository->getTotal($Wrapper);
 
         foreach ($list as $key => $item) {
             $list[$key]['icon'] = "<i class='fa fa-fw {$item['icon']}'></i>";
@@ -49,15 +49,15 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     public function getLeftMenu()
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->setOrder(['sort' => 'asc']);
-        $Query->addWhere('type', 'in', '1,3');
-        $Query->addWhere('id', 'in', ManagerHelper::getPermission());
+        $Wrapper->setOrder(['sort' => 'asc']);
+        $Wrapper->addWhere('type', 'in', '1,3');
+        $Wrapper->addWhere('id', 'in', ManagerHelper::getPermission());
 
         $TreeArrayUtil = new TreeArrayUtil();
 
-        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Query), 0, function (&$item) {
+        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Wrapper), 0, function (&$item) {
             $item = $this->formatData($item);
         });
     }
@@ -73,13 +73,13 @@ class SystemMenuService extends \app\common\service\SystemMenuService
             return StorageHelper::get(MenuEnum::CONTAINER_MENU);
         }
 
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->addWhere('module', '=', Request::module());
-        $Query->addWhere('controller', '=', Request::controller());
-        $Query->addWhere('action', '=', Request::action());
+        $Wrapper->addWhere('module', '=', Request::module());
+        $Wrapper->addWhere('controller', '=', Request::controller());
+        $Wrapper->addWhere('action', '=', Request::action());
 
-        StorageHelper::set(MenuEnum::CONTAINER_MENU, $this->SystemMenuRepository->getOne($Query));
+        StorageHelper::set(MenuEnum::CONTAINER_MENU, $this->SystemMenuRepository->getOne($Wrapper));
 
         return StorageHelper::get(MenuEnum::CONTAINER_MENU);
     }
@@ -110,11 +110,11 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     public function getAll()
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->setOrder(['sort' => 'asc']);
+        $Wrapper->setOrder(['sort' => 'asc']);
 
-        return $this->SystemMenuRepository->getAll($Query);
+        return $this->SystemMenuRepository->getAll($Wrapper);
     }
 
     /**

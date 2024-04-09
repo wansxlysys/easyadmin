@@ -17,55 +17,55 @@ class SystemLogRepository extends Model
 
     /**
      * 获取关联管理员列表
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      * @throws Exception
      */
-    public function getListWithManager(Query $Query)
+    public function getListWithManager(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
             ->join('Manager manager', 'log.managerId = manager.id')
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->page($Query->getPage())
-            ->limit($Query->getLimit())
-            ->field($Query->getField())
-            ->group($Query->getGroup())
-            ->having($Query->getHaving())
-            ->order($Query->getOrder())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->page($Wrapper->getPage())
+            ->limit($Wrapper->getLimit())
+            ->field($Wrapper->getField())
+            ->group($Wrapper->getGroup())
+            ->having($Wrapper->getHaving())
+            ->order($Wrapper->getOrder())
             ->select();
     }
 
     /**
      * 获取关联管理员总数
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      */
-    public function getTotalWithManager(Query $Query)
+    public function getTotalWithManager(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
             ->join('Manager manager', 'log.managerId = manager.id')
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
             ->count();
     }
 
     /**
      * 获取关联管理员列表
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      * @throws Exception
      */
-    public function getWithManager(Query $Query)
+    public function getWithManager(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
             ->join('Manager manager', 'log.managerId = manager.id')
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->field($Query->getField())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->field($Wrapper->getField())
             ->find();
     }
 

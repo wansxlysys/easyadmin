@@ -4,7 +4,7 @@
 namespace app\common\repository;
 
 
-class Query
+abstract class Query
 {
     /**
      * 并联条件

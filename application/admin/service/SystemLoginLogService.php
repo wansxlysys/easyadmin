@@ -6,9 +6,9 @@ namespace app\admin\service;
 
 use Throwable;
 
-use app\common\repository\Query;
 use app\common\enum\ManagerEnum;
 use app\common\helper\ManagerHelper;
+use app\common\repository\Wrapper;
 
 class SystemLoginLogService extends \app\common\service\SystemLoginLogService
 {
@@ -20,31 +20,31 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      */
     public function listLog(array $params = [])
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
         if (!empty($params['status'])) {
-            $Query->addWhere('log.status', '=', $params['status']);
+            $Wrapper->addWhere('log.status', '=', $params['status']);
         }
 
         if (!empty($params['username'])) {
-            $Query->addWhere('manager.account', 'LIKE', $params['account'] . '%');
+            $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
         }
 
         if (!empty($params['realName'])) {
-            $Query->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
+            $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
         if (ManagerHelper::isNotSuper()) {
-            $Query->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
-        $Query->setPage($params['page']);
-        $Query->setLimit($params['limit']);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
-        $Query->setOrder(['log.createTime' => 'desc']);
+        $Wrapper->setPage($params['page']);
+        $Wrapper->setLimit($params['limit']);
+        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
+        $Wrapper->setOrder(['log.createTime' => 'desc']);
 
-        $list  = $this->SystemLoginLogRepository->getListWithManager($Query);
-        $total = $this->SystemLoginLogRepository->getTotalWithManager($Query);
+        $list  = $this->SystemLoginLogRepository->getListWithManager($Wrapper);
+        $total = $this->SystemLoginLogRepository->getTotalWithManager($Wrapper);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -57,12 +57,12 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      */
     public function detailLog($id)
     {
-        $Query = new Query();
+        $Wrapper = new Wrapper();
 
-        $Query->addWhere('log.id', '=', $id);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
+        $Wrapper->addWhere('log.id', '=', $id);
+        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
 
-        return $this->SystemLoginLogRepository->getWithManager($Query);
+        return $this->SystemLoginLogRepository->getWithManager($Wrapper);
     }
 
     /**

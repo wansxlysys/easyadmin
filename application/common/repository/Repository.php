@@ -24,69 +24,69 @@ abstract class Repository
 
     /**
      * 获取列表
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return array
      * @throws Exception
      */
-    public function getList(Query $Query)
+    public function getList(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->page($Query->getPage())
-            ->limit($Query->getLimit())
-            ->field($Query->getField())
-            ->group($Query->getGroup())
-            ->having($Query->getHaving())
-            ->order($Query->getOrder())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->page($Wrapper->getPage())
+            ->limit($Wrapper->getLimit())
+            ->field($Wrapper->getField())
+            ->group($Wrapper->getGroup())
+            ->having($Wrapper->getHaving())
+            ->order($Wrapper->getOrder())
             ->select();
     }
 
     /**
      * 获取总数
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      */
-    public function getTotal(Query $Query)
+    public function getTotal(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
             ->count();
     }
 
     /**
      * 获取全部
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      * @throws Exception
      */
-    public function getAll(Query $Query)
+    public function getAll(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->field($Query->getField())
-            ->group($Query->getGroup())
-            ->having($Query->getHaving())
-            ->order($Query->getOrder())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->field($Wrapper->getField())
+            ->group($Wrapper->getGroup())
+            ->having($Wrapper->getHaving())
+            ->order($Wrapper->getOrder())
             ->select();
     }
 
     /**
      * 获取单个
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return mixed
      * @throws Exception
      */
-    public function getOne(Query $Query)
+    public function getOne(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
-            ->field($Query->getField())
-            ->group($Query->getGroup())
-            ->order($Query->getOrder())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->field($Wrapper->getField())
+            ->group($Wrapper->getGroup())
+            ->order($Wrapper->getOrder())
             ->find();
     }
 
@@ -124,32 +124,32 @@ abstract class Repository
 
     /**
      * 更新数据
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @param array $data
      * @return integer
      * @throws Exception
      */
-    public function updateRecord(Query $Query, array $data = [])
+    public function updateRecord(Wrapper $Wrapper, array $data = [])
     {
         $data['updateTime'] = DateTimeUtil::dateTime();
 
         return Db::name(static::getName())
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
             ->update($data);
     }
 
     /**
      * 删除数据
-     * @param Query $Query
+     * @param Wrapper $Wrapper
      * @return integer
      * @throws Exception
      */
-    public function deleteRecord(Query $Query)
+    public function deleteRecord(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
-            ->where($Query->getWhere())
-            ->whereOr($Query->getWhereOr())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
             ->delete();
     }
 }

@@ -26,7 +26,7 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
                 },
                 simpleData: {
                     enable: true,
-                    pIdKey: "parent_id",
+                    pIdKey: "parentId",
                     rootPId: 0
                 }
             },

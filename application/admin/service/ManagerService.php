@@ -30,12 +30,12 @@ class ManagerService extends \app\common\service\ManagerService
             $Query->addWhere('manager.status', '=', $params['status']);
         }
 
-        if (!empty($params['role_id'])) {
-            $Query->addWhere('manager.role_id', '=', $params['role_id']);
+        if (!empty($params['roleId'])) {
+            $Query->addWhere('manager.roleId', '=', $params['roleId']);
         }
 
-        if (!empty($params['real_name'])) {
-            $Query->addWhere('manager.real_name', 'LIKE', $params['real_name'] . '%');
+        if (!empty($params['realName'])) {
+            $Query->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
         if (ManagerHelper::isNotSuper()) {
@@ -43,8 +43,8 @@ class ManagerService extends \app\common\service\ManagerService
         }
 
         $field = [
-            'manager.id', 'manager.avatar', 'manager.account', 'manager.real_name', 'manager.status',
-            'manager.login_time', 'role.name role_name'
+            'manager.id', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
+            'manager.loginTime', 'role.name role_name'
         ];
 
         $Query->setField($field);
@@ -80,8 +80,8 @@ class ManagerService extends \app\common\service\ManagerService
         $Query = new Query();
 
         $field = [
-            'manager.id', 'manager.role_id', 'manager.avatar', 'manager.real_name', 'manager.account', 'manager.account',
-            'manager.is_system', 'manager.status', 'role.identify', 'permission',
+            'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account', 'manager.account',
+            'manager.isSystem', 'manager.status', 'role.identify', 'permission',
         ];
 
         $Query->setField($field);
@@ -111,7 +111,7 @@ class ManagerService extends \app\common\service\ManagerService
     {
         $Query = new Query();
 
-        $Query->addWhere('role_id', '=', $roleId);
+        $Query->addWhere('roleId', '=', $roleId);
 
         return $this->ManagerRepository->getOne($Query);
     }
@@ -208,7 +208,7 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 更新最后登录时间
          */
-        if (!$this->ManagerRepository->updateById($manager['id'], ['login_time' => date('Y-m-d H:i:s')])) {
+        if (!$this->ManagerRepository->updateById($manager['id'], ['loginTime' => date('Y-m-d H:i:s')])) {
             return $this->setMessage('执行失败，登录时间更新失败');
         }
 
@@ -278,7 +278,7 @@ class ManagerService extends \app\common\service\ManagerService
              * 登录失败日志
              */
             SystemLoginLogEvent::loginError([
-                'manager_id'  => $manager['id'],
+                'managerId'  => $manager['id'],
                 'description' => $systemException->getMessage()
             ]);
 
@@ -299,7 +299,7 @@ class ManagerService extends \app\common\service\ManagerService
          * 登录成功日志
          */
         SystemLoginLogEvent::loginSuccess([
-            'manager_id'  => $manager['id'],
+            'managerId'  => $manager['id'],
             'description' => '登录成功'
         ]);
 

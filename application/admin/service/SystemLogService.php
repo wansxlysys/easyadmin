@@ -43,7 +43,7 @@ class SystemLogService extends \app\common\service\SystemLogService
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
         $Query->setOrder(['log.id' => 'desc']);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
 
         $list  = $this->SystemLogRepository->getListWithManager($Query);
         $total = $this->SystemLogRepository->getTotalWithManager($Query);
@@ -62,7 +62,7 @@ class SystemLogService extends \app\common\service\SystemLogService
         $Query = new Query();
 
         $Query->addWhere('log.id', '=', $id);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
 
         return $this->SystemLogRepository->getWithManager($Query);
     }
@@ -89,9 +89,9 @@ class SystemLogService extends \app\common\service\SystemLogService
 
         $data = [
             'url'         => Request::url(),
-            'request_ip'  => Request::ip(),
+            'requestIp'  => Request::ip(),
             'menu'        => $currentMenu['name'],
-            'manager_id'  => $manager['id'],
+            'managerId'  => $manager['id'],
             'params'      => $params,
             'description' => $description,
             'status'      => $status

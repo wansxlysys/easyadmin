@@ -29,8 +29,8 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
             $Query->addWhere('manager.account', 'LIKE', $params['account'] . '%');
         }
 
-        if (!empty($params['real_name'])) {
-            $Query->addWhere('manager.real_name', 'LIKE', $params['real_name'] . '%');
+        if (!empty($params['realName'])) {
+            $Query->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
         if (ManagerHelper::isNotSuper()) {
@@ -39,8 +39,8 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
 
         $Query->setPage($params['page']);
         $Query->setLimit($params['limit']);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
-        $Query->setOrder(['log.create_time' => 'desc']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
+        $Query->setOrder(['log.createTime' => 'desc']);
 
         $list  = $this->SystemLoginLogRepository->getListWithManager($Query);
         $total = $this->SystemLoginLogRepository->getTotalWithManager($Query);
@@ -59,7 +59,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
         $Query = new Query();
 
         $Query->addWhere('log.id', '=', $id);
-        $Query->setField(['log.*', 'manager.avatar', 'manager.real_name', 'manager.account']);
+        $Query->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
 
         return $this->SystemLoginLogRepository->getWithManager($Query);
     }

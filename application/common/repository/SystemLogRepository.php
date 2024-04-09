@@ -28,7 +28,7 @@ class SystemLogRepository extends Model
 
             return Db::name(static::getName())
                 ->alias('log')
-                ->join('Manager manager', 'log.manager_id = manager.id')
+                ->join('Manager manager', 'log.managerId = manager.id')
                 ->where($Query->getWhere())
                 ->whereOr($Query->getWhereOr())
                 ->page($Query->getPage())
@@ -56,7 +56,7 @@ class SystemLogRepository extends Model
 
             return Db::name(static::getName())
                 ->alias('log')
-                ->join('Manager manager', 'log.manager_id = manager.id')
+                ->join('Manager manager', 'log.managerId = manager.id')
                 ->where($Query->getWhere())
                 ->whereOr($Query->getWhereOr())
                 ->count();
@@ -78,7 +78,7 @@ class SystemLogRepository extends Model
 
             return Db::name(static::getName())
                 ->alias('log')
-                ->join('Manager manager', 'log.manager_id = manager.id')
+                ->join('Manager manager', 'log.managerId = manager.id')
                 ->where($Query->getWhere())
                 ->whereOr($Query->getWhereOr())
                 ->field($Query->getField())

@@ -28,7 +28,7 @@ class ManagerRepository extends Model
 
             return Db::name(static::getName())
                 ->alias('manager')
-                ->join('ManagerRole role', 'role.id = manager.role_id')
+                ->join('ManagerRole role', 'role.id = manager.roleId')
                 ->where($Query->getWhere())
                 ->whereOr($Query->getWhereOr())
                 ->page($Query->getPage())
@@ -56,7 +56,7 @@ class ManagerRepository extends Model
 
             return Db::name(static::getName())
                 ->alias('manager')
-                ->join('ManagerRole role', 'role.id = manager.role_id')
+                ->join('ManagerRole role', 'role.id = manager.roleId')
                 ->where($Query->getWhere())
                 ->whereOr($Query->getWhereOr())
                 ->count();
@@ -78,7 +78,7 @@ class ManagerRepository extends Model
 
             return Db::name(static::getName())
                 ->alias('manager')
-                ->join('ManagerRole role', 'role.id = manager.role_id')
+                ->join('ManagerRole role', 'role.id = manager.roleId')
                 ->where($Query->getWhere())
                 ->whereOr($Query->getWhereOr())
                 ->field($Query->getField())

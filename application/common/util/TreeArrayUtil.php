@@ -16,7 +16,7 @@ class TreeArrayUtil
      * 上级ID名称
      * @var string
      */
-    public $parentId = 'parent_id';
+    public $parentId = 'parentId';
 
     /**
      * 子元素名称

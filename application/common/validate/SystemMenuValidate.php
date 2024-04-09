@@ -12,7 +12,7 @@ class SystemMenuValidate extends Validate
      */
     protected $rule = [
         'id'         => 'require|number',
-        'parent_id'  => 'number',
+        'parentId'  => 'number',
         'name'       => 'require|max:32',
         'icon'       => 'require|max:32',
         'module'     => 'require|max:32',
@@ -32,7 +32,7 @@ class SystemMenuValidate extends Validate
     protected $message = [
         'id.require'       => 'ID不能为空',
         'id.number'        => 'ID必须为正整数',
-        'parent_id.number' => '上级菜单必须为正整数',
+        'parentId.number' => '上级菜单必须为正整数',
         'name.require'     => '菜单名称不能为空',
         'name.max'         => '菜单名称不能超过32个字符',
         'icon.number'      => '图标不能为空',

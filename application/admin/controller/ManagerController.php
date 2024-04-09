@@ -50,8 +50,8 @@ class ManagerController extends AdminController
                 'page'      => $request->get('page'),
                 'limit'     => $request->get('limit'),
                 'status'    => $request->get('status'),
-                'role_id'   => $request->get('role_id'),
-                'real_name' => $request->get('real_name'),
+                'roleId'   => $request->get('roleId'),
+                'realName' => $request->get('realName'),
             ];
 
             $this->success('获取成功', '', $this->ManagerService->listManager($params));
@@ -71,9 +71,9 @@ class ManagerController extends AdminController
         if ($request->isAjax()) {
 
             $params = [
-                'role_id'   => $request->post('role_id'),
+                'roleId'   => $request->post('roleId'),
                 'avatar'    => $request->post('avatar'),
-                'real_name' => $request->post('real_name'),
+                'realName' => $request->post('realName'),
                 'account'   => $request->post('account'),
                 'password'  => $request->post('password'),
                 'status'    => $request->post('status'),
@@ -109,9 +109,9 @@ class ManagerController extends AdminController
 
             $params = [
                 'id'        => $request->post('id'),
-                'role_id'   => $request->post('role_id'),
+                'roleId'   => $request->post('roleId'),
                 'avatar'    => $request->post('avatar'),
-                'real_name' => $request->post('real_name'),
+                'realName' => $request->post('realName'),
                 'account'   => $request->post('account'),
                 'password'  => $request->post('password'),
                 'status'    => $request->post('status'),

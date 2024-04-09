@@ -65,7 +65,7 @@ class SystemMenuController extends AdminController
         if ($request->isAjax()) {
 
             $params = [
-                'parent_id'  => $request->post('parent_id'),
+                'parentId'  => $request->post('parentId'),
                 'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
                 'module'     => $request->post('module'),
@@ -108,7 +108,7 @@ class SystemMenuController extends AdminController
 
             $params = [
                 'id'         => $request->post('id'),
-                'parent_id'  => $request->post('parent_id'),
+                'parentId'  => $request->post('parentId'),
                 'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
                 'module'     => $request->post('module'),

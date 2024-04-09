@@ -19,7 +19,7 @@ layui.define(function (exports) {
 
         arrayList.forEach(item => {
 
-            const parent = map[item.parent_id];
+            const parent = map[item.parentId];
 
             if (parent) {
                 (parent.children || (parent.children = [])).push(item);

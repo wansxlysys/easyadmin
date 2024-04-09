@@ -22,8 +22,8 @@ class SystemLoginLogEvent
         $SystemLoginLog = new SystemLoginLogService();
 
         $loginLog['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
-        $loginLog['login_ip']    = Request::ip();
-        $loginLog['manager_id']  = $params['manager_id'];
+        $loginLog['loginIp']    = Request::ip();
+        $loginLog['managerId']  = $params['managerId'];
         $loginLog['description'] = $params['description'];
 
         return $SystemLoginLog->createLog($loginLog);
@@ -40,8 +40,8 @@ class SystemLoginLogEvent
         $SystemLoginLog = new SystemLoginLogService();
 
         $loginLog['status']      = SystemLoginLogEnum::STATUS_ERROR;
-        $loginLog['login_ip']    = Request::ip();
-        $loginLog['manager_id']  = $params['manager_id'];
+        $loginLog['loginIp']    = Request::ip();
+        $loginLog['managerId']  = $params['managerId'];
         $loginLog['description'] = $params['description'];
 
         return $SystemLoginLog->createLog($loginLog);

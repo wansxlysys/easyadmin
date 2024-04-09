@@ -95,7 +95,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
         $menu = $this->SystemMenuRepository->getById($menuId);
 
         if ($menu) {
-            $this->getBreadcrumbMenu($menu['parent_id'], $breadcrumb);
+            $this->getBreadcrumbMenu($menu['parentId'], $breadcrumb);
             $breadcrumb[] = $menu;
         }
 

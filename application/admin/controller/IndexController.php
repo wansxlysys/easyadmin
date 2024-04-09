@@ -64,7 +64,7 @@ class IndexController extends AdminController
 
             $params = [
                 'avatar'    => $request->post('avatar'),
-                'real_name' => $request->post('real_name'),
+                'realName' => $request->post('realName'),
                 'password'  => $request->post('password'),
             ];
 

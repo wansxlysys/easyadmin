@@ -4,13 +4,14 @@
 namespace app\admin\service;
 
 
+use Throwable;
+
 use think\facade\Request;
 use app\common\util\ArrayUtil;
 use app\common\repository\Query;
 use app\common\enum\ManagerEnum;
 use app\common\enum\SystemLogEnum;
 use app\common\helper\ManagerHelper;
-use app\common\exception\SystemException;
 
 class SystemLogService extends \app\common\service\SystemLogService
 {
@@ -18,7 +19,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 获取列表
      * @param array $params
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function listLog(array $params = [])
     {
@@ -55,7 +56,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 获取详情
      * @param $id
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function detailLog($id)
     {
@@ -72,7 +73,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * @param $description
      * @param $status
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function writeLog($description, $status)
     {
@@ -103,7 +104,7 @@ class SystemLogService extends \app\common\service\SystemLogService
     /**
      * 清空日志
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function clearLog()
     {

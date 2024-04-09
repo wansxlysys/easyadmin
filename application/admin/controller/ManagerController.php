@@ -4,13 +4,16 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Image;
 use think\Request;
+
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
-use app\common\exception\SystemException;
-use app\common\controller\AdminController;
 use app\admin\service\SystemUploadService;
+
+use app\common\controller\AdminController;
 
 class ManagerController extends AdminController
 {
@@ -28,7 +31,7 @@ class ManagerController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -40,7 +43,7 @@ class ManagerController extends AdminController
      * 首页
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function index_action(Request $request)
     {
@@ -64,7 +67,7 @@ class ManagerController extends AdminController
      * 添加
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function create_action(Request $request)
     {
@@ -101,7 +104,7 @@ class ManagerController extends AdminController
      * 修改
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function update_action(Request $request)
     {
@@ -142,7 +145,7 @@ class ManagerController extends AdminController
     /**
      * 删除
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function delete_action(Request $request)
     {
@@ -171,7 +174,7 @@ class ManagerController extends AdminController
     /**
      * 头像上传
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function avatar_action(Request $request)
     {

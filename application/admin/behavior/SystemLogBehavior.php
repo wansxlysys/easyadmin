@@ -4,10 +4,12 @@
 namespace app\admin\behavior;
 
 
+use Throwable;
+
 use think\Request;
 use think\Response;
+
 use app\admin\service\SystemLogService;
-use app\common\exception\SystemException;
 
 class SystemLogBehavior
 {
@@ -15,7 +17,7 @@ class SystemLogBehavior
      * 应用结束时执行
      * @param Request $request
      * @param Response $response
-     * @throws SystemException
+     * @throws Throwable
      */
     public static function appEnd(Request $request, Response $response)
     {

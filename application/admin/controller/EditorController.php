@@ -4,9 +4,12 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
+
 use app\admin\service\EditorService;
-use app\common\exception\SystemException;
+
 use app\common\controller\AdminController;
 
 class EditorController extends AdminController
@@ -25,7 +28,7 @@ class EditorController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -37,7 +40,7 @@ class EditorController extends AdminController
      * 百度富文本编辑器
      * @param Request $request
      * @return false|string
-     * @throws SystemException
+     * @throws Throwable
      */
     public function ueditor_action(Request $request)
     {

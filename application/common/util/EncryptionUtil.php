@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\common\util;
 
 
-class EncryptionHelper
+class EncryptionUtil
 {
     /**
      * 不可逆加密

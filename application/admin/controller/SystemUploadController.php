@@ -4,9 +4,12 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
-use app\common\exception\SystemException;
+
 use app\admin\service\SystemUploadService;
+
 use app\common\controller\AdminController;
 
 class SystemUploadController extends AdminController
@@ -25,7 +28,7 @@ class SystemUploadController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -36,7 +39,7 @@ class SystemUploadController extends AdminController
     /**
      * 文件上传
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function slice_action(Request $request)
     {
@@ -65,7 +68,7 @@ class SystemUploadController extends AdminController
     /**
      * 文件检测
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function check_action(Request $request)
     {
@@ -88,7 +91,7 @@ class SystemUploadController extends AdminController
     /**
      * 文件上传
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function file_action(Request $request)
     {
@@ -107,7 +110,7 @@ class SystemUploadController extends AdminController
     /**
      * 图片上传
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function image_action(Request $request)
     {

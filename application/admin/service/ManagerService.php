@@ -4,14 +4,17 @@
 namespace app\admin\service;
 
 
+use Throwable;
+
 use think\facade\Cache;
+
 use app\common\util\StringUtil;
 use app\common\enum\ManagerEnum;
 use app\common\repository\Query;
+use app\common\util\EncryptionUtil;
 use app\common\helper\ManagerHelper;
-use app\common\helper\EncryptionHelper;
+
 use app\admin\event\SystemLoginLogEvent;
-use app\common\exception\SystemException;
 use app\common\exception\ServiceException;
 
 class ManagerService extends \app\common\service\ManagerService
@@ -20,7 +23,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 获取列表
      * @param array $params
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function listManager(array $params = [])
     {
@@ -62,7 +65,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过ID获取管理员
      * @param $id
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getById($id)
     {
@@ -73,7 +76,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 获取管理员
      * @param $id
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getManager($id)
     {
@@ -105,7 +108,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过角色ID获取管理员列表
      * @param $roleId
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getByRoleId($roleId)
     {
@@ -120,7 +123,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过账号查询
      * @param $account
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getByAccount($account)
     {
@@ -135,11 +138,11 @@ class ManagerService extends \app\common\service\ManagerService
      * 添加菜单
      * @param array $params
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function createManager(array $params)
     {
-        $params['password'] = EncryptionHelper::encrypt($params['password']);
+        $params['password'] = EncryptionUtil::encrypt($params['password']);
 
         return $this->ManagerRepository->createRecord($params);
     }
@@ -148,7 +151,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过ID更新数据
      * @param array $params
      * @return bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function updateManager(array $params)
     {
@@ -167,7 +170,7 @@ class ManagerService extends \app\common\service\ManagerService
         if (empty($params['password'])) {
             unset($params['password']);
         } else {
-            $params['password'] = EncryptionHelper::encrypt($params['password']);
+            $params['password'] = EncryptionUtil::encrypt($params['password']);
         }
 
         return $this->ManagerRepository->updateById($params['id'], $params);
@@ -177,7 +180,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 删除管理员
      * @param array $params
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function deleteManager(array $params)
     {
@@ -192,7 +195,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 管理员登录
      * @param array $params
      * @return bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function login(array $params)
     {
@@ -238,11 +241,11 @@ class ManagerService extends \app\common\service\ManagerService
                 /**
                  * 检测密码是否正确
                  */
-                if (!EncryptionHelper::equals($params['password'], $manager['password'])) {
+                if (!EncryptionUtil::equals($params['password'], $manager['password'])) {
                     throw new ServiceException('登录失败，密码输入错误');
                 }
 
-            } catch (SystemException $systemException) {
+            } catch (Throwable $Throwable) {
 
                 /**
                  * 记录登录次数和锁定状态
@@ -269,20 +272,20 @@ class ManagerService extends \app\common\service\ManagerService
                     Cache::set($cacheKey, $errorNumber + 1);
                 }
 
-                throw new ServiceException($systemException->getMessage());
+                throw new ServiceException($Throwable->getMessage());
             }
 
-        } catch (SystemException $systemException) {
+        } catch (Throwable $Throwable) {
 
             /**
              * 登录失败日志
              */
             SystemLoginLogEvent::loginError([
                 'managerId'  => $manager['id'],
-                'description' => $systemException->getMessage()
+                'description' => $Throwable->getMessage()
             ]);
 
-            return $this->setMessage($systemException->getMessage());
+            return $this->setMessage($Throwable->getMessage());
         }
 
         /**

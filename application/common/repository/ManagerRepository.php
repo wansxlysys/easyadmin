@@ -5,8 +5,7 @@ namespace app\common\repository;
 
 
 use think\Db;
-use Throwable;
-use app\common\exception\RepositoryException;
+use think\Exception;
 
 class ManagerRepository extends Model
 {
@@ -20,73 +19,54 @@ class ManagerRepository extends Model
      * 获取列表
      * @param Query $Query
      * @return array
-     * @throws RepositoryException
+     * @throws Exception
      */
     public function getListWithRole(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->alias('manager')
-                ->join('ManagerRole role', 'role.id = manager.roleId')
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->page($Query->getPage())
-                ->limit($Query->getLimit())
-                ->field($Query->getField())
-                ->group($Query->getGroup())
-                ->having($Query->getHaving())
-                ->order($Query->getOrder())
-                ->select();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->alias('manager')
+            ->join('ManagerRole role', 'role.id = manager.roleId')
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->page($Query->getPage())
+            ->limit($Query->getLimit())
+            ->field($Query->getField())
+            ->group($Query->getGroup())
+            ->having($Query->getHaving())
+            ->order($Query->getOrder())
+            ->select();
     }
 
     /**
      * 获取总数
      * @param Query $Query
      * @return mixed
-     * @throws RepositoryException
      */
     public function getTotalWithRole(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->alias('manager')
-                ->join('ManagerRole role', 'role.id = manager.roleId')
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->count();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->alias('manager')
+            ->join('ManagerRole role', 'role.id = manager.roleId')
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->count();
     }
 
     /**
      * 获取关联角色
      * @param Query $Query
      * @return array
-     * @throws RepositoryException
+     * @throws Exception
      */
     public function getWithRole(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->alias('manager')
-                ->join('ManagerRole role', 'role.id = manager.roleId')
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->field($Query->getField())
-                ->order($Query->getOrder())
-                ->find();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->alias('manager')
+            ->join('ManagerRole role', 'role.id = manager.roleId')
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->field($Query->getField())
+            ->order($Query->getOrder())
+            ->find();
     }
 }

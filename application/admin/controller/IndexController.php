@@ -4,12 +4,15 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
-use app\common\helper\ManagerHelper;
+
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
 use app\admin\service\SystemMenuService;
-use app\common\exception\SystemException;
+
+use app\common\helper\ManagerHelper;
 use app\common\controller\AdminController;
 
 class IndexController extends AdminController
@@ -28,7 +31,7 @@ class IndexController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -39,7 +42,7 @@ class IndexController extends AdminController
     /**
      * 首页
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function index_action()
     {
@@ -56,16 +59,16 @@ class IndexController extends AdminController
      * 个人资料
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function profile_action(Request $request)
     {
         if ($request->isAjax()) {
 
             $params = [
-                'avatar'    => $request->post('avatar'),
+                'avatar'   => $request->post('avatar'),
                 'realName' => $request->post('realName'),
-                'password'  => $request->post('password'),
+                'password' => $request->post('password'),
             ];
 
             $params['id'] = ManagerHelper::getManagerId();

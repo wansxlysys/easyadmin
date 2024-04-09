@@ -4,9 +4,11 @@
 namespace app\common\service;
 
 
+use Throwable;
+
 use think\File;
+
 use app\common\helper\FileHelper;
-use app\common\exception\SystemException;
 use app\common\exception\ServiceException;
 use app\common\repository\SystemUploadRepository;
 
@@ -32,7 +34,7 @@ class SystemUploadService extends Service
      * @param File $file
      * @param $fileType
      * @return array|bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function saveFile(File $file, $fileType)
     {
@@ -83,7 +85,7 @@ class SystemUploadService extends Service
      * @param $fileInfo
      * @param $fileType
      * @return array|bool[]
-     * @throws SystemException
+     * @throws Throwable
      */
     public function saveSlice($fileInfo, $fileType = 'slice')
     {
@@ -140,7 +142,7 @@ class SystemUploadService extends Service
      * 通过Md5获取文件
      * @param $md5
      * @return mixed
-     * @throws SystemException
+     * @throws Exception
      */
     public function getFileByMd5($md5)
     {

@@ -5,14 +5,16 @@ namespace app\http\middleware;
 
 
 use Closure;
+use Throwable;
+
 use traits\controller\Jump;
+
+use app\admin\service\ManagerService;
+use app\admin\service\SystemMenuService;
+
 use app\common\enum\ManagerEnum;
 use app\common\helper\StorageHelper;
 use app\common\helper\ManagerHelper;
-use app\admin\service\ManagerService;
-use app\admin\service\SystemMenuService;
-use app\admin\service\ManagerRoleService;
-use app\common\exception\SystemException;
 
 class System
 {
@@ -26,7 +28,7 @@ class System
      * @param $request
      * @param Closure $next
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function handle($request, Closure $next)
     {
@@ -50,7 +52,7 @@ class System
 
     /**
      * 注册变量
-     * @throws SystemException
+     * @throws Throwable
      */
     public function checkData()
     {
@@ -63,7 +65,7 @@ class System
 
     /**
      * 权限校验
-     * @throws SystemException
+     * @throws Throwable
      */
     public function checkAuth()
     {

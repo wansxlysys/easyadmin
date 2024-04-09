@@ -58,6 +58,22 @@ trait SubTable
     }
 
     /**
+     * 获取表名
+     * @return string
+     */
+    public function getName()
+    {
+        /**
+         * 如果无需分表则返回主表名
+         */
+        if (false === $this->isSub) {
+            return $this->name;
+        }
+
+        return $this->getSubName();
+    }
+
+    /**
      * 获取分表表名（分表需要重写该方法）
      */
     public function getSubName()

@@ -4,13 +4,16 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
 use think\captcha\Captcha;
-use app\common\helper\ManagerHelper;
+
 use app\admin\service\ManagerService;
-use app\admin\validate\ManagerValidate;
-use app\common\exception\SystemException;
 use app\admin\service\SystemSettingService;
+use app\admin\validate\ManagerValidate;
+
+use app\common\helper\ManagerHelper;
 use app\common\controller\CommonController;
 
 class LoginController extends CommonController
@@ -30,7 +33,7 @@ class LoginController extends CommonController
      * 登录
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function login_action(Request $request)
     {

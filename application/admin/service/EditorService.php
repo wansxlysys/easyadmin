@@ -4,9 +4,10 @@
 namespace app\admin\service;
 
 
+use Throwable;
+
 use think\File;
 use think\facade\Config;
-use app\common\exception\SystemException;
 
 class EditorService extends \app\common\service\EditorService
 {
@@ -37,7 +38,7 @@ class EditorService extends \app\common\service\EditorService
      * 图片上传
      * @param File $file
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadImage(File $file)
     {
@@ -48,7 +49,7 @@ class EditorService extends \app\common\service\EditorService
      * 视频上传
      * @param File $file
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadVideo(File $file)
     {
@@ -59,7 +60,7 @@ class EditorService extends \app\common\service\EditorService
      * 音频上传
      * @param File $file
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadAudio(File $file)
     {
@@ -70,7 +71,7 @@ class EditorService extends \app\common\service\EditorService
      * 文件上传
      * @param File $file
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadFile(File $file)
     {

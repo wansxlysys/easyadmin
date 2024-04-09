@@ -5,164 +5,151 @@ namespace app\common\repository;
 
 
 use think\Db;
-use Throwable;
-use app\common\exception\RepositoryException;
+use think\Exception;
+
+use app\common\util\DateTimeUtil;
 
 abstract class Repository
 {
     /**
+     * 引入分表
+     */
+    use SubTable;
+
+    /**
+     * 数据表名
+     * @var string
+     */
+    protected $name = '';
+
+    /**
      * 获取列表
      * @param Query $Query
      * @return array
-     * @throws RepositoryException
+     * @throws Exception
      */
     public function getList(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->page($Query->getPage())
-                ->limit($Query->getLimit())
-                ->field($Query->getField())
-                ->group($Query->getGroup())
-                ->having($Query->getHaving())
-                ->order($Query->getOrder())
-                ->select();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->page($Query->getPage())
+            ->limit($Query->getLimit())
+            ->field($Query->getField())
+            ->group($Query->getGroup())
+            ->having($Query->getHaving())
+            ->order($Query->getOrder())
+            ->select();
     }
 
     /**
      * 获取总数
      * @param Query $Query
      * @return mixed
-     * @throws RepositoryException
      */
     public function getTotal(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->count();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->count();
     }
 
     /**
      * 获取全部
      * @param Query $Query
      * @return mixed
-     * @throws RepositoryException
+     * @throws Exception
      */
     public function getAll(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->field($Query->getField())
-                ->group($Query->getGroup())
-                ->having($Query->getHaving())
-                ->order($Query->getOrder())
-                ->select();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->field($Query->getField())
+            ->group($Query->getGroup())
+            ->having($Query->getHaving())
+            ->order($Query->getOrder())
+            ->select();
     }
 
     /**
      * 获取单个
      * @param Query $Query
      * @return mixed
-     * @throws RepositoryException
+     * @throws Exception
      */
     public function getOne(Query $Query)
     {
-        try {
-
-            return Db::name(static::getName())
-                ->where($Query->getWhere())
-                ->whereOr($Query->getWhereOr())
-                ->field($Query->getField())
-                ->order($Query->getOrder())
-                ->find();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->field($Query->getField())
+            ->group($Query->getGroup())
+            ->order($Query->getOrder())
+            ->find();
     }
 
     /**
      * 创建数据
-     * @param array $params
+     * @param array $data
      * @return mixed
-     * @throws RepositoryException
      */
-    public function createRecord(array $params = [])
+    public function createRecord(array $data = [])
     {
-        try {
+        $dateTime = DateTimeUtil::dateTime();
 
-            return Db::name(static::getName())->insertGetId($params);
+        $data['createTime'] = $dateTime;
+        $data['updateTime'] = $dateTime;
 
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())->insertGetId($data);
     }
 
     /**
      * 批量创建
-     * @param array $params
+     * @param array $dataList
      * @return mixed
      */
-    public function createAll(array $params = [])
+    public function createAll(array $dataList = [])
     {
-        return Db::name(static::getName())->insertAll($params);
+        $dateTime = DateTimeUtil::dateTime();
+
+        foreach ($dataList as &$data) {
+            $data['createTime'] = $dateTime;
+            $data['updateTime'] = $dateTime;
+        }
+
+        return Db::name(static::getName())->insertAll($dataList);
     }
 
     /**
      * 更新数据
      * @param Query $Query
-     * @param array $params
-     * @return bool
-     * @throws RepositoryException
+     * @param array $data
+     * @return integer
+     * @throws Exception
      */
-    public function updateRecord(Query $Query, array $params = [])
+    public function updateRecord(Query $Query, array $data = [])
     {
-        try {
+        $data['updateTime'] = DateTimeUtil::dateTime();
 
-            return false !== Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
-                    ->update($params);
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->update($data);
     }
 
     /**
      * 删除数据
      * @param Query $Query
-     * @return mixed
-     * @throws RepositoryException
+     * @return integer
+     * @throws Exception
      */
     public function deleteRecord(Query $Query)
     {
-        try {
-
-            return false !== Db::name(static::getName())->where($Query->getWhere())->whereOr($Query->getWhereOr())
-                    ->delete();
-
-        } catch (Throwable $throwable) {
-            throw new RepositoryException($throwable->getMessage());
-        }
+        return Db::name(static::getName())
+            ->where($Query->getWhere())
+            ->whereOr($Query->getWhereOr())
+            ->delete();
     }
 }

@@ -4,9 +4,12 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
+
 use app\admin\service\SystemLogService;
-use app\common\exception\SystemException;
+
 use app\common\controller\AdminController;
 
 class SystemLogController extends AdminController
@@ -25,7 +28,7 @@ class SystemLogController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -37,7 +40,7 @@ class SystemLogController extends AdminController
      * 首页
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function index_action(Request $request)
     {
@@ -61,7 +64,7 @@ class SystemLogController extends AdminController
      * 详情
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function detail_action(Request $request)
     {
@@ -75,7 +78,7 @@ class SystemLogController extends AdminController
     /**
      * 清空
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function clear_action(Request $request)
     {

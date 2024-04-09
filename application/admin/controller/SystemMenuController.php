@@ -4,10 +4,13 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
+
 use app\admin\service\SystemMenuService;
-use app\common\exception\SystemException;
 use app\admin\validate\SystemMenuValidate;
+
 use app\common\controller\AdminController;
 
 class SystemMenuController extends AdminController
@@ -26,7 +29,7 @@ class SystemMenuController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -38,7 +41,7 @@ class SystemMenuController extends AdminController
      * 首页
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function index_action(Request $request)
     {
@@ -58,14 +61,14 @@ class SystemMenuController extends AdminController
      * 添加
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function create_action(Request $request)
     {
         if ($request->isAjax()) {
 
             $params = [
-                'parentId'  => $request->post('parentId'),
+                'parentId'   => $request->post('parentId'),
                 'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
                 'module'     => $request->post('module'),
@@ -100,7 +103,7 @@ class SystemMenuController extends AdminController
      * 修改
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function update_action(Request $request)
     {
@@ -108,7 +111,7 @@ class SystemMenuController extends AdminController
 
             $params = [
                 'id'         => $request->post('id'),
-                'parentId'  => $request->post('parentId'),
+                'parentId'   => $request->post('parentId'),
                 'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
                 'module'     => $request->post('module'),
@@ -146,7 +149,7 @@ class SystemMenuController extends AdminController
     /**
      * 删除
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function delete_action(Request $request)
     {
@@ -175,7 +178,7 @@ class SystemMenuController extends AdminController
     /**
      * 排序
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function sort_action(Request $request)
     {
@@ -205,7 +208,7 @@ class SystemMenuController extends AdminController
     /**
      * 全部
      * @param Request $request
-     * @throws SystemException
+     * @throws Throwable
      */
     public function get_all_action(Request $request)
     {

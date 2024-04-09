@@ -4,11 +4,14 @@
 namespace app\admin\controller;
 
 
+use Throwable;
+
 use think\Request;
-use app\common\exception\SystemException;
-use app\common\controller\AdminController;
+
 use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
+
+use app\common\controller\AdminController;
 
 class SystemSettingController extends AdminController
 {
@@ -26,7 +29,7 @@ class SystemSettingController extends AdminController
 
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {
@@ -38,7 +41,7 @@ class SystemSettingController extends AdminController
      * 系统设置
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function config_action(Request $request)
     {
@@ -74,7 +77,7 @@ class SystemSettingController extends AdminController
      * 全局设置
      * @param Request $request
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function system_action(Request $request)
     {

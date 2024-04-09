@@ -4,10 +4,11 @@
 namespace app\admin\service;
 
 
+use Throwable;
+
 use app\common\repository\Query;
-use app\common\helper\ManagerHelper;
 use app\common\enum\ManagerRoleEnum;
-use app\common\exception\SystemException;
+use app\common\helper\ManagerHelper;
 
 class ManagerRoleService extends \app\common\service\ManagerRoleService
 {
@@ -15,7 +16,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 获取列表
      * @param array $params
      * @return array
-     * @throws SystemException
+     * @throws Throwable
      */
     public function listRole(array $params = [])
     {
@@ -39,7 +40,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 获取全部角色
      * @param array $params
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getAll(array $params = [])
     {
@@ -58,7 +59,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 通过ID获取角色
      * @param $id
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getById($id)
     {
@@ -69,7 +70,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 删除
      * @param $params
      * @return bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function deleteRole($params)
     {
@@ -95,7 +96,6 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 创建
      * @param array $params
      * @return mixed
-     * @throws SystemException
      */
     public function createRole(array $params)
     {
@@ -106,7 +106,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 修改
      * @param array $params
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function updateRole(array $params)
     {

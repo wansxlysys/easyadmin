@@ -4,9 +4,11 @@
 namespace app\common\controller;
 
 
+use Throwable;
+
 use think\facade\Hook;
+
 use app\admin\service\SystemMenuService;
-use app\common\exception\SystemException;
 use app\admin\behavior\SystemLogBehavior;
 use app\admin\service\SystemSettingService;
 
@@ -14,7 +16,7 @@ class AdminController extends CommonController
 {
     /**
      * 初始化
-     * @throws SystemException
+     * @throws Throwable
      */
     public function initialize()
     {

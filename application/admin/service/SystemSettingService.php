@@ -4,15 +4,16 @@
 namespace app\admin\service;
 
 
+use Throwable;
+
 use app\common\enum\SystemSettingEnum;
-use app\common\exception\SystemException;
 
 class SystemSettingService extends \app\common\service\SystemSettingService
 {
     /**
      * 获取配置
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function getSetting()
     {
@@ -23,7 +24,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
      * 更新配置
      * @param array $params
      * @return bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function setSetting(array $params)
     {

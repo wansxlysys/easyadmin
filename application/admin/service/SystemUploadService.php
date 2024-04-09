@@ -4,11 +4,12 @@
 namespace app\admin\service;
 
 
+use Throwable;
+
 use think\File;
 use think\Validate;
 use app\common\util\FileUtil;
 use app\common\enum\UploadEnum;
-use app\common\exception\SystemException;
 
 class SystemUploadService extends \app\common\service\SystemUploadService
 {
@@ -17,7 +18,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @param $image
      * @param string $fileType
      * @return array|bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadImage(File $image, $fileType = 'image')
     {
@@ -49,7 +50,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @param $video
      * @param string $fileType
      * @return array|bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadVideo(File $video, $fileType = 'video')
     {
@@ -81,7 +82,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @param $audio
      * @param string $fileType
      * @return array|bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadAudio(File $audio, $fileType = 'audio')
     {
@@ -113,7 +114,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @param $file
      * @param string $fileType
      * @return array|bool
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadFile(File $file, $fileType = 'file')
     {
@@ -145,7 +146,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * @param array $params
      * @param string $fileType
      * @return mixed
-     * @throws SystemException
+     * @throws Throwable
      */
     public function uploadSlice(array $params, $fileType = 'file')
     {

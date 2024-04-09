@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2024-04-09 10:08:32
+-- 生成日期： 2024-04-09 14:25:44
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.0.9
 
@@ -37,6 +37,7 @@ CREATE TABLE `easy_manager` (
   `password` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
   `isSystem` tinyint(1) UNSIGNED NOT NULL DEFAULT '2' COMMENT '系统内置，1-启用，2-禁用',
   `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '状态：1-正常，2-禁用，3-锁定',
+  `loginError` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '失败次数',
   `loginTime` datetime DEFAULT NULL COMMENT '登录时间',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
@@ -46,9 +47,9 @@ CREATE TABLE `easy_manager` (
 -- 转存表中的数据 `easy_manager`
 --
 
-INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `isSystem`, `status`, `loginTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '2024-04-09 10:03:38', '2022-11-06 14:29:39', '2024-04-08 17:31:47'),
-(10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 2, 1, NULL, '2022-11-06 14:29:39', '2024-02-21 14:58:39');
+INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `isSystem`, `status`, `loginError`, `loginTime`, `createTime`, `updateTime`) VALUES
+(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, 0, '2024-04-09 11:51:01', '2022-11-06 14:29:39', '2024-04-09 11:51:01'),
+(10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 2, 1, 0, NULL, '2022-11-06 14:29:39', '2024-02-21 14:58:39');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,26 @@ INSERT INTO `easy_system_log` (`id`, `managerId`, `menu`, `description`, `url`, 
 (399, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"1887908\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:08', '2024-03-28 15:48:08'),
 (400, 1, '文件检测', '系统自动记录：文件已存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:53', '2024-03-28 15:48:53'),
 (401, 1, '文件检测', '系统自动记录：文件已存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:49:47', '2024-03-28 15:49:47'),
-(402, 1, '退出登录', '系统自动记录：退出成功', '/admin/index/logout.html', '192.168.124.24', '[]', 1, '2024-04-08 17:28:19', '2024-04-08 17:28:19');
+(402, 1, '退出登录', '系统自动记录：退出成功', '/admin/index/logout.html', '192.168.124.24', '[]', 1, '2024-04-08 17:28:19', '2024-04-08 17:28:19'),
+(403, 1, '个人资料', '系统自动记录：修改成功', '/admin/index/profile.html', '192.168.124.24', '{\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"id\":\"1\"}', 1, '2024-04-09 11:29:47', '2024-04-09 11:29:47'),
+(404, 1, '退出登录', '系统自动记录：退出成功', '/admin/index/logout.html', '192.168.124.24', '[]', 1, '2024-04-09 11:39:01', '2024-04-09 11:39:01'),
+(405, 1, '头像上传', '系统自动记录：上传成功', '/admin/manager/avatar.html', '192.168.124.24', '[]', 1, '2024-04-09 11:51:17', '2024-04-09 11:51:17'),
+(406, 1, '文件检测', '系统自动记录：文件已存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:07:43', '2024-04-09 14:07:43'),
+(407, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"测试上传.zip\",\"file_md5\":\"4afa9551cb213f2ffa8d1ebc8d22056c\",\"file_size\":\"141243741\",\"file_total\":\"68\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:07:59', '2024-04-09 14:07:59'),
+(408, 1, '切片上传', '系统自动记录：文件大小不能大于100MB', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"测试上传.zip\",\"file_size\":\"141243741\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"68\",\"file_md5\":\"4afa9551cb213f2ffa8d1ebc8d22056c\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:07:59', '2024-04-09 14:07:59'),
+(409, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
+(410, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
+(411, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
+(412, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
+(413, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
+(414, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
+(415, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
+(416, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
+(417, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
+(418, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
+(419, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
+(420, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
+(421, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"1887908\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29');
 
 -- --------------------------------------------------------
 
@@ -158,7 +178,19 @@ INSERT INTO `easy_system_login_log` (`id`, `managerId`, `description`, `loginIp`
 (35, 1, '登录成功', '127.0.0.1', 1, '2024-02-21 10:20:27', '2024-02-21 10:20:27'),
 (36, 1, '登录成功', '192.168.124.24', 1, '2024-04-08 17:29:25', '2024-04-08 17:29:25'),
 (37, 1, '登录成功', '192.168.124.24', 1, '2024-04-08 17:31:47', '2024-04-08 17:31:47'),
-(38, 1, '登录成功', '192.168.124.24', 1, '2024-04-09 10:03:38', '2024-04-09 10:03:38');
+(38, 1, '登录成功', '192.168.124.24', 1, '2024-04-09 10:03:38', '2024-04-09 10:03:38'),
+(39, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:39:07', '2024-04-09 11:39:07'),
+(40, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:39:22', '2024-04-09 11:39:22'),
+(41, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:40:54', '2024-04-09 11:40:54'),
+(42, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:42:30', '2024-04-09 11:42:30'),
+(43, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:42:47', '2024-04-09 11:42:47'),
+(44, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:43:38', '2024-04-09 11:43:38'),
+(45, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:44:03', '2024-04-09 11:44:03'),
+(46, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:44:07', '2024-04-09 11:44:07'),
+(47, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:44:11', '2024-04-09 11:44:11'),
+(48, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:44:14', '2024-04-09 11:44:14'),
+(49, 1, '登录失败，管理员已被锁定', '192.168.124.24', 1, '2024-04-09 11:48:16', '2024-04-09 11:48:16'),
+(50, 1, '登录成功', '192.168.124.24', 1, '2024-04-09 11:51:01', '2024-04-09 11:51:01');
 
 -- --------------------------------------------------------
 
@@ -288,7 +320,8 @@ INSERT INTO `easy_system_upload` (`id`, `md5`, `name`, `size`, `ext`, `path`, `c
 (11, '4a196dd60d34111bbc69eac68af125ec', '2.jpg', 224779, 'jpg', '/upload/image/20240408/ef6a893e72e33f7c5742032c582d5c81.jpg', '2024-04-08 17:00:19', '2024-04-08 17:00:19'),
 (12, '0c88d36ef4909652bdb12ef9b4b325a7', '5.2abb0bf1.mp4', 970263, 'mp4', '/upload/video/20240408/edcfe3f3084fe1cc76c3df9144b0a56c.mp4', '2024-04-08 17:03:38', '2024-04-08 17:03:38'),
 (13, '74337e48216f38be269a170264dabda5', 'test.mp3', 3856713, 'mp3', '/upload/audio/20240408/59bf95117cd614dbf94b3498adf5133f.mp3', '2024-04-08 17:09:56', '2024-04-08 17:09:56'),
-(14, '26ae9bea6b90e2285fda78d4fe256610', 'test.zip', 8179364, 'zip', '/upload/file/20240408/98f79c0ddce611d702b4e37155e8506d.zip', '2024-04-08 17:19:41', '2024-04-08 17:19:41');
+(15, '80c2c41f3a2799654cda00b82db30638', '2fc7d7ee5554e8f4e83abde52ab4021.jpg', 2094067, 'jpg', '/upload/image/20240409/17f4673180f6bb655deebd941dc4e755.jpg', '2024-04-09 11:54:49', '2024-04-09 11:54:49'),
+(16, '26ae9bea6b90e2285fda78d4fe256610', 'test.zip', 8179364, 'zip', '/upload/file/20240409/26ae9bea6b90e2285fda78d4fe256610.zip', '2024-04-09 14:09:29', '2024-04-09 14:09:29');
 
 --
 -- 转储表的索引
@@ -359,13 +392,13 @@ ALTER TABLE `easy_manager_role`
 -- 使用表AUTO_INCREMENT `easy_system_log`
 --
 ALTER TABLE `easy_system_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=403;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=422;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_login_log`
 --
 ALTER TABLE `easy_system_login_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=39;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=51;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_menu`
@@ -383,7 +416,7 @@ ALTER TABLE `easy_system_setting`
 -- 使用表AUTO_INCREMENT `easy_system_upload`
 --
 ALTER TABLE `easy_system_upload`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

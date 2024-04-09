@@ -73,9 +73,9 @@
 <script>
     layui.use(['easyAdmin', 'form', 'table'], function () {
 
-        var form = layui.form;
-        var table = layui.table;
-        var easyAdmin = layui.easyAdmin;
+        const form = layui.form;
+        const table = layui.table;
+        const easyAdmin = layui.easyAdmin;
 
         table.render({
             id: "table",
@@ -104,11 +104,11 @@
                     easyAdmin.ajaxPost({
                         url: "{:url('admin/SystemLoginLog/clear')}",
                         success: function (result) {
-                            var key = top.layer.alert(result.msg, {
+                            const lay = top.layer.alert(result.msg, {
                                 icon: 1,
                             }, function () {
                                 table.reloadData("table");
-                                top.layer.close(key);
+                                top.layer.close(lay);
                             });
                         }
                     });

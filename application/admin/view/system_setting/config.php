@@ -29,8 +29,8 @@
 
     layui.use(['easyModule', 'form'], function () {
 
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
 
         form.on('submit', function (obj) {
             event.preventDefault();
@@ -39,10 +39,10 @@
                 url: "{:url('admin/SystemSetting/config')}",
                 data: obj.field,
                 success: function (result) {
-                    var key = top.layer.alert(result.msg, {
+                    const lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
-                        top.layer.close(key);
+                        top.layer.close(lay);
                     });
                 }
             });

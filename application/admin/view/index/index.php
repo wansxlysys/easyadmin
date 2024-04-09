@@ -97,16 +97,16 @@
 
     layui.use(['easyModule', 'element', 'layer', 'util'], function () {
 
-        var util = layui.util;
-        var layer = layui.layer;
-        var easyAdmin = layui.easyAdmin;
+        const util = layui.util;
+        const layer = layui.layer;
+        const easyAdmin = layui.easyAdmin;
 
         $('.layui-nav-tree>.layui-nav-item a').click(function (event) {
             event.preventDefault();
 
             if ($(this).siblings('.layui-nav-child').length <= 0) {
-                var link = $(this).data("link");
-                var target = $(this).data('target');
+                const link = $(this).data("link");
+                const target = $(this).data('target');
 
                 if (target === 1) {
                     $("#easyLayoutIframe").attr("src", link);
@@ -119,10 +119,10 @@
         });
 
         util.event('lay-header-event', {
-            outdent: function () {
+            outdent() {
                 $(".easy-layout").toggleClass("easy-layout-hide-side");
             },
-            system: function () {
+            system() {
                 layer.open({
                     type: 2,
                     title: '系统信息',
@@ -133,24 +133,24 @@
                     move: false,
                 });
             },
-            refresh: function () {
+            refresh() {
                 let $iframe = $("#easyLayoutIframe");
                 $iframe.attr("src", $iframe.attr("src"));
             },
-            fullscreen: function () {
+            fullscreen() {
                 if (document.fullscreenElement) {
                     document.exitFullscreen();
                 } else {
                     document.documentElement.requestFullscreen();
                 }
             },
-            profile: function () {
+            profile() {
                 event.preventDefault();
                 frames[0].layui.easyAdmin.openFrame({
                     content: "{:url('admin/Index/profile')}"
                 });
             },
-            logout: function () {
+            logout() {
                 event.preventDefault();
                 easyAdmin.ajaxPost({
                     url: "{:url('admin/Index/logout')}",

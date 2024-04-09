@@ -1,11 +1,11 @@
 <script>
 
-    var menuData = {
+    const menuData = {
         type: 1,
         parentId: 0
     }
 
-    var menuService = {
+    const menuService = {
         /**
          * 初始化
          */

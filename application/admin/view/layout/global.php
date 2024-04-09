@@ -1,8 +1,8 @@
 <script>
-    var $ = layui.$;
-    var jQuery = layui.$;
+    const $ = layui.$;
+    const jQuery = layui.$;
 
-    var apiUrl = {
+    const apiUrl = {
         ueditor: "{:url('admin/Editor/ueditor')}",
         uploadImage: "{:url('admin/SystemUpload/image')}",
         getAllMenu: "{:url('admin/SystemMenu/get_all')}",

@@ -151,10 +151,10 @@
 
     layui.use(['easyModule'], function () {
 
-        var $ = layui.$;
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
-        var captchaImg = $("#captchaImg");
+        const $ = layui.$;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
+        const captchaImg = $("#captchaImg");
 
         form.on('submit', function (obj) {
             event.preventDefault();

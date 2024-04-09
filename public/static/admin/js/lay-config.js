@@ -28,7 +28,7 @@
      */
     layui.layer.config({
         shade: 0.3,
-        anim: -1,
+        anim: 5,
         isOutAnim: false
     });
 

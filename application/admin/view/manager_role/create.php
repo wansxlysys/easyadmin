@@ -48,12 +48,12 @@
 
     layui.use(['easyModule'], function () {
 
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
-        var easyHelper = layui.easyHelper;
-        var easyService = layui.easyService;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
+        const easyHelper = layui.easyHelper;
+        const easyService = layui.easyService;
 
-        var permissionTree = null;
+        let permissionTree = null;
 
         easyService.menuTreeStruct({
             elem: "#permission",
@@ -69,7 +69,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            var permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
+            let permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
                 return layer.alert('请选择授权菜单', {
@@ -83,11 +83,11 @@
                 url: "{:url('admin/ManagerRole/create')}",
                 data: obj.field,
                 success: function (result) {
-                    var key = top.layer.alert(result.msg, {
+                    const lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
                         parent.layui.table.reloadData("table");
-                        top.layer.close(key);
+                        top.layer.close(lay);
                         easyAdmin.closeFrame();
                     });
                 }

@@ -63,10 +63,10 @@
 
     layui.use(['easyModule'], function () {
 
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
-        var easyCreate = layui.easyCreate;
-        var easyService = layui.easyService;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
+        const easyCreate = layui.easyCreate;
+        const easyService = layui.easyService;
 
         /**
          * 设置上传路径
@@ -89,11 +89,11 @@
                 url: "{:url('admin/Manager/create')}",
                 data: obj.field,
                 success: function (result) {
-                    var key = top.layer.alert(result.msg, {
+                    const lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
                         parent.layui.table.reloadData("table");
-                        top.layer.close(key);
+                        top.layer.close(lay);
                         easyAdmin.closeFrame();
                     });
                 }

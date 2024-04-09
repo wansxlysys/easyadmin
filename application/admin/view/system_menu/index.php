@@ -70,9 +70,9 @@
 
     layui.use(['easyModule', 'form', 'treeTable'], function () {
 
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
-        var treeTable = layui.treeTable;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
+        const treeTable = layui.treeTable;
 
         treeTable.render({
             id: "table",
@@ -129,7 +129,7 @@
                     sort: obj.value
                 },
                 success: function (result) {
-                    var lay = top.layer.alert(result.msg, {
+                    const lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
                         treeTable.reloadData('table');
@@ -157,7 +157,7 @@
                             id: obj.data.id
                         },
                         success: function (result) {
-                            var lay = top.layer.alert(result.msg, {
+                            const lay = top.layer.alert(result.msg, {
                                 icon: 1,
                             }, function () {
                                 obj.del();

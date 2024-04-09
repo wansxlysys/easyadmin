@@ -612,8 +612,8 @@
 
     layui.use(['easyModule', 'layer', 'carousel', 'element'], function () {
 
-        var carousel = layui.carousel;
-        var device = layui.device();
+        const carousel = layui.carousel;
+        const device = layui.device();
 
         carousel.render({
             elem: '#workplaceNewsCarousel',

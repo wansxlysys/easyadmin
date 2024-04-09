@@ -49,9 +49,9 @@
 
     layui.use(['easyModule', 'form'], function () {
 
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
-        var easyCreate = layui.easyCreate;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
+        const easyCreate = layui.easyCreate;
 
         /**
          * 设置上传路径
@@ -69,10 +69,10 @@
                 url: "{:url('admin/Index/profile')}",
                 data: obj.field,
                 success: function (result) {
-                    var key = top.layer.alert(result.msg, {
+                    var lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
-                        top.layer.close(key);
+                        top.layer.close(lay);
                         easyAdmin.closeFrame();
                     });
                 }

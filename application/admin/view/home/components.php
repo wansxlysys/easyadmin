@@ -193,7 +193,7 @@
 
     layui.use(['easyModule'], function () {
 
-        var uploadFile = layui.uploadFile;
+        const uploadFile = layui.uploadFile;
 
         new uploadFile({
             id: "upload",

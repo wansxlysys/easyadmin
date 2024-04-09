@@ -95,8 +95,8 @@
 
     layui.use(['easyModule', 'form'], function () {
 
-        var form = layui.form;
-        var easyAdmin = layui.easyAdmin;
+        const form = layui.form;
+        const easyAdmin = layui.easyAdmin;
 
         menuData.type = '{$menu.type}';
         menuData.parentId = '{$menu.parentId}';
@@ -112,7 +112,7 @@
                 url: "{:url('admin/SystemMenu/update')}",
                 data: obj.field,
                 success: function (result) {
-                    var lay = top.layer.alert(result.msg, {
+                    const lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
                         parent.layui.treeTable.reloadData('table');

@@ -77,12 +77,12 @@
 <script>
     layui.use(['easyModule'], function () {
 
-        var form = layui.form;
-        var table = layui.table;
-        var easyAdmin = layui.easyAdmin;
-        var easyService = layui.easyService;
+        const form = layui.form;
+        const table = layui.table;
+        const easyAdmin = layui.easyAdmin;
+        const easyService = layui.easyService;
 
-        var roleSelect = null;
+        let roleSelect = null;
 
         easyService.roleSingleSelect({
             elem: '#role',
@@ -136,11 +136,11 @@
                             id: obj.data.id
                         },
                         success: function (result) {
-                            var key = top.layer.alert(result.msg, {
+                            const lay = top.layer.alert(result.msg, {
                                 icon: 1,
                             }, function () {
                                 table.reloadData("table");
-                                top.layer.close(key);
+                                top.layer.close(lay);
                             });
                         }
                     });

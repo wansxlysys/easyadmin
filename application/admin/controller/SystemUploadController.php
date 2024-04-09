@@ -47,7 +47,7 @@ class SystemUploadController extends AdminController
 
             $params = [
                 'md5'    => $request->post('file_md5'),
-                'name'   => $request->post('fileName'),
+                'name'   => $request->post('file_name'),
                 'file'   => $request->file('file_data'),
                 'size'   => $request->post('file_size'),
                 'index'  => $request->post('file_index'),

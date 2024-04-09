@@ -132,10 +132,10 @@ class SystemUploadService extends Service
                 throw new ServiceException('文件保存失败');
             }
 
-            return ['is_finish' => true, 'viewPath' => $viewPath, 'savePath' => $savePath, 'fileName' => $fileData['name']];
+            return ['isFinish' => true, 'viewPath' => $viewPath, 'savePath' => $savePath, 'fileName' => $fileData['name']];
         }
 
-        return ['is_finish' => false];
+        return ['isFinish' => false];
     }
 
     /**

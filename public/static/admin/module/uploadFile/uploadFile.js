@@ -52,7 +52,7 @@ layui.define(["jquery", "element"], function (exports) {
                     return false;
                 }
 
-                if (result.data.is_finish) {
+                if (result.data.isFinish) {
                     this.complete(result);
                 }
 

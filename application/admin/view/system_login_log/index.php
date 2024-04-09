@@ -86,11 +86,11 @@
                 {type: 'checkbox'},
                 {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
-                {title: '登录姓名', field: 'realName', width: 140},
-                {title: '登录账号', field: 'account', width: 140},
+                {title: '管理员姓名', field: 'realName', width: 140},
+                {title: '管理员账号', field: 'account', width: 140},
                 {title: '操作详情', field: 'description'},
                 {title: '登录IP', field: 'loginIp', width: 140},
-                {title: '状态', field: 'status', width: 100, templet: "#status"},
+                {title: '登录状态', field: 'status', width: 100, templet: "#status"},
                 {title: '登录时间', field: 'createTime', width: 160},
                 {title: '操作', toolbar: '#bar', width: 100}
             ]]

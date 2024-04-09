@@ -21,33 +21,33 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">图标</label>
+                    <label class="layui-form-label layui-required">菜单图标</label>
                     <div class="layui-input-block">
-                        <input type="text" name="icon" lay-verify="required" placeholder="请输入图标" class="layui-input" value="fa-link">
+                        <input type="text" name="icon" lay-verify="required" placeholder="请输入菜单图标" class="layui-input" value="fa-link">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">模块</label>
+                    <label class="layui-form-label layui-required">菜单模块</label>
                     <div class="layui-input-block">
-                        <input type="text" name="module" lay-verify="required" placeholder="请输入模块" class="layui-input">
+                        <input type="text" name="module" lay-verify="required" placeholder="请输入菜单模块" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">控制器</label>
+                    <label class="layui-form-label">菜单控制器</label>
                     <div class="layui-input-block">
-                        <input type="text" name="controller" placeholder="请输入控制器" class="layui-input">
+                        <input type="text" name="controller" placeholder="请输入菜单控制器" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">操作</label>
+                    <label class="layui-form-label">菜单操作</label>
                     <div class="layui-input-block">
-                        <input type="text" name="action" placeholder="请输入操作" class="layui-input">
+                        <input type="text" name="action" placeholder="请输入菜单操作" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">参数</label>
+                    <label class="layui-form-label">菜单参数</label>
                     <div class="layui-input-block">
-                        <input type="text" name="params" placeholder="请输入参数" class="layui-input">
+                        <input type="text" name="params" placeholder="请输入菜单参数" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -73,9 +73,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">排序</label>
+                    <label class="layui-form-label layui-required">菜单排序</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sort" placeholder="请输入排序" class="layui-input" value="100">
+                        <input type="text" name="sort" placeholder="请输入菜单排序" class="layui-input" value="100">
                     </div>
                 </div>
                 <div class="layui-form-item">

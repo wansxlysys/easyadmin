@@ -9,13 +9,13 @@
             <form class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">账号</label>
+                        <label class="layui-form-label">管理员账号</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="account" class="layui-input" placeholder="请输入账号">
+                            <input type="text" name="account" class="layui-input" placeholder="请输入管理员账号">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">状态</label>
+                        <label class="layui-form-label">管理员状态</label>
                         <div class="layui-input-inline">
                             <select name="status">
                                 <option value=""></option>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">角色</label>
+                        <label class="layui-form-label">管理员角色</label>
                         <div class="layui-input-inline">
                             <div id="role"></div>
                         </div>
@@ -102,9 +102,9 @@
                 {type: 'checkbox'},
                 {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
-                {title: '账号', field: 'account', width: 240},
-                {title: '角色名称', field: 'role_name', width: 240},
-                {title: '姓名', field: 'realName'},
+                {title: '管理员账号', field: 'account', width: 240},
+                {title: '管理员角色', field: 'role_name', width: 240},
+                {title: '管理员姓名', field: 'realName'},
                 {title: '状态', field: 'status', width: 100, templet: "#status"},
                 {title: '登录时间', field: 'loginTime', width: 160},
                 {title: '操作', toolbar: '#bar', width: 170}

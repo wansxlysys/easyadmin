@@ -86,7 +86,7 @@
                 {type: 'checkbox'},
                 {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
-                {title: '操作账号', field: 'account', width: 160},
+                {title: '管理员账号', field: 'account', width: 160},
                 {title: '菜单名称', field: 'menu', width: 160},
                 {title: '操作详情', field: 'description'},
                 {title: '请求地址', field: 'url'},

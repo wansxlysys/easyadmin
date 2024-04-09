@@ -8,38 +8,38 @@
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">所属角色</label>
+                    <label class="layui-form-label layui-required">管理员角色</label>
                     <div class="layui-input-block">
                         <div id="role"></div>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">头像</label>
+                    <label class="layui-form-label layui-required">管理员头像</label>
                     <div class="layui-input-block">
                         <div id="avatar"></div>
-                        <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传头像">
+                        <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传管理员头像">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">姓名</label>
+                    <label class="layui-form-label layui-required">管理员姓名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="realName" lay-verify="required" placeholder="请输入姓名" class="layui-input">
+                        <input type="text" name="realName" lay-verify="required" placeholder="请输入管理员姓名" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">账号</label>
+                    <label class="layui-form-label layui-required">管理员账号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="account" lay-verify="required" placeholder="请输入账号" class="layui-input">
+                        <input type="text" name="account" lay-verify="required" placeholder="请输入管理员账号" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">密码</label>
+                    <label class="layui-form-label layui-required">管理员密码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="password" lay-verify="required" placeholder="请输入密码" class="layui-input">
+                        <input type="text" name="password" lay-verify="required" placeholder="请输入管理员密码" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">状态</label>
+                    <label class="layui-form-label layui-required">管理员状态</label>
                     <div class="layui-input-block">
                         <input type="radio" name="status" value="1" title="启用" checked="">
                         <input type="radio" name="status" value="2" title="禁用">

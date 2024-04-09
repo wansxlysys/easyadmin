@@ -12,6 +12,8 @@ use app\admin\service\SystemMenuService;
 use app\admin\behavior\SystemLogBehavior;
 use app\admin\service\SystemSettingService;
 
+use app\common\helper\SystemSettingHelper;
+
 class AdminController extends CommonController
 {
     /**
@@ -20,8 +22,11 @@ class AdminController extends CommonController
      */
     public function initialize()
     {
-        $MenuService = new SystemMenuService();
-        $currentMenu = $MenuService->getCurrentMenu();
+        $SystemMenuService    = new SystemMenuService();
+        $SystemSettingService = new SystemSettingService();
+
+        $currentMenu   = $SystemMenuService->getCurrentMenu();
+        $systemSetting = $SystemSettingService->getSetting();
 
         /**
          * 每个url必须设定一个菜单
@@ -29,6 +34,11 @@ class AdminController extends CommonController
         if (empty($currentMenu)) {
             $this->error('系统菜单不存在');
         }
+
+        /**
+         * 设置系统设置到缓存
+         */
+        SystemSettingHelper::setSystemSetting($systemSetting);
 
         if ($this->request->isAjax()) {
 
@@ -42,14 +52,8 @@ class AdminController extends CommonController
             /**
              * 初始化视图变量
              */
-            $SystemSettingService = new SystemSettingService();
-
-            $systemSetting  = $SystemSettingService->getSetting();
-            $breadcrumbMenu = $MenuService->getBreadcrumbMenu($currentMenu['id']);
-
             $this->assign('currentMenu', $currentMenu);
             $this->assign('systemSetting', $systemSetting);
-            $this->assign('breadcrumbMenu', $breadcrumbMenu);
         }
     }
 }

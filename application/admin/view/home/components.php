@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="split" data-direction="horizontal">
+    <div class="split easy-split" data-direction="horizontal">
         <div class="split-item" data-size="15">
             <div class="split-fill layui-card">
                 <div class="layui-card-header">面板分割</div>
@@ -104,7 +104,7 @@
 
     <br>
 
-    <div class="split" data-direction="vertical">
+    <div class="split easy-split" data-direction="vertical">
         <div class="split-item" data-size="15">
             <div class="split-fill layui-card">
                 <div class="layui-card-header">面板分割</div>

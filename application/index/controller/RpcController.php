@@ -5,10 +5,13 @@ namespace app\index\controller;
 
 
 use Throwable;
-use rpc\RpcServer;
+
 use think\Request;
 use think\facade\Config;
 use think\response\Json;
+
+use easyadmin\rpc\RpcServer;
+
 use app\common\rpc\DemoClient;
 use app\common\rpc\DemoServer;
 

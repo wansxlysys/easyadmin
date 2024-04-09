@@ -1,7 +1,7 @@
 <?php
 
 
-namespace rpc;
+namespace easyadmin\rpc;
 
 
 use RuntimeException;

@@ -81,3 +81,15 @@ if (!function_exists('empty_image')) {
         return $image;
     }
 }
+
+if (!function_exists('service')) {
+    /**
+     * 实例化服务层
+     * @param $name
+     * @return mixed
+     */
+    function service($name)
+    {
+        return app()->model($name, 'service');
+    }
+}

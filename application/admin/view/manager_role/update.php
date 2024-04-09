@@ -8,7 +8,7 @@
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">角色名</label>
+                    <label class="layui-form-label layui-required">角色名称</label>
                     <div class="layui-input-block">
                         <input type="text" name="name" lay-verify="required" placeholder="请输入角色名" class="layui-input" value="{$role.name}">
                     </div>
@@ -20,13 +20,13 @@
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">备注</label>
+                    <label class="layui-form-label">角色备注</label>
                     <div class="layui-input-block">
-                        <textarea name="remark" placeholder="请输入备注" class="layui-textarea">{$role.remark}</textarea>
+                        <textarea name="remark" placeholder="请输入角色备注" class="layui-textarea">{$role.remark}</textarea>
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label layui-required">权限</label>
+                    <label class="layui-form-label layui-required">角色权限</label>
                     <div class="layui-input-block">
                         <div id="permission" class="ztree"></div>
                     </div>

@@ -84,7 +84,7 @@ class ManagerService extends \app\common\service\ManagerService
 
         $field = [
             'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account', 'manager.account',
-            'manager.isSystem', 'manager.status', 'role.identify', 'permission',
+            'manager.status', 'role.identify', 'permission',
         ];
 
         $Wrapper->setField($field);

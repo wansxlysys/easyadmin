@@ -66,7 +66,7 @@
                 {title: 'ID', field: 'id', width: 80},
                 {title: '角色名称', field: 'name', width: 240},
                 {title: '角色标识', field: 'identify', width: 240},
-                {title: '备注', field: 'remark'},
+                {title: '角色备注', field: 'remark'},
                 {title: '操作', toolbar: '#bar', width: 180}
             ]]
         });

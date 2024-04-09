@@ -8,17 +8,17 @@
         <div class="layui-card-body">
             <div class="easy-info">
                 <div class="easy-info-grid easy-info-grid-100 easy-info-grid-center">
-                    <div class="easy-info-grid-left">登录头像：</div>
+                    <div class="easy-info-grid-left">管理员头像：</div>
                     <div class="easy-info-grid-right">
                         <img src="{$log.avatar}" width="35" height="35" class="layui-circle">
                     </div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
-                    <div class="easy-info-grid-left">登录姓名：</div>
+                    <div class="easy-info-grid-left">管理员姓名：</div>
                     <div class="easy-info-grid-right">{$log.realName}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
-                    <div class="easy-info-grid-left">登录账号：</div>
+                    <div class="easy-info-grid-left">管理员账号：</div>
                     <div class="easy-info-grid-right">{$log.account}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">

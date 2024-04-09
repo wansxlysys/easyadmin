@@ -20,7 +20,7 @@
 <script src="{:register_static('/admin/js/lay-config.js')}"></script>
 
 <!--全局变量-->
-{include file="admin@layout/global" /}
+{include file="admin@layout/var" /}
 
 <script src="{:register_static('/admin/plugin/viewer/viewer.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/ueditor/ueditor.config.js')}"></script>

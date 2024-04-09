@@ -5,7 +5,7 @@ namespace app\common\rpc;
 
 
 use Throwable;
-use rpc\RpcClient;
+use easyadmin\rpc\RpcClient;
 use think\facade\Config;
 
 abstract class BaseClient

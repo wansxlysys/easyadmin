@@ -79,9 +79,11 @@ class SystemMenuService extends \app\common\service\SystemMenuService
         $Wrapper->addWhere('controller', '=', Request::controller());
         $Wrapper->addWhere('action', '=', Request::action());
 
-        StoreHelper::set(MenuEnum::CONTAINER_MENU, $this->SystemMenuRepository->getOne($Wrapper));
+        $currentMenu = $this->SystemMenuRepository->getOne($Wrapper);
 
-        return StoreHelper::get(MenuEnum::CONTAINER_MENU);
+        StoreHelper::set(MenuEnum::CONTAINER_MENU, $currentMenu);
+
+        return $currentMenu;
     }
 
     /**
@@ -125,7 +127,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     public function getById($id)
     {
-        return $this->formatData($this->SystemMenuRepository->getById($id));
+        return $this->SystemMenuRepository->getById($id);
     }
 
     /**

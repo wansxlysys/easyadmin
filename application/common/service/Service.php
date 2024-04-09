@@ -4,7 +4,7 @@
 namespace app\common\service;
 
 
-class Service
+abstract class Service
 {
     /*
      * 导入业务特征
@@ -12,7 +12,7 @@ class Service
     use Business;
 
     /**
-     * Service constructor.
+     * 初始化
      */
     public function __construct()
     {

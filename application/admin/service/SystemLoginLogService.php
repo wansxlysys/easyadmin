@@ -7,6 +7,7 @@ namespace app\admin\service;
 use Throwable;
 
 use app\common\enum\ManagerEnum;
+use app\common\enum\SystemLoginLogEnum;
 use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
 
@@ -66,17 +67,6 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
     }
 
     /**
-     * 创建登录日志
-     * @param array $params
-     * @return mixed
-     * @throws Throwable
-     */
-    public function createLog(array $params)
-    {
-        return $this->SystemLoginLogRepository->createRecord($params);
-    }
-
-    /**
      * 清空日志
      * @return mixed
      * @throws Throwable
@@ -84,5 +74,35 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
     public function clearLog()
     {
         return $this->SystemLoginLogRepository->clearSystemLoginLog();
+    }
+
+    /**
+     * 登录成功
+     * @param array $params
+     * @return mixed
+     */
+    public function loginSuccess(array $params)
+    {
+        $data['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
+        $data['loginIp']     = $params['loginIp'];
+        $data['managerId']   = $params['managerId'];
+        $data['description'] = $params['description'];
+
+        return $this->SystemLoginLogRepository->createRecord($data);
+    }
+
+    /**
+     * 登录失败
+     * @param array $params
+     * @return mixed
+     */
+    public function loginError(array $params)
+    {
+        $data['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
+        $data['loginIp']     = $params['loginIp'];
+        $data['managerId']   = $params['managerId'];
+        $data['description'] = $params['description'];
+
+        return $this->SystemLoginLogRepository->createRecord($data);
     }
 }

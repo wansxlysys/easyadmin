@@ -91,7 +91,8 @@ layui.define(function (exports) {
             url: "",
             data: {},
             type: "GET",
-            loading: true
+            alert: true,
+            loading: true,
         };
 
         let loading = null;
@@ -105,9 +106,8 @@ layui.define(function (exports) {
             if (result.code === 1) {
                 config.success && config.success(result);
             } else {
-                if (config.error) {
-                    config.error(result);
-                } else {
+                config.error && config.error(result);
+                if (options.alert) {
                     top.layer.alert(result.msg, {
                         icon: 2
                     });

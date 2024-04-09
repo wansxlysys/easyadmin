@@ -4,7 +4,7 @@
 namespace app\common\helper;
 
 
-class StorageHelper
+class StoreHelper
 {
     /**
      * 缓存

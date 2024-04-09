@@ -27,11 +27,6 @@ class ManagerEnum
     const LOCK_LOGIN_ERROR_NUMBER = 3;
 
     /**
-     * 登录缓存锁标识
-     */
-    const CACHE_LOGIN_ERROR_NUMBER = 'system.login.error.number';
-
-    /**
      * 管理员状态
      */
     const STATUS_ENABLED  = 1; // 启用

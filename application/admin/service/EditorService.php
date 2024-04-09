@@ -89,6 +89,6 @@ class EditorService extends \app\common\service\EditorService
             return ['state' => $this->SystemUploadService->getMessage()];
         }
 
-        return ['state' => 'SUCCESS', 'url' => $file['view_path'], 'title' => $file['file_name'], 'original' => $file['file_name']];
+        return ['state' => 'SUCCESS', 'url' => $file['viewPath'], 'title' => $file['fileName'], 'original' => $file['fileName']];
     }
 }

@@ -121,8 +121,8 @@ layui.define(["jquery", "upload"], function (exports) {
             },
             done: function (result) {
                 if (result.code === 1) {
-                    that.append(result.data.view_path);
-                    typeof that.options.done === "function" && that.options.done(result.data.view_path);
+                    that.append(result.data.viewPath);
+                    typeof that.options.done === "function" && that.options.done(result.data.viewPath);
                 } else {
                     top.layer.alert(result.msg, {
                         icon: 2

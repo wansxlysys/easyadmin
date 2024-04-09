@@ -47,7 +47,7 @@ class SystemUploadController extends AdminController
 
             $params = [
                 'md5'    => $request->post('file_md5'),
-                'name'   => $request->post('file_name'),
+                'name'   => $request->post('fileName'),
                 'file'   => $request->file('file_data'),
                 'size'   => $request->post('file_size'),
                 'index'  => $request->post('file_index'),
@@ -84,7 +84,7 @@ class SystemUploadController extends AdminController
                 $this->error('文件不存在');
             }
 
-            $this->success('文件已存在', '', ['view_path' => $file['path']]);
+            $this->success('文件已存在', '', ['viewPath' => $file['path']]);
         }
     }
 
@@ -103,7 +103,7 @@ class SystemUploadController extends AdminController
                 $this->error($this->SystemUploadService->getMessage());
             }
 
-            $this->success('上传成功', '', ['view_path' => $file['view_path']]);
+            $this->success('上传成功', '', ['viewPath' => $file['viewPath']]);
         }
     }
 
@@ -122,7 +122,7 @@ class SystemUploadController extends AdminController
                 $this->error($this->SystemUploadService->getMessage());
             }
 
-            $this->success('上传成功', '', ['view_path' => $image['view_path']]);
+            $this->success('上传成功', '', ['viewPath' => $image['viewPath']]);
         }
     }
 }

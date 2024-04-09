@@ -5,6 +5,7 @@ namespace app\common\helper;
 
 
 use think\facade\Session;
+
 use app\common\util\StringUtil;
 use app\common\enum\ManagerEnum;
 use app\common\enum\ManagerRoleEnum;
@@ -47,12 +48,21 @@ class ManagerHelper
     }
 
     /**
+     * 设置管理员
+     * @param $manager
+     */
+    public static function setManager($manager)
+    {
+        StoreHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
+    }
+
+    /**
      * 获取管理员
      * @return mixed|null
      */
     public static function getManager()
     {
-        return StorageHelper::get(ManagerEnum::CONTAINER_MANAGER);
+        return StoreHelper::get(ManagerEnum::CONTAINER_MANAGER);
     }
 
     /**

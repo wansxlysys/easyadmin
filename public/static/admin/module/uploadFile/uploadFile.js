@@ -59,7 +59,7 @@ layui.define(["jquery", "element"], function (exports) {
                 return true;
             },
             complete: function (result) {
-                that.setValue(result.data.view_path);
+                that.setValue(result.data.viewPath);
                 that.hideProgress();
             }
         };

@@ -215,10 +215,7 @@ class ManagerService extends \app\common\service\ManagerService
             return $this->setMessage('执行失败，登录时间更新失败');
         }
 
-        /**
-         * 组合缓存key
-         */
-        $cacheKey = ManagerEnum::CACHE_LOGIN_ERROR_NUMBER . $manager['id'];
+        $SystemLoginLogService = new SystemLoginLogService();
 
         try {
 
@@ -236,43 +233,32 @@ class ManagerService extends \app\common\service\ManagerService
                 throw new ServiceException('登录失败，管理员已被锁定');
             }
 
-            try {
+            /**
+             * 检测密码是否正确
+             */
+            if (!EncryptionUtil::equals($params['password'], $manager['password'])) {
 
                 /**
-                 * 检测密码是否正确
+                 * 检测登录次数
                  */
-                if (!EncryptionUtil::equals($params['password'], $manager['password'])) {
-                    throw new ServiceException('登录失败，密码输入错误');
-                }
+                $loginError = $manager['loginError'] + 1;
 
-            } catch (Throwable $Throwable) {
-
-                /**
-                 * 记录登录次数和锁定状态
-                 */
-                $errorNumber = Cache::get($cacheKey, 1);
-
-                if ($errorNumber >= ManagerEnum::LOCK_LOGIN_ERROR_NUMBER) {
+                if ($loginError >= ManagerEnum::LOCK_LOGIN_ERROR_NUMBER) {
 
                     /**
                      * 更新管理员为锁定状态
                      */
-                    $this->ManagerRepository->updateById($manager['id'], ['status' => ManagerEnum::STATUS_LOCKED]);
-
-                    /**
-                     * 清除登录锁定缓存
-                     */
-                    Cache::rm($cacheKey);
+                    $this->ManagerRepository->updateById($manager['id'], ['status' => ManagerEnum::STATUS_LOCKED, 'loginError' => 0]);
 
                 } else {
 
                     /**
-                     * 递增失败次数
+                     * 登录失败次数递增
                      */
-                    Cache::set($cacheKey, $errorNumber + 1);
+                    $this->ManagerRepository->updateById($manager['id'], ['loginError' => $loginError]);
                 }
 
-                throw new ServiceException($Throwable->getMessage());
+                throw new ServiceException('登录失败，密码输入错误');
             }
 
         } catch (Throwable $Throwable) {
@@ -280,18 +266,14 @@ class ManagerService extends \app\common\service\ManagerService
             /**
              * 登录失败日志
              */
-            SystemLoginLogEvent::loginError([
-                'managerId'  => $manager['id'],
-                'description' => $Throwable->getMessage()
+            $SystemLoginLogService->loginError([
+                'loginIp'     => $params['loginIp'],
+                'managerId'   => $manager['id'],
+                'description' => $Throwable->getMessage(),
             ]);
 
             return $this->setMessage($Throwable->getMessage());
         }
-
-        /**
-         * 清除登录锁定缓存
-         */
-        Cache::rm($cacheKey);
 
         /**
          * 设置登录缓存
@@ -301,9 +283,10 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 登录成功日志
          */
-        SystemLoginLogEvent::loginSuccess([
-            'managerId'  => $manager['id'],
-            'description' => '登录成功'
+        $SystemLoginLogService->loginSuccess([
+            'loginIp'     => $params['loginIp'],
+            'managerId'   => $manager['id'],
+            'description' => '登录成功',
         ]);
 
         return true;

@@ -15,11 +15,23 @@ class Wrapper extends Query
     protected $closure = [];
 
     /**
-     * 设置回调
-     * @param Closure $closure
-     * @param string $name
+     * and回调
+     * @var Closure
      */
-    public function addClosure(Closure $closure, $name = 'where')
+    protected $closureWhere = null;
+
+    /**
+     * or回调
+     * @var Closure
+     */
+    protected $closureWhereOr = null;
+
+    /**
+     * 设置回调
+     * @param string $name
+     * @param Closure $closure
+     */
+    public function setClosure($name, Closure $closure)
     {
         $this->closure[$name] = $closure;
     }
@@ -27,14 +39,46 @@ class Wrapper extends Query
     /**
      * 获取回调
      * @param $name
+     * @return mixed
+     */
+    public function getClosure($name)
+    {
+        return $this->closure[$name] ?? '';
+    }
+
+    /**
+     * 设置回调
+     * @param Closure $closure
+     */
+    public function setClosureWhere(Closure $closure)
+    {
+        $this->closureWhere = $closure;
+    }
+
+    /**
+     * 获取and回调
      * @return Closure
      */
-    public function getClosure($name = 'where')
+    public function getClosureWhere()
     {
-        return function ($query) use ($name) {
-            if (isset($this->closure[$name])) {
-                $this->closure[$name]($query);
-            }
-        };
+        return $this->closureWhere;
+    }
+
+    /**
+     * 设置回调
+     * @param Closure $closure
+     */
+    public function setClosureWhereOr(Closure $closure)
+    {
+        $this->closureWhereOr = $closure;
+    }
+
+    /**
+     * 获取or回调
+     * @return Closure
+     */
+    public function getClosureWhereOr()
+    {
+        return $this->closureWhereOr;
     }
 }

@@ -188,14 +188,14 @@ class ManagerController extends AdminController
                 $this->error($UploadService->getMessage());
             }
 
-            $result = Image::open($fileInfo['save_path'])->thumb(200, 200, 5)->save($fileInfo['save_path']);
+            $result = Image::open($fileInfo['savePath'])->thumb(200, 200, 5)->save($fileInfo['savePath']);
 
             if (!$result) {
                 $this->error('文件上传失败');
             }
 
             $this->success('上传成功', '', [
-                'view_path' => $fileInfo['view_path']
+                'viewPath' => $fileInfo['viewPath']
             ]);
         }
     }

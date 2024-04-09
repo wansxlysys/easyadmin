@@ -11,7 +11,7 @@ use app\common\enum\MenuEnum;
 use app\common\util\ArrayUtil;
 use app\common\util\TreeArrayUtil;
 use app\common\helper\ManagerHelper;
-use app\common\helper\StorageHelper;
+use app\common\helper\StoreHelper;
 use app\common\repository\Wrapper;
 
 class SystemMenuService extends \app\common\service\SystemMenuService
@@ -69,8 +69,8 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     public function getCurrentMenu()
     {
-        if (StorageHelper::has(MenuEnum::CONTAINER_MENU)) {
-            return StorageHelper::get(MenuEnum::CONTAINER_MENU);
+        if (StoreHelper::has(MenuEnum::CONTAINER_MENU)) {
+            return StoreHelper::get(MenuEnum::CONTAINER_MENU);
         }
 
         $Wrapper = new Wrapper();
@@ -79,9 +79,9 @@ class SystemMenuService extends \app\common\service\SystemMenuService
         $Wrapper->addWhere('controller', '=', Request::controller());
         $Wrapper->addWhere('action', '=', Request::action());
 
-        StorageHelper::set(MenuEnum::CONTAINER_MENU, $this->SystemMenuRepository->getOne($Wrapper));
+        StoreHelper::set(MenuEnum::CONTAINER_MENU, $this->SystemMenuRepository->getOne($Wrapper));
 
-        return StorageHelper::get(MenuEnum::CONTAINER_MENU);
+        return StoreHelper::get(MenuEnum::CONTAINER_MENU);
     }
 
     /**

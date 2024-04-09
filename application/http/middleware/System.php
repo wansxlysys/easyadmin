@@ -12,8 +12,6 @@ use traits\controller\Jump;
 use app\admin\service\ManagerService;
 use app\admin\service\SystemMenuService;
 
-use app\common\enum\ManagerEnum;
-use app\common\helper\StorageHelper;
 use app\common\helper\ManagerHelper;
 
 class System
@@ -58,9 +56,7 @@ class System
     {
         $ManagerService = new ManagerService();
 
-        $manager = $ManagerService->getManager(ManagerHelper::getManagerId());
-
-        StorageHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
+        ManagerHelper::setManager($ManagerService->getManager(ManagerHelper::getManagerId()));
     }
 
     /**

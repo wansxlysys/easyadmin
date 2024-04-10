@@ -6,7 +6,7 @@ namespace app\common\repository;
 
 use think\Exception;
 
-class Model extends Repository
+class Repository extends Dao
 {
     /**
      * 通过ID获取

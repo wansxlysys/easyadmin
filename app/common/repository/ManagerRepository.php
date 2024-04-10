@@ -7,7 +7,7 @@ namespace app\common\repository;
 use think\Db;
 use think\Exception;
 
-class ManagerRepository extends Model
+class ManagerRepository extends Repository
 {
     /**
      * 数据表名

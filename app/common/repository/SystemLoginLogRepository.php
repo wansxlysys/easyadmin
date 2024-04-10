@@ -7,13 +7,13 @@ namespace app\common\repository;
 use think\Db;
 use think\Exception;
 
-class SystemLogRepository extends Model
+class SystemLoginLogRepository extends Repository
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemLog';
+    protected $name = 'SystemLoginLog';
 
     /**
      * 获取关联管理员列表
@@ -21,12 +21,11 @@ class SystemLogRepository extends Model
      * @return mixed
      * @throws Exception
      */
-    public function getListWithInfo(Wrapper $Wrapper)
+    public function getListWithManager(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
+            ->join('Manager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -43,12 +42,11 @@ class SystemLogRepository extends Model
      * @param Wrapper $Wrapper
      * @return mixed
      */
-    public function getTotalWithInfo(Wrapper $Wrapper)
+    public function getTotalWithManager(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
+            ->join('Manager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();

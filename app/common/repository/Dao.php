@@ -9,7 +9,7 @@ use think\Exception;
 
 use app\common\util\DateTimeUtil;
 
-abstract class Repository
+abstract class Dao
 {
     /**
      * 引入分表

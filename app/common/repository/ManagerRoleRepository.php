@@ -4,7 +4,7 @@
 namespace app\common\repository;
 
 
-class ManagerRoleRepository extends Model
+class ManagerRoleRepository extends Repository
 {
     /**
      * 数据表名

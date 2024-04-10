@@ -7,7 +7,7 @@ namespace app\common\repository;
 use think\Db;
 use think\Exception;
 
-class SystemUploadRepository extends Model
+class SystemUploadRepository extends Repository
 {
     /**
      * 数据表名

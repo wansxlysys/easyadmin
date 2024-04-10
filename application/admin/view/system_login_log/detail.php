@@ -2,6 +2,14 @@
 
 {block name="content"}
 {include file="admin@layout/breadcrumb" close="show" /}
+
+<?php
+/**
+ * @noinspection PhpUndefinedVariableInspection
+ */
+$manager = service('Manager')->getById($log['managerId']);
+?>
+
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
@@ -10,16 +18,16 @@
                 <div class="easy-info-grid easy-info-grid-100 easy-info-grid-center">
                     <div class="easy-info-grid-left">管理员头像：</div>
                     <div class="easy-info-grid-right">
-                        <img src="{$log.avatar}" width="35" height="35" class="layui-circle">
+                        <img src="{$manager.avatar}" width="35" height="35" class="layui-circle">
                     </div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">管理员姓名：</div>
-                    <div class="easy-info-grid-right">{$log.realName}</div>
+                    <div class="easy-info-grid-right">{$manager.realName}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">管理员账号：</div>
-                    <div class="easy-info-grid-right">{$log.account}</div>
+                    <div class="easy-info-grid-right">{$manager.account}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">登录IP：</div>

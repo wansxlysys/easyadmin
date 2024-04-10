@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2024-04-09 14:25:44
+-- 生成日期： 2024-04-10 09:22:05
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.0.9
 
@@ -30,13 +30,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `easy_manager` (
   `id` int(11) UNSIGNED NOT NULL COMMENT 'ID',
-  `roleId` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '所属用户组',
-  `avatar` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
-  `realName` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '真实姓名',
-  `account` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '账号',
-  `password` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
-  `isSystem` tinyint(1) UNSIGNED NOT NULL DEFAULT '2' COMMENT '系统内置，1-启用，2-禁用',
-  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '状态：1-正常，2-禁用，3-锁定',
+  `roleId` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '角色ID',
+  `avatar` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员头像',
+  `realName` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员姓名',
+  `account` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员账号',
+  `password` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员密码',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '管理员状态：1-正常，2-禁用，3-锁定',
   `loginError` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '失败次数',
   `loginTime` datetime DEFAULT NULL COMMENT '登录时间',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
@@ -47,9 +46,9 @@ CREATE TABLE `easy_manager` (
 -- 转存表中的数据 `easy_manager`
 --
 
-INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `isSystem`, `status`, `loginError`, `loginTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, 0, '2024-04-09 11:51:01', '2022-11-06 14:29:39', '2024-04-09 11:51:01'),
-(10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 2, 1, 0, NULL, '2022-11-06 14:29:39', '2024-02-21 14:58:39');
+INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `loginError`, `loginTime`, `createTime`, `updateTime`) VALUES
+(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 0, '2024-04-10 09:19:45', '2022-11-06 14:29:39', '2024-04-10 09:19:45'),
+(10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 0, NULL, '2022-11-06 14:29:39', '2024-04-09 17:40:07');
 
 -- --------------------------------------------------------
 
@@ -59,10 +58,10 @@ INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `pa
 
 CREATE TABLE `easy_manager_role` (
   `id` int(11) UNSIGNED NOT NULL COMMENT 'ID',
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '角色名',
+  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '角色名称',
   `identify` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '角色标识',
   `permission` text COLLATE utf8mb4_unicode_ci COMMENT '菜单权限',
-  `remark` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
+  `remark` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '角色备注',
   `sort` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '角色排序',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
@@ -85,13 +84,13 @@ INSERT INTO `easy_manager_role` (`id`, `name`, `identify`, `permission`, `remark
 
 CREATE TABLE `easy_system_log` (
   `id` int(11) UNSIGNED NOT NULL COMMENT 'ID',
+  `menuId` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '菜单ID',
   `managerId` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '管理员ID',
-  `menu` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '操作菜单',
   `description` text COLLATE utf8mb4_unicode_ci COMMENT '操作描述',
-  `url` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '请求地址',
   `requestIp` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '请求IP',
+  `requestUrl` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '请求地址',
   `params` longtext COLLATE utf8mb4_unicode_ci COMMENT '请求参数',
-  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '操作状态：1-成功，2-失败',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '操作状态：1-操作成功，2-操作失败',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统日志表';
@@ -100,53 +99,8 @@ CREATE TABLE `easy_system_log` (
 -- 转存表中的数据 `easy_system_log`
 --
 
-INSERT INTO `easy_system_log` (`id`, `managerId`, `menu`, `description`, `url`, `requestIp`, `params`, `status`, `createTime`, `updateTime`) VALUES
-(376, 1, '日志清空', '系统自动记录：清空成功', '/admin/system_log/clear.html', '127.0.0.1', '[]', 1, '2023-11-28 16:10:29', '2023-11-28 16:10:29'),
-(377, 1, '管理员修改', '系统自动记录：修改成功', '/admin/manager/update.html', '127.0.0.1', '{\"role_id\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"real_name\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"id\":\"1\"}', 1, '2023-11-29 16:04:56', '2023-11-29 16:04:56'),
-(378, 1, '管理员修改', '系统自动记录：修改成功', '/admin/manager/update.html', '127.0.0.1', '{\"role_id\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"real_name\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"id\":\"1\"}', 1, '2023-11-29 16:04:58', '2023-11-29 16:04:58'),
-(379, 1, '个人资料', '系统自动记录：修改成功', '/admin/index/profile.html', '127.0.0.1', '{\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"real_name\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"id\":\"1\"}', 1, '2023-12-09 15:38:16', '2023-12-09 15:38:16'),
-(380, 1, '角色修改', '系统自动记录：修改成功', '/admin/manager_role/update.html', '127.0.0.1', '{\"name\":\"超级管理员\",\"identify\":\"super\",\"remark\":\"拥有最高权限\",\"id\":\"1\",\"permission\":\"75,128,141,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142\"}', 1, '2023-12-09 16:13:55', '2023-12-09 16:13:55'),
-(381, 1, '角色修改', '系统自动记录：修改成功', '/admin/manager_role/update.html', '127.0.0.1', '{\"name\":\"超级管理员\",\"identify\":\"super\",\"remark\":\"拥有最高权限\",\"id\":\"1\",\"permission\":\"75,128,141,64,1,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142\"}', 1, '2023-12-09 16:14:01', '2023-12-09 16:14:01'),
-(382, 1, '角色修改', '系统自动记录：修改成功', '/admin/manager_role/update.html', '127.0.0.1', '{\"name\":\"超级管理员\",\"identify\":\"super\",\"remark\":\"拥有最高权限\",\"id\":\"1\",\"permission\":\"75,128,141,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,143,144,147,137,136,138,148,149\"}', 1, '2023-12-09 16:38:46', '2023-12-09 16:38:46'),
-(383, 1, '管理员修改', '系统自动记录：修改成功', '/admin/manager/update.html', '127.0.0.1', '{\"role_id\":\"6\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/cafe4106049840244c2ffd34e7d0de4a.jpg\",\"real_name\":\"测试管理员\",\"account\":\"test1\",\"password\":\"\",\"status\":\"1\",\"id\":\"10\"}', 1, '2024-02-21 14:58:35', '2024-02-21 14:58:35'),
-(384, 1, '管理员修改', '系统自动记录：修改成功', '/admin/manager/update.html', '127.0.0.1', '{\"role_id\":\"6\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/cafe4106049840244c2ffd34e7d0de4a.jpg\",\"real_name\":\"测试管理员\",\"account\":\"test\",\"password\":\"\",\"status\":\"1\",\"id\":\"10\"}', 1, '2024-02-21 14:58:39', '2024-02-21 14:58:39'),
-(385, 1, '头像上传', '系统自动记录：上传成功', '/admin/manager/avatar.html', '192.168.124.24', '[]', 1, '2024-03-28 15:38:12', '2024-03-28 15:38:12'),
-(386, 1, '菜单添加', '系统自动记录：添加成功', '/admin/system_menu/create.html', '192.168.124.24', '{\"parent_id\":\"153\",\"name\":\"切片上传\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemUpload\",\"action\":\"slice\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\"}', 1, '2024-03-28 15:44:57', '2024-03-28 15:44:57'),
-(387, 1, '角色修改', '系统自动记录：修改成功', '/admin/manager_role/update.html', '192.168.124.24', '{\"name\":\"超级管理员\",\"identify\":\"super\",\"remark\":\"拥有最高权限\",\"id\":\"1\",\"permission\":\"75,128,141,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,158,143,144,147,137,136,138,148,149\"}', 1, '2024-03-28 15:45:03', '2024-03-28 15:45:03'),
-(388, 1, '菜单修改', '系统自动记录：修改成功', '/admin/system_menu/update.html', '192.168.124.24', '{\"parent_id\":\"153\",\"name\":\"图片上传\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemUpload\",\"action\":\"image\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"id\":\"154\"}', 1, '2024-03-28 15:45:52', '2024-03-28 15:45:52'),
-(389, 1, '菜单修改', '系统自动记录：修改成功', '/admin/system_menu/update.html', '192.168.124.24', '{\"parent_id\":\"153\",\"name\":\"文件上传\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemUpload\",\"action\":\"file\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"id\":\"155\"}', 1, '2024-03-28 15:45:56', '2024-03-28 15:45:56'),
-(390, 1, '菜单修改', '系统自动记录：修改成功', '/admin/system_menu/update.html', '192.168.124.24', '{\"parent_id\":\"153\",\"name\":\"文件检测\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemUpload\",\"action\":\"check\",\"params\":\"\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"id\":\"156\"}', 1, '2024-03-28 15:45:59', '2024-03-28 15:45:59'),
-(391, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"5.2abb0bf1.mp4\",\"file_md5\":\"0c88d36ef4909652bdb12ef9b4b325a7\",\"file_size\":\"970263\",\"file_total\":\"1\",\"apped_data\":\"{}\"}', 2, '2024-03-28 15:46:07', '2024-03-28 15:46:07'),
-(392, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"5.2abb0bf1.mp4\",\"file_md5\":\"0c88d36ef4909652bdb12ef9b4b325a7\",\"file_size\":\"970263\",\"file_total\":\"1\",\"apped_data\":\"{}\"}', 2, '2024-03-28 15:46:19', '2024-03-28 15:46:19'),
-(393, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"5.2abb0bf1.mp4\",\"file_md5\":\"0c88d36ef4909652bdb12ef9b4b325a7\",\"file_size\":\"970263\",\"file_total\":\"1\",\"apped_data\":\"{}\"}', 2, '2024-03-28 15:47:46', '2024-03-28 15:47:46'),
-(394, 1, '切片上传', '系统自动记录：文件格式必须zip', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"5.2abb0bf1.mp4\",\"file_size\":\"970263\",\"file_chunksize\":\"970263\",\"file_suffix\":\"mp4\",\"file_total\":\"1\",\"file_md5\":\"0c88d36ef4909652bdb12ef9b4b325a7\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 2, '2024-03-28 15:47:46', '2024-03-28 15:47:46'),
-(395, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-03-28 15:48:07', '2024-03-28 15:48:07'),
-(396, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:07', '2024-03-28 15:48:07'),
-(397, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:08', '2024-03-28 15:48:08'),
-(398, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:08', '2024-03-28 15:48:08'),
-(399, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"1887908\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:08', '2024-03-28 15:48:08'),
-(400, 1, '文件检测', '系统自动记录：文件已存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:48:53', '2024-03-28 15:48:53'),
-(401, 1, '文件检测', '系统自动记录：文件已存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-03-28 15:49:47', '2024-03-28 15:49:47'),
-(402, 1, '退出登录', '系统自动记录：退出成功', '/admin/index/logout.html', '192.168.124.24', '[]', 1, '2024-04-08 17:28:19', '2024-04-08 17:28:19'),
-(403, 1, '个人资料', '系统自动记录：修改成功', '/admin/index/profile.html', '192.168.124.24', '{\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"id\":\"1\"}', 1, '2024-04-09 11:29:47', '2024-04-09 11:29:47'),
-(404, 1, '退出登录', '系统自动记录：退出成功', '/admin/index/logout.html', '192.168.124.24', '[]', 1, '2024-04-09 11:39:01', '2024-04-09 11:39:01'),
-(405, 1, '头像上传', '系统自动记录：上传成功', '/admin/manager/avatar.html', '192.168.124.24', '[]', 1, '2024-04-09 11:51:17', '2024-04-09 11:51:17'),
-(406, 1, '文件检测', '系统自动记录：文件已存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:07:43', '2024-04-09 14:07:43'),
-(407, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"测试上传.zip\",\"file_md5\":\"4afa9551cb213f2ffa8d1ebc8d22056c\",\"file_size\":\"141243741\",\"file_total\":\"68\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:07:59', '2024-04-09 14:07:59'),
-(408, 1, '切片上传', '系统自动记录：文件大小不能大于100MB', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"测试上传.zip\",\"file_size\":\"141243741\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"68\",\"file_md5\":\"4afa9551cb213f2ffa8d1ebc8d22056c\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:07:59', '2024-04-09 14:07:59'),
-(409, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
-(410, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
-(411, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
-(412, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:12', '2024-04-09 14:08:12'),
-(413, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
-(414, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
-(415, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
-(416, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:08:29', '2024-04-09 14:08:29'),
-(417, 1, '文件检测', '系统自动记录：文件不存在', '/admin/system_upload/check.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_size\":\"8179364\",\"file_total\":\"4\",\"apped_data\":\"{}\"}', 2, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
-(418, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
-(419, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"2\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
-(420, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"2097152\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"3\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
-(421, 1, '切片上传', '系统自动记录：上传成功', '/admin/system_upload/slice.html', '192.168.124.24', '{\"file_name\":\"test.zip\",\"file_size\":\"8179364\",\"file_chunksize\":\"1887908\",\"file_suffix\":\"zip\",\"file_total\":\"4\",\"file_md5\":\"26ae9bea6b90e2285fda78d4fe256610\",\"file_index\":\"4\",\"apped_data\":\"{}\"}', 1, '2024-04-09 14:09:29', '2024-04-09 14:09:29');
+INSERT INTO `easy_system_log` (`id`, `menuId`, `managerId`, `description`, `requestIp`, `requestUrl`, `params`, `status`, `createTime`, `updateTime`) VALUES
+(7, 122, 1, '清空成功', '192.168.124.24', '/admin/system_log/clear.html', '[]', 1, '2024-04-10 09:21:53', '2024-04-10 09:21:53');
 
 -- --------------------------------------------------------
 
@@ -169,28 +123,7 @@ CREATE TABLE `easy_system_login_log` (
 --
 
 INSERT INTO `easy_system_login_log` (`id`, `managerId`, `description`, `loginIp`, `status`, `createTime`, `updateTime`) VALUES
-(29, 1, '登录成功', '127.0.0.1', 1, '2023-11-29 15:43:28', '2023-11-29 15:43:28'),
-(30, 1, '登录成功', '127.0.0.1', 1, '2023-12-05 15:34:41', '2023-12-05 15:34:41'),
-(31, 1, '登录成功', '127.0.0.1', 1, '2023-12-09 13:57:29', '2023-12-09 13:57:29'),
-(32, 1, '登录成功', '127.0.0.1', 1, '2023-12-11 10:01:06', '2023-12-11 10:01:06'),
-(33, 1, '登录成功', '127.0.0.1', 1, '2023-12-18 11:25:55', '2023-12-18 11:25:55'),
-(34, 1, '登录成功', '127.0.0.1', 1, '2024-01-08 10:24:26', '2024-01-08 10:24:26'),
-(35, 1, '登录成功', '127.0.0.1', 1, '2024-02-21 10:20:27', '2024-02-21 10:20:27'),
-(36, 1, '登录成功', '192.168.124.24', 1, '2024-04-08 17:29:25', '2024-04-08 17:29:25'),
-(37, 1, '登录成功', '192.168.124.24', 1, '2024-04-08 17:31:47', '2024-04-08 17:31:47'),
-(38, 1, '登录成功', '192.168.124.24', 1, '2024-04-09 10:03:38', '2024-04-09 10:03:38'),
-(39, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:39:07', '2024-04-09 11:39:07'),
-(40, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:39:22', '2024-04-09 11:39:22'),
-(41, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:40:54', '2024-04-09 11:40:54'),
-(42, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:42:30', '2024-04-09 11:42:30'),
-(43, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:42:47', '2024-04-09 11:42:47'),
-(44, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:43:38', '2024-04-09 11:43:38'),
-(45, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:44:03', '2024-04-09 11:44:03'),
-(46, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:44:07', '2024-04-09 11:44:07'),
-(47, 1, '登录失败，密码输入错误', '192.168.124.24', 2, '2024-04-09 11:44:11', '2024-04-09 11:44:11'),
-(48, 1, '登录失败，管理员已被锁定', '192.168.124.24', 2, '2024-04-09 11:44:14', '2024-04-09 11:44:14'),
-(49, 1, '登录失败，管理员已被锁定', '192.168.124.24', 1, '2024-04-09 11:48:16', '2024-04-09 11:48:16'),
-(50, 1, '登录成功', '192.168.124.24', 1, '2024-04-09 11:51:01', '2024-04-09 11:51:01');
+(54, 1, '登录成功', '192.168.124.24', 1, '2024-04-10 09:19:45', '2024-04-10 09:19:45');
 
 -- --------------------------------------------------------
 
@@ -201,16 +134,16 @@ INSERT INTO `easy_system_login_log` (`id`, `managerId`, `description`, `loginIp`
 CREATE TABLE `easy_system_menu` (
   `id` int(11) UNSIGNED NOT NULL COMMENT 'ID',
   `parentId` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父级ID',
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名称',
-  `icon` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图标',
-  `module` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '模块',
-  `controller` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '控制器',
-  `action` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '操作',
+  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单名称',
+  `icon` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单图标',
+  `module` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单模块',
+  `controller` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单控制器',
+  `action` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单操作',
   `params` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '请求参数',
   `type` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '菜单类型：1-菜单，2-按钮，3-外链',
   `link` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '外链地址',
   `target` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '打开方式：1-默认方式，2-当前窗口，3-新窗口',
-  `sort` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序',
+  `sort` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '菜单排序',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统菜单表';
@@ -284,7 +217,7 @@ CREATE TABLE `easy_system_setting` (
 --
 
 INSERT INTO `easy_system_setting` (`id`, `name`, `slogan`, `content`, `createTime`, `updateTime`) VALUES
-(1, 'EASYADMIN', 'PHP后台快速开发系统', '111', '2023-10-24 10:33:41', '2023-10-24 10:37:57');
+(1, 'EASYADMIN', 'PHP后台快速开发系统', '111', '2023-10-24 10:33:41', '2024-04-10 09:06:02');
 
 -- --------------------------------------------------------
 
@@ -392,13 +325,13 @@ ALTER TABLE `easy_manager_role`
 -- 使用表AUTO_INCREMENT `easy_system_log`
 --
 ALTER TABLE `easy_system_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=422;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=8;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_login_log`
 --
 ALTER TABLE `easy_system_login_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=51;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=55;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_menu`

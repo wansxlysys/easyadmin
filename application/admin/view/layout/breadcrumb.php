@@ -1,5 +1,7 @@
 <?php
-/** @noinspection PhpUndefinedVariableInspection */
+/**
+ * @noinspection PhpUndefinedVariableInspection
+ */
 $breadcrumbMenu = service('SystemMenu')->getBreadcrumbMenu($currentMenu['id']);
 ?>
 <div class="easy-breadcrumb">

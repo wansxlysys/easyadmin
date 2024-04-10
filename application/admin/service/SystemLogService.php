@@ -60,12 +60,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      */
     public function detailLog($id)
     {
-        $Wrapper = new Wrapper();
-
-        $Wrapper->addWhere('log.id', '=', $id);
-        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account', 'menu.name menuName']);
-
-        return $this->SystemLogRepository->getWithManager($Wrapper);
+        return $this->SystemLogRepository->getById($id);
     }
 
     /**
@@ -108,11 +103,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      */
     public function clearLog()
     {
-        $Wrapper = new Wrapper();
-
-        $Wrapper->addWhere('id', '>', 0);
-
-        return $this->SystemLogRepository->deleteRecord($Wrapper);
+        return false !== $this->SystemLogRepository->deleteByWhere([['id', '>', 0]]);
     }
 
     /**

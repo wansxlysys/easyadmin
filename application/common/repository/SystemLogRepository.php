@@ -53,22 +53,4 @@ class SystemLogRepository extends Model
             ->whereOr($Wrapper->getWhereOr())
             ->count();
     }
-
-    /**
-     * 获取关联管理员列表
-     * @param Wrapper $Wrapper
-     * @return mixed
-     * @throws Exception
-     */
-    public function getWithManager(Wrapper $Wrapper)
-    {
-        return Db::name(static::getName())
-            ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
-            ->where($Wrapper->getWhere())
-            ->whereOr($Wrapper->getWhereOr())
-            ->field($Wrapper->getField())
-            ->find();
-    }
 }

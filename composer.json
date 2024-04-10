@@ -31,7 +31,8 @@
         "ifsnop/mysqldump-php": "^2.12",
         "overtrue/wechat": "~5.0",
         "nesbot/carbon": "^2.68",
-        "guzzlehttp/guzzle": "^7.8"
+        "guzzlehttp/guzzle": "^7.8",
+        "overtrue/easy-sms": "^2.6"
     },
     "autoload": {
         "psr-4": {

@@ -21,11 +21,12 @@ class SystemLogRepository extends Model
      * @return mixed
      * @throws Exception
      */
-    public function getListWithManager(Wrapper $Wrapper)
+    public function getListWithInfo(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
-            ->join('Manager manager', 'log.managerId = manager.id')
+            ->join('Manager manager', 'manager.id = log.managerId')
+            ->join('SystemMenu menu', 'menu.id = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -42,11 +43,12 @@ class SystemLogRepository extends Model
      * @param Wrapper $Wrapper
      * @return mixed
      */
-    public function getTotalWithManager(Wrapper $Wrapper)
+    public function getTotalWithInfo(Wrapper $Wrapper)
     {
         return Db::name(static::getName())
             ->alias('log')
-            ->join('Manager manager', 'log.managerId = manager.id')
+            ->join('Manager manager', 'manager.id = log.managerId')
+            ->join('SystemMenu menu', 'menu.id = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();
@@ -62,20 +64,11 @@ class SystemLogRepository extends Model
     {
         return Db::name(static::getName())
             ->alias('log')
-            ->join('Manager manager', 'log.managerId = manager.id')
+            ->join('Manager manager', 'manager.id = log.managerId')
+            ->join('SystemMenu menu', 'menu.id = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())
             ->find();
-    }
-
-    /**
-     * 清空全部
-     * @return mixed
-     * @throws Exception
-     */
-    public function clearLog()
-    {
-        return false !== Db::name(static::getName())->where('id', '>', 0)->delete();
     }
 }

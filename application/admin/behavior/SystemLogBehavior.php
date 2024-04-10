@@ -29,7 +29,7 @@ class SystemLogBehavior
 
                 $SystemLogService = new SystemLogService();
 
-                $SystemLogService->writeLog("系统自动记录：{$responseData['msg']}", $SystemLogService->translateCode($responseData['code']));
+                $SystemLogService->writeLog($responseData['msg'], $SystemLogService->translateCode($responseData['code']));
             }
         }
     }

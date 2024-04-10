@@ -121,7 +121,7 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="easy-user-login-icon layui-icon layui-icon-password" for="password"></label>
-                    <input type="password" name="password" id="password" lay-verify="required" placeholder="密码" class="layui-input">
+                    <input type="password" name="password" id="password" lay-verify="required" autocomplete="off" placeholder="密码" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-row">
@@ -151,7 +151,6 @@
 
     layui.use(['easyModule'], function () {
 
-        const $ = layui.$;
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;
         const captchaImg = $("#captchaImg");

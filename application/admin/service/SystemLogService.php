@@ -44,10 +44,10 @@ class SystemLogService extends \app\common\service\SystemLogService
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
         $Wrapper->setOrder(['log.id' => 'desc']);
-        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
+        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account', 'menu.name menuName']);
 
-        $list  = $this->SystemLogRepository->getListWithManager($Wrapper);
-        $total = $this->SystemLogRepository->getTotalWithManager($Wrapper);
+        $list  = $this->SystemLogRepository->getListWithInfo($Wrapper);
+        $total = $this->SystemLogRepository->getTotalWithInfo($Wrapper);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -63,7 +63,7 @@ class SystemLogService extends \app\common\service\SystemLogService
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('log.id', '=', $id);
-        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
+        $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account', 'menu.name menuName']);
 
         return $this->SystemLogRepository->getWithManager($Wrapper);
     }
@@ -89,10 +89,10 @@ class SystemLogService extends \app\common\service\SystemLogService
         $params  = ArrayUtil::toJson(Request::post());
 
         $data = [
-            'url'         => Request::url(),
-            'requestIp'  => Request::ip(),
-            'menu'        => $currentMenu['name'],
-            'managerId'  => $manager['id'],
+            'requestIp'   => Request::ip(),
+            'requestUrl'  => Request::url(),
+            'managerId'   => $manager['id'],
+            'menuId'      => $currentMenu['id'],
             'params'      => $params,
             'description' => $description,
             'status'      => $status
@@ -108,7 +108,11 @@ class SystemLogService extends \app\common\service\SystemLogService
      */
     public function clearLog()
     {
-        return $this->SystemLogRepository->clearLog();
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('id', '>', 0);
+
+        return $this->SystemLogRepository->deleteRecord($Wrapper);
     }
 
     /**

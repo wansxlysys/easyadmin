@@ -22,16 +22,8 @@
                     <div class="easy-info-grid-right">{$log.account}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
-                    <div class="easy-info-grid-left">登录IP：</div>
-                    <div class="easy-info-grid-right">{$log.requestIp}</div>
-                </div>
-                <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">操作菜单：</div>
-                    <div class="easy-info-grid-right">{$log.menu}</div>
-                </div>
-                <div class="easy-info-grid easy-info-grid-25">
-                    <div class="easy-info-grid-left">请求地址：</div>
-                    <div class="easy-info-grid-right">{$log.url}</div>
+                    <div class="easy-info-grid-right">{$log.menuName}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">操作状态：</div>
@@ -39,6 +31,14 @@
                         {eq name="$log.status" value="1"}<span class="layui-badge layui-bg-green">操作成功</span>{/eq}
                         {eq name="$log.status" value="2"}<span class="layui-badge">操作失败</span>{/eq}
                     </div>
+                </div>
+                <div class="easy-info-grid easy-info-grid-25">
+                    <div class="easy-info-grid-left">请求地址：</div>
+                    <div class="easy-info-grid-right">{$log.requestUrl}</div>
+                </div>
+                <div class="easy-info-grid easy-info-grid-25">
+                    <div class="easy-info-grid-left">请求IP：</div>
+                    <div class="easy-info-grid-right">{$log.requestIp}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">操作时间：</div>
@@ -62,7 +62,6 @@
 
 {block name="js"}
 <script>
-
     layui.use(['easyModule'], function () {
 
     });

@@ -23,6 +23,6 @@ class SystemUploadRepository extends Repository
      */
     public function getByMd5($md5)
     {
-        return Db::name(static::getName())->where('md5', $md5)->find();
+        return Db::name($this->getName())->where('md5', $md5)->find();
     }
 }

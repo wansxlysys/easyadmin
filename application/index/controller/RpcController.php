@@ -12,8 +12,8 @@ use think\response\Json;
 
 use easyadmin\rpc\RpcServer;
 
-use app\common\rpc\DemoClient;
-use app\common\rpc\DemoServer;
+use app\rpc\client\DemoClient;
+use app\rpc\server\DemoServer;
 
 class RpcController
 {

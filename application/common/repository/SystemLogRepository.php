@@ -23,7 +23,7 @@ class SystemLogRepository extends Repository
      */
     public function getListWithInfo(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('log')
             ->join('Manager manager', 'manager.id = log.managerId')
             ->join('SystemMenu menu', 'menu.id = log.menuId')
@@ -45,7 +45,7 @@ class SystemLogRepository extends Repository
      */
     public function getTotalWithInfo(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('log')
             ->join('Manager manager', 'manager.id = log.managerId')
             ->join('SystemMenu menu', 'menu.id = log.menuId')

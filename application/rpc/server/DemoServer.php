@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\rpc;
+namespace app\rpc\server;
 
 
 class DemoServer extends BaseServer

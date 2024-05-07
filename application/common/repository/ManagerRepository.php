@@ -23,7 +23,7 @@ class ManagerRepository extends Repository
      */
     public function getListWithRole(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('manager')
             ->join('ManagerRole role', 'role.id = manager.roleId')
             ->where($Wrapper->getWhere())
@@ -44,7 +44,7 @@ class ManagerRepository extends Repository
      */
     public function getTotalWithRole(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('manager')
             ->join('ManagerRole role', 'role.id = manager.roleId')
             ->where($Wrapper->getWhere())
@@ -60,7 +60,7 @@ class ManagerRepository extends Repository
      */
     public function getWithRole(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('manager')
             ->join('ManagerRole role', 'role.id = manager.roleId')
             ->where($Wrapper->getWhere())

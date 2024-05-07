@@ -23,7 +23,7 @@ class SystemLoginLogRepository extends Repository
      */
     public function getListWithManager(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('log')
             ->join('Manager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
@@ -44,7 +44,7 @@ class SystemLoginLogRepository extends Repository
      */
     public function getTotalWithManager(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->alias('log')
             ->join('Manager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())

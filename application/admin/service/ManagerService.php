@@ -6,15 +6,12 @@ namespace app\admin\service;
 
 use Throwable;
 
-use think\facade\Cache;
-
 use app\common\util\StringUtil;
 use app\common\enum\ManagerEnum;
 use app\common\repository\Wrapper;
 use app\common\util\EncryptionUtil;
 use app\common\helper\ManagerHelper;
 
-use app\admin\event\SystemLoginLogEvent;
 use app\common\exception\ServiceException;
 
 class ManagerService extends \app\common\service\ManagerService

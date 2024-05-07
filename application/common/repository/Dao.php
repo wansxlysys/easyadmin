@@ -30,7 +30,7 @@ abstract class Dao
      */
     public function getList(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -49,7 +49,7 @@ abstract class Dao
      */
     public function getTotal(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();
@@ -63,7 +63,7 @@ abstract class Dao
      */
     public function getAll(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())
@@ -81,7 +81,7 @@ abstract class Dao
      */
     public function getOne(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())
@@ -102,7 +102,7 @@ abstract class Dao
         $data['createTime'] = $dateTime;
         $data['updateTime'] = $dateTime;
 
-        return Db::name(static::getName())->insertGetId($data);
+        return Db::name($this->getName())->insertGetId($data);
     }
 
     /**
@@ -119,7 +119,7 @@ abstract class Dao
             $data['updateTime'] = $dateTime;
         }
 
-        return Db::name(static::getName())->insertAll($dataList);
+        return Db::name($this->getName())->insertAll($dataList);
     }
 
     /**
@@ -133,7 +133,7 @@ abstract class Dao
     {
         $data['updateTime'] = DateTimeUtil::dateTime();
 
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->update($data);
@@ -147,7 +147,7 @@ abstract class Dao
      */
     public function deleteRecord(Wrapper $Wrapper)
     {
-        return Db::name(static::getName())
+        return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->delete();

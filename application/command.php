@@ -9,6 +9,8 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
+use app\common\command\Backup;
+
 return [
-    'backup' => \app\common\command\Backup::class
+    'backup' => Backup::class
 ];

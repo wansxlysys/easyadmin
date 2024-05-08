@@ -24,10 +24,9 @@ class Permission extends TagLib
     public function tagAllow($tag, $content)
     {
         $menu      = $this->quotesVar($tag['menu']);
-        $condition = isset($tag['condition']) ? $tag['condition'] : 'and';
-        $condition = $this->quotesVar($condition);
+        $condition = $this->quotesVar($tag['condition'] ?? 'and');
 
-        $parse = '{if \think\facade\App::model("Manager", "helper")->checkAccessByMenuId(' . $menu . ', ' . $condition . ')}';
+        $parse = '{if \app\common\helper\ManagerHelper::checkAccessByMenuId(' . $menu . ', ' . $condition . ')}';
         $parse .= $content;
         $parse .= '{/if}';
 

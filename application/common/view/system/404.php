@@ -12,7 +12,7 @@
     <div class="content-r">
         <h1>404</h1>
         <p>抱歉，您访问的页面不存</p>
-        <button class="layui-btn">返回首页</button>
+        <a href="/" class="layui-btn">返回首页</a>
     </div>
 </div>
 <script src="<?php echo register_static('/admin/plugin/layui/layui.js'); ?>"></script>

@@ -81,10 +81,10 @@ class SystemMenuController extends AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $MenuValidate = new SystemMenuValidate();
+            $SystemMenuValidate = new SystemMenuValidate();
 
-            if (!$MenuValidate->scene('Create')->check($params)) {
-                $this->error($MenuValidate->getError());
+            if (!$SystemMenuValidate->scene('Create')->check($params)) {
+                $this->error($SystemMenuValidate->getError());
             }
 
             $result = $this->SystemMenuService->createMenu($params);
@@ -124,10 +124,10 @@ class SystemMenuController extends AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $MenuValidate = new SystemMenuValidate();
+            $SystemMenuValidate = new SystemMenuValidate();
 
-            if (!$MenuValidate->scene('Update')->check($params)) {
-                $this->error($MenuValidate->getError());
+            if (!$SystemMenuValidate->scene('Update')->check($params)) {
+                $this->error($SystemMenuValidate->getError());
             }
 
             $result = $this->SystemMenuService->updateMenu($params);
@@ -159,10 +159,10 @@ class SystemMenuController extends AdminController
                 'id' => $request->post('id')
             ];
 
-            $MenuValidate = new SystemMenuValidate();
+            $SystemMenuValidate = new SystemMenuValidate();
 
-            if (!$MenuValidate->scene('Delete')->check($params)) {
-                $this->error($MenuValidate->getError());
+            if (!$SystemMenuValidate->scene('Delete')->check($params)) {
+                $this->error($SystemMenuValidate->getError());
             }
 
             $result = $this->SystemMenuService->deleteMenu($params);
@@ -189,10 +189,10 @@ class SystemMenuController extends AdminController
                 'sort' => $request->post('sort'),
             ];
 
-            $MenuValidate = new SystemMenuValidate();
+            $SystemMenuValidate = new SystemMenuValidate();
 
-            if (!$MenuValidate->scene('Sort')->check($params)) {
-                $this->error($MenuValidate->getError());
+            if (!$SystemMenuValidate->scene('Sort')->check($params)) {
+                $this->error($SystemMenuValidate->getError());
             }
 
             $result = $this->SystemMenuService->sortMenu($params);

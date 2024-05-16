@@ -23,7 +23,6 @@ class LoginController extends CommonController
      */
     public function initialize()
     {
-        parent::initialize();
         if (ManagerHelper::isLogin()) {
             $this->redirect('admin/Index/index');
         }

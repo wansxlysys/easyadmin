@@ -76,10 +76,10 @@ class ManagerRoleController extends AdminController
                 'permission' => $request->post('permission'),
             ];
 
-            $RoleValidate = new ManagerRoleValidate();
+            $ManagerRoleValidate = new ManagerRoleValidate();
 
-            if (!$RoleValidate->scene('Create')->check($params)) {
-                $this->error($RoleValidate->getError());
+            if (!$ManagerRoleValidate->scene('Create')->check($params)) {
+                $this->error($ManagerRoleValidate->getError());
             }
 
             if (!$this->ManagerRoleService->createRole($params)) {
@@ -110,10 +110,10 @@ class ManagerRoleController extends AdminController
                 'permission' => $request->post('permission'),
             ];
 
-            $RoleValidate = new ManagerRoleValidate();
+            $ManagerRoleValidate = new ManagerRoleValidate();
 
-            if (!$RoleValidate->scene('Update')->check($params)) {
-                $this->error($RoleValidate->getError());
+            if (!$ManagerRoleValidate->scene('Update')->check($params)) {
+                $this->error($ManagerRoleValidate->getError());
             }
 
             if (!$this->ManagerRoleService->updateRole($params)) {
@@ -143,10 +143,10 @@ class ManagerRoleController extends AdminController
                 'id' => $request->post('id')
             ];
 
-            $RoleValidate = new ManagerRoleValidate();
+            $ManagerRoleValidate = new ManagerRoleValidate();
 
-            if (!$RoleValidate->scene('Delete')->check($params)) {
-                $this->error($RoleValidate->getError());
+            if (!$ManagerRoleValidate->scene('Delete')->check($params)) {
+                $this->error($ManagerRoleValidate->getError());
             }
 
             $result = $this->ManagerRoleService->deleteRole($params);

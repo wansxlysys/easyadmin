@@ -24,34 +24,20 @@ class IndexController extends AdminController
     protected $middleware = ['System'];
 
     /**
-     * 服务类
-     * @var SystemMenuService
-     */
-    protected $MenuService;
-
-    /**
-     * 初始化
-     * @throws Throwable
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->MenuService = new SystemMenuService();
-    }
-
-    /**
      * 首页
      * @return mixed
      * @throws Throwable
      */
     public function index_action()
     {
-        $menu    = $this->MenuService->getLeftMenu();
-        $manager = ManagerHelper::getManager();
+        $SystemMenuService = new SystemMenuService();
+
+        $manager  = ManagerHelper::getManager();
+        $menuTree = $SystemMenuService->getLeftMenu();
 
         return $this->fetch('', [
-            'menu'    => $menu,
-            'manager' => $manager
+            'manager'  => $manager,
+            'menuTree' => $menuTree
         ]);
     }
 
@@ -66,12 +52,11 @@ class IndexController extends AdminController
         if ($request->isAjax()) {
 
             $params = [
+                'id'       => ManagerHelper::getManagerId(),
                 'avatar'   => $request->post('avatar'),
                 'realName' => $request->post('realName'),
                 'password' => $request->post('password'),
             ];
-
-            $params['id'] = ManagerHelper::getManagerId();
 
             $ManagerValidate = new ManagerValidate();
 

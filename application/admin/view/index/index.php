@@ -48,7 +48,7 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-accordion>
-                {volist name="menu" id="menu1"}
+                {volist name="$menuTree" id="menu1"}
                 <li class="layui-nav-item {eq name='$menu1.id' value='75'}layui-nav-itemed{/eq}">
                     <a href="javascript:;" data-link="{$menu1.url}" data-target="{$menu1.target}">
                         <i class="fa fa-fw {$menu1.icon}"></i>

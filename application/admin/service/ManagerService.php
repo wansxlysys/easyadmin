@@ -87,14 +87,13 @@ class ManagerService extends \app\common\service\ManagerService
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
-        if (!$manager) {
-            throw new ServiceException('管理员不存在');
-        }
+        if ($manager) {
 
-        /**
-         * 格式化权限为数组
-         */
-        $manager['permission'] = StringUtil::toArray($manager['permission']);
+            /**
+             * 格式化权限为数组
+             */
+            $manager['permission'] = StringUtil::toArray($manager['permission']);
+        }
 
         return $manager;
     }

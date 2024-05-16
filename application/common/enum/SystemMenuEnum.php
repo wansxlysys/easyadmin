@@ -16,5 +16,5 @@ class SystemMenuEnum
     /**
      * 缓存标识
      */
-    const CURRENT_MENU = 'system.menu.current'; // 当前菜单
+    const CURRENT_MENU = 'system:menu:current'; // 当前菜单
 }

@@ -18,7 +18,7 @@ class ManagerHelper
      */
     public static function login($managerId)
     {
-        Session::set(ManagerEnum::SESSION_ID, $managerId);
+        Session::set(ManagerEnum::LOGIN_ID, $managerId);
     }
 
     /**
@@ -26,7 +26,7 @@ class ManagerHelper
      */
     public static function logout()
     {
-        Session::delete(ManagerEnum::SESSION_ID);
+        Session::delete(ManagerEnum::LOGIN_ID);
     }
 
     /**
@@ -35,7 +35,7 @@ class ManagerHelper
      */
     public static function getManagerId()
     {
-        return Session::get(ManagerEnum::SESSION_ID);
+        return Session::get(ManagerEnum::LOGIN_ID);
     }
 
     /**
@@ -44,7 +44,7 @@ class ManagerHelper
      */
     public static function isLogin()
     {
-        return Session::has(ManagerEnum::SESSION_ID);
+        return Session::has(ManagerEnum::LOGIN_ID);
     }
 
     /**
@@ -53,7 +53,7 @@ class ManagerHelper
      */
     public static function setManager($manager)
     {
-        StoreHelper::set(ManagerEnum::CONTAINER_MANAGER, $manager);
+        StoreHelper::set(ManagerEnum::LOGIN_MANAGER, $manager);
     }
 
     /**
@@ -62,7 +62,7 @@ class ManagerHelper
      */
     public static function getManager()
     {
-        return StoreHelper::get(ManagerEnum::CONTAINER_MANAGER);
+        return StoreHelper::get(ManagerEnum::LOGIN_MANAGER);
     }
 
     /**

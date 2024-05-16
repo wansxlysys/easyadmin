@@ -63,7 +63,7 @@ class LoginController extends CommonController
         $systemSetting = new SystemSettingService();
 
         return $this->fetch('', [
-            'systemSetting' => $systemSetting->getSetting()
+            'systemSetting' => $systemSetting->getSystemSetting()
         ]);
     }
 

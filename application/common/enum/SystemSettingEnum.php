@@ -14,5 +14,5 @@ class SystemSettingEnum
     /**
      * 缓存标识
      */
-    const CONTAINER_SETTING = 'system.setting'; // 系统设置
+    const SYSTEM_SETTING = 'system.setting'; // 系统设置
 }

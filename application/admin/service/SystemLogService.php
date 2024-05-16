@@ -11,8 +11,9 @@ use think\facade\Request;
 use app\common\util\ArrayUtil;
 use app\common\enum\ManagerEnum;
 use app\common\enum\SystemLogEnum;
-use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
+use app\common\helper\ManagerHelper;
+use app\common\helper\SystemMenuHelper;
 
 class SystemLogService extends \app\common\service\SystemLogService
 {
@@ -73,13 +74,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      */
     public function writeLog($description, $status)
     {
-        $MenuService = new SystemMenuService();
-
-        $currentMenu = $MenuService->getCurrentMenu();
-
-        if (!$currentMenu) {
-            return false;
-        }
+        $currentMenu = SystemMenuHelper::getCurrentMenu();
 
         $manager = ManagerHelper::getManager();
         $params  = ArrayUtil::toJson(Request::post());
@@ -90,8 +85,8 @@ class SystemLogService extends \app\common\service\SystemLogService
             'managerId'   => $manager['id'],
             'menuId'      => $currentMenu['id'],
             'params'      => $params,
-            'description' => $description,
-            'status'      => $status
+            'status'      => $status,
+            'description' => $description
         ];
 
         return $this->SystemLogRepository->createRecord($data);

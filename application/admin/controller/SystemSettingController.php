@@ -57,7 +57,7 @@ class SystemSettingController extends AdminController
                 $this->error($SystemSettingValidate->getError());
             }
 
-            $result = $this->SystemSettingService->setSetting($params);
+            $result = $this->SystemSettingService->setSystemSetting($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -66,7 +66,7 @@ class SystemSettingController extends AdminController
             $this->success('修改成功');
         }
 
-        $setting = $this->SystemSettingService->getSetting();
+        $setting = $this->SystemSettingService->getSystemSetting();
 
         return $this->fetch('', [
             'setting' => $setting
@@ -94,7 +94,7 @@ class SystemSettingController extends AdminController
                 $this->error($SystemSettingValidate->getError());
             }
 
-            $result = $this->SystemSettingService->setSetting($params);
+            $result = $this->SystemSettingService->setSystemSetting($params);
 
             if (!$result) {
                 $this->error('修改失败');
@@ -103,7 +103,7 @@ class SystemSettingController extends AdminController
             $this->success('修改成功');
         }
 
-        $setting = $this->SystemSettingService->getSetting();
+        $setting = $this->SystemSettingService->getSystemSetting();
 
         return $this->fetch('', [
             'setting' => $setting

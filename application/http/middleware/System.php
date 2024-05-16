@@ -9,10 +9,8 @@ use Throwable;
 
 use traits\controller\Jump;
 
-use app\admin\service\ManagerService;
-use app\admin\service\SystemMenuService;
-
 use app\common\helper\ManagerHelper;
+use app\common\helper\SystemMenuHelper;
 
 class System
 {
@@ -31,7 +29,7 @@ class System
     public function handle($request, Closure $next)
     {
         $this->checkLogin();
-        $this->checkData();
+        $this->checkMenu();
         $this->checkAuth();
         $this->checkDisabled();
 
@@ -49,14 +47,16 @@ class System
     }
 
     /**
-     * 注册变量
+     * 检测菜单
      * @throws Throwable
      */
-    public function checkData()
+    public function checkMenu()
     {
-        $ManagerService = new ManagerService();
+        $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        ManagerHelper::setManager($ManagerService->getManager(ManagerHelper::getManagerId()));
+        if (!$currentMenu) {
+            $this->error('系统菜单不存在');
+        }
     }
 
     /**
@@ -65,8 +65,7 @@ class System
      */
     public function checkAuth()
     {
-        $MenuService = new SystemMenuService();
-        $currentMenu = $MenuService->getCurrentMenu();
+        $currentMenu = SystemMenuHelper::getCurrentMenu();
 
         if (!ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
             $this->error('您的账号未授权访问');

@@ -14,7 +14,7 @@ class SystemSettingHelper
      */
     public static function setSystemSetting($systemSetting)
     {
-        StoreHelper::set(SystemSettingEnum::CONTAINER_SETTING, $systemSetting);
+        StoreHelper::set(SystemSettingEnum::SYSTEM_SETTING, $systemSetting);
     }
 
     /**
@@ -23,6 +23,6 @@ class SystemSettingHelper
      */
     public static function getSystemSetting()
     {
-        return StoreHelper::get(SystemSettingEnum::CONTAINER_SETTING);
+        return StoreHelper::get(SystemSettingEnum::SYSTEM_SETTING);
     }
 }

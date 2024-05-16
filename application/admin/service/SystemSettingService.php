@@ -15,7 +15,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
      * @return mixed
      * @throws Throwable
      */
-    public function getSetting()
+    public function getSystemSetting()
     {
         return $this->SystemSettingRepository->getById(SystemSettingEnum::ID);
     }
@@ -26,7 +26,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
      * @return bool
      * @throws Throwable
      */
-    public function setSetting(array $params)
+    public function setSystemSetting(array $params)
     {
         return $this->SystemSettingRepository->updateById(SystemSettingEnum::ID, $params);
     }

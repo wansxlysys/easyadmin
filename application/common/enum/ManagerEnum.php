@@ -14,12 +14,12 @@ class ManagerEnum
     /**
      * 缓存标识
      */
-    const SESSION_ID = 'system.id'; // 缓存ID
+    const LOGIN_ID = 'system.manager.id'; // 缓存ID
 
     /**
      * 缓存标识
      */
-    const CONTAINER_MANAGER = 'system.manager'; // 管理员
+    const LOGIN_MANAGER = 'system.manager'; // 管理员
 
     /**
      * 登录错误次数锁定

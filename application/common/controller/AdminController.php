@@ -8,10 +8,13 @@ use Throwable;
 
 use think\facade\Hook;
 
+use app\admin\service\ManagerService;
 use app\admin\service\SystemMenuService;
 use app\admin\behavior\SystemLogBehavior;
 use app\admin\service\SystemSettingService;
 
+use app\common\helper\ManagerHelper;
+use app\common\helper\SystemMenuHelper;
 use app\common\helper\SystemSettingHelper;
 
 class AdminController extends CommonController
@@ -22,22 +25,19 @@ class AdminController extends CommonController
      */
     public function initialize()
     {
+        $ManagerService       = new ManagerService();
         $SystemMenuService    = new SystemMenuService();
         $SystemSettingService = new SystemSettingService();
 
+        $manager       = $ManagerService->getManager();
         $currentMenu   = $SystemMenuService->getCurrentMenu();
-        $systemSetting = $SystemSettingService->getSetting();
+        $systemSetting = $SystemSettingService->getSystemSetting();
 
         /**
-         * 每个url必须设定一个菜单
+         * 设置缓存
          */
-        if (empty($currentMenu)) {
-            $this->error('系统菜单不存在');
-        }
-
-        /**
-         * 设置系统设置到缓存
-         */
+        ManagerHelper::setManager($manager);
+        SystemMenuHelper::setCurrentMenu($currentMenu);
         SystemSettingHelper::setSystemSetting($systemSetting);
 
         if ($this->request->isAjax()) {
@@ -52,6 +52,7 @@ class AdminController extends CommonController
             /**
              * 初始化视图变量
              */
+            $this->assign('manager', $manager);
             $this->assign('currentMenu', $currentMenu);
             $this->assign('systemSetting', $systemSetting);
         }

@@ -70,11 +70,10 @@ class ManagerService extends \app\common\service\ManagerService
 
     /**
      * 获取管理员
-     * @param $id
      * @return array
      * @throws Throwable
      */
-    public function getManager($id)
+    public function getManager()
     {
         $Wrapper = new Wrapper();
 
@@ -84,7 +83,7 @@ class ManagerService extends \app\common\service\ManagerService
         ];
 
         $Wrapper->setField($field);
-        $Wrapper->addWhere('manager.id', '=', $id);
+        $Wrapper->addWhere('manager.id', '=', ManagerHelper::getManagerId());
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 

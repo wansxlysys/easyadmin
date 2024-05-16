@@ -4,7 +4,7 @@
 namespace app\common\enum;
 
 
-class MenuEnum
+class SystemMenuEnum
 {
     /**
      * 菜单类型
@@ -16,5 +16,5 @@ class MenuEnum
     /**
      * 缓存标识
      */
-    const CONTAINER_MENU = 'system.menu';
+    const CURRENT_MENU = 'system.menu.current'; // 当前菜单
 }

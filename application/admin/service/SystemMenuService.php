@@ -8,11 +8,10 @@ use Throwable;
 
 use think\facade\Request;
 
-use app\common\enum\MenuEnum;
 use app\common\util\ArrayUtil;
 use app\common\util\TreeArrayUtil;
+use app\common\enum\SystemMenuEnum;
 use app\common\helper\ManagerHelper;
-use app\common\helper\StoreHelper;
 use app\common\repository\Wrapper;
 
 class SystemMenuService extends \app\common\service\SystemMenuService
@@ -70,21 +69,13 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     public function getCurrentMenu()
     {
-        if (StoreHelper::has(MenuEnum::CONTAINER_MENU)) {
-            return StoreHelper::get(MenuEnum::CONTAINER_MENU);
-        }
-
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('module', '=', Request::module());
         $Wrapper->addWhere('controller', '=', Request::controller());
         $Wrapper->addWhere('action', '=', Request::action());
 
-        $currentMenu = $this->SystemMenuRepository->getOne($Wrapper);
-
-        StoreHelper::set(MenuEnum::CONTAINER_MENU, $currentMenu);
-
-        return $currentMenu;
+        return $this->SystemMenuRepository->getOne($Wrapper);
     }
 
     /**
@@ -185,7 +176,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
         /**
          * 如果不是外链则清空链接地址
          */
-        if ($params['type'] != MenuEnum::TYPE_LINK) {
+        if ($params['type'] != SystemMenuEnum::TYPE_LINK) {
             $params['link'] = '';
         }
 
@@ -213,7 +204,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
      */
     protected function buildUrl($menu)
     {
-        if ($menu['type'] == MenuEnum::TYPE_LINK) {
+        if ($menu['type'] == SystemMenuEnum::TYPE_LINK) {
             return $menu['link'];
         }
 

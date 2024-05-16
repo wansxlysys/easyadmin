@@ -32,11 +32,9 @@ class IndexController extends AdminController
     {
         $SystemMenuService = new SystemMenuService();
 
-        $manager  = ManagerHelper::getManager();
         $menuTree = $SystemMenuService->getLeftMenu();
 
         return $this->fetch('', [
-            'manager'  => $manager,
             'menuTree' => $menuTree
         ]);
     }

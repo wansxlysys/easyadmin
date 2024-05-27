@@ -10,8 +10,7 @@ use think\Request;
 use think\facade\Config;
 use think\response\Json;
 
-use easyadmin\rpc\RpcServer;
-
+use app\rpc\RpcServer;
 use app\rpc\client\DemoClient;
 use app\rpc\server\DemoServer;
 

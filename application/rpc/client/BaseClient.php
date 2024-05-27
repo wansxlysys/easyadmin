@@ -8,7 +8,7 @@ use Throwable;
 
 use think\facade\Config;
 
-use easyadmin\rpc\RpcClient;
+use app\rpc\RpcClient;
 
 abstract class BaseClient
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace easyadmin\rpc;
+namespace app\rpc;
 
 
 use RuntimeException;
@@ -129,7 +129,7 @@ class RpcServer
     public function dispatch()
     {
         if ($this->rpckey != $this->reqkey) {
-            throw new RuntimeException('rpckey error');
+            throw new RuntimeException('reqkey error');
         }
 
         if (!isset($this->server[$this->target])) {

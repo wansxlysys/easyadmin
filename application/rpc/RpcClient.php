@@ -1,11 +1,12 @@
 <?php
 
 
-namespace easyadmin\rpc;
+namespace app\rpc;
 
 
 use Throwable;
 use RuntimeException;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 

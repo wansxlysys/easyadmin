@@ -30,9 +30,9 @@
         "endroid/qr-code": "3.9.6",
         "ifsnop/mysqldump-php": "^2.12",
         "overtrue/wechat": "~5.0",
+        "overtrue/easy-sms": "^2.6",
         "nesbot/carbon": "^2.68",
-        "guzzlehttp/guzzle": "^7.8",
-        "overtrue/easy-sms": "^2.6"
+        "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": {
         "psr-4": {

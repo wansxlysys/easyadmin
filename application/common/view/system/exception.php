@@ -12,7 +12,7 @@
     <div class="content-r">
         <h1>500</h1>
         <p>抱歉，服务器出错了</p>
-        <button class="layui-btn">返回首页</button>
+        <a class="layui-btn" href="/">返回首页</a>
     </div>
 </div>
 <script src="<?php echo register_static('/admin/plugin/layui/layui.js'); ?>"></script>

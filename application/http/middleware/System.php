@@ -31,6 +31,8 @@ class System
         $this->checkLogin();
         $this->checkMenu();
         $this->checkAuth();
+        $this->checkValid();
+        $this->checkDelete();
         $this->checkDisabled();
 
         return $next($request);
@@ -70,6 +72,38 @@ class System
         if (!ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
             $this->error('您的账号未授权访问');
         }
+    }
+
+    /**
+     * 检测是否失效
+     * @return bool|void
+     */
+    public function checkValid()
+    {
+        $manager = ManagerHelper::getManager();
+
+        if (ManagerHelper::verify($manager['account'], $manager['password'])) {
+            return true;
+        }
+
+        ManagerHelper::logout();
+
+        $this->error('登录失效', 'admin/login/login');
+    }
+
+    /**
+     * 检测账号是否被禁用
+     * @return bool|void
+     */
+    public function checkDelete()
+    {
+        if (!ManagerHelper::isDelete()) {
+            return true;
+        }
+
+        ManagerHelper::logout();
+
+        $this->error('账号已删除', 'admin/login/login');
     }
 
     /**

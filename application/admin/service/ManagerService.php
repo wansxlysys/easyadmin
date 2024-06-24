@@ -7,9 +7,12 @@ namespace app\admin\service;
 use Throwable;
 
 use app\common\util\StringUtil;
+use app\common\util\DateTimeUtil;
+use app\common\util\EncryptionUtil;
+
+use app\common\enum\DeleteEnum;
 use app\common\enum\ManagerEnum;
 use app\common\repository\Wrapper;
-use app\common\util\EncryptionUtil;
 use app\common\helper\ManagerHelper;
 use app\common\exception\ServiceException;
 
@@ -41,9 +44,11 @@ class ManagerService extends \app\common\service\ManagerService
             $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
+        $Wrapper->addWhere('manager.isDelete', '=', DeleteEnum::DELETE_NOT);
+
         $field = [
             'manager.id', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
-            'manager.loginTime', 'role.name role_name'
+            'manager.loginTime', 'role.name roleName'
         ];
 
         $Wrapper->setField($field);
@@ -77,12 +82,11 @@ class ManagerService extends \app\common\service\ManagerService
     {
         $Wrapper = new Wrapper();
 
-        $field = [
-            'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account', 'manager.account',
-            'manager.status', 'role.identify', 'permission',
-        ];
+        $Wrapper->setField([
+            'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account',
+            'manager.password', 'manager.status', 'manager.isDelete', 'role.identify', 'permission',
+        ]);
 
-        $Wrapper->setField($field);
         $Wrapper->addWhere('manager.id', '=', ManagerHelper::getManagerId());
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
@@ -124,6 +128,7 @@ class ManagerService extends \app\common\service\ManagerService
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('account', '=', $account);
+        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }
@@ -182,7 +187,7 @@ class ManagerService extends \app\common\service\ManagerService
             return $this->setMessage('删除失败，超级管理员禁止删除');
         }
 
-        return $this->ManagerRepository->deleteById($params['id']);
+        return $this->ManagerRepository->updateById($params['id'], ['isDelete' => DeleteEnum::DELETE_NOT]);
     }
 
     /**
@@ -205,7 +210,7 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 更新最后登录时间
          */
-        if (!$this->ManagerRepository->updateById($manager['id'], ['loginTime' => date('Y-m-d H:i:s')])) {
+        if (!$this->ManagerRepository->updateById($manager['id'], ['loginTime' => DateTimeUtil::dateTime()])) {
             return $this->setMessage('执行失败，登录时间更新失败');
         }
 
@@ -272,7 +277,7 @@ class ManagerService extends \app\common\service\ManagerService
         /**
          * 设置登录缓存
          */
-        ManagerHelper::login($manager['id']);
+        ManagerHelper::login($manager['id'], $manager['account'], $manager['password']);
 
         /**
          * 登录成功日志

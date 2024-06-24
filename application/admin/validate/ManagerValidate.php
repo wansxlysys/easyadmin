@@ -12,7 +12,7 @@ class ManagerValidate extends \app\common\validate\ManagerValidate
      */
     public function sceneLogin()
     {
-        return $this->only(['account', 'password', 'captcha'])->remove('account', 'unique');
+        return $this->only(['account', 'password', 'captcha'])->remove('account', 'single');
     }
 
     /**

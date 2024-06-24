@@ -14,7 +14,12 @@ class ManagerEnum
     /**
      * 缓存标识
      */
-    const LOGIN_ID = 'system:manager:id'; // 缓存ID
+    const SESSION_ID = 'system:manager:id'; // 缓存ID
+
+    /**
+     * session校验码标识
+     */
+    const SESSION_CODE = 'system:manager:verify'; // 校验码
 
     /**
      * 缓存标识

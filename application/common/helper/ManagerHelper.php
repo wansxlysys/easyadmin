@@ -7,6 +7,9 @@ namespace app\common\helper;
 use think\facade\Session;
 
 use app\common\util\StringUtil;
+use app\common\util\EncryptionUtil;
+
+use app\common\enum\DeleteEnum;
 use app\common\enum\ManagerEnum;
 use app\common\enum\ManagerRoleEnum;
 
@@ -15,10 +18,15 @@ class ManagerHelper
     /**
      * 设置登录信息
      * @param $managerId
+     * @param $account
+     * @param $password
      */
-    public static function login($managerId)
+    public static function login($managerId, $account, $password)
     {
-        Session::set(ManagerEnum::LOGIN_ID, $managerId);
+        $verifyCode = EncryptionUtil::encrypt($account . $password);
+
+        Session::set(ManagerEnum::SESSION_ID, $managerId);
+        Session::set(ManagerEnum::SESSION_CODE, $verifyCode);
     }
 
     /**
@@ -26,7 +34,18 @@ class ManagerHelper
      */
     public static function logout()
     {
-        Session::delete(ManagerEnum::LOGIN_ID);
+        Session::delete(ManagerEnum::SESSION_ID);
+    }
+
+    /**
+     * 验证
+     * @param $account
+     * @param $password
+     * @return bool
+     */
+    public static function verify($account, $password)
+    {
+        return Session::get(ManagerEnum::SESSION_CODE) == EncryptionUtil::encrypt($account . $password);
     }
 
     /**
@@ -35,7 +54,7 @@ class ManagerHelper
      */
     public static function getManagerId()
     {
-        return Session::get(ManagerEnum::LOGIN_ID);
+        return Session::get(ManagerEnum::SESSION_ID);
     }
 
     /**
@@ -44,7 +63,7 @@ class ManagerHelper
      */
     public static function isLogin()
     {
-        return Session::has(ManagerEnum::LOGIN_ID);
+        return Session::has(ManagerEnum::SESSION_ID);
     }
 
     /**
@@ -108,6 +127,15 @@ class ManagerHelper
     public static function isDisabled()
     {
         return static::getManager()['status'] == ManagerEnum::STATUS_DISABLED;
+    }
+
+    /**
+     * 检测账号是否被删除
+     * @return bool
+     */
+    public static function isDelete()
+    {
+        return static::getManager()['isDelete'] == DeleteEnum::DELETE_YES;
     }
 
     /**

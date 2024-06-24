@@ -103,7 +103,7 @@
                 {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
                 {title: '管理员账号', field: 'account', width: 240},
-                {title: '管理员角色', field: 'role_name', width: 240},
+                {title: '管理员角色', field: 'roleName', width: 240},
                 {title: '管理员姓名', field: 'realName'},
                 {title: '状态', field: 'status', width: 100, templet: "#status"},
                 {title: '登录时间', field: 'loginTime', width: 160},

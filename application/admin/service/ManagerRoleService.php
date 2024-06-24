@@ -6,7 +6,9 @@ namespace app\admin\service;
 
 use Throwable;
 
+use app\common\enum\DeleteEnum;
 use app\common\enum\ManagerRoleEnum;
+
 use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
 
@@ -25,6 +27,8 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         if (!empty($params['name'])) {
             $Wrapper->addWhere('name', 'LIKE', $params['name'] . '%');
         }
+
+        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -49,6 +53,8 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         if (ManagerHelper::isNotSuper()) {
             $Wrapper->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
         }
+
+        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
 
         $Wrapper->addOrder('sort', 'asc');
 
@@ -89,7 +95,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
             return $this->setMessage('禁止删除，超级管理员角色');
         }
 
-        return $this->ManagerRoleRepository->deleteById($params['id']);
+        return $this->ManagerRoleRepository->updateById($params['id'], ['isDelete' => DeleteEnum::DELETE_YES]);
     }
 
     /**

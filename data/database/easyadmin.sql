@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2024-04-10 09:22:05
+-- 生成日期： 2024-06-24 15:08:02
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.0.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `easyadmin`
+-- 数据库： `easyadmin_v4`
 --
 
 -- --------------------------------------------------------
@@ -36,6 +36,7 @@ CREATE TABLE `easy_manager` (
   `account` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员账号',
   `password` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员密码',
   `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '管理员状态：1-正常，2-禁用，3-锁定',
+  `isDelete` tinyint(1) UNSIGNED NOT NULL DEFAULT '2' COMMENT '是否删除：1-是，2-否',
   `loginError` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '失败次数',
   `loginTime` datetime DEFAULT NULL COMMENT '登录时间',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
@@ -46,9 +47,9 @@ CREATE TABLE `easy_manager` (
 -- 转存表中的数据 `easy_manager`
 --
 
-INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `loginError`, `loginTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 0, '2024-04-10 09:19:45', '2022-11-06 14:29:39', '2024-04-10 09:19:45'),
-(10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 0, NULL, '2022-11-06 14:29:39', '2024-04-09 17:40:07');
+INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `isDelete`, `loginError`, `loginTime`, `createTime`, `updateTime`) VALUES
+(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 2, 0, '2024-06-24 15:05:17', '2022-11-06 14:29:39', '2024-06-24 15:05:17'),
+(10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 2, 0, NULL, '2022-11-06 14:29:39', '2024-04-09 17:40:07');
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,7 @@ CREATE TABLE `easy_manager_role` (
   `permission` text COLLATE utf8mb4_unicode_ci COMMENT '菜单权限',
   `remark` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '角色备注',
   `sort` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '角色排序',
+  `isDelete` tinyint(1) UNSIGNED NOT NULL DEFAULT '2' COMMENT '是否删除：1-是，2-否',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理员角色表';
@@ -71,10 +73,10 @@ CREATE TABLE `easy_manager_role` (
 -- 转存表中的数据 `easy_manager_role`
 --
 
-INSERT INTO `easy_manager_role` (`id`, `name`, `identify`, `permission`, `remark`, `sort`, `createTime`, `updateTime`) VALUES
-(1, '超级管理员', 'super', '75,128,141,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,158,143,144,147,137,136,138,148,149', '拥有最高权限', 0, '2022-11-06 14:28:28', '2024-03-28 15:45:03'),
-(5, '普通管理员', 'common', '75,128,141,158,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,143,144,147,137,136,138,148,149', '普通权限', 0, '2022-11-06 14:28:28', '2023-11-22 11:41:55'),
-(6, '部门管理员', 'department', '75,128,141,158,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,143,144,147,137,136,138,148,149', '部门管理员', 0, '2022-11-06 14:28:28', '2023-11-28 09:04:09');
+INSERT INTO `easy_manager_role` (`id`, `name`, `identify`, `permission`, `remark`, `sort`, `isDelete`, `createTime`, `updateTime`) VALUES
+(1, '超级管理员', 'super', '75,128,141,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,158,143,144,147,137,136,138,148,149', '拥有最高权限', 0, 2, '2022-11-06 14:28:28', '2024-03-28 15:45:03'),
+(5, '普通管理员', 'common', '75,128,141,158,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,143,144,147,137,136,138,148,149', '普通权限', 0, 2, '2022-11-06 14:28:28', '2024-06-24 15:07:35'),
+(6, '部门管理员', 'department', '75,128,141,158,64,1,99,114,121,122,150,151,152,72,73,81,85,86,74,82,83,84,145,2,69,76,80,79,134,142,157,153,154,155,156,143,144,147,137,136,138,148,149', '部门管理员', 0, 2, '2022-11-06 14:28:28', '2023-11-28 09:04:09');
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,42 @@ CREATE TABLE `easy_system_log` (
 --
 
 INSERT INTO `easy_system_log` (`id`, `menuId`, `managerId`, `description`, `requestIp`, `requestUrl`, `params`, `status`, `createTime`, `updateTime`) VALUES
-(7, 122, 1, '清空成功', '192.168.124.24', '/admin/system_log/clear.html', '[]', 1, '2024-04-10 09:21:53', '2024-04-10 09:21:53');
+(7, 122, 1, '清空成功', '192.168.124.24', '/admin/system_log/clear.html', '[]', 1, '2024-04-10 09:21:53', '2024-04-10 09:21:53'),
+(8, 148, 1, '上传成功', '192.168.124.24', '/admin/manager/avatar.html', '[]', 1, '2024-04-10 09:45:37', '2024-04-10 09:45:37'),
+(9, 148, 1, '上传成功', '192.168.124.24', '/admin/manager/avatar.html', '[]', 1, '2024-04-10 09:45:47', '2024-04-10 09:45:47'),
+(10, 99, 1, '修改成功', '192.168.124.24', '/admin/system_setting/config.html', '{\"content\":\"111\"}', 1, '2024-04-10 09:47:42', '2024-04-10 09:47:42'),
+(11, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:52:58', '2024-05-16 09:52:58'),
+(12, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:00', '2024-05-16 09:53:00'),
+(13, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:02', '2024-05-16 09:53:02'),
+(14, 150, 1, '获取成功', '192.168.124.24', '/admin/system_login_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:06', '2024-05-16 09:53:06'),
+(15, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:06', '2024-05-16 09:53:06'),
+(16, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:16', '2024-05-16 09:53:16'),
+(17, 74, 1, '获取成功', '192.168.124.24', '/admin/manager_role/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:24', '2024-05-16 09:53:24'),
+(18, 147, 1, '获取成功', '192.168.124.24', '/admin/manager_role/get_all.html', '[]', 1, '2024-05-16 09:53:25', '2024-05-16 09:53:25'),
+(19, 73, 1, '获取成功', '192.168.124.24', '/admin/manager/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:26', '2024-05-16 09:53:26'),
+(20, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:27', '2024-05-16 09:53:27'),
+(21, 114, 1, '获取成功', '192.168.124.24', '/admin/system_log/index.html?page=1&limit=15', '[]', 1, '2024-05-16 09:53:33', '2024-05-16 09:53:33'),
+(22, 138, 1, '修改成功', '192.168.124.24', '/admin/index/profile.html', '{\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"123456\",\"id\":\"1\"}', 1, '2024-06-24 14:12:54', '2024-06-24 14:12:54'),
+(23, 138, 1, '修改成功', '192.168.124.24', '/admin/index/profile.html', '{\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"admin\",\"id\":\"1\"}', 1, '2024-06-24 14:13:12', '2024-06-24 14:13:12'),
+(24, 138, 1, '修改成功', '192.168.124.24', '/admin/index/profile.html', '{\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"admin\",\"id\":\"1\"}', 1, '2024-06-24 14:13:46', '2024-06-24 14:13:46'),
+(25, 148, 1, '上传成功', '192.168.124.24', '/admin/manager/avatar.html', '[]', 1, '2024-06-24 14:20:48', '2024-06-24 14:20:48'),
+(26, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:21:01', '2024-06-24 14:21:01'),
+(27, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:21:09', '2024-06-24 14:21:09'),
+(28, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:21:36', '2024-06-24 14:21:36'),
+(29, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:26:38', '2024-06-24 14:26:38'),
+(30, 81, 1, '姓名已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:28:40', '2024-06-24 14:28:40'),
+(31, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:28:58', '2024-06-24 14:28:58'),
+(32, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:29:04', '2024-06-24 14:29:04'),
+(33, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:29:11', '2024-06-24 14:29:11'),
+(34, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:30:55', '2024-06-24 14:30:55'),
+(35, 81, 1, 'account规则错误', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:53:03', '2024-06-24 14:53:03'),
+(36, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:53:23', '2024-06-24 14:53:23'),
+(37, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:53:36', '2024-06-24 14:53:36'),
+(38, 81, 1, '账号已存在', '192.168.124.24', '/admin/manager/create.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"admin\",\"account\":\"admin\",\"password\":\"admin\",\"status\":\"1\"}', 2, '2024-06-24 14:57:22', '2024-06-24 14:57:22'),
+(39, 85, 1, '账号已存在', '192.168.124.24', '/admin/manager/update.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"test\",\"password\":\"\",\"status\":\"1\",\"id\":\"1\"}', 2, '2024-06-24 14:57:54', '2024-06-24 14:57:54'),
+(40, 84, 1, '禁止删除，角色下存在管理员', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"1\"}', 2, '2024-06-24 15:07:29', '2024-06-24 15:07:29'),
+(41, 84, 1, '禁止删除，角色下存在管理员', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"6\"}', 2, '2024-06-24 15:07:32', '2024-06-24 15:07:32'),
+(42, 84, 1, '删除成功', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"5\"}', 1, '2024-06-24 15:07:35', '2024-06-24 15:07:35');
 
 -- --------------------------------------------------------
 
@@ -123,7 +160,18 @@ CREATE TABLE `easy_system_login_log` (
 --
 
 INSERT INTO `easy_system_login_log` (`id`, `managerId`, `description`, `loginIp`, `status`, `createTime`, `updateTime`) VALUES
-(54, 1, '登录成功', '192.168.124.24', 1, '2024-04-10 09:19:45', '2024-04-10 09:19:45');
+(54, 1, '登录成功', '192.168.124.24', 1, '2024-04-10 09:19:45', '2024-04-10 09:19:45'),
+(55, 1, '登录成功', '192.168.124.24', 1, '2024-05-16 10:04:41', '2024-05-16 10:04:41'),
+(56, 1, '登录成功', '192.168.124.24', 1, '2024-05-16 10:04:54', '2024-05-16 10:04:54'),
+(57, 1, '登录成功', '192.168.124.24', 1, '2024-05-16 10:20:45', '2024-05-16 10:20:45'),
+(58, 1, '登录成功', '192.168.124.24', 1, '2024-06-19 14:25:11', '2024-06-19 14:25:11'),
+(59, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 13:55:25', '2024-06-24 13:55:25'),
+(60, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:12:40', '2024-06-24 14:12:40'),
+(61, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:12:49', '2024-06-24 14:12:49'),
+(62, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:13:08', '2024-06-24 14:13:08'),
+(63, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:13:19', '2024-06-24 14:13:19'),
+(64, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:13:24', '2024-06-24 14:13:24'),
+(65, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 15:05:17', '2024-06-24 15:05:17');
 
 -- --------------------------------------------------------
 
@@ -217,7 +265,7 @@ CREATE TABLE `easy_system_setting` (
 --
 
 INSERT INTO `easy_system_setting` (`id`, `name`, `slogan`, `content`, `createTime`, `updateTime`) VALUES
-(1, 'EASYADMIN', 'PHP后台快速开发系统', '111', '2023-10-24 10:33:41', '2024-04-10 09:06:02');
+(1, 'EASYADMIN', 'PHP后台快速开发系统', '111', '2023-10-24 10:33:41', '2024-04-10 09:47:42');
 
 -- --------------------------------------------------------
 
@@ -241,7 +289,6 @@ CREATE TABLE `easy_system_upload` (
 --
 
 INSERT INTO `easy_system_upload` (`id`, `md5`, `name`, `size`, `ext`, `path`, `createTime`, `updateTime`) VALUES
-(1, '396814d705b2ceb75f487e5c63e9c6c4', '1.png', 6034, 'png', '/uploads/images/20230321/4caedcd42419e7f699c4434fd2b2dd89.png', '2023-03-21 15:47:06', '2023-10-20 13:52:16'),
 (2, '8ddf582f610c68b1729111fd86d05ec1', '1.jpg', 329748, 'jpg', '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '2023-10-24 10:00:52', '2023-10-24 10:00:52'),
 (3, '628eebd9a0247ae4e336dcf3423eed05', '6.jpg', 113905, 'jpg', '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '2023-10-24 10:07:44', '2023-10-24 10:07:44'),
 (4, 'ecacf72ba64171c4f64cea6e0c2e1be4', '1.jpg', 277066, 'jpg', '/upload/image/20231218/6ad96658aae1eef280fd761e0ba61ae2.jpg', '2023-12-18 14:55:14', '2023-12-18 14:55:14'),
@@ -254,7 +301,9 @@ INSERT INTO `easy_system_upload` (`id`, `md5`, `name`, `size`, `ext`, `path`, `c
 (12, '0c88d36ef4909652bdb12ef9b4b325a7', '5.2abb0bf1.mp4', 970263, 'mp4', '/upload/video/20240408/edcfe3f3084fe1cc76c3df9144b0a56c.mp4', '2024-04-08 17:03:38', '2024-04-08 17:03:38'),
 (13, '74337e48216f38be269a170264dabda5', 'test.mp3', 3856713, 'mp3', '/upload/audio/20240408/59bf95117cd614dbf94b3498adf5133f.mp3', '2024-04-08 17:09:56', '2024-04-08 17:09:56'),
 (15, '80c2c41f3a2799654cda00b82db30638', '2fc7d7ee5554e8f4e83abde52ab4021.jpg', 2094067, 'jpg', '/upload/image/20240409/17f4673180f6bb655deebd941dc4e755.jpg', '2024-04-09 11:54:49', '2024-04-09 11:54:49'),
-(16, '26ae9bea6b90e2285fda78d4fe256610', 'test.zip', 8179364, 'zip', '/upload/file/20240409/26ae9bea6b90e2285fda78d4fe256610.zip', '2024-04-09 14:09:29', '2024-04-09 14:09:29');
+(16, '26ae9bea6b90e2285fda78d4fe256610', 'test.zip', 8179364, 'zip', '/upload/file/20240409/26ae9bea6b90e2285fda78d4fe256610.zip', '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
+(17, '396814d705b2ceb75f487e5c63e9c6c4', '1.png', 6034, 'png', '/upload/image/20240410/f582520d44d7ae0ceb798fb588ab3428.png', '2024-04-10 09:45:37', '2024-04-10 09:45:37'),
+(18, '9853d6db42392f5bedd2b7fa8a396c4f', '1.png', 3310, 'png', '/upload/image/20240410/7d1aaeb4627793f5366c84fa8f0adf8a.png', '2024-04-10 09:46:43', '2024-04-10 09:46:43');
 
 --
 -- 转储表的索引
@@ -325,13 +374,13 @@ ALTER TABLE `easy_manager_role`
 -- 使用表AUTO_INCREMENT `easy_system_log`
 --
 ALTER TABLE `easy_system_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=43;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_login_log`
 --
 ALTER TABLE `easy_system_login_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=55;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=66;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_menu`
@@ -349,7 +398,7 @@ ALTER TABLE `easy_system_setting`
 -- 使用表AUTO_INCREMENT `easy_system_upload`
 --
 ALTER TABLE `easy_system_upload`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

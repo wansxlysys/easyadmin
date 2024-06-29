@@ -70,7 +70,7 @@ class System
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
         if (!ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
-            $this->error('您的账号未授权访问');
+            $this->error('账号未授权访问');
         }
     }
 

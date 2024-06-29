@@ -7,6 +7,7 @@ namespace app\admin\controller;
 use Throwable;
 
 use think\Request;
+use think\response\Json;
 
 use app\admin\service\EditorService;
 
@@ -39,7 +40,7 @@ class EditorController extends AdminController
     /**
      * 百度富文本编辑器
      * @param Request $request
-     * @return false|string
+     * @return Json
      * @throws Throwable
      */
     public function ueditor_action(Request $request)

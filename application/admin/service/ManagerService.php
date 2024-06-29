@@ -84,7 +84,7 @@ class ManagerService extends \app\common\service\ManagerService
 
         $Wrapper->setField([
             'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account',
-            'manager.password', 'manager.status', 'manager.isDelete', 'role.identify', 'permission',
+            'manager.password', 'manager.status', 'manager.isDelete', 'role.identify', 'role.permission',
         ]);
 
         $Wrapper->addWhere('manager.id', '=', ManagerHelper::getManagerId());

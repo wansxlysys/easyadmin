@@ -29,7 +29,6 @@
 <script src="{:register_static('/admin/plugin/moment/locale/zh-cn.js')}"></script>
 <script src="{:register_static('/admin/plugin/split/split.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/ztree/js/jquery.ztree.all.min.js')}"></script>
-<script src="{:register_static('/admin/plugin/base64/base64.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/fcup2/fcup.js')}"></script>
 
 <!--初始化JS-->

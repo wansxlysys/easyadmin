@@ -4,7 +4,7 @@
 namespace app\admin\service;
 
 
-use Throwable;
+use Exception;
 
 use app\common\enum\ManagerEnum;
 use app\common\enum\SystemLoginLogEnum;
@@ -17,7 +17,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      * 获取列表和总数
      * @param array $params
      * @return array
-     * @throws Throwable
+     * @throws Exception
      */
     public function listLog(array $params = [])
     {
@@ -54,7 +54,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
      * 获取详情
      * @param $id
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function detailLog($id)
     {
@@ -64,7 +64,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
     /**
      * 清空日志
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function clearLog()
     {

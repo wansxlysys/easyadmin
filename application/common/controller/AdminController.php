@@ -4,7 +4,7 @@
 namespace app\common\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\facade\Hook;
 
@@ -21,7 +21,7 @@ class AdminController extends CommonController
 {
     /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {

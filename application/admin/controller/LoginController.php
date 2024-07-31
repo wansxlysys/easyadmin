@@ -4,9 +4,10 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
+use think\Response;
 use think\captcha\Captcha;
 
 use app\admin\service\ManagerService;
@@ -19,6 +20,18 @@ use app\common\controller\CommonController;
 class LoginController extends CommonController
 {
     /**
+     * 服务类
+     * @var ManagerService
+     */
+    protected $ManagerService;
+
+    /**
+     * 验证器
+     * @var ManagerValidate
+     */
+    protected $ManagerValidate;
+
+    /**
      * 初始化
      */
     public function initialize()
@@ -26,13 +39,16 @@ class LoginController extends CommonController
         if (ManagerHelper::isLogin()) {
             $this->redirect('admin/Index/index');
         }
+
+        $this->ManagerService  = new ManagerService();
+        $this->ManagerValidate = new ManagerValidate();
     }
 
     /**
      * 登录
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function login_action(Request $request)
     {
@@ -45,17 +61,8 @@ class LoginController extends CommonController
                 'captcha'  => $request->post('captcha'),
             ];
 
-            $ManagerValidate = new ManagerValidate();
-
-            if (!$ManagerValidate->scene('Login')->check($params)) {
-                $this->error($ManagerValidate->getError());
-            }
-
-            $ManagerService = new ManagerService();
-
-            if (!$ManagerService->login($params)) {
-                $this->error($ManagerService->getMessage());
-            }
+            $this->ManagerValidate->scene('Login')->verify($params);
+            $this->ManagerService->login($params);
 
             $this->success('登录成功', 'admin/Index/index');
         }
@@ -69,7 +76,7 @@ class LoginController extends CommonController
 
     /**
      * 验证码
-     * @return mixed
+     * @return Response
      */
     public function captcha_action()
     {

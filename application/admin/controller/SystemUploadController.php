@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 
@@ -28,7 +28,7 @@ class SystemUploadController extends AdminController
 
     /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {
@@ -39,7 +39,7 @@ class SystemUploadController extends AdminController
     /**
      * 文件上传
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function slice_action(Request $request)
     {
@@ -55,20 +55,14 @@ class SystemUploadController extends AdminController
                 'suffix' => $request->post('file_suffix'),
             ];
 
-            $result = $this->SystemUploadService->uploadSlice($params);
-
-            if (!$result) {
-                $this->error($this->SystemUploadService->getMessage());
-            }
-
-            $this->success('上传成功', '', $result);
+            $this->success('上传成功', '', $this->SystemUploadService->uploadSlice($params));
         }
     }
 
     /**
      * 文件检测
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function check_action(Request $request)
     {
@@ -91,17 +85,13 @@ class SystemUploadController extends AdminController
     /**
      * 文件上传
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function file_action(Request $request)
     {
         if ($request->isAjax()) {
 
             $file = $this->SystemUploadService->uploadFile($request->file('file'));
-
-            if (!$file) {
-                $this->error($this->SystemUploadService->getMessage());
-            }
 
             $this->success('上传成功', '', ['viewPath' => $file['viewPath']]);
         }
@@ -110,17 +100,13 @@ class SystemUploadController extends AdminController
     /**
      * 图片上传
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function image_action(Request $request)
     {
         if ($request->isAjax()) {
 
             $image = $this->SystemUploadService->uploadImage($request->file('image'));
-
-            if (!$image) {
-                $this->error($this->SystemUploadService->getMessage());
-            }
 
             $this->success('上传成功', '', ['viewPath' => $image['viewPath']]);
         }

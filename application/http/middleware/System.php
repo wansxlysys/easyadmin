@@ -5,7 +5,7 @@ namespace app\http\middleware;
 
 
 use Closure;
-use Throwable;
+use Exception;
 
 use traits\controller\Jump;
 
@@ -24,7 +24,7 @@ class System
      * @param $request
      * @param Closure $next
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function handle($request, Closure $next)
     {
@@ -50,7 +50,7 @@ class System
 
     /**
      * 检测菜单
-     * @throws Throwable
+     * @throws Exception
      */
     public function checkMenu()
     {
@@ -63,7 +63,7 @@ class System
 
     /**
      * 权限校验
-     * @throws Throwable
+     * @throws Exception
      */
     public function checkAuth()
     {

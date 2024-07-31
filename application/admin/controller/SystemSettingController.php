@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 
@@ -28,20 +28,27 @@ class SystemSettingController extends AdminController
     protected $SystemSettingService;
 
     /**
+     * 验证类
+     * @var SystemSettingValidate
+     */
+    protected $SystemSettingValidate;
+
+    /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {
         parent::initialize();
-        $this->SystemSettingService = new SystemSettingService();
+        $this->SystemSettingService  = new SystemSettingService();
+        $this->SystemSettingValidate = new SystemSettingValidate();
     }
 
     /**
      * 系统设置
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function config_action(Request $request)
     {
@@ -51,17 +58,8 @@ class SystemSettingController extends AdminController
                 'content' => $request->post('content'),
             ];
 
-            $SystemSettingValidate = new SystemSettingValidate();
-
-            if (!$SystemSettingValidate->scene('Config')->check($params)) {
-                $this->error($SystemSettingValidate->getError());
-            }
-
-            $result = $this->SystemSettingService->setSystemSetting($params);
-
-            if (!$result) {
-                $this->error('修改失败');
-            }
+            $this->SystemSettingValidate->scene('Config')->verify($params);
+            $this->SystemSettingService->setSystemSetting($params);
 
             $this->success('修改成功');
         }
@@ -77,7 +75,7 @@ class SystemSettingController extends AdminController
      * 全局设置
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function system_action(Request $request)
     {
@@ -88,17 +86,8 @@ class SystemSettingController extends AdminController
                 'slogan' => $request->post('slogan'),
             ];
 
-            $SystemSettingValidate = new SystemSettingValidate();
-
-            if (!$SystemSettingValidate->scene('System')->check($params)) {
-                $this->error($SystemSettingValidate->getError());
-            }
-
-            $result = $this->SystemSettingService->setSystemSetting($params);
-
-            if (!$result) {
-                $this->error('修改失败');
-            }
+            $this->SystemSettingValidate->scene('System')->verify($params);
+            $this->SystemSettingService->setSystemSetting($params);
 
             $this->success('修改成功');
         }

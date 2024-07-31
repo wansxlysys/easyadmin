@@ -45,7 +45,7 @@ abstract class Dao
     /**
      * 获取总数
      * @param Wrapper $Wrapper
-     * @return mixed
+     * @return integer
      */
     public function getTotal(Wrapper $Wrapper)
     {
@@ -93,7 +93,7 @@ abstract class Dao
     /**
      * 创建数据
      * @param array $data
-     * @return mixed
+     * @return integer
      */
     public function createRecord(array $data = [])
     {
@@ -108,7 +108,7 @@ abstract class Dao
     /**
      * 批量创建
      * @param array $dataList
-     * @return mixed
+     * @return integer
      */
     public function createAll(array $dataList = [])
     {

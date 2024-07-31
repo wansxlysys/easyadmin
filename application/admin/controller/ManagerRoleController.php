@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 
@@ -28,20 +28,27 @@ class ManagerRoleController extends AdminController
     protected $ManagerRoleService;
 
     /**
+     * 验证器
+     * @var ManagerRoleValidate
+     */
+    protected $ManagerRoleValidate;
+
+    /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerRoleService = new ManagerRoleService();
+        $this->ManagerRoleService  = new ManagerRoleService();
+        $this->ManagerRoleValidate = new ManagerRoleValidate();
     }
 
     /**
      * 首页
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function index_action(Request $request)
     {
@@ -63,7 +70,7 @@ class ManagerRoleController extends AdminController
      * 添加
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function create_action(Request $request)
     {
@@ -76,15 +83,8 @@ class ManagerRoleController extends AdminController
                 'permission' => $request->post('permission'),
             ];
 
-            $ManagerRoleValidate = new ManagerRoleValidate();
-
-            if (!$ManagerRoleValidate->scene('Create')->check($params)) {
-                $this->error($ManagerRoleValidate->getError());
-            }
-
-            if (!$this->ManagerRoleService->createRole($params)) {
-                $this->error('添加失败');
-            }
+            $this->ManagerRoleValidate->scene('Create')->verify($params);
+            $this->ManagerRoleService->createRole($params);
 
             $this->success('添加成功');
         }
@@ -96,7 +96,7 @@ class ManagerRoleController extends AdminController
      * 修改
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function update_action(Request $request)
     {
@@ -110,15 +110,8 @@ class ManagerRoleController extends AdminController
                 'permission' => $request->post('permission'),
             ];
 
-            $ManagerRoleValidate = new ManagerRoleValidate();
-
-            if (!$ManagerRoleValidate->scene('Update')->check($params)) {
-                $this->error($ManagerRoleValidate->getError());
-            }
-
-            if (!$this->ManagerRoleService->updateRole($params)) {
-                $this->error($this->ManagerRoleService->getMessage());
-            }
+            $this->ManagerRoleValidate->scene('Update')->verify($params);
+            $this->ManagerRoleService->updateRole($params);
 
             $this->success('修改成功');
         }
@@ -133,7 +126,7 @@ class ManagerRoleController extends AdminController
     /**
      * 删除
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function delete_action(Request $request)
     {
@@ -143,17 +136,8 @@ class ManagerRoleController extends AdminController
                 'id' => $request->post('id')
             ];
 
-            $ManagerRoleValidate = new ManagerRoleValidate();
-
-            if (!$ManagerRoleValidate->scene('Delete')->check($params)) {
-                $this->error($ManagerRoleValidate->getError());
-            }
-
-            $result = $this->ManagerRoleService->deleteRole($params);
-
-            if (!$result) {
-                $this->error($this->ManagerRoleService->getMessage());
-            }
+            $this->ManagerRoleValidate->scene('Delete')->verify($params);
+            $this->ManagerRoleService->deleteRole($params);
 
             $this->success('删除成功');
         }
@@ -162,7 +146,7 @@ class ManagerRoleController extends AdminController
     /**
      * 全部
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function get_all_action(Request $request)
     {

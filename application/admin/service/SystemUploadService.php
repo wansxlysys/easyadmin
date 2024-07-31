@@ -4,7 +4,8 @@
 namespace app\admin\service;
 
 
-use Throwable;
+use app\common\exception\ValidateException;
+use Exception;
 
 use think\File;
 use think\Validate;
@@ -16,10 +17,11 @@ class SystemUploadService extends \app\common\service\SystemUploadService
 {
     /**
      * 图片上传
-     * @param $image
+     * @param File $image
      * @param string $fileType
      * @return array|bool
-     * @throws Throwable
+     * @throws Exception
+     * @throws ValidateException
      */
     public function uploadImage(File $image, $fileType = 'image')
     {
@@ -40,7 +42,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
         $Validate = Validate::make($rule, $msg);
 
         if (!$Validate->check($params)) {
-            return $this->setMessage($Validate->getError());
+            throw new ValidateException($Validate->getError());
         }
 
         return $this->saveFile($image, $fileType);
@@ -48,10 +50,11 @@ class SystemUploadService extends \app\common\service\SystemUploadService
 
     /**
      * 视频上传
-     * @param $video
+     * @param File $video
      * @param string $fileType
      * @return array|bool
-     * @throws Throwable
+     * @throws Exception
+     * @throws ValidateException
      */
     public function uploadVideo(File $video, $fileType = 'video')
     {
@@ -72,7 +75,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
         $Validate = Validate::make($rule, $msg);
 
         if (!$Validate->check($params)) {
-            return $this->setMessage($Validate->getError());
+            throw new ValidateException($Validate->getError());
         }
 
         return $this->saveFile($video, $fileType);
@@ -80,10 +83,11 @@ class SystemUploadService extends \app\common\service\SystemUploadService
 
     /**
      * 音频上传
-     * @param $audio
+     * @param File $audio
      * @param string $fileType
      * @return array|bool
-     * @throws Throwable
+     * @throws Exception
+     * @throws ValidateException
      */
     public function uploadAudio(File $audio, $fileType = 'audio')
     {
@@ -104,7 +108,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
         $Validate = Validate::make($rule, $msg);
 
         if (!$Validate->check($params)) {
-            return $this->setMessage($Validate->getError());
+            throw new ValidateException($Validate->getError());
         }
 
         return $this->saveFile($audio, $fileType);
@@ -112,10 +116,11 @@ class SystemUploadService extends \app\common\service\SystemUploadService
 
     /**
      * 文件上传
-     * @param $file
+     * @param File $file
      * @param string $fileType
      * @return array|bool
-     * @throws Throwable
+     * @throws Exception
+     * @throws ValidateException
      */
     public function uploadFile(File $file, $fileType = 'file')
     {
@@ -136,7 +141,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
         $Validate = Validate::make($rule, $msg);
 
         if (!$Validate->check($params)) {
-            return $this->setMessage($Validate->getError());
+            throw new ValidateException($Validate->getError());
         }
 
         return $this->saveFile($file, $fileType);
@@ -146,8 +151,8 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * 文件上传
      * @param array $params
      * @param string $fileType
-     * @return mixed
-     * @throws Throwable
+     * @return array
+     * @throws Exception
      */
     public function uploadSlice(array $params, $fileType = 'file')
     {
@@ -166,7 +171,7 @@ class SystemUploadService extends \app\common\service\SystemUploadService
         $Validate = Validate::make($rule, $msg);
 
         if (!$Validate->check($params)) {
-            return $this->setMessage($Validate->getError());
+            throw new ValidateException($Validate->getError());
         }
 
         return $this->saveSlice($params, $fileType);

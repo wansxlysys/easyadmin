@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 
@@ -28,7 +28,7 @@ class SystemLogController extends AdminController
 
     /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {
@@ -40,7 +40,7 @@ class SystemLogController extends AdminController
      * 首页
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function index_action(Request $request)
     {
@@ -64,7 +64,7 @@ class SystemLogController extends AdminController
      * 详情
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function detail_action(Request $request)
     {
@@ -78,7 +78,7 @@ class SystemLogController extends AdminController
     /**
      * 清空
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function clear_action(Request $request)
     {

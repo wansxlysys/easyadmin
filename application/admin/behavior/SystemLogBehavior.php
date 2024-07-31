@@ -4,7 +4,7 @@
 namespace app\admin\behavior;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 use think\Response;
@@ -17,7 +17,7 @@ class SystemLogBehavior
      * 应用结束时执行
      * @param Request $request
      * @param Response $response
-     * @throws Throwable
+     * @throws Exception
      */
     public static function appEnd(Request $request, Response $response)
     {

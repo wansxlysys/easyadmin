@@ -4,7 +4,7 @@
 namespace app\common\command;
 
 
-use Throwable;
+use Exception;
 use think\facade\Env;
 use think\facade\Config;
 use think\console\Input;
@@ -48,8 +48,8 @@ class Backup extends Command
 
             $output->writeln("备份成功");
 
-        } catch (Throwable $throwable) {
-            $output->writeln("备份失败：{$throwable->getMessage()}");
+        } catch (Exception $Exception) {
+            $output->writeln("备份失败：{$Exception->getMessage()}");
         }
     }
 }

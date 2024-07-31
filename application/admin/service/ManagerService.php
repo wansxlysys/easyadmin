@@ -4,7 +4,7 @@
 namespace app\admin\service;
 
 
-use Throwable;
+use Exception;
 
 use app\common\util\StringUtil;
 use app\common\util\DateTimeUtil;
@@ -22,7 +22,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 获取列表
      * @param array $params
      * @return array
-     * @throws Throwable
+     * @throws Exception
      */
     public function listManager(array $params = [])
     {
@@ -66,7 +66,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过ID获取管理员
      * @param $id
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function getById($id)
     {
@@ -76,7 +76,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 获取管理员
      * @return array
-     * @throws Throwable
+     * @throws Exception
      */
     public function getManager()
     {
@@ -92,10 +92,6 @@ class ManagerService extends \app\common\service\ManagerService
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
         if ($manager) {
-
-            /**
-             * 格式化权限为数组
-             */
             $manager['permission'] = StringUtil::toArray($manager['permission']);
         }
 
@@ -106,13 +102,14 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过角色ID获取管理员列表
      * @param $roleId
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function getByRoleId($roleId)
     {
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('roleId', '=', $roleId);
+        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }
@@ -121,7 +118,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 通过账号查询
      * @param $account
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function getByAccount($account)
     {
@@ -136,8 +133,8 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 添加菜单
      * @param array $params
-     * @return mixed
-     * @throws Throwable
+     * @return integer
+     * @throws Exception
      */
     public function createManager(array $params)
     {
@@ -149,8 +146,8 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 通过ID更新数据
      * @param array $params
-     * @return bool
-     * @throws Throwable
+     * @return integer
+     * @throws Exception
      */
     public function updateManager(array $params)
     {
@@ -160,7 +157,7 @@ class ManagerService extends \app\common\service\ManagerService
         $manager = $this->getById($params['id']);
 
         if (empty($manager)) {
-            return $this->setMessage('修改失败，管理员不存在');
+            throw new ServiceException('修改失败，管理员不存在');
         }
 
         /**
@@ -178,13 +175,13 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 删除管理员
      * @param array $params
-     * @return mixed
-     * @throws Throwable
+     * @return integer
+     * @throws Exception
      */
     public function deleteManager(array $params)
     {
         if ($params['id'] == ManagerEnum::SUPER_ID) {
-            return $this->setMessage('删除失败，超级管理员禁止删除');
+            throw new ServiceException('删除失败，超级管理员禁止删除');
         }
 
         return $this->ManagerRepository->updateById($params['id'], ['isDelete' => DeleteEnum::DELETE_NOT]);
@@ -194,7 +191,7 @@ class ManagerService extends \app\common\service\ManagerService
      * 管理员登录
      * @param array $params
      * @return bool
-     * @throws Throwable
+     * @throws Exception
      */
     public function login(array $params)
     {
@@ -204,14 +201,14 @@ class ManagerService extends \app\common\service\ManagerService
          * 检测账号是否存在
          */
         if (!$manager) {
-            return $this->setMessage('登录失败，管理员不存在');
+            throw new ServiceException('登录失败，管理员不存在');
         }
 
         /**
          * 更新最后登录时间
          */
         if (!$this->ManagerRepository->updateById($manager['id'], ['loginTime' => DateTimeUtil::dateTime()])) {
-            return $this->setMessage('执行失败，登录时间更新失败');
+            throw new ServiceException('执行失败，登录时间更新失败');
         }
 
         $SystemLoginLogService = new SystemLoginLogService();
@@ -260,7 +257,7 @@ class ManagerService extends \app\common\service\ManagerService
                 throw new ServiceException('登录失败，密码输入错误');
             }
 
-        } catch (Throwable $Throwable) {
+        } catch (Exception $Exception) {
 
             /**
              * 登录失败日志
@@ -268,10 +265,10 @@ class ManagerService extends \app\common\service\ManagerService
             $SystemLoginLogService->loginError([
                 'loginIp'     => $params['loginIp'],
                 'managerId'   => $manager['id'],
-                'description' => $Throwable->getMessage(),
+                'description' => $Exception->getMessage(),
             ]);
 
-            return $this->setMessage($Throwable->getMessage());
+            throw new ServiceException($Exception->getMessage());
         }
 
         /**

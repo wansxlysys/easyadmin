@@ -4,10 +4,11 @@
 namespace app\admin\service;
 
 
-use Throwable;
+use Exception;
 
 use app\common\enum\DeleteEnum;
 use app\common\enum\ManagerRoleEnum;
+use app\common\exception\ServiceException;
 
 use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
@@ -18,7 +19,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 获取列表
      * @param array $params
      * @return array
-     * @throws Throwable
+     * @throws Exception
      */
     public function listRole(array $params = [])
     {
@@ -44,7 +45,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 获取全部角色
      * @param array $params
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function getAll(array $params = [])
     {
@@ -65,7 +66,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
      * 通过ID获取角色
      * @param $id
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function getById($id)
     {
@@ -75,15 +76,15 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 删除
      * @param $params
-     * @return bool
-     * @throws Throwable
+     * @return integer
+     * @throws Exception
      */
     public function deleteRole($params)
     {
         $ManagerService = new ManagerService();
 
         if ($ManagerService->getByRoleId($params['id'])) {
-            return $this->setMessage('禁止删除，角色下存在管理员');
+            throw new ServiceException('删除失败，角色下存在管理员');
         }
 
         /**
@@ -92,7 +93,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         $role = $this->ManagerRoleRepository->getById($params['id']);
 
         if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
-            return $this->setMessage('禁止删除，超级管理员角色');
+            throw new ServiceException('删除失败，禁止删除超管角色');
         }
 
         return $this->ManagerRoleRepository->updateById($params['id'], ['isDelete' => DeleteEnum::DELETE_YES]);
@@ -101,7 +102,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 创建
      * @param array $params
-     * @return mixed
+     * @return integer
      */
     public function createRole(array $params)
     {
@@ -111,8 +112,8 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 修改
      * @param array $params
-     * @return mixed
-     * @throws Throwable
+     * @return integer
+     * @throws Exception
      */
     public function updateRole(array $params)
     {

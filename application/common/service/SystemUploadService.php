@@ -4,7 +4,7 @@
 namespace app\common\service;
 
 
-use Throwable;
+use Exception;
 
 use think\File;
 
@@ -34,7 +34,7 @@ class SystemUploadService extends Service
      * @param File $file
      * @param $fileType
      * @return array|bool
-     * @throws Throwable
+     * @throws Exception
      */
     public function saveFile(File $file, $fileType)
     {
@@ -58,7 +58,7 @@ class SystemUploadService extends Service
         $fileInfo = $file->move(FileHelper::getSaveDir($fileType));
 
         if (!$fileInfo) {
-            return $this->setMessage('文件上传失败');
+            throw new ServiceException('文件上传失败');
         }
 
         /**
@@ -74,7 +74,7 @@ class SystemUploadService extends Service
         $fileData['ext']  = $fileInfo->getExtension();
 
         if (!$this->SystemUploadRepository->createRecord($fileData)) {
-            return $this->setMessage('文件保存失败');
+            throw new ServiceException('文件上传失败');
         }
 
         return ['viewPath' => $viewPath, 'savePath' => $savePath, 'fileName' => $fileData['name']];
@@ -85,7 +85,7 @@ class SystemUploadService extends Service
      * @param $fileInfo
      * @param $fileType
      * @return array|bool[]
-     * @throws Throwable
+     * @throws Exception
      */
     public function saveSlice($fileInfo, $fileType = 'slice')
     {
@@ -142,7 +142,7 @@ class SystemUploadService extends Service
      * 通过Md5获取文件
      * @param $md5
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function getFileByMd5($md5)
     {

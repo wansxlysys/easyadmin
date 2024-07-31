@@ -4,7 +4,7 @@
 namespace app\admin\service;
 
 
-use Throwable;
+use Exception;
 
 use think\facade\Request;
 
@@ -21,7 +21,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 获取列表
      * @param array $params
      * @return array
-     * @throws Throwable
+     * @throws Exception
      */
     public function listLog(array $params = [])
     {
@@ -58,7 +58,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 获取详情
      * @param $id
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function detailLog($id)
     {
@@ -70,7 +70,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * @param $description
      * @param $status
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function writeLog($description, $status)
     {
@@ -95,7 +95,7 @@ class SystemLogService extends \app\common\service\SystemLogService
     /**
      * 清空日志
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function clearLog()
     {

@@ -32,7 +32,8 @@
         "overtrue/wechat": "~5.0",
         "overtrue/easy-sms": "^2.6",
         "nesbot/carbon": "^2.68",
-        "guzzlehttp/guzzle": "^7.8"
+        "guzzlehttp/guzzle": "^7.8",
+        "keboola/csv": "^4.1"
     },
     "autoload": {
         "psr-4": {

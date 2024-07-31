@@ -80,7 +80,7 @@ class Repository extends Dao
      * 通过ID更新
      * @param $id
      * @param array $data
-     * @return bool
+     * @return integer
      * @throws Exception
      */
     public function updateById($id, array $data)
@@ -96,7 +96,7 @@ class Repository extends Dao
      * 通过条件更新
      * @param array $where
      * @param array $data
-     * @return bool
+     * @return integer
      * @throws Exception
      */
     public function updateByWhere(array $where, array $data)
@@ -111,7 +111,7 @@ class Repository extends Dao
     /**
      * 通过ID删除
      * @param $id
-     * @return bool
+     * @return integer
      * @throws Exception
      */
     public function deleteById($id)
@@ -126,7 +126,7 @@ class Repository extends Dao
     /**
      * 条件删除
      * @param array $where
-     * @return bool
+     * @return integer
      * @throws Exception
      */
     public function deleteByWhere(array $where)

@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 
@@ -28,20 +28,27 @@ class SystemMenuController extends AdminController
     protected $SystemMenuService;
 
     /**
+     * 验证器
+     * @var SystemMenuValidate
+     */
+    protected $SystemMenuValidate;
+
+    /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {
         parent::initialize();
-        $this->SystemMenuService = new SystemMenuService();
+        $this->SystemMenuService  = new SystemMenuService();
+        $this->SystemMenuValidate = new SystemMenuValidate();
     }
 
     /**
      * 首页
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function index_action(Request $request)
     {
@@ -61,7 +68,7 @@ class SystemMenuController extends AdminController
      * 添加
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function create_action(Request $request)
     {
@@ -81,17 +88,8 @@ class SystemMenuController extends AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $SystemMenuValidate = new SystemMenuValidate();
-
-            if (!$SystemMenuValidate->scene('Create')->check($params)) {
-                $this->error($SystemMenuValidate->getError());
-            }
-
-            $result = $this->SystemMenuService->createMenu($params);
-
-            if (!$result) {
-                $this->error('添加失败');
-            }
+            $this->SystemMenuValidate->scene('Create')->verify($params);
+            $this->SystemMenuService->createMenu($params);
 
             $this->success('添加成功');
         }
@@ -103,7 +101,7 @@ class SystemMenuController extends AdminController
      * 修改
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function update_action(Request $request)
     {
@@ -124,17 +122,8 @@ class SystemMenuController extends AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $SystemMenuValidate = new SystemMenuValidate();
-
-            if (!$SystemMenuValidate->scene('Update')->check($params)) {
-                $this->error($SystemMenuValidate->getError());
-            }
-
-            $result = $this->SystemMenuService->updateMenu($params);
-
-            if (!$result) {
-                $this->error('修改失败');
-            }
+            $this->SystemMenuValidate->scene('Update')->check($params);
+            $this->SystemMenuService->updateMenu($params);
 
             $this->success('修改成功');
         }
@@ -149,7 +138,7 @@ class SystemMenuController extends AdminController
     /**
      * 删除
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function delete_action(Request $request)
     {
@@ -159,17 +148,8 @@ class SystemMenuController extends AdminController
                 'id' => $request->post('id')
             ];
 
-            $SystemMenuValidate = new SystemMenuValidate();
-
-            if (!$SystemMenuValidate->scene('Delete')->check($params)) {
-                $this->error($SystemMenuValidate->getError());
-            }
-
-            $result = $this->SystemMenuService->deleteMenu($params);
-
-            if (!$result) {
-                $this->error('删除失败');
-            }
+            $this->SystemMenuValidate->scene('Delete')->check($params);
+            $this->SystemMenuService->deleteMenu($params);
 
             $this->success('删除成功');
         }
@@ -178,7 +158,7 @@ class SystemMenuController extends AdminController
     /**
      * 排序
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function sort_action(Request $request)
     {
@@ -189,17 +169,8 @@ class SystemMenuController extends AdminController
                 'sort' => $request->post('sort'),
             ];
 
-            $SystemMenuValidate = new SystemMenuValidate();
-
-            if (!$SystemMenuValidate->scene('Sort')->check($params)) {
-                $this->error($SystemMenuValidate->getError());
-            }
-
-            $result = $this->SystemMenuService->sortMenu($params);
-
-            if (!$result) {
-                $this->error('修改失败');
-            }
+            $this->SystemMenuValidate->scene('Sort')->check($params);
+            $this->SystemMenuService->sortMenu($params);
 
             $this->success('修改成功');
         }
@@ -208,7 +179,7 @@ class SystemMenuController extends AdminController
     /**
      * 全部
      * @param Request $request
-     * @throws Throwable
+     * @throws Exception
      */
     public function get_all_action(Request $request)
     {

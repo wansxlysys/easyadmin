@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 use think\response\Json;
@@ -29,7 +29,7 @@ class EditorController extends AdminController
 
     /**
      * 初始化
-     * @throws Throwable
+     * @throws Exception
      */
     public function initialize()
     {
@@ -41,7 +41,7 @@ class EditorController extends AdminController
      * 百度富文本编辑器
      * @param Request $request
      * @return Json
-     * @throws Throwable
+     * @throws Exception
      */
     public function ueditor_action(Request $request)
     {

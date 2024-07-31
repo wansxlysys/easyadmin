@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use Throwable;
+use Exception;
 
 use think\Request;
 
@@ -24,9 +24,21 @@ class IndexController extends AdminController
     protected $middleware = ['System'];
 
     /**
+     * 验证器
+     * @var ManagerService
+     */
+    protected $ManagerService;
+
+    /**
+     * 服务类
+     * @var ManagerValidate
+     */
+    protected $ManagerValidate;
+
+    /**
      * 首页
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function index_action()
     {
@@ -43,7 +55,7 @@ class IndexController extends AdminController
      * 个人资料
      * @param Request $request
      * @return mixed
-     * @throws Throwable
+     * @throws Exception
      */
     public function profile_action(Request $request)
     {
@@ -56,17 +68,8 @@ class IndexController extends AdminController
                 'password' => $request->post('password'),
             ];
 
-            $ManagerValidate = new ManagerValidate();
-
-            if (!$ManagerValidate->scene('Profile')->check($params)) {
-                $this->error($ManagerValidate->getError());
-            }
-
-            $ManagerService = new ManagerService();
-
-            if (!$ManagerService->updateManager($params)) {
-                $this->error('修改失败');
-            }
+            $this->ManagerValidate->scene('Profile')->verify($params);
+            $this->ManagerService->updateManager($params);
 
             $this->success('修改成功');
         }

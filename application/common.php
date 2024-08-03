@@ -74,7 +74,7 @@ if (!function_exists('service')) {
     /**
      * 实例化服务层
      * @param $name
-     * @return mixed
+     * @return object
      */
     function service($name)
     {

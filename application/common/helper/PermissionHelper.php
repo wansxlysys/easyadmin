@@ -21,7 +21,7 @@ class PermissionHelper
             $allow = StringUtil::toArray($allow);
         }
 
-        foreach ($allow as $key => $id) {
+        foreach ($allow as $id) {
 
             $result = in_array($id, $permission);
 

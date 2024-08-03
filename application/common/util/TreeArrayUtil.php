@@ -103,7 +103,7 @@ class TreeArrayUtil
      */
     public function treeToArray($tree, $removeChild = true, &$result = [])
     {
-        foreach ($tree as $key => $item) {
+        foreach ($tree as $item) {
 
             if (!empty($item[$this->children])) {
                 $this->treeToArray($item[$this->children], $removeChild, $result);
@@ -130,7 +130,7 @@ class TreeArrayUtil
      */
     public function arrayToTreeStruct($array, $parentId = 0, $level = 1, $resolve = null, &$result = [])
     {
-        foreach ($array as $key => $item) {
+        foreach ($array as $item) {
 
             if ($item[$this->parentId] == $parentId) {
 

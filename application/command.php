@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-use app\common\command\Backup;
+use app\common\command\backup\Backup;
 use app\common\command\generator\Generator;
 
 return [

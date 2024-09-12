@@ -1,16 +1,19 @@
 <?php
 
 
-namespace app\common\command;
+namespace app\common\command\backup;
 
 
 use Exception;
+
 use think\facade\Env;
 use think\facade\Config;
-use think\console\Input;
-use think\console\Output;
+
 use think\console\Command;
+use think\console\Input;
 use think\console\input\Option;
+use think\console\Output;
+
 use Ifsnop\Mysqldump\Mysqldump;
 
 class Backup extends Command
@@ -21,7 +24,7 @@ class Backup extends Command
     protected function configure()
     {
         $this->setName('backup')
-            ->addOption('saveName', null, Option::VALUE_REQUIRED, 'File SaveName', 'easyadmin')
+            ->addOption('name', null, Option::VALUE_REQUIRED, 'File Name', 'easyadmin')
             ->setDescription('DataBases Backup');
     }
 
@@ -32,7 +35,7 @@ class Backup extends Command
      */
     protected function execute(Input $input, Output $output)
     {
-        $saveName = $input->getOption('saveName');
+        $name = $input->getOption('name');
 
         try {
 
@@ -44,7 +47,7 @@ class Backup extends Command
             $connects = "mysql:host={$hostname}:{$hostport};dbname={$database}";
 
             $MysqlDump = new Mysqldump($connects, $username, $password);
-            $MysqlDump->start(Env::get('root_path') . "data/database/{$saveName}.sql");
+            $MysqlDump->start(Env::get('root_path') . "data/database/{$name}.sql");
 
             $output->writeln("备份成功");
 

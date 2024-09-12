@@ -45,7 +45,7 @@ abstract class Dao
     /**
      * 获取总数
      * @param Wrapper $Wrapper
-     * @return integer
+     * @return int
      */
     public function getTotal(Wrapper $Wrapper)
     {
@@ -93,7 +93,7 @@ abstract class Dao
     /**
      * 创建数据
      * @param array $data
-     * @return integer
+     * @return int
      */
     public function createRecord(array $data = [])
     {
@@ -108,7 +108,7 @@ abstract class Dao
     /**
      * 批量创建
      * @param array $dataList
-     * @return integer
+     * @return int
      */
     public function createAll(array $dataList = [])
     {
@@ -126,7 +126,7 @@ abstract class Dao
      * 更新数据
      * @param Wrapper $Wrapper
      * @param array $data
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function updateRecord(Wrapper $Wrapper, array $data = [])
@@ -142,7 +142,7 @@ abstract class Dao
     /**
      * 删除数据
      * @param Wrapper $Wrapper
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function deleteRecord(Wrapper $Wrapper)

@@ -40,7 +40,7 @@ class {{class}}Service extends \app\common\service\{{class}}Service
     /**
      * ID查询
      * @param $id
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getById($id)

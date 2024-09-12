@@ -65,7 +65,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 通过ID获取角色
      * @param $id
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getById($id)
@@ -76,7 +76,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 删除
      * @param $params
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function deleteRole($params)
@@ -102,7 +102,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 创建
      * @param array $params
-     * @return integer
+     * @return int
      */
     public function createRole(array $params)
     {
@@ -112,7 +112,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 修改
      * @param array $params
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function updateRole(array $params)

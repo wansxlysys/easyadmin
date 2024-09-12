@@ -114,7 +114,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 通过ID获取菜单
      * @param $id
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getById($id)

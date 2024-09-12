@@ -12,7 +12,7 @@ class Repository extends Dao
      * 通过ID获取
      * @param $id
      * @param array $field
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getById($id, array $field = [])
@@ -29,7 +29,7 @@ class Repository extends Dao
      * 通过条件查询
      * @param array $where
      * @param array $field
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getByWhere(array $where, array $field = [])
@@ -46,7 +46,7 @@ class Repository extends Dao
      * ID查询全部
      * @param $id
      * @param array $field
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getAllById($id, array $field = [])
@@ -80,7 +80,7 @@ class Repository extends Dao
      * 通过ID更新
      * @param $id
      * @param array $data
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function updateById($id, array $data)
@@ -96,7 +96,7 @@ class Repository extends Dao
      * 通过条件更新
      * @param array $where
      * @param array $data
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function updateByWhere(array $where, array $data)
@@ -111,7 +111,7 @@ class Repository extends Dao
     /**
      * 通过ID删除
      * @param $id
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function deleteById($id)
@@ -126,7 +126,7 @@ class Repository extends Dao
     /**
      * 条件删除
      * @param array $where
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function deleteByWhere(array $where)

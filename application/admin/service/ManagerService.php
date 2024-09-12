@@ -65,7 +65,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 通过ID获取管理员
      * @param $id
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getById($id)
@@ -133,7 +133,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 添加菜单
      * @param array $params
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function createManager(array $params)
@@ -146,7 +146,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 通过ID更新数据
      * @param array $params
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function updateManager(array $params)
@@ -175,7 +175,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 删除管理员
      * @param array $params
-     * @return integer
+     * @return int
      * @throws Exception
      */
     public function deleteManager(array $params)

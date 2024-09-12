@@ -1,0 +1,28 @@
+<?php
+
+
+namespace app\common\validate;
+
+
+class {{class}}Validate extends Validate
+{
+    /**
+     * 验证规则
+     * @var string[]
+     */
+    protected $rule = [
+        'id'    => 'require|number',
+        'name'  => 'require|max:32',
+    ];
+
+    /**
+     * 错误信息
+     * @var string[]
+     */
+    protected $message = [
+        'id.require'    => 'ID不能为空',
+        'id.number'     => 'ID必须为正整数',
+        'name.require'  => '名称不能为空',
+        'name.max'      => '名称不能超过32个字符',
+    ];
+}

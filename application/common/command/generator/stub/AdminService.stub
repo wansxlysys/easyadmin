@@ -1,0 +1,82 @@
+<?php
+
+
+namespace app\admin\service;
+
+
+use Exception;
+
+use app\common\repository\Wrapper;
+
+class {{class}}Service extends \app\common\service\{{class}}Service
+{
+    /**
+     * 获取列表
+     * @throws Exception
+     */
+    public function listUser(array $params)
+    {
+        $Wrapper = new Wrapper();
+
+        if (!empty($params['id'])) {
+            $Wrapper->addWhere('id', '=', $params['id']);
+        }
+
+        if (!empty($params['name'])) {
+            $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
+        }
+
+        $Wrapper->setPage($params['pageNum']);
+        $Wrapper->setLimit($params['pageSize']);
+
+        $Wrapper->addOrder('sort', 'asc');
+
+        $list  = $this->{{class}}Repository->getList($Wrapper);
+        $total = $this->{{class}}Repository->getTotal($Wrapper);
+
+        return ['list' => $list, 'total' => $total];
+    }
+
+    /**
+     * ID查询
+     * @param $id
+     * @return mixed
+     * @throws Exception
+     */
+    public function getById($id)
+    {
+        return $this->{{class}}Repository->getById($id);
+    }
+
+    /**
+     * 添加
+     * @param array $params
+     * @return int
+     */
+    public function create{{class}}(array $params)
+    {
+        return $this->{{class}}Repository->createRecord($params);
+    }
+
+    /**
+     * 修改
+     * @param array $params
+     * @return int
+     * @throws Exception
+     */
+    public function update{{class}}(array $params)
+    {
+        return $this->{{class}}Repository->updateById($params['id'], $params);
+    }
+
+    /**
+     * 删除
+     * @param array $params
+     * @return int
+     * @throws Exception
+     */
+    public function delete{{class}}(array $params)
+    {
+        return $this->{{class}}Repository->deleteById($params['id']);
+    }
+}

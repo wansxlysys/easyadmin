@@ -10,7 +10,9 @@
 // +----------------------------------------------------------------------
 
 use app\common\command\Backup;
+use app\common\command\generator\Generator;
 
 return [
-    'backup' => Backup::class
+    'backup'    => Backup::class,
+    'generator' => Generator::class
 ];

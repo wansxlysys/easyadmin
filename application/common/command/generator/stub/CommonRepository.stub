@@ -1,0 +1,14 @@
+<?php
+
+
+namespace app\common\repository;
+
+
+class {{class}}Repository extends Repository
+{
+    /**
+     * 数据表名
+     * @var string
+     */
+    protected $name = '{{class}}';
+}

@@ -1,0 +1,139 @@
+<?php
+
+
+namespace app\admin\controller;
+
+
+use Exception;
+
+use think\Request;
+
+use app\admin\service\{{class}}Service;
+use app\admin\validate\{{class}}Validate;
+
+use app\common\controller\AdminController;
+
+class {{class}}Controller extends AdminController
+{
+    /**
+     * 中间件
+     * @var array
+     */
+    protected $middleware = ['System'];
+
+    /**
+     * 服务类
+     * @var {{class}}Service
+     */
+    protected ${{class}}Service;
+
+    /**
+     * 验证器
+     * @var {{class}}Validate
+     */
+    protected ${{class}}Validate;
+
+    /**
+     * 初始化
+     * @throws Exception
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->{{class}}Service  = new {{class}}Service();
+        $this->{{class}}Validate = new {{class}}Validate();
+    }
+
+    /**
+     * 首页
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function index_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'page'  => $request->get('page'),
+                'limit' => $request->get('limit'),
+                'name'  => $request->get('name'),
+            ];
+
+            $this->success('获取成功', '', $this->{{class}}Service->list{{class}}($params));
+        }
+
+        return $this->fetch();
+    }
+
+    /**
+     * 添加
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function create_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'name' => $request->post('name'),
+            ];
+
+            $this->{{class}}Validate->scene('Create')->verify($params);
+            $this->{{class}}Service->create{{class}}($params);
+
+            $this->success('添加成功');
+        }
+
+        return $this->fetch();
+    }
+
+    /**
+     * 修改
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function update_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'id'   => $request->post('id'),
+                'name' => $request->post('name'),
+            ];
+
+            $this->{{class}}Validate->scene('Update')->verify($params);
+            $this->{{class}}Service->update{{class}}($params);
+
+            $this->success('修改成功');
+        }
+
+        $role = $this->{{class}}Service->getById($request->get('id'));
+
+        return $this->fetch('', [
+            'role' => $role
+        ]);
+    }
+
+    /**
+     * 删除
+     * @param Request $request
+     * @throws Exception
+     */
+    public function delete_action(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'id' => $request->post('id')
+            ];
+
+            $this->{{class}}Validate->scene('Delete')->verify($params);
+            $this->{{class}}Service->delete{{class}}($params);
+
+            $this->success('删除成功');
+        }
+    }
+}

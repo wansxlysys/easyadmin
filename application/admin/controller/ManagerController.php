@@ -89,7 +89,7 @@ class ManagerController extends AdminController
                 'status'   => $request->post('status'),
             ];
 
-            $this->ManagerValidate->scene('Create')->check($params);
+            $this->ManagerValidate->scene('Create')->verify($params);
             $this->ManagerService->createManager($params);
 
             $this->success('添加成功');
@@ -118,7 +118,7 @@ class ManagerController extends AdminController
                 'status'   => $request->post('status'),
             ];
 
-            $this->ManagerValidate->scene('Update')->check($params);
+            $this->ManagerValidate->scene('Update')->verify($params);
             $this->ManagerService->updateManager($params);
 
             $this->success('修改成功');

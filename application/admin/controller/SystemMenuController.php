@@ -122,7 +122,7 @@ class SystemMenuController extends AdminController
                 'sort'       => $request->post('sort'),
             ];
 
-            $this->SystemMenuValidate->scene('Update')->check($params);
+            $this->SystemMenuValidate->scene('Update')->verify($params);
             $this->SystemMenuService->updateMenu($params);
 
             $this->success('修改成功');
@@ -148,7 +148,7 @@ class SystemMenuController extends AdminController
                 'id' => $request->post('id')
             ];
 
-            $this->SystemMenuValidate->scene('Delete')->check($params);
+            $this->SystemMenuValidate->scene('Delete')->verify($params);
             $this->SystemMenuService->deleteMenu($params);
 
             $this->success('删除成功');
@@ -169,7 +169,7 @@ class SystemMenuController extends AdminController
                 'sort' => $request->post('sort'),
             ];
 
-            $this->SystemMenuValidate->scene('Sort')->check($params);
+            $this->SystemMenuValidate->scene('Sort')->verify($params);
             $this->SystemMenuService->sortMenu($params);
 
             $this->success('修改成功');

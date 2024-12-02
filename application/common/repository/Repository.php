@@ -63,7 +63,7 @@ class Repository extends Dao
      * 条件查询全部
      * @param array $where
      * @param array $field
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getAllByWhere(array $where, array $field = [])

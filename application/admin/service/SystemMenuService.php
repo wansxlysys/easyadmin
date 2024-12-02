@@ -64,7 +64,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
 
     /**
      * 获取当前请求菜单
-     * @return mixed|null
+     * @return array
      * @throws Exception
      */
     public function getCurrentMenu()
@@ -99,7 +99,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
 
     /**
      * 获取全部菜单
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getAll()
@@ -125,7 +125,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 添加菜单
      * @param array $params
-     * @return mixed
+     * @return int
      * @throws Exception
      */
     public function createMenu(array $params)
@@ -136,7 +136,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 更新菜单
      * @param array $params
-     * @return bool
+     * @return int
      * @throws Exception
      */
     public function updateMenu(array $params)
@@ -147,7 +147,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 更新排序
      * @param array $params
-     * @return bool
+     * @return int
      * @throws Exception
      */
     public function sortMenu(array $params)
@@ -158,7 +158,7 @@ class SystemMenuService extends \app\common\service\SystemMenuService
     /**
      * 删除菜单
      * @param array $params
-     * @return mixed
+     * @return int
      * @throws Exception
      */
     public function deleteMenu(array $params)

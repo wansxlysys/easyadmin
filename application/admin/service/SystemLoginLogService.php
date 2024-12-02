@@ -53,7 +53,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
     /**
      * 获取详情
      * @param $id
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function detailLog($id)
@@ -63,18 +63,18 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
 
     /**
      * 清空日志
-     * @return mixed
+     * @return int
      * @throws Exception
      */
     public function clearLog()
     {
-        return false !== $this->SystemLoginLogRepository->deleteByWhere([['id', '>', 0]]);
+        return $this->SystemLoginLogRepository->deleteByWhere([['id', '>', 0]]);
     }
 
     /**
      * 登录成功
      * @param array $params
-     * @return mixed
+     * @return int
      */
     public function loginSuccess(array $params)
     {
@@ -89,7 +89,7 @@ class SystemLoginLogService extends \app\common\service\SystemLoginLogService
     /**
      * 登录失败
      * @param array $params
-     * @return mixed
+     * @return int
      */
     public function loginError(array $params)
     {

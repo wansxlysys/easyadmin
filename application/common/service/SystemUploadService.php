@@ -33,7 +33,7 @@ class SystemUploadService extends Service
      * 保存文件
      * @param File $file
      * @param $fileType
-     * @return array|bool
+     * @return array
      * @throws Exception
      */
     public function saveFile(File $file, $fileType)

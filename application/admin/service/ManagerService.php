@@ -101,7 +101,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 通过角色ID获取管理员列表
      * @param $roleId
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getByRoleId($roleId)
@@ -117,7 +117,7 @@ class ManagerService extends \app\common\service\ManagerService
     /**
      * 通过账号查询
      * @param $account
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getByAccount($account)

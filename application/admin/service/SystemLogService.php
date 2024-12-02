@@ -57,7 +57,7 @@ class SystemLogService extends \app\common\service\SystemLogService
     /**
      * 获取详情
      * @param $id
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function detailLog($id)
@@ -69,7 +69,7 @@ class SystemLogService extends \app\common\service\SystemLogService
      * 日志写入
      * @param $description
      * @param $status
-     * @return mixed
+     * @return int
      * @throws Exception
      */
     public function writeLog($description, $status)
@@ -94,12 +94,12 @@ class SystemLogService extends \app\common\service\SystemLogService
 
     /**
      * 清空日志
-     * @return mixed
+     * @return int
      * @throws Exception
      */
     public function clearLog()
     {
-        return false !== $this->SystemLogRepository->deleteByWhere([['id', '>', 0]]);
+        return $this->SystemLogRepository->deleteByWhere([['id', '>', 0]]);
     }
 
     /**
@@ -114,6 +114,6 @@ class SystemLogService extends \app\common\service\SystemLogService
             1 => SystemLogEnum::STATUS_SUCCESS
         ];
 
-        return isset($codeMap[$code]) ? $codeMap[$code] : SystemLogEnum::STATUS_ERROR;
+        return $codeMap[$code] ?? SystemLogEnum::STATUS_ERROR;
     }
 }

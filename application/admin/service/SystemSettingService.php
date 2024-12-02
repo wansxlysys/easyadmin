@@ -12,7 +12,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
 {
     /**
      * 获取配置
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getSystemSetting()
@@ -23,7 +23,7 @@ class SystemSettingService extends \app\common\service\SystemSettingService
     /**
      * 更新配置
      * @param array $params
-     * @return bool
+     * @return int
      * @throws Exception
      */
     public function setSystemSetting(array $params)

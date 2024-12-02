@@ -58,7 +58,7 @@ abstract class Dao
     /**
      * 获取全部
      * @param Wrapper $Wrapper
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getAll(Wrapper $Wrapper)
@@ -76,7 +76,7 @@ abstract class Dao
     /**
      * 获取单个
      * @param Wrapper $Wrapper
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getOne(Wrapper $Wrapper)

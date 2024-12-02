@@ -4,7 +4,6 @@
 namespace app\admin\service;
 
 
-use app\common\exception\ValidateException;
 use Exception;
 
 use think\File;
@@ -12,6 +11,7 @@ use think\Validate;
 
 use app\common\util\FileUtil;
 use app\common\enum\UploadEnum;
+use app\common\exception\ValidateException;
 
 class SystemUploadService extends \app\common\service\SystemUploadService
 {
@@ -19,9 +19,8 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * 图片上传
      * @param File $image
      * @param string $fileType
-     * @return array|bool
+     * @return array
      * @throws Exception
-     * @throws ValidateException
      */
     public function uploadImage(File $image, $fileType = 'image')
     {
@@ -52,9 +51,8 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * 视频上传
      * @param File $video
      * @param string $fileType
-     * @return array|bool
+     * @return array
      * @throws Exception
-     * @throws ValidateException
      */
     public function uploadVideo(File $video, $fileType = 'video')
     {
@@ -85,9 +83,8 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * 音频上传
      * @param File $audio
      * @param string $fileType
-     * @return array|bool
+     * @return array
      * @throws Exception
-     * @throws ValidateException
      */
     public function uploadAudio(File $audio, $fileType = 'audio')
     {
@@ -118,9 +115,8 @@ class SystemUploadService extends \app\common\service\SystemUploadService
      * 文件上传
      * @param File $file
      * @param string $fileType
-     * @return array|bool
+     * @return array
      * @throws Exception
-     * @throws ValidateException
      */
     public function uploadFile(File $file, $fileType = 'file')
     {

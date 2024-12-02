@@ -44,7 +44,7 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
     /**
      * 获取全部角色
      * @param array $params
-     * @return mixed
+     * @return array
      * @throws Exception
      */
     public function getAll(array $params = [])

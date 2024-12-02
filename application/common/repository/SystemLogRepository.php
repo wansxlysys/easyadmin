@@ -41,7 +41,7 @@ class SystemLogRepository extends Repository
     /**
      * 获取关联管理员总数
      * @param Wrapper $Wrapper
-     * @return mixed
+     * @return int
      */
     public function getTotalWithInfo(Wrapper $Wrapper)
     {

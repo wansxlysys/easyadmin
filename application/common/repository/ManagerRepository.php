@@ -40,7 +40,7 @@ class ManagerRepository extends Repository
     /**
      * 获取总数
      * @param Wrapper $Wrapper
-     * @return mixed
+     * @return int
      */
     public function getTotalWithRole(Wrapper $Wrapper)
     {

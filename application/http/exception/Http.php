@@ -12,8 +12,19 @@ use think\facade\Request;
 use think\exception\Handle;
 use think\exception\HttpException;
 
+use app\common\exception\ValidateException;
+
 class Http extends Handle
 {
+    /**
+     * 忽略上报
+     * @var array
+     */
+    protected $ignoreReport = [
+        HttpException::class,
+        ValidateException::class
+    ];
+
     /*
      * 异常处理
      */

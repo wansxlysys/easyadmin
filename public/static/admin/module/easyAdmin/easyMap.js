@@ -70,27 +70,12 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
             searchSuggestions();
         });
 
-        let infoWindow = null;
-
         container.find(".map-search-result").on("click", ".map-search-item", function () {
 
             container.find(".map-search-result").empty();
 
             const index = $(this).data('index');
             const suggest = suggestList[index];
-
-            if (infoWindow != null) {
-                infoWindow.destroy();
-            }
-
-            infoWindow = new TMap.InfoWindow({
-                map: options.map,
-                content: `<div>
-                            <div>${suggest.title}</div>
-                            <div>地址：${suggest.address}</div>
-                         </div>`,
-                position: suggest.location
-            });
 
             options.map.setCenter(suggest.location);
         });

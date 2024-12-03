@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{:register_static('/admin/plugin/fontawesome/css/all.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/plugin/viewer/viewer.min.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/plugin/ztree/css/ztree.css')}">
+    <link rel="stylesheet" href="{:register_static('/admin/module/layCascader/layCascader.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/css/reset.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/css/common.css')}">
     {block name="css"}{/block}

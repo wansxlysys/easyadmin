@@ -1,8 +1,9 @@
-layui.define(['easyHelper', 'xmSelect'], function (exports) {
+layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
     const dropdown = layui.dropdown;
     const xmSelect = layui.xmSelect;
     const easyHelper = layui.easyHelper;
+    const layCascader = layui.layCascader;
 
     const easyBuilder = {};
 
@@ -132,7 +133,7 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
     easyBuilder.dropMenu = (options) => {
 
         const defaults = {
-            show: true,
+            show: false,
             align: 'right',
             className: 'easy-menu'
         };
@@ -144,6 +145,43 @@ layui.define(['easyHelper', 'xmSelect'], function (exports) {
         });
 
         dropdown.render(options);
+    }
+
+    /**
+     * 联级选择器
+     * @param options
+     * @param setting
+     * @param data
+     * @constructor
+     */
+    easyBuilder.cascader = (options, setting, data) => {
+
+        const defaultOptions = {
+            elem: '',
+            checked: ''
+        }
+
+        const defaultSetting = {
+            elem: options.elem,
+            clearable: true,
+            props: {
+                value: 'id',
+                label: 'name',
+                strictMode: true
+            }
+        };
+
+        options = Object.assign(defaultOptions, options);
+        setting = Object.assign(defaultSetting, setting);
+
+        setting.value = options.checked.map(val => parseInt(val));
+        setting.options = easyHelper.arrayToTree(data);
+
+        const cascader = layCascader(setting);
+
+        if (options.ready) {
+            options.ready(cascader);
+        }
     }
 
     /**

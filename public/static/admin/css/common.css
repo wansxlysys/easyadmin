@@ -1,12 +1,6 @@
 /***************************滚动条样式***************************/
 ::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
-
-::-webkit-scrollbar {
     width: 6px;
-    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -415,4 +409,11 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     margin: 0;
     padding: 6px 15px 6px 10px;
     border-bottom: 1px solid #eee;
+}
+
+/*************************联级选择器*********************************/
+.el-input__inner {
+    border-radius: 2px;
+    height: 38px;
+    line-height: 38px;
 }

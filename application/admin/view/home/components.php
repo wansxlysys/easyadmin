@@ -4,6 +4,34 @@
 <div class="layui-fluid layui-content">
 
     <div class="layui-card">
+        <div class="layui-card-header">联级选择器</div>
+        <div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">联级选择器</label>
+                <div class="layui-input-block">
+                    <div id="cascader"></div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">下拉菜单</div>
+        <div class="layui-card-body">
+            <div class="layui-form-item layui-form-item-button">
+                <button type="button" class="layui-btn" id="dropMenu">
+                    <i class="fa fa-fw fa-arrow-down"></i>下拉菜单
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card">
         <div class="layui-card-header">文件上传</div>
         <div class="layui-card-body">
             <div class="layui-form-item layui-form-item-button">
@@ -88,7 +116,8 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label layui-required">测试文本</label>
                             <div class="layui-input-block">
-                                <textarea name="content" lay-verify="required" placeholder="请填写测试文本" class="layui-textarea"></textarea>
+                                <textarea name="content" lay-verify="required" placeholder="请填写测试文本"
+                                          class="layui-textarea"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -144,7 +173,8 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label layui-required">测试文本</label>
                             <div class="layui-input-block">
-                                <textarea name="content" lay-verify="required" placeholder="请填写测试文本" class="layui-textarea"></textarea>
+                                <textarea name="content" lay-verify="required" placeholder="请填写测试文本"
+                                          class="layui-textarea"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -166,19 +196,22 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">日期选择</label>
                     <div class="layui-input-block">
-                        <input type="text" lay-verify="required" placeholder="请选择日期" class="layui-input easy-build-date">
+                        <input type="text" lay-verify="required" placeholder="请选择日期"
+                               class="layui-input easy-build-date">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">时间选择</label>
                     <div class="layui-input-block">
-                        <input type="text" lay-verify="required" placeholder="请选择时间" class="layui-input easy-build-time">
+                        <input type="text" lay-verify="required" placeholder="请选择时间"
+                               class="layui-input easy-build-time">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">日期时间</label>
                     <div class="layui-input-block">
-                        <input type="text" lay-verify="required" placeholder="请选择日期时间" class="layui-input easy-build-datetime">
+                        <input type="text" lay-verify="required" placeholder="请选择日期时间"
+                               class="layui-input easy-build-datetime">
                     </div>
                 </div>
             </form>
@@ -194,12 +227,47 @@
     layui.use(['easyModule'], function () {
 
         const uploadFile = layui.uploadFile;
+        const easyBuilder = layui.easyBuilder;
 
         new uploadFile({
             id: "upload",
             url: "{:url('admin/SystemUpload/slice')}",
             check_url: "{:url('admin/SystemUpload/check')}"
         });
+
+        easyBuilder.dropMenu({
+            elem: "#dropMenu",
+            data: [{
+                icon: 'fa fa-fw fa-download',
+                title: 'menu item 1',
+                event: 'create'
+            }, {
+                icon: 'fa fa-fw fa-download',
+                title: 'menu item 2',
+                event: 'update'
+            }, {
+                icon: 'fa fa-fw fa-download',
+                title: 'menu item 3',
+                event: 'delete'
+            }],
+            click: (event) => {
+                console.log(event)
+            }
+        });
+
+        const data = [
+            {id: 1, parentId: 0, name: '指南'},
+            {id: 2, parentId: 1, name: '说明'},
+            {id: 3, parentId: 0, name: '设计'},
+            {id: 4, parentId: 3, name: '图稿'},
+        ];
+
+        easyBuilder.cascader({
+            elem: "#cascader",
+            checked: [3, 4]
+        }, {
+            clearable: false
+        }, data);
     });
 </script>
 {/block}

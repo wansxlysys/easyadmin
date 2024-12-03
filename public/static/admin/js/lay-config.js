@@ -21,6 +21,7 @@
         easyModule: "easyAdmin/easyModule",
         uploadFile: "uploadFile/uploadFile",
         uploadImage: "uploadImage/uploadImage",
+        layCascader: "layCascader/layCascader",
     });
 
     /**

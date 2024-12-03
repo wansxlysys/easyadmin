@@ -179,6 +179,19 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'up
     });
 
     /**
+     * 创建预览图片
+     */
+    $(".easy-preview").each(function (key, item) {
+        const images = $(item).data("images");
+        if(images) {
+            images.split(',').forEach(image => {
+                $(item).append('<img src="' + image + '">');
+            });
+            new Viewer(item);
+        }
+    });
+
+    /**
      * 导出
      */
     exports("easyCreate", {

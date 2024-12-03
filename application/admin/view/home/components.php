@@ -4,6 +4,28 @@
 <div class="layui-fluid layui-content">
 
     <div class="layui-card">
+        <div class="layui-card-header">地图组件</div>
+        <div class="layui-card-body">
+            <div class="map-container">
+                <div class="map" id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">图片预览</div>
+        <div class="layui-card-body">
+            <div class="easy-preview"
+                 data-images="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/47220acdd326647e029949627e49b197.jpg"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <div class="layui-card">
         <div class="layui-card-header">联级选择器</div>
         <div class="layui-card-body">
             <div class="layui-form-item">
@@ -222,11 +244,13 @@
 {/block}
 
 {block name="js"}
+<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service,geometry,tools&key=CD4BZ-URFWP-YRDDF-L6D4S-5WHCV-5TFP5"></script>
 <script>
 
     layui.use(['easyModule'], function () {
 
         const uploadFile = layui.uploadFile;
+        const easyMap = layui.easyMap;
         const easyBuilder = layui.easyBuilder;
 
         new uploadFile({
@@ -268,6 +292,34 @@
         }, {
             clearable: false
         }, data);
+
+        const map = new TMap.Map('map', {
+            pitch: 0,
+            zoom: 14,
+        });
+
+        easyMap.autoMarker({
+            map: map
+        });
+
+        easyMap.autoSearch({
+            map: map
+        });
+
+        easyMap.autoLocation({
+            map: map
+        });
+
+        easyMap.autoCircle({
+            map: map
+        })
+
+        easyMap.autoAddress({
+            map: map,
+            change(data) {
+                console.log(data)
+            }
+        });
     });
 </script>
 {/block}

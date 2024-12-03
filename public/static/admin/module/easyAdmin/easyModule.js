@@ -1,4 +1,4 @@
-layui.define(['easyAdmin', 'easyCreate', 'easyHelper', 'easyBuilder', 'easyService'], function (exports) {
+layui.define(['easyAdmin', 'easyCreate', 'easyHelper', 'easyBuilder', 'easyService', 'easyMap'], function (exports) {
 
     const easyAdmin = layui.easyAdmin;
 

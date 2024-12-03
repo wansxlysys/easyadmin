@@ -13,6 +13,7 @@
         version: true
     }).extend({
         xmSelect: "xmSelect/xmSelect",
+        easyMap: "easyAdmin/easyMap",
         easyAdmin: "easyAdmin/easyAdmin",
         easyCreate: "easyAdmin/easyCreate",
         easyHelper: "easyAdmin/easyHelper",

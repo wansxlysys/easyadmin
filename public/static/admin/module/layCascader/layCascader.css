@@ -1639,3 +1639,8 @@
 .el-input__inner {
     color: rgba(0, 0, 0, 0.85);
 }
+
+.el-scrollbar__wrap::-webkit-scrollbar{
+    height: auto;
+    width: auto;
+}

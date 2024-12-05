@@ -21,7 +21,7 @@ class HomeController extends AdminController
      * @param Request $request
      * @return mixed
      */
-    public function console_action(Request $request)
+    public function consoleAction(Request $request)
     {
         return $this->fetch();
     }
@@ -31,7 +31,7 @@ class HomeController extends AdminController
      * @param Request $request
      * @return mixed
      */
-    public function components_action(Request $request)
+    public function componentsAction(Request $request)
     {
         return $this->fetch();
     }

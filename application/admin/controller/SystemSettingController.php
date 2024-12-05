@@ -50,7 +50,7 @@ class SystemSettingController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function config_action(Request $request)
+    public function configAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -77,7 +77,7 @@ class SystemSettingController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function system_action(Request $request)
+    public function systemAction(Request $request)
     {
         if ($request->isAjax()) {
 

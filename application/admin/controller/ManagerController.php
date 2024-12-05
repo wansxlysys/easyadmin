@@ -52,7 +52,7 @@ class ManagerController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function index_action(Request $request)
+    public function indexAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -76,7 +76,7 @@ class ManagerController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function create_action(Request $request)
+    public function createAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -104,7 +104,7 @@ class ManagerController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function update_action(Request $request)
+    public function updateAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -136,7 +136,7 @@ class ManagerController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function delete_action(Request $request)
+    public function deleteAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -156,7 +156,7 @@ class ManagerController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function avatar_action(Request $request)
+    public function avatarAction(Request $request)
     {
         if ($request->isAjax()) {
 

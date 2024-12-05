@@ -7,53 +7,29 @@ namespace app\common\repository;
 trait SubTable
 {
     /**
-     * 是否分表
-     * @var bool
-     */
-    protected $isSub = false;
-
-    /**
-     * 分表规则
-     * @var array
-     */
-    protected $subRule = [];
-
-    /**
      * 分表数据
      * @var mixed
      */
-    protected $subData;
+    protected $subData = null;
 
     /**
-     * 设置是否分表
-     * @param $isSub
-     * @return mixed
+     * 使用分表
+     * @param $subData
+     * @return SubTable
      */
-    public function setSub($isSub)
+    public function useSub($subData)
     {
-        $this->isSub = $isSub;
+        $this->subData = $subData;
         return $this;
     }
 
     /**
-     * 设置分表数据
-     * @param array $data
-     * @return mixed
+     * 不使用分表
+     * @return SubTable
      */
-    public function setSubData(array $data)
+    public function nonSub()
     {
-        $this->subData = $data;
-        return $this;
-    }
-
-    /**
-     * 设置分表规则
-     * @param array $rule
-     * @return $this
-     */
-    public function setSubRule(array $rule)
-    {
-        $this->subRule = $rule;
+        $this->subData = null;
         return $this;
     }
 
@@ -63,10 +39,7 @@ trait SubTable
      */
     public function getName()
     {
-        /**
-         * 如果无需分表则返回主表名
-         */
-        if (false === $this->isSub) {
+        if (is_null($this->subData)) {
             return $this->name;
         }
 
@@ -74,21 +47,10 @@ trait SubTable
     }
 
     /**
-     * 获取分表表名（分表需要重写该方法）
+     * 获取分表表名
      */
     public function getSubName()
     {
         return $this->name;
-    }
-
-    /**
-     * 通过取余方式获取子表表名
-     * @param $value
-     * @param $total
-     * @return int
-     */
-    public function getSubNameByMod($value, $total)
-    {
-        return ($value % $total) + 1;
     }
 }

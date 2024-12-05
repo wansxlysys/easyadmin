@@ -43,7 +43,7 @@ class EditorController extends AdminController
      * @return Json
      * @throws Exception
      */
-    public function ueditor_action(Request $request)
+    public function ueditorAction(Request $request)
     {
         $result = [];
         $action = $request->get('action');

@@ -50,7 +50,7 @@ class ManagerRoleController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function index_action(Request $request)
+    public function indexAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -72,7 +72,7 @@ class ManagerRoleController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function create_action(Request $request)
+    public function createAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -98,7 +98,7 @@ class ManagerRoleController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function update_action(Request $request)
+    public function updateAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -128,7 +128,7 @@ class ManagerRoleController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function delete_action(Request $request)
+    public function deleteAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -148,7 +148,7 @@ class ManagerRoleController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function get_all_action(Request $request)
+    public function getAllAction(Request $request)
     {
         if ($request->isAjax()) {
             $this->success('获取成功', '', $this->ManagerRoleService->getAll());

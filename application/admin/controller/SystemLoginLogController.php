@@ -42,7 +42,7 @@ class SystemLoginLogController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function index_action(Request $request)
+    public function indexAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -66,7 +66,7 @@ class SystemLoginLogController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function detail_action(Request $request)
+    public function detailAction(Request $request)
     {
         $log = $this->SystemLoginLogService->detailLog($request->get('id'));
 
@@ -80,7 +80,7 @@ class SystemLoginLogController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function clear_action(Request $request)
+    public function clearAction(Request $request)
     {
         if ($request->isAjax()) {
 

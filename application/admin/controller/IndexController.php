@@ -40,7 +40,7 @@ class IndexController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function index_action()
+    public function indexAction()
     {
         $SystemMenuService = new SystemMenuService();
 
@@ -57,7 +57,7 @@ class IndexController extends AdminController
      * @return mixed
      * @throws Exception
      */
-    public function profile_action(Request $request)
+    public function profileAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -85,7 +85,7 @@ class IndexController extends AdminController
      * 退出登录
      * @param Request $request
      */
-    public function logout_action(Request $request)
+    public function logoutAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -99,7 +99,7 @@ class IndexController extends AdminController
      * 系统信息
      * @return mixed
      */
-    public function system_action()
+    public function systemAction()
     {
         $system = [
             '系统类型' => PHP_OS,

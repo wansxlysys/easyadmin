@@ -41,7 +41,7 @@ class SystemUploadController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function slice_action(Request $request)
+    public function sliceAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -64,7 +64,7 @@ class SystemUploadController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function check_action(Request $request)
+    public function checkAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -87,7 +87,7 @@ class SystemUploadController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function file_action(Request $request)
+    public function fileAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -102,7 +102,7 @@ class SystemUploadController extends AdminController
      * @param Request $request
      * @throws Exception
      */
-    public function image_action(Request $request)
+    public function imageAction(Request $request)
     {
         if ($request->isAjax()) {
 

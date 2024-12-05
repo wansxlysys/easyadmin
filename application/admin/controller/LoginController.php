@@ -50,7 +50,7 @@ class LoginController extends CommonController
      * @return mixed
      * @throws Exception
      */
-    public function login_action(Request $request)
+    public function loginAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -78,7 +78,7 @@ class LoginController extends CommonController
      * 验证码
      * @return Response
      */
-    public function captcha_action()
+    public function captchaAction()
     {
         $captcha = new Captcha([
             'length'  => 4,

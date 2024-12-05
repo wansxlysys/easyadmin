@@ -56,6 +56,11 @@
             dataName: 'list',
             countName: 'total',
             statusName: 'code'
+        },
+        done() {
+            $(this.elem).next().find('.layui-table-main tr').each((index, item) => {
+                $(".layui-table-fixed .layui-table-body tbody tr").eq(index).height($(item).height());
+            });
         }
     });
 
@@ -77,6 +82,11 @@
             dataName: 'list',
             countName: 'total',
             statusName: 'code'
+        },
+        done() {
+            $(this.elem).next().find('.layui-table-main tr').each((index, item) => {
+                $(".layui-table-fixed .layui-table-body tbody tr").eq(index).height($(item).height());
+            });
         }
     });
 

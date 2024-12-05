@@ -45,7 +45,7 @@ $manager = service('Manager')->getById($log['managerId']);
                     </div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-100">
-                    <div class="easy-info-grid-left">描述信息：</div>
+                    <div class="easy-info-grid-left">登录详情：</div>
                     <div class="easy-info-grid-right">{$log.description}</div>
                 </div>
             </div>

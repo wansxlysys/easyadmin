@@ -6,9 +6,7 @@
     <div class="layui-card">
         <div class="layui-card-header">地图组件</div>
         <div class="layui-card-body">
-            <div class="map-container">
-                <div class="map" id="map"></div>
-            </div>
+            <div class="map" id="map"></div>
         </div>
     </div>
 
@@ -17,11 +15,6 @@
         <div class="layui-card-body">
             <div class="easy-preview"
                  data-images="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/47220acdd326647e029949627e49b197.jpg"></div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
     </div>
 
@@ -35,20 +28,13 @@
                 </div>
             </div>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
-    </div>
-
-    <div class="layui-card">
-        <div class="layui-card-header">下拉菜单</div>
-        <div class="layui-card-body">
-            <div class="layui-form-item layui-form-item-button">
-                <button type="button" class="layui-btn" id="dropMenu">
-                    <i class="fa fa-fw fa-arrow-down"></i>下拉菜单
-                </button>
+            <div class="layui-form-item">
+                <label class="layui-form-label">下拉菜单</label>
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" id="dropMenu">
+                        <i class="fa fa-fw fa-arrow-down"></i>下拉菜单
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -212,7 +198,7 @@
 
     <br>
     <div class="layui-card">
-        <div class="layui-card-header">权限标签</div>
+        <div class="layui-card-header">日期选择器</div>
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
@@ -284,13 +270,20 @@
             {id: 2, parentId: 1, name: '说明'},
             {id: 3, parentId: 0, name: '设计'},
             {id: 4, parentId: 3, name: '图稿'},
+            {id: 5, parentId: 0, name: '图稿'},
+            {id: 6, parentId: 0, name: '图稿'},
+            {id: 7, parentId: 0, name: '图稿'},
+            {id: 8, parentId: 0, name: '图稿'},
+            {id: 9, parentId: 0, name: '图稿'},
+            {id: 10, parentId: 0, name: '图稿'},
         ];
 
         easyBuilder.cascader({
             elem: "#cascader",
             checked: [3, 4]
         }, {
-            clearable: false
+            clearable: false,
+            filterable: true,
         }, data);
 
         const map = new TMap.Map('map', {

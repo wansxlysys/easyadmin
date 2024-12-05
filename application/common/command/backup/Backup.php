@@ -44,9 +44,8 @@ class Backup extends Command
             $database = Config::get('database.database');
             $username = Config::get('database.username');
             $password = Config::get('database.password');
-            $connects = "mysql:host={$hostname}:{$hostport};dbname={$database}";
 
-            $MysqlDump = new Mysqldump($connects, $username, $password);
+            $MysqlDump = new Mysqldump("mysql:host={$hostname}:{$hostport};dbname={$database}", $username, $password);
             $MysqlDump->start(Env::get('root_path') . "data/database/{$name}.sql");
 
             $output->writeln("备份成功");

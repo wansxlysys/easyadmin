@@ -9,7 +9,7 @@ class LinkTabRender
     /**
      * 渲染
      * @param $tabs
-     * @param $params
+     * @param array $params
      * @param $action
      * @return string
      */

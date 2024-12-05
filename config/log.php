@@ -22,9 +22,13 @@ return [
     // 单文件日志写入
     'single'      => false,
     // 独立日志级别
-    'apart_level' => ['queue', 'sql', 'debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'],
+    'apart_level' => [],
     // 最大日志文件数量
-    'max_files'   => 0,
+    'max_files'   => 50,
+    // 单个日志文件的大小限制
+    'file_size'   => INF,
+    // 日志的时间格式
+    'time_format' => 'Y-m-d H:i:s',
     // 是否关闭日志写入
     'close'       => false,
 ];

@@ -17,9 +17,8 @@ class SystemSettingService extends Service
     /**
      * 初始化
      */
-    public function initialize()
+    public function __construct()
     {
-        parent::initialize();
         $this->SystemSettingRepository = new SystemSettingRepository();
     }
 }

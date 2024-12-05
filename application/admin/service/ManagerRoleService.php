@@ -56,7 +56,6 @@ class ManagerRoleService extends \app\common\service\ManagerRoleService
         }
 
         $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
-
         $Wrapper->addOrder('sort', 'asc');
 
         return $this->ManagerRoleRepository->getAll($Wrapper);

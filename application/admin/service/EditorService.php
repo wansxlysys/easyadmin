@@ -20,7 +20,7 @@ class EditorService extends \app\common\service\EditorService
     /**
      * 初始化
      */
-    public function initialize()
+    public function __construct()
     {
         $this->SystemUploadService = new SystemUploadService();
     }

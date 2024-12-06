@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2024-06-24 15:08:02
--- 服务器版本： 5.7.26
+-- 生成日期： 2024-12-06 08:40:56
+-- 服务器版本： 5.7.26-log
 -- PHP 版本： 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -48,7 +48,7 @@ CREATE TABLE `easy_manager` (
 --
 
 INSERT INTO `easy_manager` (`id`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `isDelete`, `loginError`, `loginTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 2, 0, '2024-06-24 15:05:17', '2022-11-06 14:29:39', '2024-06-24 15:05:17'),
+(1, 1, '/upload/image/20231024/47220acdd326647e029949627e49b197.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 2, 0, '2024-12-03 14:53:59', '2022-11-06 14:29:39', '2024-12-03 14:53:59'),
 (10, 6, '/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 2, 0, NULL, '2022-11-06 14:29:39', '2024-04-09 17:40:07');
 
 -- --------------------------------------------------------
@@ -137,7 +137,12 @@ INSERT INTO `easy_system_log` (`id`, `menuId`, `managerId`, `description`, `requ
 (39, 85, 1, '账号已存在', '192.168.124.24', '/admin/manager/update.html', '{\"roleId\":\"1\",\"file\":\"\",\"avatar\":\"\\/upload\\/image\\/20231024\\/47220acdd326647e029949627e49b197.jpg\",\"realName\":\"黎明\",\"account\":\"test\",\"password\":\"\",\"status\":\"1\",\"id\":\"1\"}', 2, '2024-06-24 14:57:54', '2024-06-24 14:57:54'),
 (40, 84, 1, '禁止删除，角色下存在管理员', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"1\"}', 2, '2024-06-24 15:07:29', '2024-06-24 15:07:29'),
 (41, 84, 1, '禁止删除，角色下存在管理员', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"6\"}', 2, '2024-06-24 15:07:32', '2024-06-24 15:07:32'),
-(42, 84, 1, '删除成功', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"5\"}', 1, '2024-06-24 15:07:35', '2024-06-24 15:07:35');
+(42, 84, 1, '删除成功', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"5\"}', 1, '2024-06-24 15:07:35', '2024-06-24 15:07:35'),
+(43, 84, 1, '删除成功', '192.168.124.24', '/admin/manager_role/delete.html', '{\"id\":\"1\"}', 1, '2024-07-26 14:27:37', '2024-07-26 14:27:37'),
+(44, 99, 1, '修改成功', '192.168.124.24', '/admin/system_setting/config.html', '{\"content\":\"111\"}', 1, '2024-07-31 14:01:22', '2024-07-31 14:01:22'),
+(45, 99, 1, '修改成功', '192.168.124.24', '/admin/system_setting/config.html', '{\"content\":\"111\"}', 1, '2024-07-31 14:01:25', '2024-07-31 14:01:25'),
+(46, 99, 1, '修改成功', '192.168.124.24', '/admin/system_setting/config.html', '{\"content\":\"111\"}', 1, '2024-07-31 14:01:27', '2024-07-31 14:01:27'),
+(47, 156, 1, '文件已存在', '127.0.0.1', '/admin/system_upload/check.html', '{\"file_name\":\"1 - 副本.jpg\",\"file_md5\":\"396814d705b2ceb75f487e5c63e9c6c4\",\"file_size\":\"6034\",\"file_total\":\"1\",\"apped_data\":\"{}\"}', 1, '2024-12-04 08:42:02', '2024-12-04 08:42:02');
 
 -- --------------------------------------------------------
 
@@ -171,7 +176,11 @@ INSERT INTO `easy_system_login_log` (`id`, `managerId`, `description`, `loginIp`
 (62, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:13:08', '2024-06-24 14:13:08'),
 (63, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:13:19', '2024-06-24 14:13:19'),
 (64, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 14:13:24', '2024-06-24 14:13:24'),
-(65, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 15:05:17', '2024-06-24 15:05:17');
+(65, 1, '登录成功', '192.168.124.24', 1, '2024-06-24 15:05:17', '2024-06-24 15:05:17'),
+(66, 1, '登录成功', '192.168.124.24', 1, '2024-06-25 10:12:43', '2024-06-25 10:12:43'),
+(67, 1, '登录成功', '192.168.124.24', 1, '2024-07-26 14:11:09', '2024-07-26 14:11:09'),
+(68, 1, '登录成功', '192.168.124.24', 1, '2024-07-31 13:49:41', '2024-07-31 13:49:41'),
+(69, 1, '登录成功', '127.0.0.1', 1, '2024-12-03 14:53:59', '2024-12-03 14:53:59');
 
 -- --------------------------------------------------------
 
@@ -228,11 +237,11 @@ INSERT INTO `easy_system_menu` (`id`, `parentId`, `name`, `icon`, `module`, `con
 (137, 157, '其他菜单', 'fa-link', 'admin', '', '', '', 2, '', 1, 100000, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
 (138, 137, '个人资料', 'fa-link', 'admin', 'Index', 'profile', '', 2, '', 1, 100, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
 (141, 75, 'UI组件', 'fa-pie-chart', 'admin', 'Home', 'components', '', 1, '', 1, 100, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
-(142, 69, '全部菜单', 'fa-link', 'admin', 'SystemMenu', 'get_all', '', 2, '', 1, 100, '2022-11-06 14:28:59', '2023-10-24 13:49:52'),
+(142, 69, '全部菜单', 'fa-link', 'admin', 'SystemMenu', 'getAll', '', 2, '', 1, 100, '2022-11-06 14:28:59', '2023-10-24 13:49:52'),
 (143, 157, '公共权限', 'fa-link', 'admin', '', '', '', 2, '', 1, 10000, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
 (144, 143, '文本编辑', 'fa-link', 'admin', 'Editor', 'ueditor', '', 2, '', 1, 100, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
 (145, 64, '运维管理', 'fa-server', 'admin', '', '', '', 1, '', 1, 100, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
-(147, 143, '全部角色', 'fa-link', 'admin', 'ManagerRole', 'get_all', '', 2, '', 1, 100, '2023-03-15 14:17:55', '2023-10-24 10:34:03'),
+(147, 143, '全部角色', 'fa-link', 'admin', 'ManagerRole', 'getAll', '', 2, '', 1, 100, '2023-03-15 14:17:55', '2023-10-24 10:34:03'),
 (148, 137, '头像上传', 'fa-link', 'admin', 'Manager', 'avatar', '', 2, '', 1, 100, '2023-03-20 15:11:09', '2023-10-24 10:34:03'),
 (149, 137, '退出登录', 'fa-link', 'admin', 'Index', 'logout', '', 2, '', 1, 100, '2023-03-21 10:46:54', '2023-10-24 10:34:03'),
 (150, 1, '登录日志', 'fa-file-text', 'admin', 'SystemLoginLog', 'index', '', 1, '', 1, 100, '2023-03-21 11:55:24', '2023-10-24 10:34:03'),
@@ -265,7 +274,7 @@ CREATE TABLE `easy_system_setting` (
 --
 
 INSERT INTO `easy_system_setting` (`id`, `name`, `slogan`, `content`, `createTime`, `updateTime`) VALUES
-(1, 'EASYADMIN', 'PHP后台快速开发系统', '111', '2023-10-24 10:33:41', '2024-04-10 09:47:42');
+(1, 'EASYADMIN', 'PHP后台快速开发系统', '111', '2023-10-24 10:33:41', '2024-07-31 14:01:27');
 
 -- --------------------------------------------------------
 
@@ -303,7 +312,8 @@ INSERT INTO `easy_system_upload` (`id`, `md5`, `name`, `size`, `ext`, `path`, `c
 (15, '80c2c41f3a2799654cda00b82db30638', '2fc7d7ee5554e8f4e83abde52ab4021.jpg', 2094067, 'jpg', '/upload/image/20240409/17f4673180f6bb655deebd941dc4e755.jpg', '2024-04-09 11:54:49', '2024-04-09 11:54:49'),
 (16, '26ae9bea6b90e2285fda78d4fe256610', 'test.zip', 8179364, 'zip', '/upload/file/20240409/26ae9bea6b90e2285fda78d4fe256610.zip', '2024-04-09 14:09:29', '2024-04-09 14:09:29'),
 (17, '396814d705b2ceb75f487e5c63e9c6c4', '1.png', 6034, 'png', '/upload/image/20240410/f582520d44d7ae0ceb798fb588ab3428.png', '2024-04-10 09:45:37', '2024-04-10 09:45:37'),
-(18, '9853d6db42392f5bedd2b7fa8a396c4f', '1.png', 3310, 'png', '/upload/image/20240410/7d1aaeb4627793f5366c84fa8f0adf8a.png', '2024-04-10 09:46:43', '2024-04-10 09:46:43');
+(18, '9853d6db42392f5bedd2b7fa8a396c4f', '1.png', 3310, 'png', '/upload/image/20240410/7d1aaeb4627793f5366c84fa8f0adf8a.png', '2024-04-10 09:46:43', '2024-04-10 09:46:43'),
+(19, 'e86a52d02371d3bf825bf3db722ad38e', '1 - 副本.jpg', 4635, 'jpg', '/upload/image/20241204/62c9d1282e947b95755e87a8ddf96f81.jpg', '2024-12-04 08:41:47', '2024-12-04 08:41:47');
 
 --
 -- 转储表的索引
@@ -374,13 +384,13 @@ ALTER TABLE `easy_manager_role`
 -- 使用表AUTO_INCREMENT `easy_system_log`
 --
 ALTER TABLE `easy_system_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=43;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=48;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_login_log`
 --
 ALTER TABLE `easy_system_login_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=66;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=70;
 
 --
 -- 使用表AUTO_INCREMENT `easy_system_menu`
@@ -398,7 +408,7 @@ ALTER TABLE `easy_system_setting`
 -- 使用表AUTO_INCREMENT `easy_system_upload`
 --
 ALTER TABLE `easy_system_upload`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

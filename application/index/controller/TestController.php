@@ -7,16 +7,34 @@ namespace app\index\controller;
 use Exception;
 
 use app\common\helper\ExcelHelper;
-
 use app\common\repository\ManagerRepository;
+
+use app\index\factory\DataFactory;
+use app\index\factory\TestFactory;
+use app\index\factory\UserFactory;
 
 class TestController
 {
     /**
+     * 逻辑层测试
+     * @throws Exception
+     */
+    public function logicAction()
+    {
+        $UserService = UserFactory::getService();
+        $TestService = TestFactory::getService();
+        $DataService = DataFactory::getService();
+
+        dump($UserService->sayName());
+        dump($TestService->sayName());
+        dump($DataService->sayName());
+    }
+
+    /**
      * 分表测试
      * @throws Exception
      */
-    public function testAction()
+    public function daoAction()
     {
         $ManagerRepostory = new ManagerRepository();
 

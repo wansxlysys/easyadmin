@@ -4,33 +4,25 @@
 namespace app\index\service;
 
 
-use Exception;
-
-use app\index\logic\TestLogic;
-
-class TestService extends \app\common\service\Service
+class TestService
 {
-    /**
-     * 逻辑层
-     * @var TestLogic
-     */
-    protected $TestLogic;
+    protected UserService $UserService;
 
-    /**
-     * 初始化
-     */
-    public function initialize()
+    protected DataService $DataService;
+
+    protected function injectService(UserService $UserService, DataService $DataService)
     {
-        $this->TestLogic = new TestLogic();
+        $this->UserService = $UserService;
+        $this->DataService = $DataService;
     }
 
-    /**
-     * 删除
-     * @return void
-     * @throws Exception
-     */
-    public function delete()
+    public function getName()
     {
-        $this->TestLogic->deleteRoleWithManager();
+        return 'TestService';
+    }
+
+    public function sayName()
+    {
+        return $this->UserService->getName();
     }
 }

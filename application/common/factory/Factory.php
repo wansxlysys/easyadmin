@@ -33,19 +33,19 @@ class Factory
         /**
          * 实例化类
          */
-        $instancesClass = $reflectionClass->newInstance();
+        $instanceClass = $reflectionClass->newInstance();
 
         /**
          * 放入容器
          */
-        static::$instances[$className] = $instancesClass;
+        static::$instances[$className] = $instanceClass;
 
         /**
          * 注入依赖
          */
-        static::injectDependency($instancesClass, $reflectionClass);
+        static::injectDependency($instanceClass, $reflectionClass);
 
-        return $instancesClass;
+        return $instanceClass;
     }
 
     /**

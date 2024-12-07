@@ -16,10 +16,10 @@ use app\index\factory\UserFactory;
 class TestController
 {
     /**
-     * 逻辑层测试
+     * 注入依赖测试
      * @throws Exception
      */
-    public function logicAction()
+    public function injectAction()
     {
         $UserService = UserFactory::getService();
         $TestService = TestFactory::getService();

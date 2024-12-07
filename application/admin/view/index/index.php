@@ -10,12 +10,12 @@
         <div class="layui-logo layui-bg-black">{$systemSetting.name}</div>
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item" lay-unselect lay-header-event="outdent">
-                <a href="javascript:;">
+                <a href="javascript:">
                     <i class="fa fa-fw fa-outdent"></i>
                 </a>
             </li>
             <li class="layui-nav-item" lay-unselect lay-header-event="refresh">
-                <a href="javascript:;">
+                <a href="javascript:">
                     <i class="fa fa-fw fa-arrows-rotate"></i>
                 </a>
             </li>
@@ -23,12 +23,12 @@
 
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item" lay-unselect lay-header-event="fullscreen">
-                <a href="javascript:;">
+                <a href="javascript:">
                     <i class="fa fa-fw fa-maximize"></i>
                 </a>
             </li>
             <li class="layui-nav-item layui-nav-avatar">
-                <a href="javascript:;">
+                <a href="javascript:">
                     <img src="{$manager.avatar}" class="layui-nav-img">
                     {$manager.realName}
                 </a>
@@ -38,7 +38,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item" lay-unselect lay-header-event="system">
-                <a href="javascript:;">
+                <a href="javascript:">
                     <i class="fa fa-fw fa-circle-info"></i>
                 </a>
             </li>
@@ -50,7 +50,7 @@
             <ul class="layui-nav layui-nav-tree" lay-accordion>
                 {volist name="$menuTree" id="menu1"}
                 <li class="layui-nav-item {eq name='$menu1.id' value='75'}layui-nav-itemed{/eq}">
-                    <a href="javascript:;" data-link="{$menu1.url}" data-target="{$menu1.target}">
+                    <a href="javascript:" data-link="{$menu1.url}" data-target="{$menu1.target}">
                         <i class="fa fa-fw {$menu1.icon}"></i>
                         <span>{$menu1.name}</span>
                     </a>
@@ -58,7 +58,7 @@
                     <dl class="layui-nav-child">
                         {volist name="$menu1.children" id="menu2"}
                         <dd {eq name="$menu2.id" value="128"} class="layui-this" {/eq}>
-                            <a href="javascript:;" data-link="{$menu2.url}" data-target="{$menu2.target}">
+                            <a href="javascript:" data-link="{$menu2.url}" data-target="{$menu2.target}">
                                 <i class="fa fa-fw {$menu2.icon}"></i>
                                 <span>{$menu2.name}</span>
                             </a>
@@ -66,7 +66,7 @@
                             <dl class="layui-nav-child">
                                 {volist name="$menu2.children" id="menu3"}
                                 <dd>
-                                    <a href="javascript:;" data-link="{$menu3.url}" data-target="{$menu3.target}">
+                                    <a href="javascript:" data-link="{$menu3.url}" data-target="{$menu3.target}">
                                         <i class="fa fa-fw {$menu3.icon}"></i>
                                         <span>{$menu3.name}</span>
                                     </a>
@@ -87,7 +87,7 @@
         <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('admin/Home/console')}"></iframe>
     </div>
     <div class="layui-footer">
-        SPEEDADMIN版权所有
+        EASYADMIN版权所有
     </div>
 </div>
 {/block}

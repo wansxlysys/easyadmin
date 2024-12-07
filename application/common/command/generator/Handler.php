@@ -116,10 +116,10 @@ class Handler
     }
 
     /**
-     * 保存文件
+     * 生成代码
      * @return void
      */
-    protected function saveFile()
+    public function generate()
     {
         $fileText = $this->getStub();
         $savePath = $this->getPath();
@@ -130,14 +130,5 @@ class Handler
             ConsoleUtil::writeln('创建成功：' . $savePath);
             file_put_contents($savePath, str_replace($this->search, $this->replace, $fileText));
         }
-    }
-
-    /**
-     * 生成代码
-     * @return void
-     */
-    public function generate()
-    {
-        $this->saveFile();
     }
 }

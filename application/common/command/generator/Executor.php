@@ -14,9 +14,11 @@ class Executor
         ['module' => 'common', 'layer' => 'service', 'stub' => 'CommonService'],
         ['module' => 'common', 'layer' => 'validate', 'stub' => 'CommonValidate'],
         ['module' => 'common', 'layer' => 'repository', 'stub' => 'CommonRepository'],
+        ['module' => 'common', 'layer' => 'dependency', 'stub' => 'CommonDependency'],
         ['module' => 'admin', 'layer' => 'service', 'stub' => 'AdminService'],
         ['module' => 'admin', 'layer' => 'validate', 'stub' => 'AdminValidate'],
         ['module' => 'admin', 'layer' => 'controller', 'stub' => 'AdminController'],
+        ['module' => 'admin', 'layer' => 'dependency', 'stub' => 'AdminDependency'],
     ];
 
     /**

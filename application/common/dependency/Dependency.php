@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\common\factory;
+namespace app\common\dependency;
 
 
 use ReflectionClass;
 use ReflectionException;
 
-class Factory
+class Dependency
 {
     /**
      * 实例

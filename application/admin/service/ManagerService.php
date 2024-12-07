@@ -4,6 +4,7 @@
 namespace app\admin\service;
 
 
+use app\admin\dependency\SystemLoginLogDependency;
 use Exception;
 
 use app\common\util\StringUtil;
@@ -211,7 +212,7 @@ class ManagerService extends \app\common\service\ManagerService
             throw new ServiceException('执行失败，登录时间更新失败');
         }
 
-        $SystemLoginLogService = new SystemLoginLogService();
+        $SystemLoginLogService = SystemLoginLogDependency::getService();
 
         try {
 

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\index\factory;
+namespace app\index\dependency;
 
 
-use app\common\factory\Factory;
+use app\common\dependency\Dependency;
 use app\index\service\DataService;
 
-class DataFactory
+class DataDependency
 {
     /**
      * 获取服务类
@@ -15,6 +15,6 @@ class DataFactory
      */
     public static function getService()
     {
-        return Factory::get(DataService::class);
+        return Dependency::get(DataService::class);
     }
 }

@@ -10,6 +10,7 @@ use think\Request;
 use think\response\Json;
 
 use app\admin\service\EditorService;
+use app\admin\dependency\EditorDependency;
 
 use app\common\controller\AdminController;
 
@@ -34,7 +35,7 @@ class EditorController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->EditorService = new EditorService();
+        $this->EditorService = EditorDependency::getService();
     }
 
     /**

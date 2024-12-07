@@ -10,6 +10,7 @@ use think\Request;
 
 use app\admin\service\ManagerRoleService;
 use app\admin\validate\ManagerRoleValidate;
+use app\admin\dependency\ManagerRoleDependency;
 
 use app\common\controller\AdminController;
 
@@ -40,8 +41,8 @@ class ManagerRoleController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerRoleService  = new ManagerRoleService();
-        $this->ManagerRoleValidate = new ManagerRoleValidate();
+        $this->ManagerRoleService  = ManagerRoleDependency::getService();
+        $this->ManagerRoleValidate = ManagerRoleDependency::getValidate();
     }
 
     /**

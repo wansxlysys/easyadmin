@@ -4,6 +4,8 @@
 namespace app\admin\controller;
 
 
+use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemSettingDependency;
 use Exception;
 
 use think\Request;
@@ -40,8 +42,8 @@ class LoginController extends CommonController
             $this->redirect('admin/Index/index');
         }
 
-        $this->ManagerService  = new ManagerService();
-        $this->ManagerValidate = new ManagerValidate();
+        $this->ManagerService  = ManagerDependency::getService();
+        $this->ManagerValidate = ManagerDependency::getValidate();
     }
 
     /**
@@ -67,10 +69,8 @@ class LoginController extends CommonController
             $this->success('登录成功', 'admin/Index/index');
         }
 
-        $systemSetting = new SystemSettingService();
-
         return $this->fetch('', [
-            'systemSetting' => $systemSetting->getSystemSetting()
+            'systemSetting' => SystemSettingDependency::getService()->getSystemSetting()
         ]);
     }
 

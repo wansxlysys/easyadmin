@@ -10,6 +10,7 @@ use think\Request;
 
 use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
+use app\admin\dependency\SystemSettingDependency;
 
 use app\common\controller\AdminController;
 
@@ -40,8 +41,8 @@ class SystemSettingController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemSettingService  = new SystemSettingService();
-        $this->SystemSettingValidate = new SystemSettingValidate();
+        $this->SystemSettingService  = SystemSettingDependency::getService();
+        $this->SystemSettingValidate = SystemSettingDependency::getValidate();
     }
 
     /**

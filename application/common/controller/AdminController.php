@@ -8,10 +8,10 @@ use Exception;
 
 use think\facade\Hook;
 
-use app\admin\service\ManagerService;
-use app\admin\service\SystemMenuService;
 use app\admin\behavior\SystemLogBehavior;
-use app\admin\service\SystemSettingService;
+use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemMenuDependency;
+use app\admin\dependency\SystemSettingDependency;
 
 use app\common\helper\ManagerHelper;
 use app\common\helper\SystemMenuHelper;
@@ -25,13 +25,9 @@ class AdminController extends CommonController
      */
     public function initialize()
     {
-        $ManagerService       = new ManagerService();
-        $SystemMenuService    = new SystemMenuService();
-        $SystemSettingService = new SystemSettingService();
-
-        $manager       = $ManagerService->getManager();
-        $currentMenu   = $SystemMenuService->getCurrentMenu();
-        $systemSetting = $SystemSettingService->getSystemSetting();
+        $manager       = ManagerDependency::getService()->getManager();
+        $currentMenu   = SystemMenuDependency::getService()->getCurrentMenu();
+        $systemSetting = SystemSettingDependency::getService()->getSystemSetting();
 
         /**
          * 设置缓存

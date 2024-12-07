@@ -32,12 +32,24 @@ if (!function_exists('empty_image')) {
 
 if (!function_exists('service')) {
     /**
-     * 实例化服务层
+     * 获取依赖层
      * @param $name
      * @return object
      */
     function service($name)
     {
-        return app()->model($name, 'service');
+        return app()->model($name, 'dependency')->getService();
+    }
+}
+
+if (!function_exists('dependency')) {
+    /**
+     * 获取依赖层
+     * @param $name
+     * @return object
+     */
+    function dependency($name)
+    {
+        return app()->model($name, 'dependency');
     }
 }

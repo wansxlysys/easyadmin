@@ -9,9 +9,9 @@ use Exception;
 use app\common\helper\ExcelHelper;
 use app\common\repository\ManagerRepository;
 
-use app\index\factory\DataFactory;
-use app\index\factory\TestFactory;
-use app\index\factory\UserFactory;
+use app\index\dependency\DataDependency;
+use app\index\dependency\TestDependency;
+use app\index\dependency\UserDependency;
 
 class TestController
 {
@@ -21,9 +21,9 @@ class TestController
      */
     public function injectAction()
     {
-        $UserService = UserFactory::getService();
-        $TestService = TestFactory::getService();
-        $DataService = DataFactory::getService();
+        $UserService = UserDependency::getService();
+        $TestService = TestDependency::getService();
+        $DataService = DataDependency::getService();
 
         dump($UserService->sayName());
         dump($TestService->sayName());

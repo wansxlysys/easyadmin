@@ -4,6 +4,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\dependency\SystemMenuDependency;
 use Exception;
 
 use think\Request;
@@ -40,8 +41,8 @@ class SystemMenuController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemMenuService  = new SystemMenuService();
-        $this->SystemMenuValidate = new SystemMenuValidate();
+        $this->SystemMenuService  = SystemMenuDependency::getService();
+        $this->SystemMenuValidate = SystemMenuDependency::getValidate();
     }
 
     /**

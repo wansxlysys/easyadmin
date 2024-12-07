@@ -17,8 +17,8 @@ class SystemSettingService extends Service
     /**
      * 初始化
      */
-    public function __construct()
+    public function injectDependency(SystemSettingRepository $SystemSettingRepository)
     {
-        $this->SystemSettingRepository = new SystemSettingRepository();
+        $this->SystemSettingRepository = $SystemSettingRepository;
     }
 }

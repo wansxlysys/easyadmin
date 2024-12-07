@@ -4,6 +4,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\dependency\ManagerDependency;
 use Exception;
 
 use think\Image;
@@ -11,7 +12,7 @@ use think\Request;
 
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
-use app\admin\service\SystemUploadService;
+use app\admin\dependency\SystemUploadDependency;
 
 use app\common\controller\AdminController;
 
@@ -42,8 +43,8 @@ class ManagerController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerService  = new ManagerService();
-        $this->ManagerValidate = new ManagerValidate();
+        $this->ManagerService  = ManagerDependency::getService();
+        $this->ManagerValidate = ManagerDependency::getValidate();
     }
 
     /**
@@ -160,9 +161,7 @@ class ManagerController extends AdminController
     {
         if ($request->isAjax()) {
 
-            $UploadService = new SystemUploadService();
-
-            $fileInfo = $UploadService->uploadImage($request->file('file'));
+            $fileInfo = SystemUploadDependency::getService()->uploadImage($request->file('file'));
 
             Image::open($fileInfo['savePath'])->thumb(200, 200, 5)->save($fileInfo['savePath']);
 

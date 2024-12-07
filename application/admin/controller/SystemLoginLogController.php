@@ -4,6 +4,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\dependency\SystemLoginLogDependency;
 use Exception;
 
 use think\Request;
@@ -33,7 +34,7 @@ class SystemLoginLogController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemLoginLogService = new SystemLoginLogService();
+        $this->SystemLoginLogService = SystemLoginLogDependency::getService();
     }
 
     /**

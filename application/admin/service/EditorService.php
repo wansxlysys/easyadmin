@@ -20,9 +20,9 @@ class EditorService extends \app\common\service\EditorService
     /**
      * 初始化
      */
-    public function __construct()
+    public function injectDependency(SystemUploadService $SystemUploadService)
     {
-        $this->SystemUploadService = new SystemUploadService();
+        $this->SystemUploadService = $SystemUploadService;
     }
 
     /**

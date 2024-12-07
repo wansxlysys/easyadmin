@@ -23,9 +23,9 @@ class SystemUploadService extends Service
     /**
      * 初始化
      */
-    public function __construct()
+    public function injectDependency(SystemUploadRepository $SystemUploadRepository)
     {
-        $this->SystemUploadRepository = new SystemUploadRepository();
+        $this->SystemUploadRepository = $SystemUploadRepository;
     }
 
     /**

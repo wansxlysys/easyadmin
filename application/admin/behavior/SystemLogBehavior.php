@@ -9,7 +9,7 @@ use Exception;
 use think\Request;
 use think\Response;
 
-use app\admin\service\SystemLogService;
+use app\admin\dependency\SystemLogDependency;
 
 class SystemLogBehavior
 {
@@ -27,7 +27,7 @@ class SystemLogBehavior
 
             if (isset($responseData['code'])) {
 
-                $SystemLogService = new SystemLogService();
+                $SystemLogService = SystemLogDependency::getService();
 
                 $SystemLogService->writeLog($responseData['msg'], $SystemLogService->translateCode($responseData['code']));
             }

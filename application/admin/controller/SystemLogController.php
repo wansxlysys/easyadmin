@@ -9,7 +9,7 @@ use Exception;
 use think\Request;
 
 use app\admin\service\SystemLogService;
-
+use app\admin\dependency\SystemLogDependency;
 use app\common\controller\AdminController;
 
 class SystemLogController extends AdminController
@@ -33,7 +33,7 @@ class SystemLogController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemLogService = new SystemLogService();
+        $this->SystemLogService = SystemLogDependency::getService();
     }
 
     /**

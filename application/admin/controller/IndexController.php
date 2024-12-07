@@ -4,6 +4,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\dependency\SystemMenuDependency;
 use Exception;
 
 use think\Request;
@@ -42,9 +43,7 @@ class IndexController extends AdminController
      */
     public function indexAction()
     {
-        $SystemMenuService = new SystemMenuService();
-
-        $menuTree = $SystemMenuService->getLeftMenu();
+        $menuTree = SystemMenuDependency::getService()->getLeftMenu();
 
         return $this->fetch('', [
             'menuTree' => $menuTree

@@ -9,6 +9,7 @@ use Exception;
 use think\Request;
 
 use app\admin\service\SystemUploadService;
+use app\admin\dependency\SystemUploadDependency;
 
 use app\common\controller\AdminController;
 
@@ -33,7 +34,7 @@ class SystemUploadController extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemUploadService = new SystemUploadService();
+        $this->SystemUploadService = SystemUploadDependency::getService();
     }
 
     /**

@@ -4,13 +4,11 @@
 namespace app\common\dependency;
 
 
-use app\common\dependency\Dependency;
-
 use app\common\service\{{class}}Service;
 use app\common\validate\{{class}}Validate;
 use app\common\repository\{{class}}Repository;
 
-class CommonDependency
+class {{class}}Dependency
 {
     /**
      * 获取存储类

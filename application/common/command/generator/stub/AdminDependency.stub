@@ -9,7 +9,7 @@ use app\common\dependency\Dependency;
 use app\admin\service\{{class}}Service;
 use app\admin\validate\{{class}}Validate;
 
-class AdminDependency extends \app\common\dependency\{{class}}Dependency
+class {{class}}Dependency extends \app\common\dependency\{{class}}Dependency
 {
     /**
      * 获取服务类

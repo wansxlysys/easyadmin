@@ -10,6 +10,7 @@ use think\Request;
 
 use app\admin\service\{{class}}Service;
 use app\admin\validate\{{class}}Validate;
+use app\admin\dependency\{{class}}Dependency;
 
 use app\common\controller\AdminController;
 
@@ -40,8 +41,8 @@ class {{class}}Controller extends AdminController
     public function initialize()
     {
         parent::initialize();
-        $this->{{class}}Service  = new {{class}}Service();
-        $this->{{class}}Validate = new {{class}}Validate();
+        $this->{{class}}Service  = {{class}}Dependency::getService();
+        $this->{{class}}Validate = {{class}}Dependency::getValidate();
     }
 
     /**

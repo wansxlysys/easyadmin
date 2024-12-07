@@ -9,7 +9,7 @@ class JsonUtil
     /**
      * json转数组
      * @param $json
-     * @return mixed
+     * @return array
      */
     public static function toArray($json)
     {
@@ -19,7 +19,7 @@ class JsonUtil
     /**
      * json转对象
      * @param $json
-     * @return mixed
+     * @return object
      */
     public static function toObject($json)
     {

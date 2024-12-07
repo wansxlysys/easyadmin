@@ -13,7 +13,7 @@ class Dependency
      * 实例
      * @var array
      */
-    public static $instances = [];
+    private static $instances = [];
 
     /**
      * 获取实例
@@ -69,7 +69,7 @@ class Dependency
                 $dependencies = [];
 
                 /**
-                 * 循环每个参数
+                 * 收集依赖
                  */
                 foreach ($method->getParameters() as $parameter) {
 
@@ -82,9 +82,6 @@ class Dependency
                         static::$instances[$parameterClassName] = static::get($parameterClassName);
                     }
 
-                    /**
-                     * 放入依赖
-                     */
                     $dependencies[] = static::$instances[$parameterClassName];
                 }
 

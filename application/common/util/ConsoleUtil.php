@@ -7,7 +7,7 @@ namespace app\common\util;
 class ConsoleUtil
 {
     /**
-     * 换行写入
+     * 换行输出
      * @param $message
      * @return void
      */

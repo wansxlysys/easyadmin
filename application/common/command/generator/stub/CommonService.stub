@@ -17,8 +17,8 @@ class {{class}}Service extends Service
     /**
      * 初始化
      */
-    public function __construct()
+    public function injectDependency({{class}}Repository ${{class}}Repository)
     {
-        $this->{{class}}Repository = new {{class}}Repository();
+        $this->{{class}}Repository = ${{class}}Repository;
     }
 }

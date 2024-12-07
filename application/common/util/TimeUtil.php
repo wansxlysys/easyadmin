@@ -8,7 +8,7 @@ class TimeUtil
 {
     /**
      * 当前时间
-     * @return false|string
+     * @return string
      */
     public static function time()
     {

@@ -11,7 +11,7 @@ class ArrayUtil
      * @param array $array
      * @param string $symbol
      * @param string $default
-     * @return array|string
+     * @return string
      */
     public static function toString(array $array, $symbol = ',', $default = '')
     {
@@ -24,7 +24,7 @@ class ArrayUtil
 
     /**
      * 数组转json
-     * @param $array
+     * @param array $array
      * @return false|string
      */
     public static function toJson(array $array)
@@ -34,7 +34,7 @@ class ArrayUtil
 
     /**
      * 检测数组元素是否都符合指定条件
-     * @param $array
+     * @param array $array
      * @param $callback
      * @return bool
      */
@@ -49,7 +49,7 @@ class ArrayUtil
 
     /**
      * 检测数组元素是否有元素符合指定条件
-     * @param $array
+     * @param array $array
      * @param $callback
      * @return bool
      */

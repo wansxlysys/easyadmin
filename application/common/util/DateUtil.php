@@ -8,7 +8,7 @@ class DateUtil
 {
     /**
      * 当前日期
-     * @return false|string
+     * @return string
      */
     public static function date()
     {

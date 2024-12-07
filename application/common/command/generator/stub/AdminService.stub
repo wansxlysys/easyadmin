@@ -14,7 +14,7 @@ class {{class}}Service extends \app\common\service\{{class}}Service
      * 获取列表
      * @throws Exception
      */
-    public function listUser(array $params)
+    public function list{{class}}(array $params)
     {
         $Wrapper = new Wrapper();
 

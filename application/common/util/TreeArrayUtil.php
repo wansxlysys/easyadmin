@@ -54,12 +54,12 @@ class TreeArrayUtil
         $arrayMap  = [];
         $treeArray = [];
 
-        foreach ($array as $key => $item) {
+        foreach ($array as $item) {
 
             /**
              * 设置映射
              */
-            $arrayMap[$item[$this->id]] = &$array[$key];
+            $arrayMap[$item[$this->id]] = &$item;
         }
 
         foreach ($array as $key => $item) {
@@ -68,7 +68,7 @@ class TreeArrayUtil
              * 获取下级
              */
             if (isset($arrayMap[$item[$this->parentId]])) {
-                $arrayMap[$item[$this->parentId]][$this->children][] = &$array[$key];
+                $arrayMap[$item[$this->parentId]][$this->children][] = &$item;
             }
 
             /**

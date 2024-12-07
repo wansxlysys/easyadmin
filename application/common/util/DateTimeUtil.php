@@ -8,7 +8,7 @@ class DateTimeUtil
 {
     /**
      * 当前日期时间
-     * @return false|string
+     * @return string
      */
     public static function dateTime()
     {

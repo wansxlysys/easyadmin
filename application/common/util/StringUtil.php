@@ -11,7 +11,7 @@ class StringUtil
      * @param $string
      * @param string $symbol
      * @param array $default
-     * @return array|string
+     * @return array
      */
     public static function toArray($string, $symbol = ',', $default = [])
     {

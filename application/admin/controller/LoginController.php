@@ -4,8 +4,6 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\ManagerDependency;
-use app\admin\dependency\SystemSettingDependency;
 use Exception;
 
 use think\Request;
@@ -13,8 +11,9 @@ use think\Response;
 use think\captcha\Captcha;
 
 use app\admin\service\ManagerService;
-use app\admin\service\SystemSettingService;
 use app\admin\validate\ManagerValidate;
+use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemSettingDependency;
 
 use app\common\helper\ManagerHelper;
 use app\common\controller\CommonController;

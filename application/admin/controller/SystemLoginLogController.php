@@ -4,12 +4,12 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\SystemLoginLogDependency;
 use Exception;
 
 use think\Request;
 
 use app\admin\service\SystemLoginLogService;
+use app\admin\dependency\SystemLoginLogDependency;
 
 use app\common\controller\AdminController;
 

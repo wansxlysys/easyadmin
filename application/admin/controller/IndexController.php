@@ -4,14 +4,13 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\SystemMenuDependency;
 use Exception;
 
 use think\Request;
 
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
-use app\admin\service\SystemMenuService;
+use app\admin\dependency\SystemMenuDependency;
 
 use app\common\helper\ManagerHelper;
 use app\common\controller\AdminController;

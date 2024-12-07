@@ -4,8 +4,9 @@
 namespace app\admin\service;
 
 
-use app\admin\dependency\ManagerDependency;
 use Exception;
+
+use app\admin\dependency\ManagerDependency;
 
 use app\common\enum\DeleteEnum;
 use app\common\enum\ManagerRoleEnum;

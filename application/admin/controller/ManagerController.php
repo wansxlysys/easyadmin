@@ -4,7 +4,6 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\ManagerDependency;
 use Exception;
 
 use think\Image;
@@ -12,6 +11,7 @@ use think\Request;
 
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
+use app\admin\dependency\ManagerDependency;
 use app\admin\dependency\SystemUploadDependency;
 
 use app\common\controller\AdminController;

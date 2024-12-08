@@ -20,11 +20,12 @@ class Backup extends Command
 {
     /**
      * 配置命令
+     * php think system:backup --file easyadmin
      */
     protected function configure()
     {
-        $this->setName('backup')
-            ->addOption('name', null, Option::VALUE_REQUIRED, 'File Name', 'easyadmin')
+        $this->setName('system:backup')
+            ->addOption('file', null, Option::VALUE_REQUIRED, 'File Name', 'easyadmin')
             ->setDescription('DataBases Backup');
     }
 
@@ -35,7 +36,7 @@ class Backup extends Command
      */
     protected function execute(Input $input, Output $output)
     {
-        $name = $input->getOption('name');
+        $name = $input->getOption('file');
 
         try {
 

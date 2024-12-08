@@ -13,6 +13,8 @@ use app\index\dependency\DataDependency;
 use app\index\dependency\TestDependency;
 use app\index\dependency\UserDependency;
 
+use app\queue\producer\TestProducer;
+
 class TestController
 {
     /**
@@ -43,6 +45,15 @@ class TestController
 
         $manager2 = $ManagerRepostory->useSub(100)->getById(1);
         dump($manager2);
+    }
+
+    /**
+     * 队列测试
+     * @throws Exception
+     */
+    public function queueAction()
+    {
+        TestProducer::test(['userId' => 1]);
     }
 
     /**

@@ -12,7 +12,10 @@
 use app\common\command\backup\Backup;
 use app\common\command\generator\Generator;
 
+use app\queue\command\QueueRetry;
+
 return [
-    'backup'    => Backup::class,
-    'generator' => Generator::class
+    'system:backup'    => Backup::class,
+    'system:generator' => Generator::class,
+    'queue:retry'      => QueueRetry::class,
 ];

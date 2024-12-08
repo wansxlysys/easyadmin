@@ -13,7 +13,7 @@ return [
     // Redis驱动
     'connector'  => 'Redis',
     // 任务的过期时间
-    'expire'     => 60,
+    'expire'     => INF,
     // 默认的队列名称
     'default'    => 'default',
     // Redis地址

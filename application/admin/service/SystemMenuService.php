@@ -168,27 +168,27 @@ class SystemMenuService extends \app\common\service\SystemMenuService
 
     /**
      * 构建储存数据
-     * @param $params
-     * @return mixed
+     * @param array $data
+     * @return array
      */
-    protected function buildData($params)
+    public function buildData(array $data)
     {
         /**
          * 如果不是外链则清空链接地址
          */
-        if ($params['type'] != SystemMenuEnum::TYPE_LINK) {
-            $params['link'] = '';
+        if ($data['type'] != SystemMenuEnum::TYPE_LINK) {
+            $data['link'] = '';
         }
 
-        return $params;
+        return $data;
     }
 
     /**
      * 格式化数据
-     * @param $data
-     * @return mixed
+     * @param array $data
+     * @return array
      */
-    protected function formatData($data)
+    public function formatData(array $data)
     {
         if (!empty($data['module'])) {
             $data['url'] = $this->buildUrl($data);

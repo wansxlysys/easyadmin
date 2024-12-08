@@ -13,15 +13,14 @@ class Generator extends Command
 {
     /**
      * 配置命令
-     * php think generator -c User -r 用户
-     * php think generator --class User --remark 用户
+     * php think system:generator --class User --remark 用户
      * @return void
      */
     protected function configure()
     {
-        $this->setName('generator')
-            ->addOption('class', 'c', Option::VALUE_REQUIRED, "Class Name")
-            ->addOption('remark', 'r', Option::VALUE_REQUIRED, 'Remark Text')
+        $this->setName('system:generator')
+            ->addOption('class', null, Option::VALUE_REQUIRED, "Class Name")
+            ->addOption('remark', null, Option::VALUE_REQUIRED, 'Remark Text')
             ->setDescription('Generator Code');
     }
 

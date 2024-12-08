@@ -9,7 +9,8 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-// 应用行为扩展定义文件
+use app\queue\exception\QueueExceptionHandler;
+
 return [
     // 应用初始化
     'app_init'     => [],
@@ -25,4 +26,8 @@ return [
     'log_write'    => [],
     // 应用结束
     'app_end'      => [],
+    // 队列消费失败
+    'queue_failed' => [
+        QueueExceptionHandler::class
+    ]
 ];

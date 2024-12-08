@@ -38,7 +38,7 @@ class QueueRetry extends Command
 
         $QueueFiledService = QueueFailedDependency::getService();
 
-        $failedList = $QueueFiledService->getFiledList($queue);
+        $failedList = $QueueFiledService->getListFailed($queue);
 
         foreach ($failedList as $failed) {
 

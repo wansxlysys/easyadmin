@@ -21,8 +21,7 @@ class Http extends Handle
      * @var array
      */
     protected $ignoreReport = [
-        HttpException::class,
-        ValidateException::class
+        HttpException::class, ValidateException::class
     ];
 
     /*

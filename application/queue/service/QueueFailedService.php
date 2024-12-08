@@ -16,7 +16,7 @@ class QueueFailedService extends \app\common\service\QueueFailedService
      * 获取失败列表
      * @throws Exception
      */
-    public function getFiledList($queue)
+    public function getListFailed($queue)
     {
         $Wrapper = new Wrapper();
 

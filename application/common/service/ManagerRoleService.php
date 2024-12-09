@@ -17,7 +17,7 @@ class ManagerRoleService extends Service
     /**
      * 初始化
      */
-    public function injectDependency(ManagerRoleRepository $ManagerRoleRepository)
+    public function injectRepostitory(ManagerRoleRepository $ManagerRoleRepository)
     {
         $this->ManagerRoleRepository = $ManagerRoleRepository;
     }

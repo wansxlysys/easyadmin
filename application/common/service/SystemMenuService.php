@@ -17,7 +17,7 @@ class SystemMenuService extends Service
     /**
      * 初始化
      */
-    public function injectDependency(SystemMenuRepository $SystemMenuRepository)
+    public function injectRepostitory(SystemMenuRepository $SystemMenuRepository)
     {
         $this->SystemMenuRepository = $SystemMenuRepository;
     }

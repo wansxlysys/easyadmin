@@ -6,7 +6,7 @@ namespace app\queue\producer;
 
 use think\Queue;
 
-class Producer
+abstract class Producer
 {
     /**
      * 投递队列

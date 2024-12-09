@@ -17,7 +17,7 @@ class {{class}}Service extends Service
     /**
      * 初始化
      */
-    public function injectDependency({{class}}Repository ${{class}}Repository)
+    public function injectRepository({{class}}Repository ${{class}}Repository)
     {
         $this->{{class}}Repository = ${{class}}Repository;
     }

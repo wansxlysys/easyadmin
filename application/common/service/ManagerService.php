@@ -17,7 +17,7 @@ class ManagerService extends Service
     /**
      * 初始化
      */
-    public function injectDependency(ManagerRepository $ManagerRepository)
+    public function injectRepostitory(ManagerRepository $ManagerRepository)
     {
         $this->ManagerRepository = $ManagerRepository;
     }

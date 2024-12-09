@@ -17,7 +17,7 @@ class QueueFailedService extends Service
     /**
      * 初始化
      */
-    public function injectDependency(QueueFailedRepostitory $QueueFailedRepostitory)
+    public function injectRepostitory(QueueFailedRepostitory $QueueFailedRepostitory)
     {
         $this->QueueFailedRepostitory = $QueueFailedRepostitory;
     }

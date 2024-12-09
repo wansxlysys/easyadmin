@@ -17,7 +17,7 @@ class SystemLoginLogService extends Service
     /**
      * 初始化
      */
-    public function injectDependency(SystemLoginLogRepository $SystemLoginLogRepository)
+    public function injectRepostitory(SystemLoginLogRepository $SystemLoginLogRepository)
     {
         $this->SystemLoginLogRepository = $SystemLoginLogRepository;
     }

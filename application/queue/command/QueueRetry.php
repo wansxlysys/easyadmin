@@ -18,6 +18,7 @@ class QueueRetry extends Command
 {
     /**
      * 配置命令
+     * php think queue:retry --name default
      */
     protected function configure()
     {

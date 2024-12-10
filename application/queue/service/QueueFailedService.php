@@ -57,6 +57,7 @@ class QueueFailedService extends \app\common\service\QueueFailedService
         if (!empty($data['payload'])) {
             $data['payload'] = JsonUtil::toArray($data['payload']);
         }
+        
         return $data;
     }
 

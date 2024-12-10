@@ -93,7 +93,7 @@ class ManagerService extends \app\common\service\ManagerService
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
-        if ($manager) {
+        if (!empty($manager['permission'])) {
             $manager['permission'] = StringUtil::toArray($manager['permission']);
         }
 

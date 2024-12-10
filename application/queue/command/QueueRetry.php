@@ -6,13 +6,13 @@ namespace app\queue\command;
 
 use Exception;
 
+use think\Queue;
 use think\console\Command;
 use think\console\Input;
 use think\console\input\Option;
 use think\console\Output;
 
 use app\queue\dependency\QueueFailedDependency;
-use think\Queue;
 
 class QueueRetry extends Command
 {
@@ -46,7 +46,7 @@ class QueueRetry extends Command
             /**
              * 重新投递队列
              */
-            Queue::push($failed['consumer'], $failed['payload'], $queue);
+            Queue::push($failed['consumer'], $failed['payload'], $failed['queue']);
 
             /**
              * 删除失败记录

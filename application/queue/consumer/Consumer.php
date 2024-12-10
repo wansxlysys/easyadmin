@@ -12,9 +12,7 @@ abstract class Consumer
 {
     /**
      * 消费方法
-     * 队列重启：php think:queue:restart
-     * 开发环境：php think queue:listen --sleep 5 --tries 3 --delay 5
-     * 生产环境：php think queue:work --daemon --sleep 5 --tries 3 --delay 5
+     * 启动命令：php think queue:listen --sleep 5 --tries 3 --delay 5
      * @param Job $job
      * @param $data
      * @throws Exception

@@ -11,10 +11,7 @@ use think\queue\Job;
 class TesConsumer extends Consumer
 {
     /**
-     * 消费方法
-     * 队列重启：php think:queue:restart
-     * 开发环境：php think queue:listen --sleep 5 --tries 3 --delay 5
-     * 生产环境：php think queue:work --daemon --sleep 5 --tries 3 --delay 5
+     * 测试消费方法
      * @param Job $job
      * @param $data
      * @throws Exception

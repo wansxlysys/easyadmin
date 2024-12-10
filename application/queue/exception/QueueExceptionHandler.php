@@ -4,9 +4,11 @@
 namespace app\queue\exception;
 
 
-use app\common\util\JsonUtil;
-use app\queue\dependency\QueueFailedDependency;
 use think\queue\Job;
+
+use app\common\util\JsonUtil;
+
+use app\queue\dependency\QueueFailedDependency;
 
 class QueueExceptionHandler
 {

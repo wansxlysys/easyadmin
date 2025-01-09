@@ -16,6 +16,6 @@ class SystemLogDependency extends \app\common\dependency\SystemLogDependency
      */
     public static function getService()
     {
-        return Dependency::get(SystemLogService::class);
+        return Dependency::getProxy(SystemLogService::class);
     }
 }

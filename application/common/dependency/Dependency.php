@@ -10,16 +10,22 @@ use ReflectionException;
 class Dependency
 {
     /**
-     * 实例
+     * 代理对象
+     * @var array
+     */
+    private static $proxys = [];
+
+    /**
+     * 实例对象
      * @var array
      */
     private static $instances = [];
 
     /**
-     * 获取实例
+     * 获取实例对象
      * @throws object
      */
-    public static function get($className)
+    public static function getInstance($className)
     {
         if (isset(static::$instances[$className])) {
             return static::$instances[$className];
@@ -46,6 +52,46 @@ class Dependency
         static::injectDependency($instanceClass, $reflectionClass);
 
         return $instanceClass;
+    }
+
+    /**
+     * 获取动态代理对象
+     * @param $className
+     * @return mixed
+     */
+    public static function getProxy($className)
+    {
+        if (isset(static::$proxys[$className])) {
+            return static::$proxys[$className];
+        }
+
+        /**
+         * 创建动态代理类
+         */
+        $proxyClass = new DependencyProxy(static::getInstance($className), [
+            'getName' => [
+                'before' => function () {
+                    echo 111;
+                },
+                'around' => function ($methodName, $arguments, $proceed) {
+                    dump($methodName);
+                    dump($arguments);
+                    $result = $proceed();
+                    echo 222;
+                    return $result;
+                },
+                'after'  => function () {
+                    echo 333;
+                }
+            ]
+        ]);
+
+        /**
+         * 放入容器
+         */
+        static::$proxys[$className] = $proxyClass;
+
+        return $proxyClass;
     }
 
     /**
@@ -79,7 +125,7 @@ class Dependency
                      * 检测容器中是否已经实例化
                      */
                     if (!isset(static::$instances[$parameterClassName])) {
-                        static::$instances[$parameterClassName] = static::get($parameterClassName);
+                        static::$instances[$parameterClassName] = static::getInstance($parameterClassName);
                     }
 
                     $dependencies[] = static::$instances[$parameterClassName];

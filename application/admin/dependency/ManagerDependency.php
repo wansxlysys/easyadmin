@@ -17,7 +17,7 @@ class ManagerDependency extends \app\common\dependency\ManagerDependency
      */
     public static function getService()
     {
-        return Dependency::get(ManagerService::class);
+        return Dependency::getProxy(ManagerService::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class ManagerDependency extends \app\common\dependency\ManagerDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(ManagerValidate::class);
+        return Dependency::getProxy(ManagerValidate::class);
     }
 }

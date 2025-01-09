@@ -17,7 +17,7 @@ class ManagerRoleDependency extends \app\common\dependency\ManagerRoleDependency
      */
     public static function getService()
     {
-        return Dependency::get(ManagerRoleService::class);
+        return Dependency::getProxy(ManagerRoleService::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class ManagerRoleDependency extends \app\common\dependency\ManagerRoleDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(ManagerRoleValidate::class);
+        return Dependency::getProxy(ManagerRoleValidate::class);
     }
 }

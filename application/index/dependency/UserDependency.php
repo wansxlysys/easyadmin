@@ -15,6 +15,6 @@ class UserDependency
      */
     public static function getService()
     {
-        return Dependency::get(UserService::class);
+        return Dependency::getProxy(UserService::class);
     }
 }

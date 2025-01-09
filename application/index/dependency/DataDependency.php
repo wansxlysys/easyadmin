@@ -15,6 +15,6 @@ class DataDependency
      */
     public static function getService()
     {
-        return Dependency::get(DataService::class);
+        return Dependency::getProxy(DataService::class);
     }
 }

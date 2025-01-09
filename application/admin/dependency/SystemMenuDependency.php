@@ -17,7 +17,7 @@ class SystemMenuDependency extends \app\common\dependency\SystemMenuDependency
      */
     public static function getService()
     {
-        return Dependency::get(SystemMenuService::class);
+        return Dependency::getProxy(SystemMenuService::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class SystemMenuDependency extends \app\common\dependency\SystemMenuDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(SystemMenuValidate::class);
+        return Dependency::getProxy(SystemMenuValidate::class);
     }
 }

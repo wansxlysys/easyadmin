@@ -16,7 +16,7 @@ class ManagerDependency
      */
     public static function getRepository()
     {
-        return Dependency::get(ManagerRepository::class);
+        return Dependency::getProxy(ManagerRepository::class);
     }
 
     /**
@@ -25,7 +25,7 @@ class ManagerDependency
      */
     public static function getService()
     {
-        return Dependency::get(ManagerService::class);
+        return Dependency::getProxy(ManagerService::class);
     }
 
     /**
@@ -34,6 +34,6 @@ class ManagerDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(ManagerValidate::class);
+        return Dependency::getProxy(ManagerValidate::class);
     }
 }

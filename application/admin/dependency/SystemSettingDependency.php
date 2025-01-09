@@ -17,7 +17,7 @@ class SystemSettingDependency
      */
     public static function getService()
     {
-        return Dependency::get(SystemSettingService::class);
+        return Dependency::getProxy(SystemSettingService::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class SystemSettingDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(SystemSettingValidate::class);
+        return Dependency::getProxy(SystemSettingValidate::class);
     }
 }

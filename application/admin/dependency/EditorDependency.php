@@ -16,6 +16,6 @@ class EditorDependency extends \app\common\dependency\EditorDependency
      */
     public static function getService()
     {
-        return Dependency::get(EditorService::class);
+        return Dependency::getProxy(EditorService::class);
     }
 }

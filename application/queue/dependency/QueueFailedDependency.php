@@ -16,6 +16,6 @@ class QueueFailedDependency
      */
     public static function getService()
     {
-        return Dependency::get(QueueFailedService::class);
+        return Dependency::getProxy(QueueFailedService::class);
     }
 }

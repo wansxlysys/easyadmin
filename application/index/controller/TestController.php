@@ -18,6 +18,16 @@ use app\queue\producer\TestProducer;
 class TestController
 {
     /**
+     * 动态代理测试
+     * @return void
+     */
+    public function proxyAction()
+    {
+        $UserService = UserDependency::getService();
+        dump($UserService->getName());
+    }
+
+    /**
      * 注入依赖测试
      * @throws Exception
      */

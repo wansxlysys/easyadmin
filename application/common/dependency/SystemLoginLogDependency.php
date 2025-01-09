@@ -15,7 +15,7 @@ class SystemLoginLogDependency
      */
     public static function getRepository()
     {
-        return Dependency::get(SystemLoginLogRepository::class);
+        return Dependency::getProxy(SystemLoginLogRepository::class);
     }
 
     /**
@@ -24,6 +24,6 @@ class SystemLoginLogDependency
      */
     public static function getService()
     {
-        return Dependency::get(SystemLoginLogService::class);
+        return Dependency::getProxy(SystemLoginLogService::class);
     }
 }

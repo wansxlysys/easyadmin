@@ -16,7 +16,7 @@ class ManagerRoleDependency
      */
     public static function getRepository()
     {
-        return Dependency::get(ManagerRoleRepository::class);
+        return Dependency::getProxy(ManagerRoleRepository::class);
     }
 
     /**
@@ -25,7 +25,7 @@ class ManagerRoleDependency
      */
     public static function getService()
     {
-        return Dependency::get(ManagerRoleService::class);
+        return Dependency::getProxy(ManagerRoleService::class);
     }
 
     /**
@@ -34,6 +34,6 @@ class ManagerRoleDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(ManagerRoleValidate::class);
+        return Dependency::getProxy(ManagerRoleValidate::class);
     }
 }

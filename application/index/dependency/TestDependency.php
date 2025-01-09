@@ -15,6 +15,6 @@ class TestDependency
      */
     public static function getService()
     {
-        return Dependency::get(TestService::class);
+        return Dependency::getProxy(TestService::class);
     }
 }

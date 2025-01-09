@@ -17,7 +17,7 @@ class SystemUploadDependency extends \app\common\dependency\SystemUploadDependen
      */
     public static function getService()
     {
-        return Dependency::get(SystemUploadService::class);
+        return Dependency::getProxy(SystemUploadService::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class SystemUploadDependency extends \app\common\dependency\SystemUploadDependen
      */
     public static function getValidate()
     {
-        return Dependency::get(SystemUploadValidate::class);
+        return Dependency::getProxy(SystemUploadValidate::class);
     }
 }

@@ -16,7 +16,7 @@ class SystemMenuDependency
      */
     public static function getRepository()
     {
-        return Dependency::get(SystemMenuRepository::class);
+        return Dependency::getProxy(SystemMenuRepository::class);
     }
 
     /**
@@ -25,7 +25,7 @@ class SystemMenuDependency
      */
     public static function getService()
     {
-        return Dependency::get(SystemMenuService::class);
+        return Dependency::getProxy(SystemMenuService::class);
     }
 
     /**
@@ -34,6 +34,6 @@ class SystemMenuDependency
      */
     public static function getValidate()
     {
-        return Dependency::get(SystemMenuValidate::class);
+        return Dependency::getProxy(SystemMenuValidate::class);
     }
 }

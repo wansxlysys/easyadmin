@@ -4,6 +4,7 @@
 namespace app\admin\behavior;
 
 
+use app\common\enum\SystemLogEnum;
 use Exception;
 
 use think\Request;
@@ -29,7 +30,7 @@ class SystemLogBehavior
 
                 $SystemLogService = SystemLogDependency::getService();
 
-                $SystemLogService->writeLog($responseData['msg'], $SystemLogService->translateCode($responseData['code']));
+                $SystemLogService->writeLog($responseData['msg'], SystemLogEnum::translateCode($responseData['code']));
             }
         }
     }

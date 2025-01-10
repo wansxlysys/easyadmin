@@ -4,6 +4,9 @@
 namespace app\index\controller;
 
 
+use app\common\dependency\DependencyAspect;
+use app\index\aspect\UserAspect;
+use app\index\service\UserService;
 use Exception;
 
 use app\common\helper\ExcelHelper;
@@ -23,8 +26,12 @@ class TestController
      */
     public function proxyAction()
     {
+        DependencyAspect::register(UserService::class, 'getName', UserAspect::class);
+        DependencyAspect::register(UserService::class, 'getName', UserAspect::class);
+
         $UserService = UserDependency::getService();
-        dump($UserService->getName());
+
+        dump($UserService->getName("张三"));
     }
 
     /**

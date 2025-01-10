@@ -4,6 +4,8 @@
 namespace app\common\dependency;
 
 
+use Throwable;
+
 class DependencyProxy
 {
     /**
@@ -40,41 +42,84 @@ class DependencyProxy
         /**
          * 加载目标方法的切点
          */
-        $aspect = $this->aspectConfig[$methodName] ?? [];
+        $aspects = $this->aspectConfig[$methodName] ?? [];
 
         /**
-         * 执行前置通知
+         * 如果没有切面配置，直接调用目标方法
          */
-        if (isset($aspect['before'])) {
-            call_user_func($aspect['before'], $methodName, $arguments);
+        if (empty($aspects)) {
+            return call_user_func_array([$this->targetObject, $methodName], $arguments);
         }
 
         /**
-         * 执行环绕通知
+         * 定义目标方法的执行逻辑
          */
-        if (isset($aspect['around'])) {
+        $proceed = function () use ($methodName, $arguments) {
+            return call_user_func_array([$this->targetObject, $methodName], $arguments);
+        };
 
-            $proceed = function () use ($methodName, $arguments) {
-                return call_user_func_array([$this->targetObject, $methodName], $arguments);
-            };
+        /**
+         * 嵌套执行切面逻辑
+         */
+        foreach ($aspects as $aspect) {
+            $proceed = $this->wrapAspect($proceed, $aspect, $methodName, $arguments);
+        }
 
-            $result = call_user_func($aspect['around'], $methodName, $arguments, $proceed);
+        /**
+         * 执行最终的切面逻辑
+         */
+        return $proceed();
+    }
 
-        } else {
+    /**
+     * 包装切面逻辑
+     * @param callable $proceed
+     * @param object $aspect
+     * @param string $methodName
+     * @param array $arguments
+     * @return callable
+     */
+    protected function wrapAspect($proceed, $aspect, $methodName, $arguments)
+    {
+        return function () use ($proceed, $aspect, $methodName, $arguments) {
 
             /**
-             * 直接调用目标方法
+             * 执行前置通知
              */
-            $result = call_user_func_array([$this->targetObject, $methodName], $arguments);
-        }
+            if (method_exists($aspect, 'before')) {
+                call_user_func([$aspect, 'before'], $methodName, $arguments);
+            }
 
-        /**
-         * 执行后置通知
-         */
-        if (isset($aspect['after'])) {
-            call_user_func($aspect['after'], $methodName, $arguments, $result);
-        }
+            /**
+             * 执行环绕通知
+             */
+            try {
 
-        return $result;
+                if (method_exists($aspect, 'around')) {
+                    $result = call_user_func([$aspect, 'around'], $methodName, $arguments, $proceed);
+                } else {
+                    $result = $proceed();
+                }
+
+            } catch (Throwable $throwable) {
+                /**
+                 * 执行异常通知
+                 */
+                if (method_exists($aspect, 'throw')) {
+                    call_user_func([$aspect, 'throw'], $methodName, $arguments, $throwable);
+                }
+
+                throw $throwable;
+            }
+
+            /**
+             * 执行后置通知
+             */
+            if (method_exists($aspect, 'after')) {
+                call_user_func([$aspect, 'after'], $methodName, $arguments, $result);
+            }
+
+            return $result;
+        };
     }
 }

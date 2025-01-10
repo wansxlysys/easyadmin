@@ -10,7 +10,6 @@ use think\facade\Request;
 
 use app\common\util\ArrayUtil;
 use app\common\enum\ManagerEnum;
-use app\common\enum\SystemLogEnum;
 use app\common\repository\Wrapper;
 use app\common\helper\ManagerHelper;
 use app\common\helper\SystemMenuHelper;
@@ -99,21 +98,8 @@ class SystemLogService extends \app\common\service\SystemLogService
      */
     public function clearLog()
     {
-        return $this->SystemLogRepository->deleteByWhere([['id', '>', 0]]);
-    }
-
-    /**
-     * 转换状态码
-     * @param $code
-     * @return int
-     */
-    public function translateCode($code)
-    {
-        $codeMap = [
-            0 => SystemLogEnum::STATUS_ERROR,
-            1 => SystemLogEnum::STATUS_SUCCESS
-        ];
-
-        return $codeMap[$code] ?? SystemLogEnum::STATUS_ERROR;
+        return $this->SystemLogRepository->deleteByWhere([
+            ['id', '>', 0]
+        ]);
     }
 }

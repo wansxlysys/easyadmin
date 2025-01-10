@@ -68,23 +68,7 @@ class Dependency
         /**
          * 创建动态代理类
          */
-        $proxyClass = new DependencyProxy(static::getInstance($className), [
-            'getName' => [
-                'before' => function () {
-                    echo 111;
-                },
-                'around' => function ($methodName, $arguments, $proceed) {
-                    dump($methodName);
-                    dump($arguments);
-                    $result = $proceed();
-                    echo 222;
-                    return $result;
-                },
-                'after'  => function () {
-                    echo 333;
-                }
-            ]
-        ]);
+        $proxyClass = new DependencyProxy(static::getInstance($className), DependencyAspect::getAspect($className));
 
         /**
          * 放入容器

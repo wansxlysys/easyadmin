@@ -25,7 +25,7 @@ class Dependency
      * 获取实例对象
      * @throws object
      */
-    public static function getInstance($className)
+    public static function getClass($className)
     {
         if (isset(static::$instances[$className])) {
             return static::$instances[$className];
@@ -68,7 +68,7 @@ class Dependency
         /**
          * 创建动态代理类
          */
-        $proxyClass = new DependencyProxy(static::getInstance($className), DependencyAspect::getAspect($className));
+        $proxyClass = new DependencyProxy(static::getClass($className), DependencyAspect::getAspect($className));
 
         /**
          * 放入容器
@@ -109,7 +109,7 @@ class Dependency
                      * 检测容器中是否已经实例化
                      */
                     if (!isset(static::$instances[$parameterClassName])) {
-                        static::$instances[$parameterClassName] = static::getInstance($parameterClassName);
+                        static::$instances[$parameterClassName] = static::getClass($parameterClassName);
                     }
 
                     $dependencies[] = static::$instances[$parameterClassName];

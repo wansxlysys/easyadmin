@@ -21,7 +21,7 @@ class DependencyAspect
      */
     public static function register($className, $methodName, $aspectClass)
     {
-        static::$aspectConfig[$className][$methodName][] = Dependency::getInstance($aspectClass);
+        static::$aspectConfig[$className][$methodName][] = Dependency::getClass($aspectClass);
     }
 
     /**

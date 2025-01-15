@@ -42,7 +42,7 @@ class DependencyProxy
         /**
          * 加载目标方法的切点
          */
-        $aspects = $this->aspectConfig[$methodName] ?? [];
+        $aspects = array_merge($this->aspectConfig[$methodName] ?? [], $this->aspectConfig['*'] ?? []);
 
         /**
          * 如果没有切面配置，直接调用目标方法

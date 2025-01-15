@@ -5,15 +5,36 @@ namespace app\common\helper;
 
 
 use Predis\Client;
-use think\facade\Config;
 use Predis\Response\Status;
-use Predis\Command\Argument\Server\To;
 use Predis\Command\Argument\Geospatial\ByInterface;
-use Predis\Command\Argument\Server\LimitOffsetCount;
 use Predis\Command\Argument\Geospatial\FromInterface;
+use Predis\Command\Argument\Search\AggregateArguments;
+use Predis\Command\Argument\Search\AlterArguments;
+use Predis\Command\Argument\Search\CreateArguments;
+use Predis\Command\Argument\Search\DropArguments;
+use Predis\Command\Argument\Search\ExplainArguments;
+use Predis\Command\Argument\Search\ProfileArguments;
+use Predis\Command\Argument\Search\SchemaFields\FieldInterface;
+use Predis\Command\Argument\Search\SearchArguments;
+use Predis\Command\Argument\Search\SugAddArguments;
+use Predis\Command\Argument\Search\SugGetArguments;
+use Predis\Command\Argument\Search\SynUpdateArguments;
+use Predis\Command\Argument\Server\LimitOffsetCount;
+use Predis\Command\Argument\Server\To;
+use Predis\Command\Argument\TimeSeries\AddArguments;
+use Predis\Command\Argument\TimeSeries\AlterArguments as TSAlterArguments;
+use Predis\Command\Argument\TimeSeries\CreateArguments as TSCreateArguments;
+use Predis\Command\Argument\TimeSeries\DecrByArguments;
+use Predis\Command\Argument\TimeSeries\GetArguments;
+use Predis\Command\Argument\TimeSeries\IncrByArguments;
+use Predis\Command\Argument\TimeSeries\InfoArguments;
+use Predis\Command\Argument\TimeSeries\MGetArguments;
+use Predis\Command\Argument\TimeSeries\MRangeArguments;
+use Predis\Command\Argument\TimeSeries\RangeArguments;
+
+use think\facade\Config;
 
 /**
- * @see Client
  * @method static int               copy(string $source, string $destination, int $db = -1, bool $replace = false)
  * @method static int               del(string[]|string $keyOrKeys, string ...$keys = null)
  * @method static string|null       dump(string $key)
@@ -37,6 +58,15 @@ use Predis\Command\Argument\Geospatial\FromInterface;
  * @method static int               ttl(string $key)
  * @method static mixed             type(string $key)
  * @method static int               append(string $key, $value)
+ * @method static int               bfadd(string $key, $item)
+ * @method static int               bfexists(string $key, $item)
+ * @method static array             bfinfo(string $key, string $modifier = '')
+ * @method static array             bfinsert(string $key, int $capacity = -1, float $error = -1, int $expansion = -1, bool $noCreate = false, bool $nonScaling = false, string ...$item)
+ * @method static Status            bfloadchunk(string $key, int $iterator, $data)
+ * @method static array             bfmadd(string $key, ...$item)
+ * @method static array             bfmexists(string $key, ...$item)
+ * @method static Status            bfreserve(string $key, float $errorRate, int $capacity, int $expansion = -1, bool $nonScaling = false)
+ * @method static array             bfscandump(string $key, int $iterator)
  * @method static int               bitcount(string $key, $start = null, $end = null, string $index = 'byte')
  * @method static int               bitop($operation, $destkey, $key)
  * @method static array|null        bitfield(string $key, $subcommand, ...$subcommandArg)
@@ -45,10 +75,51 @@ use Predis\Command\Argument\Geospatial\FromInterface;
  * @method static array             bzpopmax(array $keys, int $timeout)
  * @method static array             bzpopmin(array $keys, int $timeout)
  * @method static array             bzmpop(int $timeout, array $keys, string $modifier = 'min', int $count = 1)
+ * @method static int               cfadd(string $key, $item)
+ * @method static int               cfaddnx(string $key, $item)
+ * @method static int               cfcount(string $key, $item)
+ * @method static int               cfdel(string $key, $item)
+ * @method static int               cfexists(string $key, $item)
+ * @method static Status            cfloadchunk(string $key, int $iterator, $data)
+ * @method static int               cfmexists(string $key, ...$item)
+ * @method static array             cfinfo(string $key)
+ * @method static array             cfinsert(string $key, int $capacity = -1, bool $noCreate = false, string ...$item)
+ * @method static array             cfinsertnx(string $key, int $capacity = -1, bool $noCreate = false, string ...$item)
+ * @method static Status            cfreserve(string $key, int $capacity, int $bucketSize = -1, int $maxIterations = -1, int $expansion = -1)
+ * @method static array             cfscandump(string $key, int $iterator)
+ * @method static array             cmsincrby(string $key, string|int...$itemIncrementDictionary)
+ * @method static array             cmsinfo(string $key)
+ * @method static Status            cmsinitbydim(string $key, int $width, int $depth)
+ * @method static Status            cmsinitbyprob(string $key, float $errorRate, float $probability)
+ * @method static Status            cmsmerge(string $destination, array $sources, array $weights = [])
+ * @method static array             cmsquery(string $key, string ...$item)
  * @method static int               decr(string $key)
  * @method static int               decrby(string $key, int $decrement)
  * @method static Status            failover(?To $to = null, bool $abort = false, int $timeout = -1)
  * @method static mixed             fcall(string $function, array $keys, ...$args)
+ * @method static mixed             fcall_ro(string $function, array $keys, ...$args)
+ * @method static array             ftaggregate(string $index, string $query, ?AggregateArguments $arguments = null)
+ * @method static Status            ftaliasadd(string $alias, string $index)
+ * @method static Status            ftaliasdel(string $alias)
+ * @method static Status            ftaliasupdate(string $alias, string $index)
+ * @method static Status            ftalter(string $index, FieldInterface[] $schema, ?AlterArguments $arguments = null)
+ * @method static Status            ftcreate(string $index, FieldInterface[] $schema, ?CreateArguments $arguments = null)
+ * @method static int               ftdictadd(string $dict, ...$term)
+ * @method static int               ftdictdel(string $dict, ...$term)
+ * @method static array             ftdictdump(string $dict)
+ * @method static Status            ftdropindex(string $index, ?DropArguments $arguments = null)
+ * @method static string            ftexplain(string $index, string $query, ?ExplainArguments $arguments = null)
+ * @method static array             ftinfo(string $index)
+ * @method static array             ftprofile(string $index, ProfileArguments $arguments)
+ * @method static array             ftsearch(string $index, string $query, ?SearchArguments $arguments = null)
+ * @method static array             ftspellcheck(string $index, string $query, ?SearchArguments $arguments = null)
+ * @method static int               ftsugadd(string $key, string $string, float $score, ?SugAddArguments $arguments = null)
+ * @method static int               ftsugdel(string $key, string $string)
+ * @method static array             ftsugget(string $key, string $prefix, ?SugGetArguments $arguments = null)
+ * @method static int               ftsuglen(string $key)
+ * @method static array             ftsyndump(string $index)
+ * @method static Status            ftsynupdate(string $index, string $synonymGroupId, ?SynUpdateArguments $arguments = null, string ...$terms)
+ * @method static array             fttagvals(string $index, string $fieldName)
  * @method static string|null       get(string $key)
  * @method static int               getbit(string $key, $offset)
  * @method static int|null          getex(string $key, $modifier = '', $value = false)
@@ -84,6 +155,28 @@ use Predis\Command\Argument\Geospatial\FromInterface;
  * @method static int               hsetnx(string $key, string $field, string $value)
  * @method static array             hvals(string $key)
  * @method static int               hstrlen(string $key, string $field)
+ * @method static array             jsonarrappend(string $key, string $path = '$', ...$value)
+ * @method static array             jsonarrindex(string $key, string $path, string $value, int $start = 0, int $stop = 0)
+ * @method static array             jsonarrinsert(string $key, string $path, int $index, string ...$value)
+ * @method static array             jsonarrlen(string $key, string $path = '$')
+ * @method static array             jsonarrpop(string $key, string $path = '$', int $index = -1)
+ * @method static int               jsonclear(string $key, string $path = '$')
+ * @method static array             jsonarrtrim(string $key, string $path, int $start, int $stop)
+ * @method static int               jsondel(string $key, string $path = '$')
+ * @method static int               jsonforget(string $key, string $path = '$')
+ * @method static string            jsonget(string $key, string $indent = '', string $newline = '', string $space = '', string ...$paths)
+ * @method static string            jsonnumincrby(string $key, string $path, int $value)
+ * @method static Status            jsonmerge(string $key, string $path, string $value)
+ * @method static array             jsonmget(array $keys, string $path)
+ * @method static Status            jsonmset(string ...$keyPathValue)
+ * @method static array             jsonobjkeys(string $key, string $path = '$')
+ * @method static array             jsonobjlen(string $key, string $path = '$')
+ * @method static array             jsonresp(string $key, string $path = '$')
+ * @method static string            jsonset(string $key, string $path, string $value, ?string $subcommand = null)
+ * @method static array             jsonstrappend(string $key, string $path, string $value)
+ * @method static array             jsonstrlen(string $key, string $path = '$')
+ * @method static array             jsontoggle(string $key, string $path)
+ * @method static array             jsontype(string $key, string $path = '$')
  * @method static string            blmove(string $source, string $destination, string $where, string $to, int $timeout)
  * @method static array|null        blpop(array|string $keys, int|float $timeout)
  * @method static array|null        brpop(array|string $keys, int|float $timeout)
@@ -123,6 +216,43 @@ use Predis\Command\Argument\Geospatial\FromInterface;
  * @method static string[]          sunion(array|string $keys)
  * @method static int               sunionstore(string $destination, array|string $keys)
  * @method static int               touch(string[]|string $keyOrKeys, string ...$keys = null)
+ * @method static Status            tdigestadd(string $key, float ...$value)
+ * @method static array             tdigestbyrank(string $key, int ...$rank)
+ * @method static array             tdigestbyrevrank(string $key, int ...$reverseRank)
+ * @method static array             tdigestcdf(string $key, int ...$value)
+ * @method static Status            tdigestcreate(string $key, int $compression = 0)
+ * @method static array             tdigestinfo(string $key)
+ * @method static string            tdigestmax(string $key)
+ * @method static Status            tdigestmerge(string $destinationKey, array $sourceKeys, int $compression = 0, bool $override = false)
+ * @method static string[]          tdigestquantile(string $key, float ...$quantile)
+ * @method static string            tdigestmin(string $key)
+ * @method static array             tdigestrank(string $key, float ...$value)
+ * @method static Status            tdigestreset(string $key)
+ * @method static array             tdigestrevrank(string $key, float ...$value)
+ * @method static string            tdigesttrimmed_mean(string $key, float $lowCutQuantile, float $highCutQuantile)
+ * @method static array             topkadd(string $key, ...$items)
+ * @method static array             topkincrby(string $key, ...$itemIncrement)
+ * @method static array             topkinfo(string $key)
+ * @method static array             topklist(string $key, bool $withCount = false)
+ * @method static array             topkquery(string $key, ...$items)
+ * @method static Status            topkreserve(string $key, int $topK, int $width = 8, int $depth = 7, float $decay = 0.9)
+ * @method static int               tsadd(string $key, int $timestamp, float $value, ?AddArguments $arguments = null)
+ * @method static Status            tsalter(string $key, ?TSAlterArguments $arguments = null)
+ * @method static Status            tscreate(string $key, ?TSCreateArguments $arguments = null)
+ * @method static Status            tscreaterule(string $sourceKey, string $destKey, string $aggregator, int $bucketDuration, int $alignTimestamp = 0)
+ * @method static int               tsdecrby(string $key, float $value, ?DecrByArguments $arguments = null)
+ * @method static int               tsdel(string $key, int $fromTimestamp, int $toTimestamp)
+ * @method static Status            tsdeleterule(string $sourceKey, string $destKey)
+ * @method static array             tsget(string $key, GetArguments $arguments = null)
+ * @method static int               tsincrby(string $key, float $value, ?IncrByArguments $arguments = null)
+ * @method static array             tsinfo(string $key, ?InfoArguments $arguments = null)
+ * @method static array             tsmadd(mixed ...$keyTimestampValue)
+ * @method static array             tsmget(MGetArguments $arguments, string ...$filterExpression)
+ * @method static array             tsmrange($fromTimestamp, $toTimestamp, MRangeArguments $arguments)
+ * @method static array             tsmrevrange($fromTimestamp, $toTimestamp, MRangeArguments $arguments)
+ * @method static array             tsqueryindex(string ...$filterExpression)
+ * @method static array             tsrange(string $key, $fromTimestamp, $toTimestamp, ?RangeArguments $arguments = null)
+ * @method static array             tsrevrange(string $key, $fromTimestamp, $toTimestamp, ?RangeArguments $arguments = null)
  * @method static string            xadd(string $key, array $dictionary, string $id = '*', array $options = null)
  * @method static int               xdel(string $key, string ...$id)
  * @method static int               xlen(string $key)
@@ -171,12 +301,14 @@ use Predis\Command\Argument\Geospatial\FromInterface;
  * @method static array|null        exec()
  * @method static mixed             multi()
  * @method static mixed             unwatch()
+ * @method static array             waitaof(int $numLocal, int $numReplicas, int $timeout)
  * @method static mixed             watch(string $key)
  * @method static mixed             eval(string $script, int $numkeys, string ...$keyOrArg = null)
  * @method static mixed             eval_ro(string $script, array $keys, ...$argument)
  * @method static mixed             evalsha(string $script, int $numkeys, string ...$keyOrArg = null)
  * @method static mixed             evalsha_ro(string $sha1, array $keys, ...$argument)
  * @method static mixed             script($subcommand, $argument = null)
+ * @method static Status            shutdown(bool $noSave = null, bool $now = false, bool $force = false, bool $abort = false)
  * @method static mixed             auth(string $password)
  * @method static string            echo (string $message)
  * @method static mixed             ping(string $message = null)
@@ -210,29 +342,33 @@ class RedisHelper
      * redis实例
      * @var Client
      */
-    protected static $instance = null;
+    protected static $client;
 
     /**
      * 创建连接实例
      * @return Client
      */
-    public static function instance()
+    public static function getClient()
     {
-        if (is_null(static::$instance)) {
-            static::$instance = new Client(Config::get('redis.params'), Config::get('redis.options'));
+        if (static::$client === null) {
+            static::$client = new Client(Config::get('redis.params'), Config::get('redis.options'));
         }
 
-        return static::$instance;
+        if (!static::$client->isConnected()) {
+            static::$client->connect();
+        }
+
+        return static::$client;
     }
 
     /**
      * 静态回调
-     * @param $name
-     * @param $arguments
+     * @param string $method
+     * @param array $arguments
      * @return mixed
      */
-    public static function __callStatic($name, array $arguments)
+    public static function __callStatic($method, array $arguments)
     {
-        return static::instance()->{$name}(...$arguments);
+        return call_user_func_array([static::getClient(), $method], $arguments);
     }
 }

@@ -4,7 +4,7 @@
 namespace app\index\aspect;
 
 
-class UserAspect
+class RoleAspect
 {
     /**
      * 前置通知
@@ -14,7 +14,7 @@ class UserAspect
      */
     public function before($methodName, $arguments)
     {
-        dump('user before');
+        dump('role before');
     }
 
     /**
@@ -26,9 +26,9 @@ class UserAspect
      */
     public function around($methodName, $arguments, $proceed)
     {
-        dump('user before around');
+        dump('role before around');
         $result = $proceed();
-        dump('user after around');
+        dump('role after around');
         return $result;
     }
 
@@ -41,7 +41,7 @@ class UserAspect
      */
     public function after($methodName, $arguments, $result)
     {
-        dump('user after');
+        dump('role after');
     }
 
     /**

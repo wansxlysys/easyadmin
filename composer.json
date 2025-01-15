@@ -19,6 +19,7 @@
         "php": ">=7.4.0",
         "ext-json": "*",
         "ext-openssl": "*",
+        "ext-redis": "*",
         "topthink/framework": "5.1.*",
         "topthink/think-captcha": "2.0.*",
         "topthink/think-image": "^1.0",

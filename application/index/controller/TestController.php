@@ -4,12 +4,19 @@
 namespace app\index\controller;
 
 
-use app\common\dependency\DependencyAspect;
-use app\index\aspect\UserAspect;
-use app\index\service\UserService;
 use Exception;
 
+use app\index\aspect\LockAspect;
+use app\index\aspect\UserAspect;
+use app\index\aspect\RoleAspect;
+use app\index\aspect\TestAspect;
+use app\index\service\LockService;
+use app\index\service\UserService;
+
+use app\common\helper\RedisHelper;
 use app\common\helper\ExcelHelper;
+use app\common\dependency\Dependency;
+use app\common\dependency\DependencyAspect;
 use app\common\repository\ManagerRepository;
 
 use app\index\dependency\DataDependency;
@@ -21,13 +28,36 @@ use app\queue\producer\TestProducer;
 class TestController
 {
     /**
+     * redis测试
+     * @return void
+     */
+    public function redisAction()
+    {
+        RedisHelper::set('name', '张三');
+    }
+
+    /**
+     * aop锁测试
+     * @return void
+     */
+    public function lockAction()
+    {
+        DependencyAspect::register(LockService::class, '*', LockAspect::class);
+
+        $LockService = Dependency::getProxy(LockService::class);
+
+        $LockService->execute();
+    }
+
+    /**
      * 动态代理测试
      * @return void
      */
     public function proxyAction()
     {
         DependencyAspect::register(UserService::class, 'getName', UserAspect::class);
-        DependencyAspect::register(UserService::class, 'getName', UserAspect::class);
+        DependencyAspect::register(UserService::class, 'getName', RoleAspect::class);
+        DependencyAspect::register(UserService::class, 'getName', TestAspect::class);
 
         $UserService = UserDependency::getService();
 

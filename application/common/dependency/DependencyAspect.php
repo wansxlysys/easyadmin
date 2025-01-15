@@ -21,7 +21,15 @@ class DependencyAspect
      */
     public static function register($className, $methodName, $aspectClass)
     {
-        static::$aspectConfig[$className][$methodName][] = Dependency::getClass($aspectClass);
+        if (empty(static::$aspectConfig[$className])) {
+            static::$aspectConfig[$className] = [];
+        }
+
+        if (empty(static::$aspectConfig[$className][$methodName])) {
+            static::$aspectConfig[$className][$methodName] = [];
+        }
+
+        array_unshift(static::$aspectConfig[$className][$methodName], Dependency::getClass($aspectClass));
     }
 
     /**

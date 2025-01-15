@@ -4,7 +4,7 @@
 namespace app\index\aspect;
 
 
-class UserAspect
+class TestAspect
 {
     /**
      * 前置通知
@@ -14,7 +14,7 @@ class UserAspect
      */
     public function before($methodName, $arguments)
     {
-        dump('user before');
+        dump('test before');
     }
 
     /**
@@ -26,9 +26,9 @@ class UserAspect
      */
     public function around($methodName, $arguments, $proceed)
     {
-        dump('user before around');
+        dump('test before around');
         $result = $proceed();
-        dump('user after around');
+        dump('test after around');
         return $result;
     }
 
@@ -41,7 +41,7 @@ class UserAspect
      */
     public function after($methodName, $arguments, $result)
     {
-        dump('user after');
+        dump('test after');
     }
 
     /**

@@ -181,13 +181,27 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'up
     /**
      * 创建预览图片
      */
-    $(".easy-preview").each(function (key, item) {
+    $(".easy-preview").each((key, item) => {
         const images = $(item).data("images");
-        if(images) {
-            images.split(',').forEach(image => {
+        if (images) {
+            const srcList = images.split(',');
+
+            srcList.forEach(image => {
                 $(item).append('<img src="' + image + '">');
             });
-            new Viewer(item);
+
+            $(item).find('img').click(event => {
+                top.layer.photos({
+                    photos: {
+                        start: $(event.target).index(),
+                        data: srcList.map(item => {
+                            return {
+                                src: item
+                            }
+                        })
+                    }
+                });
+            });
         }
     });
 

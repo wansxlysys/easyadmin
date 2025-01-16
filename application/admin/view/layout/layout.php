@@ -7,7 +7,6 @@
     <title>{$systemSetting.name} - {$systemSetting.slogan}</title>
     <link rel="stylesheet" href="{:register_static('/admin/plugin/layui/css/layui.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/plugin/fontawesome/css/all.css')}">
-    <link rel="stylesheet" href="{:register_static('/admin/plugin/viewer/viewer.min.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/plugin/ztree/css/ztree.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/module/layCascader/layCascader.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/css/reset.css')}">
@@ -23,7 +22,6 @@
 <!--全局变量-->
 {include file="admin@layout/var" /}
 
-<script src="{:register_static('/admin/plugin/viewer/viewer.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/ueditor/ueditor.config.js')}"></script>
 <script src="{:register_static('/admin/plugin/ueditor/ueditor.all.js')}"></script>
 <script src="{:register_static('/admin/plugin/moment/moment.min.js')}"></script>

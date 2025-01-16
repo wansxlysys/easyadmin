@@ -14,7 +14,7 @@
         <div class="layui-card-header">图片预览</div>
         <div class="layui-card-body">
             <div class="easy-preview"
-                 data-images="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/47220acdd326647e029949627e49b197.jpg"></div>
+                 data-images="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg"></div>
         </div>
     </div>
 

@@ -38,7 +38,6 @@ layui.define(["jquery", "upload"], function (exports) {
         this.uploader = null;
         this.options = $.extend({}, defaults, options);
         this.$elem = $(this.options.elem);
-        this.viewer = new Viewer(this.$elem.get(0));
 
         this.create();
         this.event();
@@ -77,7 +76,6 @@ layui.define(["jquery", "upload"], function (exports) {
         this.$elem.on("click", ".easy-upload-image-item-icon-trash", function () {
             $(this).closest(".easy-upload-image-item").remove();
             that.toggleButton();
-            that.viewer.update();
             that.options.update();
         });
     };
@@ -133,6 +131,25 @@ layui.define(["jquery", "upload"], function (exports) {
                 typeof that.options.error === "function" && that.options.error();
             }
         });
+
+        $(this.$elem).on('click', 'img', function () {
+
+            var data = [];
+            var start = $(this).closest('.easy-upload-image-item').index();
+
+            $(that.$elem).find('img').each(function (key, item) {
+                data.push({
+                    src: $(item).attr('src')
+                });
+            });
+
+            top.layer.photos({
+                photos: {
+                    start: start,
+                    data: data
+                }
+            });
+        });
     };
 
     /**
@@ -161,7 +178,6 @@ layui.define(["jquery", "upload"], function (exports) {
             list.append(html);
         }
         this.toggleButton();
-        this.viewer.update();
     };
 
     /**
@@ -170,7 +186,6 @@ layui.define(["jquery", "upload"], function (exports) {
     UploadImage.prototype.clear = function () {
         this.$elem.find(".easy-upload-image-list").empty();
         this.toggleButton();
-        this.viewer.update();
     };
 
     /**
@@ -180,7 +195,6 @@ layui.define(["jquery", "upload"], function (exports) {
     UploadImage.prototype.delete = function (index) {
         this.$elem.find(".easy-upload-image-list .easy-upload-image-item").eq(index).remove();
         this.toggleButton();
-        this.viewer.update();
     };
 
     /**

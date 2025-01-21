@@ -9,15 +9,22 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+use app\common\behavior\AspectBehavior;
+use app\common\behavior\AppInitBehavior;
+
 use app\queue\exception\QueueExceptionHandler;
 
 return [
     // 应用初始化
-    'app_init'     => [],
+    'app_init'     => [
+        AppInitBehavior::class
+    ],
     // 应用开始
     'app_begin'    => [],
     // 模块初始化
-    'module_init'  => [],
+    'module_init'  => [
+        AspectBehavior::class
+    ],
     // 操作开始执行
     'action_begin' => [],
     // 视图内容过滤

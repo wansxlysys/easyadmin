@@ -6,7 +6,7 @@ namespace app\common\helper;
 
 use think\facade\Env;
 
-class LoadHelper
+class ImportHelper
 {
     /**
      * 加载文件

@@ -9,10 +9,10 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
+use app\queue\command\QueueRetry;
+
 use app\common\command\backup\Backup;
 use app\common\command\generator\Generator;
-
-use app\queue\command\QueueRetry;
 
 return [
     'system:backup'    => Backup::class,

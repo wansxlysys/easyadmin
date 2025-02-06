@@ -62,7 +62,7 @@ class DependencyProxy
          * 嵌套执行切面逻辑
          */
         foreach ($aspects as $aspect) {
-            $proceed = $this->wrapAspect($proceed, $aspect, $methodName, $arguments);
+            $proceed = $this->aspect($proceed, $aspect, $methodName, $arguments);
         }
 
         /**
@@ -79,7 +79,7 @@ class DependencyProxy
      * @param array $arguments
      * @return callable
      */
-    protected function wrapAspect($proceed, $aspect, $methodName, $arguments)
+    protected function aspect($proceed, $aspect, $methodName, $arguments)
     {
         return function () use ($proceed, $aspect, $methodName, $arguments) {
 

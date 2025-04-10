@@ -5,10 +5,10 @@ layui.define(function (exports) {
     /**
      * 数组转树形结构
      * @param arrayList
-     * @param func
+     * @param callback
      * @returns {[]}
      */
-    easyHelper.arrayToTree = (arrayList, func) => {
+    easyHelper.arrayToTree = (arrayList, callback) => {
 
         const map = {};
         const result = [];
@@ -27,7 +27,9 @@ layui.define(function (exports) {
                 result.push(item);
             }
 
-            typeof func === "function" && func(item);
+            if (callback) {
+                callback(item);
+            }
         });
 
         return result;

@@ -40,7 +40,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
         setting = Object.assign(defaultSetting, setting);
 
         if (options.checked) {
-            options.checked.split(',').map(item => +item);
+            options.checked = options.checked.split(',').map(item => +item);
         } else {
             options.checked = [];
         }

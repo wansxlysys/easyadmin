@@ -6,16 +6,16 @@ namespace app\admin\dependency;
 
 use app\common\dependency\Dependency;
 
-use app\admin\service\EditorService;
+use app\admin\service\SystemEditorService;
 
 class EditorDependency
 {
     /**
      * 获取服务类
-     * @return EditorService
+     * @return SystemEditorService
      */
     public static function getService()
     {
-        return Dependency::getProxy(EditorService::class);
+        return Dependency::getProxy(SystemEditorService::class);
     }
 }

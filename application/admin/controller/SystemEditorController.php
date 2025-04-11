@@ -9,12 +9,12 @@ use Exception;
 use think\Request;
 use think\response\Json;
 
-use app\admin\service\EditorService;
+use app\admin\service\SystemEditorService;
 use app\admin\dependency\EditorDependency;
 
 use app\common\controller\SystemController;
 
-class EditorController extends SystemController
+class SystemEditorController extends SystemController
 {
     /**
      * 中间件
@@ -24,7 +24,7 @@ class EditorController extends SystemController
 
     /**
      * 服务类
-     * @var EditorService
+     * @var SystemEditorService
      */
     protected $EditorService;
 

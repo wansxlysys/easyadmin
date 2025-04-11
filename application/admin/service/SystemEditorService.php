@@ -9,7 +9,7 @@ use Exception;
 use think\File;
 use think\facade\Config;
 
-class EditorService
+class SystemEditorService
 {
     /**
      * 系统上传服务类

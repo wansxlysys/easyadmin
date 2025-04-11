@@ -11,9 +11,9 @@ use think\Request;
 use app\admin\service\SystemUploadService;
 use app\admin\dependency\SystemUploadDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class SystemUploadController extends AdminController
+class SystemUploadController extends SystemController
 {
     /**
      * 中间件

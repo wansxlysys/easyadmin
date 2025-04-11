@@ -6,9 +6,9 @@ namespace app\admin\controller;
 
 use think\Request;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class HomeController extends AdminController
+class HomeController extends SystemController
 {
     /**
      * 中间件

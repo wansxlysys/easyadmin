@@ -12,9 +12,9 @@ use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
 use app\admin\dependency\SystemSettingDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class SystemSettingController extends AdminController
+class SystemSettingController extends SystemController
 {
     /**
      * 中间件

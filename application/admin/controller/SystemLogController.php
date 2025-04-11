@@ -11,9 +11,9 @@ use think\Request;
 use app\admin\service\SystemLogService;
 use app\admin\dependency\SystemLogDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class SystemLogController extends AdminController
+class SystemLogController extends SystemController
 {
     /**
      * 中间件

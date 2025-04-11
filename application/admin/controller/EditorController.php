@@ -12,9 +12,9 @@ use think\response\Json;
 use app\admin\service\EditorService;
 use app\admin\dependency\EditorDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class EditorController extends AdminController
+class EditorController extends SystemController
 {
     /**
      * 中间件

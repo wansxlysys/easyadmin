@@ -17,7 +17,7 @@ use app\common\helper\ManagerHelper;
 use app\common\helper\SystemMenuHelper;
 use app\common\helper\SystemSettingHelper;
 
-class AdminController extends CommonController
+class SystemController extends CommonController
 {
     /**
      * 初始化

@@ -14,9 +14,9 @@ use app\admin\validate\ManagerValidate;
 use app\admin\dependency\ManagerDependency;
 use app\admin\dependency\SystemUploadDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class ManagerController extends AdminController
+class ManagerController extends SystemController
 {
     /**
      * 中间件

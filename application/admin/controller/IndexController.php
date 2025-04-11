@@ -13,9 +13,9 @@ use app\admin\validate\ManagerValidate;
 use app\admin\dependency\SystemMenuDependency;
 
 use app\common\helper\ManagerHelper;
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class IndexController extends AdminController
+class IndexController extends SystemController
 {
     /**
      * 中间件

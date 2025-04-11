@@ -12,9 +12,9 @@ use app\admin\service\ManagerRoleService;
 use app\admin\validate\ManagerRoleValidate;
 use app\admin\dependency\ManagerRoleDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class ManagerRoleController extends AdminController
+class ManagerRoleController extends SystemController
 {
     /**
      * 中间件

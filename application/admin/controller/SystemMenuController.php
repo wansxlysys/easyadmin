@@ -12,9 +12,9 @@ use app\admin\service\SystemMenuService;
 use app\admin\validate\SystemMenuValidate;
 use app\admin\dependency\SystemMenuDependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class SystemMenuController extends AdminController
+class SystemMenuController extends SystemController
 {
     /**
      * 中间件

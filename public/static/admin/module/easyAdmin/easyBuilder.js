@@ -158,7 +158,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
         const defaultOptions = {
             elem: '',
-            checked: ''
+            checked: []
         }
 
         const defaultSetting = {
@@ -174,7 +174,16 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
         options = Object.assign(defaultOptions, options);
         setting = Object.assign(defaultSetting, setting);
 
-        setting.value = options.checked.map(val => parseInt(val));
+        if (!options.checked) {
+            options.checked = [];
+        }
+
+        if (Array.isArray(options.checked)) {
+            setting.value = options.checked.map(val => +val);
+        } else {
+            setting.value = options.checked.split(',').map(val => +val);
+        }
+
         setting.options = easyHelper.arrayToTree(data);
 
         const cascader = layCascader(setting);

@@ -1,12 +1,14 @@
 <?php
 
 
-namespace app\common\dependency;
+namespace app\{{module}}\dependency;
 
 
-use app\common\service\{{class}}Service;
-use app\common\validate\{{class}}Validate;
-use app\common\repository\{{class}}Repository;
+use app\common\dependency\Dependency;
+
+use app\{{module}}\service\{{class}}Service;
+use app\{{module}}\validate\{{class}}Validate;
+use app\{{module}}\repository\{{class}}Repository;
 
 class {{class}}Dependency
 {
@@ -16,7 +18,7 @@ class {{class}}Dependency
      */
     public static function getRepository()
     {
-        return Dependency::get({{class}}Repository::class);
+        return Dependency::getProxy({{class}}Repository::class);
     }
 
     /**
@@ -25,7 +27,7 @@ class {{class}}Dependency
      */
     public static function getService()
     {
-        return Dependency::get({{class}}Service::class);
+        return Dependency::getProxy({{class}}Service::class);
     }
 
     /**
@@ -34,6 +36,6 @@ class {{class}}Dependency
      */
     public static function getValidate()
     {
-        return Dependency::get({{class}}Validate::class);
+        return Dependency::getProxy({{class}}Validate::class);
     }
 }

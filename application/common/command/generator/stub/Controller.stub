@@ -1,20 +1,20 @@
 <?php
 
 
-namespace app\admin\controller;
+namespace app\{{module}}\controller;
 
 
 use Exception;
 
 use think\Request;
 
-use app\admin\service\{{class}}Service;
-use app\admin\validate\{{class}}Validate;
-use app\admin\dependency\{{class}}Dependency;
+use app\{{module}}\service\{{class}}Service;
+use app\{{module}}\validate\{{class}}Validate;
+use app\{{module}}\dependency\{{class}}Dependency;
 
-use app\common\controller\AdminController;
+use app\common\controller\SystemController;
 
-class {{class}}Controller extends AdminController
+class {{class}}Controller extends SystemController
 {
     /**
      * 中间件
@@ -81,7 +81,7 @@ class {{class}}Controller extends AdminController
                 'name' => $request->post('name'),
             ];
 
-            $this->{{class}}Validate->scene('Create')->verify($params);
+            $this->{{class}}Validate->scene('create')->verify($params);
             $this->{{class}}Service->create{{class}}($params);
 
             $this->success('添加成功');
@@ -105,7 +105,7 @@ class {{class}}Controller extends AdminController
                 'name' => $request->post('name'),
             ];
 
-            $this->{{class}}Validate->scene('Update')->verify($params);
+            $this->{{class}}Validate->scene('update')->verify($params);
             $this->{{class}}Service->update{{class}}($params);
 
             $this->success('修改成功');
@@ -131,7 +131,7 @@ class {{class}}Controller extends AdminController
                 'id' => $request->post('id')
             ];
 
-            $this->{{class}}Validate->scene('Delete')->verify($params);
+            $this->{{class}}Validate->scene('delete')->verify($params);
             $this->{{class}}Service->delete{{class}}($params);
 
             $this->success('删除成功');

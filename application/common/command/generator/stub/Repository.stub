@@ -1,8 +1,10 @@
 <?php
 
 
-namespace app\common\repository;
+namespace app\{{module}}\repository;
 
+
+use app\common\repository\Repository;
 
 class {{class}}Repository extends Repository
 {

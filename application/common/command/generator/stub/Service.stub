@@ -1,15 +1,32 @@
 <?php
 
 
-namespace app\admin\service;
+namespace app\{{module}}\service;
 
 
 use Exception;
 
+use app\common\service\Service;
 use app\common\repository\Wrapper;
 
-class {{class}}Service extends \app\common\service\{{class}}Service
+use app\{{module}}\repository\{{class}}Repository;
+
+class {{class}}Service extends Service
 {
+    /**
+     * {{comment}}存储类
+     * @var {{class}}Repository
+     */
+    protected ${{class}}Repository;
+
+    /**
+     * 注入存储类
+     */
+    public function injectRepository({{class}}Repository ${{class}}Repository)
+    {
+        $this->{{class}}Repository = ${{class}}Repository;
+    }
+
     /**
      * 获取列表
      * @throws Exception
@@ -26,8 +43,8 @@ class {{class}}Service extends \app\common\service\{{class}}Service
             $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
         }
 
-        $Wrapper->setPage($params['pageNum']);
-        $Wrapper->setLimit($params['pageSize']);
+        $Wrapper->setPage($params['page']);
+        $Wrapper->setLimit($params['limit']);
 
         $Wrapper->addOrder('sort', 'asc');
 

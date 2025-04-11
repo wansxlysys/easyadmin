@@ -4,23 +4,27 @@
 namespace app\common\command\generator;
 
 
-use think\console\Command;
+use think\facade\Env;
 use think\console\Input;
-use think\console\input\Option;
 use think\console\Output;
+use think\console\Command;
+use think\console\input\Option;
+
+use app\common\util\ConsoleUtil;
 
 class Generator extends Command
 {
     /**
      * 配置命令
-     * php think system:generator --class User --remark 用户
+     * php think system:generator --module admin --class User --comment 用户管理
      * @return void
      */
     protected function configure()
     {
         $this->setName('system:generator')
             ->addOption('class', null, Option::VALUE_REQUIRED, "Class Name")
-            ->addOption('remark', null, Option::VALUE_REQUIRED, 'Remark Text')
+            ->addOption('module', null, Option::VALUE_REQUIRED, "Module Name")
+            ->addOption('comment', null, Option::VALUE_REQUIRED, 'Comment Text')
             ->setDescription('Generator Code');
     }
 
@@ -32,9 +36,56 @@ class Generator extends Command
      */
     protected function execute(Input $input, Output $output)
     {
-        Executor::execute($input->getOption('class'), [
-            $input->getOption('class'),
-            $input->getOption('remark')
-        ]);
+        $templates = [
+            ['layer' => 'service', 'stub' => 'Service'],
+            ['layer' => 'validate', 'stub' => 'Validate'],
+            ['layer' => 'controller', 'stub' => 'Controller'],
+            ['layer' => 'dependency', 'stub' => 'Dependency'],
+            ['layer' => 'repository', 'stub' => 'Repository'],
+        ];
+
+        $replace = [
+            '{{class}}'   => $input->getOption('class'),
+            '{{module}}'  => $input->getOption('module'),
+            '{{comment}}' => $input->getOption('comment')
+        ];
+
+        foreach ($templates as $template) {
+
+            $savePath = $this->getSavePath($input->getOption('module'), $input->getOption('class'), $template['layer']);
+
+            if (file_exists($savePath)) {
+                ConsoleUtil::writeln('文件存在：' . $savePath);
+            } else {
+
+                $dirPath = dirname($savePath);
+
+                if (!is_dir($dirPath)) {
+                    mkdir($dirPath, 0777, true);
+                }
+
+                file_put_contents($savePath, strtr($this->getStubContent($template['stub']), $replace));
+
+                ConsoleUtil::writeln('创建成功：' . $savePath);
+            }
+        }
+    }
+
+    /**
+     * 获取模板
+     * @return string
+     */
+    protected function getStubContent($stub)
+    {
+        return file_get_contents(Env::get('app_path') . 'common/command/generator/stub/' . $stub . '.stub');
+    }
+
+    /**
+     * 获取保存目录
+     * @return string
+     */
+    protected function getSavePath($module, $class, $layer)
+    {
+        return Env::get('app_path') . $module . DIRECTORY_SEPARATOR . $layer . DIRECTORY_SEPARATOR . $class . ucfirst($layer) . '.php';
     }
 }

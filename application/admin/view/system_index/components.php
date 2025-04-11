@@ -1,4 +1,4 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
 <div class="layui-fluid layui-content">

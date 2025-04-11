@@ -1,7 +1,7 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="admin@layout/breadcrumb" /}
+{include file="common@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>

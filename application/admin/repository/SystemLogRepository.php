@@ -27,7 +27,7 @@ class SystemLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
+            ->join('SystemManager manager', 'manager.id = log.managerId')
             ->join('SystemMenu menu', 'menu.id = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
@@ -49,7 +49,7 @@ class SystemLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
+            ->join('SystemManager manager', 'manager.id = log.managerId')
             ->join('SystemMenu menu', 'menu.id = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())

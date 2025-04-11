@@ -1,7 +1,7 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="admin@layout/breadcrumb" /}
+{include file="common@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
@@ -96,7 +96,7 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/Manager/index')}",
+            url: "{:url('admin/SystemManager/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
@@ -114,7 +114,7 @@
         table.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/Manager/create')}"
+                    content: "{:url('admin/SystemManager/create')}"
                 });
             }
         });
@@ -122,7 +122,7 @@
         table.on('tool(table)', function (obj) {
             if (obj.event === 'update') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/Manager/update')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemManager/update')}?id=" + obj.data.id
                 });
             }
 
@@ -131,7 +131,7 @@
                     icon: 3,
                 }, function () {
                     easyAdmin.ajaxPost({
-                        url: "{:url('admin/Manager/delete')}",
+                        url: "{:url('admin/SystemManager/delete')}",
                         data: {
                             id: obj.data.id
                         },

@@ -1,14 +1,14 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="admin@layout/breadcrumb" close="show" /}
+{include file="common@layout/breadcrumb" close="show" /}
 
 <?php
 /**
  * @noinspection PhpUndefinedVariableInspection
  */
 $menu    = service('SystemMenu')->getById($log['menuId']);
-$manager = service('Manager')->getById($log['managerId']);
+$manager = service('SystemManager')->getById($log['managerId']);
 ?>
 
 <div class="layui-fluid layui-content">

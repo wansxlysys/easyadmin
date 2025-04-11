@@ -27,7 +27,7 @@ class SystemLoginLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('Manager manager', 'log.managerId = manager.id')
+            ->join('SystemManager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -48,7 +48,7 @@ class SystemLoginLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('Manager manager', 'log.managerId = manager.id')
+            ->join('SystemManager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();

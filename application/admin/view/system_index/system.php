@@ -1,4 +1,4 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="css"}
 <style>

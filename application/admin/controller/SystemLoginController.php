@@ -35,7 +35,7 @@ class SystemLoginController extends CommonController
     public function initialize()
     {
         if (SystemManagerHelper::isLogin()) {
-            $this->redirect('admin/Index/index');
+            $this->redirect('admin/SystemIndex/index');
         }
 
         $this->ManagerService  = ManagerDependency::getService();
@@ -62,7 +62,7 @@ class SystemLoginController extends CommonController
             $this->ManagerValidate->scene('Login')->verify($params);
             $this->ManagerService->login($params);
 
-            $this->success('登录成功', 'admin/Index/index');
+            $this->success('登录成功', 'admin/SystemIndex/index');
         }
 
         return $this->fetch('', [

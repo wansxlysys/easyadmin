@@ -1,7 +1,7 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="admin@layout/breadcrumb" close="show" /}
+{include file="common@layout/breadcrumb" close="show" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
@@ -17,33 +17,33 @@
                     <label class="layui-form-label layui-required">管理员头像</label>
                     <div class="layui-input-block">
                         <div id="avatar"></div>
-                        <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传管理员头像">
+                        <input type="hidden" name="avatar" class="layui-builder-picture" lay-verify="required" lay-reqText="请上传管理员头像" value="{$manager.avatar}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">管理员姓名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="realName" lay-verify="required" placeholder="请输入管理员姓名" class="layui-input">
+                        <input type="text" name="realName" lay-verify="required" placeholder="请输入管理员姓名" class="layui-input" value="{$manager.realName}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">管理员账号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="account" lay-verify="required" placeholder="请输入管理员账号" class="layui-input">
+                        <input type="text" name="account" lay-verify="required" placeholder="请输入管理员账号" class="layui-input" value="{$manager.account}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">管理员密码</label>
+                    <label class="layui-form-label">管理员密码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="password" lay-verify="required" placeholder="请输入管理员密码" class="layui-input">
+                        <input type="text" name="password" placeholder="如无需修改请留空" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">管理员状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="1" title="启用" checked="">
-                        <input type="radio" name="status" value="2" title="禁用">
-                        <input type="radio" name="status" value="3" title="锁定">
+                        <input type="radio" name="status" value="1" title="启用" {eq name="$manager.status" value="1"}checked{/eq}>
+                        <input type="radio" name="status" value="2" title="禁用" {eq name="$manager.status" value="2"}checked{/eq}>
+                        <input type="radio" name="status" value="3" title="锁定" {eq name="$manager.status" value="3"}checked{/eq}>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -72,11 +72,12 @@
          * 设置上传路径
          */
         easyCreate.getUploader('avatar', function (uploader) {
-            uploader.config.url = "{:url('admin/Manager/avatar')}";
+            uploader.config.url = "{:url('admin/SystemManager/avatar')}";
         });
 
         easyService.roleSingleSelect({
-            elem: '#role'
+            elem: '#role',
+            checked: '{$manager.roleId}',
         }, {
             name: 'roleId',
             layVerify: 'required'
@@ -85,8 +86,10 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
+            obj.field.id = '{$manager.id}';
+
             easyAdmin.ajaxPost({
-                url: "{:url('admin/Manager/create')}",
+                url: "{:url('admin/SystemManager/update')}",
                 data: obj.field,
                 success: function (result) {
                     const lay = top.layer.alert(result.msg, {
@@ -99,7 +102,6 @@
                 }
             });
         });
-
     });
 </script>
 {/block}

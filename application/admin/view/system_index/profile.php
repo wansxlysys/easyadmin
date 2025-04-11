@@ -1,7 +1,7 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="admin@layout/breadcrumb" close="show" /}
+{include file="common@layout/breadcrumb" close="show" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
@@ -57,7 +57,7 @@
          * 设置上传路径
          */
         easyCreate.getUploader('avatar', function (uploader) {
-            uploader.config.url = "{:url('admin/Manager/avatar')}";
+            uploader.config.url = "{:url('admin/SystemManager/avatar')}";
         });
 
         form.on('submit', function (obj) {
@@ -66,7 +66,7 @@
             obj.field.id = '{$manager.id}';
 
             easyAdmin.ajaxPost({
-                url: "{:url('admin/Index/profile')}",
+                url: "{:url('admin/SystemIndex/profile')}",
                 data: obj.field,
                 success: function (result) {
                     var lay = top.layer.alert(result.msg, {

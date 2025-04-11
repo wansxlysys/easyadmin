@@ -26,7 +26,7 @@ class Permission extends TagLib
         $menu      = $this->quotesVar($tag['menu']);
         $condition = $this->quotesVar($tag['condition'] ?? 'and');
 
-        $parse = '{if \app\common\helper\ManagerHelper::checkAccessByMenuId(' . $menu . ', ' . $condition . ')}';
+        $parse = '{if \app\admin\helper\SystemManagerHelper::checkAccessByMenuId(' . $menu . ', ' . $condition . ')}';
         $parse .= $content;
         $parse .= '{/if}';
 

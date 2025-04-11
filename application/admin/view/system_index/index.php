@@ -1,4 +1,4 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="css"}
 <link rel="stylesheet" href="{:register_static('/admin/css/layout.css')}">
@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="layui-body">
-        <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('admin/Home/console')}"></iframe>
+        <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('admin/SystemIndex/console')}"></iframe>
     </div>
     <div class="layui-footer">
         EASYADMIN版权所有
@@ -126,7 +126,7 @@
                 layer.open({
                     type: 2,
                     title: '系统信息',
-                    content: "{:url('admin/Index/system')}",
+                    content: "{:url('admin/SystemIndex/system')}",
                     area: ['260px', '100%'],
                     offset: 'rt',
                     shadeClose: true,
@@ -147,13 +147,13 @@
             profile() {
                 event.preventDefault();
                 frames[0].layui.easyAdmin.openFrame({
-                    content: "{:url('admin/Index/profile')}"
+                    content: "{:url('admin/SystemIndex/profile')}"
                 });
             },
             logout() {
                 event.preventDefault();
                 easyAdmin.ajaxPost({
-                    url: "{:url('admin/Index/logout')}",
+                    url: "{:url('admin/SystemIndex/logout')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {
                             icon: 1

@@ -1,7 +1,7 @@
-{extend name="admin@layout/layout" /}
+{extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="admin@layout/breadcrumb" /}
+{include file="common@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
@@ -59,7 +59,7 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/ManagerRole/index')}",
+            url: "{:url('admin/SystemManagerRole/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
@@ -74,7 +74,7 @@
         table.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/ManagerRole/create')}"
+                    content: "{:url('admin/SystemManagerRole/create')}"
                 });
             }
         });
@@ -83,7 +83,7 @@
 
             if (obj.event === "update") {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/ManagerRole/update')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemManagerRole/update')}?id=" + obj.data.id
                 });
             }
 
@@ -92,7 +92,7 @@
                     icon: 3,
                 }, function () {
                     easyAdmin.ajaxPost({
-                        url: "{:url('admin/ManagerRole/delete')}",
+                        url: "{:url('admin/SystemManagerRole/delete')}",
                         data: {
                             id: obj.data.id
                         },

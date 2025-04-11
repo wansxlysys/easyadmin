@@ -4,19 +4,16 @@
 namespace app\admin\controller;
 
 
-use Exception;
-
-use think\Request;
-use think\Response;
-use think\captcha\Captcha;
-
-use app\admin\service\ManagerService;
-use app\admin\validate\ManagerValidate;
 use app\admin\dependency\ManagerDependency;
 use app\admin\dependency\SystemSettingDependency;
-
-use app\common\helper\ManagerHelper;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\service\ManagerService;
+use app\admin\validate\ManagerValidate;
 use app\common\controller\CommonController;
+use Exception;
+use think\captcha\Captcha;
+use think\Request;
+use think\Response;
 
 class LoginController extends CommonController
 {
@@ -37,7 +34,7 @@ class LoginController extends CommonController
      */
     public function initialize()
     {
-        if (ManagerHelper::isLogin()) {
+        if (SystemManagerHelper::isLogin()) {
             $this->redirect('admin/Index/index');
         }
 

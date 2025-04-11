@@ -4,13 +4,11 @@
 namespace app\http\middleware;
 
 
+use app\admin\helper\SystemManagerHelper;
+use app\admin\helper\SystemMenuHelper;
 use Closure;
 use Exception;
-
 use traits\controller\Jump;
-
-use app\common\helper\ManagerHelper;
-use app\common\helper\SystemMenuHelper;
 
 class System
 {
@@ -43,7 +41,7 @@ class System
      */
     public function checkLogin()
     {
-        if (!ManagerHelper::isLogin()) {
+        if (!SystemManagerHelper::isLogin()) {
             $this->error('未登录', 'admin/login/login');
         }
     }
@@ -69,7 +67,7 @@ class System
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if (!ManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
+        if (!SystemManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
             $this->error('账号未授权访问');
         }
     }
@@ -80,13 +78,13 @@ class System
      */
     public function checkValid()
     {
-        $manager = ManagerHelper::getManager();
+        $manager = SystemManagerHelper::getManager();
 
-        if (ManagerHelper::verify($manager['account'], $manager['password'])) {
+        if (SystemManagerHelper::verify($manager['account'], $manager['password'])) {
             return true;
         }
 
-        ManagerHelper::logout();
+        SystemManagerHelper::logout();
 
         $this->error('登录失效', 'admin/login/login');
     }
@@ -97,11 +95,11 @@ class System
      */
     public function checkDelete()
     {
-        if (!ManagerHelper::isDelete()) {
+        if (!SystemManagerHelper::isDelete()) {
             return true;
         }
 
-        ManagerHelper::logout();
+        SystemManagerHelper::logout();
 
         $this->error('账号已删除', 'admin/login/login');
     }
@@ -111,7 +109,7 @@ class System
      */
     public function checkDisabled()
     {
-        if (ManagerHelper::isDisabled()) {
+        if (SystemManagerHelper::isDisabled()) {
             $this->error('账号被禁用');
         }
     }

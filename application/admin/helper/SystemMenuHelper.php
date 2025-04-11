@@ -1,10 +1,11 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\admin\helper;
 
 
 use app\admin\enum\SystemMenuEnum;
+use app\common\helper\StoreHelper;
 
 class SystemMenuHelper
 {

@@ -25,11 +25,11 @@ class PermissionHelper
 
             $result = in_array($id, $permission);
 
-            if ($result == true && $condition == 'or') {
+            if ($result && $condition == 'or') {
                 return true;
             }
 
-            if ($result == false && $condition === 'and') {
+            if (!$result && $condition === 'and') {
                 return false;
             }
         }

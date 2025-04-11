@@ -4,14 +4,12 @@
 namespace app\admin\service;
 
 
-use Exception;
-
-use app\common\repository\Wrapper;
-use app\common\helper\ManagerHelper;
-
 use app\admin\enum\ManagerEnum;
 use app\admin\enum\SystemLoginLogEnum;
+use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemLoginLogRepository;
+use app\common\repository\Wrapper;
+use Exception;
 
 class SystemLoginLogService
 {
@@ -51,7 +49,7 @@ class SystemLoginLogService
             $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
-        if (ManagerHelper::isNotSuper()) {
+        if (SystemManagerHelper::isNotSuper()) {
             $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 

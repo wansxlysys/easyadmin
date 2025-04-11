@@ -4,16 +4,13 @@
 namespace app\admin\controller;
 
 
-use Exception;
-
-use think\Request;
-
+use app\admin\dependency\SystemMenuDependency;
+use app\admin\helper\SystemManagerHelper;
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
-use app\admin\dependency\SystemMenuDependency;
-
-use app\common\helper\ManagerHelper;
 use app\common\controller\SystemController;
+use Exception;
+use think\Request;
 
 class IndexController extends SystemController
 {
@@ -50,6 +47,26 @@ class IndexController extends SystemController
     }
 
     /**
+     * 控制台
+     * @param Request $request
+     * @return mixed
+     */
+    public function consoleAction(Request $request)
+    {
+        return $this->fetch();
+    }
+
+    /**
+     * ui组件
+     * @param Request $request
+     * @return mixed
+     */
+    public function componentsAction(Request $request)
+    {
+        return $this->fetch();
+    }
+
+    /**
      * 个人资料
      * @param Request $request
      * @return mixed
@@ -60,7 +77,7 @@ class IndexController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'       => ManagerHelper::getManagerId(),
+                'id'       => SystemManagerHelper::getManagerId(),
                 'avatar'   => $request->post('avatar'),
                 'realName' => $request->post('realName'),
                 'password' => $request->post('password'),
@@ -72,7 +89,7 @@ class IndexController extends SystemController
             $this->success('修改成功');
         }
 
-        $manager = ManagerHelper::getManager();
+        $manager = SystemManagerHelper::getManager();
 
         return $this->fetch('', [
             'manager' => $manager
@@ -87,7 +104,7 @@ class IndexController extends SystemController
     {
         if ($request->isAjax()) {
 
-            ManagerHelper::logout();
+            SystemManagerHelper::logout();
 
             $this->success('退出成功');
         }

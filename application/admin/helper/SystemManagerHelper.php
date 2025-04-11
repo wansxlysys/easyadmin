@@ -1,17 +1,19 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\admin\helper;
 
 
 use app\admin\enum\ManagerEnum;
 use app\admin\enum\ManagerRoleEnum;
 use app\common\enum\DeleteEnum;
+use app\common\helper\PermissionHelper;
+use app\common\helper\StoreHelper;
 use app\common\util\EncryptionUtil;
 use app\common\util\StringUtil;
 use think\facade\Session;
 
-class ManagerHelper
+class SystemManagerHelper
 {
     /**
      * 设置登录信息

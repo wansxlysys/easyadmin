@@ -4,18 +4,15 @@
 namespace app\common\controller;
 
 
-use Exception;
-
-use think\facade\Hook;
-
 use app\admin\behavior\SystemLogBehavior;
 use app\admin\dependency\ManagerDependency;
 use app\admin\dependency\SystemMenuDependency;
 use app\admin\dependency\SystemSettingDependency;
-
-use app\common\helper\ManagerHelper;
-use app\common\helper\SystemMenuHelper;
-use app\common\helper\SystemSettingHelper;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\helper\SystemMenuHelper;
+use app\admin\helper\SystemSettingHelper;
+use Exception;
+use think\facade\Hook;
 
 class SystemController extends CommonController
 {
@@ -32,7 +29,7 @@ class SystemController extends CommonController
         /**
          * 设置缓存
          */
-        ManagerHelper::setManager($manager);
+        SystemManagerHelper::setManager($manager);
         SystemMenuHelper::setCurrentMenu($currentMenu);
         SystemSettingHelper::setSystemSetting($systemSetting);
 

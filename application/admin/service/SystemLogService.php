@@ -4,17 +4,14 @@
 namespace app\admin\service;
 
 
-use Exception;
-
-use think\facade\Request;
-
-use app\common\util\ArrayUtil;
-use app\common\repository\Wrapper;
-use app\common\helper\ManagerHelper;
-use app\common\helper\SystemMenuHelper;
-
 use app\admin\enum\ManagerEnum;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\helper\SystemMenuHelper;
 use app\admin\repository\SystemLogRepository;
+use app\common\repository\Wrapper;
+use app\common\util\ArrayUtil;
+use Exception;
+use think\facade\Request;
 
 class SystemLogService
 {
@@ -54,7 +51,7 @@ class SystemLogService
             $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
         }
 
-        if (ManagerHelper::isNotSuper()) {
+        if (SystemManagerHelper::isNotSuper()) {
             $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
@@ -91,7 +88,7 @@ class SystemLogService
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        $manager = ManagerHelper::getManager();
+        $manager = SystemManagerHelper::getManager();
         $params  = ArrayUtil::toJson(Request::post());
 
         $data = [

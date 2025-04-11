@@ -4,16 +4,14 @@
 namespace app\admin\service;
 
 
-use Exception;
-
+use app\admin\dependency\ManagerDependency;
+use app\admin\enum\ManagerRoleEnum;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\ManagerRoleRepository;
 use app\common\enum\DeleteEnum;
 use app\common\exception\ServiceException;
-use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
-
-use app\admin\enum\ManagerRoleEnum;
-use app\admin\dependency\ManagerDependency;
-use app\admin\repository\ManagerRoleRepository;
+use Exception;
 
 class ManagerRoleService
 {
@@ -67,7 +65,7 @@ class ManagerRoleService
     {
         $Wrapper = new Wrapper();
 
-        if (ManagerHelper::isNotSuper()) {
+        if (SystemManagerHelper::isNotSuper()) {
             $Wrapper->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
         }
 

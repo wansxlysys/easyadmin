@@ -4,19 +4,17 @@
 namespace app\admin\service;
 
 
-use Exception;
-
+use app\admin\dependency\SystemLoginLogDependency;
+use app\admin\enum\ManagerEnum;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\ManagerRepository;
 use app\common\enum\DeleteEnum;
-use app\common\util\StringUtil;
+use app\common\exception\ServiceException;
+use app\common\repository\Wrapper;
 use app\common\util\DateTimeUtil;
 use app\common\util\EncryptionUtil;
-use app\common\repository\Wrapper;
-use app\common\helper\ManagerHelper;
-use app\common\exception\ServiceException;
-
-use app\admin\enum\ManagerEnum;
-use app\admin\repository\ManagerRepository;
-use app\admin\dependency\SystemLoginLogDependency;
+use app\common\util\StringUtil;
+use Exception;
 
 class ManagerService
 {
@@ -56,7 +54,7 @@ class ManagerService
             $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
-        if (ManagerHelper::isNotSuper()) {
+        if (SystemManagerHelper::isNotSuper()) {
             $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
         }
 
@@ -103,7 +101,7 @@ class ManagerService
             'manager.password', 'manager.status', 'manager.isDelete', 'role.identify', 'role.permission',
         ]);
 
-        $Wrapper->addWhere('manager.id', '=', ManagerHelper::getManagerId());
+        $Wrapper->addWhere('manager.id', '=', SystemManagerHelper::getManagerId());
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
@@ -290,7 +288,7 @@ class ManagerService
         /**
          * 设置登录缓存
          */
-        ManagerHelper::login($manager['id'], $manager['account'], $manager['password']);
+        SystemManagerHelper::login($manager['id'], $manager['account'], $manager['password']);
 
         /**
          * 登录成功日志

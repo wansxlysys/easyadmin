@@ -4,17 +4,14 @@
 namespace app\admin\service;
 
 
-use Exception;
-
-use think\facade\Request;
-
+use app\admin\enum\SystemMenuEnum;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\SystemMenuRepository;
+use app\common\repository\Wrapper;
 use app\common\util\ArrayUtil;
 use app\common\util\TreeArrayUtil;
-use app\common\repository\Wrapper;
-use app\common\helper\ManagerHelper;
-
-use app\admin\enum\SystemMenuEnum;
-use app\admin\repository\SystemMenuRepository;
+use Exception;
+use think\facade\Request;
 
 class SystemMenuService
 {
@@ -69,7 +66,7 @@ class SystemMenuService
 
         $Wrapper->setOrder(['sort' => 'asc']);
         $Wrapper->addWhere('type', 'in', '1,3');
-        $Wrapper->addWhere('id', 'in', ManagerHelper::getPermission());
+        $Wrapper->addWhere('id', 'in', SystemManagerHelper::getPermission());
 
         $TreeArrayUtil = new TreeArrayUtil();
 

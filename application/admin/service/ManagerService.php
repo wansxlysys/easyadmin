@@ -6,20 +6,34 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\admin\dependency\SystemLoginLogDependency;
-
+use app\common\enum\DeleteEnum;
 use app\common\util\StringUtil;
 use app\common\util\DateTimeUtil;
 use app\common\util\EncryptionUtil;
-
-use app\common\enum\DeleteEnum;
-use app\common\enum\ManagerEnum;
 use app\common\repository\Wrapper;
 use app\common\helper\ManagerHelper;
 use app\common\exception\ServiceException;
 
-class ManagerService extends \app\common\service\ManagerService
+use app\admin\enum\ManagerEnum;
+use app\admin\repository\ManagerRepository;
+use app\admin\dependency\SystemLoginLogDependency;
+
+class ManagerService
 {
+    /**
+     * 存储类
+     * @var ManagerRepository
+     */
+    protected $ManagerRepository;
+
+    /**
+     * 初始化
+     */
+    public function injectRepostitory(ManagerRepository $ManagerRepository)
+    {
+        $this->ManagerRepository = $ManagerRepository;
+    }
+
     /**
      * 获取列表
      * @param array $params

@@ -4,7 +4,7 @@
 namespace app\common\helper;
 
 
-use app\common\enum\SystemMenuEnum;
+use app\admin\enum\SystemMenuEnum;
 
 class SystemMenuHelper
 {

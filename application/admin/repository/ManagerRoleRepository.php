@@ -1,8 +1,10 @@
 <?php
 
 
-namespace app\common\repository;
+namespace app\admin\repository;
 
+
+use app\common\repository\Repository;
 
 class ManagerRoleRepository extends Repository
 {

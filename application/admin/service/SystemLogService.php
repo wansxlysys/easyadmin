@@ -9,13 +9,29 @@ use Exception;
 use think\facade\Request;
 
 use app\common\util\ArrayUtil;
-use app\common\enum\ManagerEnum;
 use app\common\repository\Wrapper;
 use app\common\helper\ManagerHelper;
 use app\common\helper\SystemMenuHelper;
 
-class SystemLogService extends \app\common\service\SystemLogService
+use app\admin\enum\ManagerEnum;
+use app\admin\repository\SystemLogRepository;
+
+class SystemLogService
 {
+    /**
+     * 存储类
+     * @var SystemLogRepository
+     */
+    protected $SystemLogRepository;
+
+    /**
+     * 初始化
+     */
+    public function injectRepostitory(SystemLogRepository $SystemLogRepository)
+    {
+        $this->SystemLogRepository = $SystemLogRepository;
+    }
+
     /**
      * 获取列表
      * @param array $params

@@ -6,13 +6,29 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\enum\ManagerEnum;
-use app\common\enum\SystemLoginLogEnum;
-use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
+use app\common\helper\ManagerHelper;
 
-class SystemLoginLogService extends \app\common\service\SystemLoginLogService
+use app\admin\enum\ManagerEnum;
+use app\admin\enum\SystemLoginLogEnum;
+use app\admin\repository\SystemLoginLogRepository;
+
+class SystemLoginLogService
 {
+    /**
+     * 存储类
+     * @var SystemLoginLogRepository
+     */
+    protected $SystemLoginLogRepository;
+
+    /**
+     * 初始化
+     */
+    public function injectRepostitory(SystemLoginLogRepository $SystemLoginLogRepository)
+    {
+        $this->SystemLoginLogRepository = $SystemLoginLogRepository;
+    }
+
     /**
      * 获取列表和总数
      * @param array $params

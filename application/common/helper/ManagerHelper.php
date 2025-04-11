@@ -4,14 +4,12 @@
 namespace app\common\helper;
 
 
-use think\facade\Session;
-
-use app\common\util\StringUtil;
-use app\common\util\EncryptionUtil;
-
+use app\admin\enum\ManagerEnum;
+use app\admin\enum\ManagerRoleEnum;
 use app\common\enum\DeleteEnum;
-use app\common\enum\ManagerEnum;
-use app\common\enum\ManagerRoleEnum;
+use app\common\util\EncryptionUtil;
+use app\common\util\StringUtil;
+use think\facade\Session;
 
 class ManagerHelper
 {

@@ -4,13 +4,11 @@
 namespace app\admin\behavior;
 
 
-use app\common\enum\SystemLogEnum;
+use app\admin\dependency\SystemLogDependency;
+use app\admin\enum\SystemLogEnum;
 use Exception;
-
 use think\Request;
 use think\Response;
-
-use app\admin\dependency\SystemLogDependency;
 
 class SystemLogBehavior
 {

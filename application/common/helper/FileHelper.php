@@ -4,10 +4,10 @@
 namespace app\common\helper;
 
 
-use think\facade\Env;
-use app\common\util\FileUtil;
-use app\common\enum\UploadEnum;
+use app\admin\enum\UploadEnum;
 use app\common\exception\ServiceException;
+use app\common\util\FileUtil;
+use think\facade\Env;
 
 class FileHelper
 {

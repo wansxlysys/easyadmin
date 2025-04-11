@@ -10,12 +10,28 @@ use think\facade\Request;
 
 use app\common\util\ArrayUtil;
 use app\common\util\TreeArrayUtil;
-use app\common\enum\SystemMenuEnum;
-use app\common\helper\ManagerHelper;
 use app\common\repository\Wrapper;
+use app\common\helper\ManagerHelper;
 
-class SystemMenuService extends \app\common\service\SystemMenuService
+use app\admin\enum\SystemMenuEnum;
+use app\admin\repository\SystemMenuRepository;
+
+class SystemMenuService
 {
+    /**
+     * 存储类
+     * @var SystemMenuRepository
+     */
+    protected $SystemMenuRepository;
+
+    /**
+     * 初始化
+     */
+    public function injectRepostitory(SystemMenuRepository $SystemMenuRepository)
+    {
+        $this->SystemMenuRepository = $SystemMenuRepository;
+    }
+
     /**
      * 菜单列表
      * @param array $params

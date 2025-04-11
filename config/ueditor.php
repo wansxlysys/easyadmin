@@ -1,7 +1,7 @@
 <?php
 
 
-use app\common\enum\UploadEnum;
+use app\admin\enum\UploadEnum;
 
 return [
     // 图片上传

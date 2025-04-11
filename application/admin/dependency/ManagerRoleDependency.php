@@ -8,9 +8,19 @@ use app\common\dependency\Dependency;
 
 use app\admin\service\ManagerRoleService;
 use app\admin\validate\ManagerRoleValidate;
+use app\admin\repository\ManagerRoleRepository;
 
-class ManagerRoleDependency extends \app\common\dependency\ManagerRoleDependency
+class ManagerRoleDependency
 {
+    /**
+     * 获取存储类
+     * @return ManagerRoleRepository
+     */
+    public static function getRepository()
+    {
+        return Dependency::getProxy(ManagerRoleRepository::class);
+    }
+
     /**
      * 获取服务类
      * @return ManagerRoleService

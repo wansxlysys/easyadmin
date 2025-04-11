@@ -6,10 +6,25 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\enum\SystemSettingEnum;
+use app\admin\enum\SystemSettingEnum;
+use app\admin\repository\SystemSettingRepository;
 
-class SystemSettingService extends \app\common\service\SystemSettingService
+class SystemSettingService
 {
+    /**
+     * 存储类
+     * @var SystemSettingRepository
+     */
+    protected $SystemSettingRepository;
+
+    /**
+     * 初始化
+     */
+    public function injectRepostitory(SystemSettingRepository $SystemSettingRepository)
+    {
+        $this->SystemSettingRepository = $SystemSettingRepository;
+    }
+
     /**
      * 获取配置
      * @return array

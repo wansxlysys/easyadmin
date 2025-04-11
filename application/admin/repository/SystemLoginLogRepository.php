@@ -1,19 +1,21 @@
 <?php
 
 
-namespace app\common\repository;
+namespace app\admin\repository;
 
 
+use app\common\repository\Repository;
+use app\common\repository\Wrapper;
 use think\Db;
 use think\Exception;
 
-class SystemLogRepository extends Repository
+class SystemLoginLogRepository extends Repository
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemLog';
+    protected $name = 'SystemLoginLog';
 
     /**
      * 获取关联管理员列表
@@ -21,12 +23,11 @@ class SystemLogRepository extends Repository
      * @return mixed
      * @throws Exception
      */
-    public function getListWithInfo(Wrapper $Wrapper)
+    public function getListWithManager(Wrapper $Wrapper)
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
+            ->join('Manager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -43,12 +44,11 @@ class SystemLogRepository extends Repository
      * @param Wrapper $Wrapper
      * @return int
      */
-    public function getTotalWithInfo(Wrapper $Wrapper)
+    public function getTotalWithManager(Wrapper $Wrapper)
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('Manager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
+            ->join('Manager manager', 'log.managerId = manager.id')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();

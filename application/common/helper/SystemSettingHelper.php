@@ -4,7 +4,7 @@
 namespace app\common\helper;
 
 
-use app\common\enum\SystemSettingEnum;
+use app\admin\enum\SystemSettingEnum;
 
 class SystemSettingHelper
 {

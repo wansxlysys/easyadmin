@@ -6,12 +6,28 @@ namespace app\queue\service;
 
 use Exception;
 
-use app\common\repository\Wrapper;
 use app\common\util\ArrayUtil;
 use app\common\util\JsonUtil;
+use app\common\repository\Wrapper;
 
-class QueueFailedService extends \app\common\service\QueueFailedService
+use app\queue\repository\QueueFailedRepostitory;
+
+class QueueFailedService
 {
+    /**
+     * 存储类
+     * @var QueueFailedRepostitory
+     */
+    protected $QueueFailedRepostitory;
+
+    /**
+     * 初始化
+     */
+    public function injectRepostitory(QueueFailedRepostitory $QueueFailedRepostitory)
+    {
+        $this->QueueFailedRepostitory = $QueueFailedRepostitory;
+    }
+
     /**
      * 获取失败列表
      * @throws Exception

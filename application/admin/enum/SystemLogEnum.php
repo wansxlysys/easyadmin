@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\enum;
+namespace app\admin\enum;
 
 
 class SystemLogEnum

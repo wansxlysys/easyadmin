@@ -1,9 +1,10 @@
 <?php
 
 
-namespace app\common\repository;
+namespace app\admin\repository;
 
 
+use app\common\repository\Repository;
 use think\Db;
 use think\Exception;
 

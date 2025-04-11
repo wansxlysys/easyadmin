@@ -1,8 +1,10 @@
 <?php
 
 
-namespace app\common\repository;
+namespace app\queue\repository;
 
+
+use app\common\repository\Repository;
 
 class QueueFailedRepostitory extends Repository
 {

@@ -8,9 +8,19 @@ use app\common\dependency\Dependency;
 
 use app\admin\service\ManagerService;
 use app\admin\validate\ManagerValidate;
+use app\admin\repository\ManagerRepository;
 
-class ManagerDependency extends \app\common\dependency\ManagerDependency
+class ManagerDependency
 {
+    /**
+     * 获取存储类
+     * @return ManagerRepository
+     */
+    public static function getRepository()
+    {
+        return Dependency::getProxy(ManagerRepository::class);
+    }
+
     /**
      * 获取服务类
      * @return ManagerService

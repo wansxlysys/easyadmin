@@ -4,7 +4,7 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemManagerDependency;
 use app\admin\dependency\SystemSettingDependency;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemManagerService;
@@ -38,8 +38,8 @@ class SystemLoginController extends CommonController
             $this->redirect('admin/SystemIndex/index');
         }
 
-        $this->ManagerService  = ManagerDependency::getService();
-        $this->ManagerValidate = ManagerDependency::getValidate();
+        $this->ManagerService  = SystemManagerDependency::getService();
+        $this->ManagerValidate = SystemManagerDependency::getValidate();
     }
 
     /**

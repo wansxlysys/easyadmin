@@ -10,7 +10,7 @@ use think\Request;
 use think\response\Json;
 
 use app\admin\service\SystemEditorService;
-use app\admin\dependency\EditorDependency;
+use app\admin\dependency\SystemEditorDependency;
 
 use app\common\controller\SystemController;
 
@@ -35,7 +35,7 @@ class SystemEditorController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->EditorService = EditorDependency::getService();
+        $this->EditorService = SystemEditorDependency::getService();
     }
 
     /**

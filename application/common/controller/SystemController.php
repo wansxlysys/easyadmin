@@ -5,7 +5,7 @@ namespace app\common\controller;
 
 
 use app\admin\behavior\SystemLogBehavior;
-use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemManagerDependency;
 use app\admin\dependency\SystemMenuDependency;
 use app\admin\dependency\SystemSettingDependency;
 use app\admin\helper\SystemManagerHelper;
@@ -22,7 +22,7 @@ class SystemController extends CommonController
      */
     public function initialize()
     {
-        $manager       = ManagerDependency::getService()->getManager();
+        $manager       = SystemManagerDependency::getService()->getManager();
         $currentMenu   = SystemMenuDependency::getService()->getCurrentMenu();
         $systemSetting = SystemSettingDependency::getService()->getSystemSetting();
 

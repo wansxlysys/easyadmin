@@ -7,8 +7,8 @@
 /**
  * @noinspection PhpUndefinedVariableInspection
  */
-$menu    = service('SystemMenu')->getById($log['menuId']);
-$manager = service('SystemManager')->getById($log['managerId']);
+$menu    = service('SystemMenu', 'admin')->getById($log['menuId']);
+$manager = service('SystemManager', 'admin')->getById($log['managerId']);
 ?>
 
 <div class="layui-fluid layui-content">

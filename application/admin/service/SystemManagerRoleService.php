@@ -4,7 +4,7 @@
 namespace app\admin\service;
 
 
-use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemManagerDependency;
 use app\admin\enum\ManagerRoleEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemManagerRoleRepository;
@@ -94,7 +94,7 @@ class SystemManagerRoleService
      */
     public function deleteRole($params)
     {
-        $ManagerService = ManagerDependency::getService();
+        $ManagerService = SystemManagerDependency::getService();
 
         if ($ManagerService->getByRoleId($params['id'])) {
             throw new ServiceException('删除失败，角色下存在管理员');

@@ -10,7 +10,7 @@ use app\admin\service\SystemManagerRoleService;
 use app\admin\validate\SystemManagerRoleValidate;
 use app\admin\repository\SystemManagerRoleRepository;
 
-class ManagerRoleDependency
+class SystemManagerRoleDependency
 {
     /**
      * 获取存储类

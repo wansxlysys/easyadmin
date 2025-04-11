@@ -8,7 +8,7 @@ use app\common\dependency\Dependency;
 
 use app\admin\service\SystemEditorService;
 
-class EditorDependency
+class SystemEditorDependency
 {
     /**
      * 获取服务类

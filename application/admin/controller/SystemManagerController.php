@@ -11,7 +11,7 @@ use think\Request;
 
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
-use app\admin\dependency\ManagerDependency;
+use app\admin\dependency\SystemManagerDependency;
 use app\admin\dependency\SystemUploadDependency;
 
 use app\common\controller\SystemController;
@@ -43,8 +43,8 @@ class SystemManagerController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerService  = ManagerDependency::getService();
-        $this->ManagerValidate = ManagerDependency::getValidate();
+        $this->ManagerService  = SystemManagerDependency::getService();
+        $this->ManagerValidate = SystemManagerDependency::getValidate();
     }
 
     /**

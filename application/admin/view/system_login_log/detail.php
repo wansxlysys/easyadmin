@@ -7,7 +7,7 @@
 /**
  * @noinspection PhpUndefinedVariableInspection
  */
-$manager = service('SystemManager')->getById($log['managerId']);
+$manager = service('SystemManager', 'admin')->getById($log['managerId']);
 ?>
 
 <div class="layui-fluid layui-content">

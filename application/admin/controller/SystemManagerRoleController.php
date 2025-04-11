@@ -10,7 +10,7 @@ use think\Request;
 
 use app\admin\service\SystemManagerRoleService;
 use app\admin\validate\SystemManagerRoleValidate;
-use app\admin\dependency\ManagerRoleDependency;
+use app\admin\dependency\SystemManagerRoleDependency;
 
 use app\common\controller\SystemController;
 
@@ -41,8 +41,8 @@ class SystemManagerRoleController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerRoleService  = ManagerRoleDependency::getService();
-        $this->ManagerRoleValidate = ManagerRoleDependency::getValidate();
+        $this->ManagerRoleService  = SystemManagerRoleDependency::getService();
+        $this->ManagerRoleValidate = SystemManagerRoleDependency::getValidate();
     }
 
     /**

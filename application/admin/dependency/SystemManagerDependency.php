@@ -10,7 +10,7 @@ use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
 use app\admin\repository\SystemManagerRepository;
 
-class ManagerDependency
+class SystemManagerDependency
 {
     /**
      * 获取存储类

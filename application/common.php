@@ -34,11 +34,12 @@ if (!function_exists('service')) {
     /**
      * 获取依赖层
      * @param $name
+     * @param $common
      * @return object
      */
-    function service($name)
+    function service($name, $common)
     {
-        return app()->model($name, 'dependency')->getService();
+        return app()->model($name, 'dependency', true, $common)->getService();
     }
 }
 
@@ -46,10 +47,37 @@ if (!function_exists('dependency')) {
     /**
      * 获取依赖层
      * @param $name
+     * @param $common
      * @return object
      */
-    function dependency($name)
+    function dependency($name, $common)
     {
-        return app()->model($name, 'dependency');
+        return app()->model($name, 'dependency', true, $common);
+    }
+}
+
+if (!function_exists('helper')) {
+    /**
+     * 获取依赖层
+     * @param $name
+     * @param $common
+     * @return object
+     */
+    function helper($name, $common)
+    {
+        return app()->model($name, 'helper', true, $common);
+    }
+}
+
+if (!function_exists('util')) {
+    /**
+     * 获取依赖层
+     * @param $name
+     * @param $common
+     * @return object
+     */
+    function util($name, $common)
+    {
+        return app()->model($name, 'util', true, $common);
     }
 }

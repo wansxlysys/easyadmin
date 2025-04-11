@@ -6,36 +6,36 @@ namespace app\admin\dependency;
 
 use app\common\dependency\Dependency;
 
-use app\admin\service\ManagerRoleService;
-use app\admin\validate\ManagerRoleValidate;
-use app\admin\repository\ManagerRoleRepository;
+use app\admin\service\SystemManagerRoleService;
+use app\admin\validate\SystemManagerRoleValidate;
+use app\admin\repository\SystemManagerRoleRepository;
 
 class ManagerRoleDependency
 {
     /**
      * 获取存储类
-     * @return ManagerRoleRepository
+     * @return SystemManagerRoleRepository
      */
     public static function getRepository()
     {
-        return Dependency::getProxy(ManagerRoleRepository::class);
+        return Dependency::getProxy(SystemManagerRoleRepository::class);
     }
 
     /**
      * 获取服务类
-     * @return ManagerRoleService
+     * @return SystemManagerRoleService
      */
     public static function getService()
     {
-        return Dependency::getProxy(ManagerRoleService::class);
+        return Dependency::getProxy(SystemManagerRoleService::class);
     }
 
     /**
      * 获取验证器
-     * @return ManagerRoleValidate
+     * @return SystemManagerRoleValidate
      */
     public static function getValidate()
     {
-        return Dependency::getProxy(ManagerRoleValidate::class);
+        return Dependency::getProxy(SystemManagerRoleValidate::class);
     }
 }

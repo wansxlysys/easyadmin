@@ -8,13 +8,13 @@ use Exception;
 
 use think\Request;
 
-use app\admin\service\ManagerRoleService;
-use app\admin\validate\ManagerRoleValidate;
+use app\admin\service\SystemManagerRoleService;
+use app\admin\validate\SystemManagerRoleValidate;
 use app\admin\dependency\ManagerRoleDependency;
 
 use app\common\controller\SystemController;
 
-class ManagerRoleController extends SystemController
+class SystemManagerRoleController extends SystemController
 {
     /**
      * 中间件
@@ -24,13 +24,13 @@ class ManagerRoleController extends SystemController
 
     /**
      * 服务类
-     * @var ManagerRoleService
+     * @var SystemManagerRoleService
      */
     protected $ManagerRoleService;
 
     /**
      * 验证器
-     * @var ManagerRoleValidate
+     * @var SystemManagerRoleValidate
      */
     protected $ManagerRoleValidate;
 

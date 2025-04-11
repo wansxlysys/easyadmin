@@ -6,13 +6,13 @@ namespace app\admin\controller;
 
 use app\admin\dependency\SystemMenuDependency;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\service\ManagerService;
-use app\admin\validate\ManagerValidate;
+use app\admin\service\SystemManagerService;
+use app\admin\validate\SystemManagerValidate;
 use app\common\controller\SystemController;
 use Exception;
 use think\Request;
 
-class IndexController extends SystemController
+class SystemIndexController extends SystemController
 {
     /**
      * 中间件
@@ -22,13 +22,13 @@ class IndexController extends SystemController
 
     /**
      * 验证器
-     * @var ManagerService
+     * @var SystemManagerService
      */
     protected $ManagerService;
 
     /**
      * 服务类
-     * @var ManagerValidate
+     * @var SystemManagerValidate
      */
     protected $ManagerValidate;
 

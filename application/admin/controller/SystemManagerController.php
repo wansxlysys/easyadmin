@@ -9,14 +9,14 @@ use Exception;
 use think\Image;
 use think\Request;
 
-use app\admin\service\ManagerService;
-use app\admin\validate\ManagerValidate;
+use app\admin\service\SystemManagerService;
+use app\admin\validate\SystemManagerValidate;
 use app\admin\dependency\ManagerDependency;
 use app\admin\dependency\SystemUploadDependency;
 
 use app\common\controller\SystemController;
 
-class ManagerController extends SystemController
+class SystemManagerController extends SystemController
 {
     /**
      * 中间件
@@ -26,13 +26,13 @@ class ManagerController extends SystemController
 
     /**
      * 服务类
-     * @var ManagerService
+     * @var SystemManagerService
      */
     protected $ManagerService;
 
     /**
      * 验证器
-     * @var ManagerValidate
+     * @var SystemManagerValidate
      */
     protected $ManagerValidate;
 

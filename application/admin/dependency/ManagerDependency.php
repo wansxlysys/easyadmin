@@ -6,36 +6,36 @@ namespace app\admin\dependency;
 
 use app\common\dependency\Dependency;
 
-use app\admin\service\ManagerService;
-use app\admin\validate\ManagerValidate;
-use app\admin\repository\ManagerRepository;
+use app\admin\service\SystemManagerService;
+use app\admin\validate\SystemManagerValidate;
+use app\admin\repository\SystemManagerRepository;
 
 class ManagerDependency
 {
     /**
      * 获取存储类
-     * @return ManagerRepository
+     * @return SystemManagerRepository
      */
     public static function getRepository()
     {
-        return Dependency::getProxy(ManagerRepository::class);
+        return Dependency::getProxy(SystemManagerRepository::class);
     }
 
     /**
      * 获取服务类
-     * @return ManagerService
+     * @return SystemManagerService
      */
     public static function getService()
     {
-        return Dependency::getProxy(ManagerService::class);
+        return Dependency::getProxy(SystemManagerService::class);
     }
 
     /**
      * 获取验证器
-     * @return ManagerValidate
+     * @return SystemManagerValidate
      */
     public static function getValidate()
     {
-        return Dependency::getProxy(ManagerValidate::class);
+        return Dependency::getProxy(SystemManagerValidate::class);
     }
 }

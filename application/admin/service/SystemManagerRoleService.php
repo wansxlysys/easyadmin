@@ -7,24 +7,24 @@ namespace app\admin\service;
 use app\admin\dependency\ManagerDependency;
 use app\admin\enum\ManagerRoleEnum;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\repository\ManagerRoleRepository;
+use app\admin\repository\SystemManagerRoleRepository;
 use app\common\enum\DeleteEnum;
 use app\common\exception\ServiceException;
 use app\common\repository\Wrapper;
 use Exception;
 
-class ManagerRoleService
+class SystemManagerRoleService
 {
     /**
      * 存储类
-     * @var ManagerRoleRepository
+     * @var SystemManagerRoleRepository
      */
     protected $ManagerRoleRepository;
 
     /**
      * 初始化
      */
-    public function injectRepostitory(ManagerRoleRepository $ManagerRoleRepository)
+    public function injectRepostitory(SystemManagerRoleRepository $ManagerRoleRepository)
     {
         $this->ManagerRoleRepository = $ManagerRoleRepository;
     }

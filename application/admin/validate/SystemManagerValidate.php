@@ -6,7 +6,7 @@ namespace app\admin\validate;
 
 use app\common\validate\Validate;
 
-class ManagerValidate extends Validate
+class SystemManagerValidate extends Validate
 {
     /**
      * 验证规则
@@ -48,7 +48,7 @@ class ManagerValidate extends Validate
 
     /**
      * 登录
-     * @return ManagerValidate
+     * @return SystemManagerValidate
      */
     public function sceneLogin()
     {
@@ -57,7 +57,7 @@ class ManagerValidate extends Validate
 
     /**
      * 添加
-     * @return ManagerValidate
+     * @return SystemManagerValidate
      */
     public function sceneCreate()
     {
@@ -66,7 +66,7 @@ class ManagerValidate extends Validate
 
     /**
      * 修改
-     * @return ManagerValidate
+     * @return SystemManagerValidate
      */
     public function sceneUpdate()
     {
@@ -75,7 +75,7 @@ class ManagerValidate extends Validate
 
     /**
      * 删除
-     * @return ManagerValidate
+     * @return SystemManagerValidate
      */
     public function sceneDelete()
     {
@@ -84,7 +84,7 @@ class ManagerValidate extends Validate
 
     /**
      * 个人信息
-     * @return ManagerValidate
+     * @return SystemManagerValidate
      */
     public function sceneProfile()
     {

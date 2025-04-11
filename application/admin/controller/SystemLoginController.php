@@ -7,25 +7,25 @@ namespace app\admin\controller;
 use app\admin\dependency\ManagerDependency;
 use app\admin\dependency\SystemSettingDependency;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\service\ManagerService;
-use app\admin\validate\ManagerValidate;
+use app\admin\service\SystemManagerService;
+use app\admin\validate\SystemManagerValidate;
 use app\common\controller\CommonController;
 use Exception;
 use think\captcha\Captcha;
 use think\Request;
 use think\Response;
 
-class LoginController extends CommonController
+class SystemLoginController extends CommonController
 {
     /**
      * 服务类
-     * @var ManagerService
+     * @var SystemManagerService
      */
     protected $ManagerService;
 
     /**
      * 验证器
-     * @var ManagerValidate
+     * @var SystemManagerValidate
      */
     protected $ManagerValidate;
 

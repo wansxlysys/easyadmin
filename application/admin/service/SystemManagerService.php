@@ -7,7 +7,7 @@ namespace app\admin\service;
 use app\admin\dependency\SystemLoginLogDependency;
 use app\admin\enum\ManagerEnum;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\repository\ManagerRepository;
+use app\admin\repository\SystemManagerRepository;
 use app\common\enum\DeleteEnum;
 use app\common\exception\ServiceException;
 use app\common\repository\Wrapper;
@@ -16,18 +16,18 @@ use app\common\util\EncryptionUtil;
 use app\common\util\StringUtil;
 use Exception;
 
-class ManagerService
+class SystemManagerService
 {
     /**
      * 存储类
-     * @var ManagerRepository
+     * @var SystemManagerRepository
      */
     protected $ManagerRepository;
 
     /**
      * 初始化
      */
-    public function injectRepostitory(ManagerRepository $ManagerRepository)
+    public function injectRepostitory(SystemManagerRepository $ManagerRepository)
     {
         $this->ManagerRepository = $ManagerRepository;
     }

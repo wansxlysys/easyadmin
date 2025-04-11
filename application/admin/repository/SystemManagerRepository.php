@@ -9,13 +9,13 @@ use app\common\repository\Wrapper;
 use think\Db;
 use think\Exception;
 
-class ManagerRepository extends Repository
+class SystemManagerRepository extends Repository
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'Manager';
+    protected $name = 'SystemManager';
 
     /**
      * 获取列表
@@ -27,7 +27,7 @@ class ManagerRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('manager')
-            ->join('ManagerRole role', 'role.id = manager.roleId')
+            ->join('SystemManagerRole role', 'role.id = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -48,7 +48,7 @@ class ManagerRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('manager')
-            ->join('ManagerRole role', 'role.id = manager.roleId')
+            ->join('SystemManagerRole role', 'role.id = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();
@@ -64,7 +64,7 @@ class ManagerRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('manager')
-            ->join('ManagerRole role', 'role.id = manager.roleId')
+            ->join('SystemManagerRole role', 'role.id = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())

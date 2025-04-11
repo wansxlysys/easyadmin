@@ -4,7 +4,7 @@
 namespace app\index\controller;
 
 
-use app\admin\repository\ManagerRepository;
+use app\admin\repository\SystemManagerRepository;
 use app\common\dependency\Dependency;
 use app\common\dependency\DependencyAspect;
 use app\common\helper\ExcelHelper;
@@ -81,7 +81,7 @@ class TestController
      */
     public function daoAction()
     {
-        $ManagerRepostory = new ManagerRepository();
+        $ManagerRepostory = new SystemManagerRepository();
 
         $manager1 = $ManagerRepostory->nonSub()->getById(1);
         dump($manager1);

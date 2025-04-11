@@ -7,10 +7,10 @@ namespace app\queue\command;
 use Exception;
 
 use think\Queue;
-use think\console\Command;
 use think\console\Input;
-use think\console\input\Option;
 use think\console\Output;
+use think\console\Command;
+use think\console\input\Option;
 
 use app\queue\dependency\QueueFailedDependency;
 
@@ -18,7 +18,7 @@ class QueueRetry extends Command
 {
     /**
      * 配置命令
-     * php think queue:retry --name default
+     * php think queue:retry --queue default
      */
     protected function configure()
     {
@@ -51,7 +51,7 @@ class QueueRetry extends Command
             /**
              * 删除失败记录
              */
-            $QueueFiledService->deleteFaild($failed['id']);
+            $QueueFiledService->deleteFailed($failed['id']);
         }
     }
 }

@@ -6,26 +6,27 @@ namespace app\queue\service;
 
 use Exception;
 
-use app\common\util\ArrayUtil;
+use app\common\service\Service;
 use app\common\util\JsonUtil;
+use app\common\util\ArrayUtil;
 use app\common\repository\Wrapper;
 
-use app\queue\repository\QueueFailedRepostitory;
+use app\queue\repository\QueueFailedRepository;
 
-class QueueFailedService
+class QueueFailedService extends Service
 {
     /**
      * 存储类
-     * @var QueueFailedRepostitory
+     * @var QueueFailedRepository
      */
-    protected $QueueFailedRepostitory;
+    protected $QueueFailedRepository;
 
     /**
      * 初始化
      */
-    public function injectRepostitory(QueueFailedRepostitory $QueueFailedRepostitory)
+    public function injectRepository(QueueFailedRepository $QueueFailedRepository)
     {
-        $this->QueueFailedRepostitory = $QueueFailedRepostitory;
+        $this->QueueFailedRepository = $QueueFailedRepository;
     }
 
     /**
@@ -39,7 +40,7 @@ class QueueFailedService
         $Wrapper->addOrder('id', 'desc');
         $Wrapper->addWhere('queue', '=', $queue);
 
-        return $this->formatList($this->QueueFailedRepostitory->getAll($Wrapper));
+        return $this->formatList($this->QueueFailedRepository->getAll($Wrapper));
     }
 
     /**
@@ -49,7 +50,7 @@ class QueueFailedService
      */
     public function createFailed(array $data)
     {
-        return $this->QueueFailedRepostitory->createRecord($this->buildData($data));
+        return $this->QueueFailedRepository->createRecord($this->buildData($data));
     }
 
     /**
@@ -58,9 +59,9 @@ class QueueFailedService
      * @return int
      * @throws Exception
      */
-    public function deleteFaild($id)
+    public function deleteFailed($id)
     {
-        return $this->QueueFailedRepostitory->deleteById($id);
+        return $this->QueueFailedRepository->deleteById($id);
     }
 
     /**

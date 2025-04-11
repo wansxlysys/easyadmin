@@ -10,22 +10,12 @@
 // +----------------------------------------------------------------------
 
 return [
-    // Redis驱动
-    'connector'  => 'Redis',
+    // Database驱动
+    'connector' => 'Database',
     // 任务的过期时间
-    'expire'     => INF,
+    'expire'    => 60,
     // 默认的队列名称
-    'default'    => 'default',
-    // Redis地址
-    'host'       => '127.0.0.1',
-    // Redis端口
-    'port'       => 6379,
-    // Redis密码
-    'password'   => '',
-    // Redis数据库
-    'select'     => 0,
-    // Redis连接的超时
-    'timeout'    => 0,
-    // 是否为长连接
-    'persistent' => false,
+    'default'   => 'default',
+    // 数据表
+    'table'     => 'queue_jobs',
 ];

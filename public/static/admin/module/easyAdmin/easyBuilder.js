@@ -179,7 +179,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
         const defaultSetting = {
             elem: options.elem,
             clearable: true,
-            prop: {
+            props: {
                 value: 'id',
                 label: 'name',
                 strictMode: true

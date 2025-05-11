@@ -269,13 +269,7 @@
             {id: 1, parentId: 0, name: '指南'},
             {id: 2, parentId: 1, name: '说明'},
             {id: 3, parentId: 0, name: '设计'},
-            {id: 4, parentId: 3, name: '图稿'},
-            {id: 5, parentId: 0, name: '图稿'},
-            {id: 6, parentId: 0, name: '图稿'},
-            {id: 7, parentId: 0, name: '图稿'},
-            {id: 8, parentId: 0, name: '图稿'},
-            {id: 9, parentId: 0, name: '图稿'},
-            {id: 10, parentId: 0, name: '图稿'},
+            {id: 4, parentId: 3, name: '图稿'}
         ];
 
         easyBuilder.cascader({
@@ -283,7 +277,7 @@
             checked: [3, 4]
         }, {
             clearable: false,
-            filterable: true,
+            filterable: false,
         }, data);
 
         const map = new TMap.Map('map', {

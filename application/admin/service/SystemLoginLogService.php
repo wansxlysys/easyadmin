@@ -50,7 +50,7 @@ class SystemLoginLogService
         }
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
         }
 
         $Wrapper->setPage($params['page']);
@@ -82,7 +82,7 @@ class SystemLoginLogService
      */
     public function clearLog()
     {
-        return $this->SystemLoginLogRepository->deleteByWhere([['id', '>', 0]]);
+        return $this->SystemLoginLogRepository->deleteByWhere([['logId', '>', 0]]);
     }
 
     /**

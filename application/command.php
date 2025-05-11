@@ -15,7 +15,7 @@ use app\common\command\backup\Backup;
 use app\common\command\generator\Generator;
 
 return [
-    'system:backup'    => Backup::class,
+    'database:backup'  => Backup::class,
     'system:generator' => Generator::class,
     'queue:retry'      => QueueRetry::class,
 ];

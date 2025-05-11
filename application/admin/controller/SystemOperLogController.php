@@ -8,12 +8,12 @@ use Exception;
 
 use think\Request;
 
-use app\admin\service\SystemLogService;
-use app\admin\dependency\SystemLogDependency;
+use app\admin\service\SystemOperLogService;
+use app\admin\dependency\SystemOperLogDependency;
 
 use app\common\controller\SystemController;
 
-class SystemLogController extends SystemController
+class SystemOperLogController extends SystemController
 {
     /**
      * 中间件
@@ -23,9 +23,9 @@ class SystemLogController extends SystemController
 
     /**
      * 服务类
-     * @var SystemLogService
+     * @var SystemOperLogService
      */
-    protected $SystemLogService;
+    protected $SystemOperLogService;
 
     /**
      * 初始化
@@ -34,7 +34,7 @@ class SystemLogController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemLogService = SystemLogDependency::getService();
+        $this->SystemOperLogService = SystemOperLogDependency::getService();
     }
 
     /**
@@ -55,7 +55,7 @@ class SystemLogController extends SystemController
                 'account' => $request->get('account')
             ];
 
-            $this->success('获取成功', '', $this->SystemLogService->listLog($params));
+            $this->success('获取成功', '', $this->SystemOperLogService->listLog($params));
         }
 
         return $this->fetch();
@@ -69,7 +69,7 @@ class SystemLogController extends SystemController
      */
     public function detailAction(Request $request)
     {
-        $log = $this->SystemLogService->detailLog($request->get('id'));
+        $log = $this->SystemOperLogService->detailLog($request->get('logId'));
 
         return $this->fetch('', [
             'log' => $log
@@ -85,7 +85,7 @@ class SystemLogController extends SystemController
     {
         if ($request->isAjax()) {
 
-            $this->SystemLogService->clearLog();
+            $this->SystemOperLogService->clearLog();
 
             $this->success('清空成功');
         }

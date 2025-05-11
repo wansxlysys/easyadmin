@@ -87,12 +87,12 @@
                     dblClickExpand: false
                 },
                 customName: {
+                    id: 'menuId',
                     pid: 'parentId'
                 }
             },
             cols: [[
                 {type: 'checkbox'},
-                {title: 'ID', field: 'id', width: 80},
                 {title: '菜单名称', field: 'name', minWidth: 240},
                 {title: "菜单模块", field: 'module'},
                 {title: "菜单控制器", field: 'controller'},
@@ -125,7 +125,7 @@
             easyAdmin.ajaxPost({
                 url: "{:url('admin/SystemMenu/sort')}",
                 data: {
-                    id: obj.data.id,
+                    menuId: obj.data.menuId,
                     sort: obj.value
                 },
                 success: function (result) {
@@ -143,7 +143,7 @@
 
             if (obj.event === 'update') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemMenu/update')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemMenu/update')}?menuId=" + obj.data.menuId
                 });
             }
 
@@ -154,7 +154,7 @@
                     easyAdmin.ajaxPost({
                         url: "{:url('admin/SystemMenu/delete')}",
                         data: {
-                            id: obj.data.id
+                            menuId: obj.data.menuId
                         },
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {

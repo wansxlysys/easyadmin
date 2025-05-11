@@ -13,7 +13,7 @@ class SystemManagerRoleValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'id'         => 'require|number',
+        'roleId'     => 'require|number',
         'name'       => 'require|max:32|single:ManagerRole,isDelete=2',
         'identify'   => 'require|max:32|single:ManagerRole,isDelete=2',
         'permission' => 'require',
@@ -24,8 +24,8 @@ class SystemManagerRoleValidate extends Validate
      * @var string[]
      */
     protected $message = [
-        'id.require'         => 'ID不能为空',
-        'id.number'          => 'ID必须为正整数',
+        'roleId.require'     => 'ID不能为空',
+        'roleId.number'      => 'ID必须为正整数',
         'name.require'       => '角色名不能为空',
         'name.max'           => '角色名不能超过32个字符',
         'name.single'        => '角色名已存在',
@@ -50,7 +50,7 @@ class SystemManagerRoleValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'name', 'identify', 'permission']);
+        return $this->only(['roleId', 'name', 'identify', 'permission']);
     }
 
     /**
@@ -59,6 +59,6 @@ class SystemManagerRoleValidate extends Validate
      */
     public function sceneDelete()
     {
-        return $this->only(['id'])->remove('id', 'number');
+        return $this->only(['roleId'])->remove('roleId', 'number');
     }
 }

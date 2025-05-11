@@ -13,14 +13,14 @@ class SystemManagerValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'id'       => 'require|number',
-        'roleId'   => 'require|number',
-        'avatar'   => 'require',
-        'realName' => 'require|max:32|single:SystemManager,isDelete=2',
-        'account'  => 'require|max:32|single:SystemManager,isDelete=2',
-        'password' => 'require',
-        'status'   => 'require|number',
-        'captcha'  => 'require|captcha:login',
+        'managerId' => 'require|number',
+        'roleId'    => 'require|number',
+        'avatar'    => 'require',
+        'realName'  => 'require|max:32|single:SystemManager,isDelete=2',
+        'account'   => 'require|max:32|single:SystemManager,isDelete=2',
+        'password'  => 'require',
+        'status'    => 'require|number',
+        'captcha'   => 'require|captcha:login',
     ];
 
     /**
@@ -28,22 +28,22 @@ class SystemManagerValidate extends Validate
      * @var string[]
      */
     protected $message = [
-        'id.require'       => 'ID不能为空',
-        'id.number'        => 'ID必须为正整数',
-        'roleId.require'   => '角色ID不能为空',
-        'roleId.number'    => '角色ID必须为正整数',
-        'avatar.require'   => '头像不能为空',
-        'realName.require' => '姓名不能为空',
-        'realName.max'     => '姓名不能超过32个字符',
-        'realName.single'  => '姓名已存在',
-        'account.require'  => '账号不能为空',
-        'account.max'      => '账号不能超过32个字符',
-        'account.single'   => '账号已存在',
-        'password.require' => '密码不能为空',
-        'status.require'   => '状态不能为空',
-        'status.number'    => '状态必须为正整数',
-        'captcha.require'  => '验证码不能为空',
-        'captcha.captcha'  => '验证码错误',
+        'managerId.require' => 'ID不能为空',
+        'managerId.number'  => 'ID必须为正整数',
+        'roleId.require'    => '角色ID不能为空',
+        'roleId.number'     => '角色ID必须为正整数',
+        'avatar.require'    => '头像不能为空',
+        'realName.require'  => '姓名不能为空',
+        'realName.max'      => '姓名不能超过32个字符',
+        'realName.single'   => '姓名已存在',
+        'account.require'   => '账号不能为空',
+        'account.max'       => '账号不能超过32个字符',
+        'account.single'    => '账号已存在',
+        'password.require'  => '密码不能为空',
+        'status.require'    => '状态不能为空',
+        'status.number'     => '状态必须为正整数',
+        'captcha.require'   => '验证码不能为空',
+        'captcha.captcha'   => '验证码错误',
     ];
 
     /**
@@ -70,7 +70,7 @@ class SystemManagerValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'roleId', 'avatar', 'realName', 'account', 'status']);
+        return $this->only(['managerId', 'roleId', 'avatar', 'realName', 'account', 'status']);
     }
 
     /**
@@ -79,7 +79,7 @@ class SystemManagerValidate extends Validate
      */
     public function sceneDelete()
     {
-        return $this->only(['id']);
+        return $this->only(['managerId']);
     }
 
     /**

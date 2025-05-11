@@ -13,7 +13,7 @@ class SystemMenuValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'id'         => 'require|number',
+        'menuId'         => 'require|number',
         'parentId'   => 'number',
         'name'       => 'require|max:32',
         'icon'       => 'require|max:32',
@@ -69,7 +69,7 @@ class SystemMenuValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
+        return $this->only(['menuId', 'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
     }
 
     /**
@@ -78,7 +78,7 @@ class SystemMenuValidate extends Validate
      */
     public function sceneDelete()
     {
-        return $this->only(['id']);
+        return $this->only(['menuId']);
     }
 
     /**
@@ -87,6 +87,6 @@ class SystemMenuValidate extends Validate
      */
     public function sceneSort()
     {
-        return $this->only(['id', 'sort']);
+        return $this->only(['menuId', 'sort']);
     }
 }

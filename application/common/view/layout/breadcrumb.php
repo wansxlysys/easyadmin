@@ -2,7 +2,7 @@
 /**
  * @noinspection PhpUndefinedVariableInspection
  */
-$breadcrumbMenu = service('SystemMenu', 'admin')->getBreadcrumbMenu($currentMenu['id']);
+$breadcrumbMenu = service('SystemMenu', 'admin')->getBreadcrumbMenu($currentMenu['menuId']);
 ?>
 <div class="easy-breadcrumb">
     <div class="layui-breadcrumb">

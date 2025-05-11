@@ -12,5 +12,11 @@ class QueueFailedRepository extends Repository
      * 数据表名
      * @var string
      */
-    protected $name = 'QueueFailed';
+    protected $name = 'queue_failed';
+
+    /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'id';
 }

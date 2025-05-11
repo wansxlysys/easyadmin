@@ -17,12 +17,23 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
             success(result) {
 
                 let defaultOptions = {
-                    append: {id: 0, name: '顶级菜单'}
+                    append: {
+                        menuId: 0,
+                        name: '顶级菜单'
+                    },
+                    prop: {
+                        idKey: 'menuId',
+                        pidKey: 'parentId'
+                    }
                 };
 
-                let defaultSetting = {};
+                let defaultSetting = {
+                    prop: {
+                        value: 'menuId'
+                    }
+                };
 
-                easyBuilder.treeSelect(Object.assign(defaultOptions, options), Object.assign(defaultSetting, setting), result.data);
+                easyBuilder.treeSelect($.extend(true, defaultOptions, options), $.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
@@ -38,10 +49,22 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
             url: apiUrl.getAllMenu,
             success(result) {
 
-                let defaultOptions = {};
-                let defaultSetting = {};
+                let defaultOptions = {
+                    prop: {
+                        idKey: 'menuId',
+                        pidKey: 'parentId'
+                    }
+                };
 
-                easyBuilder.treeStruct(Object.assign(defaultOptions, options), Object.assign(defaultSetting, setting), result.data);
+                let defaultSetting = {
+                    data: {
+                        simpleData: {
+                            idKey: 'menuId'
+                        }
+                    },
+                };
+
+                easyBuilder.treeStruct($.extend(true, defaultOptions, options), $.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
@@ -58,12 +81,19 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
             success(result) {
 
                 let defaultOptions = {
-                    single: true
+                    single: true,
+                    prop: {
+                        idKey: 'roleId'
+                    }
                 };
 
-                let defaultSetting = {};
+                let defaultSetting = {
+                    prop: {
+                        value: 'roleId'
+                    }
+                };
 
-                easyBuilder.treeSelect(Object.assign(defaultOptions, options), Object.assign(defaultSetting, setting), result.data);
+                easyBuilder.treeSelect($.extend(true, defaultOptions, options), $.extend(true, defaultSetting, setting), result.data);
             }
         });
     }

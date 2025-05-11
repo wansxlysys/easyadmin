@@ -15,7 +15,13 @@ class SystemLoginLogRepository extends Repository
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemLoginLog';
+    protected $name = 'system_login_log';
+
+    /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'logId';
 
     /**
      * 获取关联管理员列表
@@ -27,7 +33,7 @@ class SystemLoginLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('SystemManager manager', 'log.managerId = manager.id')
+            ->join('system_manager manager', 'log.managerId = manager.managerId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -48,7 +54,7 @@ class SystemLoginLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('SystemManager manager', 'log.managerId = manager.id')
+            ->join('system_manager manager', 'log.managerId = manager.managerId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();

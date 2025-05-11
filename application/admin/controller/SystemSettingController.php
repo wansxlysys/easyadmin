@@ -59,7 +59,7 @@ class SystemSettingController extends SystemController
                 'content' => $request->post('content'),
             ];
 
-            $this->SystemSettingValidate->scene('Config')->verify($params);
+            $this->SystemSettingValidate->scene('config')->verify($params);
             $this->SystemSettingService->setSystemSetting($params);
 
             $this->success('修改成功');
@@ -87,7 +87,7 @@ class SystemSettingController extends SystemController
                 'slogan' => $request->post('slogan'),
             ];
 
-            $this->SystemSettingValidate->scene('System')->verify($params);
+            $this->SystemSettingValidate->scene('system')->verify($params);
             $this->SystemSettingService->setSystemSetting($params);
 
             $this->success('修改成功');

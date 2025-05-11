@@ -55,20 +55,20 @@ class SystemManagerService
         }
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
         }
 
         $Wrapper->addWhere('manager.isDelete', '=', DeleteEnum::DELETE_NOT);
 
         $field = [
-            'manager.id', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
+            'manager.managerId', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
             'manager.loginTime', 'role.name roleName'
         ];
 
         $Wrapper->setField($field);
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
-        $Wrapper->addOrder('manager.id', 'asc');
+        $Wrapper->addOrder('manager.managerId', 'asc');
 
         $list  = $this->ManagerRepository->getListWithRole($Wrapper);
         $total = $this->ManagerRepository->getTotalWithRole($Wrapper);
@@ -97,11 +97,11 @@ class SystemManagerService
         $Wrapper = new Wrapper();
 
         $Wrapper->setField([
-            'manager.id', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account',
+            'manager.managerId', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account',
             'manager.password', 'manager.status', 'manager.isDelete', 'role.identify', 'role.permission',
         ]);
 
-        $Wrapper->addWhere('manager.id', '=', SystemManagerHelper::getManagerId());
+        $Wrapper->addWhere('manager.managerId', '=', SystemManagerHelper::getManagerId());
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
@@ -168,7 +168,7 @@ class SystemManagerService
         /**
          * 检测管理员是否存在
          */
-        $manager = $this->getById($params['id']);
+        $manager = $this->getById($params['managerId']);
 
         if (empty($manager)) {
             throw new ServiceException('修改失败，管理员不存在');
@@ -183,7 +183,7 @@ class SystemManagerService
             $params['password'] = EncryptionUtil::encrypt($params['password']);
         }
 
-        return $this->ManagerRepository->updateById($params['id'], $params);
+        return $this->ManagerRepository->updateById($params['managerId'], $params);
     }
 
     /**
@@ -194,11 +194,11 @@ class SystemManagerService
      */
     public function deleteManager(array $params)
     {
-        if ($params['id'] == ManagerEnum::SUPER_ID) {
+        if ($params['managerId'] == ManagerEnum::SUPER_ID) {
             throw new ServiceException('删除失败，超级管理员禁止删除');
         }
 
-        return $this->ManagerRepository->updateById($params['id'], ['isDelete' => DeleteEnum::DELETE_NOT]);
+        return $this->ManagerRepository->updateById($params['managerId'], ['isDelete' => DeleteEnum::DELETE_NOT]);
     }
 
     /**
@@ -221,7 +221,7 @@ class SystemManagerService
         /**
          * 更新最后登录时间
          */
-        if (!$this->ManagerRepository->updateById($manager['id'], ['loginTime' => DateTimeUtil::dateTime()])) {
+        if (!$this->ManagerRepository->updateById($manager['managerId'], ['loginTime' => DateTimeUtil::dateTime()])) {
             throw new ServiceException('执行失败，登录时间更新失败');
         }
 
@@ -258,14 +258,14 @@ class SystemManagerService
                     /**
                      * 更新管理员为锁定状态
                      */
-                    $this->ManagerRepository->updateById($manager['id'], ['status' => ManagerEnum::STATUS_LOCKED, 'loginError' => 0]);
+                    $this->ManagerRepository->updateById($manager['managerId'], ['status' => ManagerEnum::STATUS_LOCKED, 'loginError' => 0]);
 
                 } else {
 
                     /**
                      * 登录失败次数递增
                      */
-                    $this->ManagerRepository->updateById($manager['id'], ['loginError' => $loginError]);
+                    $this->ManagerRepository->updateById($manager['managerId'], ['loginError' => $loginError]);
                 }
 
                 throw new ServiceException('登录失败，密码输入错误');
@@ -278,7 +278,7 @@ class SystemManagerService
              */
             $SystemLoginLogService->loginError([
                 'loginIp'     => $params['loginIp'],
-                'managerId'   => $manager['id'],
+                'managerId'   => $manager['managerId'],
                 'description' => $Exception->getMessage(),
             ]);
 
@@ -288,14 +288,14 @@ class SystemManagerService
         /**
          * 设置登录缓存
          */
-        SystemManagerHelper::login($manager['id'], $manager['account'], $manager['password']);
+        SystemManagerHelper::login($manager['managerId'], $manager['account'], $manager['password']);
 
         /**
          * 登录成功日志
          */
         $SystemLoginLogService->loginSuccess([
             'loginIp'     => $params['loginIp'],
-            'managerId'   => $manager['id'],
+            'managerId'   => $manager['managerId'],
             'description' => '登录成功',
         ]);
 

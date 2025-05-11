@@ -9,13 +9,19 @@ use app\common\repository\Wrapper;
 use think\Db;
 use think\Exception;
 
-class SystemLogRepository extends Repository
+class SystemOperLogRepository extends Repository
 {
     /**
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemLog';
+    protected $name = 'system_oper_log';
+
+    /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'logId';
 
     /**
      * 获取关联管理员列表
@@ -27,8 +33,8 @@ class SystemLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('SystemManager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
+            ->join('system_manager manager', 'manager.managerId = log.managerId')
+            ->join('system_menu menu', 'menu.menuId = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -49,8 +55,8 @@ class SystemLogRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('log')
-            ->join('SystemManager manager', 'manager.id = log.managerId')
-            ->join('SystemMenu menu', 'menu.id = log.menuId')
+            ->join('system_manager manager', 'manager.managerId = log.managerId')
+            ->join('system_menu menu', 'menu.menuId = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();

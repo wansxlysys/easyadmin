@@ -77,13 +77,13 @@ class SystemIndexController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'       => SystemManagerHelper::getManagerId(),
-                'avatar'   => $request->post('avatar'),
-                'realName' => $request->post('realName'),
-                'password' => $request->post('password'),
+                'managerId' => SystemManagerHelper::getManagerId(),
+                'avatar'    => $request->post('avatar'),
+                'realName'  => $request->post('realName'),
+                'password'  => $request->post('password'),
             ];
 
-            $this->ManagerValidate->scene('Profile')->verify($params);
+            $this->ManagerValidate->scene('profile')->verify($params);
             $this->ManagerService->updateManager($params);
 
             $this->success('修改成功');

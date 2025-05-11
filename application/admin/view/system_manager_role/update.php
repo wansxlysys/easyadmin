@@ -78,7 +78,7 @@
                 });
             }
 
-            obj.field.id = '{$role.id}';
+            obj.field.roleId = '{$role.roleId}';
             obj.field.permission = permission.join(',');
 
             easyAdmin.ajaxPost({

@@ -59,7 +59,7 @@ class SystemLoginController extends CommonController
                 'captcha'  => $request->post('captcha'),
             ];
 
-            $this->ManagerValidate->scene('Login')->verify($params);
+            $this->ManagerValidate->scene('login')->verify($params);
             $this->ManagerService->login($params);
 
             $this->success('登录成功', 'admin/SystemIndex/index');

@@ -14,7 +14,13 @@ class SystemUploadRepository extends Repository
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemUpload';
+    protected $name = 'system_upload';
+
+    /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'fileId';
 
     /**
      * 通过MD5查询

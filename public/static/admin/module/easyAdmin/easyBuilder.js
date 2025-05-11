@@ -27,7 +27,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 },
                 simpleData: {
                     enable: true,
-                    pIdKey: "parentId",
+                    idKey: 'id',
+                    pIdKey: 'parentId',
                     rootPId: 0
                 }
             },
@@ -36,8 +37,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             }
         };
 
-        options = Object.assign(defaultOptions, options);
-        setting = Object.assign(defaultSetting, setting);
+        options = $.extend(true, defaultOptions, options);
+        setting = $.extend(true, defaultSetting, setting);
 
         if (options.checked) {
             options.checked = options.checked.split(',').map(item => +item);
@@ -47,7 +48,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
         data.forEach(item => {
             item.icon = null;
-            item.checked = options.checked.includes(item.id);
+            item.checked = options.checked.includes(item[setting.data.simpleData.idKey]);
         });
 
         let tree = $.fn.zTree.init($(options.elem), setting, data);
@@ -67,7 +68,11 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
         const defaultOptions = {
             elem: '',
-            checked: ''
+            checked: '',
+            prop: {
+                idKey: 'id',
+                pidKey: 'parentId'
+            }
         }
 
         const defaultSetting = {
@@ -101,8 +106,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             }
         };
 
-        options = Object.assign(defaultOptions, options);
-        setting = Object.assign(defaultSetting, setting);
+        options = $.extend(true, defaultOptions, options);
+        setting = $.extend(true, defaultSetting, setting);
 
         if (options.append) {
             setting.data.unshift(options.append);
@@ -110,13 +115,19 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
         if (options.single) {
             setting.data.forEach(item => {
-                item.selected = item.id == options.checked;
+                item.selected = item[options.prop.idKey] == options.checked;
             });
         } else {
             setting.tree.expandedKeys = [options.checked];
-            setting.data = easyHelper.arrayToTree(setting.data, item => {
-                item.selected = item.id == options.checked;
-            });
+            setting.data = easyHelper.arrayToTree({
+                prop: {
+                    idKey: options.prop.idKey,
+                    pidKey: options.prop.pidKey
+                },
+                handler: (item) => {
+                    item.selected = item[options.prop.idKey] == options.checked;
+                }
+            }, setting.data);
         }
 
         const treeSelect = xmSelect.render(setting);
@@ -138,7 +149,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             className: 'easy-menu'
         };
 
-        options = Object.assign(defaults, options);
+        options = $.extend(true, defaults, options);
 
         options.data.forEach(item => {
             item.templet = `<i class="fa fa-fw ${item.icon}"></i><span>{{d.title}}</span>`;
@@ -158,21 +169,25 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
         const defaultOptions = {
             elem: '',
-            checked: []
+            checked: [],
+            prop: {
+                idKey: 'id',
+                pidKey: 'parentId'
+            }
         }
 
         const defaultSetting = {
             elem: options.elem,
             clearable: true,
-            props: {
+            prop: {
                 value: 'id',
                 label: 'name',
                 strictMode: true
             }
         };
 
-        options = Object.assign(defaultOptions, options);
-        setting = Object.assign(defaultSetting, setting);
+        options = $.extend(true, defaultOptions, options);
+        setting = $.extend(true, defaultSetting, setting);
 
         if (!options.checked) {
             options.checked = [];
@@ -184,7 +199,12 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             setting.value = options.checked.split(',').map(val => +val);
         }
 
-        setting.options = easyHelper.arrayToTree(data);
+        setting.options = easyHelper.arrayToTree({
+            prop: {
+                idKey: options.prop.idKey,
+                pidKey: options.prop.pidKey
+            }
+        }, data);
 
         const cascader = layCascader(setting);
 
@@ -226,8 +246,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             ]]
         };
 
-        options = Object.assign(defaultOptions, options);
-        setting = Object.assign(defaultSetting, setting);
+        options = $.extend(true, defaultOptions, options);
+        setting = $.extend(true, defaultSetting, setting);
 
         UE.getEditor(options.elem, setting);
     }

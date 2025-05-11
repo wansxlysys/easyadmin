@@ -96,20 +96,20 @@ class SystemManagerRoleService
     {
         $ManagerService = SystemManagerDependency::getService();
 
-        if ($ManagerService->getByRoleId($params['id'])) {
+        if ($ManagerService->getByRoleId($params['roleId'])) {
             throw new ServiceException('删除失败，角色下存在管理员');
         }
 
         /**
          * 超级管理员角色禁止删除
          */
-        $role = $this->ManagerRoleRepository->getById($params['id']);
+        $role = $this->ManagerRoleRepository->getById($params['roleId']);
 
         if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
             throw new ServiceException('删除失败，禁止删除超管角色');
         }
 
-        return $this->ManagerRoleRepository->updateById($params['id'], ['isDelete' => DeleteEnum::DELETE_YES]);
+        return $this->ManagerRoleRepository->updateById($params['roleId'], ['isDelete' => DeleteEnum::DELETE_YES]);
     }
 
     /**
@@ -130,6 +130,6 @@ class SystemManagerRoleService
      */
     public function updateRole(array $params)
     {
-        return $this->ManagerRoleRepository->updateById($params['id'], $params);
+        return $this->ManagerRoleRepository->updateById($params['roleId'], $params);
     }
 }

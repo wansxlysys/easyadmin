@@ -89,7 +89,7 @@ class SystemMenuController extends SystemController
                 'sort'       => $request->post('sort'),
             ];
 
-            $this->SystemMenuValidate->scene('Create')->verify($params);
+            $this->SystemMenuValidate->scene('create')->verify($params);
             $this->SystemMenuService->createMenu($params);
 
             $this->success('添加成功');
@@ -109,7 +109,7 @@ class SystemMenuController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'         => $request->post('id'),
+                'menuId'     => $request->post('menuId'),
                 'parentId'   => $request->post('parentId'),
                 'name'       => $request->post('name'),
                 'icon'       => $request->post('icon'),
@@ -123,13 +123,13 @@ class SystemMenuController extends SystemController
                 'sort'       => $request->post('sort'),
             ];
 
-            $this->SystemMenuValidate->scene('Update')->verify($params);
+            $this->SystemMenuValidate->scene('update')->verify($params);
             $this->SystemMenuService->updateMenu($params);
 
             $this->success('修改成功');
         }
 
-        $menu = $this->SystemMenuService->getById($request->get('id'));
+        $menu = $this->SystemMenuService->getById($request->get('menuId'));
 
         return $this->fetch('', [
             'menu' => $menu
@@ -146,10 +146,10 @@ class SystemMenuController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id' => $request->post('id')
+                'menuId' => $request->post('menuId')
             ];
 
-            $this->SystemMenuValidate->scene('Delete')->verify($params);
+            $this->SystemMenuValidate->scene('delete')->verify($params);
             $this->SystemMenuService->deleteMenu($params);
 
             $this->success('删除成功');
@@ -166,11 +166,11 @@ class SystemMenuController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'   => $request->post('id'),
-                'sort' => $request->post('sort'),
+                'menuId' => $request->post('menuId'),
+                'sort'   => $request->post('sort'),
             ];
 
-            $this->SystemMenuValidate->scene('Sort')->verify($params);
+            $this->SystemMenuValidate->scene('sort')->verify($params);
             $this->SystemMenuService->sortMenu($params);
 
             $this->success('修改成功');

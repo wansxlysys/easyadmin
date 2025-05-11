@@ -169,7 +169,7 @@ class SystemUploadService
         /**
          * 文件不存在则删除文件信息
          */
-        $this->SystemUploadRepository->deleteById($file['id']);
+        $this->SystemUploadRepository->deleteById($file['fileId']);
 
         return false;
     }

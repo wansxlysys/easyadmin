@@ -69,7 +69,7 @@ class SystemLoginLogController extends SystemController
      */
     public function detailAction(Request $request)
     {
-        $log = $this->SystemLoginLogService->detailLog($request->get('id'));
+        $log = $this->SystemLoginLogService->detailLog($request->get('logId'));
 
         return $this->fetch('', [
             'log' => $log

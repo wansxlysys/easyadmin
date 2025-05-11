@@ -42,7 +42,7 @@ class System
     public function checkLogin()
     {
         if (!SystemManagerHelper::isLogin()) {
-            $this->error('未登录', 'admin/login/login');
+            $this->error('未登录', 'admin/SystemLogin/login');
         }
     }
 
@@ -67,7 +67,7 @@ class System
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if (!SystemManagerHelper::checkAccessByMenuId($currentMenu['id'])) {
+        if (!SystemManagerHelper::checkAccessByMenuId($currentMenu['menuId'])) {
             $this->error('账号未授权访问');
         }
     }
@@ -86,7 +86,7 @@ class System
 
         SystemManagerHelper::logout();
 
-        $this->error('登录失效', 'admin/login/login');
+        $this->error('登录失效', 'admin/SystemLogin/login');
     }
 
     /**
@@ -101,7 +101,7 @@ class System
 
         SystemManagerHelper::logout();
 
-        $this->error('账号已删除', 'admin/login/login');
+        $this->error('账号已删除', 'admin/SystemLogin/login');
     }
 
     /**

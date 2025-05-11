@@ -63,7 +63,6 @@
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: 'ID', field: 'id', width: 80},
                 {title: '角色名称', field: 'name', width: 240},
                 {title: '角色标识', field: 'identify', width: 240},
                 {title: '角色备注', field: 'remark'},
@@ -83,7 +82,7 @@
 
             if (obj.event === "update") {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemManagerRole/update')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemManagerRole/update')}?roleId=" + obj.data.roleId
                 });
             }
 
@@ -94,7 +93,7 @@
                     easyAdmin.ajaxPost({
                         url: "{:url('admin/SystemManagerRole/delete')}",
                         data: {
-                            id: obj.data.id
+                            roleId: obj.data.roleId
                         },
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {

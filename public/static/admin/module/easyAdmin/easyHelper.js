@@ -4,22 +4,22 @@ layui.define(function (exports) {
 
     /**
      * 数组转树形结构
+     * @param options
      * @param arrayList
-     * @param callback
      * @returns {[]}
      */
-    easyHelper.arrayToTree = (arrayList, callback) => {
+    easyHelper.arrayToTree = (options, arrayList) => {
 
         const map = {};
         const result = [];
 
         arrayList.forEach(item => {
-            map[item.id] = item;
+            map[item[options.prop.idKey]] = item;
         });
 
         arrayList.forEach(item => {
 
-            const parent = map[item.parentId];
+            const parent = map[item[options.prop.pidKey]];
 
             if (parent) {
                 (parent.children || (parent.children = [])).push(item);
@@ -27,8 +27,8 @@ layui.define(function (exports) {
                 result.push(item);
             }
 
-            if (callback) {
-                callback(item);
+            if (options.handler) {
+                options.handler(item);
             }
         });
 

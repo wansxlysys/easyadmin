@@ -80,11 +80,10 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/SystemLog/index')}",
+            url: "{:url('admin/SystemOperLog/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
                 {title: '管理员账号', field: 'account', width: 140},
                 {title: '请求名称', field: 'menuName', width: 140},
@@ -103,7 +102,7 @@
                     icon: 3
                 }, function () {
                     easyAdmin.ajaxPost({
-                        url: "{:url('admin/SystemLog/clear')}",
+                        url: "{:url('admin/SystemOperLog/clear')}",
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {
                                 icon: 1,
@@ -120,7 +119,7 @@
         table.on('tool(table)', function (obj) {
             if (obj.event === 'detail') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemLog/detail')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemOperLog/detail')}?logId=" + obj.data.logId
                 });
             }
         });

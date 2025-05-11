@@ -106,7 +106,7 @@
         form.on("submit", function (obj) {
             event.preventDefault();
 
-            obj.field.id = '{$menu.id}';
+            obj.field.menuId = '{$menu.menuId}';
 
             easyAdmin.ajaxPost({
                 url: "{:url('admin/SystemMenu/update')}",

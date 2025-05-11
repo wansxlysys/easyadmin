@@ -90,7 +90,7 @@ class SystemManagerController extends SystemController
                 'status'   => $request->post('status'),
             ];
 
-            $this->ManagerValidate->scene('Create')->verify($params);
+            $this->ManagerValidate->scene('create')->verify($params);
             $this->ManagerService->createManager($params);
 
             $this->success('添加成功');
@@ -110,22 +110,22 @@ class SystemManagerController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'       => $request->post('id'),
-                'roleId'   => $request->post('roleId'),
-                'avatar'   => $request->post('avatar'),
-                'realName' => $request->post('realName'),
-                'account'  => $request->post('account'),
-                'password' => $request->post('password'),
-                'status'   => $request->post('status'),
+                'managerId' => $request->post('managerId'),
+                'roleId'    => $request->post('roleId'),
+                'avatar'    => $request->post('avatar'),
+                'realName'  => $request->post('realName'),
+                'account'   => $request->post('account'),
+                'password'  => $request->post('password'),
+                'status'    => $request->post('status'),
             ];
 
-            $this->ManagerValidate->scene('Update')->verify($params);
+            $this->ManagerValidate->scene('update')->verify($params);
             $this->ManagerService->updateManager($params);
 
             $this->success('修改成功');
         }
 
-        $manager = $this->ManagerService->getById($request->get('id'));
+        $manager = $this->ManagerService->getById($request->get('managerId'));
 
         return $this->fetch('', [
             'manager' => $manager
@@ -142,10 +142,10 @@ class SystemManagerController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id' => $request->post('id')
+                'managerId' => $request->post('managerId')
             ];
 
-            $this->ManagerValidate->scene('Delete')->verify($params);
+            $this->ManagerValidate->scene('delete')->verify($params);
             $this->ManagerService->deleteManager($params);
 
             $this->success('删除成功');

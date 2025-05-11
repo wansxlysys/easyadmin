@@ -86,7 +86,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            obj.field.id = '{$manager.id}';
+            obj.field.managerId = '{$manager.managerId}';
 
             easyAdmin.ajaxPost({
                 url: "{:url('admin/SystemManager/update')}",

@@ -131,7 +131,7 @@
                         </div>
                         <div class="layui-col-xs5">
                             <div class="easy-user-login-captcha">
-                                <img src="{:url('admin/Login/captcha')}" class="easy-user-login-codeimg" id="captchaImg">
+                                <img src="{:url('admin/SystemLogin/captcha')}" class="easy-user-login-codeimg" id="captchaImg">
                             </div>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
             easyAdmin.ajaxPost({
-                url: "{:url('admin/Login/login')}",
+                url: "{:url('admin/SystemLogin/login')}",
                 data: obj.field,
                 success: function (result) {
                     window.location.href = result.url;
@@ -174,7 +174,7 @@
         });
 
         function refreshVerify() {
-            captchaImg.attr("src", "{:url('admin/Login/captcha')}?time=" + new Date().getTime());
+            captchaImg.attr("src", "{:url('admin/SystemLogin/captcha')}?time=" + new Date().getTime());
         }
     });
 </script>

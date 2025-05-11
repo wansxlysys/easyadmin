@@ -12,5 +12,11 @@ class SystemMenuRepository extends Repository
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemMenu';
+    protected $name = 'system_menu';
+
+    /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'menuId';
 }

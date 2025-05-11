@@ -4,7 +4,7 @@
 namespace app\admin\enum;
 
 
-class SystemLogEnum
+class SystemOperLogEnum
 {
     /**
      * 响应状态

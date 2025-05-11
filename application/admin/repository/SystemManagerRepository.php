@@ -15,7 +15,13 @@ class SystemManagerRepository extends Repository
      * 数据表名
      * @var string
      */
-    protected $name = 'SystemManager';
+    protected $name = 'system_manager';
+
+    /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'managerId';
 
     /**
      * 获取列表
@@ -27,7 +33,7 @@ class SystemManagerRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('manager')
-            ->join('SystemManagerRole role', 'role.id = manager.roleId')
+            ->join('system_manager_role role', 'role.roleId = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
@@ -48,7 +54,7 @@ class SystemManagerRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('manager')
-            ->join('SystemManagerRole role', 'role.id = manager.roleId')
+            ->join('system_manager_role role', 'role.roleId = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->count();
@@ -64,7 +70,7 @@ class SystemManagerRepository extends Repository
     {
         return Db::name($this->getName())
             ->alias('manager')
-            ->join('SystemManagerRole role', 'role.id = manager.roleId')
+            ->join('system_manager_role role', 'role.roleId = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())

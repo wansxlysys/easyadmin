@@ -20,7 +20,7 @@ class Repository extends Dao
         $Wrapper = new Wrapper();
 
         $Wrapper->setField($field);
-        $Wrapper->addWhere('id', '=', $id);
+        $Wrapper->addWhere($this->tableId, '=', $id);
 
         return $this->getOne($Wrapper);
     }
@@ -54,7 +54,7 @@ class Repository extends Dao
         $Wrapper = new Wrapper();
 
         $Wrapper->setField($field);
-        $Wrapper->addWhere('id', 'in', $id);
+        $Wrapper->addWhere($this->tableId, 'in', $id);
 
         return $this->getAll($Wrapper);
     }
@@ -87,7 +87,7 @@ class Repository extends Dao
     {
         $Wrapper = new Wrapper();
 
-        $Wrapper->addWhere('id', 'in', $id);
+        $Wrapper->addWhere($this->tableId, 'in', $id);
 
         return $this->updateRecord($Wrapper, $data);
     }
@@ -118,7 +118,7 @@ class Repository extends Dao
     {
         $Wrapper = new Wrapper();
 
-        $Wrapper->addWhere('id', 'in', $id);
+        $Wrapper->addWhere($this->tableId, 'in', $id);
 
         return $this->deleteRecord($Wrapper);
     }

@@ -38,7 +38,7 @@ layui.define(function (exports) {
             scrollbar: false
         };
 
-        return layer.open(Object.assign(defaults, options));
+        return layer.open($.extend(true, defaults, options));
     }
 
     /**
@@ -65,7 +65,7 @@ layui.define(function (exports) {
             type: 'GET'
         }
 
-        easyAdmin.ajaxHttp(Object.assign(defaults, config));
+        easyAdmin.ajaxHttp($.extend(true, defaults, config));
     }
 
     /**
@@ -78,7 +78,7 @@ layui.define(function (exports) {
             type: 'POST'
         }
 
-        easyAdmin.ajaxHttp(Object.assign(defaults, config));
+        easyAdmin.ajaxHttp($.extend(true, defaults, config));
     }
 
     /**
@@ -96,7 +96,7 @@ layui.define(function (exports) {
         };
 
         let loading = null;
-        let options = Object.assign(defaults, config);
+        let options = $.extend(true, defaults, config);
 
         if (options.loading) {
             loading = easyAdmin.showLoading();

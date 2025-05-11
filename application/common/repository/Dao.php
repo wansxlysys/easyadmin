@@ -23,6 +23,12 @@ abstract class Dao
     protected $name = '';
 
     /**
+     * 表id
+     * @var string
+     */
+    protected $tableId = 'id';
+
+    /**
      * 获取列表
      * @param Wrapper $Wrapper
      * @return array

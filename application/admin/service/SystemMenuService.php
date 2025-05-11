@@ -66,9 +66,11 @@ class SystemMenuService
 
         $Wrapper->setOrder(['sort' => 'asc']);
         $Wrapper->addWhere('type', 'in', '1,3');
-        $Wrapper->addWhere('id', 'in', SystemManagerHelper::getPermission());
+        $Wrapper->addWhere('menuId', 'in', SystemManagerHelper::getPermission());
 
         $TreeArrayUtil = new TreeArrayUtil();
+
+        $TreeArrayUtil->id = 'menuId';
 
         return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Wrapper), 0, function (&$item) {
             $item = $this->formatData($item);
@@ -154,7 +156,7 @@ class SystemMenuService
      */
     public function updateMenu(array $params)
     {
-        return $this->SystemMenuRepository->updateById($params['id'], $this->buildData($params));
+        return $this->SystemMenuRepository->updateById($params['menuId'], $this->buildData($params));
     }
 
     /**
@@ -165,7 +167,7 @@ class SystemMenuService
      */
     public function sortMenu(array $params)
     {
-        return $this->SystemMenuRepository->updateById($params['id'], ['sort' => $params['sort']]);
+        return $this->SystemMenuRepository->updateById($params['menuId'], ['sort' => $params['sort']]);
     }
 
     /**
@@ -176,7 +178,7 @@ class SystemMenuService
      */
     public function deleteMenu(array $params)
     {
-        return $this->SystemMenuRepository->deleteById($params['id']);
+        return $this->SystemMenuRepository->deleteById($params['menuId']);
     }
 
     /**

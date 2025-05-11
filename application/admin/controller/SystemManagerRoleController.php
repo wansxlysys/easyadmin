@@ -84,7 +84,7 @@ class SystemManagerRoleController extends SystemController
                 'permission' => $request->post('permission'),
             ];
 
-            $this->ManagerRoleValidate->scene('Create')->verify($params);
+            $this->ManagerRoleValidate->scene('create')->verify($params);
             $this->ManagerRoleService->createRole($params);
 
             $this->success('添加成功');
@@ -104,20 +104,20 @@ class SystemManagerRoleController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'         => $request->post('id'),
+                'roleId'     => $request->post('roleId'),
                 'name'       => $request->post('name'),
                 'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
             ];
 
-            $this->ManagerRoleValidate->scene('Update')->verify($params);
+            $this->ManagerRoleValidate->scene('update')->verify($params);
             $this->ManagerRoleService->updateRole($params);
 
             $this->success('修改成功');
         }
 
-        $role = $this->ManagerRoleService->getById($request->get('id'));
+        $role = $this->ManagerRoleService->getById($request->get('roleId'));
 
         return $this->fetch('', [
             'role' => $role
@@ -134,10 +134,10 @@ class SystemManagerRoleController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id' => $request->post('id')
+                'roleId' => $request->post('roleId')
             ];
 
-            $this->ManagerRoleValidate->scene('Delete')->verify($params);
+            $this->ManagerRoleValidate->scene('delete')->verify($params);
             $this->ManagerRoleService->deleteRole($params);
 
             $this->success('删除成功');

@@ -84,7 +84,6 @@
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
                 {title: '管理员姓名', field: 'realName', width: 140},
                 {title: '管理员账号', field: 'account', width: 140},
@@ -119,7 +118,7 @@
         table.on('tool(table)', function (obj) {
             if (obj.event === 'detail') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemLoginLog/detail')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemLoginLog/detail')}?logId=" + obj.data.logId
                 });
             }
         });

@@ -7,26 +7,26 @@ namespace app\admin\service;
 use app\admin\enum\ManagerEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\helper\SystemMenuHelper;
-use app\admin\repository\SystemLogRepository;
+use app\admin\repository\SystemOperLogRepository;
 use app\common\repository\Wrapper;
 use app\common\util\ArrayUtil;
 use Exception;
 use think\facade\Request;
 
-class SystemLogService
+class SystemOperLogService
 {
     /**
      * 存储类
-     * @var SystemLogRepository
+     * @var SystemOperLogRepository
      */
-    protected $SystemLogRepository;
+    protected $SystemOperLogRepository;
 
     /**
      * 初始化
      */
-    public function injectRepostitory(SystemLogRepository $SystemLogRepository)
+    public function injectRepostitory(SystemOperLogRepository $SystemOperLogRepository)
     {
-        $this->SystemLogRepository = $SystemLogRepository;
+        $this->SystemOperLogRepository = $SystemOperLogRepository;
     }
 
     /**
@@ -52,16 +52,16 @@ class SystemLogService
         }
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('manager.id', '<>', ManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
         }
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
-        $Wrapper->setOrder(['log.id' => 'desc']);
+        $Wrapper->setOrder(['log.logId' => 'desc']);
         $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account', 'menu.name menuName']);
 
-        $list  = $this->SystemLogRepository->getListWithInfo($Wrapper);
-        $total = $this->SystemLogRepository->getTotalWithInfo($Wrapper);
+        $list  = $this->SystemOperLogRepository->getListWithInfo($Wrapper);
+        $total = $this->SystemOperLogRepository->getTotalWithInfo($Wrapper);
 
         return ['list' => $list, 'total' => $total];
     }
@@ -74,7 +74,7 @@ class SystemLogService
      */
     public function detailLog($id)
     {
-        return $this->SystemLogRepository->getById($id);
+        return $this->SystemOperLogRepository->getById($id);
     }
 
     /**
@@ -94,14 +94,14 @@ class SystemLogService
         $data = [
             'requestIp'   => Request::ip(),
             'requestUrl'  => Request::url(),
-            'managerId'   => $manager['id'],
-            'menuId'      => $currentMenu['id'],
+            'managerId'   => $manager['managerId'],
+            'menuId'      => $currentMenu['menuId'],
             'params'      => $params,
             'status'      => $status,
             'description' => $description
         ];
 
-        return $this->SystemLogRepository->createRecord($data);
+        return $this->SystemOperLogRepository->createRecord($data);
     }
 
     /**
@@ -111,8 +111,8 @@ class SystemLogService
      */
     public function clearLog()
     {
-        return $this->SystemLogRepository->deleteByWhere([
-            ['id', '>', 0]
+        return $this->SystemOperLogRepository->deleteByWhere([
+            ['logId', '>', 0]
         ]);
     }
 }

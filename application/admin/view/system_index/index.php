@@ -49,7 +49,7 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-accordion>
                 {volist name="$menuTree" id="menu1"}
-                <li class="layui-nav-item {eq name='$menu1.id' value='75'}layui-nav-itemed{/eq}">
+                <li class="layui-nav-item {eq name='$menu1.menuId' value='75'}layui-nav-itemed{/eq}">
                     <a href="javascript:" data-link="{$menu1.url}" data-target="{$menu1.target}">
                         <i class="fa fa-fw {$menu1.icon}"></i>
                         <span>{$menu1.name}</span>
@@ -57,7 +57,7 @@
                     {notempty name="$menu1.children"}
                     <dl class="layui-nav-child">
                         {volist name="$menu1.children" id="menu2"}
-                        <dd {eq name="$menu2.id" value="128"} class="layui-this" {/eq}>
+                        <dd {eq name="$menu2.menuId" value="128"} class="layui-this" {/eq}>
                             <a href="javascript:" data-link="{$menu2.url}" data-target="{$menu2.target}">
                                 <i class="fa fa-fw {$menu2.icon}"></i>
                                 <span>{$menu2.name}</span>
@@ -158,7 +158,7 @@
                         top.layer.alert(result.msg, {
                             icon: 1
                         }, function () {
-                            location.href = "{:url('admin/Login/login')}";
+                            location.href = "{:url('admin/SystemLogin/login')}";
                         });
                     }
                 });

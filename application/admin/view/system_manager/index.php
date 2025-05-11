@@ -100,7 +100,6 @@
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: 'ID', field: 'id', width: 80},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
                 {title: '管理员账号', field: 'account', width: 240},
                 {title: '管理员角色', field: 'roleName', width: 240},
@@ -122,7 +121,7 @@
         table.on('tool(table)', function (obj) {
             if (obj.event === 'update') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemManager/update')}?id=" + obj.data.id
+                    content: "{:url('admin/SystemManager/update')}?managerId=" + obj.data.managerId
                 });
             }
 
@@ -133,7 +132,7 @@
                     easyAdmin.ajaxPost({
                         url: "{:url('admin/SystemManager/delete')}",
                         data: {
-                            id: obj.data.id
+                            managerId: obj.data.managerId
                         },
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {

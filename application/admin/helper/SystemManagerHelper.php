@@ -4,6 +4,8 @@
 namespace app\admin\helper;
 
 
+use think\facade\Session;
+
 use app\admin\enum\ManagerEnum;
 use app\admin\enum\ManagerRoleEnum;
 use app\common\enum\DeleteEnum;
@@ -11,7 +13,6 @@ use app\common\helper\PermissionHelper;
 use app\common\helper\StoreHelper;
 use app\common\util\EncryptionUtil;
 use app\common\util\StringUtil;
-use think\facade\Session;
 
 class SystemManagerHelper
 {

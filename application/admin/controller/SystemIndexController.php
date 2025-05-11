@@ -4,13 +4,17 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\SystemMenuDependency;
+use Exception;
+
+use think\Request;
+
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
+use app\admin\dependency\SystemMenuDependency;
+
 use app\common\controller\SystemController;
-use Exception;
-use think\Request;
+
 
 class SystemIndexController extends SystemController
 {

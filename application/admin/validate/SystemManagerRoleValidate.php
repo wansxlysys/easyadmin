@@ -17,6 +17,7 @@ class SystemManagerRoleValidate extends Validate
         'name'       => 'require|max:32|single:SystemManagerRole,roleId,isDelete=2',
         'identify'   => 'require|max:32|single:SystemManagerRole,roleId,isDelete=2',
         'permission' => 'require',
+        'sort'       => 'require|number',
     ];
 
     /**
@@ -33,6 +34,8 @@ class SystemManagerRoleValidate extends Validate
         'identify.max'       => '角色标识最长不能超过32个字符',
         'identify.single'    => '角色标识已存在',
         'permission.require' => '权限不能为空',
+        'sort.require'       => '角色排序不能为空',
+        'sort.number'        => '角色排序必须为正整数',
     ];
 
     /**
@@ -41,7 +44,7 @@ class SystemManagerRoleValidate extends Validate
      */
     public function sceneCreate()
     {
-        return $this->only(['name', 'identify', 'permission']);
+        return $this->only(['name', 'identify', 'permission', 'sort']);
     }
 
     /**
@@ -50,7 +53,7 @@ class SystemManagerRoleValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['roleId', 'name', 'identify', 'permission']);
+        return $this->only(['roleId', 'name', 'identify', 'permission', 'sort']);
     }
 
     /**
@@ -59,6 +62,6 @@ class SystemManagerRoleValidate extends Validate
      */
     public function sceneDelete()
     {
-        return $this->only(['roleId'])->remove('roleId', 'number');
+        return $this->only(['roleId']);
     }
 }

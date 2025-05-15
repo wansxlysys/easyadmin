@@ -43,6 +43,10 @@ class SystemManagerRoleService
             $Wrapper->addWhere('name', 'LIKE', '%' . $params['name'] . '%');
         }
 
+        if (!empty($params['identify'])) {
+            $Wrapper->addWhere('identify', 'LIKE', '%' . $params['identify'] . '%');
+        }
+
         $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
 
         $Wrapper->setPage($params['page']);

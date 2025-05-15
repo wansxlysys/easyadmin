@@ -15,6 +15,12 @@
                         </div>
                     </div>
                     <div class="layui-inline">
+                        <label class="layui-form-label">角色标识</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="identify" class="layui-input" placeholder="请输入角色标识">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
                         <button type="reset" class="layui-btn layui-btn-danger" lay-submit="" lay-filter="reset">
                             <i class="fa fa-fw fa-refresh"></i>重置
                         </button>
@@ -66,6 +72,7 @@
                 {title: '角色名称', field: 'name', width: 240},
                 {title: '角色标识', field: 'identify', width: 240},
                 {title: '角色备注', field: 'remark'},
+                {title: '角色排序', field: 'sort', width: 100},
                 {title: '操作', toolbar: '#bar', width: 180}
             ]]
         });

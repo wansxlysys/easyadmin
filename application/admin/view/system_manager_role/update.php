@@ -32,6 +32,12 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">角色排序</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sort" placeholder="请输入角色排序" class="layui-input" value="{$role.sort}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn" lay-submit="">提交</button>
                         <button type="button" class="layui-btn layui-btn-danger easy-close-layer">关闭</button>

@@ -56,9 +56,10 @@ class SystemManagerRoleController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'page'  => $request->get('page'),
-                'limit' => $request->get('limit'),
-                'name'  => $request->get('name'),
+                'page'     => $request->get('page'),
+                'limit'    => $request->get('limit'),
+                'name'     => $request->get('name'),
+                'identify' => $request->get('identify'),
             ];
 
             $this->success('获取成功', '', $this->ManagerRoleService->listRole($params));
@@ -79,9 +80,10 @@ class SystemManagerRoleController extends SystemController
 
             $params = [
                 'name'       => $request->post('name'),
-                'remark'     => $request->post('remark'),
                 'identify'   => $request->post('identify'),
+                'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
+                'sort'       => $request->post('sort'),
             ];
 
             $this->ManagerRoleValidate->scene('create')->verify($params);
@@ -109,6 +111,7 @@ class SystemManagerRoleController extends SystemController
                 'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
+                'sort'       => $request->post('sort'),
             ];
 
             $this->ManagerRoleValidate->scene('update')->verify($params);

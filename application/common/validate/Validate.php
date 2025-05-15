@@ -59,7 +59,7 @@ class Validate extends \think\Validate
      */
     public function single($value, $rule, $data, $field)
     {
-        list($table, $query) = explode(',', $rule);
+        list($table, $primary, $query) = explode(',', $rule);
 
         parse_str($query, $map);
 
@@ -72,11 +72,11 @@ class Validate extends \think\Validate
         /**
          * 检测主键ID是否存在
          */
-        if (isset($data['id'])) {
-            $where[] = ['id', '<>', $data['id']];
+        if (isset($data[$primary])) {
+            $where[] = [$primary, '<>', $data[$primary]];
         }
 
-        if (Db::name($table)->where($where)->field('id')->find()) {
+        if (Db::name($table)->where($where)->field($primary)->find()) {
             return false;
         }
 

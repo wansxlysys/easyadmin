@@ -4,15 +4,17 @@
 namespace app\common\controller;
 
 
+use Exception;
+
+use think\facade\Hook;
+
 use app\admin\behavior\SystemLogBehavior;
 use app\admin\dependency\SystemManagerDependency;
 use app\admin\dependency\SystemMenuDependency;
 use app\admin\dependency\SystemSettingDependency;
-use app\admin\helper\SystemManagerHelper;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemSettingHelper;
-use Exception;
-use think\facade\Hook;
+use app\admin\helper\SystemManagerHelper;
 
 class SystemController extends CommonController
 {

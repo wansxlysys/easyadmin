@@ -46,26 +46,84 @@ class SystemSettingController extends SystemController
     }
 
     /**
-     * 系统设置
+     * 首页
      * @param Request $request
      * @return mixed
      * @throws Exception
      */
-    public function configAction(Request $request)
+    public function indexAction(Request $request)
     {
         if ($request->isAjax()) {
 
             $params = [
-                'content' => $request->post('content'),
+                'page'     => $request->get('page'),
+                'limit'    => $request->get('limit'),
+                'type'     => $request->get('type'),
+                'name'     => $request->get('name'),
+                'identify' => $request->get('identify'),
             ];
 
-            $this->SystemSettingValidate->scene('config')->verify($params);
-            $this->SystemSettingService->setSystemSetting($params);
+            $this->success('获取成功', '', $this->SystemSettingService->listSetting($params));
+        }
+
+        return $this->fetch();
+    }
+
+    /**
+     * 添加
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function createAction(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'type'     => $request->post('type'),
+                'name'     => $request->post('name'),
+                'identify' => $request->post('identify'),
+                'value'    => $request->post('value'),
+                'remark'   => $request->post('remark'),
+                'sort'     => $request->post('sort'),
+            ];
+
+            $this->SystemSettingValidate->scene('create')->verify($params);
+            $this->SystemSettingService->createSetting($params);
+
+            $this->success('添加成功');
+        }
+
+        return $this->fetch();
+    }
+
+    /**
+     * 修改
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function updateAction(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'settingId' => $request->post('settingId'),
+                'type'      => $request->post('type'),
+                'name'      => $request->post('name'),
+                'identify'  => $request->post('identify'),
+                'value'     => $request->post('value'),
+                'remark'    => $request->post('remark'),
+                'sort'      => $request->post('sort'),
+            ];
+
+            $this->SystemSettingValidate->scene('update')->verify($params);
+            $this->SystemSettingService->updateSetting($params);
 
             $this->success('修改成功');
         }
 
-        $setting = $this->SystemSettingService->getSystemSetting();
+        $setting = $this->SystemSettingService->getSettingById($request->get('settingId'));
 
         return $this->fetch('', [
             'setting' => $setting
@@ -73,30 +131,22 @@ class SystemSettingController extends SystemController
     }
 
     /**
-     * 全局设置
+     * 删除
      * @param Request $request
-     * @return mixed
      * @throws Exception
      */
-    public function systemAction(Request $request)
+    public function deleteAction(Request $request)
     {
         if ($request->isAjax()) {
 
             $params = [
-                'name'   => $request->post('name'),
-                'slogan' => $request->post('slogan'),
+                'settingId' => $request->post('settingId')
             ];
 
-            $this->SystemSettingValidate->scene('system')->verify($params);
-            $this->SystemSettingService->setSystemSetting($params);
+            $this->SystemSettingValidate->scene('delete')->verify($params);
+            $this->SystemSettingService->deleteSetting($params);
 
-            $this->success('修改成功');
+            $this->success('删除成功');
         }
-
-        $setting = $this->SystemSettingService->getSystemSetting();
-
-        return $this->fetch('', [
-            'setting' => $setting
-        ]);
     }
 }

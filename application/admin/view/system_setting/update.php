@@ -8,27 +8,39 @@
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">角色名称</label>
+                    <label class="layui-form-label layui-required">设置分类</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" lay-verify="required" placeholder="请输入角色名" class="layui-input" value="{$role.name}">
+                        <input type="text" name="type" lay-verify="required" placeholder="请输入设置分类" class="layui-input" value="{$setting.type}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">角色标识</label>
+                    <label class="layui-form-label layui-required">设置名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="identify" lay-verify="required" placeholder="请输入角色标识" class="layui-input" value="{$role.identify}">
+                        <input type="text" name="name" lay-verify="required" placeholder="请输入设置名称" class="layui-input" value="{$setting.name}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">设置标识</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="identify" lay-verify="required" placeholder="请输入设置标识" class="layui-input" value="{$setting.identify}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">设置键值</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="value" lay-verify="required" placeholder="请输入设置键值" class="layui-input" value="{$setting.value}">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">角色备注</label>
+                    <label class="layui-form-label">设置备注</label>
                     <div class="layui-input-block">
-                        <textarea name="remark" placeholder="请输入角色备注" class="layui-textarea">{$role.remark}</textarea>
+                        <textarea name="remark" placeholder="请输入设置备注" class="layui-textarea">{$setting.remark}</textarea>
                     </div>
                 </div>
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label layui-required">角色权限</label>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">菜单排序</label>
                     <div class="layui-input-block">
-                        <div id="permission" class="ztree"></div>
+                        <input type="text" name="sort" placeholder="请输入菜单排序" class="layui-input"  value="{$setting.sort}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -50,39 +62,14 @@
 
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;
-        const easyHelper = layui.easyHelper;
-        const easyService = layui.easyService;
-
-        let permissionTree = null;
-
-        easyService.menuTreeStruct({
-            elem: "#permission",
-            checked: "{$role.permission}",
-            ready: function (tree) {
-                permissionTree = tree;
-            }
-        }, {
-            check: {
-                enable: true
-            }
-        });
 
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            let permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'menuId');
-
-            if (permission.length <= 0) {
-                return layer.alert('请选择授权菜单', {
-                    icon: 2
-                });
-            }
-
-            obj.field.roleId = '{$role.roleId}';
-            obj.field.permission = permission.join(',');
+            obj.field.settingId = '{$setting.settingId}';
 
             easyAdmin.ajaxPost({
-                url: "{:url('admin/SystemManagerRole/update')}",
+                url: "{:url('admin/SystemSetting/update')}",
                 data: obj.field,
                 success: function (result) {
                     const lay = top.layer.alert(result.msg, {

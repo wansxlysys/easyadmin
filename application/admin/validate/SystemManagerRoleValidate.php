@@ -14,8 +14,8 @@ class SystemManagerRoleValidate extends Validate
      */
     protected $rule = [
         'roleId'     => 'require|number',
-        'name'       => 'require|max:32|single:ManagerRole,isDelete=2',
-        'identify'   => 'require|max:32|single:ManagerRole,isDelete=2',
+        'name'       => 'require|max:32|single:SystemManagerRole,roleId,isDelete=2',
+        'identify'   => 'require|max:32|single:SystemManagerRole,roleId,isDelete=2',
         'permission' => 'require',
     ];
 

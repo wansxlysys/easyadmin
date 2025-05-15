@@ -40,7 +40,7 @@ class SystemManagerRoleService
         $Wrapper = new Wrapper();
 
         if (!empty($params['name'])) {
-            $Wrapper->addWhere('name', 'LIKE', $params['name'] . '%');
+            $Wrapper->addWhere('name', 'LIKE', '%' . $params['name'] . '%');
         }
 
         $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
@@ -81,7 +81,7 @@ class SystemManagerRoleService
      * @return array
      * @throws Exception
      */
-    public function getById($id)
+    public function getRoleById($id)
     {
         return $this->ManagerRoleRepository->getById($id);
     }

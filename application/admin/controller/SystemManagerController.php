@@ -125,7 +125,7 @@ class SystemManagerController extends SystemController
             $this->success('修改成功');
         }
 
-        $manager = $this->ManagerService->getById($request->get('managerId'));
+        $manager = $this->ManagerService->getManagerById($request->get('managerId'));
 
         return $this->fetch('', [
             'manager' => $manager

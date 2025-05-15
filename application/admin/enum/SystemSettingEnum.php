@@ -7,9 +7,9 @@ namespace app\admin\enum;
 class SystemSettingEnum
 {
     /**
-     * 配置ID
+     * 配置分类
      */
-    const ID = 1;
+    const TYPE_SYSTEM = 'system';
 
     /**
      * 缓存标识

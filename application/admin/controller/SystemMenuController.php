@@ -129,7 +129,7 @@ class SystemMenuController extends SystemController
             $this->success('修改成功');
         }
 
-        $menu = $this->SystemMenuService->getById($request->get('menuId'));
+        $menu = $this->SystemMenuService->getMenuById($request->get('menuId'));
 
         return $this->fetch('', [
             'menu' => $menu

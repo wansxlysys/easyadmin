@@ -117,7 +117,7 @@ class SystemManagerRoleController extends SystemController
             $this->success('修改成功');
         }
 
-        $role = $this->ManagerRoleService->getById($request->get('roleId'));
+        $role = $this->ManagerRoleService->getRoleById($request->get('roleId'));
 
         return $this->fetch('', [
             'role' => $role

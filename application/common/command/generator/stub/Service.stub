@@ -60,7 +60,7 @@ class {{class}}Service extends Service
      * @return array
      * @throws Exception
      */
-    public function getById($id)
+    public function getBy{{class}}Id($id)
     {
         return $this->{{class}}Repository->getById($id);
     }

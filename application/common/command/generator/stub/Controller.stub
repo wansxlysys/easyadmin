@@ -111,7 +111,7 @@ class {{class}}Controller extends SystemController
             $this->success('修改成功');
         }
 
-        $role = $this->{{class}}Service->getById($request->get('id'));
+        $role = $this->{{class}}Service->getBy{{class}}Id($request->get('id'));
 
         return $this->fetch('', [
             'role' => $role

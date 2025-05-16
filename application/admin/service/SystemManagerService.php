@@ -82,7 +82,7 @@ class SystemManagerService
      * @return array
      * @throws Exception
      */
-    public function getManagerById($id)
+    public function getByManagerId($id)
     {
         return $this->ManagerRepository->getById($id);
     }
@@ -168,7 +168,7 @@ class SystemManagerService
         /**
          * 检测管理员是否存在
          */
-        $manager = $this->getManagerById($params['managerId']);
+        $manager = $this->getByManagerId($params['managerId']);
 
         if (empty($manager)) {
             throw new ServiceException('修改失败，管理员不存在');

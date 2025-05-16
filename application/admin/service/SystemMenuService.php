@@ -132,7 +132,7 @@ class SystemMenuService
      * @return array
      * @throws Exception
      */
-    public function getMenuById($id)
+    public function getByMenuId($id)
     {
         return $this->SystemMenuRepository->getById($id);
     }

@@ -38,9 +38,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">菜单排序</label>
+                    <label class="layui-form-label layui-required">设置排序</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sort" placeholder="请输入菜单排序" class="layui-input" value="100">
+                        <input type="text" name="sort" placeholder="请输入设置排序" class="layui-input" value="100">
                     </div>
                 </div>
                 <div class="layui-form-item">

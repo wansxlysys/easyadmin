@@ -4,12 +4,14 @@
 namespace app\admin\service;
 
 
+use Exception;
+
+use app\common\repository\Wrapper;
+
 use app\admin\enum\ManagerEnum;
 use app\admin\enum\SystemLoginLogEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemLoginLogRepository;
-use app\common\repository\Wrapper;
-use Exception;
 
 class SystemLoginLogService
 {

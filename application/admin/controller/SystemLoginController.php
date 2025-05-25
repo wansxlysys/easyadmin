@@ -4,16 +4,19 @@
 namespace app\admin\controller;
 
 
-use app\admin\dependency\SystemManagerDependency;
-use app\admin\dependency\SystemSettingDependency;
+use Exception;
+
+use think\Request;
+use think\Response;
+use think\captcha\Captcha;
+
+use app\common\controller\CommonController;
+
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
-use app\common\controller\CommonController;
-use Exception;
-use think\captcha\Captcha;
-use think\Request;
-use think\Response;
+use app\admin\dependency\SystemManagerDependency;
+use app\admin\dependency\SystemSettingDependency;
 
 class SystemLoginController extends CommonController
 {

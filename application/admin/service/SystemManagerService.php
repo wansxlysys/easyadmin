@@ -4,17 +4,19 @@
 namespace app\admin\service;
 
 
-use app\admin\dependency\SystemLoginLogDependency;
-use app\admin\enum\ManagerEnum;
-use app\admin\helper\SystemManagerHelper;
-use app\admin\repository\SystemManagerRepository;
-use app\common\enum\DeleteEnum;
-use app\common\exception\ServiceException;
-use app\common\repository\Wrapper;
+use Exception;
+
 use app\common\util\DateTimeUtil;
 use app\common\util\EncryptionUtil;
 use app\common\util\StringUtil;
-use Exception;
+use app\common\enum\DeleteEnum;
+use app\common\repository\Wrapper;
+use app\common\exception\ServiceException;
+
+use app\admin\enum\ManagerEnum;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\SystemManagerRepository;
+use app\admin\dependency\SystemLoginLogDependency;
 
 class SystemManagerService
 {

@@ -4,14 +4,17 @@
 namespace app\admin\service;
 
 
-use app\admin\enum\SystemMenuEnum;
-use app\admin\helper\SystemManagerHelper;
-use app\admin\repository\SystemMenuRepository;
+use Exception;
+
+use think\facade\Request;
+
 use app\common\repository\Wrapper;
 use app\common\util\ArrayUtil;
 use app\common\util\TreeArrayUtil;
-use Exception;
-use think\facade\Request;
+
+use app\admin\enum\SystemMenuEnum;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\SystemMenuRepository;
 
 class SystemMenuService
 {

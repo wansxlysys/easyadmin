@@ -6,13 +6,9 @@ namespace app\admin\service;
 
 use Exception;
 
-use think\facade\Request;
-
-use app\common\util\ArrayUtil;
 use app\common\repository\Wrapper;
 
 use app\admin\enum\ManagerEnum;
-use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemOperLogRepository;
 

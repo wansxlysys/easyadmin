@@ -15,7 +15,6 @@ use app\admin\dependency\SystemMenuDependency;
 
 use app\common\controller\SystemController;
 
-
 class SystemIndexController extends SystemController
 {
     /**

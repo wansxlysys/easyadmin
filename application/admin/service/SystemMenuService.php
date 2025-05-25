@@ -39,11 +39,11 @@ class SystemMenuService
     {
         $Wrapper = new Wrapper();
 
-        $Wrapper->setOrder(['sort' => 'asc']);
-
         if (!empty($params['name'])) {
             $Wrapper->addWhere('name', 'LIKE', $params['name'] . '%');
         }
+
+        $Wrapper->setOrder(['sort' => 'asc']);
 
         $list  = $this->SystemMenuRepository->getAll($Wrapper);
         $total = $this->SystemMenuRepository->getTotal($Wrapper);
@@ -65,7 +65,7 @@ class SystemMenuService
         $Wrapper = new Wrapper();
 
         $Wrapper->setOrder(['sort' => 'asc']);
-        $Wrapper->addWhere('type', 'in', '1,3');
+        $Wrapper->addWhere('type', 'in', [SystemMenuEnum::TYPE_MENU, SystemMenuEnum::TYPE_LINK]);
         $Wrapper->addWhere('menuId', 'in', SystemManagerHelper::getPermission());
 
         $TreeArrayUtil = new TreeArrayUtil();

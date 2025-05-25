@@ -9,7 +9,12 @@ use Exception;
 use think\Request;
 use think\Response;
 
+use app\common\util\ArrayUtil;
+
+use app\admin\enum\SystemMenuEnum;
 use app\admin\enum\SystemOperLogEnum;
+use app\admin\helper\SystemMenuHelper;
+use app\admin\helper\SystemManagerHelper;
 use app\admin\dependency\SystemOperLogDependency;
 
 class SystemLogBehavior
@@ -22,15 +27,23 @@ class SystemLogBehavior
      */
     public static function appEnd(Request $request, Response $response)
     {
-        if ($request->isPost()) {
+        $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-            $responseData = $response->getData();
+        if ($currentMenu['record'] == SystemMenuEnum::RECORD_YES) {
 
-            if (isset($responseData['code'])) {
+            $data = $response->getData();
 
-                $SystemLogService = SystemOperLogDependency::getService();
+            if (isset($data['code'])) {
 
-                $SystemLogService->writeLog($responseData['msg'], SystemOperLogEnum::translateCode($responseData['code']));
+                $log['requestIp']   = $request->ip();
+                $log['requestUrl']  = $request->url();
+                $log['menuId']      = $currentMenu['menuId'];
+                $log['managerId']   = SystemManagerHelper::getManagerId();
+                $log['params']      = ArrayUtil::toJson($request->post());
+                $log['status']      = SystemOperLogEnum::translateCode($data['code']);
+                $log['description'] = $data['msg'];
+
+                SystemOperLogDependency::getService()->createLog($log);
             }
         }
     }

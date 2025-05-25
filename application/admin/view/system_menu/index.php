@@ -55,6 +55,11 @@
     {{#  if(d.type == 3){ }}<span class="layui-badge">外链</span>{{#  } }}
 </script>
 
+<script type="text/html" id="record">
+    {{#  if(d.record == 1){ }}<span class="layui-badge layui-bg-green">开启</span>{{#  } }}
+    {{#  if(d.record == 2){ }}<span class="layui-badge layui-bg-red">关闭</span>{{#  } }}
+</script>
+
 <script type="text/html" id="bar">
     <button class="layui-btn layui-btn-sm" lay-event="update">
         <i class="fa fa-fw fa-edit"></i>修改
@@ -99,6 +104,7 @@
                 {title: "菜单操作", field: 'action'},
                 {title: "打开方式", field: 'target', toolbar: '#target', width: 140},
                 {title: "菜单类型", field: 'type', toolbar: '#type', width: 120},
+                {title: "日志记录", field: 'record', toolbar: '#record', width: 120},
                 {title: '菜单排序', field: 'sort', width: 120, edit: "text"},
                 {title: '操作', fixed: 'right', toolbar: '#bar', width: 180}
             ]],

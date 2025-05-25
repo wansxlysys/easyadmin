@@ -4,14 +4,17 @@
 namespace app\admin\service;
 
 
-use app\admin\enum\ManagerEnum;
-use app\admin\helper\SystemManagerHelper;
-use app\admin\helper\SystemMenuHelper;
-use app\admin\repository\SystemOperLogRepository;
-use app\common\repository\Wrapper;
-use app\common\util\ArrayUtil;
 use Exception;
+
 use think\facade\Request;
+
+use app\common\util\ArrayUtil;
+use app\common\repository\Wrapper;
+
+use app\admin\enum\ManagerEnum;
+use app\admin\helper\SystemMenuHelper;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\SystemOperLogRepository;
 
 class SystemOperLogService
 {
@@ -77,30 +80,13 @@ class SystemOperLogService
     }
 
     /**
-     * 日志写入
-     * @param $description
-     * @param $status
+     * 创建日志
+     * @param array $params
      * @return int
-     * @throws Exception
      */
-    public function writeLog($description, $status)
+    public function createLog(array $params)
     {
-        $currentMenu = SystemMenuHelper::getCurrentMenu();
-
-        $manager = SystemManagerHelper::getManager();
-        $params  = ArrayUtil::toJson(Request::post());
-
-        $data = [
-            'requestIp'   => Request::ip(),
-            'requestUrl'  => Request::url(),
-            'managerId'   => $manager['managerId'],
-            'menuId'      => $currentMenu['menuId'],
-            'params'      => $params,
-            'status'      => $status,
-            'description' => $description
-        ];
-
-        return $this->SystemOperLogRepository->createRecord($data);
+        return $this->SystemOperLogRepository->createRecord($params);
     }
 
     /**

@@ -24,6 +24,7 @@ class SystemMenuValidate extends Validate
         'type'       => 'require|number',
         'link'       => 'requireIf:type,3|max:256',
         'target'     => 'require|number',
+        'record'     => 'require|number',
         'sort'       => 'require|number',
     ];
 
@@ -49,6 +50,8 @@ class SystemMenuValidate extends Validate
         'link.max'        => '外链地址必须为正整数',
         'target.require'  => '打开方式不能为空',
         'target.number'   => '打开方式必须为正整数',
+        'record.require'  => '日志记录不能为空',
+        'record.number'   => '日志记录必须为正整数',
         'sort.require'    => '排序不能为空',
         'sort.number'     => '排序必须是整数',
     ];
@@ -59,7 +62,9 @@ class SystemMenuValidate extends Validate
      */
     public function sceneCreate()
     {
-        return $this->only(['parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
+        return $this->only([
+            'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'record', 'sort'
+        ]);
     }
 
     /**
@@ -68,7 +73,9 @@ class SystemMenuValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['menuId', 'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'sort']);
+        return $this->only([
+            'menuId', 'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'record', 'sort'
+        ]);
     }
 
     /**

@@ -51,6 +51,13 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">日志记录</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="record" value="1" title="开启" checked>
+                        <input type="radio" name="record" value="2" title="关闭">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label layui-required">菜单类型</label>
                     <div class="layui-input-block">
                         <input type="radio" name="type" value="1" title="菜单" lay-filter="type" checked>
@@ -67,9 +74,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">跳转方式</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="target" value="1" title="默认方式" lay-filter="target" checked>
-                        <input type="radio" name="target" value="2" title="当前窗口" lay-filter="target">
-                        <input type="radio" name="target" value="3" title="新的窗口" lay-filter="target">
+                        <input type="radio" name="target" value="1" title="默认" lay-filter="target" checked>
+                        <input type="radio" name="target" value="2" title="当前" lay-filter="target">
+                        <input type="radio" name="target" value="3" title="新开" lay-filter="target">
                     </div>
                 </div>
                 <div class="layui-form-item">

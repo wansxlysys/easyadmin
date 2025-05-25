@@ -86,6 +86,7 @@ class SystemMenuController extends SystemController
                 'type'       => $request->post('type'),
                 'link'       => $request->post('link'),
                 'target'     => $request->post('target'),
+                'record'     => $request->post('record'),
                 'sort'       => $request->post('sort'),
             ];
 
@@ -120,6 +121,7 @@ class SystemMenuController extends SystemController
                 'type'       => $request->post('type'),
                 'link'       => $request->post('link'),
                 'target'     => $request->post('target'),
+                'record'     => $request->post('record'),
                 'sort'       => $request->post('sort'),
             ];
 
@@ -129,7 +131,7 @@ class SystemMenuController extends SystemController
             $this->success('修改成功');
         }
 
-        $menu = $this->SystemMenuService->getMenuById($request->get('menuId'));
+        $menu = $this->SystemMenuService->getByMenuId($request->get('menuId'));
 
         return $this->fetch('', [
             'menu' => $menu

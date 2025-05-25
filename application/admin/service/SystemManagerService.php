@@ -270,7 +270,7 @@ class SystemManagerService
                 throw new ServiceException('登录失败，密码输入错误');
             }
 
-        } catch (Exception $Exception) {
+        } catch (Exception $exception) {
 
             /**
              * 登录失败日志
@@ -278,10 +278,10 @@ class SystemManagerService
             $SystemLoginLogService->loginError([
                 'loginIp'     => $params['loginIp'],
                 'managerId'   => $manager['managerId'],
-                'description' => $Exception->getMessage(),
+                'description' => $exception->getMessage(),
             ]);
 
-            throw new ServiceException($Exception->getMessage());
+            throw new ServiceException($exception->getMessage());
         }
 
         /**

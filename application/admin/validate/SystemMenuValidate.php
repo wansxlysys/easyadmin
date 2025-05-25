@@ -13,11 +13,11 @@ class SystemMenuValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'menuId'         => 'require|number',
+        'menuId'     => 'require|number',
         'parentId'   => 'number',
         'name'       => 'require|max:32',
         'icon'       => 'require|max:32',
-        'module'     => 'require|max:32',
+        'module'     => 'max:32',
         'controller' => 'max:32',
         'action'     => 'max:32',
         'params'     => 'max:512',
@@ -39,7 +39,6 @@ class SystemMenuValidate extends Validate
         'name.max'        => '菜单名称不能超过32个字符',
         'icon.number'     => '图标不能为空',
         'icon.max'        => '图标不能超过32个字符',
-        'module.number'   => '模块不能为空',
         'module.max'      => '模块不能超过32个字符',
         'controller.max'  => '控制器不能超过32个字符',
         'action.max'      => '操作不能超过32个字符',

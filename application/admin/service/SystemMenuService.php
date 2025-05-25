@@ -205,7 +205,9 @@ class SystemMenuService
      */
     public function formatData(array $data)
     {
-        if (!empty($data['module'])) {
+        if (empty($data['module'])) {
+            $data['url'] = '';
+        } else {
             $data['url'] = $this->buildUrl($data);
         }
 

@@ -27,9 +27,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">菜单模块</label>
+                    <label class="layui-form-label">菜单模块</label>
                     <div class="layui-input-block">
-                        <input type="text" name="module" lay-verify="required" placeholder="请输入菜单模块" class="layui-input">
+                        <input type="text" name="module" placeholder="请输入菜单模块" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">

@@ -4,25 +4,47 @@
 namespace app\index\controller;
 
 
-use app\admin\repository\SystemManagerRepository;
-use app\common\dependency\Dependency;
-use app\common\dependency\DependencyAspect;
+use Exception;
+use think\exception\DbException;
+
 use app\common\helper\ExcelHelper;
 use app\common\helper\RedisHelper;
+use app\common\dependency\Dependency;
+use app\common\dependency\DependencyAspect;
+
 use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;
 use app\index\aspect\TestAspect;
 use app\index\aspect\UserAspect;
+use app\index\service\LockService;
+use app\index\service\UserService;
 use app\index\dependency\DataDependency;
 use app\index\dependency\TestDependency;
 use app\index\dependency\UserDependency;
-use app\index\service\LockService;
-use app\index\service\UserService;
+use app\index\repository\UserRepository;
+
 use app\queue\producer\TestProducer;
-use Exception;
+
+use app\admin\repository\SystemManagerRepository;
+
 
 class TestController
 {
+    /**
+     * sql封装
+     * @return void
+     * @throws DbException
+     */
+    public function sqlAction()
+    {
+        $UserRepository = new UserRepository();
+        var_dump($UserRepository->selectWithInfo([
+            'log'          => 1,
+            'oper'         => 1,
+            'departmentId' => 1,
+        ]));
+    }
+
     /**
      * redis测试
      * @return void

@@ -60,10 +60,9 @@ class SystemOperLogService
         $Wrapper->setOrder(['log.logId' => 'desc']);
         $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account', 'menu.name menuName']);
 
-        $list  = $this->SystemOperLogRepository->getListWithInfo($Wrapper);
-        $total = $this->SystemOperLogRepository->getTotalWithInfo($Wrapper);
+        $page = $this->SystemOperLogRepository->getPageWithInfo($Wrapper);
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $page->items(), 'total' => $page->total()];
     }
 
     /**

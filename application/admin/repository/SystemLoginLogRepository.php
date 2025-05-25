@@ -4,10 +4,12 @@
 namespace app\admin\repository;
 
 
+use think\Db;
+use think\Paginator;
+use think\Exception;
+
 use app\common\repository\Repository;
 use app\common\repository\Wrapper;
-use think\Db;
-use think\Exception;
 
 class SystemLoginLogRepository extends Repository
 {
@@ -26,10 +28,10 @@ class SystemLoginLogRepository extends Repository
     /**
      * 获取关联管理员列表
      * @param Wrapper $Wrapper
-     * @return mixed
+     * @return Paginator
      * @throws Exception
      */
-    public function getListWithManager(Wrapper $Wrapper)
+    public function getPageWithManager(Wrapper $Wrapper)
     {
         return Db::name($this->getName())
             ->alias('log')
@@ -42,21 +44,6 @@ class SystemLoginLogRepository extends Repository
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
             ->order($Wrapper->getOrder())
-            ->select();
-    }
-
-    /**
-     * 获取关联管理员总数
-     * @param Wrapper $Wrapper
-     * @return int
-     */
-    public function getTotalWithManager(Wrapper $Wrapper)
-    {
-        return Db::name($this->getName())
-            ->alias('log')
-            ->join('system_manager manager', 'log.managerId = manager.managerId')
-            ->where($Wrapper->getWhere())
-            ->whereOr($Wrapper->getWhereOr())
-            ->count();
+            ->paginate();
     }
 }

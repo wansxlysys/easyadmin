@@ -58,10 +58,9 @@ class SystemLoginLogService
         $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
         $Wrapper->setOrder(['log.createTime' => 'desc']);
 
-        $list  = $this->SystemLoginLogRepository->getListWithManager($Wrapper);
-        $total = $this->SystemLoginLogRepository->getTotalWithManager($Wrapper);
+        $page = $this->SystemLoginLogRepository->getPageWithManager($Wrapper);
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $page->items(), 'total' => $page->total()];
     }
 
     /**

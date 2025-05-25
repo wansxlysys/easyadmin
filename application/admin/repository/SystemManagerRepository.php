@@ -4,10 +4,12 @@
 namespace app\admin\repository;
 
 
-use app\common\repository\Repository;
-use app\common\repository\Wrapper;
 use think\Db;
 use think\Exception;
+use think\Paginator;
+
+use app\common\repository\Wrapper;
+use app\common\repository\Repository;
 
 class SystemManagerRepository extends Repository
 {
@@ -26,10 +28,10 @@ class SystemManagerRepository extends Repository
     /**
      * 获取列表
      * @param Wrapper $Wrapper
-     * @return array
+     * @return Paginator
      * @throws Exception
      */
-    public function getListWithRole(Wrapper $Wrapper)
+    public function getPageWithRole(Wrapper $Wrapper)
     {
         return Db::name($this->getName())
             ->alias('manager')
@@ -42,22 +44,7 @@ class SystemManagerRepository extends Repository
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
             ->order($Wrapper->getOrder())
-            ->select();
-    }
-
-    /**
-     * 获取总数
-     * @param Wrapper $Wrapper
-     * @return int
-     */
-    public function getTotalWithRole(Wrapper $Wrapper)
-    {
-        return Db::name($this->getName())
-            ->alias('manager')
-            ->join('system_manager_role role', 'role.roleId = manager.roleId')
-            ->where($Wrapper->getWhere())
-            ->whereOr($Wrapper->getWhereOr())
-            ->count();
+            ->paginate();
     }
 
     /**

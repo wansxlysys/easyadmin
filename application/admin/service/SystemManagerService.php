@@ -70,10 +70,9 @@ class SystemManagerService
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('manager.managerId', 'asc');
 
-        $list  = $this->ManagerRepository->getListWithRole($Wrapper);
-        $total = $this->ManagerRepository->getTotalWithRole($Wrapper);
+        $page = $this->ManagerRepository->getPageWithRole($Wrapper);
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $page->items(), 'total' => $page->total()];
     }
 
     /**

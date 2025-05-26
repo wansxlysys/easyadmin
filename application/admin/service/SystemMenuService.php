@@ -73,9 +73,9 @@ class SystemMenuService
 
         $TreeArrayUtil = new TreeArrayUtil();
 
-        $TreeArrayUtil->id = 'menuId';
+        $TreeArrayUtil->setId('menuId');
 
-        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Wrapper), 0, function (&$item) {
+        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Wrapper), function (&$item) {
             $item = $this->formatData($item);
         });
     }
@@ -131,13 +131,13 @@ class SystemMenuService
 
     /**
      * 通过ID获取菜单
-     * @param $id
+     * @param $menuId
      * @return array
      * @throws Exception
      */
-    public function getByMenuId($id)
+    public function getByMenuId($menuId)
     {
-        return $this->SystemMenuRepository->getById($id);
+        return $this->SystemMenuRepository->getById($menuId);
     }
 
     /**

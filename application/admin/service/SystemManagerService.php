@@ -79,13 +79,13 @@ class SystemManagerService
 
     /**
      * 通过ID获取管理员
-     * @param $id
+     * @param $managerId
      * @return array
      * @throws Exception
      */
-    public function getByManagerId($id)
+    public function getByManagerId($managerId)
     {
-        return $this->ManagerRepository->getById($id);
+        return $this->ManagerRepository->getById($managerId);
     }
 
     /**

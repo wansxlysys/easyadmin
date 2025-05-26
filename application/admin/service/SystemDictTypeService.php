@@ -56,13 +56,13 @@ class SystemDictTypeService extends Service
 
     /**
      * ID查询
-     * @param $id
+     * @param $dictId
      * @return array
      * @throws Exception
      */
-    public function getBySystemDictTypeId($id)
+    public function getBySystemDictTypeId($dictId)
     {
-        return $this->SystemDictTypeRepository->getById($id);
+        return $this->SystemDictTypeRepository->getById($dictId);
     }
 
     /**

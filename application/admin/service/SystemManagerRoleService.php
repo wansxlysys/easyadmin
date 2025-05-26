@@ -81,13 +81,13 @@ class SystemManagerRoleService
 
     /**
      * 通过ID获取角色
-     * @param $id
+     * @param $roleId
      * @return array
      * @throws Exception
      */
-    public function getRoleById($id)
+    public function getRoleById($roleId)
     {
-        return $this->ManagerRoleRepository->getById($id);
+        return $this->ManagerRoleRepository->getById($roleId);
     }
 
     /**

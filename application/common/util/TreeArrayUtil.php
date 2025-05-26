@@ -10,37 +10,96 @@ class TreeArrayUtil
      * ID名称
      * @var string
      */
-    public $id = 'id';
+    private $id = 'id';
 
     /**
      * 上级ID名称
      * @var string
      */
-    public $parentId = 'parentId';
+    private $parentId = 'parentId';
 
     /**
      * 子元素名称
      * @var string
      */
-    public $children = 'children';
+    private $children = 'children';
 
     /**
      * 级别名称
      * @var int
      */
-    public $level = 'level';
+    private $level = 'level';
 
     /**
      * 结构名称
      * @var string
      */
-    public $struct = 'struct';
+    private $struct = 'struct';
 
     /**
      * 结构符号
      * @var string
      */
-    public $symbol = '├─';
+    private $symbol = '├─';
+
+    /**
+     * 设置ID名称
+     * @param string $id
+     * @return void
+     */
+    public function setId(string $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * 设置上级ID名称
+     * @param string $parentId
+     * @return void
+     */
+    public function setParentId(string $parentId)
+    {
+        $this->parentId = $parentId;
+    }
+
+    /**
+     * 设置子元素名称
+     * @param string $children
+     * @return void
+     */
+    public function setChildren(string $children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * 设置级别名称
+     * @param string $level
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
+
+    /**
+     * 设置结构名称
+     * @param string $struct
+     * @return void
+     */
+    public function setStruct(string $struct)
+    {
+        $this->struct = $struct;
+    }
+
+    /**
+     * 设置分隔符
+     * @param string $symbol
+     * @return void
+     */
+    public function setSymbol(string $symbol)
+    {
+        $this->symbol = $symbol;
+    }
 
     /**
      * 数组转树形组件
@@ -49,7 +108,7 @@ class TreeArrayUtil
      * @param null $resolve
      * @return array
      */
-    public function arrayToTree($array, $parentId = 0, $resolve = null)
+    public function arrayToTree($array, $resolve = null, $parentId = 0)
     {
         $arrayMap  = [];
         $treeArray = [];

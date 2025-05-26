@@ -64,9 +64,9 @@ class SystemSettingService
      * @return array
      * @throws Exception
      */
-    public function getSettingById($id)
+    public function getSettingById($settingId)
     {
-        return $this->SystemSettingRepository->getById($id);
+        return $this->SystemSettingRepository->getById($settingId);
     }
 
     /**
@@ -93,13 +93,13 @@ class SystemSettingService
 
     /**
      * 删除设置
-     * @param $id
+     * @param $settingId
      * @return int
      * @throws Exception
      */
-    public function deleteSetting($id)
+    public function deleteSetting($settingId)
     {
-        return $this->SystemSettingRepository->deleteById($id);
+        return $this->SystemSettingRepository->deleteById($settingId);
     }
 
     /**

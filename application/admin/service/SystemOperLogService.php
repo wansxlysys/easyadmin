@@ -66,13 +66,13 @@ class SystemOperLogService
 
     /**
      * 获取详情
-     * @param $id
+     * @param $logId
      * @return array
      * @throws Exception
      */
-    public function detailLog($id)
+    public function detailLog($logId)
     {
-        return $this->SystemOperLogRepository->getById($id);
+        return $this->SystemOperLogRepository->getById($logId);
     }
 
     /**

@@ -56,9 +56,10 @@ class SystemDictDataController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'page'  => $request->get('page'),
-                'limit' => $request->get('limit'),
-                'name'  => $request->get('name'),
+                'page'   => $request->get('page'),
+                'limit'  => $request->get('limit'),
+                'label'  => $request->get('label'),
+                'dictId' => $request->get('dictId'),
             ];
 
             $this->success('获取成功', '', $this->SystemDictDataService->listSystemDictData($params));
@@ -78,7 +79,14 @@ class SystemDictDataController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'name' => $request->post('name'),
+                'dictId'    => $request->post('dictId'),
+                'label'     => $request->post('label'),
+                'value'     => $request->post('value'),
+                'style'     => $request->post('style'),
+                'isDefault' => $request->post('isDefault'),
+                'remark'    => $request->post('remark'),
+                'status'    => $request->post('status'),
+                'sort'      => $request->post('sort'),
             ];
 
             $this->SystemDictDataValidate->scene('create')->verify($params);
@@ -101,8 +109,14 @@ class SystemDictDataController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'dataId' => $request->post('dataId'),
-                'name' => $request->post('name'),
+                'dataId'    => $request->post('dataId'),
+                'label'     => $request->post('label'),
+                'value'     => $request->post('value'),
+                'style'     => $request->post('style'),
+                'isDefault' => $request->post('isDefault'),
+                'remark'    => $request->post('remark'),
+                'status'    => $request->post('status'),
+                'sort'      => $request->post('sort'),
             ];
 
             $this->SystemDictDataValidate->scene('update')->verify($params);
@@ -111,10 +125,10 @@ class SystemDictDataController extends SystemController
             $this->success('修改成功');
         }
 
-        $role = $this->SystemDictDataService->getBySystemDictDataId($request->get('dataId'));
+        $dict = $this->SystemDictDataService->getBySystemDictDataId($request->get('dataId'));
 
         return $this->fetch('', [
-            'role' => $role
+            'dict' => $dict
         ]);
     }
 

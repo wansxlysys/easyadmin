@@ -14,7 +14,12 @@ class SystemDictDataValidate extends Validate
      */
     protected $rule = [
         'dataId'    => 'require|number',
-        'name'  => 'require|max:32',
+        'label'     => 'require|max:128',
+        'value'     => 'require|max:32',
+        'style'     => 'max:128',
+        'isDefault' => 'require|number',
+        'status'    => 'require|number',
+        'sort'      => 'require|number',
     ];
 
     /**
@@ -24,8 +29,17 @@ class SystemDictDataValidate extends Validate
     protected $message = [
         'dataId.require'    => 'ID不能为空',
         'dataId.number'     => 'ID必须为正整数',
-        'name.require'  => '名称不能为空',
-        'name.max'      => '名称不能超过32个字符',
+        'label.require'     => '字典标签不能为空',
+        'label.max'         => '字典标签不能超过128个字符',
+        'value.require'     => '字典数据不能为空',
+        'value.max'         => '字典数据不能超过128个字符',
+        'style.max'         => '字典样式不能超过128个字符',
+        'isDefault.require' => '是否默认不能为空',
+        'isDefault.number'  => '是否默认必须为正整数',
+        'status.require'    => '字典状态不能为空',
+        'status.number'     => '字典状态必须为正整数',
+        'sort.require'      => '字典排序不能为空',
+        'sort.number'       => '字典排序必须为正整数',
     ];
 
     /**
@@ -34,7 +48,7 @@ class SystemDictDataValidate extends Validate
      */
     public function sceneCreate()
     {
-        return $this->only(['name']);
+        return $this->only(['label', 'value', 'style', 'isDefault', 'status', 'sort']);
     }
 
     /**
@@ -43,7 +57,7 @@ class SystemDictDataValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['dataId', 'name']);
+        return $this->only(['dataId', 'label', 'value', 'style', 'isDefault', 'status', 'sort']);
     }
 
     /**

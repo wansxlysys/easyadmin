@@ -56,9 +56,10 @@ class SystemDictTypeController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'page'  => $request->get('page'),
-                'limit' => $request->get('limit'),
-                'name'  => $request->get('name'),
+                'page'     => $request->get('page'),
+                'limit'    => $request->get('limit'),
+                'name'     => $request->get('name'),
+                'identify' => $request->get('identify'),
             ];
 
             $this->success('获取成功', '', $this->SystemDictTypeService->listSystemDictType($params));

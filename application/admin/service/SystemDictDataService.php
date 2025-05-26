@@ -35,12 +35,12 @@ class SystemDictDataService extends Service
     {
         $Wrapper = new Wrapper();
 
-        if (!empty($params['dataId'])) {
-            $Wrapper->addWhere('dataId', '=', $params['dataId']);
+        if (!empty($params['dictId'])) {
+            $Wrapper->addWhere('dictId', '=', $params['dictId']);
         }
 
-        if (!empty($params['name'])) {
-            $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
+        if (!empty($params['label'])) {
+            $Wrapper->addWhere('label', 'like', "%{$params['label']}%");
         }
 
         $Wrapper->setPage($params['page']);

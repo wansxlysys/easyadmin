@@ -1,7 +1,7 @@
 {extend name="common@layout/layout" /}
 
 {block name="content"}
-{include file="common@layout/breadcrumb" /}
+{include file="common@layout/breadcrumb" close="show"/}
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
@@ -44,9 +44,6 @@
 </script>
 
 <script type="text/html" id="bar">
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="dict">
-        <i class="fa fa-fw fa-book"></i>字典
-    </button>
     <button class="layui-btn layui-btn-sm" lay-event="update">
         <i class="fa fa-fw fa-edit"></i>修改
     </button>
@@ -58,6 +55,11 @@
 <script type="text/html" id="status">
     {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
     {{#  if(d.status == 2){ }}<span class="layui-badge">禁用</span>{{#  } }}
+</script>
+
+<script type="text/html" id="isDefault">
+    {{#  if(d.isDefault == 1){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
+    {{#  if(d.isDefault == 2){ }}<span class="layui-badge">否</span>{{#  } }}
 </script>
 {/block}
 
@@ -73,38 +75,34 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/SystemDictType/index')}",
+            url: "{:url('admin/SystemDictData/index')}?dictId={$request->get('dictId')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: '字典名称', field: 'name', width: 240},
-                {title: '字典标识', field: 'identify', width: 240},
+                {title: '字典名称', field: 'label', width: 240},
+                {title: '字典数据', field: 'value', width: 240},
+                {title: '字典样式', field: 'style', width: 240},
                 {title: '字典备注', field: 'remark'},
+                {title: '是否默认', field: 'isDefault', width: 100, templet: "#isDefault"},
                 {title: '字典状态', field: 'status', width: 100, templet: "#status"},
                 {title: '字典排序', field: 'sort', width: 100},
-                {title: '操作', toolbar: '#bar', width: 250}
+                {title: '操作', toolbar: '#bar', width: 180}
             ]]
         });
 
         table.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemDictType/create')}"
+                    content: "{:url('admin/SystemDictData/create')}?dictId={$request->get('dictId')}"
                 });
             }
         });
 
         table.on('tool(table)', function (obj) {
 
-            if (obj.event === "dict") {
-                easyAdmin.openFrame({
-                    content: "{:url('admin/SystemDictData/index')}?dictId=" + obj.data.dictId
-                });
-            }
-
             if (obj.event === "update") {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemDictType/update')}?dictId=" + obj.data.dictId
+                    content: "{:url('admin/SystemDictData/update')}?dataId=" + obj.data.dataId
                 });
             }
 
@@ -113,9 +111,9 @@
                     icon: 3,
                 }, function () {
                     easyAdmin.ajaxPost({
-                        url: "{:url('admin/SystemDictType/delete')}",
+                        url: "{:url('admin/SystemDictData/delete')}",
                         data: {
-                            dictId: obj.data.dictId
+                            dataId: obj.data.dataId
                         },
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {

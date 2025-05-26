@@ -35,12 +35,12 @@ class SystemDictTypeService extends Service
     {
         $Wrapper = new Wrapper();
 
-        if (!empty($params['id'])) {
-            $Wrapper->addWhere('id', '=', $params['id']);
-        }
-
         if (!empty($params['name'])) {
             $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
+        }
+
+        if (!empty($params['identify'])) {
+            $Wrapper->addWhere('identify', 'like', "%{$params['identify']}%");
         }
 
         $Wrapper->setPage($params['page']);

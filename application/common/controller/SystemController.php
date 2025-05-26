@@ -45,11 +45,16 @@ class SystemController extends CommonController
         } else {
 
             /**
-             * 初始化视图变量
+             * 赋值视图变量
              */
             $this->assign('manager', $manager);
             $this->assign('currentMenu', $currentMenu);
             $this->assign('systemSetting', $systemSetting);
+
+            /**
+             * 赋值其他变量
+             */
+            $this->assign('request', request());
         }
     }
 }

@@ -4,7 +4,7 @@
 namespace app\common\util;
 
 
-class EncryptionUtil
+class Md5Util
 {
     /**
      * 不可逆加密

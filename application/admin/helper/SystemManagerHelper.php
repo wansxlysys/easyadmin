@@ -6,13 +6,14 @@ namespace app\admin\helper;
 
 use think\facade\Session;
 
+use app\common\enum\DeleteEnum;
+use app\common\helper\StoreHelper;
+use app\common\helper\PermissionHelper;
+use app\common\util\Md5Util;
+use app\common\util\StringUtil;
+
 use app\admin\enum\ManagerEnum;
 use app\admin\enum\ManagerRoleEnum;
-use app\common\enum\DeleteEnum;
-use app\common\helper\PermissionHelper;
-use app\common\helper\StoreHelper;
-use app\common\util\EncryptionUtil;
-use app\common\util\StringUtil;
 
 class SystemManagerHelper
 {
@@ -24,7 +25,7 @@ class SystemManagerHelper
      */
     public static function login($managerId, $account, $password)
     {
-        $verifyCode = EncryptionUtil::encrypt($account . $password);
+        $verifyCode = Md5Util::encrypt($account . $password);
 
         Session::set(ManagerEnum::SESSION_ID, $managerId);
         Session::set(ManagerEnum::SESSION_CODE, $verifyCode);
@@ -46,7 +47,7 @@ class SystemManagerHelper
      */
     public static function verify($account, $password)
     {
-        return Session::get(ManagerEnum::SESSION_CODE) == EncryptionUtil::encrypt($account . $password);
+        return Session::get(ManagerEnum::SESSION_CODE) == Md5Util::encrypt($account . $password);
     }
 
     /**

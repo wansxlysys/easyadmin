@@ -7,7 +7,7 @@ namespace app\admin\service;
 use Exception;
 
 use app\common\util\DateTimeUtil;
-use app\common\util\EncryptionUtil;
+use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\enum\DeleteEnum;
 use app\common\repository\Wrapper;
@@ -153,7 +153,7 @@ class SystemManagerService
      */
     public function createManager(array $params)
     {
-        $params['password'] = EncryptionUtil::encrypt($params['password']);
+        $params['password'] = Md5Util::encrypt($params['password']);
 
         return $this->ManagerRepository->createRecord($params);
     }
@@ -181,7 +181,7 @@ class SystemManagerService
         if (empty($params['password'])) {
             unset($params['password']);
         } else {
-            $params['password'] = EncryptionUtil::encrypt($params['password']);
+            $params['password'] = Md5Util::encrypt($params['password']);
         }
 
         return $this->ManagerRepository->updateById($params['managerId'], $params);
@@ -247,7 +247,7 @@ class SystemManagerService
             /**
              * 检测密码是否正确
              */
-            if (!EncryptionUtil::equals($params['password'], $manager['password'])) {
+            if (!Md5Util::equals($params['password'], $manager['password'])) {
 
                 /**
                  * 检测登录次数

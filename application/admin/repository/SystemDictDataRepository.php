@@ -13,4 +13,10 @@ class SystemDictDataRepository extends Repository
      * @var string
      */
     protected $name = 'SystemDictData';
+
+    /**
+     * 表ID
+     * @var string
+     */
+    protected $tableId = 'dataId';
 }

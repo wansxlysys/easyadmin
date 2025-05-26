@@ -13,7 +13,7 @@ class SystemDictDataValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'id'    => 'require|number',
+        'dataId'    => 'require|number',
         'name'  => 'require|max:32',
     ];
 
@@ -22,8 +22,8 @@ class SystemDictDataValidate extends Validate
      * @var string[]
      */
     protected $message = [
-        'id.require'    => 'ID不能为空',
-        'id.number'     => 'ID必须为正整数',
+        'dataId.require'    => 'ID不能为空',
+        'dataId.number'     => 'ID必须为正整数',
         'name.require'  => '名称不能为空',
         'name.max'      => '名称不能超过32个字符',
     ];
@@ -43,7 +43,7 @@ class SystemDictDataValidate extends Validate
      */
     public function sceneUpdate()
     {
-        return $this->only(['id', 'name']);
+        return $this->only(['dataId', 'name']);
     }
 
     /**
@@ -52,6 +52,6 @@ class SystemDictDataValidate extends Validate
      */
     public function sceneDelete()
     {
-        return $this->only(['id']);
+        return $this->only(['dataId']);
     }
 }

@@ -56,13 +56,13 @@ class {{class}}Service extends Service
 
     /**
      * ID查询
-     * @param $id
+     * @param ${{tableId}}
      * @return array
      * @throws Exception
      */
-    public function getBy{{class}}Id($id)
+    public function getBy{{class}}Id(${{tableId}})
     {
-        return $this->{{class}}Repository->getById($id);
+        return $this->{{class}}Repository->getById(${{tableId}});
     }
 
     /**

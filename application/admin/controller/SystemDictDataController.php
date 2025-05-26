@@ -101,7 +101,7 @@ class SystemDictDataController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id'   => $request->post('id'),
+                'dataId' => $request->post('dataId'),
                 'name' => $request->post('name'),
             ];
 
@@ -111,7 +111,7 @@ class SystemDictDataController extends SystemController
             $this->success('修改成功');
         }
 
-        $role = $this->SystemDictDataService->getBySystemDictDataId($request->get('id'));
+        $role = $this->SystemDictDataService->getBySystemDictDataId($request->get('dataId'));
 
         return $this->fetch('', [
             'role' => $role
@@ -128,7 +128,7 @@ class SystemDictDataController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id' => $request->post('id')
+                'dataId' => $request->post('dataId')
             ];
 
             $this->SystemDictDataValidate->scene('delete')->verify($params);

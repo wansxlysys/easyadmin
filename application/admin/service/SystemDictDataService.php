@@ -35,8 +35,8 @@ class SystemDictDataService extends Service
     {
         $Wrapper = new Wrapper();
 
-        if (!empty($params['id'])) {
-            $Wrapper->addWhere('id', '=', $params['id']);
+        if (!empty($params['dataId'])) {
+            $Wrapper->addWhere('dataId', '=', $params['dataId']);
         }
 
         if (!empty($params['name'])) {
@@ -56,13 +56,13 @@ class SystemDictDataService extends Service
 
     /**
      * ID查询
-     * @param $id
+     * @param $dataId
      * @return array
      * @throws Exception
      */
-    public function getBySystemDictDataId($id)
+    public function getBySystemDictDataId($dataId)
     {
-        return $this->SystemDictDataRepository->getById($id);
+        return $this->SystemDictDataRepository->getById($dataId);
     }
 
     /**
@@ -83,7 +83,7 @@ class SystemDictDataService extends Service
      */
     public function updateSystemDictData(array $params)
     {
-        return $this->SystemDictDataRepository->updateById($params['id'], $params);
+        return $this->SystemDictDataRepository->updateById($params['dataId'], $params);
     }
 
     /**
@@ -94,6 +94,6 @@ class SystemDictDataService extends Service
      */
     public function deleteSystemDictData(array $params)
     {
-        return $this->SystemDictDataRepository->deleteById($params['id']);
+        return $this->SystemDictDataRepository->deleteById($params['dataId']);
     }
 }

@@ -35,7 +35,7 @@ class SystemSettingValidate extends Validate
         'name.max'          => '设置名称不能超过32个字符',
         'identify.require'  => '设置标识不能为空',
         'identify.max'      => '设置标识不能超过64个字符',
-        'value.require'     => '设置键值不能为空',
+        'value.require'     => '设置数据不能为空',
         'sort.require'      => '设置排序不能为空',
         'sort.number'       => '设置排序必须为正整数',
     ];

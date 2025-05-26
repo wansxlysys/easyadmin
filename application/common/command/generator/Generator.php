@@ -16,7 +16,7 @@ class Generator extends Command
 {
     /**
      * 配置命令
-     * php think system:generator --module admin --class User --comment 用户管理
+     * php think system:generator --module admin --class User --tableId userId --comment 用户管理
      * @return void
      */
     protected function configure()
@@ -25,6 +25,7 @@ class Generator extends Command
             ->addOption('class', null, Option::VALUE_REQUIRED, "Class Name")
             ->addOption('module', null, Option::VALUE_REQUIRED, "Module Name")
             ->addOption('comment', null, Option::VALUE_REQUIRED, 'Comment Text')
+            ->addOption('tableId', null, Option::VALUE_REQUIRED, 'Table Id')
             ->setDescription('Generator Code');
     }
 
@@ -47,7 +48,8 @@ class Generator extends Command
         $replace = [
             '{{class}}'   => $input->getOption('class'),
             '{{module}}'  => $input->getOption('module'),
-            '{{comment}}' => $input->getOption('comment')
+            '{{comment}}' => $input->getOption('comment'),
+            '{{tableId}}' => $input->getOption('tableId'),
         ];
 
         foreach ($templates as $template) {

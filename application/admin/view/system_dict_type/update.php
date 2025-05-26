@@ -8,39 +8,34 @@
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置分类</label>
+                    <label class="layui-form-label layui-required">字典名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="type" lay-verify="required" placeholder="请输入设置分类" class="layui-input">
+                        <input type="text" name="name" lay-verify="required" placeholder="请输入字典名称" class="layui-input" value="{$dict.name}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置名称</label>
+                    <label class="layui-form-label layui-required">字典标识</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" lay-verify="required" placeholder="请输入设置名称" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置标识</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="identify" lay-verify="required" placeholder="请输入设置标识" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置数据</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="value" lay-verify="required" placeholder="请输入设置数据" class="layui-input">
+                        <input type="text" name="identify" lay-verify="required" placeholder="请输入字典标识" class="layui-input" value="{$dict.identify}">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">设置备注</label>
+                    <label class="layui-form-label">字典备注</label>
                     <div class="layui-input-block">
-                        <textarea name="remark" placeholder="请输入设置备注" class="layui-textarea"></textarea>
+                        <textarea name="remark" placeholder="请输入字典备注" class="layui-textarea">{$dict.remark|raw}</textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置排序</label>
+                    <label class="layui-form-label layui-required">字典排序</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sort" placeholder="请输入设置排序" class="layui-input" value="100">
+                        <input type="text" name="sort" placeholder="请输入字典排序" class="layui-input" value="{$dict.sort}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">字典状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="status" value="1" title="启用" {eq name="$dict.status" value="1"}checked{/eq}>
+                        <input type="radio" name="status" value="2" title="禁用" {eq name="$dict.status" value="2"}checked{/eq}>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -65,8 +60,11 @@
 
         form.on('submit', function (obj) {
             event.preventDefault();
+
+            obj.field.dictId = '{$dict.dictId}';
+
             easyAdmin.ajaxPost({
-                url: "{:url('admin/SystemSetting/create')}",
+                url: "{:url('admin/SystemDictType/update')}",
                 data: obj.field,
                 success: function (result) {
                     const lay = top.layer.alert(result.msg, {

@@ -26,9 +26,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置键值</label>
+                    <label class="layui-form-label layui-required">设置数据</label>
                     <div class="layui-input-block">
-                        <input type="text" name="value" lay-verify="required" placeholder="请输入设置键值" class="layui-input" value="{$setting.value}">
+                        <input type="text" name="value" lay-verify="required" placeholder="请输入设置数据" class="layui-input" value="{$setting.value}">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">

@@ -9,21 +9,15 @@
             <form class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">设置名称</label>
+                        <label class="layui-form-label">字典名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="name" class="layui-input" placeholder="请输入设置名称">
+                            <input type="text" name="name" class="layui-input" placeholder="请输入字典名称">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">设置分类</label>
+                        <label class="layui-form-label">字典标识</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="type" class="layui-input" placeholder="请输入设置分类">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">设置标识</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="identify" class="layui-input" placeholder="请输入设置标识">
+                            <input type="text" name="identify" class="layui-input" placeholder="请输入字典标识">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -44,7 +38,7 @@
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm layui-btn-default" lay-event="create">
-            <i class="fa fa-fw fa-plus"></i>设置添加
+            <i class="fa fa-fw fa-plus"></i>字典添加
         </button>
     </div>
 </script>
@@ -56,6 +50,11 @@
     <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
         <i class="fa fa-fw fa-trash"></i>删除
     </button>
+</script>
+
+<script type="text/html" id="status">
+    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
+    {{#  if(d.status == 2){ }}<span class="layui-badge">禁用</span>{{#  } }}
 </script>
 {/block}
 
@@ -71,16 +70,15 @@
         table.render({
             id: "table",
             elem: '#table',
-            url: "{:url('admin/SystemSetting/index')}",
+            url: "{:url('admin/SystemDictType/index')}",
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: '设置名称', field: 'name', width: 240},
-                {title: '设置分类', field: 'type', width: 160},
-                {title: '设置标识', field: 'identify', width: 160},
-                {title: '设置数据', field: 'value'},
-                {title: '设置备注', field: 'remark'},
-                {title: '设置排序', field: 'sort', width: 100},
+                {title: '字典名称', field: 'name', width: 240},
+                {title: '字典标识', field: 'identify', width: 240},
+                {title: '字典备注', field: 'remark'},
+                {title: '字典状态', field: 'status', width: 100, templet: "#status"},
+                {title: '字典排序', field: 'sort', width: 100},
                 {title: '操作', toolbar: '#bar', width: 180}
             ]]
         });
@@ -88,7 +86,7 @@
         table.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemSetting/create')}"
+                    content: "{:url('admin/SystemDictType/create')}"
                 });
             }
         });
@@ -97,7 +95,7 @@
 
             if (obj.event === "update") {
                 easyAdmin.openFrame({
-                    content: "{:url('admin/SystemSetting/update')}?settingId=" + obj.data.settingId
+                    content: "{:url('admin/SystemDictType/update')}?dictId=" + obj.data.dictId
                 });
             }
 
@@ -106,9 +104,9 @@
                     icon: 3,
                 }, function () {
                     easyAdmin.ajaxPost({
-                        url: "{:url('admin/SystemSetting/delete')}",
+                        url: "{:url('admin/SystemDictType/delete')}",
                         data: {
-                            settingId: obj.data.settingId
+                            dictId: obj.data.dictId
                         },
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {

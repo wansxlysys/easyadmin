@@ -1,20 +1,20 @@
 <?php
 
 
-namespace app\{{module}}\controller;
+namespace app\admin\controller;
 
 
 use Exception;
 
 use think\Request;
 
-use app\{{module}}\service\{{class}}Service;
-use app\{{module}}\validate\{{class}}Validate;
-use app\{{module}}\dependency\{{class}}Dependency;
+use app\admin\service\SystemDictDataService;
+use app\admin\validate\SystemDictDataValidate;
+use app\admin\dependency\SystemDictDataDependency;
 
 use app\common\controller\SystemController;
 
-class {{class}}Controller extends SystemController
+class SystemDictDataController extends SystemController
 {
     /**
      * 中间件
@@ -24,15 +24,15 @@ class {{class}}Controller extends SystemController
 
     /**
      * 服务类
-     * @var {{class}}Service
+     * @var SystemDictDataService
      */
-    protected ${{class}}Service;
+    protected $SystemDictDataService;
 
     /**
      * 验证器
-     * @var {{class}}Validate
+     * @var SystemDictDataValidate
      */
-    protected ${{class}}Validate;
+    protected $SystemDictDataValidate;
 
     /**
      * 初始化
@@ -41,8 +41,8 @@ class {{class}}Controller extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->{{class}}Service  = {{class}}Dependency::getService();
-        $this->{{class}}Validate = {{class}}Dependency::getValidate();
+        $this->SystemDictDataService  = SystemDictDataDependency::getService();
+        $this->SystemDictDataValidate = SystemDictDataDependency::getValidate();
     }
 
     /**
@@ -61,7 +61,7 @@ class {{class}}Controller extends SystemController
                 'name'  => $request->get('name'),
             ];
 
-            $this->success('获取成功', '', $this->{{class}}Service->list{{class}}($params));
+            $this->success('获取成功', '', $this->SystemDictDataService->listSystemDictData($params));
         }
 
         return $this->fetch();
@@ -81,8 +81,8 @@ class {{class}}Controller extends SystemController
                 'name' => $request->post('name'),
             ];
 
-            $this->{{class}}Validate->scene('create')->verify($params);
-            $this->{{class}}Service->create{{class}}($params);
+            $this->SystemDictDataValidate->scene('create')->verify($params);
+            $this->SystemDictDataService->createSystemDictData($params);
 
             $this->success('添加成功');
         }
@@ -101,17 +101,17 @@ class {{class}}Controller extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                '{{tableId}}' => $request->post('{{tableId}}'),
+                'id'   => $request->post('id'),
                 'name' => $request->post('name'),
             ];
 
-            $this->{{class}}Validate->scene('update')->verify($params);
-            $this->{{class}}Service->update{{class}}($params);
+            $this->SystemDictDataValidate->scene('update')->verify($params);
+            $this->SystemDictDataService->updateSystemDictData($params);
 
             $this->success('修改成功');
         }
 
-        $role = $this->{{class}}Service->getBy{{class}}Id($request->get('{{tableId}}'));
+        $role = $this->SystemDictDataService->getBySystemDictDataId($request->get('id'));
 
         return $this->fetch('', [
             'role' => $role
@@ -128,11 +128,11 @@ class {{class}}Controller extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                '{{tableId}}' => $request->post('{{tableId}}')
+                'id' => $request->post('id')
             ];
 
-            $this->{{class}}Validate->scene('delete')->verify($params);
-            $this->{{class}}Service->delete{{class}}($params);
+            $this->SystemDictDataValidate->scene('delete')->verify($params);
+            $this->SystemDictDataService->deleteSystemDictData($params);
 
             $this->success('删除成功');
         }

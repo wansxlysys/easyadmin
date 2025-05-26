@@ -35,8 +35,8 @@ class {{class}}Service extends Service
     {
         $Wrapper = new Wrapper();
 
-        if (!empty($params['id'])) {
-            $Wrapper->addWhere('id', '=', $params['id']);
+        if (!empty($params['{{tableId}}'])) {
+            $Wrapper->addWhere('{{tableId}}', '=', $params['{{tableId}}']);
         }
 
         if (!empty($params['name'])) {
@@ -83,7 +83,7 @@ class {{class}}Service extends Service
      */
     public function update{{class}}(array $params)
     {
-        return $this->{{class}}Repository->updateById($params['id'], $params);
+        return $this->{{class}}Repository->updateById($params['{{tableId}}'], $params);
     }
 
     /**
@@ -94,6 +94,6 @@ class {{class}}Service extends Service
      */
     public function delete{{class}}(array $params)
     {
-        return $this->{{class}}Repository->deleteById($params['id']);
+        return $this->{{class}}Repository->deleteById($params['{{tableId}}']);
     }
 }

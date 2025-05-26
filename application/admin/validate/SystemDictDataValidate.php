@@ -1,19 +1,19 @@
 <?php
 
 
-namespace app\{{module}}\validate;
+namespace app\admin\validate;
 
 
 use app\common\validate\Validate;
 
-class {{class}}Validate extends Validate
+class SystemDictDataValidate extends Validate
 {
     /**
      * 验证规则
      * @var string[]
      */
     protected $rule = [
-        '{{tableId}}'    => 'require|number',
+        'id'    => 'require|number',
         'name'  => 'require|max:32',
     ];
 
@@ -22,15 +22,15 @@ class {{class}}Validate extends Validate
      * @var string[]
      */
     protected $message = [
-        '{{tableId}}.require'    => 'ID不能为空',
-        '{{tableId}}.number'     => 'ID必须为正整数',
+        'id.require'    => 'ID不能为空',
+        'id.number'     => 'ID必须为正整数',
         'name.require'  => '名称不能为空',
         'name.max'      => '名称不能超过32个字符',
     ];
 
     /**
      * 添加
-     * @return {{class}}Validate
+     * @return SystemDictDataValidate
      */
     public function sceneCreate()
     {
@@ -39,19 +39,19 @@ class {{class}}Validate extends Validate
 
     /**
      * 修改
-     * @return {{class}}Validate
+     * @return SystemDictDataValidate
      */
     public function sceneUpdate()
     {
-        return $this->only(['{{tableId}}', 'name']);
+        return $this->only(['id', 'name']);
     }
 
     /**
      * 删除
-     * @return {{class}}Validate
+     * @return SystemDictDataValidate
      */
     public function sceneDelete()
     {
-        return $this->only(['{{tableId}}']);
+        return $this->only(['id']);
     }
 }

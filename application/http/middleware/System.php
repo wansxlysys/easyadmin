@@ -8,6 +8,7 @@ use app\admin\helper\SystemManagerHelper;
 use app\admin\helper\SystemMenuHelper;
 use Closure;
 use Exception;
+use think\Request;
 use traits\controller\Jump;
 
 class System
@@ -19,12 +20,12 @@ class System
 
     /**
      * 句柄
-     * @param $request
+     * @param Request $request
      * @param Closure $next
      * @return mixed
      * @throws Exception
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $this->checkLogin();
         $this->checkMenu();

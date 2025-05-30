@@ -50,11 +50,11 @@ class TestController
     {
         $RedisLock = new RedisLock("lock:1");
 
-        if ($RedisLock->acquire()) {
+        if ($RedisLock->tryLock()) {
             try {
                 sleep(2);
             } catch (Exception $exception) {
-                $RedisLock->release();
+                $RedisLock->unlock();
             }
         }
 

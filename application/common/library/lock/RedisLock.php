@@ -35,7 +35,7 @@ class RedisLock
      * 尝试获取锁
      * @return bool 是否成功获取锁
      */
-    public function acquire()
+    public function getLock()
     {
         return RedisHelper::set($this->lockKey, 1, 'PX', $this->timeoutMs, 'NX') == 'OK';
     }
@@ -44,9 +44,12 @@ class RedisLock
      * 释放锁
      * @return bool 是否成功释放锁
      */
-    public function release()
+    public function unlock()
     {
-        return RedisHelper::del($this->lockKey) == 1;
+        if ($this->isLocked()) {
+            return RedisHelper::del($this->lockKey) == 1;
+        }
+        return true;
     }
 
     /**
@@ -55,15 +58,24 @@ class RedisLock
      * @param int $waitTimeoutMs 等待时间
      * @return bool 是否成功获取锁
      */
-    public function acquireWithWait($waitTimeoutMs = 3000, $retryDelayMs = 100)
+    public function tryLock($waitTimeoutMs = 3000, $retryDelayMs = 100)
     {
         while ($waitTimeoutMs > 0) {
             $waitTimeoutMs -= $retryDelayMs;
-            if ($this->acquire()) {
+            if ($this->getLock()) {
                 return true;
             }
             usleep($retryDelayMs * 1000);
         }
         return false;
+    }
+
+    /**
+     * 检查锁是否已被持有
+     * @return bool 锁是否已被持有
+     */
+    public function isLocked()
+    {
+        return RedisHelper::exists($this->lockKey) === 1;
     }
 }

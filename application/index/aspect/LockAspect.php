@@ -5,7 +5,6 @@ namespace app\index\aspect;
 
 
 use app\common\helper\RedisHelper;
-
 use app\common\exception\LockedException;
 
 class LockAspect

@@ -20,7 +20,7 @@ class SystemManagerRoleController extends SystemController
      * 中间件
      * @var array
      */
-    protected $middleware = ['System'];
+    protected $middleware = ['SystemMiddleware'];
 
     /**
      * 服务类

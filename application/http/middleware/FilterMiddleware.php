@@ -8,7 +8,9 @@ use Closure;
 
 use think\Request;
 
-class Filter
+use app\common\interceptor\Interceptor;
+
+class FilterMiddleware
 {
     /**
      * 句柄
@@ -18,9 +20,12 @@ class Filter
      */
     public function handle(Request $request, Closure $next)
     {
-//        App::controller($request->controller());
-//        var_dump(App::controller($request->controller()));
-//        var_dump($request->controller());
+        $filters = Interceptor::getFilters();
+
+        foreach ($filters as $filter) {
+            (new $filter)->handle($request);
+        }
+
         return $next($request);
     }
 }

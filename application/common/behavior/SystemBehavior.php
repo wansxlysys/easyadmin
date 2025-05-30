@@ -4,7 +4,7 @@
 namespace app\common\behavior;
 
 
-class AppInitBehavior
+class SystemBehavior
 {
     /**
      * 初始化钩子

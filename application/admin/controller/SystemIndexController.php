@@ -21,7 +21,7 @@ class SystemIndexController extends SystemController
      * 中间件
      * @var array
      */
-    protected $middleware = ['System'];
+    protected $middleware = ['SystemMiddleware'];
 
     /**
      * 验证器

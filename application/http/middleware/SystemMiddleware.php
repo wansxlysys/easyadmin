@@ -4,14 +4,16 @@
 namespace app\http\middleware;
 
 
-use app\admin\helper\SystemManagerHelper;
-use app\admin\helper\SystemMenuHelper;
 use Closure;
 use Exception;
+
 use think\Request;
 use traits\controller\Jump;
 
-class System
+use app\admin\helper\SystemManagerHelper;
+use app\admin\helper\SystemMenuHelper;
+
+class SystemMiddleware
 {
     /**
      * 跳转操作

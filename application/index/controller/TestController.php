@@ -4,28 +4,25 @@
 namespace app\index\controller;
 
 
-use Exception;
-use think\exception\DbException;
-
-use app\common\helper\ExcelHelper;
-use app\common\helper\RedisHelper;
+use app\admin\repository\SystemManagerRepository;
 use app\common\dependency\Dependency;
 use app\common\dependency\DependencyAspect;
-
+use app\common\helper\ExcelHelper;
+use app\common\helper\RedisHelper;
+use app\common\library\lock\RedisLock;
 use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;
 use app\index\aspect\TestAspect;
 use app\index\aspect\UserAspect;
-use app\index\service\LockService;
-use app\index\service\UserService;
 use app\index\dependency\DataDependency;
 use app\index\dependency\TestDependency;
 use app\index\dependency\UserDependency;
 use app\index\repository\UserRepository;
-
+use app\index\service\LockService;
+use app\index\service\UserService;
 use app\queue\producer\TestProducer;
-
-use app\admin\repository\SystemManagerRepository;
+use Exception;
+use think\exception\DbException;
 
 
 class TestController
@@ -46,6 +43,25 @@ class TestController
     }
 
     /**
+     * lock测试
+     * @return int
+     */
+    public function lockAction()
+    {
+        $RedisLock = new RedisLock("lock:1");
+
+        if ($RedisLock->acquire()) {
+            try {
+                sleep(2);
+            } catch (Exception $exception) {
+                $RedisLock->release();
+            }
+        }
+
+        return 2;
+    }
+
+    /**
      * redis测试
      * @return void
      */
@@ -58,7 +74,7 @@ class TestController
      * aop锁测试
      * @return void
      */
-    public function lockAction()
+    public function aspectAction()
     {
         DependencyAspect::register(LockService::class, '*', LockAspect::class);
 

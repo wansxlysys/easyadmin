@@ -10,7 +10,7 @@ use think\Request;
 
 use app\common\interceptor\Interceptor;
 
-class FilterMiddleware
+class InterceptorMiddleware
 {
     /**
      * 句柄
@@ -20,10 +20,10 @@ class FilterMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $filters = Interceptor::getFilters();
+        $interceptors = Interceptor::getInterceptors();
 
-        foreach ($filters as $filter) {
-            (new $filter)->handle($request);
+        foreach ($interceptors as $interceptor) {
+            (new $interceptor)->handle($request);
         }
 
         return $next($request);

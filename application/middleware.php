@@ -1,8 +1,8 @@
 <?php
 
 
-use app\http\middleware\FilterMiddleware;
+use app\http\middleware\InterceptorMiddleware;
 
 return [
-    FilterMiddleware::class
+    InterceptorMiddleware::class
 ];

@@ -10,26 +10,26 @@ class Interceptor
      * 过滤器
      * @var InterceptorHandler[]
      */
-    private static $filters = [];
+    private static $interceptors = [];
 
     /**
      * 获取过滤器
      * @return InterceptorHandler[]
      */
-    public static function getFilters()
+    public static function getInterceptors()
     {
-        return static::$filters;
+        return static::$interceptors;
     }
 
     /**
      * 设置过滤器
-     * @param $filter
+     * @param $interceptor
      * @return void
      */
-    public static function addFilter($filter)
+    public static function addInterceptor($interceptor)
     {
-        if (!in_array($filter, static::$filters)) {
-            static::$filters[] = $filter;
+        if (!in_array($interceptor, static::$interceptors)) {
+            static::$interceptors[] = $interceptor;
         }
     }
 }

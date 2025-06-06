@@ -15,7 +15,7 @@ class SystemSettingRepository extends Repository
     protected $name = 'system_setting';
 
     /**
-     * 表id
+     * 表主键
      * @var string
      */
     protected $tableId = 'settingId';

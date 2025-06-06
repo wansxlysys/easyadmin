@@ -15,7 +15,7 @@ class SystemMenuRepository extends Repository
     protected $name = 'system_menu';
 
     /**
-     * 表id
+     * 表主键
      * @var string
      */
     protected $tableId = 'menuId';

@@ -24,7 +24,7 @@ abstract class Dao
     protected $name = '';
 
     /**
-     * 表id
+     * 表主键
      * @var string
      */
     protected $tableId = 'id';

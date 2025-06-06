@@ -20,7 +20,7 @@ class SystemManagerRepository extends Repository
     protected $name = 'system_manager';
 
     /**
-     * 表id
+     * 表主键
      * @var string
      */
     protected $tableId = 'managerId';

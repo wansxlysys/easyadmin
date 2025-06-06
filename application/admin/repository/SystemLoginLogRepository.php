@@ -20,7 +20,7 @@ class SystemLoginLogRepository extends Repository
     protected $name = 'system_login_log';
 
     /**
-     * 表id
+     * 表主键
      * @var string
      */
     protected $tableId = 'logId';

@@ -15,7 +15,7 @@ class SystemDictTypeRepository extends Repository
     protected $name = 'SystemDictType';
 
     /**
-     * 表ID
+     * 表主键
      * @var string
      */
     protected $tableId = 'dictId';

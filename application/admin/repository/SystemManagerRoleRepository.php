@@ -15,7 +15,7 @@ class SystemManagerRoleRepository extends Repository
     protected $name = 'system_manager_role';
 
     /**
-     * 表id
+     * 表主键
      * @var string
      */
     protected $tableId = 'roleId';

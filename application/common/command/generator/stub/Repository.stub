@@ -15,7 +15,7 @@ class {{class}}Repository extends Repository
     protected $name = '{{class}}';
 
     /**
-     * 表ID
+     * 表主键
      * @var string
      */
     protected $tableId = '{{tableId}}';

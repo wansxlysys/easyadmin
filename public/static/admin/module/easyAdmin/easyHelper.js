@@ -78,9 +78,9 @@ layui.define(function (exports) {
         return function () {
             let context = this;
             let args = arguments;
-
-            if (timeout) clearTimeout(timeout);
-
+            if (timeout) {
+                clearTimeout(timeout);
+            }
             timeout = setTimeout(() => {
                 func.apply(context, args)
             }, wait);

@@ -5,6 +5,7 @@ namespace app\common\repository;
 
 
 use think\Db;
+use think\Paginator;
 use think\Exception;
 
 use app\common\util\DateTimeUtil;
@@ -27,6 +28,26 @@ abstract class Dao
      * @var string
      */
     protected $tableId = 'id';
+
+    /**
+     * 获取列表
+     * @param Wrapper $Wrapper
+     * @return Paginator
+     * @throws Exception
+     */
+    public function getPage(Wrapper $Wrapper)
+    {
+        return Db::name($this->getName())
+            ->where($Wrapper->getWhere())
+            ->whereOr($Wrapper->getWhereOr())
+            ->page($Wrapper->getPage())
+            ->limit($Wrapper->getLimit())
+            ->field($Wrapper->getField())
+            ->group($Wrapper->getGroup())
+            ->having($Wrapper->getHaving())
+            ->order($Wrapper->getOrder())
+            ->paginate();
+    }
 
     /**
      * 获取列表

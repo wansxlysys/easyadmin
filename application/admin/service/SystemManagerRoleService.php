@@ -53,10 +53,9 @@ class SystemManagerRoleService
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('sort', 'asc');
 
-        $list  = $this->ManagerRoleRepository->getList($Wrapper);
-        $total = $this->ManagerRoleRepository->getTotal($Wrapper);
+        $page = $this->ManagerRoleRepository->getPage($Wrapper);
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $page->items(), 'total' => $page->total()];
     }
 
     /**

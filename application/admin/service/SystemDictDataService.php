@@ -48,10 +48,9 @@ class SystemDictDataService extends Service
 
         $Wrapper->addOrder('sort', 'asc');
 
-        $list  = $this->SystemDictDataRepository->getList($Wrapper);
-        $total = $this->SystemDictDataRepository->getTotal($Wrapper);
+        $page = $this->SystemDictDataRepository->getPage($Wrapper);
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $page->items(), 'total' => $page->total()];
     }
 
     /**

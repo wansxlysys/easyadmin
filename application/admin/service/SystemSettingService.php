@@ -53,10 +53,9 @@ class SystemSettingService
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('sort', 'asc');
 
-        $list  = $this->SystemSettingRepository->getList($Wrapper);
-        $total = $this->SystemSettingRepository->getTotal($Wrapper);
+        $page = $this->SystemSettingRepository->getPage($Wrapper);
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $page->items(), 'total' => $page->total()];
     }
 
     /**

@@ -34,7 +34,7 @@ class SystemOperLogService
      * @return array
      * @throws Exception
      */
-    public function listLog(array $params = [])
+    public function getPageLog(array $params = [])
     {
         $Wrapper = new Wrapper();
 

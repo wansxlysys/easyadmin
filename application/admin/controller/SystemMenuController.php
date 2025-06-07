@@ -59,7 +59,7 @@ class SystemMenuController extends SystemController
                 'name' => $request->get('name')
             ];
 
-            $this->success('获取成功', '', $this->SystemMenuService->listMenu($params));
+            $this->success('获取成功', '', $this->SystemMenuService->getPageMenu($params));
         }
 
         return $this->fetch();

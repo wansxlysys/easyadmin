@@ -55,7 +55,7 @@ class SystemOperLogController extends SystemController
                 'account' => $request->get('account')
             ];
 
-            $this->success('获取成功', '', $this->SystemOperLogService->listLog($params));
+            $this->success('获取成功', '', $this->SystemOperLogService->getPageLog($params));
         }
 
         return $this->fetch();

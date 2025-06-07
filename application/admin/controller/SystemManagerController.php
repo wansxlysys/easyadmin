@@ -65,7 +65,7 @@ class SystemManagerController extends SystemController
                 'realName' => $request->get('realName'),
             ];
 
-            $this->success('获取成功', '', $this->ManagerService->listManager($params));
+            $this->success('获取成功', '', $this->ManagerService->getPageManager($params));
         }
 
         return $this->fetch();

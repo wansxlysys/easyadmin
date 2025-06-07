@@ -31,7 +31,7 @@ class SystemDictTypeService extends Service
      * 获取列表
      * @throws Exception
      */
-    public function listSystemDictType(array $params)
+    public function getPageSystemDictType(array $params)
     {
         $Wrapper = new Wrapper();
 

@@ -55,7 +55,7 @@ class SystemLoginLogController extends SystemController
                 'account' => $request->get('account')
             ];
 
-            $this->success('获取成功', '', $this->SystemLoginLogService->listLog($params));
+            $this->success('获取成功', '', $this->SystemLoginLogService->getPageLog($params));
         }
 
         return $this->fetch();

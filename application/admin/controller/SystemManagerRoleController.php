@@ -62,7 +62,7 @@ class SystemManagerRoleController extends SystemController
                 'identify' => $request->get('identify'),
             ];
 
-            $this->success('获取成功', '', $this->ManagerRoleService->listRole($params));
+            $this->success('获取成功', '', $this->ManagerRoleService->getPageRole($params));
         }
 
         return $this->fetch();

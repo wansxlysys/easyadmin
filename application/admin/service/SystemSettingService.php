@@ -33,7 +33,7 @@ class SystemSettingService
      * @return array
      * @throws Exception
      */
-    public function listSetting(array $params = [])
+    public function getPageSetting(array $params = [])
     {
         $Wrapper = new Wrapper();
 

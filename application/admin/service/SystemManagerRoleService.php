@@ -35,7 +35,7 @@ class SystemManagerRoleService
      * @return array
      * @throws Exception
      */
-    public function listRole(array $params = [])
+    public function getPageRole(array $params = [])
     {
         $Wrapper = new Wrapper();
 

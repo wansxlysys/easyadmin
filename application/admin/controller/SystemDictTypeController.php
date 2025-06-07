@@ -62,7 +62,7 @@ class SystemDictTypeController extends SystemController
                 'identify' => $request->get('identify'),
             ];
 
-            $this->success('获取成功', '', $this->SystemDictTypeService->listSystemDictType($params));
+            $this->success('获取成功', '', $this->SystemDictTypeService->getPageSystemDictType($params));
         }
 
         return $this->fetch();

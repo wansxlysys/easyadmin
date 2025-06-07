@@ -62,7 +62,7 @@ class SystemDictDataController extends SystemController
                 'dictId' => $request->get('dictId'),
             ];
 
-            $this->success('获取成功', '', $this->SystemDictDataService->listSystemDictData($params));
+            $this->success('获取成功', '', $this->SystemDictDataService->getPageSystemDictData($params));
         }
 
         return $this->fetch();

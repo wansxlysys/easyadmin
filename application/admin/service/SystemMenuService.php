@@ -38,7 +38,7 @@ class SystemMenuService
      * @return array
      * @throws Exception
      */
-    public function listMenu(array $params = [])
+    public function getPageMenu(array $params = [])
     {
         $Wrapper = new Wrapper();
 
@@ -48,14 +48,13 @@ class SystemMenuService
 
         $Wrapper->setOrder(['sort' => 'asc']);
 
-        $list  = $this->SystemMenuRepository->getAll($Wrapper);
-        $total = $this->SystemMenuRepository->getTotal($Wrapper);
+        $list = $this->SystemMenuRepository->getAll($Wrapper);
 
         foreach ($list as $key => $item) {
             $list[$key]['icon'] = "<i class='fa fa-fw {$item['icon']}'></i>";
         }
 
-        return ['list' => $list, 'total' => $total];
+        return ['list' => $list, 'total' => count($list)];
     }
 
     /**

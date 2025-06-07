@@ -40,7 +40,7 @@ class SystemManagerService
      * @return array
      * @throws Exception
      */
-    public function listManager(array $params = [])
+    public function getPageManager(array $params = [])
     {
         $Wrapper = new Wrapper();
 

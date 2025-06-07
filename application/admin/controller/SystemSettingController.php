@@ -63,7 +63,7 @@ class SystemSettingController extends SystemController
                 'identify' => $request->get('identify'),
             ];
 
-            $this->success('获取成功', '', $this->SystemSettingService->listSetting($params));
+            $this->success('获取成功', '', $this->SystemSettingService->getPageSetting($params));
         }
 
         return $this->fetch();

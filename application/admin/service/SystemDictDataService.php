@@ -31,7 +31,7 @@ class SystemDictDataService extends Service
      * 获取列表
      * @throws Exception
      */
-    public function listSystemDictData(array $params)
+    public function getPageSystemDictData(array $params)
     {
         $Wrapper = new Wrapper();
 

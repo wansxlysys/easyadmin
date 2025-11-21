@@ -49,7 +49,8 @@ class Dependency
         /**
          * 注入依赖
          */
-        static::injectDependency($instanceClass, $reflectionClass);
+        static::injectMethods($instanceClass, $reflectionClass);
+        static::injectProperties($instanceClass, $reflectionClass);
 
         return $instanceClass;
     }
@@ -84,7 +85,7 @@ class Dependency
      * @param ReflectionClass $reflectionClass
      * @throws ReflectionException
      */
-    private static function injectDependency($instancesClass, $reflectionClass)
+    private static function injectMethods($instancesClass, $reflectionClass)
     {
         /**
          * 循环每个方法
@@ -126,6 +127,45 @@ class Dependency
                  * 注入依赖
                  */
                 $method->invoke($instancesClass, ...$dependencies);
+            }
+        }
+    }
+
+    /**
+     * 注入属性
+     * @param object $instancesClass
+     * @param ReflectionClass $reflectionClass
+     * @return void
+     */
+    private static function injectProperties($instancesClass, $reflectionClass)
+    {
+        /**
+         * 循环每个属性
+         */
+        foreach ($reflectionClass->getProperties() as $property) {
+
+            if ($property->hasType()) {
+
+                /**
+                 * 判断是否非基础类型
+                 */
+                if (!$property->getType()->isBuiltin()) {
+
+                    $propertyClassName = $property->getType()->getName();
+
+                    /**
+                     * 检测容器中是否已经实例化
+                     */
+                    if (!isset(static::$instances[$propertyClassName])) {
+                        static::$instances[$propertyClassName] = static::getClass($propertyClassName);
+                    }
+
+                    if (!$property->isPublic()) {
+                        $property->setAccessible(true);
+                    }
+
+                    $property->setValue($instancesClass, static::$instances[$propertyClassName]);
+                }
             }
         }
     }

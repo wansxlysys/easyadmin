@@ -17,15 +17,7 @@ class SystemDictDataService extends Service
      * 字典数据存储类
      * @var SystemDictDataRepository
      */
-    protected $SystemDictDataRepository;
-
-    /**
-     * 注入存储类
-     */
-    public function injectRepository(SystemDictDataRepository $SystemDictDataRepository)
-    {
-        $this->SystemDictDataRepository = $SystemDictDataRepository;
-    }
+    protected SystemDictDataRepository $SystemDictDataRepository;
 
     /**
      * 获取列表

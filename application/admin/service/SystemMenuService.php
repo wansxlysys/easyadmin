@@ -22,15 +22,7 @@ class SystemMenuService
      * 存储类
      * @var SystemMenuRepository
      */
-    protected $SystemMenuRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemMenuRepository $SystemMenuRepository)
-    {
-        $this->SystemMenuRepository = $SystemMenuRepository;
-    }
+    protected SystemMenuRepository $SystemMenuRepository;
 
     /**
      * 菜单列表

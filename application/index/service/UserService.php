@@ -10,12 +10,6 @@ class UserService
 
     protected DataService $DataService;
 
-    protected function injectService(TestService $TestService, DataService $DataService)
-    {
-        $this->TestService = $TestService;
-        $this->DataService = $DataService;
-    }
-
     public function getName()
     {
         return 'UserService';

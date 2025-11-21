@@ -18,15 +18,7 @@ class SystemOperLogService
      * 存储类
      * @var SystemOperLogRepository
      */
-    protected $SystemOperLogRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemOperLogRepository $SystemOperLogRepository)
-    {
-        $this->SystemOperLogRepository = $SystemOperLogRepository;
-    }
+    protected SystemOperLogRepository $SystemOperLogRepository;
 
     /**
      * 获取列表

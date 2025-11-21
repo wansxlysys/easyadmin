@@ -6,9 +6,9 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\util\DateTimeUtil;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
+use app\common\util\DateTimeUtil;
 use app\common\enum\DeleteEnum;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
@@ -24,15 +24,7 @@ class SystemManagerService
      * 存储类
      * @var SystemManagerRepository
      */
-    protected $ManagerRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemManagerRepository $ManagerRepository)
-    {
-        $this->ManagerRepository = $ManagerRepository;
-    }
+    protected SystemManagerRepository $ManagerRepository;
 
     /**
      * 获取列表

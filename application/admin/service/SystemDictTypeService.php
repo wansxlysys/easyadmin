@@ -17,15 +17,7 @@ class SystemDictTypeService extends Service
      * 字典管理存储类
      * @var SystemDictTypeRepository
      */
-    protected $SystemDictTypeRepository;
-
-    /**
-     * 注入存储类
-     */
-    public function injectRepository(SystemDictTypeRepository $SystemDictTypeRepository)
-    {
-        $this->SystemDictTypeRepository = $SystemDictTypeRepository;
-    }
+    protected SystemDictTypeRepository $SystemDictTypeRepository;
 
     /**
      * 获取列表

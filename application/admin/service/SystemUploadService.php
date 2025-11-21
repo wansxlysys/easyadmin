@@ -23,15 +23,7 @@ class SystemUploadService
      * 存储类
      * @var SystemUploadRepository
      */
-    protected $SystemUploadRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemUploadRepository $SystemUploadRepository)
-    {
-        $this->SystemUploadRepository = $SystemUploadRepository;
-    }
+    protected SystemUploadRepository $SystemUploadRepository;
 
     /**
      * 保存文件

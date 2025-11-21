@@ -19,15 +19,7 @@ class SystemLoginLogService
      * 存储类
      * @var SystemLoginLogRepository
      */
-    protected $SystemLoginLogRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemLoginLogRepository $SystemLoginLogRepository)
-    {
-        $this->SystemLoginLogRepository = $SystemLoginLogRepository;
-    }
+    protected SystemLoginLogRepository $SystemLoginLogRepository;
 
     /**
      * 获取列表和总数

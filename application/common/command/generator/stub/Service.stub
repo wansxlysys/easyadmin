@@ -17,15 +17,7 @@ class {{class}}Service extends Service
      * {{comment}}存储类
      * @var {{class}}Repository
      */
-    protected ${{class}}Repository;
-
-    /**
-     * 注入存储类
-     */
-    public function injectRepository({{class}}Repository ${{class}}Repository)
-    {
-        $this->{{class}}Repository = ${{class}}Repository;
-    }
+    protected {{class}}Repository ${{class}}Repository;
 
     /**
      * 获取列表

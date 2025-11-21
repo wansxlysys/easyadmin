@@ -19,15 +19,7 @@ class SystemManagerRoleService
      * 存储类
      * @var SystemManagerRoleRepository
      */
-    protected $ManagerRoleRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemManagerRoleRepository $ManagerRoleRepository)
-    {
-        $this->ManagerRoleRepository = $ManagerRoleRepository;
-    }
+    protected SystemManagerRoleRepository $ManagerRoleRepository;
 
     /**
      * 获取列表

@@ -19,15 +19,7 @@ class QueueFailedService extends Service
      * 存储类
      * @var QueueFailedRepository
      */
-    protected $QueueFailedRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepository(QueueFailedRepository $QueueFailedRepository)
-    {
-        $this->QueueFailedRepository = $QueueFailedRepository;
-    }
+    protected QueueFailedRepository $QueueFailedRepository;
 
     /**
      * 获取失败列表

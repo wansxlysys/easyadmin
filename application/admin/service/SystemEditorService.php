@@ -15,15 +15,7 @@ class SystemEditorService
      * 系统上传服务类
      * @var SystemUploadService
      */
-    protected $SystemUploadService;
-
-    /**
-     * 初始化
-     */
-    public function injectService(SystemUploadService $SystemUploadService)
-    {
-        $this->SystemUploadService = $SystemUploadService;
-    }
+    protected SystemUploadService $SystemUploadService;
 
     /**
      * 配置

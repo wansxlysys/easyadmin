@@ -17,15 +17,7 @@ class SystemSettingService
      * 存储类
      * @var SystemSettingRepository
      */
-    protected $SystemSettingRepository;
-
-    /**
-     * 初始化
-     */
-    public function injectRepostitory(SystemSettingRepository $SystemSettingRepository)
-    {
-        $this->SystemSettingRepository = $SystemSettingRepository;
-    }
+    protected SystemSettingRepository $SystemSettingRepository;
 
     /**
      * 获取列表

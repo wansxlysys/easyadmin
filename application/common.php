@@ -1,5 +1,7 @@
 <?php
 
+use app\common\dependency\Dependency;
+
 /**
  * 引入静态文件并加入版本号
  * @param $url
@@ -28,23 +30,16 @@ function empty_image($image, $default)
 /**
  * 获取依赖层
  * @param $name
- * @param $common
+ * @param string $module
  * @return object
  */
-function service($name, $common)
+function service($name, $module = '')
 {
-    return app()->model($name, 'dependency', true, $common)->getService();
-}
+    if (empty($layer)) {
+        $module = request()->module();
+    }
 
-/**
- * 获取依赖层
- * @param $name
- * @param $common
- * @return object
- */
-function dependency($name, $common)
-{
-    return app()->model($name, 'dependency', true, $common);
+    return Dependency::getProxy(app()->parseClass($module, 'service', $name));
 }
 
 /**

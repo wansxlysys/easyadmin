@@ -17,7 +17,7 @@
                     <label class="layui-form-label layui-required">管理员头像</label>
                     <div class="layui-input-block">
                         <div id="avatar"></div>
-                        <input type="hidden" name="avatar" class="layui-builder-picture" lay-verify="required" lay-reqText="请上传管理员头像" value="{$manager.avatar}">
+                        <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传管理员头像" value="{$manager.avatar}">
                     </div>
                 </div>
                 <div class="layui-form-item">

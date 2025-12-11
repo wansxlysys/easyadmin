@@ -10,8 +10,8 @@ use think\Request;
 
 use app\admin\service\SystemDictDataService;
 use app\admin\validate\SystemDictDataValidate;
-use app\admin\dependency\SystemDictDataDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemDictDataController extends SystemController
@@ -41,8 +41,8 @@ class SystemDictDataController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemDictDataService  = SystemDictDataDependency::getService();
-        $this->SystemDictDataValidate = SystemDictDataDependency::getValidate();
+        $this->SystemDictDataService = Dependency::getProxy(SystemDictDataService::class);
+        $this->SystemDictDataValidate = Dependency::getProxy(SystemDictDataValidate::class);
     }
 
     /**

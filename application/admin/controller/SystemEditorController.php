@@ -10,8 +10,8 @@ use think\Request;
 use think\response\Json;
 
 use app\admin\service\SystemEditorService;
-use app\admin\dependency\SystemEditorDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemEditorController extends SystemController
@@ -26,7 +26,7 @@ class SystemEditorController extends SystemController
      * 服务类
      * @var SystemEditorService
      */
-    protected $EditorService;
+    protected $SystemEditorService;
 
     /**
      * 初始化
@@ -35,7 +35,7 @@ class SystemEditorController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->EditorService = SystemEditorDependency::getService();
+        $this->SystemEditorService = Dependency::getProxy(SystemEditorService::class);
     }
 
     /**
@@ -50,23 +50,23 @@ class SystemEditorController extends SystemController
         $action = $request->get('action');
 
         if ($action == 'config') {
-            $result = $this->EditorService->config();
+            $result = $this->SystemEditorService->config();
         }
 
         if ($action == 'uploadImage') {
-            $result = $this->EditorService->uploadImage($request->file('image'));
+            $result = $this->SystemEditorService->uploadImage($request->file('image'));
         }
 
         if ($action == 'uploadVideo') {
-            $result = $this->EditorService->uploadVideo($request->file('video'));
+            $result = $this->SystemEditorService->uploadVideo($request->file('video'));
         }
 
         if ($action == 'uploadAudio') {
-            $result = $this->EditorService->uploadAudio($request->file('audio'));
+            $result = $this->SystemEditorService->uploadAudio($request->file('audio'));
         }
 
         if ($action == 'uploadFile') {
-            $result = $this->EditorService->uploadFile($request->file('file'));
+            $result = $this->SystemEditorService->uploadFile($request->file('file'));
         }
 
         return json($result);

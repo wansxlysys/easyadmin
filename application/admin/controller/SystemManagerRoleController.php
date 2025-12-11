@@ -10,8 +10,8 @@ use think\Request;
 
 use app\admin\service\SystemManagerRoleService;
 use app\admin\validate\SystemManagerRoleValidate;
-use app\admin\dependency\SystemManagerRoleDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemManagerRoleController extends SystemController
@@ -26,13 +26,13 @@ class SystemManagerRoleController extends SystemController
      * 服务类
      * @var SystemManagerRoleService
      */
-    protected $ManagerRoleService;
+    protected $SystemManagerRoleService;
 
     /**
      * 验证器
      * @var SystemManagerRoleValidate
      */
-    protected $ManagerRoleValidate;
+    protected $SystemManagerRoleValidate;
 
     /**
      * 初始化
@@ -41,8 +41,8 @@ class SystemManagerRoleController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerRoleService  = SystemManagerRoleDependency::getService();
-        $this->ManagerRoleValidate = SystemManagerRoleDependency::getValidate();
+        $this->SystemManagerRoleService  = Dependency::getProxy(SystemManagerRoleService::class);
+        $this->SystemManagerRoleValidate = Dependency::getProxy(SystemManagerRoleValidate::class);
     }
 
     /**
@@ -62,7 +62,7 @@ class SystemManagerRoleController extends SystemController
                 'identify' => $request->get('identify'),
             ];
 
-            $this->success('获取成功', '', $this->ManagerRoleService->getPageRole($params));
+            $this->success('获取成功', '', $this->SystemManagerRoleService->getPageRole($params));
         }
 
         return $this->fetch();
@@ -86,8 +86,8 @@ class SystemManagerRoleController extends SystemController
                 'sort'       => $request->post('sort'),
             ];
 
-            $this->ManagerRoleValidate->scene('create')->verify($params);
-            $this->ManagerRoleService->createRole($params);
+            $this->SystemManagerRoleValidate->scene('create')->verify($params);
+            $this->SystemManagerRoleService->createRole($params);
 
             $this->success('添加成功');
         }
@@ -114,13 +114,13 @@ class SystemManagerRoleController extends SystemController
                 'sort'       => $request->post('sort'),
             ];
 
-            $this->ManagerRoleValidate->scene('update')->verify($params);
-            $this->ManagerRoleService->updateRole($params);
+            $this->SystemManagerRoleValidate->scene('update')->verify($params);
+            $this->SystemManagerRoleService->updateRole($params);
 
             $this->success('修改成功');
         }
 
-        $role = $this->ManagerRoleService->getRoleById($request->get('roleId'));
+        $role = $this->SystemManagerRoleService->getRoleById($request->get('roleId'));
 
         return $this->fetch('', [
             'role' => $role
@@ -140,8 +140,8 @@ class SystemManagerRoleController extends SystemController
                 'roleId' => $request->post('roleId')
             ];
 
-            $this->ManagerRoleValidate->scene('delete')->verify($params);
-            $this->ManagerRoleService->deleteRole($params);
+            $this->SystemManagerRoleValidate->scene('delete')->verify($params);
+            $this->SystemManagerRoleService->deleteRole($params);
 
             $this->success('删除成功');
         }
@@ -155,7 +155,7 @@ class SystemManagerRoleController extends SystemController
     public function getAllAction(Request $request)
     {
         if ($request->isAjax()) {
-            $this->success('获取成功', '', $this->ManagerRoleService->getAll());
+            $this->success('获取成功', '', $this->SystemManagerRoleService->getAll());
         }
     }
 }

@@ -10,12 +10,13 @@ use think\Request;
 use think\Response;
 
 use app\common\util\ArrayUtil;
+use app\common\dependency\Dependency;
 
 use app\admin\enum\SystemMenuEnum;
 use app\admin\enum\SystemOperLogEnum;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\dependency\SystemOperLogDependency;
+use app\admin\service\SystemOperLogService;
 
 class SystemLogBehavior
 {
@@ -43,7 +44,7 @@ class SystemLogBehavior
                 $log['status']      = SystemOperLogEnum::translateCode($data['code']);
                 $log['description'] = $data['msg'];
 
-                SystemOperLogDependency::getService()->createLog($log);
+                Dependency::getProxy(SystemOperLogService::class)->createLog($log);
             }
         }
     }

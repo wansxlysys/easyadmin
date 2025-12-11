@@ -10,8 +10,8 @@ use think\Request;
 
 use app\admin\service\SystemMenuService;
 use app\admin\validate\SystemMenuValidate;
-use app\admin\dependency\SystemMenuDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemMenuController extends SystemController
@@ -41,8 +41,8 @@ class SystemMenuController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemMenuService  = SystemMenuDependency::getService();
-        $this->SystemMenuValidate = SystemMenuDependency::getValidate();
+        $this->SystemMenuService  = Dependency::getProxy(SystemMenuService::class);
+        $this->SystemMenuValidate = Dependency::getProxy(SystemMenuValidate::class);
     }
 
     /**

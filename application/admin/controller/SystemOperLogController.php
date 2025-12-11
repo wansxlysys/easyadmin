@@ -9,8 +9,8 @@ use Exception;
 use think\Request;
 
 use app\admin\service\SystemOperLogService;
-use app\admin\dependency\SystemOperLogDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemOperLogController extends SystemController
@@ -34,7 +34,7 @@ class SystemOperLogController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemOperLogService = SystemOperLogDependency::getService();
+        $this->SystemOperLogService = Dependency::getProxy(SystemOperLogService::class);
     }
 
     /**

@@ -9,10 +9,11 @@ use Exception;
 use think\Request;
 
 use app\admin\helper\SystemManagerHelper;
+use app\admin\service\SystemMenuService;
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
-use app\admin\dependency\SystemMenuDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemIndexController extends SystemController
@@ -42,7 +43,7 @@ class SystemIndexController extends SystemController
      */
     public function indexAction()
     {
-        $menuTree = SystemMenuDependency::getService()->getLeftMenu();
+        $menuTree = Dependency::getProxy(SystemMenuService::class)->getLeftMenu();
 
         return $this->fetch('', [
             'menuTree' => $menuTree

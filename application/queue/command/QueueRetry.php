@@ -6,13 +6,14 @@ namespace app\queue\command;
 
 use Exception;
 
+use app\common\dependency\Dependency;
+use app\queue\service\QueueFailedService;
+
 use think\Queue;
 use think\console\Input;
 use think\console\Output;
 use think\console\Command;
 use think\console\input\Option;
-
-use app\queue\dependency\QueueFailedDependency;
 
 class QueueRetry extends Command
 {
@@ -37,7 +38,7 @@ class QueueRetry extends Command
     {
         $queue = $input->getOption('queue');
 
-        $QueueFiledService = QueueFailedDependency::getService();
+        $QueueFiledService = Dependency::getProxy(QueueFailedService::class);
 
         $failedList = $QueueFiledService->getListFailed($queue);
 

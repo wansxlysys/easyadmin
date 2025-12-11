@@ -9,8 +9,8 @@ use Exception;
 use think\Request;
 
 use app\admin\service\SystemUploadService;
-use app\admin\dependency\SystemUploadDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemUploadController extends SystemController
@@ -34,7 +34,7 @@ class SystemUploadController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemUploadService = SystemUploadDependency::getService();
+        $this->SystemUploadService = Dependency::getProxy(SystemUploadService::class);
     }
 
     /**

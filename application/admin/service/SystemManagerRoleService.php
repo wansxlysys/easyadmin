@@ -4,14 +4,15 @@
 namespace app\admin\service;
 
 
-use app\admin\dependency\SystemManagerDependency;
+use Exception;
+
+use app\common\enum\DeleteEnum;
+use app\common\repository\Wrapper;
+use app\common\exception\ServiceException;
+
 use app\admin\enum\ManagerRoleEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemManagerRoleRepository;
-use app\common\enum\DeleteEnum;
-use app\common\exception\ServiceException;
-use app\common\repository\Wrapper;
-use Exception;
 
 class SystemManagerRoleService
 {
@@ -19,7 +20,13 @@ class SystemManagerRoleService
      * 存储类
      * @var SystemManagerRoleRepository
      */
-    protected SystemManagerRoleRepository $ManagerRoleRepository;
+    protected SystemManagerRoleRepository $SystemManagerRoleRepository;
+
+    /**
+     * 管理员服务类
+     * @var SystemManagerService
+     */
+    protected SystemManagerService $SystemManagerService;
 
     /**
      * 获取列表
@@ -45,7 +52,7 @@ class SystemManagerRoleService
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('sort', 'asc');
 
-        $page = $this->ManagerRoleRepository->getPage($Wrapper);
+        $page = $this->SystemManagerRoleRepository->getPage($Wrapper);
 
         return ['list' => $page->items(), 'total' => $page->total()];
     }
@@ -67,7 +74,7 @@ class SystemManagerRoleService
         $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
         $Wrapper->addOrder('sort', 'asc');
 
-        return $this->ManagerRoleRepository->getAll($Wrapper);
+        return $this->SystemManagerRoleRepository->getAll($Wrapper);
     }
 
     /**
@@ -78,7 +85,7 @@ class SystemManagerRoleService
      */
     public function getRoleById($roleId)
     {
-        return $this->ManagerRoleRepository->getById($roleId);
+        return $this->SystemManagerRoleRepository->getById($roleId);
     }
 
     /**
@@ -89,22 +96,20 @@ class SystemManagerRoleService
      */
     public function deleteRole($params)
     {
-        $ManagerService = SystemManagerDependency::getService();
-
-        if ($ManagerService->getByRoleId($params['roleId'])) {
+        if ($this->SystemManagerService->getByRoleId($params['roleId'])) {
             throw new ServiceException('删除失败，角色下存在管理员');
         }
 
         /**
          * 超级管理员角色禁止删除
          */
-        $role = $this->ManagerRoleRepository->getById($params['roleId']);
+        $role = $this->SystemManagerRoleRepository->getById($params['roleId']);
 
         if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
             throw new ServiceException('删除失败，禁止删除超管角色');
         }
 
-        return $this->ManagerRoleRepository->updateById($params['roleId'], ['isDelete' => DeleteEnum::DELETE_YES]);
+        return $this->SystemManagerRoleRepository->updateById($params['roleId'], ['isDelete' => DeleteEnum::DELETE_YES]);
     }
 
     /**
@@ -114,7 +119,7 @@ class SystemManagerRoleService
      */
     public function createRole(array $params)
     {
-        return $this->ManagerRoleRepository->createRecord($params);
+        return $this->SystemManagerRoleRepository->createRecord($params);
     }
 
     /**
@@ -125,6 +130,6 @@ class SystemManagerRoleService
      */
     public function updateRole(array $params)
     {
-        return $this->ManagerRoleRepository->updateById($params['roleId'], $params);
+        return $this->SystemManagerRoleRepository->updateById($params['roleId'], $params);
     }
 }

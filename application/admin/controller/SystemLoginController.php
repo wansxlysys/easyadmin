@@ -10,13 +10,13 @@ use think\Request;
 use think\Response;
 use think\captcha\Captcha;
 
+use app\common\dependency\Dependency;
 use app\common\controller\CommonController;
 
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemManagerService;
+use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemManagerValidate;
-use app\admin\dependency\SystemManagerDependency;
-use app\admin\dependency\SystemSettingDependency;
 
 class SystemLoginController extends CommonController
 {
@@ -24,13 +24,13 @@ class SystemLoginController extends CommonController
      * 服务类
      * @var SystemManagerService
      */
-    protected $ManagerService;
+    protected $SystemManagerService;
 
     /**
      * 验证器
      * @var SystemManagerValidate
      */
-    protected $ManagerValidate;
+    protected $SystemManagerValidate;
 
     /**
      * 初始化
@@ -41,8 +41,8 @@ class SystemLoginController extends CommonController
             $this->redirect('admin/SystemIndex/index');
         }
 
-        $this->ManagerService  = SystemManagerDependency::getService();
-        $this->ManagerValidate = SystemManagerDependency::getValidate();
+        $this->SystemManagerService  = Dependency::getProxy(SystemManagerService::class);
+        $this->SystemManagerValidate = Dependency::getProxy(SystemManagerValidate::class);
     }
 
     /**
@@ -62,14 +62,14 @@ class SystemLoginController extends CommonController
                 'captcha'  => $request->post('captcha'),
             ];
 
-            $this->ManagerValidate->scene('login')->verify($params);
-            $this->ManagerService->login($params);
+            $this->SystemManagerValidate->scene('login')->verify($params);
+            $this->SystemManagerService->login($params);
 
             $this->success('登录成功', 'admin/SystemIndex/index');
         }
 
         return $this->fetch('', [
-            'systemSetting' => SystemSettingDependency::getService()->getSystemSetting()
+            'systemSetting' => Dependency::getProxy(SystemSettingService::class)->getSystemSetting()
         ]);
     }
 

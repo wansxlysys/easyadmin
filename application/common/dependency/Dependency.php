@@ -23,6 +23,9 @@ class Dependency
 
     /**
      * 获取实例对象
+     * @template T
+     * @param class-string<T> $className
+     * @return T
      * @throws object
      */
     public static function getClass($className)
@@ -57,8 +60,9 @@ class Dependency
 
     /**
      * 获取动态代理对象
-     * @param $className
-     * @return mixed
+     * @template T
+     * @param class-string<T> $className
+     * @return T
      */
     public static function getProxy($className)
     {

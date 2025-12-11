@@ -14,11 +14,11 @@ use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;
 use app\index\aspect\TestAspect;
 use app\index\aspect\UserAspect;
-use app\index\dependency\DataDependency;
-use app\index\dependency\TestDependency;
 use app\index\dependency\UserDependency;
 use app\index\repository\UserRepository;
+use app\index\service\DataService;
 use app\index\service\LockService;
+use app\index\service\TestService;
 use app\index\service\UserService;
 use app\queue\producer\TestProducer;
 use Exception;
@@ -93,7 +93,7 @@ class TestController
         DependencyAspect::register(UserService::class, 'getName', RoleAspect::class);
         DependencyAspect::register(UserService::class, 'getName', TestAspect::class);
 
-        $UserService = UserDependency::getService();
+        $UserService = Dependency::getProxy(UserService::class);
 
         dump($UserService->getName("张三"));
     }
@@ -104,13 +104,9 @@ class TestController
      */
     public function injectAction()
     {
-        $UserService = UserDependency::getService();
-        $TestService = TestDependency::getService();
-        $DataService = DataDependency::getService();
-
-        dump($UserService->sayName());
-        dump($TestService->sayName());
-        dump($DataService->sayName());
+        dump(Dependency::getProxy(UserService::class)->sayName());
+        dump(Dependency::getProxy(TestService::class)->sayName());
+        dump(Dependency::getProxy(DataService::class)->sayName());
     }
 
     /**

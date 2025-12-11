@@ -10,8 +10,8 @@ use think\Request;
 
 use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
-use app\admin\dependency\SystemSettingDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemSettingController extends SystemController
@@ -41,8 +41,8 @@ class SystemSettingController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemSettingService  = SystemSettingDependency::getService();
-        $this->SystemSettingValidate = SystemSettingDependency::getValidate();
+        $this->SystemSettingService  = Dependency::getProxy(SystemSettingService::class);
+        $this->SystemSettingValidate = Dependency::getProxy(SystemSettingValidate::class);
     }
 
     /**

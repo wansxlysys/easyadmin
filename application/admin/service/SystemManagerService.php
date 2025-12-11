@@ -16,7 +16,6 @@ use app\common\exception\ServiceException;
 use app\admin\enum\ManagerEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemManagerRepository;
-use app\admin\dependency\SystemLoginLogDependency;
 
 class SystemManagerService
 {
@@ -25,6 +24,12 @@ class SystemManagerService
      * @var SystemManagerRepository
      */
     protected SystemManagerRepository $ManagerRepository;
+
+    /**
+     * 登录日志服务类
+     * @var SystemLoginLogService
+     */
+    protected SystemLoginLogService $SystemLoginLogService;
 
     /**
      * 获取列表
@@ -218,8 +223,6 @@ class SystemManagerService
             throw new ServiceException('执行失败，登录时间更新失败');
         }
 
-        $SystemLoginLogService = SystemLoginLogDependency::getService();
-
         try {
 
             /**
@@ -269,7 +272,7 @@ class SystemManagerService
             /**
              * 登录失败日志
              */
-            $SystemLoginLogService->loginError([
+            $this->SystemLoginLogService->loginError([
                 'loginIp'     => $params['loginIp'],
                 'managerId'   => $manager['managerId'],
                 'description' => $exception->getMessage(),
@@ -286,7 +289,7 @@ class SystemManagerService
         /**
          * 登录成功日志
          */
-        $SystemLoginLogService->loginSuccess([
+        $this->SystemLoginLogService->loginSuccess([
             'loginIp'     => $params['loginIp'],
             'managerId'   => $manager['managerId'],
             'description' => '登录成功',

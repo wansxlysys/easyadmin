@@ -8,13 +8,15 @@ use Exception;
 
 use think\facade\Hook;
 
+use app\common\dependency\Dependency;
+
 use app\admin\behavior\SystemLogBehavior;
-use app\admin\dependency\SystemManagerDependency;
-use app\admin\dependency\SystemMenuDependency;
-use app\admin\dependency\SystemSettingDependency;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemSettingHelper;
 use app\admin\helper\SystemManagerHelper;
+use app\admin\service\SystemManagerService;
+use app\admin\service\SystemMenuService;
+use app\admin\service\SystemSettingService;
 
 class SystemController extends CommonController
 {
@@ -24,9 +26,9 @@ class SystemController extends CommonController
      */
     public function initialize()
     {
-        $manager       = SystemManagerDependency::getService()->getManager();
-        $currentMenu   = SystemMenuDependency::getService()->getCurrentMenu();
-        $systemSetting = SystemSettingDependency::getService()->getSystemSetting();
+        $manager       = Dependency::getProxy(SystemManagerService::class)->getManager();
+        $currentMenu   = Dependency::getProxy(SystemMenuService::class)->getCurrentMenu();
+        $systemSetting = Dependency::getProxy(SystemSettingService::class)->getSystemSetting();
 
         /**
          * 设置缓存

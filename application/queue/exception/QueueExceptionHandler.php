@@ -7,8 +7,8 @@ namespace app\queue\exception;
 use think\queue\Job;
 
 use app\common\util\JsonUtil;
-
-use app\queue\dependency\QueueFailedDependency;
+use app\common\dependency\Dependency;
+use app\queue\service\QueueFailedService;
 
 class QueueExceptionHandler
 {
@@ -25,6 +25,6 @@ class QueueExceptionHandler
         $failed['consumer'] = $job->getName();
         $failed['payload']  = $rawBody['data'];
 
-        QueueFailedDependency::getService()->createFailed($failed);
+        Dependency::getProxy(QueueFailedService::class)->createFailed($failed);
     }
 }

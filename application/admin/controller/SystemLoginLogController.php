@@ -9,8 +9,8 @@ use Exception;
 use think\Request;
 
 use app\admin\service\SystemLoginLogService;
-use app\admin\dependency\SystemLoginLogDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemLoginLogController extends SystemController
@@ -34,7 +34,7 @@ class SystemLoginLogController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->SystemLoginLogService = SystemLoginLogDependency::getService();
+        $this->SystemLoginLogService = Dependency::getProxy(SystemLoginLogService::class);
     }
 
     /**

@@ -9,11 +9,11 @@ use Exception;
 use think\Image;
 use think\Request;
 
+use app\admin\service\SystemUploadService;
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
-use app\admin\dependency\SystemManagerDependency;
-use app\admin\dependency\SystemUploadDependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemManagerController extends SystemController
@@ -43,8 +43,8 @@ class SystemManagerController extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->ManagerService  = SystemManagerDependency::getService();
-        $this->ManagerValidate = SystemManagerDependency::getValidate();
+        $this->ManagerService  = Dependency::getProxy(SystemManagerService::class);
+        $this->ManagerValidate = Dependency::getProxy(SystemManagerValidate::class);
     }
 
     /**
@@ -161,7 +161,7 @@ class SystemManagerController extends SystemController
     {
         if ($request->isAjax()) {
 
-            $fileInfo = SystemUploadDependency::getService()->uploadImage($request->file('file'));
+            $fileInfo = Dependency::getProxy(SystemUploadService::class)->uploadImage($request->file('file'));
 
             Image::open($fileInfo['savePath'])->thumb(200, 200, 5)->save($fileInfo['savePath']);
 

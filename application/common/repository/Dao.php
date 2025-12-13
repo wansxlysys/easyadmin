@@ -8,6 +8,7 @@ use think\Db;
 use think\Paginator;
 use think\Exception;
 
+use app\common\enum\DeleteEnum;
 use app\common\util\DateTimeUtil;
 
 abstract class Dao
@@ -176,7 +177,20 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
-            ->whereOr($Wrapper->getWhereOr())
             ->delete();
+    }
+
+    /**
+     * 软删除数据
+     * @param Wrapper $Wrapper
+     * @return int
+     * @throws Exception
+     */
+    public function removeRecord(Wrapper $Wrapper)
+    {
+        return Db::name($this->getName())
+            ->where($Wrapper->getWhere())
+            ->where('isDelete', '=', DeleteEnum::DELETE_NOT)
+            ->update(['isDelete' => DeleteEnum::DELETE_YES, 'deleteTime' => DateTimeUtil::dateTime()]);
     }
 }

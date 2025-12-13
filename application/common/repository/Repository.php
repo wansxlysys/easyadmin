@@ -137,4 +137,34 @@ class Repository extends Dao
 
         return $this->deleteRecord($Wrapper);
     }
+
+    /**
+     * 通过ID软删除
+     * @param $id
+     * @return int
+     * @throws Exception
+     */
+    public function removeById($id)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere($this->tableId, 'in', $id);
+
+        return $this->removeRecord($Wrapper);
+    }
+
+    /**
+     * 条件软删除
+     * @param array $where
+     * @return int
+     * @throws Exception
+     */
+    public function removeByWhere(array $where)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->setWhere($where);
+
+        return $this->removeRecord($Wrapper);
+    }
 }

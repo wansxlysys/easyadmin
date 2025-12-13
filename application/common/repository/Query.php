@@ -19,6 +19,12 @@ abstract class Query
     protected $whereOr = [];
 
     /**
+     * 并联或条件
+     * @var array
+     */
+    protected $andOr = [];
+
+    /**
      * 当前页
      * @var int
      */
@@ -93,7 +99,7 @@ abstract class Query
     }
 
     /**
-     * 设置where
+     * 设置whereOr
      * @param array $whereOr
      */
     public function setWhereOr(array $whereOr)
@@ -102,7 +108,7 @@ abstract class Query
     }
 
     /**
-     * 添加where
+     * 添加whereOr
      * @param $field
      * @param $condition
      * @param $value
@@ -110,6 +116,37 @@ abstract class Query
     public function addWhereOr($field, $condition, $value)
     {
         $this->whereOr[] = [$field, $condition, $value];
+    }
+
+    /**
+     * 获取andOr
+     * @return callable
+     */
+    public function getAndOr()
+    {
+        return function ($query) {
+            $query->whereOr($this->andOr);
+        };
+    }
+
+    /**
+     * 设置andOr
+     * @param array $andOr
+     */
+    public function setAndOr(array $andOr)
+    {
+        $this->andOr = $andOr;
+    }
+
+    /**
+     * 添加andOr
+     * @param $field
+     * @param $condition
+     * @param $value
+     */
+    public function addAndOr($field, $condition, $value)
+    {
+        $this->andOr[] = [$field, $condition, $value];
     }
 
     /**

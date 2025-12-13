@@ -40,6 +40,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
+            ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
             ->limit($Wrapper->getLimit())
@@ -60,6 +61,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
+            ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
             ->limit($Wrapper->getLimit())
@@ -79,6 +81,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
+            ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->count();
     }
@@ -93,6 +96,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
+            ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
@@ -111,6 +115,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
+            ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())

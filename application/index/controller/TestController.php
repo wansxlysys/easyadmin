@@ -14,7 +14,6 @@ use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;
 use app\index\aspect\TestAspect;
 use app\index\aspect\UserAspect;
-use app\index\dependency\UserDependency;
 use app\index\repository\UserRepository;
 use app\index\service\DataService;
 use app\index\service\LockService;

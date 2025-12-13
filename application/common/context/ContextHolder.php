@@ -10,7 +10,7 @@ class ContextHolder
      * 缓存
      * @var array
      */
-    protected static $store = [];
+    protected static $context = [];
 
     /**
      * 检测缓存变量是否存在
@@ -19,7 +19,7 @@ class ContextHolder
      */
     public static function has($name)
     {
-        return isset(static::$store[$name]);
+        return isset(static::$context[$name]);
     }
 
     /**
@@ -29,7 +29,7 @@ class ContextHolder
      */
     public static function set($name, $value)
     {
-        static::$store[$name] = $value;
+        static::$context[$name] = $value;
     }
 
     /**
@@ -39,7 +39,7 @@ class ContextHolder
      */
     public static function get($name)
     {
-        return static::$store[$name] ?? null;
+        return static::$context[$name] ?? null;
     }
 
     /**
@@ -49,8 +49,8 @@ class ContextHolder
      */
     public function del($name)
     {
-        if (isset(static::$store[$name])) {
-            unset(static::$store[$name]);
+        if (isset(static::$context[$name])) {
+            unset(static::$context[$name]);
         }
     }
 
@@ -60,7 +60,7 @@ class ContextHolder
      */
     public static function getAll()
     {
-        return static::$store;
+        return static::$context;
     }
 
     /**
@@ -68,6 +68,6 @@ class ContextHolder
      */
     public static function clear()
     {
-        static::$store = [];
+        static::$context = [];
     }
 }

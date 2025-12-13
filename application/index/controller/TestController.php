@@ -130,7 +130,8 @@ class TestController
      */
     public function queueAction()
     {
-        TestProducer::test(['userId' => 1]);
+        TestProducer::testPush(['queue' => 'push', 'userId' => rand(100, 999)]);
+        TestProducer::testDelay(['queue' => 'delay', 'userId' => rand(100, 999)], 10);
     }
 
     /**

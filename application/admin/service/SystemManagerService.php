@@ -216,13 +216,6 @@ class SystemManagerService
             throw new ServiceException('登录失败，管理员不存在');
         }
 
-        /**
-         * 更新最后登录时间
-         */
-        if (!$this->ManagerRepository->updateById($manager['managerId'], ['loginTime' => DateTimeUtil::dateTime()])) {
-            throw new ServiceException('执行失败，登录时间更新失败');
-        }
-
         try {
 
             /**
@@ -272,11 +265,7 @@ class SystemManagerService
             /**
              * 登录失败日志
              */
-            $this->SystemLoginLogService->loginError([
-                'loginIp'     => $params['loginIp'],
-                'managerId'   => $manager['managerId'],
-                'description' => $exception->getMessage(),
-            ]);
+            $this->SystemLoginLogService->loginError($params['loginIp'], $manager['managerId'], $exception->getMessage());
 
             throw new ServiceException($exception->getMessage());
         }
@@ -287,13 +276,14 @@ class SystemManagerService
         SystemManagerHelper::login($manager['managerId'], $manager['account'], $manager['password']);
 
         /**
+         * 更新最后登录时间
+         */
+        $this->ManagerRepository->updateById($manager['managerId'], ['loginError' => 0, 'loginTime' => DateTimeUtil::dateTime()]);
+
+        /**
          * 登录成功日志
          */
-        $this->SystemLoginLogService->loginSuccess([
-            'loginIp'     => $params['loginIp'],
-            'managerId'   => $manager['managerId'],
-            'description' => '登录成功',
-        ]);
+        $this->SystemLoginLogService->loginSuccess($params['loginIp'], $manager['managerId'], '登录成功');
 
         return true;
     }

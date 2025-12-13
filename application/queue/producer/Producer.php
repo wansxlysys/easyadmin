@@ -20,4 +20,18 @@ abstract class Producer
     {
         Queue::push($consumer . '@' . $method, $data, $queue);
     }
+
+    /**
+     * 投递队列
+     * @param $consumer
+     * @param $method
+     * @param $data
+     * @param $delay
+     * @param null $queue
+     * @return void
+     */
+    public static function delay($consumer, $method, $data, $delay, $queue = null)
+    {
+        Queue::later($delay, $consumer . '@' . $method, $data, $queue);
+    }
 }

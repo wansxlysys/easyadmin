@@ -80,30 +80,34 @@ class SystemLoginLogService
 
     /**
      * 登录成功
-     * @param array $params
+     * @param $loginIp
+     * @param $managerId
+     * @param $description
      * @return int
      */
-    public function loginSuccess(array $params)
+    public function loginSuccess($loginIp, $managerId, $description)
     {
         $data['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
-        $data['loginIp']     = $params['loginIp'];
-        $data['managerId']   = $params['managerId'];
-        $data['description'] = $params['description'];
+        $data['loginIp']     = $loginIp;
+        $data['managerId']   = $managerId;
+        $data['description'] = $description;
 
         return $this->SystemLoginLogRepository->createRecord($data);
     }
 
     /**
      * 登录失败
-     * @param array $params
+     * @param $loginIp
+     * @param $managerId
+     * @param $description
      * @return int
      */
-    public function loginError(array $params)
+    public function loginError($loginIp, $managerId, $description)
     {
         $data['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
-        $data['loginIp']     = $params['loginIp'];
-        $data['managerId']   = $params['managerId'];
-        $data['description'] = $params['description'];
+        $data['loginIp']     = $loginIp;
+        $data['managerId']   = $managerId;
+        $data['description'] = $description;
 
         return $this->SystemLoginLogRepository->createRecord($data);
     }

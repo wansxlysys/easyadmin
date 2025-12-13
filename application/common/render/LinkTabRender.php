@@ -19,7 +19,9 @@ class LinkTabRender
         $params = http_build_query($params);
 
         foreach ($tabs as $key => $item) {
-            $render .= "<li " . ($action == $key ? 'class="layui-this"' : '') . "><a href='{$item['url']}?{$params}'>{$item['title']}</a></li>";
+            $render .= "<li " . ($action == $key ? 'class="layui-this"' : '') . ">";
+            $render .= "    <a href='{$item['url']}?{$params}'>{$item['title']}</a>";
+            $render .= "</li>";
         }
 
         return '<ul class="layui-tab-title">' . $render . '</ul>';

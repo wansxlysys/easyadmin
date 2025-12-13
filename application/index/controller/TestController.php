@@ -7,9 +7,9 @@ namespace app\index\controller;
 use app\admin\repository\SystemManagerRepository;
 use app\common\dependency\Dependency;
 use app\common\dependency\DependencyAspect;
-use app\common\helper\ExcelHelper;
 use app\common\helper\RedisHelper;
 use app\common\library\lock\RedisLock;
+use app\common\util\ExcelUtil;
 use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;
 use app\index\aspect\TestAspect;
@@ -147,7 +147,7 @@ class TestController
             '入学' => ['field' => 'datetime', 'type' => 'datetime', 'format' => 'Y-m-d H:m:s'],
         ];
 
-        $readData = ExcelHelper::read("C:/Users/liming/Desktop/read.xlsx", $readOptions);
+        $readData = ExcelUtil::read("C:/Users/liming/Desktop/read.xlsx", $readOptions);
 
         dump($readData);
 
@@ -164,6 +164,6 @@ class TestController
             ['name' => '王五', 'age' => 19, 'date' => '2024-12-01', 'tel' => 19589668558],
         ];
 
-        ExcelHelper::save("C:/Users/liming/Desktop/write.xlsx", $writeOptions, $writeData);
+        ExcelUtil::save("C:/Users/liming/Desktop/write.xlsx", $writeOptions, $writeData);
     }
 }

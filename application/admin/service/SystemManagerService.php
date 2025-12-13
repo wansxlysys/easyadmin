@@ -10,6 +10,7 @@ use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\DateTimeUtil;
 use app\common\enum\DeleteEnum;
+use app\common\service\Service;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 
@@ -17,7 +18,7 @@ use app\admin\enum\ManagerEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemManagerRepository;
 
-class SystemManagerService
+class SystemManagerService extends Service
 {
     /**
      * 存储类

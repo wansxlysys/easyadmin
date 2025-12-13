@@ -10,6 +10,7 @@ use think\File;
 use think\Validate;
 
 use app\common\util\FileUtil;
+use app\common\service\Service;
 use app\common\helper\FileHelper;
 use app\common\exception\ServiceException;
 use app\common\exception\ValidateException;
@@ -17,7 +18,7 @@ use app\common\exception\ValidateException;
 use app\admin\enum\UploadEnum;
 use app\admin\repository\SystemUploadRepository;
 
-class SystemUploadService
+class SystemUploadService extends Service
 {
     /**
      * 存储类

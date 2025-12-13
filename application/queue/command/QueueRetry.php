@@ -6,14 +6,15 @@ namespace app\queue\command;
 
 use Exception;
 
-use app\common\dependency\Dependency;
-use app\queue\service\QueueFailedService;
-
 use think\Queue;
 use think\console\Input;
 use think\console\Output;
 use think\console\Command;
 use think\console\input\Option;
+
+use app\common\dependency\Dependency;
+use app\queue\format\QueueFailedFormat;
+use app\queue\service\QueueFailedService;
 
 class QueueRetry extends Command
 {
@@ -43,6 +44,11 @@ class QueueRetry extends Command
         $failedList = $QueueFiledService->getListFailed($queue);
 
         foreach ($failedList as $failed) {
+
+            /**
+             * 格式化数据
+             */
+            QueueFailedFormat::formatPayload($failed);
 
             /**
              * 重新投递队列

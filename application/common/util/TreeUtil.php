@@ -4,7 +4,7 @@
 namespace app\common\util;
 
 
-class TreeArrayUtil
+class TreeUtil
 {
     /**
      * ID名称
@@ -108,7 +108,7 @@ class TreeArrayUtil
      * @param null $resolve
      * @return array
      */
-    public function arrayToTree($array, $resolve = null, $parentId = 0)
+    public function toTree($array, $resolve = null, $parentId = 0)
     {
         $arrayMap  = [];
         $treeArray = [];
@@ -160,12 +160,12 @@ class TreeArrayUtil
      * @param array $result
      * @return array
      */
-    public function treeToArray($tree, $removeChild = true, &$result = [])
+    public function toArray($tree, $removeChild = true, &$result = [])
     {
         foreach ($tree as $item) {
 
             if (!empty($item[$this->children])) {
-                $this->treeToArray($item[$this->children], $removeChild, $result);
+                $this->toArray($item[$this->children], $removeChild, $result);
             }
 
             if ($removeChild) {
@@ -187,7 +187,7 @@ class TreeArrayUtil
      * @param array $result
      * @return array
      */
-    public function arrayToTreeStruct($array, $parentId = 0, $level = 1, $resolve = null, &$result = [])
+    public function toStruct($array, $parentId = 0, $level = 1, $resolve = null, &$result = [])
     {
         foreach ($array as $item) {
 
@@ -202,7 +202,7 @@ class TreeArrayUtil
 
                 $result[] = $item;
 
-                $this->arrayToTreeStruct($array, $item[$this->id], $level + 1, $resolve, $result);
+                $this->toStruct($array, $item[$this->id], $level + 1, $resolve, $result);
             }
         }
 

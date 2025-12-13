@@ -5,7 +5,7 @@ namespace app\admin\helper;
 
 
 use app\admin\enum\SystemSettingEnum;
-use app\common\helper\StoreHelper;
+use app\common\context\ContextHolder;
 
 class SystemSettingHelper
 {
@@ -15,7 +15,7 @@ class SystemSettingHelper
      */
     public static function setSystemSetting($systemSetting)
     {
-        StoreHelper::set(SystemSettingEnum::SYSTEM_SETTING, $systemSetting);
+        ContextHolder::set(SystemSettingEnum::SYSTEM_SETTING, $systemSetting);
     }
 
     /**
@@ -24,6 +24,6 @@ class SystemSettingHelper
      */
     public static function getSystemSetting()
     {
-        return StoreHelper::get(SystemSettingEnum::SYSTEM_SETTING);
+        return ContextHolder::get(SystemSettingEnum::SYSTEM_SETTING);
     }
 }

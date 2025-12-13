@@ -6,12 +6,13 @@ namespace app\admin\service;
 
 use Exception;
 
+use app\common\service\Service;
 use app\common\repository\Wrapper;
 
 use app\admin\enum\SystemSettingEnum;
 use app\admin\repository\SystemSettingRepository;
 
-class SystemSettingService
+class SystemSettingService extends Service
 {
     /**
      * 存储类

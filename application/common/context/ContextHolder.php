@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\common\context;
 
 
-class StoreHelper
+class ContextHolder
 {
     /**
      * 缓存
@@ -39,7 +39,7 @@ class StoreHelper
      */
     public static function get($name)
     {
-        return isset(static::$store[$name]) ? static::$store[$name] : null;
+        return static::$store[$name] ?? null;
     }
 
     /**

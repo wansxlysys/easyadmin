@@ -4,16 +4,14 @@
 namespace app\admin\helper;
 
 
-use think\facade\Session;
-
+use app\admin\enum\ManagerEnum;
+use app\admin\enum\ManagerRoleEnum;
+use app\common\context\ContextHolder;
 use app\common\enum\DeleteEnum;
-use app\common\helper\StoreHelper;
 use app\common\helper\PermissionHelper;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
-
-use app\admin\enum\ManagerEnum;
-use app\admin\enum\ManagerRoleEnum;
+use think\facade\Session;
 
 class SystemManagerHelper
 {
@@ -74,7 +72,7 @@ class SystemManagerHelper
      */
     public static function setManager($manager)
     {
-        StoreHelper::set(ManagerEnum::LOGIN_MANAGER, $manager);
+        ContextHolder::set(ManagerEnum::LOGIN_MANAGER, $manager);
     }
 
     /**
@@ -83,7 +81,7 @@ class SystemManagerHelper
      */
     public static function getManager()
     {
-        return StoreHelper::get(ManagerEnum::LOGIN_MANAGER);
+        return ContextHolder::get(ManagerEnum::LOGIN_MANAGER);
     }
 
     /**

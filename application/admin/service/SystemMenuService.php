@@ -8,15 +8,16 @@ use Exception;
 
 use think\facade\Request;
 
+use app\common\util\TreeUtil;
+use app\common\service\Service;
 use app\common\repository\Wrapper;
-use app\common\util\ArrayUtil;
-use app\common\util\TreeArrayUtil;
 
 use app\admin\enum\SystemMenuEnum;
+use app\admin\format\SystemMenuFormat;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemMenuRepository;
 
-class SystemMenuService
+class SystemMenuService extends Service
 {
     /**
      * 存储类
@@ -42,8 +43,8 @@ class SystemMenuService
 
         $list = $this->SystemMenuRepository->getAll($Wrapper);
 
-        foreach ($list as $key => $item) {
-            $list[$key]['icon'] = "<i class='fa fa-fw {$item['icon']}'></i>";
+        foreach ($list as &$item) {
+            SystemMenuFormat::formatIcon($item);
         }
 
         return ['list' => $list, 'total' => count($list)];
@@ -62,12 +63,12 @@ class SystemMenuService
         $Wrapper->addWhere('type', 'in', [SystemMenuEnum::TYPE_MENU, SystemMenuEnum::TYPE_LINK]);
         $Wrapper->addWhere('menuId', 'in', SystemManagerHelper::getPermission());
 
-        $TreeArrayUtil = new TreeArrayUtil();
+        $TreeArrayUtil = new TreeUtil();
 
         $TreeArrayUtil->setId('menuId');
 
-        return $TreeArrayUtil->arrayToTree($this->SystemMenuRepository->getAll($Wrapper), function (&$item) {
-            $item = $this->formatData($item);
+        return $TreeArrayUtil->toTree($this->SystemMenuRepository->getAll($Wrapper), function (&$item) {
+            SystemMenuFormat::formatUrl($item);
         });
     }
 
@@ -139,7 +140,7 @@ class SystemMenuService
      */
     public function createMenu(array $params)
     {
-        return $this->SystemMenuRepository->createRecord($this->buildData($params));
+        return $this->SystemMenuRepository->createRecord(SystemMenuFormat::buildData($params));
     }
 
     /**
@@ -150,7 +151,7 @@ class SystemMenuService
      */
     public function updateMenu(array $params)
     {
-        return $this->SystemMenuRepository->updateById($params['menuId'], $this->buildData($params));
+        return $this->SystemMenuRepository->updateById($params['menuId'], SystemMenuFormat::buildData($params));
     }
 
     /**
@@ -173,56 +174,5 @@ class SystemMenuService
     public function deleteMenu(array $params)
     {
         return $this->SystemMenuRepository->deleteById($params['menuId']);
-    }
-
-    /**
-     * 构建储存数据
-     * @param array $data
-     * @return array
-     */
-    public function buildData(array $data)
-    {
-        /**
-         * 如果不是外链则清空链接地址
-         */
-        if ($data['type'] != SystemMenuEnum::TYPE_LINK) {
-            $data['link'] = '';
-        }
-
-        return $data;
-    }
-
-    /**
-     * 格式化数据
-     * @param array $data
-     * @return array
-     */
-    public function formatData(array $data)
-    {
-        if (empty($data['module'])) {
-            $data['url'] = '';
-        } else {
-            $data['url'] = $this->buildUrl($data);
-        }
-
-        return $data;
-    }
-
-    /**
-     * 构建菜单url
-     * @param $menu
-     * @return string
-     */
-    protected function buildUrl($menu)
-    {
-        if ($menu['type'] == SystemMenuEnum::TYPE_LINK) {
-            return $menu['link'];
-        }
-
-        $url[] = $menu['module'];
-        $url[] = $menu['controller'];
-        $url[] = $menu['action'];
-
-        return url(ArrayUtil::toString($url, '/'), $menu['params']);
     }
 }

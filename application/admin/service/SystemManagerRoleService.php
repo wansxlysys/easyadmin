@@ -7,6 +7,7 @@ namespace app\admin\service;
 use Exception;
 
 use app\common\enum\DeleteEnum;
+use app\common\service\Service;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 
@@ -14,7 +15,7 @@ use app\admin\enum\ManagerRoleEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemManagerRoleRepository;
 
-class SystemManagerRoleService
+class SystemManagerRoleService extends Service
 {
     /**
      * 存储类

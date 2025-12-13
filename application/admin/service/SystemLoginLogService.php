@@ -6,6 +6,7 @@ namespace app\admin\service;
 
 use Exception;
 
+use app\common\service\Service;
 use app\common\repository\Wrapper;
 
 use app\admin\enum\ManagerEnum;
@@ -13,7 +14,7 @@ use app\admin\enum\SystemLoginLogEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemLoginLogRepository;
 
-class SystemLoginLogService
+class SystemLoginLogService extends Service
 {
     /**
      * 存储类

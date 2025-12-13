@@ -31,7 +31,7 @@ class FileUtil
      * @param $path
      * @return string
      */
-    public static function getExt($path)
+    public static function getExtension($path)
     {
         return pathinfo($path, PATHINFO_EXTENSION);
     }

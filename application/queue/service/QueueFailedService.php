@@ -7,10 +7,9 @@ namespace app\queue\service;
 use Exception;
 
 use app\common\service\Service;
-use app\common\util\JsonUtil;
-use app\common\util\ArrayUtil;
 use app\common\repository\Wrapper;
 
+use app\queue\format\QueueFailedFormat;
 use app\queue\repository\QueueFailedRepository;
 
 class QueueFailedService extends Service
@@ -32,7 +31,7 @@ class QueueFailedService extends Service
         $Wrapper->addOrder('id', 'desc');
         $Wrapper->addWhere('queue', '=', $queue);
 
-        return $this->formatList($this->QueueFailedRepository->getAll($Wrapper));
+        return $this->QueueFailedRepository->getAll($Wrapper);
     }
 
     /**
@@ -42,7 +41,7 @@ class QueueFailedService extends Service
      */
     public function createFailed(array $data)
     {
-        return $this->QueueFailedRepository->createRecord($this->buildData($data));
+        return $this->QueueFailedRepository->createRecord(QueueFailedFormat::buildPayload($data));
     }
 
     /**
@@ -54,33 +53,5 @@ class QueueFailedService extends Service
     public function deleteFailed($id)
     {
         return $this->QueueFailedRepository->deleteById($id);
-    }
-
-    /**
-     * 格式化数据
-     * @param array $data
-     * @return array
-     */
-    public function formatData(array $data)
-    {
-        if (!empty($data['payload'])) {
-            $data['payload'] = JsonUtil::toArray($data['payload']);
-        }
-        
-        return $data;
-    }
-
-    /**
-     * 构建数据
-     * @param array $data
-     * @return array
-     */
-    public function buildData(array $data)
-    {
-        if (!empty($data['payload'])) {
-            $data['payload'] = ArrayUtil::toJson($data['payload']);
-        }
-
-        return $data;
     }
 }

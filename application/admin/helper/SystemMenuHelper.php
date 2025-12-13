@@ -5,7 +5,7 @@ namespace app\admin\helper;
 
 
 use app\admin\enum\SystemMenuEnum;
-use app\common\helper\StoreHelper;
+use app\common\context\ContextHolder;
 
 class SystemMenuHelper
 {
@@ -15,7 +15,7 @@ class SystemMenuHelper
      */
     public static function setCurrentMenu($currentMenu)
     {
-        StoreHelper::set(SystemMenuEnum::CURRENT_MENU, $currentMenu);
+        ContextHolder::set(SystemMenuEnum::CURRENT_MENU, $currentMenu);
     }
 
     /**
@@ -24,6 +24,6 @@ class SystemMenuHelper
      */
     public static function getCurrentMenu()
     {
-        return StoreHelper::get(SystemMenuEnum::CURRENT_MENU);
+        return ContextHolder::get(SystemMenuEnum::CURRENT_MENU);
     }
 }

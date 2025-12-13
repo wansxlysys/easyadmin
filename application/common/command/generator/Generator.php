@@ -41,7 +41,6 @@ class Generator extends Command
             ['layer' => 'service', 'stub' => 'Service'],
             ['layer' => 'validate', 'stub' => 'Validate'],
             ['layer' => 'controller', 'stub' => 'Controller'],
-            ['layer' => 'dependency', 'stub' => 'Dependency'],
             ['layer' => 'repository', 'stub' => 'Repository'],
         ];
 

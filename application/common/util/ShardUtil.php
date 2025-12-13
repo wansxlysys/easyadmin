@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\common\util;
 
 
-class TableHelper
+class ShardUtil
 {
     /**
      * 取余方式分表

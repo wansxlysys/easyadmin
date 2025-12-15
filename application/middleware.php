@@ -1,8 +1,8 @@
 <?php
 
 
-use app\http\middleware\InterceptorMiddleware;
+use app\http\middleware\RepeatMiddleware;
 
 return [
-    InterceptorMiddleware::class
+    RepeatMiddleware::class
 ];

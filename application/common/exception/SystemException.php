@@ -4,9 +4,9 @@
 namespace app\common\exception;
 
 
-use Exception;
+use RuntimeException;
 
-class SystemException extends Exception
+class SystemException extends RuntimeException
 {
 
 }

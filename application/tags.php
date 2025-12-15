@@ -2,7 +2,6 @@
 
 
 use app\common\behavior\AspectBehavior;
-use app\common\behavior\InterceptorBehavior;
 use app\common\behavior\SystemBehavior;
 
 use app\queue\exception\QueueExceptionHandler;
@@ -14,7 +13,6 @@ return [
     ],
     // 应用开始
     'app_begin'    => [
-        InterceptorBehavior::class,
         AspectBehavior::class
     ],
     // 模块初始化

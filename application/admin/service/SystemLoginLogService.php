@@ -83,15 +83,15 @@ class SystemLoginLogService extends Service
      * 登录成功
      * @param $loginIp
      * @param $managerId
-     * @param $description
+     * @param $message
      * @return int
      */
-    public function loginSuccess($loginIp, $managerId, $description)
+    public function loginSuccess($loginIp, $managerId, $message)
     {
-        $data['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
-        $data['loginIp']     = $loginIp;
-        $data['managerId']   = $managerId;
-        $data['description'] = $description;
+        $data['status']    = SystemLoginLogEnum::STATUS_SUCCESS;
+        $data['loginIp']   = $loginIp;
+        $data['managerId'] = $managerId;
+        $data['message']   = $message;
 
         return $this->SystemLoginLogRepository->createRecord($data);
     }
@@ -100,15 +100,15 @@ class SystemLoginLogService extends Service
      * 登录失败
      * @param $loginIp
      * @param $managerId
-     * @param $description
+     * @param $message
      * @return int
      */
-    public function loginError($loginIp, $managerId, $description)
+    public function loginError($loginIp, $managerId, $message)
     {
-        $data['status']      = SystemLoginLogEnum::STATUS_SUCCESS;
-        $data['loginIp']     = $loginIp;
-        $data['managerId']   = $managerId;
-        $data['description'] = $description;
+        $data['status']    = SystemLoginLogEnum::STATUS_SUCCESS;
+        $data['loginIp']   = $loginIp;
+        $data['managerId'] = $managerId;
+        $data['message']   = $message;
 
         return $this->SystemLoginLogRepository->createRecord($data);
     }

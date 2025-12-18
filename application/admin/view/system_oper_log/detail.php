@@ -55,7 +55,7 @@ $manager = service('SystemManager', 'admin')->getByManagerId($log['managerId']);
                 </div>
                 <div class="easy-info-grid easy-info-grid-100">
                     <div class="easy-info-grid-left">操作信息：</div>
-                    <div class="easy-info-grid-right">{$log.description}</div>
+                    <div class="easy-info-grid-right">{$log.message}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-100">
                     <div class="easy-info-grid-left">请求参数：</div>

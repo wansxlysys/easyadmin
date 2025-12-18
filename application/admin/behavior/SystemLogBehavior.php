@@ -36,13 +36,13 @@ class SystemLogBehavior
 
             if (isset($data['code'])) {
 
-                $log['requestIp']   = $request->ip();
-                $log['requestUrl']  = $request->url();
-                $log['menuId']      = $currentMenu['menuId'];
-                $log['managerId']   = SystemManagerHelper::getManagerId();
-                $log['params']      = ArrayUtil::toJson($request->post());
-                $log['status']      = SystemOperLogEnum::translateCode($data['code']);
-                $log['description'] = $data['msg'];
+                $log['requestIp']  = $request->ip();
+                $log['requestUrl'] = $request->url();
+                $log['menuId']     = $currentMenu['menuId'];
+                $log['managerId']  = SystemManagerHelper::getManagerId();
+                $log['params']     = ArrayUtil::toJson($request->post());
+                $log['status']     = SystemOperLogEnum::translateCode($data['code']);
+                $log['message']    = $data['msg'];
 
                 Dependency::getProxy(SystemOperLogService::class)->createLog($log);
             }

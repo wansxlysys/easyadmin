@@ -94,35 +94,6 @@
         visibility: visible;
     }
 
-    .attach-progress {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
-
-    .attach-fail {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.6);
-        text-align: center;
-    }
-
     .attach-page {
         text-align: center;
     }
@@ -184,7 +155,7 @@
     </script>
 </div>
 
-<div class="attach">
+<div class="attach layui-hide">
     <form class="layui-form">
         <div class="layui-form-item">
             <div class="layui-inline">
@@ -230,6 +201,10 @@
         <div id="attach-page"></div>
     </div>
 </div>
+
+<button type="button" class="layui-btn layui-btn-sm">
+    <i class="fa fa-fw fa-upload"></i>测试
+</button>
 {/block}
 
 {block name="js"}
@@ -408,8 +383,8 @@
                     easyAdmin.closeFrame();
                 });
 
-                uploadBtn.click(function () {
-                    top.layer.open({
+                uploadBtn.on('click', () => {
+                    layer.open({
                         type: 1,
                         title: '文件管理',
                         area: ['800px', '600px'],
@@ -486,13 +461,13 @@
                     event.preventDefault();
                     formData.name = obj.field.name;
                     formData.type = obj.field.type;
-                    uploadService.loadFile();
+                    uploadService.loadFileList();
                 });
 
                 form.on("submit(reset)", () => {
                     formData.name = '';
                     formData.type = setting.allowType;
-                    uploadService.loadFile();
+                    uploadService.loadFileList();
                 });
 
                 const attachList = $('.attach-list');
@@ -572,7 +547,7 @@
                         formData.page = obj.curr;
                         formData.limit = obj.limit;
                         if (!first) {
-                            uploadService.loadFile();
+                            uploadService.loadFileList();
                         }
                     }
                 });

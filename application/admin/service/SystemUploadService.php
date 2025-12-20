@@ -12,6 +12,7 @@ use think\Validate;
 use app\common\util\FileUtil;
 use app\common\service\Service;
 use app\common\helper\FileHelper;
+use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 use app\common\exception\ValidateException;
 
@@ -25,6 +26,32 @@ class SystemUploadService extends Service
      * @var SystemUploadRepository
      */
     protected SystemUploadRepository $SystemUploadRepository;
+
+    /**
+     * 获取列表
+     * @throws Exception
+     */
+    public function getPageSystemUpload(array $params)
+    {
+        $Wrapper = new Wrapper();
+
+        if (!empty($params['fileType'])) {
+            $Wrapper->addWhere('fileType', '=', $params['fileType']);
+        }
+
+        if (!empty($params['fileName'])) {
+            $Wrapper->addWhere('fileName', 'like', "%{$params['fileName']}%");
+        }
+
+        $Wrapper->setPage($params['page']);
+        $Wrapper->setLimit($params['limit']);
+
+        $Wrapper->addOrder('updateTime', 'desc');
+
+        $page = $this->SystemUploadRepository->getPage($Wrapper);
+
+        return ['list' => $page->items(), 'total' => $page->total()];
+    }
 
     /**
      * 保存文件
@@ -143,7 +170,7 @@ class SystemUploadService extends Service
     public function checkFile(array $params)
     {
         $file = $this->SystemUploadRepository->getByWhere([
-            'fileHash' => $params['fileHash']
+            'hash' => $params['hash']
         ]);
 
         $result['fileInfo'] = $file;
@@ -323,11 +350,11 @@ class SystemUploadService extends Service
              */
             FileHelper::moveFile($tempPath, $savePath);
 
-            $fileData['path']     = $viewPath;
-            $fileData['fileHash'] = $parmas['fileHash'];
-            $fileData['name']     = $parmas['fileName'];
-            $fileData['size']     = $parmas['fileSize'];
-            $fileData['ext']      = pathinfo($parmas['fileName'], PATHINFO_EXTENSION);
+            $fileData['path'] = $viewPath;
+            $fileData['hash'] = $parmas['fileHash'];
+            $fileData['name'] = $parmas['fileName'];
+            $fileData['size'] = $parmas['fileSize'];
+            $fileData['ext']  = pathinfo($parmas['fileName'], PATHINFO_EXTENSION);
 
             if (!$this->SystemUploadRepository->createRecord($fileData)) {
                 throw new ServiceException('文件保存失败');

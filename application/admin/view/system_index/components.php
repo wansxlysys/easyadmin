@@ -3,10 +3,19 @@
 {block name="content"}
 <div class="layui-fluid layui-content">
 
+
+
+<!--    <div class="layui-card">-->
+<!--        <div class="layui-card-header">地图组件</div>-->
+<!--        <div class="layui-card-body">-->
+<!--            <div class="map" id="map"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+
     <div class="layui-card">
-        <div class="layui-card-header">地图组件</div>
+        <div class="layui-card-header">文件上传</div>
         <div class="layui-card-body">
-            <div class="map" id="map"></div>
+            <button type="button" class="layui-btn" id="upload">文件选择</button>
         </div>
     </div>
 
@@ -239,11 +248,28 @@
         const easyMap = layui.easyMap;
         const easyBuilder = layui.easyBuilder;
 
-        new uploadFile({
-            id: "upload",
-            url: "{:url('admin/SystemUpload/slice')}",
-            check_url: "{:url('admin/SystemUpload/check')}"
+
+        $('#upload').on('click', function () {
+            top.layer.open({
+                type: 2,
+                title: '文件管理',
+                area: ['1105px', '715px'],
+                content: "{:url('admin/SystemUpload/popup')}",
+                success: () => {
+                    // top.easyEvent.emit('upload:ready', setting);
+                    // top.easyEvent.once('upload:select', selectImage);
+                },
+                end: () => {
+                    // top.easyEvent.off('upload:select', selectImage);
+                }
+            });
         });
+
+        // new uploadFile({
+        //     id: "upload",
+        //     url: "{:url('admin/SystemUpload/slice')}",
+        //     check_url: "{:url('admin/SystemUpload/check')}"
+        // });
 
         easyBuilder.dropMenu({
             elem: "#dropMenu",
@@ -280,33 +306,33 @@
             filterable: false,
         }, data);
 
-        const map = new TMap.Map('map', {
-            pitch: 0,
-            zoom: 14,
-        });
-
-        easyMap.autoMarker({
-            map: map
-        });
-
-        easyMap.autoSearch({
-            map: map
-        });
-
-        easyMap.autoLocation({
-            map: map
-        });
-
-        easyMap.autoCircle({
-            map: map
-        })
-
-        easyMap.autoAddress({
-            map: map,
-            change(data) {
-                console.log(data)
-            }
-        });
+        // const map = new TMap.Map('map', {
+        //     pitch: 0,
+        //     zoom: 14,
+        // });
+        //
+        // easyMap.autoMarker({
+        //     map: map
+        // });
+        //
+        // easyMap.autoSearch({
+        //     map: map
+        // });
+        //
+        // easyMap.autoLocation({
+        //     map: map
+        // });
+        //
+        // easyMap.autoCircle({
+        //     map: map
+        // })
+        //
+        // easyMap.autoAddress({
+        //     map: map,
+        //     change(data) {
+        //         console.log(data)
+        //     }
+        // });
     });
 </script>
 {/block}

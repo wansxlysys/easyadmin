@@ -4,9 +4,6 @@ layui.define(function (exports) {
 
     /**
      * 数组转树形结构
-     * @param options
-     * @param arrayList
-     * @returns {[]}
      */
     easyHelper.arrayToTree = (options, arrayList) => {
 
@@ -37,9 +34,6 @@ layui.define(function (exports) {
 
     /**
      * 获取数组对象的某一列
-     * @param array
-     * @param field
-     * @returns {[]}
      */
     easyHelper.objectColumn = (array, field) => {
         return array.map(item => {
@@ -49,9 +43,6 @@ layui.define(function (exports) {
 
     /**
      * 节流
-     * @param func
-     * @param wait
-     * @returns {function(...[*]=)}
      */
     easyHelper.throttle = (func, wait) => {
         let timeout;
@@ -69,9 +60,6 @@ layui.define(function (exports) {
 
     /**
      * 防抖
-     * @param func
-     * @param wait
-     * @returns {function(...[*]=)}
      */
     easyHelper.debounce = (func, wait) => {
         let timeout;
@@ -88,11 +76,60 @@ layui.define(function (exports) {
     }
 
     /**
-     * base64转js
-     * @param base64
+     * 文件字节转MB和GB
      */
-    easyHelper.base64ToJs = (base64) => {
-        return JSON.parse(Base64.decode(base64));
+    easyHelper.formatFileSize = function (bytes) {
+        if (bytes === 0) {
+            return bytes + 'MB';
+        }
+
+        const MB = 1024 * 1024;
+        const GB = 1024 * 1024 * 1024;
+
+        if (bytes < GB) {
+            const sizeInMB = bytes / MB;
+            return sizeInMB.toFixed(2) + 'MB';
+        } else {
+            const sizeInGB = bytes / GB;
+            return sizeInGB.toFixed(2) + 'GB';
+        }
+    }
+
+    /**
+     * 计算文件MD5
+     */
+    easyHelper.calculateFileMD5 = (file, chunkSize = 2 * 1024 * 1024) => {
+        return new Promise((resolve, reject) => {
+            const spark = new SparkMD5.ArrayBuffer();
+            const fileReader = new FileReader();
+            const chunks = Math.ceil(file.size / chunkSize);
+            let currentChunk = 0;
+
+            function loadNext() {
+                const start = currentChunk * chunkSize;
+                const end = Math.min(start + chunkSize, file.size);
+                const slice = file.slice(start, end);
+
+                fileReader.readAsArrayBuffer(slice);
+            }
+
+            fileReader.onload = function(e) {
+                spark.append(e.target.result);
+                currentChunk++;
+
+                if (currentChunk < chunks) {
+                    loadNext();
+                } else {
+                    resolve(spark.end());
+                }
+            };
+
+            fileReader.onerror = function() {
+                reject(new Error('文件读取失败'));
+            };
+
+            loadNext();
+        });
     }
 
     exports("easyHelper", easyHelper);

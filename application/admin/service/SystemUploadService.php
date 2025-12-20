@@ -136,12 +136,34 @@ class SystemUploadService extends Service
     }
 
     /**
+     * 检查文件
+     * @return array
+     * @throws Exception
+     */
+    public function checkFile(array $params)
+    {
+        $file = $this->SystemUploadRepository->getByWhere([
+            'fileHash' => $params['fileHash']
+        ]);
+
+        $result['fileInfo'] = $file;
+
+        if ($file) {
+            $result['isExists'] = true;
+        } else {
+            $result['isExists'] = false;
+        }
+
+        return $result;
+    }
+
+    /**
      * 通过Md5获取文件
      * @param $md5
      * @return mixed
      * @throws Exception
      */
-    public function getFileByMd5($md5)
+    public function getFileByHash($md5)
     {
         $file = $this->SystemUploadRepository->getByMd5($md5);
 
@@ -264,34 +286,57 @@ class SystemUploadService extends Service
 
     /**
      * 文件上传
-     * @param File $file
-     * @param string $fileType
+     * @param array $parmas
      * @return array
      * @throws Exception
      */
-    public function uploadFile(File $file, $fileType = 'file')
+    public function uploadFile(array $parmas)
     {
-        $params = [
-            'file' => $file
-        ];
+        $tempName = FileHelper::makeName($parmas['fileHash'], 'temp');
+        $tempPath = FileHelper::getFilePath(FileHelper::buildViewPath('temp') . $tempName);
 
-        $rule = [
-            'file' => 'require|fileExt:' . UploadEnum::FILE_FILE_EXT . '|fileSize:' . UploadEnum::FILE_MAX_SIZE,
-        ];
+        /**
+         * 创建文件夹
+         */
+        FileHelper::makePath($tempPath);
 
-        $msg = [
-            'file.require'  => '文件不能为空',
-            'file.fileExt'  => '文件格式必须' . UploadEnum::FILE_FILE_EXT,
-            'file.fileSize' => '文件不能超过' . FileUtil::formatBytes(UploadEnum::FILE_MAX_SIZE),
-        ];
-
-        $Validate = Validate::make($rule, $msg);
-
-        if (!$Validate->check($params)) {
-            throw new ValidateException($Validate->getError());
+        if (!file_put_contents($tempPath, file_get_contents($parmas['fileChunk']->getRealPath()), FILE_APPEND)) {
+            throw new ServiceException('文件写入失败');
         }
 
-        return $this->saveFile($file, $fileType);
+        /**
+         * 检测是否上传完成
+         */
+        if ($parmas['chunkIndex'] + 1 == $parmas['chunkTotal']) {
+
+            $saveName = FileHelper::makeName($parmas['fileHash'], pathinfo($parmas['fileName'], PATHINFO_EXTENSION));
+            $viewPath = FileHelper::buildViewPath('date') . $saveName;
+            $savePath = FileHelper::getFilePath($viewPath);
+
+            /**
+             * 创建文件夹
+             */
+            FileHelper::makePath($savePath);
+
+            /**
+             * 移动到上传目录
+             */
+            FileHelper::moveFile($tempPath, $savePath);
+
+            $fileData['path']     = $viewPath;
+            $fileData['fileHash'] = $parmas['fileHash'];
+            $fileData['name']     = $parmas['fileName'];
+            $fileData['size']     = $parmas['fileSize'];
+            $fileData['ext']      = pathinfo($parmas['fileName'], PATHINFO_EXTENSION);
+
+            if (!$this->SystemUploadRepository->createRecord($fileData)) {
+                throw new ServiceException('文件保存失败');
+            }
+
+            return ['isFinish' => true, 'viewPath' => $viewPath, 'savePath' => $savePath, 'fileName' => $fileData['name']];
+        }
+
+        return ['isFinish' => false];
     }
 
     /**

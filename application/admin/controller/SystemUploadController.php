@@ -38,59 +38,6 @@ class SystemUploadController extends SystemController
     }
 
     /**
-     * 文件上传
-     * @param Request $request
-     * @throws Exception
-     */
-    public function sliceAction(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $params = [
-                'md5'    => $request->post('file_md5'),
-                'name'   => $request->post('file_name'),
-                'file'   => $request->file('file_data'),
-                'size'   => $request->post('file_size'),
-                'index'  => $request->post('file_index'),
-                'total'  => $request->post('file_total'),
-                'suffix' => $request->post('file_suffix'),
-            ];
-
-            $this->success('上传成功', '', $this->SystemUploadService->uploadSlice($params));
-        }
-    }
-
-    /**
-     * 文件上传
-     * @param Request $request
-     * @throws Exception
-     */
-    public function fileAction(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $file = $this->SystemUploadService->uploadFile($request->file('file'));
-
-            $this->success('上传成功', '', ['viewPath' => $file['viewPath']]);
-        }
-    }
-
-    /**
-     * 图片上传
-     * @param Request $request
-     * @throws Exception
-     */
-    public function imageAction(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $image = $this->SystemUploadService->uploadImage($request->file('image'));
-
-            $this->success('上传成功', '', ['viewPath' => $image['viewPath']]);
-        }
-    }
-
-    /**
      * 文件检测
      * @param Request $request
      * @throws Exception
@@ -100,8 +47,11 @@ class SystemUploadController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
+                'ext'  => $request->get('fileExt'),
                 'name' => $request->get('fileName'),
-                'hash' => $request->get('fileHash')
+                'hash' => $request->get('fileHash'),
+                'size' => $request->get('fileSize'),
+                'type' => $request->get('fileType', 'image'),
             ];
 
             $this->success('文件已存在', '', $this->SystemUploadService->checkFile($params));
@@ -114,7 +64,7 @@ class SystemUploadController extends SystemController
      * @return mixed
      * @throws Exception
      */
-    public function popupAction(Request $request)
+    public function listAction(Request $request)
     {
         if ($request->isAjax()) {
 
@@ -140,12 +90,12 @@ class SystemUploadController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'fileName'   => $request->post('fileName'),
-                'fileSize'   => $request->post('fileSize'),
-                'fileHash'   => $request->post('fileHash'),
-                'fileChunk'  => $request->file('fileChunk'),
-                'chunkIndex' => $request->post('chunkIndex'),
-                'chunkTotal' => $request->post('chunkTotal'),
+                'name'  => $request->post('fileName'),
+                'size'  => $request->post('fileSize'),
+                'hash'  => $request->post('fileHash'),
+                'chunk' => $request->file('fileChunk'),
+                'index' => $request->post('chunkIndex'),
+                'total' => $request->post('chunkTotal'),
             ];
 
             $this->success('上传成功', '', $this->SystemUploadService->uploadFile($params));

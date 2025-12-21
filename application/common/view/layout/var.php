@@ -7,7 +7,7 @@
         uploadImage: "{:url('admin/SystemUpload/image')}",
         getAllMenu: "{:url('admin/SystemMenu/getAll')}",
         getAllRole: "{:url('admin/SystemManagerRole/getAll')}",
-        getFileList: "{:url('admin/SystemUpload/popup')}",
+        getListFile: "{:url('admin/SystemUpload/list')}",
         checkFile: "{:url('admin/SystemUpload/check')}",
         uploadFile: "{:url('admin/SystemUpload/upload')}",
     }

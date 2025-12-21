@@ -392,7 +392,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         popupData.isLoading = true;
                         uploadService.renderLoading();
                         easyAdmin.ajaxGet({
-                            url: apiUrl.getFileList,
+                            url: apiUrl.getListFile,
                             data: formData,
                             loading: false,
                             success: (result) => {

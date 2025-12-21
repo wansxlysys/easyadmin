@@ -89,7 +89,8 @@ class Uploader {
 
             const checkResult = await this.config.requestHandlers.checkFile({
                 fileName: fileObj.fileName,
-                fileHash: fileObj.fileHash
+                fileHash: fileObj.fileHash,
+                fileSize: fileObj.fileSize
             });
 
             if (checkResult.isExists) {
@@ -105,7 +106,7 @@ class Uploader {
                 fileObj.status = 'uploading';
 
                 if (checkResult.chunkIndex) {
-                    fileObj.chunkIndex = checkResult.chunkIndex;
+                    fileObj.chunkIndex = checkResult.chunkIndex + 1;
                 }
 
                 this.uploadChunk(fileObj);

@@ -492,3 +492,106 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     line-height: 1.4;
     color: #999;
 }
+
+/********************附件上传*******************/
+.attach-wrap {
+    min-height: 465px;
+    margin: 15px -7px 5px;
+}
+
+.attach-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.attach-grid {
+    width: 140px;
+    height: 140px;
+    margin: 7px;
+    position: relative;
+}
+
+.attach-upload {
+    cursor: pointer;
+}
+
+.attach-thumb {
+    width: 140px;
+    height: 140px;
+    display: block;
+    object-fit: cover;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.attach-check {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
+    border-radius: 3px;
+}
+
+.attach-checked .attach-check {
+    visibility: visible;
+}
+
+.attach-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 0 5px;
+    box-sizing: border-box;
+    line-height: 30px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.attach-look {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
+    visibility: hidden;
+}
+
+.attach-grid:hover .attach-look {
+    visibility: visible;
+}
+
+.attach-page {
+    text-align: center;
+}
+
+.attach-page .layui-laypage a,
+.attach-page .layui-laypage span {
+    margin: 0 5px;
+}
+
+.attach-loading,
+.attach-empty {
+    flex: 1;
+    line-height: 400px;
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+}

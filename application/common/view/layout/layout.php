@@ -17,7 +17,7 @@
 <body>
 {block name="content"}{/block}
 <script src="{:register_static('/admin/plugin/layui/layui.js')}"></script>
-<script src="{:register_static('/admin/js/lay-config.js')}"></script>
+<script src="{:register_static('/admin/js/config.js')}"></script>
 
 <!--全局变量-->
 {include file="common@layout/var" /}

@@ -19,6 +19,7 @@
         easyHelper: "easyAdmin/easyHelper",
         easyService: "easyAdmin/easyService",
         easyBuilder: "easyAdmin/easyBuilder",
+        easyLayout: "easyAdmin/easyLayout",
         easyModule: "easyAdmin/easyModule",
         uploadFile: "uploadFile/uploadFile",
         uploadImage: "uploadImage/uploadImage",

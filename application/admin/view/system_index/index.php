@@ -86,9 +86,6 @@
     <div class="layui-body">
         <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('admin/SystemIndex/console')}"></iframe>
     </div>
-    <div class="layui-footer">
-        EASYADMIN版权所有
-    </div>
 </div>
 {/block}
 
@@ -101,7 +98,7 @@
         const layer = layui.layer;
         const easyAdmin = layui.easyAdmin;
 
-        $('.layui-nav-tree>.layui-nav-item a').click(function (event) {
+        $('.layui-nav-tree>.layui-nav-item a').on('click', function (event) {
             event.preventDefault();
 
             if ($(this).siblings('.layui-nav-child').length <= 0) {

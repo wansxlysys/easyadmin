@@ -15,7 +15,7 @@
     <div class="layui-card">
         <div class="layui-card-header">文件上传</div>
         <div class="layui-card-body">
-            <button type="button" class="layui-btn" id="upload">文件选择</button>
+            <button type="button" class="layui-btn upload">文件选择</button>
         </div>
     </div>
 
@@ -244,32 +244,17 @@
 
     layui.use(['easyModule'], function () {
 
-        const uploadFile = layui.uploadFile;
         const easyMap = layui.easyMap;
+        const easyAdmin = layui.easyAdmin;
         const easyBuilder = layui.easyBuilder;
 
-
-        $('#upload').on('click', function () {
-            top.layer.open({
-                type: 2,
-                title: '文件管理',
-                area: ['1105px', '715px'],
-                content: "{:url('admin/SystemUpload/popup')}",
-                success: () => {
-                    // top.easyEvent.emit('upload:ready', setting);
-                    // top.easyEvent.once('upload:select', selectImage);
-                },
-                end: () => {
-                    // top.easyEvent.off('upload:select', selectImage);
+        $('.upload').on('click', function () {
+            easyAdmin.openFileLayer({
+                selectFile: function (fileList) {
+                    console.log(fileList)
                 }
-            });
+            })
         });
-
-        // new uploadFile({
-        //     id: "upload",
-        //     url: "{:url('admin/SystemUpload/slice')}",
-        //     check_url: "{:url('admin/SystemUpload/check')}"
-        // });
 
         easyBuilder.dropMenu({
             elem: "#dropMenu",

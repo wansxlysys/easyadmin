@@ -56,6 +56,13 @@ layui.define(function (exports) {
     }
 
     /**
+     * 删除弹出层透明类
+     */
+    easyAdmin.openFileLayer = (configs) => {
+        top.easyLayout.openFileLayer(configs)
+    }
+
+    /**
      * get请求
      * @param config
      */

@@ -43,12 +43,11 @@ abstract class Dao
             ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->page($Wrapper->getPage())
-            ->limit($Wrapper->getLimit())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
             ->order($Wrapper->getOrder())
-            ->paginate();
+            ->paginate($Wrapper->getLimit());
     }
 
     /**

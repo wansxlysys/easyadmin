@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\common\util;
 
 
-class MatcheHelper
+class MatcheUtil
 {
     /**
      * 检查URL是否匹配任意模式

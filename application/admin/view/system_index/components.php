@@ -250,6 +250,7 @@
 
         $('.upload').on('click', function () {
             easyAdmin.openFileLayer({
+                fileType: ['image', 'video'],
                 selectFile: function (fileList) {
                     console.log(fileList)
                 }

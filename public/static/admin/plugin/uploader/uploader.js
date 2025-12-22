@@ -90,7 +90,8 @@ class Uploader {
             const checkResult = await this.config.requestHandlers.checkFile({
                 fileName: fileObj.fileName,
                 fileHash: fileObj.fileHash,
-                fileSize: fileObj.fileSize
+                fileSize: fileObj.fileSize,
+                fileType: fileObj.fileType
             });
 
             if (checkResult.isExists) {

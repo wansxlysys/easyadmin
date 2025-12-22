@@ -83,7 +83,7 @@ class Repository extends Dao
      * @return int
      * @throws Exception
      */
-    public function updateById($id, array $data)
+    public function updateById($id, array $data = [])
     {
         $Wrapper = new Wrapper();
 
@@ -99,7 +99,7 @@ class Repository extends Dao
      * @return int
      * @throws Exception
      */
-    public function updateByWhere(array $where, array $data)
+    public function updateByWhere(array $where, array $data = [])
     {
         $Wrapper = new Wrapper();
 

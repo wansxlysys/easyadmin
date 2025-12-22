@@ -5,12 +5,11 @@ namespace app\http\middleware;
 
 
 use Closure;
-
 use think\Request;
 
 use app\common\util\Md5Util;
 use app\common\util\ArrayUtil;
-use app\common\helper\MatcheHelper;
+use app\common\util\MatcheUtil;
 use app\common\helper\RepeatHelper;
 use app\common\exception\RepeatException;
 
@@ -41,14 +40,14 @@ class RepeatMiddleware
         /**
          * 检查包含规则
          */
-        if (!MatcheHelper::matchesAny($this->includePatterns, $url)) {
+        if (!MatcheUtil::matchesAny($this->includePatterns, $url)) {
             return $next($request);
         }
 
         /**
          * 检查排除规则
          */
-        if (MatcheHelper::matchesAny($this->excludePatterns, $url)) {
+        if (MatcheUtil::matchesAny($this->excludePatterns, $url)) {
             return $next($request);
         }
 

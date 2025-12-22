@@ -67,11 +67,11 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
             success: () => {
 
                 const options = [
-                    {'identify': 'image', 'value': '图片'},
-                    {'identify': 'audio', 'value': '音频'},
-                    {'identify': 'video', 'value': '视频'},
-                    {'identify': 'doc', 'value': '文档'},
-                    {'identify': 'zip', 'value': '压缩包'},
+                    {'type': 'image', 'value': '图片'},
+                    {'type': 'audio', 'value': '音频'},
+                    {'type': 'video', 'value': '视频'},
+                    {'type': 'doc', 'value': '文档'},
+                    {'type': 'zip', 'value': '压缩包'},
                 ];
 
                 const setting = {
@@ -99,8 +99,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                 const uploadService = {
                     createSelect: function () {
                         options.forEach((option) => {
-                            if (setting.fileType.includes(option.identify)) {
-                                $('#allowType').append(`<option value="${option.identify}">${option.value}</option>`);
+                            if (setting.fileType.length == 0 || setting.fileType.includes(option.type)) {
+                                $('#allowType').append(`<option value="${option.type}">${option.value}</option>`);
                             }
                         });
                         form.render('select');
@@ -276,7 +276,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         elem: '#table',
                                         toolbar: '#toolbar',
                                         data: uploadData.fileList,
-                                        maxHeight: 450,
+                                        maxHeight: 500,
                                         cols: [[
                                             {title: '文件名称', field: 'fileName'},
                                             {title: '文件大小', field: 'fileUnit', width: 120},

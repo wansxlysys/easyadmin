@@ -4,86 +4,80 @@
 namespace app\common\helper;
 
 
-use app\admin\enum\UploadEnum;
-use app\common\exception\ServiceException;
-use app\common\util\FileUtil;
 use think\facade\Env;
+
+use app\admin\enum\SystemUploadEnum;
+use app\common\exception\ServiceException;
 
 class FileHelper
 {
     /**
      * 获取文件完整路径
-     * @param string $viewPath
+     * @param string $savePath
      * @return string
      */
-    public static function getFilePath($viewPath = '')
+    public static function getRootPath($savePath = '')
     {
-        return Env::get('root_path') . 'public' . $viewPath;
+        return Env::get('root_path') . 'public' . $savePath;
     }
 
     /**
-     * 获取上传目录
-     * @param $fileType
+     * 构建路径
+     * @param $fileName
      * @return string
      */
-    public static function getSaveDir($fileType)
+    public static function getSavePath($fileName)
     {
-        return Env::get('root_path') . 'public/' . UploadEnum::UPLOAD_DIR . '/' . $fileType;
-    }
-
-    /**
-     * 获取查看路径
-     * @param $fileType
-     * @param string $format
-     * @return string
-     */
-    public static function buildViewPath($fileType, $format = '')
-    {
-        $appendDir = '';
-
-        if ($format == 'date') {
-            $appendDir = date('Ymd') . '/';
-        }
-
-        return '/' . UploadEnum::UPLOAD_DIR . '/' . $fileType . '/' . $appendDir;
-    }
-
-    /**
-     * 格式化路径
-     * @param $path
-     * @return string
-     */
-    public static function formatPath($path)
-    {
-        return str_replace('\\', '/', $path);
+        return SystemUploadEnum::UPLOAD_DIR . '/' . date('Ymd') . '/' . static::makeFileName($fileName);
     }
 
     /**
      * 创建文件名
-     * @param $name
-     * @param $ext
+     * @param $fileName
      * @return string
      */
-    public static function makeName($name, $ext)
+    public static function makeFileName($fileName)
     {
-        return $name . '.' . $ext;
+        return md5(uniqid($fileName, true)) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+    }
+
+    /**
+     * 创建文件名
+     * @param $savePath
+     * @param $content
+     */
+    public static function putContent($savePath, $content)
+    {
+        $rootPath = static::getRootPath($savePath);
+
+        /**
+         * 创建文件夹
+         */
+        static::makeDir($rootPath);
+
+        /**
+         * 追加内容
+         */
+        if (!file_put_contents($rootPath, file_get_contents($content), FILE_APPEND)) {
+            throw new ServiceException('文件写入失败');
+        }
     }
 
     /**
      * 创建路径
-     * @param $path
+     * @param $dirName
      * @return bool
      * @throws ServiceException
      */
-    public static function makePath($path)
+    public static function makeDir($dirName)
     {
-        $path = FileUtil::getDir($path);
+        $dirPath = pathinfo($dirName, PATHINFO_DIRNAME);
 
-        if (is_dir($path)) {
+        if (is_dir($dirPath)) {
             return true;
         }
 
-        if (mkdir($path, 0777, true)) {
+        if (mkdir($dirPath, 0777, true)) {
             return true;
         }
 
@@ -91,18 +85,16 @@ class FileHelper
     }
 
     /**
-     * 移动文件
-     * @param $sourcePath
-     * @param $targetPath
-     * @return bool
-     * @throws ServiceException
+     * 获取文件类型
+     * @param $fileType
+     * @return string
      */
-    public static function moveFile($sourcePath, $targetPath)
+    public static function getFileType($fileType)
     {
-        if (rename($sourcePath, $targetPath)) {
-            return true;
+        if (isset(SystemUploadEnum::FILE_TYPE[$fileType])) {
+            return SystemUploadEnum::FILE_TYPE[$fileType];
         }
 
-        throw new ServiceException('文件移动失败');
+        throw new ServiceException('文件类型禁止上传');
     }
 }

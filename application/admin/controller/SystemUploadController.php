@@ -48,6 +48,7 @@ class SystemUploadController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
+                'type'  => $request->get('type'),
                 'page'  => $request->get('page'),
                 'limit' => $request->get('limit'),
             ];
@@ -68,11 +69,10 @@ class SystemUploadController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'ext'  => $request->get('fileExt'),
                 'name' => $request->get('fileName'),
                 'hash' => $request->get('fileHash'),
                 'size' => $request->get('fileSize'),
-                'type' => $request->get('fileType', 'image'),
+                'type' => $request->get('fileType'),
             ];
 
             $this->success('文件已存在', '', $this->SystemUploadService->checkFile($params));

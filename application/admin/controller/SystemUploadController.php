@@ -38,27 +38,6 @@ class SystemUploadController extends SystemController
     }
 
     /**
-     * 文件检测
-     * @param Request $request
-     * @throws Exception
-     */
-    public function checkAction(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $params = [
-                'ext'  => $request->get('fileExt'),
-                'name' => $request->get('fileName'),
-                'hash' => $request->get('fileHash'),
-                'size' => $request->get('fileSize'),
-                'type' => $request->get('fileType', 'image'),
-            ];
-
-            $this->success('文件已存在', '', $this->SystemUploadService->checkFile($params));
-        }
-    }
-
-    /**
      * 文件弹窗
      * @param Request $request
      * @return mixed
@@ -77,6 +56,27 @@ class SystemUploadController extends SystemController
         }
 
         return $this->fetch();
+    }
+
+    /**
+     * 文件检测
+     * @param Request $request
+     * @throws Exception
+     */
+    public function checkAction(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'ext'  => $request->get('fileExt'),
+                'name' => $request->get('fileName'),
+                'hash' => $request->get('fileHash'),
+                'size' => $request->get('fileSize'),
+                'type' => $request->get('fileType', 'image'),
+            ];
+
+            $this->success('文件已存在', '', $this->SystemUploadService->checkFile($params));
+        }
     }
 
     /**

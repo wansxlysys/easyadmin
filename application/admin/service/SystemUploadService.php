@@ -38,18 +38,20 @@ class SystemUploadService extends Service
     {
         $Wrapper = new Wrapper();
 
-        if (!empty($params['fileType'])) {
-            $Wrapper->addWhere('fileType', '=', $params['fileType']);
+        if (!empty($params['type'])) {
+            $Wrapper->addWhere('type', '=', $params['type']);
         }
 
-        if (!empty($params['fileName'])) {
-            $Wrapper->addWhere('fileName', 'like', "%{$params['fileName']}%");
+        if (!empty($params['name'])) {
+            $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
         }
+
+        $Wrapper->addWhere('status', '=', SystemUploadEnum::STATUS_SUCCESS);
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
 
-        $Wrapper->addOrder('updateTime', 'desc');
+        $Wrapper->addOrder('uploadTime', 'desc');
 
         $page = $this->SystemUploadRepository->getPage($Wrapper);
 

@@ -59,7 +59,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                 </div>
             `
 
-        layer.open({
+        const uploadLayer = layer.open({
             type: 1,
             title: '文件上传',
             area: ['1095px', '715px'],
@@ -145,6 +145,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             if (setting.selectFile) {
                                 setting.selectFile(checkedList)
                             }
+
+                            layer.close(uploadLayer)
                         });
 
                         $('.upload-button').on('click', () => {

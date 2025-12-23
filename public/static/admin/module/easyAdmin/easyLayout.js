@@ -181,7 +181,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                                 {{#  if(d.status == 'checking'){ }}<span class="layui-badge layui-bg-orange">准备上传</span>{{#  } }}
                                                 {{#  if(d.status == 'uploading'){ }}<span class="layui-badge layui-bg-green">正在上传</span>{{#  } }}
                                                 {{#  if(d.status == 'success'){ }}<span class="layui-badge layui-bg-green">上传成功</span>{{#  } }}
-                                                {{#  if(d.status == 'error'){ }}<span class="layui-badge">上传失败</span>{{#  } }}
+                                                {{#  if(d.status == 'error'){ }}<span class="layui-badge upload-tag-error">上传失败</span>{{#  } }}
                                             </div>
                                         </div>
                                         <div class="layui-fluid layui-content">
@@ -193,7 +193,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             const uploadData = {
                                 table: null,
                                 fileList: [],
-                                uploader: null
+                                uploader: null,
+                                tipsIndex: null
                             }
 
                             layer.open({
@@ -211,6 +212,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                                     easyAdmin.ajaxGet({
                                                         url: apiUrl.checkFile,
                                                         data: data,
+                                                        alert: false,
                                                         loading: false,
                                                         success: function (result) {
                                                             resolve(result.data)
@@ -226,6 +228,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                                     easyAdmin.ajaxPost({
                                                         url: apiUrl.uploadFile,
                                                         data: data,
+                                                        alert: false,
                                                         loading: false,
                                                         processData: false,
                                                         contentType: false,
@@ -242,29 +245,30 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     });
 
                                     uploadData.uploader.on('fileAdded', function (fileObj) {
-                                        fileObj.fileUnit = easyHelper.formatFileSize(fileObj.fileSize)
-                                        uploadData.fileList.push(fileObj)
-                                        uploadData.table.reloadData()
+                                        fileObj.fileUnit = easyHelper.formatFileSize(fileObj.fileSize);
+                                        uploadData.fileList.push(fileObj);
+                                        uploadData.table.reloadData();
                                     });
 
                                     uploadData.uploader.on('progress', function () {
-                                        uploadData.table.reloadData()
+                                        uploadData.table.reloadData();
                                     });
 
                                     uploadData.uploader.on('hashCalculated', function () {
-                                        uploadData.table.reloadData()
+                                        uploadData.table.reloadData();
                                     });
 
                                     uploadData.uploader.on('uploadStart', function () {
-                                        uploadData.table.reloadData()
+                                        uploadData.table.reloadData();
                                     });
 
                                     uploadData.uploader.on('uploadSuccess', function () {
-                                        uploadData.table.reloadData()
+                                        uploadData.table.reloadData();
                                     });
 
-                                    uploadData.uploader.on('uploadError', function () {
-                                        uploadData.table.reloadData()
+                                    uploadData.uploader.on('uploadError', function (file, error) {
+                                        file.errorMsg = error.msg;
+                                        uploadData.table.reloadData();
                                     });
 
                                     uploadData.uploader.on('allCompleted', function () {
@@ -286,7 +290,21 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                             {title: '操作', toolbar: '#bar', width: 100}
                                         ]],
                                         page: false,
-                                        limit: Infinity
+                                        limit: Infinity,
+                                        done() {
+                                            $('.upload-tag-error').on('mouseenter', function (event) {
+                                                const index = $(event.currentTarget).index();
+                                                const file = uploadData.fileList[index];
+                                                if (file.errorMsg) {
+                                                    uploadData.tipsIndex = layer.tips(file.errorMsg, event.currentTarget);
+                                                }
+                                            }).on('mouseleave', function () {
+                                                if (uploadData.tipsIndex) {
+                                                    uploadData.tipsIndex = null;
+                                                    layer.close(uploadData.tipsIndex);
+                                                }
+                                            });
+                                        }
                                     });
 
                                     table.on('toolbar(table)', function (obj) {
@@ -328,7 +346,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     });
                                 },
                                 beforeEnd: function () {
-                                    if (uploadData.uploader.uploading) {
+                                    if (uploadData.uploader.isUploading()) {
                                         top.layer.msg('请等待上传完成');
                                         return false;
                                     } else {
@@ -387,6 +405,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
 
                         attachList.on('mouseleave', '.attach-grid', () => {
                             if (popupData.tipsIndex) {
+                                popupData.tipsIndex = null;
                                 layer.close(popupData.tipsIndex);
                             }
                         });

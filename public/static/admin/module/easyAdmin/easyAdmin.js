@@ -82,10 +82,18 @@ layui.define(function (exports) {
     easyAdmin.ajaxPost = (config) => {
 
         let defaults = {
-            type: 'POST'
+            data: {},
+            type: 'POST',
+            contentType: 'application/json',
         }
 
-        easyAdmin.ajaxHttp($.extend(true, defaults, config));
+        const setting = $.extend(true, {}, defaults, config);
+
+        if (setting.contentType == defaults.contentType) {
+            setting.data = JSON.stringify(setting.data);
+        }
+
+        easyAdmin.ajaxHttp(setting);
     }
 
     /**

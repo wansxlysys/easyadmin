@@ -9,7 +9,6 @@ class Uploader {
         };
 
         this.files = new Map();
-        this.uploading = false;
         this.concurrentFiles = 0;
 
         this.eventHandlers = {
@@ -84,7 +83,6 @@ class Uploader {
 
             fileObj.status = 'checking';
 
-            this.uploading = true
             this.emit('uploadStart', fileObj);
 
             const checkResult = await this.config.requestHandlers.checkFile({
@@ -170,7 +168,6 @@ class Uploader {
         this.emit('uploadSuccess', fileObj, resultData);
 
         if (this.concurrentFiles === 0) {
-            this.uploading = false;
             this.emit('allCompleted');
         }
     }
@@ -215,6 +212,15 @@ class Uploader {
 
     generateFileId(file) {
         return SparkMD5.hash(`hash-${file.name}-${file.size}-${file.lastModified}}`);
+    }
+
+    isUploading() {
+        for (const file of this.files) {
+            if (file.status === 'checking' || file.status === 'uploading') {
+                return true;
+            }
+        }
+        return false
     }
 
     startUpload() {

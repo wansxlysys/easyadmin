@@ -275,6 +275,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         id: "table",
                                         elem: '#table',
                                         toolbar: '#toolbar',
+                                        defaultToolbar: [],
                                         data: uploadData.fileList,
                                         maxHeight: 500,
                                         cols: [[

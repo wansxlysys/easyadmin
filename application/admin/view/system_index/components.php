@@ -48,20 +48,20 @@
         </div>
     </div>
 
-    <div class="layui-card">
-        <div class="layui-card-header">文件上传</div>
-        <div class="layui-card-body">
-            <div class="layui-form-item layui-form-item-button">
-                <label class="layui-form-label">文件选择</label>
-                <div class="layui-input-block">
-                    <input type="text" name="file_path" placeholder="请选择文件" readonly class="layui-input">
-                    <button type="button" class="layui-btn" id="upload">
-                        <i class="layui-icon layui-icon-upload-drag"></i>上传
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="layui-card">-->
+<!--        <div class="layui-card-header">文件上传</div>-->
+<!--        <div class="layui-card-body">-->
+<!--            <div class="layui-form-item layui-form-item-button">-->
+<!--                <label class="layui-form-label">文件选择</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <input type="text" name="file_path" placeholder="请选择文件" readonly class="layui-input">-->
+<!--                    <button type="button" class="layui-btn" id="upload">-->
+<!--                        <i class="layui-icon layui-icon-upload-drag"></i>上传-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <div class="layui-card">
         <div class="layui-card-header">富文本编辑器</div>

@@ -244,31 +244,41 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         }
                                     });
 
+                                    const reloadRowData = function (file) {
+                                        table.updateRow('table', {
+                                            related: true,
+                                            index: file.LAY_INDEX,
+                                            data: {
+                                                status: file.status
+                                            }
+                                        });
+                                    }
+
                                     uploadData.uploader.on('fileAdded', function (fileObj) {
                                         fileObj.fileUnit = easyHelper.formatFileSize(fileObj.fileSize);
                                         uploadData.fileList.push(fileObj);
                                         uploadData.table.reloadData();
                                     });
 
-                                    uploadData.uploader.on('progress', function () {
-                                        uploadData.table.reloadData();
+                                    uploadData.uploader.on('progress', function (file) {
+                                        reloadRowData(file);
                                     });
 
-                                    uploadData.uploader.on('hashCalculated', function () {
-                                        uploadData.table.reloadData();
+                                    uploadData.uploader.on('hashCalculated', function (file) {
+                                        reloadRowData(file);
                                     });
 
-                                    uploadData.uploader.on('uploadStart', function () {
-                                        uploadData.table.reloadData();
+                                    uploadData.uploader.on('uploadStart', function (file) {
+                                        reloadRowData(file);
                                     });
 
-                                    uploadData.uploader.on('uploadSuccess', function () {
-                                        uploadData.table.reloadData();
+                                    uploadData.uploader.on('uploadSuccess', function (file) {
+                                        reloadRowData(file);
                                     });
 
                                     uploadData.uploader.on('uploadError', function (file, error) {
                                         file.errorMsg = error.msg;
-                                        uploadData.table.reloadData();
+                                        reloadRowData(file);
                                     });
 
                                     uploadData.uploader.on('allCompleted', function () {
@@ -290,21 +300,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                             {title: '操作', toolbar: '#bar', width: 100}
                                         ]],
                                         page: false,
-                                        limit: Infinity,
-                                        done() {
-                                            $('.upload-tag-error').on('mouseenter', function (event) {
-                                                const index = $(event.currentTarget).index();
-                                                const file = uploadData.fileList[index];
-                                                if (file.errorMsg) {
-                                                    uploadData.tipsIndex = layer.tips(file.errorMsg, event.currentTarget);
-                                                }
-                                            }).on('mouseleave', function () {
-                                                if (uploadData.tipsIndex) {
-                                                    uploadData.tipsIndex = null;
-                                                    layer.close(uploadData.tipsIndex);
-                                                }
-                                            });
-                                        }
+                                        limit: Infinity
                                     });
 
                                     table.on('toolbar(table)', function (obj) {
@@ -338,11 +334,28 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         }
                                     });
 
-                                    $('.select-button').on('change', function () {
+                                    const upload = $('#upload');
+                                    const select = $('.select-button');
+
+                                    select.on('change', function () {
                                         for (const file of this.files) {
                                             uploadData.uploader.addFile(file);
                                         }
                                         this.value = null;
+                                    });
+
+                                    upload.on('mouseenter', '.upload-tag-error', function (event) {
+                                        const index = $(event.currentTarget).index();
+                                        const file = uploadData.fileList[index];
+                                        if (file.errorMsg) {
+                                            uploadData.tipsIndex = layer.tips(file.errorMsg, event.currentTarget);
+                                        }
+                                    });
+
+                                    upload.on('mouseleave', '.upload-tag-error', function () {
+                                        if (uploadData.tipsIndex) {
+                                            layer.close(uploadData.tipsIndex);
+                                        }
                                     });
                                 },
                                 beforeEnd: function () {
@@ -405,7 +418,6 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
 
                         attachList.on('mouseleave', '.attach-grid', () => {
                             if (popupData.tipsIndex) {
-                                popupData.tipsIndex = null;
                                 layer.close(popupData.tipsIndex);
                             }
                         });

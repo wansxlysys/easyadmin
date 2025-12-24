@@ -8,7 +8,7 @@ class Uploader {
             ...options
         };
 
-        this.files = new Map();
+        this.fileMap = new Map();
         this.concurrentFiles = 0;
 
         this.eventHandlers = {
@@ -23,11 +23,11 @@ class Uploader {
     }
 
     removeFile(fileObj) {
-        this.files.delete(fileObj.fileId)
+        this.fileMap.delete(fileObj.fileId)
     }
 
     clearFile() {
-        this.files.clear()
+        this.fileMap.clear()
     }
 
     addFile(file) {
@@ -48,8 +48,8 @@ class Uploader {
             chunkTotal: chunkTotal,
         };
 
-        if (!this.files.has(fileId)) {
-            this.files.set(fileId, fileObj);
+        if (!this.fileMap.has(fileId)) {
+            this.fileMap.set(fileId, fileObj);
             this.emit('fileAdded', fileObj);
             this.processFile(fileObj);
         }
@@ -173,7 +173,7 @@ class Uploader {
     }
 
     scheduleNextWaitingFile() {
-        for (const fileObj of this.files.values()) {
+        for (const fileObj of this.fileMap.values()) {
             if (fileObj.status === 'ready') {
                 this.scheduleFileUpload(fileObj);
                 break;
@@ -215,7 +215,7 @@ class Uploader {
     }
 
     isUploading() {
-        for (const file of this.files) {
+        for (const file of this.fileMap) {
             if (file.status === 'checking' || file.status === 'uploading') {
                 return true;
             }
@@ -224,7 +224,7 @@ class Uploader {
     }
 
     startUpload() {
-        for (const fileObj of this.files.values()) {
+        for (const fileObj of this.fileMap.values()) {
             if (fileObj.status === 'ready') {
                 this.scheduleFileUpload(fileObj);
             }

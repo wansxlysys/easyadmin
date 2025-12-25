@@ -22,7 +22,6 @@
         easyUpload: "easyAdmin/easyUpload",
         easyCreate: "easyAdmin/easyCreate",
         easyModule: "easyAdmin/easyModule",
-        uploadFile: "uploadFile/uploadFile",
         layCascader: "layCascader/layCascader",
     });
 

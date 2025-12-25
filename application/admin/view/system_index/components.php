@@ -13,7 +13,18 @@
     <div class="layui-card">
         <div class="layui-card-header">文件上传</div>
         <div class="layui-card-body">
-            <button type="button" class="layui-btn upload">文件选择</button>
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-required">文件选择</label>
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn upload">文件选择</button>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-required">文件上传</label>
+                <div class="layui-input-block">
+                    <input type="hidden" class="easy-builder-upload">
+                </div>
+            </div>
         </div>
     </div>
 

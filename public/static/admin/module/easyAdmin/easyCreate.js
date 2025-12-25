@@ -1,7 +1,4 @@
-layui.define([
-    'easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile',
-    'easyUpload'
-], function (exports) {
+layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], function (exports) {
 
     const laydate = layui.laydate;
     const easyUpload = layui.easyUpload;
@@ -42,19 +39,13 @@ layui.define([
     });
 
     /**
-     * 图片上传变量后缀
-     * @type {string}
-     */
-    var uploadImageVarSuffix = 'ImageUploader';
-
-    /**
      * 单图上传
      */
     $(".layui-builder-image").each(function (key, item) {
         easyUpload.uploadImage({
             elem: $(item)
         }, {
-            selectMax: 1,
+            maxNum: 1,
             multiple: false
         });
     });
@@ -66,8 +57,20 @@ layui.define([
         easyUpload.uploadImage({
             elem: $(item)
         }, {
-            selectMax: $(item).data("max") || Infinity,
+            maxNum: $(item).data("max") || Infinity,
             multiple: true
+        });
+    });
+
+    /**
+     * 文件上传
+     */
+    $(".easy-builder-upload").each((key, item) => {
+        easyUpload.uploadFile({
+            elem: $(item)
+        }, {
+            multiple: true,
+            maxNum: $(item).data("max") || Infinity,
         });
     });
 

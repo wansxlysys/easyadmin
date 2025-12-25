@@ -76,6 +76,16 @@ layui.define(function (exports) {
     }
 
     /**
+     * 数组交换位置
+     */
+    easyHelper.arraySwap = (array, a, b) => {
+        const temp = array[a];
+        array[a] = array[b];
+        array[b] = temp;
+        return array;
+    }
+
+    /**
      * 文件字节转MB和GB
      */
     easyHelper.formatFileSize = function (bytes) {

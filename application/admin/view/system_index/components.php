@@ -3,8 +3,6 @@
 {block name="content"}
 <div class="layui-fluid layui-content">
 
-
-
 <!--    <div class="layui-card">-->
 <!--        <div class="layui-card-header">地图组件</div>-->
 <!--        <div class="layui-card-body">-->
@@ -20,10 +18,23 @@
     </div>
 
     <div class="layui-card">
+        <div class="layui-card-header">单图上传</div>
+        <div class="layui-card-body">
+            <input type="hidden" class="layui-builder-image">
+        </div>
+    </div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">多图上传</div>
+        <div class="layui-card-body">
+            <input type="hidden" class="layui-builder-picture">
+        </div>
+    </div>
+
+    <div class="layui-card">
         <div class="layui-card-header">图片预览</div>
         <div class="layui-card-body">
-            <div class="easy-preview"
-                 data-images="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg"></div>
+            <div class="easy-preview" data-picture="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg"></div>
         </div>
     </div>
 
@@ -47,21 +58,6 @@
             </div>
         </div>
     </div>
-
-<!--    <div class="layui-card">-->
-<!--        <div class="layui-card-header">文件上传</div>-->
-<!--        <div class="layui-card-body">-->
-<!--            <div class="layui-form-item layui-form-item-button">-->
-<!--                <label class="layui-form-label">文件选择</label>-->
-<!--                <div class="layui-input-block">-->
-<!--                    <input type="text" name="file_path" placeholder="请选择文件" readonly class="layui-input">-->
-<!--                    <button type="button" class="layui-btn" id="upload">-->
-<!--                        <i class="layui-icon layui-icon-upload-drag"></i>上传-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <div class="layui-card">
         <div class="layui-card-header">富文本编辑器</div>

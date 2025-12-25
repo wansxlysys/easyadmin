@@ -10,7 +10,6 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">头像</label>
                     <div class="layui-input-block">
-                        <div id="avatar"></div>
                         <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传头像" value="{$manager.avatar}">
                     </div>
                 </div>
@@ -47,18 +46,10 @@
 {block name="js"}
 <script>
 
-    layui.use(['easyModule', 'form'], function () {
+    layui.use(['easyModule'], function () {
 
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;
-        const easyCreate = layui.easyCreate;
-
-        /**
-         * 设置上传路径
-         */
-        easyCreate.getUploader('avatar', function (uploader) {
-            uploader.config.url = "{:url('admin/SystemManager/avatar')}";
-        });
 
         form.on('submit', function (obj) {
             event.preventDefault();

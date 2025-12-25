@@ -25,7 +25,7 @@ class SystemManagerController extends SystemController
     protected $middleware = ['SystemMiddleware'];
 
     /**
-     * 服务类
+     * 服务类1
      * @var SystemManagerService
      */
     protected $ManagerService;

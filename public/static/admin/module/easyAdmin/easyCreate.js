@@ -1,9 +1,11 @@
-layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'uploadImage'], function (exports) {
+layui.define([
+    'easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile',
+    'easyUpload'
+], function (exports) {
 
-    var laydate = layui.laydate;
-    var easyAdmin = layui.easyAdmin;
-    var uploadImage = layui.uploadImage;
-    var easyBuilder = layui.easyBuilder;
+    const laydate = layui.laydate;
+    const easyUpload = layui.easyUpload;
+    const easyBuilder = layui.easyBuilder;
 
     /**
      * 面板分割
@@ -49,88 +51,25 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'up
      * 单图上传
      */
     $(".layui-builder-image").each(function (key, item) {
-        (function () {
-            var name = $(item).attr("name");
-            var value = $(item).val();
-            var loading = null;
-            var uploader = name + uploadImageVarSuffix;
-
-            window[uploader] = uploadImage.render({
-                elem: "#" + name,
-                name: "file",
-                number: 1,
-                multiple: true,
-                url: apiUrl.uploadImage,
-                before: function () {
-                    loading = easyAdmin.showLoading();
-                },
-                done: function (url) {
-                    $(item).val(url);
-                    top.layer.close(loading);
-                },
-                ready: function (that) {
-                    if (value) {
-                        that.append(value);
-                    }
-                },
-                update: function () {
-                    $(item).val(window[uploader].getAll().join(','));
-                }
-            });
-        })();
+        easyUpload.uploadImage({
+            elem: $(item)
+        }, {
+            selectMax: 1,
+            multiple: false
+        });
     });
 
     /**
      * 多图上传
      */
     $(".layui-builder-picture").each(function (key, item) {
-        (function () {
-            var name = $(item).attr("name");
-            var value = $(item).val();
-            var loading = null;
-            var uploader = name + uploadImageVarSuffix;
-
-            window[uploader] = uploadImage.render({
-                elem: "#" + name,
-                name: "file",
-                number: 10,
-                multiple: true,
-                url: apiUrl.uploadImage,
-                before: function () {
-                    loading = easyAdmin.showLoading();
-                },
-                done: function (url) {
-                    $(item).val(window[uploader].getAll().join(','));
-                    top.layer.close(loading);
-                },
-                ready: function (that) {
-                    if (value) {
-                        value = value.split(',');
-                        for (var i = 0; i < value.length; i++) {
-                            that.append(value[i]);
-                        }
-                    }
-                },
-                update: function () {
-                    $(item).val(window[uploader].getAll().join(','));
-                }
-            });
-        })();
+        easyUpload.uploadImage({
+            elem: $(item)
+        }, {
+            selectMax: $(item).data("max") || Infinity,
+            multiple: true
+        });
     });
-
-    /**
-     * 获取上传实例
-     */
-    function getUploader(name, fn) {
-
-        var uploader = window[name + uploadImageVarSuffix];
-
-        if (typeof fn === 'function') {
-            fn(uploader.uploader);
-        } else {
-            return uploader.uploader;
-        }
-    }
 
     /**
      * alert关闭控制
@@ -182,9 +121,9 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'up
      * 创建预览图片
      */
     $(".easy-preview").each((key, item) => {
-        const images = $(item).data("images");
-        if (images) {
-            const srcList = images.split(',');
+        const picture = $(item).data("picture");
+        if (picture) {
+            const srcList = picture.split(',');
 
             srcList.forEach(image => {
                 $(item).append('<img src="' + image + '">');
@@ -208,7 +147,5 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'uploadFile', 'up
     /**
      * 导出
      */
-    exports("easyCreate", {
-        getUploader: getUploader
-    });
+    exports("easyCreate", {});
 });

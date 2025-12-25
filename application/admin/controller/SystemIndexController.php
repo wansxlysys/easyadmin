@@ -37,6 +37,17 @@ class SystemIndexController extends SystemController
     protected $ManagerValidate;
 
     /**
+     * 初始化
+     * @throws Exception
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->ManagerService  = Dependency::getProxy(SystemManagerService::class);
+        $this->ManagerValidate = Dependency::getProxy(SystemManagerValidate::class);
+    }
+
+    /**
      * 首页
      * @return mixed
      * @throws Exception

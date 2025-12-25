@@ -595,3 +595,128 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     font-size: 16px;
     text-align: center;
 }
+
+/****************图片上传*******************/
+.easy-upload-image,
+.easy-upload-image-list{
+    display: flex;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item {
+    position: relative;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item,
+.easy-upload-image .easy-upload-image-btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item .easy-upload-image-item-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item span {
+    color: #fff;
+    float: left;
+    padding: 5px;
+    margin-left: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    display: none;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item:hover span {
+    display: block;
+}
+
+.easy-upload-image .easy-upload-image-list .easy-upload-image-item span:hover {
+    opacity: 0.8;
+}
+
+.easy-upload-image .easy-upload-image-btn button {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    position: relative;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    font-size: 50px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.easy-upload-image .easy-upload-image-btn button:hover {
+    border-color: #009688;
+    color: #009688;
+}
+
+.easy-upload-image .easy-upload-image-btn button[disabled]:hover {
+    border-color: #e6e6e6;
+    color: #ccc;
+    cursor: no-drop;
+}
+
+/****************文件上传******************/
+.easy-upload-file-btn {
+    margin-top: 4px;
+}
+
+.easy-upload-file-list {
+    max-width: 800px;
+    margin-top: 10px;
+}
+
+.easy-upload-file-item {
+    display: flex;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.easy-upload-file-item:last-child {
+    border-bottom: 1px solid #eee;
+}
+
+.easy-upload-file-name,
+.easy-upload-file-size,
+.easy-upload-file-tool {
+    padding: 8px 10px;
+    border-right: 1px solid #eee;
+}
+
+.easy-upload-file-name {
+    flex: 1;
+}
+
+.easy-upload-file-size {
+    width: 100px;
+    text-align: center;
+}
+
+.easy-upload-file-tool {
+    width: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: none;
+}
+
+.easy-upload-file-tool span {
+    color: #333;
+    cursor: pointer;
+}
+
+.easy-upload-file-tool .easy-upload-file-next {
+    margin: 0 10px;
+}

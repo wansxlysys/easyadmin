@@ -15,14 +15,14 @@
         xmSelect: "xmSelect/xmSelect",
         easyMap: "easyAdmin/easyMap",
         easyAdmin: "easyAdmin/easyAdmin",
-        easyCreate: "easyAdmin/easyCreate",
         easyHelper: "easyAdmin/easyHelper",
         easyService: "easyAdmin/easyService",
         easyBuilder: "easyAdmin/easyBuilder",
         easyLayout: "easyAdmin/easyLayout",
+        easyUpload: "easyAdmin/easyUpload",
+        easyCreate: "easyAdmin/easyCreate",
         easyModule: "easyAdmin/easyModule",
         uploadFile: "uploadFile/uploadFile",
-        uploadImage: "uploadImage/uploadImage",
         layCascader: "layCascader/layCascader",
     });
 

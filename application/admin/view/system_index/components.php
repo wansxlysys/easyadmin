@@ -18,18 +18,31 @@
     </div>
 
     <div class="layui-card">
-        <div class="layui-card-header">单图上传</div>
+        <div class="layui-card-header">图片上传</div>
         <div class="layui-card-body">
-            <input type="hidden" class="layui-builder-image">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">单图上传</label>
+                    <div class="layui-input-block">
+                        <input type="hidden" class="layui-builder-image">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">多图上传</label>
+                    <div class="layui-input-block">
+                        <input type="hidden" class="layui-builder-picture">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">限制数量</label>
+                    <div class="layui-input-block">
+                        <input type="hidden" class="layui-builder-picture" data-max="5">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
-    <div class="layui-card">
-        <div class="layui-card-header">多图上传</div>
-        <div class="layui-card-body">
-            <input type="hidden" class="layui-builder-picture">
-        </div>
-    </div>
 
     <div class="layui-card">
         <div class="layui-card-header">图片预览</div>

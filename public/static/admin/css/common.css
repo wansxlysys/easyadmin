@@ -600,6 +600,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-upload-image,
 .easy-upload-image-list{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .easy-upload-image .easy-upload-image-list .easy-upload-image-item {

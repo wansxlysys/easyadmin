@@ -48,6 +48,7 @@ class SystemUploadController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
+                'name'  => $request->get('name'),
                 'type'  => $request->get('type'),
                 'page'  => $request->get('page'),
                 'limit' => $request->get('limit'),

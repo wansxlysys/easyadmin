@@ -10,5 +10,6 @@
         getListFile: "{:url('admin/SystemUpload/list')}",
         checkFile: "{:url('admin/SystemUpload/check')}",
         uploadFile: "{:url('admin/SystemUpload/upload')}",
+        renameFile: "{:url('admin/SystemUpload/rename')}",
     }
 </script>

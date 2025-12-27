@@ -106,6 +106,12 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
                         form.render('select');
                     },
+                    findFileByEvent(event) {
+                        const index = $(event.currentTarget).closest('.attach-grid').index();
+                        if (index !== -1) {
+                            return popupData.fileList[index];
+                        }
+                    },
                     listenEvents: function () {
 
                         const attachList = $('.attach-list');
@@ -124,14 +130,16 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
 
                         attachList.on('click', '.attach-thumb', (event) => {
-                            const index = $(event.currentTarget).closest('.attach-grid').index();
-                            const file = popupData.fileList[index];
+                            const file = uploadService.findFileByEvent(event);
                             if (!setting.multiple) {
-                                popupData.checkedMap.clear();
                                 $('.attach-upload').removeClass('attach-checked');
                             }
 
                             $(event.currentTarget).closest('.attach-upload').toggleClass('attach-checked');
+
+                            if (!setting.multiple) {
+                                popupData.checkedMap.clear();
+                            }
 
                             if ($(event.currentTarget).closest('.attach-upload').hasClass('attach-checked')) {
                                 popupData.checkedMap.set(file.fileId, file);
@@ -141,23 +149,31 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
 
                         attachList.on('click', '.attach-rename', (event) => {
-                            const index = $(event.currentTarget).closest('.attach-grid').index();
-                            const file = popupData.fileList[index];
+                            const file = uploadService.findFileByEvent(event);
 
                             top.layer.prompt({
                                 title: '重命名',
                                 placeholder: '请输入文件名',
                                 value: file.name
-                            }, function (value, index) {
-                                file.name = value;
-                                uploadService.renderFile();
-                                top.layer.close(index);
+                            }, function (fileName, layKey) {
+                                easyAdmin.ajaxPost({
+                                    url: apiUrl.renameFile,
+                                    data: {
+                                        fileName: fileName,
+                                        fileId: file.fileId
+                                    },
+                                    loading: false,
+                                    success: function () {
+                                        file.name = fileName;
+                                        uploadService.renderFile();
+                                        top.layer.close(layKey);
+                                    }
+                                });
                             });
                         });
 
                         attachList.on('click', '.attach-look', (event) => {
-                            const index = $(event.currentTarget).closest('.attach-grid').index();
-                            const file = popupData.fileList[index];
+                            const file = uploadService.findFileByEvent(event);
                             if (file.type == 'image') {
                                 const images = popupData.fileList.filter(item => item.type == 'image');
                                 top.layer.photos({
@@ -172,8 +188,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
 
                         attachList.on('mouseenter', '.attach-name', (event) => {
-                            const index = $(event.currentTarget).index();
-                            const file = popupData.fileList[index];
+                            const file = uploadService.findFileByEvent(event);
                             popupData.tipsIndex = layer.tips(file.name, event.currentTarget);
                         });
 
@@ -391,8 +406,9 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                                 uploadData.fileList.splice(index, 1)
                                                 uploadData.uploader.removeFile(fileObj)
                                             }
-                                            uploadData.table.reloadData()
                                         }
+
+                                        uploadData.table.reloadData()
                                     });
 
                                     const upload = $('#upload');

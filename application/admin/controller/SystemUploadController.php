@@ -61,6 +61,26 @@ class SystemUploadController extends SystemController
     }
 
     /**
+     * 文件改名
+     * @param Request $request
+     * @throws Exception
+     */
+    public function renameAction(Request $request)
+    {
+        if ($request->isAjax()) {
+
+            $params = [
+                'fileId' => $request->post('fileId'),
+                'name'   => $request->post('fileName'),
+            ];
+
+            $this->SystemUploadService->updateFile($params);
+
+            $this->success('修改成功');
+        }
+    }
+
+    /**
      * 文件检测
      * @param Request $request
      * @throws Exception

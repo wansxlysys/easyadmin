@@ -51,6 +51,17 @@ class SystemUploadService extends Service
     }
 
     /**
+     * 更新文件
+     * @param array $params
+     * @return void
+     * @throws Exception
+     */
+    public function updateFile(array $params)
+    {
+        $this->SystemUploadRepository->updateById($params['fileId'], $params);
+    }
+
+    /**
      * 检查文件
      * @param array $params
      * @return array

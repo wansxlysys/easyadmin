@@ -173,7 +173,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
 
                         attachList.on('click', '.attach-look', (event) => {
-                            const file = uploadService.findFileByEvent(event);
+                            const index = $(event.currentTarget).closest('.attach-grid').index();
+                            const file = popupData.fileList[index];
                             if (file.type == 'image') {
                                 const images = popupData.fileList.filter(item => item.type == 'image');
                                 top.layer.photos({

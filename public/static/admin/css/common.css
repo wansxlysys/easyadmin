@@ -721,3 +721,12 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-upload-file-tool .easy-upload-file-next {
     margin: 0 10px;
 }
+
+/****************编辑器*******************/
+.edui-default .edui-for-uploadimage .edui-icon:before {
+    content: "\edfc"
+}
+
+.edui-default .edui-for-uploadfile .edui-icon:before {
+    content: "\e704"
+}

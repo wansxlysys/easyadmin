@@ -227,6 +227,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
         const defaultSetting = {
             serverUrl: apiUrl.ueditor,
+            loadConfigFromServer: false,
             initialFrameWidth: '100%',
             initialFrameHeight: '500',
             imageConfig: {
@@ -240,11 +241,53 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 "insertorderedlist", "insertunorderedlist", "|", "rowspacingtop", "rowspacingbottom",
                 "lineheight", "|", "paragraph", "fontfamily", "fontsize", "indent", "justifyleft",
                 "justifycenter", "justifyright", "justifyjustify", "|", "link", "anchor", "|",
-                "simpleupload", "insertimage", "insertvideo", "insertaudio", "attachment", "insertframe",
+                "uploadimage", "insertvideo", "insertaudio", "uploadfile", "insertframe",
                 "inserttable", "insertcode", "background", "|", "horizontal", "date", "time", "spechars",
-                "print", "searchreplace",
+                "print", "searchreplace"
             ]]
         };
+
+        UE.registerUI('uploadfile', function (editor, uiName) {
+            return new UE.ui.Button({
+                name: uiName,
+                title: '上传附件',
+                onclick: function () {
+                    easyLayout.openFileLayer({
+                        multiple: true,
+                        fileType: ['image', 'audio', 'video', 'doc', 'zip'],
+                        selectFile(dataList) {
+                            dataList.forEach((data) => {
+                                editor.execCommand('insertfile', {
+                                    url: data.path,
+                                    title: data.name,
+                                });
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        UE.registerUI('uploadimage', function (editor, uiName) {
+            return new UE.ui.Button({
+                name: uiName,
+                title: '上传图片',
+                onclick: function () {
+                    easyLayout.openFileLayer({
+                        multiple: true,
+                        fileType: ['image'],
+                        selectFile(dataList) {
+                            dataList.forEach((data) => {
+                                editor.execCommand('insertimage', {
+                                    src: data.path,
+                                    title: data.name,
+                                });
+                            });
+                        }
+                    });
+                }
+            });
+        });
 
         options = $.extend(true, defaultOptions, options);
         setting = $.extend(true, defaultSetting, setting);

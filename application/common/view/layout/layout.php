@@ -27,6 +27,7 @@
 <script src="{:register_static('/admin/plugin/moment/moment.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/moment/locale/zh-cn.js')}"></script>
 <script src="{:register_static('/admin/plugin/split/split.min.js')}"></script>
+<script src="{:register_static('/admin/plugin/clipboard/clipboard.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/ztree/js/jquery.ztree.all.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/spark-md5/spark-md5.min.js')}"></script>
 <script src="{:register_static('/admin/plugin/uploader/uploader.js')}"></script>

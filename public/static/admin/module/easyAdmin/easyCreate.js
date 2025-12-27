@@ -147,6 +147,25 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
         }
     });
 
+
+    /**
+     * 文本复制
+     */
+    const clipboard = new ClipboardJS('.easy-copy', {
+        text: function (trigger) {
+            return $(trigger).attr('data-text');
+        }
+    });
+
+    clipboard.on('success', function (event) {
+        top.layer.msg('复制成功');
+        event.clearSelection();
+    });
+
+    clipboard.on('error', function () {
+        top.layer.msg('复制失败，请手动复制');
+    });
+
     /**
      * 导出
      */

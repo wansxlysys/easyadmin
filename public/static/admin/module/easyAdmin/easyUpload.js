@@ -6,6 +6,11 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
 
     const easyUpload = {};
 
+    /**
+     * 图片上传
+     * @param options
+     * @param setting
+     */
     easyUpload.uploadImage = function (options, setting) {
 
         const defaultOptions = {
@@ -127,6 +132,11 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         updateElement();
     };
 
+    /**
+     * 文件上传
+     * @param options
+     * @param setting
+     */
     easyUpload.uploadFile = function (options, setting) {
 
         const defaultOptions = {

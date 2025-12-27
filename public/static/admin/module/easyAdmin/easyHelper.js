@@ -123,7 +123,7 @@ layui.define(function (exports) {
                 fileReader.readAsArrayBuffer(slice);
             }
 
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 spark.append(e.target.result);
                 currentChunk++;
 
@@ -134,7 +134,7 @@ layui.define(function (exports) {
                 }
             };
 
-            fileReader.onerror = function() {
+            fileReader.onerror = function () {
                 reject(new Error('文件读取失败'));
             };
 

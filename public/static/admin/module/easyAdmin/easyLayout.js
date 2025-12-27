@@ -62,7 +62,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
         const uploadLayer = layer.open({
             type: 1,
             title: '文件上传',
-            area: ['1095px', '715px'],
+            area: ['1095px', '795px'],
             content: template,
             success: () => {
 
@@ -92,6 +92,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                 const popupData = {
                     fileList: [],
                     fileTotal: 0,
+                    checkedMap: new Map(),
                     isLoading: true,
                     tipsIndex: null,
                 }
@@ -107,16 +108,88 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                     },
                     listenEvents: function () {
 
+                        const attachList = $('.attach-list');
+
+                        form.on("submit(search)", (obj) => {
+                            event.preventDefault();
+                            formData.name = obj.field.name;
+                            formData.type = obj.field.type;
+                            uploadService.loadFileList();
+                        });
+
+                        form.on("submit(reset)", () => {
+                            formData.name = '';
+                            formData.type = setting.fileType;
+                            uploadService.loadFileList();
+                        });
+
+                        attachList.on('click', '.attach-thumb', (event) => {
+                            const index = $(event.currentTarget).closest('.attach-grid').index();
+                            const file = popupData.fileList[index];
+                            if (!setting.multiple) {
+                                popupData.checkedMap.clear();
+                                $('.attach-upload').removeClass('attach-checked');
+                            }
+
+                            $(event.currentTarget).closest('.attach-upload').toggleClass('attach-checked');
+
+                            if ($(event.currentTarget).closest('.attach-upload').hasClass('attach-checked')) {
+                                popupData.checkedMap.set(file.fileId, file);
+                            } else {
+                                popupData.checkedMap.delete(file.fileId);
+                            }
+                        });
+
+                        attachList.on('click', '.attach-rename', (event) => {
+                            const index = $(event.currentTarget).closest('.attach-grid').index();
+                            const file = popupData.fileList[index];
+
+                            top.layer.prompt({
+                                title: '重命名',
+                                placeholder: '请输入文件名',
+                                value: file.name
+                            }, function (value, index) {
+                                file.name = value;
+                                uploadService.renderFile();
+                                top.layer.close(index);
+                            });
+                        });
+
+                        attachList.on('click', '.attach-look', (event) => {
+                            const index = $(event.currentTarget).closest('.attach-grid').index();
+                            const file = popupData.fileList[index];
+                            if (file.type == 'image') {
+                                const images = popupData.fileList.filter(item => item.type == 'image');
+                                top.layer.photos({
+                                    photos: {
+                                        start: index,
+                                        data: images.map(item => ({src: item.path}))
+                                    }
+                                });
+                            } else {
+                                window.open(file.path);
+                            }
+                        });
+
+                        attachList.on('mouseenter', '.attach-name', (event) => {
+                            const index = $(event.currentTarget).index();
+                            const file = popupData.fileList[index];
+                            popupData.tipsIndex = layer.tips(file.name, event.currentTarget);
+                        });
+
+                        attachList.on('mouseleave', '.attach-name', () => {
+                            if (popupData.tipsIndex) {
+                                layer.close(popupData.tipsIndex);
+                            }
+                        });
+
                         $('.confirm-button').on('click', () => {
 
-                            const checkedHash = [];
-                            const checkedList = [];
+                            const checkedList = Array.from(
+                                popupData.checkedMap.values()
+                            );
 
-                            $('.attach-checked').each((index, element) => {
-                                checkedHash.push($(element).closest('.attach-grid').attr('hash'));
-                            });
-
-                            if (checkedHash.length == 0) {
+                            if (checkedList.length === 0) {
                                 return top.layer.alert('请选择文件', {
                                     icon: 2
                                 });
@@ -124,23 +197,11 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
 
                             const currentMax = setting.maxNum - setting.selectNum;
 
-                            if (checkedHash.length + setting.selectNum > setting.maxNum) {
+                            if (checkedList.length + setting.selectNum > setting.maxNum) {
                                 return top.layer.alert(`选择数量不能超过 ${currentMax} 个`, {
                                     icon: 2
                                 });
                             }
-
-                            popupData.fileList.forEach((file) => {
-                                if (checkedHash.includes(file.hash)) {
-                                    checkedList.push({
-                                        name: file.name,
-                                        path: file.path,
-                                        size: file.size,
-                                        type: file.type,
-                                        hash: file.hash,
-                                    });
-                                }
-                            });
 
                             if (setting.selectFile) {
                                 setting.selectFile(checkedList)
@@ -362,64 +423,9 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     if (uploadData.uploader.isUploading()) {
                                         top.layer.msg('请等待上传完成');
                                         return false;
-                                    } else {
-                                        uploadData.fileList = []
-                                        uploadData.uploader.clearFile()
                                     }
                                 }
                             });
-                        });
-                    },
-                    listenSearch: function () {
-
-                        form.on("submit(search)", (obj) => {
-                            event.preventDefault();
-                            formData.name = obj.field.name;
-                            formData.type = obj.field.type;
-                            uploadService.loadFileList();
-                        });
-
-                        form.on("submit(reset)", () => {
-                            formData.name = '';
-                            formData.type = setting.fileType;
-                            uploadService.loadFileList();
-                        });
-
-                        const attachList = $('.attach-list');
-
-                        attachList.on('click', '.attach-thumb', (event) => {
-                            if (!setting.multiple) {
-                                $('.attach-upload').removeClass('attach-checked');
-                            }
-                            $(event.currentTarget).closest('.attach-upload').toggleClass('attach-checked');
-                        });
-
-                        attachList.on('click', '.attach-look', (event) => {
-                            const index = $(event.currentTarget).closest('.attach-grid').index();
-                            const file = popupData.fileList[index];
-                            if (file.type == 'image') {
-                                const images = popupData.fileList.filter(item => item.type == 'image');
-                                top.layer.photos({
-                                    photos: {
-                                        start: index,
-                                        data: images.map(item => ({src: item.path}))
-                                    }
-                                });
-                            } else {
-                                window.open(file.path);
-                            }
-                        });
-
-                        attachList.on('mouseenter', '.attach-grid', (event) => {
-                            const index = $(event.currentTarget).index();
-                            const file = popupData.fileList[index];
-                            popupData.tipsIndex = layer.tips(file.name, event.currentTarget);
-                        });
-
-                        attachList.on('mouseleave', '.attach-grid', () => {
-                            if (popupData.tipsIndex) {
-                                layer.close(popupData.tipsIndex);
-                            }
                         });
                     },
                     loadFileList: function () {
@@ -470,17 +476,19 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                     renderFile: function () {
                         $('.attach-list').html(popupData.fileList.map(file => {
                             return `
-                                <div class="attach-grid" hash="${file.hash}">
-                                    <div class="attach-upload">
+                                <div class="attach-grid">
+                                    <div class="attach-upload ${popupData.checkedMap.has(file.fileId) && 'attach-checked'}">
                                         <div class="attach-check">
                                             <i class="fa fa-fw fa-check"></i>
                                         </div>
-                                        <div class="attach-look">
-                                            <i class="${file.type == 'image' ? 'fa fa-fw fa-eye' : 'fa fa-fw fa-download'}"></i>
-                                        </div>
-                                        <div class="attach-name">${file.name}</div>
                                         <img class="attach-thumb" src="${file.type == 'image' ? file.path : '/static/admin/img/' + file.type + '.png'}">
+                                        <div class="attach-tool">
+                                            <span class="attach-rename">改名</span>
+                                            <span class="attach-look">查看</span>
+                                            <span class="attach-addr easy-copy" data-text="${file.path}">地址</span>
+                                        </div>
                                     </div>
+                                    <div class="attach-name">${file.name}</div>
                                 </div>
                             `;
                         }).join(''));
@@ -488,12 +496,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                 };
 
                 uploadService.createSelect();
-                uploadService.listenSearch();
                 uploadService.listenEvents();
                 uploadService.loadFileList();
-            },
-            end: () => {
-
             }
         });
     };

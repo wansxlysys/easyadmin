@@ -42,40 +42,6 @@ layui.define(function (exports) {
     }
 
     /**
-     * 节流
-     */
-    easyHelper.throttle = (func, wait) => {
-        let timeout;
-        return function () {
-            let context = this;
-            let args = arguments;
-            if (!timeout) {
-                timeout = setTimeout(() => {
-                    timeout = null;
-                    func.apply(context, args);
-                }, wait);
-            }
-        }
-    }
-
-    /**
-     * 防抖
-     */
-    easyHelper.debounce = (func, wait) => {
-        let timeout;
-        return function () {
-            let context = this;
-            let args = arguments;
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            timeout = setTimeout(() => {
-                func.apply(context, args)
-            }, wait);
-        }
-    }
-
-    /**
      * 数组交换位置
      */
     easyHelper.arraySwap = (array, a, b) => {
@@ -103,43 +69,6 @@ layui.define(function (exports) {
             const sizeInGB = bytes / GB;
             return sizeInGB.toFixed(2) + 'GB';
         }
-    }
-
-    /**
-     * 计算文件MD5
-     */
-    easyHelper.calculateFileMD5 = (file, chunkSize = 2 * 1024 * 1024) => {
-        return new Promise((resolve, reject) => {
-            const spark = new SparkMD5.ArrayBuffer();
-            const fileReader = new FileReader();
-            const chunks = Math.ceil(file.size / chunkSize);
-            let currentChunk = 0;
-
-            function loadNext() {
-                const start = currentChunk * chunkSize;
-                const end = Math.min(start + chunkSize, file.size);
-                const slice = file.slice(start, end);
-
-                fileReader.readAsArrayBuffer(slice);
-            }
-
-            fileReader.onload = function (e) {
-                spark.append(e.target.result);
-                currentChunk++;
-
-                if (currentChunk < chunks) {
-                    loadNext();
-                } else {
-                    resolve(spark.end());
-                }
-            };
-
-            fileReader.onerror = function () {
-                reject(new Error('文件读取失败'));
-            };
-
-            loadNext();
-        });
     }
 
     exports("easyHelper", easyHelper);

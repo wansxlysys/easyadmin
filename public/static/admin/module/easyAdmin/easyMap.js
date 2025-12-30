@@ -1,11 +1,8 @@
 layui.define(['easyHelper', 'jquery'], function (exports) {
 
-    const easyHelper = layui.easyHelper;
-
     const easyMap = {};
 
     easyMap.autoSearch = (options) => {
-
         const defaultOptions = {
             map: null,
             setting: {
@@ -17,62 +14,66 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
 
         options = $.extend(true, defaultOptions, options);
 
-        const container = $(options.map.getContainer());
+        const wrapper = $(options.map.getContainer()).closest('.map-container');
         const suggestion = new TMap.service.Suggestion(options.setting);
 
-        container.append(`<div class="map-search">
-                            <div class="map-search-container">
-                                <input class="map-search-input" type="text" placeholder="请输入关键词">
-                                <button class="map-search-button" type="button">搜索</button>
-                            </div>
-                            <ul class="map-search-result"></ul>
-                        </div>`);
+        wrapper.prepend(
+            `<div class="map-search">
+                <div class="map-search-container">
+                    <input class="map-search-input" type="text" placeholder="请输入关键词">
+                    <button class="map-search-button" type="button">搜索</button>
+                </div>
+                <ul class="map-search-result"></ul>
+            </div>`
+        );
 
         let suggestList = [];
 
-        const getSuggestions = easyHelper.throttle((keywords) => {
+        const getSuggestions = layui.debounce((keywords) => {
             suggestion.getSuggestions({
                 keyword: keywords,
                 location: options.map.getCenter()
             }).then((result) => {
-
                 suggestList = result.data;
-
-                let searchResult = '';
-                if (result.data.length > 0) {
-                    result.data.forEach((item, key) => {
-                        searchResult += `<li class="map-search-item" data-index="${key}">
-                                            <h3>${item.title}</h3>
-                                            <p>${item.address}</p>
-                                        </li>`;
+                let suggestHtml = '';
+                if (suggestList.length > 0) {
+                    suggestList.forEach((item, key) => {
+                        suggestHtml +=
+                            `<li class="map-search-item" data-index="${key}">
+                                <h3>${item.title}</h3>
+                                <p>${item.address}</p>
+                            </li>`;
                     })
                 } else {
-                    searchResult = '<li class="map-search-empty">未查询到相关位置</li>';
+                    suggestHtml = '<li class="map-search-empty">未查询到相关位置</li>';
                 }
-                container.find(".map-search-result").html(searchResult);
+                wrapper.find(".map-search-result").html(suggestHtml);
             });
         }, 300);
 
-        const searchSuggestions = () => {
-            const keywords = container.find(".map-search-input").val();
+        const triggerSearch = () => {
+            const keywords = wrapper.find(".map-search-input").val();
             if (keywords) {
                 getSuggestions(keywords);
             } else {
-                container.find(".map-search-result").empty();
+                wrapper.find(".map-search-result").empty();
             }
         }
 
-        container.find(".map-search-input").on('input', () => {
-            searchSuggestions();
+        wrapper.find(".map-search-input").on('click', () => {
+            triggerSearch();
         });
 
-        container.find(".map-search-button").click(() => {
-            searchSuggestions();
+        wrapper.find(".map-search-input").on('input', () => {
+            triggerSearch();
         });
 
-        container.find(".map-search-result").on("click", ".map-search-item", function () {
+        wrapper.find(".map-search-button").on('click', () => {
+            triggerSearch();
+        });
 
-            container.find(".map-search-result").empty();
+        wrapper.find(".map-search-result").on("click", ".map-search-item", function () {
+            wrapper.find(".map-search-result").empty();
 
             const index = $(this).data('index');
             const suggest = suggestList[index];
@@ -185,7 +186,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
 
         options = $.extend(true, defaultOptions, options);
 
-        const getAddress = easyHelper.throttle((location) => {
+        const getAddress = layui.debounce((location) => {
             geocoder.getAddress({
                 location: location
             }).then((response) => {
@@ -195,7 +196,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
                     location: response.result.location,
                 });
             });
-        }, 500);
+        }, 300);
 
         options.map.on('pan', () => {
             getAddress(options.map.getCenter());

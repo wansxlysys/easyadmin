@@ -44,9 +44,11 @@ class SystemMiddleware
      */
     public function checkLogin()
     {
-        if (!SystemManagerHelper::isLogin()) {
-            $this->error('未登录', 'admin/SystemLogin/login');
+        if (SystemManagerHelper::isLogin()) {
+            return true;
         }
+
+        $this->error('未登录', 'admin/SystemLogin/login');
     }
 
     /**
@@ -57,9 +59,11 @@ class SystemMiddleware
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if (!$currentMenu) {
-            $this->error('系统菜单不存在');
+        if ($currentMenu) {
+            return true;
         }
+
+        $this->error('系统菜单不存在');
     }
 
     /**
@@ -70,9 +74,11 @@ class SystemMiddleware
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if (!SystemManagerHelper::checkAccessByMenuId($currentMenu['menuId'])) {
-            $this->error('账号未授权访问');
+        if (SystemManagerHelper::checkAccessByMenuId($currentMenu['menuId'])) {
+            return true;
         }
+
+        $this->error('账号未授权访问');
     }
 
     /**
@@ -112,8 +118,10 @@ class SystemMiddleware
      */
     public function checkDisabled()
     {
-        if (SystemManagerHelper::isDisabled()) {
-            $this->error('账号被禁用');
+        if (SystemManagerHelper::isEnabled()) {
+            return true;
         }
+
+        $this->error('账号被禁用');
     }
 }

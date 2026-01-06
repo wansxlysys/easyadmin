@@ -4,14 +4,16 @@
 namespace app\admin\helper;
 
 
-use app\admin\enum\ManagerEnum;
-use app\admin\enum\ManagerRoleEnum;
-use app\common\context\ContextHolder;
-use app\common\enum\DeleteEnum;
-use app\common\helper\PermissionHelper;
+use think\facade\Session;
+
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
-use think\facade\Session;
+use app\common\enum\DeleteEnum;
+use app\common\context\ContextHolder;
+use app\common\helper\PermissionHelper;
+
+use app\admin\enum\ManagerEnum;
+use app\admin\enum\ManagerRoleEnum;
 
 class SystemManagerHelper
 {
@@ -124,9 +126,9 @@ class SystemManagerHelper
      * 检测账号是否被禁用
      * @return bool
      */
-    public static function isDisabled()
+    public static function isEnabled()
     {
-        return static::getManager()['status'] == ManagerEnum::STATUS_DISABLED;
+        return static::getManager()['status'] == ManagerEnum::STATUS_ENABLED;
     }
 
     /**

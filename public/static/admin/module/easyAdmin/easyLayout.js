@@ -423,7 +423,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     });
 
                                     upload.on('mouseenter', '.upload-tag-error', function (event) {
-                                        const index = $(event.currentTarget).index();
+                                        const index = $(event.currentTarget).closest('tr').index();
                                         const file = uploadData.fileList[index];
                                         if (file.errorMsg) {
                                             uploadData.tipsIndex = layer.tips(file.errorMsg, event.currentTarget);

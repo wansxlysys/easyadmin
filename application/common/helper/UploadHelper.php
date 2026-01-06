@@ -9,7 +9,7 @@ use think\facade\Env;
 use app\admin\enum\SystemUploadEnum;
 use app\common\exception\ServiceException;
 
-class FileHelper
+class UploadHelper
 {
     /**
      * 获取文件完整路径

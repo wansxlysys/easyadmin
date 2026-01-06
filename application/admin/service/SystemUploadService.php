@@ -7,7 +7,7 @@ namespace app\admin\service;
 use Exception;
 
 use app\common\service\Service;
-use app\common\helper\FileHelper;
+use app\common\helper\UploadHelper;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 
@@ -82,7 +82,7 @@ class SystemUploadService extends Service
             /**
              * 检测本地文件是否存在
              */
-            $savePath = FileHelper::getRootPath($fileInfo['path']);
+            $savePath = UploadHelper::getRootPath($fileInfo['path']);
 
             if (file_exists($savePath)) {
 
@@ -105,8 +105,8 @@ class SystemUploadService extends Service
             $fileInfo['name'] = $params['name'];
             $fileInfo['hash'] = $params['hash'];
             $fileInfo['size'] = $params['size'];
-            $fileInfo['type'] = FileHelper::getFileType($params['type']);
-            $fileInfo['path'] = FileHelper::getSavePath($params['name']);
+            $fileInfo['type'] = UploadHelper::getFileType($params['type']);
+            $fileInfo['path'] = UploadHelper::getSavePath($params['name']);
 
             $this->SystemUploadRepository->createRecord($fileInfo);
         }
@@ -134,7 +134,7 @@ class SystemUploadService extends Service
         /**
          * 追加文件内容
          */
-        FileHelper::putContent($fileInfo['path'], $params['chunk']->getRealPath());
+        UploadHelper::putContent($fileInfo['path'], $params['chunk']->getRealPath());
 
         /**
          * 检测是否上传完成

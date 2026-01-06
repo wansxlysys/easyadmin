@@ -1,6 +1,7 @@
 <?php
 
 
+use app\common\behavior\ControllerBehavior;
 use app\common\behavior\AspectBehavior;
 use app\common\behavior\SystemBehavior;
 
@@ -18,7 +19,9 @@ return [
     // 模块初始化
     'module_init'  => [],
     // 操作开始执行
-    'action_begin' => [],
+    'action_begin' => [
+        ControllerBehavior::class
+    ],
     // 视图内容过滤
     'view_filter'  => [],
     // 日志写入

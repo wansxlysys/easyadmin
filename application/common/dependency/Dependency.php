@@ -89,7 +89,7 @@ class Dependency
      * @param ReflectionClass $reflectionClass
      * @throws ReflectionException
      */
-    private static function injectMethods($instancesClass, $reflectionClass)
+    public static function injectMethods($instancesClass, $reflectionClass)
     {
         /**
          * 循环每个方法
@@ -141,7 +141,7 @@ class Dependency
      * @param ReflectionClass $reflectionClass
      * @return void
      */
-    private static function injectProperties($instancesClass, $reflectionClass)
+    public static function injectProperties($instancesClass, $reflectionClass)
     {
         /**
          * 循环每个属性

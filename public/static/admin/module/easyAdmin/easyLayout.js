@@ -465,7 +465,10 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                     renderLoading: function () {
                         if (popupData.isLoading) {
                             $('.attach-list').empty();
-                            $('.attach-load').html(`<div class="attach-loading">加载中</div>`);
+                            $('.attach-load').html(`<div class="attach-loading">
+                                                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>
+                                                        <span>加载中</span>
+                                                    </div>`);
                         } else {
                             if (popupData.fileTotal <= 0) {
                                 $('.attach-load').html(`<div class="attach-empty">暂无数据</div>`);

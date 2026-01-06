@@ -495,7 +495,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 
 /********************附件上传*******************/
 .attach-wrap {
-    min-height: 465px;
+    min-height: 552px;
     margin: 15px -7px 5px;
 }
 
@@ -590,9 +590,9 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .attach-loading,
 .attach-empty {
     flex: 1;
+    color: #666;
+    font-size: 14px;
     line-height: 400px;
-    color: #999;
-    font-size: 16px;
     text-align: center;
 }
 

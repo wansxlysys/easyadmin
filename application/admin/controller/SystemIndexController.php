@@ -13,7 +13,6 @@ use app\admin\service\SystemMenuService;
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemIndexController extends SystemController
@@ -28,24 +27,19 @@ class SystemIndexController extends SystemController
      * 验证器
      * @var SystemManagerService
      */
-    protected $ManagerService;
+    protected SystemManagerService $ManagerService;
 
     /**
      * 服务类
      * @var SystemManagerValidate
      */
-    protected $ManagerValidate;
+    protected SystemManagerValidate $ManagerValidate;
 
     /**
-     * 初始化
-     * @throws Exception
+     * 服务类
+     * @var SystemMenuService
      */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->ManagerService  = Dependency::getProxy(SystemManagerService::class);
-        $this->ManagerValidate = Dependency::getProxy(SystemManagerValidate::class);
-    }
+    protected SystemMenuService $SystemMenuService;
 
     /**
      * 首页
@@ -54,10 +48,8 @@ class SystemIndexController extends SystemController
      */
     public function indexAction()
     {
-        $menuTree = Dependency::getProxy(SystemMenuService::class)->getLeftMenu();
-
         return $this->fetch('', [
-            'menuTree' => $menuTree
+            'menuTree' => $this->SystemMenuService->getLeftMenu()
         ]);
     }
 

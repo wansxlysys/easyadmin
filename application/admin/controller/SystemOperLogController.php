@@ -10,7 +10,6 @@ use think\Request;
 
 use app\admin\service\SystemOperLogService;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemOperLogController extends SystemController
@@ -25,17 +24,7 @@ class SystemOperLogController extends SystemController
      * 服务类
      * @var SystemOperLogService
      */
-    protected $SystemOperLogService;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemOperLogService = Dependency::getProxy(SystemOperLogService::class);
-    }
+    protected SystemOperLogService $SystemOperLogService;
 
     /**
      * 首页

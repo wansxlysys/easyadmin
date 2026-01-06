@@ -11,7 +11,6 @@ use think\Request;
 use app\admin\service\SystemManagerRoleService;
 use app\admin\validate\SystemManagerRoleValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemManagerRoleController extends SystemController
@@ -26,24 +25,13 @@ class SystemManagerRoleController extends SystemController
      * 服务类
      * @var SystemManagerRoleService
      */
-    protected $SystemManagerRoleService;
+    protected SystemManagerRoleService $SystemManagerRoleService;
 
     /**
      * 验证器
      * @var SystemManagerRoleValidate
      */
-    protected $SystemManagerRoleValidate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemManagerRoleService  = Dependency::getProxy(SystemManagerRoleService::class);
-        $this->SystemManagerRoleValidate = Dependency::getProxy(SystemManagerRoleValidate::class);
-    }
+    protected SystemManagerRoleValidate $SystemManagerRoleValidate;
 
     /**
      * 首页

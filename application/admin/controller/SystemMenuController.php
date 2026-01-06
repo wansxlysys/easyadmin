@@ -11,7 +11,6 @@ use think\Request;
 use app\admin\service\SystemMenuService;
 use app\admin\validate\SystemMenuValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemMenuController extends SystemController
@@ -26,24 +25,13 @@ class SystemMenuController extends SystemController
      * 服务类
      * @var SystemMenuService
      */
-    protected $SystemMenuService;
+    protected SystemMenuService $SystemMenuService;
 
     /**
      * 验证器
      * @var SystemMenuValidate
      */
-    protected $SystemMenuValidate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemMenuService  = Dependency::getProxy(SystemMenuService::class);
-        $this->SystemMenuValidate = Dependency::getProxy(SystemMenuValidate::class);
-    }
+    protected SystemMenuValidate $SystemMenuValidate;
 
     /**
      * 首页

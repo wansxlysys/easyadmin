@@ -11,7 +11,6 @@ use think\Request;
 use app\admin\service\SystemDictTypeService;
 use app\admin\validate\SystemDictTypeValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemDictTypeController extends SystemController
@@ -26,24 +25,13 @@ class SystemDictTypeController extends SystemController
      * 服务类
      * @var SystemDictTypeService
      */
-    protected $SystemDictTypeService;
+    protected SystemDictTypeService $SystemDictTypeService;
 
     /**
      * 验证器
      * @var SystemDictTypeValidate
      */
-    protected $SystemDictTypeValidate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemDictTypeService = Dependency::getProxy(SystemDictTypeService::class);
-        $this->SystemDictTypeValidate = Dependency::getProxy(SystemDictTypeValidate::class);
-    }
+    protected SystemDictTypeValidate $SystemDictTypeValidate;
 
     /**
      * 首页

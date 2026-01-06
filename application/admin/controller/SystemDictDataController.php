@@ -11,7 +11,6 @@ use think\Request;
 use app\admin\service\SystemDictDataService;
 use app\admin\validate\SystemDictDataValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemDictDataController extends SystemController
@@ -26,24 +25,13 @@ class SystemDictDataController extends SystemController
      * 服务类
      * @var SystemDictDataService
      */
-    protected $SystemDictDataService;
+    protected SystemDictDataService $SystemDictDataService;
 
     /**
      * 验证器
      * @var SystemDictDataValidate
      */
-    protected $SystemDictDataValidate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemDictDataService = Dependency::getProxy(SystemDictDataService::class);
-        $this->SystemDictDataValidate = Dependency::getProxy(SystemDictDataValidate::class);
-    }
+    protected SystemDictDataValidate $SystemDictDataValidate;
 
     /**
      * 首页

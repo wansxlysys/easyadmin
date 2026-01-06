@@ -11,7 +11,6 @@ use think\Request;
 use app\{{module}}\service\{{class}}Service;
 use app\{{module}}\validate\{{class}}Validate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class {{class}}Controller extends SystemController
@@ -26,24 +25,13 @@ class {{class}}Controller extends SystemController
      * 服务类
      * @var {{class}}Service
      */
-    protected ${{class}}Service;
+    protected {{class}}Service ${{class}}Service;
 
     /**
      * 验证器
      * @var {{class}}Validate
      */
-    protected ${{class}}Validate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->{{class}}Service  = Dependency::getProxy({{class}}Service::class);
-        $this->{{class}}Validate = Dependency::getProxy({{class}}Validate::class);
-    }
+    protected {{class}}Validate ${{class}}Validate;
 
     /**
      * 首页

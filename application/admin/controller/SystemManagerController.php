@@ -6,14 +6,11 @@ namespace app\admin\controller;
 
 use Exception;
 
-use think\Image;
 use think\Request;
 
-use app\admin\service\SystemUploadService;
 use app\admin\service\SystemManagerService;
 use app\admin\validate\SystemManagerValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemManagerController extends SystemController
@@ -28,24 +25,13 @@ class SystemManagerController extends SystemController
      * 服务类1
      * @var SystemManagerService
      */
-    protected $ManagerService;
+    protected SystemManagerService $ManagerService;
 
     /**
      * 验证器
      * @var SystemManagerValidate
      */
-    protected $ManagerValidate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->ManagerService  = Dependency::getProxy(SystemManagerService::class);
-        $this->ManagerValidate = Dependency::getProxy(SystemManagerValidate::class);
-    }
+    protected SystemManagerValidate $ManagerValidate;
 
     /**
      * 首页

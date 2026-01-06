@@ -18,10 +18,11 @@ class ControllerBehavior
      */
     public function run(array $params)
     {
-        $controllerClass = $params[0];
-        $reflectionClass = new ReflectionClass($controllerClass);
+        list($controller, $action) = $params;
 
-        Dependency::injectMethods($controllerClass, $reflectionClass);
-        Dependency::injectProperties($controllerClass, $reflectionClass);
+        $reflectionClass = new ReflectionClass($controller);
+
+        Dependency::injectMethods($controller, $reflectionClass);
+        Dependency::injectProperties($controller, $reflectionClass);
     }
 }

@@ -10,7 +10,6 @@ use think\Request;
 
 use app\admin\service\SystemUploadService;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemUploadController extends SystemController
@@ -25,17 +24,7 @@ class SystemUploadController extends SystemController
      * 服务类
      * @var SystemUploadService
      */
-    protected $SystemUploadService;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemUploadService = Dependency::getProxy(SystemUploadService::class);
-    }
+    protected SystemUploadService $SystemUploadService;
 
     /**
      * 文件弹窗

@@ -10,7 +10,6 @@ use think\Request;
 use think\Response;
 use think\captcha\Captcha;
 
-use app\common\dependency\Dependency;
 use app\common\controller\CommonController;
 
 use app\admin\helper\SystemManagerHelper;
@@ -24,13 +23,19 @@ class SystemLoginController extends CommonController
      * 服务类
      * @var SystemManagerService
      */
-    protected $SystemManagerService;
+    protected SystemManagerService $SystemManagerService;
+
+    /**
+     * 服务类
+     * @var SystemSettingService
+     */
+    protected SystemSettingService $SystemSettingService;
 
     /**
      * 验证器
      * @var SystemManagerValidate
      */
-    protected $SystemManagerValidate;
+    protected SystemManagerValidate $SystemManagerValidate;
 
     /**
      * 初始化
@@ -40,9 +45,6 @@ class SystemLoginController extends CommonController
         if (SystemManagerHelper::isLogin()) {
             $this->redirect('admin/SystemIndex/index');
         }
-
-        $this->SystemManagerService  = Dependency::getProxy(SystemManagerService::class);
-        $this->SystemManagerValidate = Dependency::getProxy(SystemManagerValidate::class);
     }
 
     /**
@@ -69,7 +71,7 @@ class SystemLoginController extends CommonController
         }
 
         return $this->fetch('', [
-            'systemSetting' => Dependency::getProxy(SystemSettingService::class)->getSystemSetting()
+            'systemSetting' => $this->SystemSettingService->getSystemSetting()
         ]);
     }
 

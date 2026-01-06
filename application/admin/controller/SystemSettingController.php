@@ -11,7 +11,6 @@ use think\Request;
 use app\admin\service\SystemSettingService;
 use app\admin\validate\SystemSettingValidate;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemSettingController extends SystemController
@@ -26,24 +25,13 @@ class SystemSettingController extends SystemController
      * 服务类
      * @var SystemSettingService
      */
-    protected $SystemSettingService;
+    protected SystemSettingService $SystemSettingService;
 
     /**
      * 验证类
      * @var SystemSettingValidate
      */
-    protected $SystemSettingValidate;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemSettingService  = Dependency::getProxy(SystemSettingService::class);
-        $this->SystemSettingValidate = Dependency::getProxy(SystemSettingValidate::class);
-    }
+    protected SystemSettingValidate $SystemSettingValidate;
 
     /**
      * 首页

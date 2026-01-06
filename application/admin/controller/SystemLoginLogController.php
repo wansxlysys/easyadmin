@@ -10,7 +10,6 @@ use think\Request;
 
 use app\admin\service\SystemLoginLogService;
 
-use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class SystemLoginLogController extends SystemController
@@ -25,17 +24,7 @@ class SystemLoginLogController extends SystemController
      * 服务类
      * @var SystemLoginLogService
      */
-    protected $SystemLoginLogService;
-
-    /**
-     * 初始化
-     * @throws Exception
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->SystemLoginLogService = Dependency::getProxy(SystemLoginLogService::class);
-    }
+    protected SystemLoginLogService $SystemLoginLogService;
 
     /**
      * 首页

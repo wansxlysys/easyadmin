@@ -10,8 +10,8 @@ use think\Request;
 
 use app\{{module}}\service\{{class}}Service;
 use app\{{module}}\validate\{{class}}Validate;
-use app\{{module}}\dependency\{{class}}Dependency;
 
+use app\common\dependency\Dependency;
 use app\common\controller\SystemController;
 
 class {{class}}Controller extends SystemController
@@ -41,8 +41,8 @@ class {{class}}Controller extends SystemController
     public function initialize()
     {
         parent::initialize();
-        $this->{{class}}Service  = {{class}}Dependency::getService();
-        $this->{{class}}Validate = {{class}}Dependency::getValidate();
+        $this->{{class}}Service  = Dependency::getProxy({{class}}Service::class);
+        $this->{{class}}Validate = Dependency::getProxy({{class}}Validate::class);
     }
 
     /**

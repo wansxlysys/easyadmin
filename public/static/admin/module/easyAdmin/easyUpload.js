@@ -62,10 +62,7 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
             if (imageList.length == 0) {
                 $(options.elem).val(null);
             } else {
-                const imagePath = imageList.map((image) => {
-                    return image.path;
-                });
-                $(options.elem).val(imagePath.join(','));
+                $(options.elem).val(imageList.join(','));
             }
         }
 

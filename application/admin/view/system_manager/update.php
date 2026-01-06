@@ -16,7 +16,6 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">管理员头像</label>
                     <div class="layui-input-block">
-                        <div id="avatar"></div>
                         <input type="hidden" name="avatar" class="layui-builder-image" lay-verify="required" lay-reqText="请上传管理员头像" value="{$manager.avatar}">
                     </div>
                 </div>
@@ -65,15 +64,7 @@
 
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;
-        const easyCreate = layui.easyCreate;
         const easyService = layui.easyService;
-
-        /**
-         * 设置上传路径
-         */
-        easyCreate.getUploader('avatar', function (uploader) {
-            uploader.config.url = "{:url('admin/SystemManager/avatar')}";
-        });
 
         easyService.roleSingleSelect({
             elem: '#role',

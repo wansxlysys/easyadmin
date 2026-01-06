@@ -151,21 +151,4 @@ class SystemManagerController extends SystemController
             $this->success('删除成功');
         }
     }
-
-    /**
-     * 头像上传
-     * @param Request $request
-     * @throws Exception
-     */
-    public function avatarAction(Request $request)
-    {
-        if ($request->isAjax()) {
-
-            $fileInfo = Dependency::getProxy(SystemUploadService::class)->uploadImage($request->file('file'));
-
-            Image::open($fileInfo['savePath'])->thumb(200, 200, 5)->save($fileInfo['savePath']);
-
-            $this->success('上传成功', '', ['viewPath' => $fileInfo['viewPath']]);
-        }
-    }
 }

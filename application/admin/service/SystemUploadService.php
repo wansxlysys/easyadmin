@@ -132,7 +132,7 @@ class SystemUploadService extends Service
              */
             $uploadLimit = $this->SystemSettingService->getSystemSettingValue('upload', 'limit');
 
-            if (UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
+            if (intval($uploadLimit) && UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
                 throw new ServiceException('文件大小超出限制');
             }
 

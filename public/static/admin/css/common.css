@@ -517,15 +517,15 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .attach-upload {
     position: relative;
     cursor: pointer;
+    border: 3px solid #fff;
+    box-sizing: border-box;
 }
 
 .attach-thumb {
-    width: 140px;
-    height: 140px;
+    width: 134px;
+    height: 134px;
     display: block;
     object-fit: cover;
-    border: 3px solid #fff;
-    box-sizing: border-box;
 }
 
 .attach-check {
@@ -547,7 +547,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     visibility: visible;
 }
 
-.attach-checked .attach-thumb {
+.attach-upload.attach-checked {
     border-color: #3AB449;
 }
 

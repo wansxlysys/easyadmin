@@ -51,7 +51,7 @@ class SystemManagerRoleService extends Service
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
-        $Wrapper->addOrder('sort', 'asc');
+        $Wrapper->addOrder('sort');
 
         $page = $this->SystemManagerRoleRepository->getPage($Wrapper);
 
@@ -73,7 +73,7 @@ class SystemManagerRoleService extends Service
         }
 
         $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
-        $Wrapper->addOrder('sort', 'asc');
+        $Wrapper->addOrder('sort');
 
         return $this->SystemManagerRoleRepository->getAll($Wrapper);
     }

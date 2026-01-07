@@ -45,7 +45,7 @@ class SystemSettingService extends Service
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
-        $Wrapper->addOrder('sort', 'asc');
+        $Wrapper->addOrder('sort');
 
         $page = $this->SystemSettingRepository->getPage($Wrapper);
 

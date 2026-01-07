@@ -37,7 +37,7 @@ class SystemDictTypeService extends Service
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
-        $Wrapper->addOrder('sort', 'asc');
+        $Wrapper->addOrder('sort');
 
         $page = $this->SystemDictTypeRepository->getPage($Wrapper);
 

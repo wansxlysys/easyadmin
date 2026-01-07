@@ -38,7 +38,7 @@ class {{class}}Service extends Service
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
 
-        $Wrapper->addOrder('sort', 'asc');
+        $Wrapper->addOrder('sort');
 
         $list  = $this->{{class}}Repository->getList($Wrapper);
         $total = $this->{{class}}Repository->getTotal($Wrapper);

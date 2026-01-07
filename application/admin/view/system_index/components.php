@@ -94,8 +94,6 @@
         <div class="layui-card-header">权限标签</div>
         <div class="layui-card-body">
 
-            {taglib name="\app\common\taglib\Permission" /}
-
             {permission:allow menu="1,2,1515151" condition="and"}
             <h1>已授权</h1>
             {else/}

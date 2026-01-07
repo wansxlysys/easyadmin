@@ -121,7 +121,7 @@ class SystemUploadService extends Service
             /**
              * 检测文件类型
              */
-            $fileType = $this->SystemDictDataService->getSystemDictDataValue('systemUploadType', $params['type']);
+            $fileType = $this->SystemDictDataService->getSystemDictDataValue('system.upload.type', $params['type']);
 
             if (empty($fileType)) {
                 throw new ServiceException('禁止上传文件类型');

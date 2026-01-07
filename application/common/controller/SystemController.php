@@ -10,13 +10,13 @@ use think\facade\Hook;
 
 use app\common\dependency\Dependency;
 
-use app\admin\behavior\SystemLogBehavior;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemSettingHelper;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemManagerService;
 use app\admin\service\SystemMenuService;
 use app\admin\service\SystemSettingService;
+use app\admin\behavior\SystemLogBehavior;
 
 class SystemController extends CommonController
 {

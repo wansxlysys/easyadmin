@@ -194,7 +194,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
-            ->where('isDelete', '=', YesnoEnum::NO)
+            ->where('isDelete', YesnoEnum::NO)
             ->update(['isDelete' => YesnoEnum::YES, 'deleteTime' => DateTimeUtil::dateTime()]);
     }
 }

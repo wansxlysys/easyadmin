@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\queue\exception;
+namespace app\queue\behavior;
 
 
 use think\queue\Job;
@@ -10,7 +10,7 @@ use app\common\util\JsonUtil;
 use app\common\dependency\Dependency;
 use app\queue\service\QueueFailedService;
 
-class QueueExceptionHandler
+class QueueFailedBehavior
 {
     /**
      * 异常处理

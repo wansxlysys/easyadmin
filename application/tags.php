@@ -1,26 +1,25 @@
 <?php
 
 
-use app\common\behavior\ControllerBehavior;
-use app\common\behavior\AspectBehavior;
-use app\common\behavior\SystemBehavior;
-
-use app\queue\exception\QueueExceptionHandler;
+use app\common\behavior\AppInitBehavior;
+use app\common\behavior\AppBeginBehavior;
+use app\common\behavior\ActionBeginBehavior;
+use app\queue\behavior\QueueFailedBehavior;
 
 return [
     // 应用初始化
     'app_init'     => [
-        SystemBehavior::class
+        AppInitBehavior::class
     ],
     // 应用开始
     'app_begin'    => [
-        AspectBehavior::class
+        AppBeginBehavior::class
     ],
     // 模块初始化
     'module_init'  => [],
     // 操作开始执行
     'action_begin' => [
-        ControllerBehavior::class
+        ActionBeginBehavior::class
     ],
     // 视图内容过滤
     'view_filter'  => [],
@@ -30,6 +29,6 @@ return [
     'app_end'      => [],
     // 队列消费失败
     'queue_failed' => [
-        QueueExceptionHandler::class
+        QueueFailedBehavior::class
     ]
 ];

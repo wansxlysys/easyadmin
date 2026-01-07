@@ -8,7 +8,7 @@ use think\Request;
 
 use app\common\helper\ImportHelper;
 
-class AspectBehavior
+class AppBeginBehavior
 {
     /**
      * 初始化钩子
@@ -25,7 +25,7 @@ class AspectBehavior
          * 加载模块切面配置类
          */
         if ($request->module() != '') {
-            ImportHelper::register($request->module() . DIR . 'aspect.php');
+            ImportHelper::register($request->module() . '/aspect.php');
         }
     }
 }

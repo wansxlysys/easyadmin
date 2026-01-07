@@ -1,5 +1,7 @@
 <?php
 
+
+use app\common\taglib\TagParams;
 use app\common\dependency\Dependency;
 
 /**
@@ -10,6 +12,15 @@ use app\common\dependency\Dependency;
 function register_static($url)
 {
     return config('system.static_path') . $url . '?v=' . config('system.version');
+}
+
+/**
+ * 创建查询参数
+ * @return TagParams
+ */
+function tag_params()
+{
+    return new TagParams();
 }
 
 /**

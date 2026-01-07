@@ -19,6 +19,12 @@
                         <input type="text" name="identify" lay-verify="required" placeholder="请输入角色标识" class="layui-input" value="{$role.identify}">
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">角色排序</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sort" placeholder="请输入角色排序" class="layui-input" value="{$role.sort}">
+                    </div>
+                </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">角色备注</label>
                     <div class="layui-input-block">
@@ -29,12 +35,6 @@
                     <label class="layui-form-label layui-required">角色权限</label>
                     <div class="layui-input-block">
                         <div id="permission" class="ztree"></div>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">角色排序</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="sort" placeholder="请输入角色排序" class="layui-input" value="{$role.sort}">
                     </div>
                 </div>
                 <div class="layui-form-item">

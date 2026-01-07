@@ -9,7 +9,7 @@ use ReflectionException;
 
 use app\common\dependency\Dependency;
 
-class ControllerBehavior
+class ActionBeginBehavior
 {
     /**
      * 初始化钩子

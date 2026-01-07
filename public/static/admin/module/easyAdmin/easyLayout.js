@@ -12,7 +12,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
     easyLayout.openFileLayer = function (configs) {
 
         const template = `
-                <div class="layui-fluid layui-content">
+                <div class="layui-fluid layui-content attach">
                     <form class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-inline">
@@ -39,13 +39,18 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             </div>
                         </div>
                     </form>
-                    <div class="action">
-                        <button type="button" class="layui-btn layui-btn-sm confirm-button">
-                            <i class="fa fa-fw fa-check"></i>选择
-                        </button>
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal upload-button">
-                            <i class="fa fa-fw fa-upload"></i>上传
-                        </button>
+                    <div class="attach-toolbar">
+                        <div class="attach-action">
+                            <button type="button" class="layui-btn layui-btn-sm confirm-button">
+                                <i class="fa fa-fw fa-check"></i>确认
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger clear-button">
+                                <i class="fa fa-fw fa-close"></i>清空
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal upload-button">
+                                <i class="fa fa-fw fa-upload"></i>上传
+                            </button>
+                        </div>
                     </div>
                     <div class="attach-wrap">
                         <div class="attach-list"></div>
@@ -62,7 +67,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
         const uploadLayer = layer.open({
             type: 1,
             title: '文件上传',
-            area: ['1095px', '795px'],
+            area: ['1105px', '805px'],
             content: template,
             success: () => {
 
@@ -224,6 +229,11 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             }
 
                             layer.close(uploadLayer)
+                        });
+
+                        $('.clear-button').on('click', () => {
+                            popupData.checkedMap.clear();
+                            uploadService.renderFile();
                         });
 
                         $('.upload-button').on('click', () => {
@@ -505,7 +515,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         <div class="attach-tool">
                                             <span class="attach-rename">改名</span>
                                             <span class="attach-look">查看</span>
-                                            <span class="attach-addr easy-copy" data-text="${file.path}">地址</span>
+                                            <span class="attach-addr easy-copy" data-text="${file.path}">复制</span>
                                         </div>
                                     </div>
                                     <div class="attach-name">${file.name}</div>

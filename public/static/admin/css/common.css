@@ -494,6 +494,10 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 /********************附件上传*******************/
+.attach {
+    padding: 20px !important;
+}
+
 .attach-wrap {
     min-height: 552px;
     margin: 15px -7px 5px;
@@ -520,7 +524,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     height: 140px;
     display: block;
     object-fit: cover;
-    border: 1px solid #eee;
+    border: 3px solid #fff;
     box-sizing: border-box;
 }
 
@@ -534,13 +538,17 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #3AB449;
     visibility: hidden;
     border-radius: 3px;
 }
 
 .attach-checked .attach-check {
     visibility: visible;
+}
+
+.attach-checked .attach-thumb {
+    border-color: #3AB449;
 }
 
 .attach-name {

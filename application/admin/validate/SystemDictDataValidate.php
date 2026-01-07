@@ -17,7 +17,7 @@ class SystemDictDataValidate extends Validate
         'label'     => 'require|max:128',
         'value'     => 'require|max:32',
         'style'     => 'max:128',
-        'isDefault' => 'require|number',
+        'isDefault' => 'require|max:1',
         'status'    => 'require|max:1',
         'sort'      => 'require|number',
     ];
@@ -35,7 +35,7 @@ class SystemDictDataValidate extends Validate
         'value.max'         => '字典数据不能超过128个字符',
         'style.max'         => '字典样式不能超过128个字符',
         'isDefault.require' => '是否默认不能为空',
-        'isDefault.number'  => '是否默认必须为正整数',
+        'isDefault.max'     => '是否默认不能超过1个字符',
         'status.require'    => '字典状态不能为空',
         'status.max'        => '字典状态不能超过1个字符',
         'sort.require'      => '字典排序不能为空',

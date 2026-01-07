@@ -28,7 +28,7 @@ class QueueFailedService extends Service
     {
         $Wrapper = new Wrapper();
 
-        $Wrapper->addOrder('id', 'desc');
+        $Wrapper->addOrder('queueId', 'desc');
         $Wrapper->addWhere('queue', '=', $queue);
 
         return $this->QueueFailedRepository->getAll($Wrapper);

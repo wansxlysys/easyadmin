@@ -28,8 +28,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">是否默认</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="isDefault" value="1" title="是" checked="">
-                        <input type="radio" name="isDefault" value="2" title="否">
+                        <input type="radio" name="isDefault" value="Y" title="是" checked="">
+                        <input type="radio" name="isDefault" value="N" title="否">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">

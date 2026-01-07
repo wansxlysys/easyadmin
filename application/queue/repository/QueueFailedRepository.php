@@ -18,5 +18,5 @@ class QueueFailedRepository extends Repository
      * 表主键
      * @var string
      */
-    protected $tableId = 'id';
+    protected $tableId = 'queueId';
 }

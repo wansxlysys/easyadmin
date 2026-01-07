@@ -58,8 +58,8 @@
 </script>
 
 <script type="text/html" id="isDefault">
-    {{#  if(d.isDefault == 1){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
-    {{#  if(d.isDefault == 2){ }}<span class="layui-badge">否</span>{{#  } }}
+    {{#  if(d.isDefault == 'Y'){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
+    {{#  if(d.isDefault == 'N'){ }}<span class="layui-badge">否</span>{{#  } }}
 </script>
 {/block}
 

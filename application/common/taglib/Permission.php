@@ -14,7 +14,6 @@ class Permission extends TagLib
         'check' => ['attr' => 'menuIds,condition', 'close' => 1]
     ];
 
-
     /**
      * 权限检测
      * {permission:check menu="1,2" condition="and"} 已授权 {else/} 未授权 {/permission:check}

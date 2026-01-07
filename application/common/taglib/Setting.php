@@ -4,37 +4,34 @@
 namespace app\common\taglib;
 
 
-class Dictionary extends TagLib
+class Setting extends TagLib
 {
     /**
      * 标签定义
      * @var array[]
      */
     protected $tags = [
-        'list' => ['attr' => 'identify,value', 'close' => 1]
+        'value' => ['attr' => 'type,identify', 'close' => 0]
     ];
 
     /**
      * 权限检测
-     * {dictionary:list menu="1,2" condition="and"} {/dictionary:list}
+     * {setting:value type="system" identify="name" /}
      * @param $tag
      * @param $content
      * @return string
      */
-    public function tagList($tag, $content)
+    public function tagValue($tag, $content)
     {
         return <<<TEMPLATE
     {php} 
-        \$dictList = tag_parser('DictionaryParser')->getList(
+        echo tag_parser('SettingParser')->getValue(
             tag_params()
+                ->add('type', {$this->parseVar($tag, 'type', true)})
                 ->add('identify', {$this->parseVar($tag, 'identify', true)})
-                ->add('value', {$this->parseVar($tag, 'value', false)})
                 ->toArray()
             ); 
     {/php}
-    {volist name="\$dictList" id="dict"}
-        $content
-    {/volist}
 TEMPLATE;
     }
 }

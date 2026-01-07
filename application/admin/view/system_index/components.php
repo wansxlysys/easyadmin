@@ -94,18 +94,18 @@
         <div class="layui-card-header">权限标签</div>
         <div class="layui-card-body">
 
-            {permission:allow menu="1,2,1515151" condition="and"}
+            {permission:check menuIds="1,2,1515151" condition="and"}
             <h1>已授权</h1>
             {else/}
             <h1>未授权</h1>
-            {/permission:allow}
+            {/permission:check}
             <br>
 
-            {permission:allow menu="1,2,1515151" condition="or"}
+            {permission:check menuIds="1,2,1515151" condition="or"}
             <h1>已授权</h1>
             {else/}
             <h1>未授权</h1>
-            {/permission:allow}
+            {/permission:check}
 
             <br>
         </div>

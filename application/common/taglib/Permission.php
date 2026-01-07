@@ -11,25 +11,28 @@ class Permission extends TagLib
      * @var array[]
      */
     protected $tags = [
-        'allow' => ['attr' => 'menu', 'close' => 1],
+        'check' => ['attr' => 'menuIds,condition', 'close' => 1]
     ];
+
 
     /**
      * 权限检测
-     * {permission:allow menu="1,2" condition="and"} 已授权 {else/} 未授权 {/permission:allow}
+     * {permission:check menu="1,2" condition="and"} 已授权 {else/} 未授权 {/permission:check}
      * @param $tag
      * @param $content
      * @return string
      */
-    public function tagAllow($tag, $content)
+    public function tagCheck($tag, $content)
     {
-        $menu      = $this->quotesVar($tag['menu']);
-        $condition = $this->quotesVar($tag['condition'] ?? 'and');
-
-        $parse = '{if \app\admin\helper\SystemManagerHelper::checkAccessByMenuId(' . $menu . ', ' . $condition . ')}';
-        $parse .= $content;
-        $parse .= '{/if}';
-
-        return $parse;
+        return <<<TEMPLATE
+    {if tag_parser('PermissionParser')->tagAllow(
+        tag_params()
+            ->add('menuIds', {$this->parseVar($tag, 'menuIds', true)})
+            ->add('condition', {$this->parseVar($tag, 'condition', false, 'and')})
+            ->toArray()
+        )}
+        $content
+    {/if}
+TEMPLATE;
     }
 }

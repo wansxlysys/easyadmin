@@ -18,15 +18,15 @@ class TagLib extends \think\template\TagLib
      */
     public function parseVar($tag, $name, $require, $default = null)
     {
-        if (!isset($tag[$name])) {
-            if ($require && $default === null) {
-                throw new ServiceException($name . '属性不能为空');
-            } else {
-                return $this->autoParseVar($default);
-            }
+        if (isset($tag[$name])) {
+            return $this->autoParseVar($tag[$name]);
         }
 
-        return $this->autoParseVar($tag[$name]);
+        if ($require) {
+            throw new ServiceException($name . '属性不能为空');
+        }
+
+        return $this->autoParseVar($default);
     }
 
     /**

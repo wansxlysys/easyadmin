@@ -24,6 +24,15 @@ function tag_params()
 }
 
 /**
+ * 创建查询参数
+ * @return TagParams
+ */
+function tag_parser($name, $layer = 'common')
+{
+    return Dependency::getProxy(sprintf('\app\%s\taglib\parser\%s', $layer, $name));
+}
+
+/**
  * 输出展位图片
  * @param $image
  * @param $default

@@ -6,6 +6,7 @@ namespace app\admin\service;
 
 use Exception;
 
+use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 
@@ -86,5 +87,45 @@ class SystemDictDataService extends Service
     public function deleteSystemDictData(array $params)
     {
         return $this->SystemDictDataRepository->deleteById($params['dataId']);
+    }
+
+    /**
+     * 获取字典键值对
+     * @param $identify
+     * @return array
+     * @throws Exception
+     */
+    public function getKeyMapSystemDictData($identify)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('dict.status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('type.status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('type.identify', '=', $identify);
+        $Wrapper->addOrder('type.sort');
+
+        $dictList = $this->SystemDictDataRepository->getListWithDictType($Wrapper);
+
+        return array_column($dictList, 'value', 'label');
+    }
+
+    /**
+     * 获取字典键值对
+     * @param $identify
+     * @return array
+     * @throws Exception
+     */
+    public function getValueMapSystemDictData($identify)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('dict.status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('type.status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('type.identify', '=', $identify);
+        $Wrapper->addOrder('type.sort');
+
+        $dictList = $this->SystemDictDataRepository->getListWithDictType($Wrapper);
+
+        return array_column($dictList, 'label', 'value');
     }
 }

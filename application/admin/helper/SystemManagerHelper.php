@@ -8,7 +8,7 @@ use think\facade\Session;
 
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
-use app\common\enum\DeleteEnum;
+use app\common\enum\YesnoEnum;
 use app\common\context\ContextHolder;
 use app\common\helper\PermissionHelper;
 
@@ -137,7 +137,7 @@ class SystemManagerHelper
      */
     public static function isDelete()
     {
-        return static::getManager()['isDelete'] == DeleteEnum::DELETE_YES;
+        return static::getManager()['isDelete'] == YesnoEnum::YES;
     }
 
     /**

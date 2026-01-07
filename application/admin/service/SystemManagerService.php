@@ -9,7 +9,7 @@ use Exception;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\DateTimeUtil;
-use app\common\enum\DeleteEnum;
+use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
@@ -58,7 +58,7 @@ class SystemManagerService extends Service
             $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
         }
 
-        $Wrapper->addWhere('manager.isDelete', '=', DeleteEnum::DELETE_NOT);
+        $Wrapper->addWhere('manager.isDelete', '=', YesnoEnum::NO);
 
         $field = [
             'manager.managerId', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
@@ -122,7 +122,7 @@ class SystemManagerService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('roleId', '=', $roleId);
-        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }
@@ -138,7 +138,7 @@ class SystemManagerService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('account', '=', $account);
-        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }
@@ -197,7 +197,7 @@ class SystemManagerService extends Service
             throw new ServiceException('删除失败，超级管理员禁止删除');
         }
 
-        return $this->ManagerRepository->updateById($params['managerId'], ['isDelete' => DeleteEnum::DELETE_NOT]);
+        return $this->ManagerRepository->removeById($params['managerId']);
     }
 
     /**

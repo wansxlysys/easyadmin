@@ -8,7 +8,7 @@ use think\Db;
 use think\Paginator;
 use think\Exception;
 
-use app\common\enum\DeleteEnum;
+use app\common\enum\YesnoEnum;
 use app\common\util\DateTimeUtil;
 
 abstract class Dao
@@ -194,7 +194,7 @@ abstract class Dao
     {
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
-            ->where('isDelete', '=', DeleteEnum::DELETE_NOT)
-            ->update(['isDelete' => DeleteEnum::DELETE_YES, 'deleteTime' => DateTimeUtil::dateTime()]);
+            ->where('isDelete', '=', YesnoEnum::NO)
+            ->update(['isDelete' => YesnoEnum::YES, 'deleteTime' => DateTimeUtil::dateTime()]);
     }
 }

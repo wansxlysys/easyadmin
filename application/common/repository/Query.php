@@ -208,7 +208,7 @@ abstract class Query
      * @param $field
      * @param $order
      */
-    public function addOrder($field, $order)
+    public function addOrder($field, $order = 'asc')
     {
         $this->order[$field] = $order;
     }

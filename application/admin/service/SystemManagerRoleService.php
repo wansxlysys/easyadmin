@@ -6,7 +6,7 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\enum\DeleteEnum;
+use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
@@ -47,7 +47,7 @@ class SystemManagerRoleService extends Service
             $Wrapper->addWhere('identify', 'LIKE', '%' . $params['identify'] . '%');
         }
 
-        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -72,7 +72,7 @@ class SystemManagerRoleService extends Service
             $Wrapper->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
         }
 
-        $Wrapper->addWhere('isDelete', '=', DeleteEnum::DELETE_NOT);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
         $Wrapper->addOrder('sort', 'asc');
 
         return $this->SystemManagerRoleRepository->getAll($Wrapper);
@@ -110,7 +110,7 @@ class SystemManagerRoleService extends Service
             throw new ServiceException('删除失败，禁止删除超管角色');
         }
 
-        return $this->SystemManagerRoleRepository->updateById($params['roleId'], ['isDelete' => DeleteEnum::DELETE_YES]);
+        return $this->SystemManagerRoleRepository->removeById($params['roleId']);
     }
 
     /**

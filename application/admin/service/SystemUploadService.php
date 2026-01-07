@@ -6,12 +6,12 @@ namespace app\admin\service;
 
 use Exception;
 
+use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\helper\UploadHelper;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 
-use app\admin\enum\SystemUploadEnum;
 use app\admin\repository\SystemUploadRepository;
 
 class SystemUploadService extends Service
@@ -38,7 +38,7 @@ class SystemUploadService extends Service
             $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
         }
 
-        $Wrapper->addWhere('status', '=', SystemUploadEnum::STATUS_SUCCESS);
+        $Wrapper->addWhere('status', '=', YesnoEnum::YES);
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -86,11 +86,11 @@ class SystemUploadService extends Service
 
             if (file_exists($savePath)) {
 
-                if ($fileInfo['status'] == SystemUploadEnum::STATUS_UPLOADING) {
+                if ($fileInfo['status'] == YesnoEnum::NO) {
                     $result['chunkIndex'] = $fileInfo['index'];
                 }
 
-                if ($fileInfo['status'] == SystemUploadEnum::STATUS_SUCCESS) {
+                if ($fileInfo['status'] == YesnoEnum::YES) {
                     $result['isExists'] = true;
                 }
 
@@ -142,7 +142,7 @@ class SystemUploadService extends Service
         $fileData['index'] = $params['index'];
 
         if ($params['index'] + 1 == $params['total']) {
-            $fileData['status'] = SystemUploadEnum::STATUS_SUCCESS;
+            $fileData['status'] = YesnoEnum::YES;
         }
 
         $this->SystemUploadRepository->updateById($fileInfo['fileId'], $fileData);

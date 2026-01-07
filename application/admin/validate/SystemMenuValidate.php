@@ -24,7 +24,7 @@ class SystemMenuValidate extends Validate
         'type'       => 'require|number',
         'link'       => 'requireIf:type,3|max:256',
         'target'     => 'require|number',
-        'record'     => 'require|number',
+        'record'     => 'require|max:1',
         'sort'       => 'require|number',
     ];
 
@@ -51,7 +51,7 @@ class SystemMenuValidate extends Validate
         'target.require'  => '打开方式不能为空',
         'target.number'   => '打开方式必须为正整数',
         'record.require'  => '日志记录不能为空',
-        'record.number'   => '日志记录必须为正整数',
+        'record.max'      => '日志记录不能超过1个字符',
         'sort.require'    => '排序不能为空',
         'sort.number'     => '排序必须是整数',
     ];

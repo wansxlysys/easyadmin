@@ -53,8 +53,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">日志记录</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="record" value="1" title="开启" {eq name="$menu.record" value="1" }checked{/eq}>
-                        <input type="radio" name="record" value="2" title="关闭" {eq name="$menu.record" value="2" }checked{/eq}>
+                        <input type="radio" name="record" value="Y" title="开启" {eq name="$menu.record" value="Y" }checked{/eq}>
+                        <input type="radio" name="record" value="N" title="关闭" {eq name="$menu.record" value="N" }checked{/eq}>
                     </div>
                 </div>
                 <div class="layui-form-item">

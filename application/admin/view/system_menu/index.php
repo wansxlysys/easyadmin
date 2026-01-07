@@ -56,8 +56,8 @@
 </script>
 
 <script type="text/html" id="record">
-    {{#  if(d.record == 1){ }}<span class="layui-badge layui-bg-green">开启</span>{{#  } }}
-    {{#  if(d.record == 2){ }}<span class="layui-badge layui-bg-red">关闭</span>{{#  } }}
+    {{#  if(d.record == 'Y'){ }}<span class="layui-badge layui-bg-green">开启</span>{{#  } }}
+    {{#  if(d.record == 'N'){ }}<span class="layui-badge layui-bg-red">关闭</span>{{#  } }}
 </script>
 
 <script type="text/html" id="bar">

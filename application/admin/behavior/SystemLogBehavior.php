@@ -9,10 +9,10 @@ use Exception;
 use think\Request;
 use think\Response;
 
+use app\common\enum\YesnoEnum;
 use app\common\util\ArrayUtil;
 use app\common\dependency\Dependency;
 
-use app\admin\enum\SystemMenuEnum;
 use app\admin\enum\SystemOperLogEnum;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemManagerHelper;
@@ -30,7 +30,7 @@ class SystemLogBehavior
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if ($currentMenu['record'] == SystemMenuEnum::RECORD_YES) {
+        if ($currentMenu['record'] == YesnoEnum::YES) {
 
             $data = $response->getData();
 

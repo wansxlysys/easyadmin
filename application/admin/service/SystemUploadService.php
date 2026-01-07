@@ -81,12 +81,35 @@ class SystemUploadService extends Service
      */
     public function checkFile(array $params)
     {
+        /**
+         * 检测文件类型
+         */
+        $fileType = $this->SystemDictDataService->getSystemDictDataValue('system.upload.type', $params['type']);
+
+        if (empty($fileType)) {
+            throw new ServiceException('禁止上传文件类型');
+        }
+
+        /**
+         * 检测文件大小
+         */
+        $uploadLimit = intval($this->SystemSettingService->getSystemSettingValue('upload', 'limit'));
+
+        if ($uploadLimit && UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
+            throw new ServiceException('文件大小超出限制');
+        }
+
+        /**
+         * 检测文件是否存在
+         */
         $fileInfo = $this->SystemUploadRepository->getByWhere([
             'hash' => $params['hash'],
             'name' => $params['name'],
         ]);
 
-        $result['isExists'] = false;
+        $fileExist = false;
+
+        $result['isFinish'] = false;
         $result['fileInfo'] = $fileInfo;
 
         if ($fileInfo) {
@@ -98,12 +121,14 @@ class SystemUploadService extends Service
 
             if (file_exists($savePath)) {
 
+                $fileExist = true;
+
                 if ($fileInfo['status'] == YesnoEnum::NO) {
                     $result['chunkIndex'] = $fileInfo['index'];
                 }
 
                 if ($fileInfo['status'] == YesnoEnum::YES) {
-                    $result['isExists'] = true;
+                    $result['isFinish'] = true;
                 }
 
                 $this->SystemUploadRepository->updateById($fileInfo['fileId']);
@@ -115,39 +140,22 @@ class SystemUploadService extends Service
                  */
                 $this->SystemUploadRepository->deleteById($fileInfo['fileId']);
             }
+        }
 
-        } else {
-
-            /**
-             * 检测文件类型
-             */
-            $fileType = $this->SystemDictDataService->getSystemDictDataValue('system.upload.type', $params['type']);
-
-            if (empty($fileType)) {
-                throw new ServiceException('禁止上传文件类型');
-            }
-
-            /**
-             * 检测文件大小
-             */
-            $uploadLimit = intval($this->SystemSettingService->getSystemSettingValue('upload', 'limit'));
-
-            if ($uploadLimit && UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
-                throw new ServiceException('文件大小超出限制');
-            }
+        if (!$fileExist) {
 
             /**
              * 创建文件信息
              */
             $savePath = UploadHelper::getSavePath($fileType, $params['name']);
 
-            $fileInfo['type'] = $fileType;
-            $fileInfo['path'] = $savePath;
-            $fileInfo['name'] = $params['name'];
-            $fileInfo['hash'] = $params['hash'];
-            $fileInfo['size'] = $params['size'];
+            $saveInfo['type'] = $fileType;
+            $saveInfo['path'] = $savePath;
+            $saveInfo['name'] = $params['name'];
+            $saveInfo['hash'] = $params['hash'];
+            $saveInfo['size'] = $params['size'];
 
-            $this->SystemUploadRepository->createRecord($fileInfo);
+            $this->SystemUploadRepository->createRecord($saveInfo);
         }
 
         return $result;

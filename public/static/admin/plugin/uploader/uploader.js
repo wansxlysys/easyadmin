@@ -92,7 +92,7 @@ class Uploader {
                 fileType: fileObj.fileType
             });
 
-            if (checkResult.isExists) {
+            if (checkResult.isFinish) {
 
                 fileObj.status = 'success';
                 fileObj.progress = 100;

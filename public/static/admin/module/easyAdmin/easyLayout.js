@@ -511,7 +511,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         <div class="attach-check">
                                             <i class="fa fa-fw fa-check"></i>
                                         </div>
-                                        <img class="attach-thumb" src="${file.type == 'image' ? file.path : '/static/admin/img/' + file.type + '.png'}">
+                                        <img class="attach-thumb" src="${file.type == 'image' ? file.path : '/static/admin/img/' + file.type + '.jpg'}">
                                         <div class="attach-tool">
                                             <span class="attach-rename">改名</span>
                                             <span class="attach-look">查看</span>

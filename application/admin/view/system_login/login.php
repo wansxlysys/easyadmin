@@ -114,20 +114,20 @@
             <p>{$systemSetting.slogan}</p>
         </div>
         <div class="easy-user-login-box easy-user-login-body layui-form">
-            <form class="layui-form">
+            <form class="layui-form" autocomplete="off">
                 <div class="layui-form-item">
                     <label class="easy-user-login-icon layui-icon layui-icon-username" for="account"></label>
-                    <input type="text" name="account" id="account" lay-verify="required" autocomplete="off" placeholder="账号" class="layui-input">
+                    <input type="text" name="account" id="account" lay-verify="required" placeholder="账号" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <label class="easy-user-login-icon layui-icon layui-icon-password" for="password"></label>
-                    <input type="password" name="password" id="password" lay-verify="required" autocomplete="off" placeholder="密码" class="layui-input">
+                    <input type="password" name="password" id="password" lay-verify="required" placeholder="密码" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-row">
                         <div class="layui-col-xs7">
                             <label class="easy-user-login-icon layui-icon layui-icon-vercode" for="captcha"></label>
-                            <input type="text" name="captcha" id="captcha" lay-verify="required" autocomplete="off" placeholder="验证码" class="layui-input">
+                            <input type="text" name="captcha" id="captcha" lay-verify="required" placeholder="验证码" class="layui-input">
                         </div>
                         <div class="layui-col-xs5">
                             <div class="easy-user-login-captcha">

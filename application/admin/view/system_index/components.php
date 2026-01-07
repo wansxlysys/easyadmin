@@ -96,6 +96,9 @@
             {dictionary:list identify="newsTag"}
             {{#  if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{#  } }}
             {/dictionary:list}
+            {dictionary:list identify="newsTag" value="hot"}
+            {{#  if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{#  } }}
+            {/dictionary:list}
         </div>
     </div>
 

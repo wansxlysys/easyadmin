@@ -17,14 +17,20 @@ class DictionaryParser
      * @return array
      * @throws Exception
      */
-    public function tagList(array $params)
+    public function getList(array $params)
     {
+        $where[] = ['dict.status', '=', YesnoEnum::YES];
+        $where[] = ['type.status', '=', YesnoEnum::YES];
+        $where[] = ['type.identify', '=', $params['identify']];
+
+        if (isset($params['value'])) {
+            $where[] = ['dict.value', '=', $params['value']];
+        }
+
         return Db::name('system_dict_data')
             ->alias('dict')
             ->join('system_dict_type type', 'type.dictId = dict.dictId')
-            ->where('dict.status', YesnoEnum::YES)
-            ->where('type.status', YesnoEnum::YES)
-            ->where('type.identify', $params['identify'])
+            ->where($where)
             ->order('type.sort')
             ->select();
     }

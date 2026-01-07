@@ -8,7 +8,7 @@ use app\admin\helper\SystemManagerHelper;
 
 class PermissionParser
 {
-    public function tagAllow(array $params)
+    public function check(array $params)
     {
         return SystemManagerHelper::checkAccessByMenuId($params['menuIds'], $params['condition']);
     }

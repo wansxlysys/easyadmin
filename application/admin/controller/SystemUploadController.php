@@ -85,7 +85,7 @@ class SystemUploadController extends SystemController
                 'type' => $request->get('fileType'),
             ];
 
-            $this->success('文件已存在', '', $this->SystemUploadService->checkFile($params));
+            $this->success('获取成功', '', $this->SystemUploadService->checkFile($params));
         }
     }
 

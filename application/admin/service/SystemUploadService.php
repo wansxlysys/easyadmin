@@ -23,6 +23,18 @@ class SystemUploadService extends Service
     protected SystemUploadRepository $SystemUploadRepository;
 
     /**
+     * 系统字典服务类
+     * @var SystemDictDataService
+     */
+    protected SystemDictDataService $SystemDictDataService;
+
+    /**
+     * 系统设置服务类
+     * @var SystemSettingService
+     */
+    protected SystemSettingService $SystemSettingService;
+
+    /**
      * 获取列表
      * @throws Exception
      */
@@ -102,11 +114,25 @@ class SystemUploadService extends Service
 
         } else {
 
+            $fileType = $this->SystemDictDataService->getSystemDictDataValue('systemUploadType', $params['type']);
+
+            if (empty($fileType)) {
+                throw new ServiceException('禁止上传文件类型');
+            }
+
+            $uploadLimit = $this->SystemSettingService->getSystemSettingValue('upload', 'limit');
+
+            if (UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
+                throw new ServiceException('文件大小超出限制');
+            }
+
+            $savePath = UploadHelper::getSavePath($fileType, $params['name']);
+
+            $fileInfo['type'] = $fileType;
+            $fileInfo['path'] = $savePath;
             $fileInfo['name'] = $params['name'];
             $fileInfo['hash'] = $params['hash'];
             $fileInfo['size'] = $params['size'];
-            $fileInfo['type'] = UploadHelper::getFileType($params['type']);
-            $fileInfo['path'] = UploadHelper::getSavePath($params['name']);
 
             $this->SystemUploadRepository->createRecord($fileInfo);
         }

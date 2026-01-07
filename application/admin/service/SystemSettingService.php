@@ -4,6 +4,7 @@
 namespace app\admin\service;
 
 
+use app\common\exception\ServiceException;
 use Exception;
 
 use app\common\service\Service;
@@ -102,6 +103,29 @@ class SystemSettingService extends Service
     public function getSystemSetting()
     {
         return $this->getSettingArray(SystemSettingEnum::TYPE_SYSTEM);
+    }
+
+    /**
+     * 获取设置值
+     * @param $type
+     * @param $identify
+     * @return mixed
+     * @throws Exception
+     */
+    public function getSystemSettingValue($type, $identify)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('type', '=', $type);
+        $Wrapper->addWhere('identify', '=', $identify);
+
+        $setting = $this->SystemSettingRepository->getOne($Wrapper);
+
+        if ($setting) {
+            return $setting['value'];
+        }
+
+        throw new ServiceException('系统设置不存在');
     }
 
     /**

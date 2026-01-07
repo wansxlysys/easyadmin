@@ -23,12 +23,13 @@ class UploadHelper
 
     /**
      * 构建路径
+     * @param $fileType
      * @param $fileName
      * @return string
      */
-    public static function getSavePath($fileName)
+    public static function getSavePath($fileType, $fileName)
     {
-        return SystemUploadEnum::UPLOAD_DIR . '/' . date('Ymd') . '/' . static::makeFileName($fileName);
+        return SystemUploadEnum::UPLOAD_DIR . '/' . $fileType . '/' . date('Ymd') . '/' . static::makeFileName($fileName);
     }
 
     /**
@@ -85,16 +86,12 @@ class UploadHelper
     }
 
     /**
-     * 获取文件类型
-     * @param $fileType
-     * @return string
+     * 字节转换
+     * @param $byte
+     * @return float
      */
-    public static function getFileType($fileType)
+    public static function fileSizeToMb($byte)
     {
-        if (isset(SystemUploadEnum::FILE_TYPE[$fileType])) {
-            return SystemUploadEnum::FILE_TYPE[$fileType];
-        }
-
-        throw new ServiceException('文件类型禁止上传');
+        return round($byte / 1024 / 1024, 2);
     }
 }

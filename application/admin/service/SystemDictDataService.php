@@ -128,4 +128,29 @@ class SystemDictDataService extends Service
 
         return array_column($dictList, 'label', 'value');
     }
+
+    /**
+     * 获取字典键值对
+     * @param $identify
+     * @param $label
+     * @return array
+     * @throws Exception
+     */
+    public function getSystemDictDataValue($identify, $label)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('dict.label', '=', $label);
+        $Wrapper->addWhere('type.identify', '=', $identify);
+        $Wrapper->addWhere('dict.status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('type.status', '=', YesnoEnum::YES);
+
+        $dictData = $this->SystemDictDataRepository->getWithDictType($Wrapper);
+
+        if (isset($dictData)) {
+            return $dictData['value'];
+        }
+
+        return null;
+    }
 }

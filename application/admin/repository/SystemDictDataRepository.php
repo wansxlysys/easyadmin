@@ -26,6 +26,7 @@ class SystemDictDataRepository extends Repository
     protected $tableId = 'dataId';
 
     /**
+     * 获取字典数据列表
      * @param Wrapper $Wrapper
      * @return array
      * @throws Exception
@@ -45,5 +46,23 @@ class SystemDictDataRepository extends Repository
             ->having($Wrapper->getHaving())
             ->order($Wrapper->getOrder())
             ->select();
+    }
+
+    /**
+     * 获取字典数据
+     * @param Wrapper $Wrapper
+     * @return array
+     * @throws Exception
+     */
+    public function getWithDictType(Wrapper $Wrapper)
+    {
+        return Db::name($this->getName())
+            ->alias('dict')
+            ->join('system_dict_type type', 'type.dictId = dict.dictId')
+            ->where($Wrapper->getWhere())
+            ->where($Wrapper->getAndOr())
+            ->whereOr($Wrapper->getWhereOr())
+            ->field($Wrapper->getField())
+            ->find();
     }
 }

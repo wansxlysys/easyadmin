@@ -34,8 +34,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">字典状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="1" title="启用" checked="">
-                        <input type="radio" name="status" value="2" title="禁用">
+                        <input type="radio" name="status" value="Y" title="启用" checked="">
+                        <input type="radio" name="status" value="N" title="禁用">
                     </div>
                 </div>
                 <div class="layui-form-item">

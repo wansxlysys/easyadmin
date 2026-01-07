@@ -91,6 +91,15 @@
     </div>
 
     <div class="layui-card">
+        <div class="layui-card-header">字典调用</div>
+        <div class="layui-card-body">
+            {dictionary:list identify="newsTag"}
+            {{#  if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{#  } }}
+            {/dictionary:list}
+        </div>
+    </div>
+
+    <div class="layui-card">
         <div class="layui-card-header">权限标签</div>
         <div class="layui-card-body">
 

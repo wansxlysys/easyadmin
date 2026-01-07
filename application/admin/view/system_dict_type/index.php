@@ -56,8 +56,8 @@
 </script>
 
 <script type="text/html" id="status">
-    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
-    {{#  if(d.status == 2){ }}<span class="layui-badge">禁用</span>{{#  } }}
+    {{#  if(d.status == 'Y'){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
+    {{#  if(d.status == 'N'){ }}<span class="layui-badge">禁用</span>{{#  } }}
 </script>
 {/block}
 

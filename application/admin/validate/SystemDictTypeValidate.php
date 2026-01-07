@@ -16,7 +16,7 @@ class SystemDictTypeValidate extends Validate
         'dictId'   => 'require|number',
         'name'     => 'require|max:128',
         'identify' => 'require|max:128',
-        'status'   => 'require|number',
+        'status'   => 'require|max:1',
         'sort'     => 'require|number',
     ];
 
@@ -32,7 +32,7 @@ class SystemDictTypeValidate extends Validate
         'identify.require' => '字典标识不能为空',
         'identify.max'     => '字典标识不能超过128个字符',
         'status.require'   => '字典状态不能为空',
-        'status.number'    => '字典状态必须为正整数',
+        'status.max'       => '字典状态不能超过1个字符',
         'sort.require'     => '字典排序不能为空',
         'sort.number'      => '字典排序必须为正整数',
     ];

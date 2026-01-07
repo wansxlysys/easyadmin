@@ -13,6 +13,7 @@
 // | 模板设置
 // +----------------------------------------------------------------------
 
+use app\common\taglib\Dictionary;
 use app\common\taglib\Permission;
 
 return [
@@ -36,6 +37,7 @@ return [
     'taglib_end'      => '}',
     // 预先加载的标签库
     'taglib_pre_load' => implode(',', [
-        Permission::class
+        Permission::class,
+        Dictionary::class
     ])
 ];

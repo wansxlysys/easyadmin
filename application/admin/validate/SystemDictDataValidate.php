@@ -18,7 +18,7 @@ class SystemDictDataValidate extends Validate
         'value'     => 'require|max:32',
         'style'     => 'max:128',
         'isDefault' => 'require|number',
-        'status'    => 'require|number',
+        'status'    => 'require|max:1',
         'sort'      => 'require|number',
     ];
 
@@ -37,7 +37,7 @@ class SystemDictDataValidate extends Validate
         'isDefault.require' => '是否默认不能为空',
         'isDefault.number'  => '是否默认必须为正整数',
         'status.require'    => '字典状态不能为空',
-        'status.number'     => '字典状态必须为正整数',
+        'status.max'        => '字典状态不能超过1个字符',
         'sort.require'      => '字典排序不能为空',
         'sort.number'       => '字典排序必须为正整数',
     ];

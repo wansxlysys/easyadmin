@@ -109,23 +109,36 @@ class SystemUploadService extends Service
                 $this->SystemUploadRepository->updateById($fileInfo['fileId']);
 
             } else {
+
+                /**
+                 * 删除数据库记录
+                 */
                 $this->SystemUploadRepository->deleteById($fileInfo['fileId']);
             }
 
         } else {
 
+            /**
+             * 检测文件类型
+             */
             $fileType = $this->SystemDictDataService->getSystemDictDataValue('systemUploadType', $params['type']);
 
             if (empty($fileType)) {
                 throw new ServiceException('禁止上传文件类型');
             }
 
+            /**
+             * 检测文件大小
+             */
             $uploadLimit = $this->SystemSettingService->getSystemSettingValue('upload', 'limit');
 
             if (UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
                 throw new ServiceException('文件大小超出限制');
             }
 
+            /**
+             * 创建文件信息
+             */
             $savePath = UploadHelper::getSavePath($fileType, $params['name']);
 
             $fileInfo['type'] = $fileType;

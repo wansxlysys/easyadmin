@@ -130,6 +130,7 @@ class Uploader {
             const formData = new FormData();
             formData.append('fileChunk', fileChunk);
             formData.append('fileHash', fileObj.fileHash);
+            formData.append('fileType', fileObj.fileType);
             formData.append('fileName', fileObj.fileName);
             formData.append('fileSize', fileObj.fileSize);
             formData.append('chunkIndex', fileObj.chunkIndex);

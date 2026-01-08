@@ -102,6 +102,7 @@ class SystemUploadController extends SystemController
             $params = [
                 'name'  => $request->post('fileName'),
                 'size'  => $request->post('fileSize'),
+                'type'  => $request->post('fileType'),
                 'hash'  => $request->post('fileHash'),
                 'chunk' => $request->file('fileChunk'),
                 'index' => $request->post('chunkIndex'),

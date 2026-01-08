@@ -12,6 +12,7 @@ use app\common\helper\UploadHelper;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 
+use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemUploadRepository;
 
 class SystemUploadService extends Service
@@ -51,6 +52,7 @@ class SystemUploadService extends Service
         }
 
         $Wrapper->addWhere('status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('user', '=', SystemManagerHelper::getManagerId());
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -102,10 +104,7 @@ class SystemUploadService extends Service
         /**
          * 检测文件是否存在
          */
-        $fileInfo = $this->SystemUploadRepository->getByWhere([
-            'hash' => $params['hash'],
-            'name' => $params['name'],
-        ]);
+        $fileInfo = $this->getFileInfo($params);
 
         $fileExist = false;
 
@@ -117,9 +116,9 @@ class SystemUploadService extends Service
             /**
              * 检测本地文件是否存在
              */
-            $savePath = UploadHelper::getRootPath($fileInfo['path']);
+            $rootPath = UploadHelper::getRootPath($fileInfo['path']);
 
-            if (file_exists($savePath)) {
+            if (file_exists($rootPath)) {
 
                 $fileExist = true;
 
@@ -154,6 +153,7 @@ class SystemUploadService extends Service
             $saveInfo['name'] = $params['name'];
             $saveInfo['hash'] = $params['hash'];
             $saveInfo['size'] = $params['size'];
+            $saveInfo['user'] = SystemManagerHelper::getManagerId();
 
             $this->SystemUploadRepository->createRecord($saveInfo);
         }
@@ -169,10 +169,7 @@ class SystemUploadService extends Service
      */
     public function uploadFile(array $params)
     {
-        $fileInfo = $this->SystemUploadRepository->getByWhere([
-            'hash' => $params['hash'],
-            'name' => $params['name'],
-        ]);
+        $fileInfo = $this->getFileInfo($params);
 
         if (empty($fileInfo)) {
             throw new ServiceException('文件不存在');
@@ -195,5 +192,21 @@ class SystemUploadService extends Service
         $this->SystemUploadRepository->updateById($fileInfo['fileId'], $fileData);
 
         return $fileInfo;
+    }
+
+    /**
+     * 获取文件信息
+     * @param array $params
+     * @return array
+     * @throws Exception
+     */
+    protected function getFileInfo(array $params)
+    {
+        return $this->SystemUploadRepository->getByWhere([
+            'hash' => $params['hash'],
+            'name' => $params['name'],
+            'type' => $params['type'],
+            'user' => SystemManagerHelper::getManagerId()
+        ]);
     }
 }

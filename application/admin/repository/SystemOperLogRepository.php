@@ -39,7 +39,6 @@ class SystemOperLogRepository extends Repository
             ->join('system_menu menu', 'menu.menuId = log.menuId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
-            ->page($Wrapper->getPage())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())

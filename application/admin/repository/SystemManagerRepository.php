@@ -38,7 +38,6 @@ class SystemManagerRepository extends Repository
             ->join('system_manager_role role', 'role.roleId = manager.roleId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
-            ->page($Wrapper->getPage())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())

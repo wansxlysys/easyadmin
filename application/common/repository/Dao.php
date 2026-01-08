@@ -42,7 +42,6 @@ abstract class Dao
             ->where($Wrapper->getWhere())
             ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
-            ->page($Wrapper->getPage())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())

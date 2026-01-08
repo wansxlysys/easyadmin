@@ -38,7 +38,6 @@ class SystemLoginLogRepository extends Repository
             ->join('system_manager manager', 'log.managerId = manager.managerId')
             ->where($Wrapper->getWhere())
             ->whereOr($Wrapper->getWhereOr())
-            ->page($Wrapper->getPage())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())

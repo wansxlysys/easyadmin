@@ -8,7 +8,7 @@ use app\admin\repository\SystemManagerRepository;
 use app\common\dependency\Dependency;
 use app\common\dependency\DependencyAspect;
 use app\common\helper\RedisHelper;
-use app\common\library\lock\RedisLock;
+use app\common\extend\lock\RedisLock;
 use app\common\util\ExcelUtil;
 use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;

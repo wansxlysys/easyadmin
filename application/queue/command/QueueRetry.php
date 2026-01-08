@@ -58,7 +58,7 @@ class QueueRetry extends Command
             /**
              * 删除失败记录
              */
-            $QueueFiledService->deleteFailed($failed['id']);
+            $QueueFiledService->deleteFailed($failed['queueId']);
         }
     }
 }

@@ -165,7 +165,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     url: apiUrl.renameFile,
                                     data: {
                                         fileName: fileName,
-                                        fileId: file.fileId
+                                        fileId: file.fileId,
+                                        fileHash: file.hash
                                     },
                                     loading: false,
                                     success: function () {

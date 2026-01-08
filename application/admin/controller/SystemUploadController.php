@@ -60,10 +60,11 @@ class SystemUploadController extends SystemController
 
             $params = [
                 'fileId' => $request->post('fileId'),
+                'hash'   => $request->post('fileHash'),
                 'name'   => $request->post('fileName'),
             ];
 
-            $this->SystemUploadService->updateFile($params);
+            $this->SystemUploadService->renameFile($params);
 
             $this->success('修改成功');
         }

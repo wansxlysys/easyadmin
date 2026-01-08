@@ -70,8 +70,20 @@ class SystemUploadService extends Service
      * @return void
      * @throws Exception
      */
-    public function updateFile(array $params)
+    public function renameFile(array $params)
     {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('hash', '=', $params['hash']);
+        $Wrapper->addWhere('fileId', '<>', $params['fileId']);
+        $Wrapper->addWhere('managerId', '=', SystemManagerHelper::getManagerId());
+
+        $fileInfo = $this->SystemUploadRepository->getOne($Wrapper);
+
+        if ($fileInfo['name'] == $params['name']) {
+            throw new ServiceException('文件名称已存在');
+        }
+
         $this->SystemUploadRepository->updateById($params['fileId'], $params);
     }
 

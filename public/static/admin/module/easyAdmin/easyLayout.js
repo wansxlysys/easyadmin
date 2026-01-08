@@ -182,11 +182,19 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             const index = $(event.currentTarget).closest('.attach-grid').index();
                             const file = popupData.fileList[index];
                             if (file.type == 'image') {
-                                const images = popupData.fileList.filter(item => item.type == 'image');
+                                const images = popupData.fileList.filter((item) => {
+                                    return item.type == 'image';
+                                });
                                 top.layer.photos({
                                     photos: {
-                                        start: index,
-                                        data: images.map(item => ({src: item.path}))
+                                        start: images.findIndex((item) => {
+                                            return item.fileId == file.fileId
+                                        }),
+                                        data: images.map((item) => {
+                                            return {
+                                                src: item.path
+                                            }
+                                        })
                                     }
                                 });
                             } else {

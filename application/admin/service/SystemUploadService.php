@@ -52,7 +52,7 @@ class SystemUploadService extends Service
         }
 
         $Wrapper->addWhere('status', '=', YesnoEnum::YES);
-        $Wrapper->addWhere('user', '=', SystemManagerHelper::getManagerId());
+        $Wrapper->addWhere('managerId', '=', SystemManagerHelper::getManagerId());
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -148,12 +148,12 @@ class SystemUploadService extends Service
              */
             $savePath = UploadHelper::getSavePath($fileType, $params['name']);
 
-            $saveInfo['type'] = $fileType;
-            $saveInfo['path'] = $savePath;
-            $saveInfo['name'] = $params['name'];
-            $saveInfo['hash'] = $params['hash'];
-            $saveInfo['size'] = $params['size'];
-            $saveInfo['user'] = SystemManagerHelper::getManagerId();
+            $saveInfo['type']      = $fileType;
+            $saveInfo['path']      = $savePath;
+            $saveInfo['name']      = $params['name'];
+            $saveInfo['hash']      = $params['hash'];
+            $saveInfo['size']      = $params['size'];
+            $saveInfo['managerId'] = SystemManagerHelper::getManagerId();
 
             $this->SystemUploadRepository->createRecord($saveInfo);
         }
@@ -203,10 +203,10 @@ class SystemUploadService extends Service
     protected function getFileInfo(array $params)
     {
         return $this->SystemUploadRepository->getByWhere([
-            'hash' => $params['hash'],
-            'name' => $params['name'],
-            'type' => $params['type'],
-            'user' => SystemManagerHelper::getManagerId()
+            'hash'      => $params['hash'],
+            'name'      => $params['name'],
+            'type'      => $params['type'],
+            'managerId' => SystemManagerHelper::getManagerId()
         ]);
     }
 }

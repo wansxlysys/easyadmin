@@ -205,7 +205,6 @@ class SystemUploadService extends Service
         return $this->SystemUploadRepository->getByWhere([
             'hash'      => $params['hash'],
             'name'      => $params['name'],
-            'type'      => $params['type'],
             'managerId' => SystemManagerHelper::getManagerId()
         ]);
     }

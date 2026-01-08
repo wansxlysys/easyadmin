@@ -133,10 +133,11 @@ class SystemDictDataService extends Service
      * 获取字典键值对
      * @param $identify
      * @param $label
+     * @param null $callback
      * @return array
      * @throws Exception
      */
-    public function getSystemDictDataValue($identify, $label)
+    public function getSystemDictDataValue($identify, $label, $callback = null)
     {
         $Wrapper = new Wrapper();
 
@@ -148,7 +149,7 @@ class SystemDictDataService extends Service
         $dictData = $this->SystemDictDataRepository->getWithDictType($Wrapper);
 
         if (isset($dictData)) {
-            return $dictData['value'];
+            return $callback ? $callback($dictData['value']) : $dictData['value'];
         }
 
         return null;

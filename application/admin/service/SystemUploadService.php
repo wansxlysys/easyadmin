@@ -192,11 +192,11 @@ class SystemUploadService extends Service
          */
         UploadHelper::putContent($fileInfo['path'], $params['chunk']->getRealPath());
 
+        $fileData['index'] = $params['index'];
+
         /**
          * 检测是否上传完成
          */
-        $fileData['index'] = $params['index'];
-
         if ($params['index'] + 1 == $params['total']) {
             $fileData['status'] = YesnoEnum::YES;
         }

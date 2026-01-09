@@ -269,7 +269,7 @@
 {/block}
 
 {block name="js"}
-<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service,geometry,tools&key=CD4BZ-URFWP-YRDDF-L6D4S-5WHCV-5TFP5"></script>
+<!--<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service,geometry,tools&key=CD4BZ-URFWP-YRDDF-L6D4S-5WHCV-5TFP5"></script>-->
 <script>
 
     layui.use(['easyModule'], function () {

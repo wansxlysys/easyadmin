@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>跳转提示</title>

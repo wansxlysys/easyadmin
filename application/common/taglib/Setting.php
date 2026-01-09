@@ -25,12 +25,10 @@ class Setting extends TagLib
     {
         return <<<TEMPLATE
     {php} 
-        echo tag_parser('SettingParser')->getValue(
-            tag_params()
+        echo tag_parser('SettingParser')
                 ->add('type', {$this->parseVar($tag, 'type', true)})
                 ->add('identify', {$this->parseVar($tag, 'identify', true)})
-                ->toArray()
-            ); 
+                ->getValue(); 
     {/php}
 TEMPLATE;
     }

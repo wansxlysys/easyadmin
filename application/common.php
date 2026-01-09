@@ -1,7 +1,7 @@
 <?php
 
 
-use app\common\taglib\TagParams;
+use app\common\taglib\TagParser;
 use app\common\dependency\Dependency;
 
 /**
@@ -15,21 +15,12 @@ function register_static($url)
 }
 
 /**
- * 创建查询参数
- * @return TagParams
- */
-function tag_params()
-{
-    return new TagParams();
-}
-
-/**
- * 创建查询参数
- * @return TagParams
+ * 标签解析函数
+ * @return TagParser
  */
 function tag_parser($name, $layer = 'common')
 {
-    return Dependency::getProxy(sprintf('\app\%s\taglib\parser\%s', $layer, $name));
+    return new TagParser($name, $layer);
 }
 
 /**

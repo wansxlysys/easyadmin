@@ -24,15 +24,10 @@ class Permission extends TagLib
     public function tagCheck($tag, $content)
     {
         return <<<TEMPLATE
-    {php} 
-        \$checkAllow = tag_parser('PermissionParser')->check(
-            tag_params()
-                ->add('menuIds', {$this->parseVar($tag, 'menuIds', true)})
-                ->add('condition', {$this->parseVar($tag, 'condition', false, 'and')})
-                ->toArray()
-            ); 
-    {/php}
-    {if \$checkAllow}
+    {if tag_parser('PermissionParser')
+            ->add('menuIds', {$this->parseVar($tag, 'menuIds', true)})
+            ->add('condition', {$this->parseVar($tag, 'condition', false, 'and')})
+            ->check()}
         $content
     {/if}
 TEMPLATE;

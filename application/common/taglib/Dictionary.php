@@ -24,13 +24,11 @@ class Dictionary extends TagLib
     public function tagList($tag, $content)
     {
         return <<<TEMPLATE
-    {php} 
-        \$dictList = tag_parser('DictionaryParser')->getList(
-            tag_params()
-                ->add('identify', {$this->parseVar($tag, 'identify', true)})
-                ->add('value', {$this->parseVar($tag, 'value', false)})
-                ->toArray()
-            ); 
+    {php}
+        \$dictList = tag_parser('DictionaryParser')
+            ->add('identify', {$this->parseVar($tag, 'identify', true)})
+            ->add('value', {$this->parseVar($tag, 'value', false)})
+            ->getList(); 
     {/php}
     {volist name="\$dictList" id="dict"}
         $content

@@ -33,21 +33,6 @@ function tag_parser($name, $layer = 'common')
 }
 
 /**
- * 输出展位图片
- * @param $image
- * @param $default
- * @return bool|mixed
- */
-function empty_image($image, $default)
-{
-    if (empty($image)) {
-        return $default;
-    }
-
-    return $image;
-}
-
-/**
  * 获取依赖层
  * @param $name
  * @param string $module

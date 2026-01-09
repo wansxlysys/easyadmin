@@ -57,7 +57,7 @@
                     {notempty name="$menu1.children"}
                     <dl class="layui-nav-child">
                         {volist name="$menu1.children" id="menu2"}
-                        <dd {eq name="$menu2.menuId" value="128"} class="layui-this" {/eq}>
+                        <dd class="{eq name='$menu2.menuId' value='128'}layui-this{/eq}">
                             <a href="javascript:" data-link="{$menu2.url}" data-target="{$menu2.target}">
                                 <i class="fa fa-fw {$menu2.icon}"></i>
                                 <span>{$menu2.name}</span>

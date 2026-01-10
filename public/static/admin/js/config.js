@@ -6,13 +6,22 @@
     const basePath = window.location.origin + '/static/admin/module/';
 
     /**
+     * 修复表格行高
+     * @param elem
+     */
+    function fixTableRowHeight(elem) {
+        $(elem).next().find('.layui-table-main tr').each((index, item) => {
+            $(".layui-table-fixed .layui-table-body tbody tr").eq(index).height($(item).height());
+        });
+    }
+
+    /**
      * 初始化全局配置
      */
     layui.config({
         base: basePath,
         version: true
     }).extend({
-        xmSelect: "xmSelect/xmSelect",
         easyMap: "easyAdmin/easyMap",
         easyAdmin: "easyAdmin/easyAdmin",
         easyHelper: "easyAdmin/easyHelper",
@@ -22,6 +31,7 @@
         easyUpload: "easyAdmin/easyUpload",
         easyCreate: "easyAdmin/easyCreate",
         easyModule: "easyAdmin/easyModule",
+        xmSelect: "xmSelect/xmSelect",
         layCascader: "layCascader/layCascader",
     });
 
@@ -58,9 +68,7 @@
             statusName: 'code'
         },
         done() {
-            $(this.elem).next().find('.layui-table-main tr').each((index, item) => {
-                $(".layui-table-fixed .layui-table-body tbody tr").eq(index).height($(item).height());
-            });
+            fixTableRowHeight(this.elem);
         }
     });
 
@@ -84,9 +92,7 @@
             statusName: 'code'
         },
         done() {
-            $(this.elem).next().find('.layui-table-main tr').each((index, item) => {
-                $(".layui-table-fixed .layui-table-body tbody tr").eq(index).height($(item).height());
-            });
+            fixTableRowHeight(this.elem);
         }
     });
 

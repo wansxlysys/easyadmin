@@ -37,7 +37,7 @@ class MailHelper
         $PHPMailer->Subject = $params['subject'];
 
         $PHPMailer->isSMTP();
-        $PHPMailer->setFrom('1628883533@qq.com');
+        $PHPMailer->setFrom($mailConfig['username']);
         $PHPMailer->addAddress($params['address']);
 
         /**

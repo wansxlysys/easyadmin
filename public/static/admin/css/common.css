@@ -95,7 +95,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 
 /********************弹出层*****************************/
 .easy-alert {
-    border: 1px solid #009688;
+    border: 1px solid #16b777;
     background-color: #f0fffe;
     border-radius: 2px;
     position: relative;
@@ -113,7 +113,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-alert .easy-alert-icon {
     width: 70px;
     float: left;
-    color: #009688;
+    color: #16b777;
 }
 
 .easy-alert .easy-alert-icon i {
@@ -129,13 +129,13 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-alert .easy-alert-content h3 {
-    color: #009688;
+    color: #16b777;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .easy-alert .easy-alert-content p {
-    color: #009688;
+    color: #16b777;
 }
 
 .easy-alert .easy-alert-close {
@@ -226,7 +226,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-step .easy-step-over:before {
-    background-color: #009688;
+    background-color: #16b777;
 }
 
 .easy-step .easy-step-item:first-child:before {
@@ -241,11 +241,11 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-step .easy-step-item .easy-step-item-number {
     width: 30px;
     height: 30px;
-    border: 1px solid #009688;
+    border: 1px solid #16b777;
     border-radius: 50%;
     overflow: hidden;
     font-size: 16px;
-    color: #009688;
+    color: #16b777;
     line-height: 30px;
     text-align: center;
     background-color: #fff;
@@ -255,7 +255,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-step .easy-step-over .easy-step-item-number {
-    background-color: #009688;
+    background-color: #16b777;
     color: #fff;
 }
 
@@ -267,7 +267,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-step .easy-step-over .easy-step-item-title {
-    color: #009688;
+    color: #16b777;
 }
 
 .easy-step .easy-step-item .easy-step-item-tips {
@@ -429,7 +429,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 
 .map-search .map-search-container {
     display: flex;
-    border: 1px solid #009688;
+    border: 1px solid #16b777;
 }
 
 .map-search .map-search-input,
@@ -449,7 +449,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .map-search .map-search-button {
     width: 60px;
     cursor: pointer;
-    background-color: #009688;
+    background-color: #16b777;
     color: #fff;
 }
 
@@ -665,8 +665,8 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-upload-image .easy-upload-image-btn button:hover {
-    border-color: #009688;
-    color: #009688;
+    border-color: #16b777;
+    color: #16b777;
 }
 
 .easy-upload-image .easy-upload-image-btn button[disabled]:hover {

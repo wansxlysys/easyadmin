@@ -1,6 +1,8 @@
 <?php
 
 
+use think\facade\App;
+
 use app\common\taglib\TagParser;
 use app\common\dependency\Dependency;
 
@@ -35,7 +37,7 @@ function service($name, $module = '')
         $module = request()->module();
     }
 
-    return Dependency::getProxy(app()->parseClass($module, 'service', $name));
+    return Dependency::getProxy(App::parseClass($module, 'service', $name));
 }
 
 /**

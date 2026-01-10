@@ -38,8 +38,8 @@ class SystemLogBehavior
 
                 $params = $request->post();
 
-                if (isset($params['password'])) {
-                    unset($params['password']);
+                if (!empty($params['password'])) {
+                    $params['password'] = '******';
                 }
 
                 $log['message']    = $data['msg'];

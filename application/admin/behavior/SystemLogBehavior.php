@@ -30,7 +30,7 @@ class SystemLogBehavior
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if ($currentMenu['record'] == YesnoEnum::YES) {
+        if ($currentMenu && $currentMenu['record'] == YesnoEnum::YES) {
 
             $data = $response->getData();
 

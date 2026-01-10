@@ -6,7 +6,7 @@
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
         <div class="layui-card-body">
-            <form class="layui-form">
+            <form class="layui-form" autocomplete="off">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">设置名称</label>

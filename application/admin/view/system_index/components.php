@@ -31,7 +31,7 @@
     <div class="layui-card">
         <div class="layui-card-header">图片上传</div>
         <div class="layui-card-body">
-            <form class="layui-form">
+            <form class="layui-form" autocomplete="off">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">单图上传</label>
                     <div class="layui-input-block">
@@ -141,7 +141,7 @@
             <div class="split-fill layui-card">
                 <div class="layui-card-header">面板分割</div>
                 <div class="layui-card-body">
-                    <form class="layui-form">
+                    <form class="layui-form" autocomplete="off">
                         <div class="layui-form-item">
                             <label class="layui-form-label layui-required">状态</label>
                             <div class="layui-input-block">
@@ -198,7 +198,7 @@
             <div class="split-fill layui-card">
                 <div class="layui-card-header">面板分割</div>
                 <div class="layui-card-body">
-                    <form class="layui-form">
+                    <form class="layui-form" autocomplete="off">
                         <div class="layui-form-item">
                             <label class="layui-form-label layui-required">状态</label>
                             <div class="layui-input-block">
@@ -239,7 +239,7 @@
     <div class="layui-card">
         <div class="layui-card-header">日期选择器</div>
         <div class="layui-card-body">
-            <form class="layui-form">
+            <form class="layui-form" autocomplete="off">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">日期选择</label>
                     <div class="layui-input-block">

@@ -145,7 +145,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label layui-required">状态</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="status" value="1" title="启用" checked="">
+                                <input type="radio" name="status" value="1" title="启用" checked>
                                 <input type="radio" name="status" value="2" title="禁用">
                                 <input type="radio" name="status" value="3" title="锁定">
                             </div>
@@ -169,7 +169,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button type="submit" class="layui-btn" lay-submit="">保存</button>
+                                <button type="submit" class="layui-btn" lay-submit>保存</button>
                             </div>
                         </div>
                     </form>
@@ -202,7 +202,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label layui-required">状态</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="status" value="1" title="启用" checked="">
+                                <input type="radio" name="status" value="1" title="启用" checked>
                                 <input type="radio" name="status" value="2" title="禁用">
                                 <input type="radio" name="status" value="3" title="锁定">
                             </div>
@@ -226,7 +226,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button type="submit" class="layui-btn" lay-submit="">保存</button>
+                                <button type="submit" class="layui-btn" lay-submit>保存</button>
                             </div>
                         </div>
                     </form>

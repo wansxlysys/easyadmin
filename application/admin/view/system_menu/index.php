@@ -15,10 +15,10 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <button type="reset" class="layui-btn layui-btn-danger" lay-submit="" lay-filter="reset">
+                        <button type="reset" class="layui-btn layui-btn-danger" lay-filter="reset" lay-submit>
                             <i class="fa fa-fw fa-refresh"></i>重置
                         </button>
-                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="search">
+                        <button type="submit" class="layui-btn" lay-filter="search" lay-submit>
                             <i class="fa fa-fw fa-search"></i>搜索
                         </button>
                     </div>

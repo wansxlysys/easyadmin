@@ -28,7 +28,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">是否默认</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="isDefault" value="Y" title="是" checked="">
+                        <input type="radio" name="isDefault" value="Y" title="是" checked>
                         <input type="radio" name="isDefault" value="N" title="否">
                     </div>
                 </div>
@@ -47,13 +47,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">字典状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="Y" title="启用" checked="">
+                        <input type="radio" name="status" value="Y" title="启用" checked>
                         <input type="radio" name="status" value="N" title="禁用">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="submit" class="layui-btn" lay-submit="">提交</button>
+                        <button type="submit" class="layui-btn" lay-submit>提交</button>
                         <button type="button" class="layui-btn layui-btn-danger easy-close-layer">关闭</button>
                     </div>
                 </div>

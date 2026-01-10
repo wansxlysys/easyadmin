@@ -39,7 +39,7 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="submit" class="layui-btn" lay-submit="">提交</button>
+                        <button type="submit" class="layui-btn" lay-submit>提交</button>
                         <button type="button" class="layui-btn layui-btn-danger easy-close-layer">关闭</button>
                     </div>
                 </div>

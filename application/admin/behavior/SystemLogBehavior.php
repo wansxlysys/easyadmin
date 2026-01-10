@@ -36,9 +36,15 @@ class SystemLogBehavior
 
             if (isset($data['code'])) {
 
+                $params = $request->post();
+
+                if (isset($params['password'])) {
+                    unset($params['password']);
+                }
+
                 $log['message']    = $data['msg'];
                 $log['menuId']     = $currentMenu['menuId'];
-                $log['params']     = ArrayUtil::toJson($request->post());
+                $log['params']     = ArrayUtil::toJson($params);
                 $log['status']     = SystemOperLogEnum::translateCode($data['code']);
                 $log['managerId']  = SystemManagerHelper::getManagerId();
                 $log['requestIp']  = $request->ip();

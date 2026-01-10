@@ -4,16 +4,14 @@
 namespace app\admin\service;
 
 
-use Exception;
-
-use app\common\enum\YesnoEnum;
-use app\common\service\Service;
-use app\common\helper\UploadHelper;
-use app\common\repository\Wrapper;
-use app\common\exception\ServiceException;
-
 use app\admin\helper\SystemManagerHelper;
+use app\admin\helper\SystemUploadHelper;
 use app\admin\repository\SystemUploadRepository;
+use app\common\enum\YesnoEnum;
+use app\common\exception\ServiceException;
+use app\common\repository\Wrapper;
+use app\common\service\Service;
+use Exception;
 
 class SystemUploadService extends Service
 {
@@ -110,7 +108,7 @@ class SystemUploadService extends Service
          */
         $uploadLimit = $this->SystemSettingService->getSystemSettingValue('upload', 'limit', 'intval');
 
-        if ($uploadLimit && UploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
+        if ($uploadLimit && SystemUploadHelper::fileSizeToMb($params['size']) > $uploadLimit) {
             throw new ServiceException('文件大小超出限制');
         }
 
@@ -129,7 +127,7 @@ class SystemUploadService extends Service
             /**
              * 检测本地文件是否存在
              */
-            $rootPath = UploadHelper::getRootPath($fileInfo['path']);
+            $rootPath = SystemUploadHelper::getRootPath($fileInfo['path']);
 
             if (file_exists($rootPath)) {
 
@@ -159,7 +157,7 @@ class SystemUploadService extends Service
             /**
              * 创建文件信息
              */
-            $savePath = UploadHelper::getSavePath($fileType, $params['name']);
+            $savePath = SystemUploadHelper::getSavePath($fileType, $params['name']);
 
             $saveInfo['type']      = $fileType;
             $saveInfo['path']      = $savePath;
@@ -191,7 +189,7 @@ class SystemUploadService extends Service
         /**
          * 追加文件内容
          */
-        UploadHelper::putContent($fileInfo['path'], $params['chunk']->getRealPath());
+        SystemUploadHelper::putContent($fileInfo['path'], $params['chunk']->getRealPath());
 
         $fileData['index'] = $params['index'];
 
@@ -205,7 +203,7 @@ class SystemUploadService extends Service
             /**
              * 计算文件哈希值
              */
-            $fileHash = UploadHelper::getFileHash($fileInfo['path']);
+            $fileHash = SystemUploadHelper::getFileHash($fileInfo['path']);
 
             if ($fileHash != $fileInfo['hash']) {
                 throw new ServiceException('文件校验失败');

@@ -1,15 +1,16 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\admin\helper;
 
 
 use think\facade\Env;
 
 use app\admin\enum\SystemUploadEnum;
+
 use app\common\exception\ServiceException;
 
-class UploadHelper
+class SystemUploadHelper
 {
     /**
      * 获取文件完整路径

@@ -75,12 +75,13 @@ class SystemUploadService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('hash', '=', $params['hash']);
+        $Wrapper->addWhere('name', '=', $params['name']);
         $Wrapper->addWhere('fileId', '<>', $params['fileId']);
         $Wrapper->addWhere('managerId', '=', SystemManagerHelper::getManagerId());
 
         $fileInfo = $this->SystemUploadRepository->getOne($Wrapper);
 
-        if ($fileInfo['name'] == $params['name']) {
+        if ($fileInfo) {
             throw new ServiceException('文件名称已存在');
         }
 

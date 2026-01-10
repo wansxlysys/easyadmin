@@ -45,7 +45,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                 <i class="fa fa-fw fa-check"></i>确认
                             </button>
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-danger clear-button">
-                                <i class="fa fa-fw fa-close"></i>清空
+                                <i class="fa fa-fw fa-close"></i>取消
                             </button>
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-normal upload-button">
                                 <i class="fa fa-fw fa-upload"></i>上传

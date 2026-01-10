@@ -1,9 +1,5 @@
 {extend name="common@layout/layout" /}
 
-{block name="css"}
-<link rel="stylesheet" href="{:register_static('/admin/css/layout.css')}">
-{/block}
-
 {block name="content"}
 <div class="easy-layout layui-layout-admin">
     <div class="layui-header">

@@ -71,7 +71,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule', 'form', 'table'], function () {
+    layui.use(['easyModule'], function () {
 
         const form = layui.form;
         const table = layui.table;

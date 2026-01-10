@@ -71,7 +71,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin', 'form', 'table'], function () {
+    layui.use(['easyAdmin'], function () {
 
         const form = layui.form;
         const table = layui.table;

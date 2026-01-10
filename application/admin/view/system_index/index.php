@@ -92,7 +92,7 @@
 {block name="js"}
 <script>
 
-    layui.use(['easyModule', 'element', 'layer', 'util'], function () {
+    layui.use(['easyModule'], function () {
 
         const util = layui.util;
         const layer = layui.layer;

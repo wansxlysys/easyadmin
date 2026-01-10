@@ -8,15 +8,15 @@
         <div class="layui-card-body">
             <form class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置分类</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="type" lay-verify="required" placeholder="请输入设置分类" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
                     <label class="layui-form-label layui-required">设置名称</label>
                     <div class="layui-input-block">
                         <input type="text" name="name" lay-verify="required" placeholder="请输入设置名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">设置分类</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="type" lay-verify="required" placeholder="请输入设置分类" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">

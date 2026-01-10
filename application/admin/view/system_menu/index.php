@@ -73,7 +73,7 @@
 {block name="js"}
 <script>
 
-    layui.use(['easyModule', 'form', 'treeTable'], function () {
+    layui.use(['easyModule'], function () {
 
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;

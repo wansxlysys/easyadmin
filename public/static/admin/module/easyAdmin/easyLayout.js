@@ -265,7 +265,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                             </div>
                                             <div id="bar">
                                                 <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">
-                                                    <i class="fa fa-fw fa-trash"></i>移除
+                                                    <i class="fa fa-fw fa-close"></i>取消
                                                 </button>
                                             </div>
                                             <div id="progress">

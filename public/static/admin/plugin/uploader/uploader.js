@@ -128,41 +128,43 @@ class Uploader {
 
         try {
 
-            if(!this.fileMap.has(fileObj.fileId)) {
-                return false
-            }
+            if (this.fileMap.has(fileObj.fileId)) {
 
-            const startChunk = fileObj.chunkIndex * this.config.chunkSize;
-            const endChunk = Math.min(startChunk + this.config.chunkSize, fileObj.fileSize);
-            const fileChunk = fileObj.originFile.slice(startChunk, endChunk);
+                const startChunk = fileObj.chunkIndex * this.config.chunkSize;
+                const endChunk = Math.min(startChunk + this.config.chunkSize, fileObj.fileSize);
+                const fileChunk = fileObj.originFile.slice(startChunk, endChunk);
 
-            const formData = new FormData();
-            formData.append('fileChunk', fileChunk);
-            formData.append('fileHash', fileObj.fileHash);
-            formData.append('fileType', fileObj.fileType);
-            formData.append('fileName', fileObj.fileName);
-            formData.append('fileSize', fileObj.fileSize);
-            formData.append('chunkIndex', fileObj.chunkIndex);
-            formData.append('chunkTotal', fileObj.chunkTotal);
+                const formData = new FormData();
+                formData.append('fileChunk', fileChunk);
+                formData.append('fileHash', fileObj.fileHash);
+                formData.append('fileType', fileObj.fileType);
+                formData.append('fileName', fileObj.fileName);
+                formData.append('fileSize', fileObj.fileSize);
+                formData.append('chunkIndex', fileObj.chunkIndex);
+                formData.append('chunkTotal', fileObj.chunkTotal);
 
-            const uploadResult = await this.config.requestHandlers.uploadFile(formData);
+                const uploadResult = await this.config.requestHandlers.uploadFile(formData);
 
-            fileObj.chunkIndex++;
-            fileObj.progress = Math.round((fileObj.chunkIndex / fileObj.chunkTotal) * 100);
+                fileObj.chunkIndex++;
+                fileObj.progress = Math.round((fileObj.chunkIndex / fileObj.chunkTotal) * 100);
 
-            this.emit('progress', fileObj);
+                this.emit('progress', fileObj);
 
-            if (fileObj.chunkIndex === fileObj.chunkTotal) {
+                if (fileObj.chunkIndex === fileObj.chunkTotal) {
 
-                fileObj.status = 'success';
-                fileObj.progress = 100;
+                    fileObj.status = 'success';
+                    fileObj.progress = 100;
 
+                    this.concurrentFiles--;
+                    this.scheduleNextWaitingFile();
+                    this.uploadSuccessHandler(fileObj, uploadResult);
+
+                } else {
+                    this.uploadChunk(fileObj);
+                }
+            } else {
                 this.concurrentFiles--;
                 this.scheduleNextWaitingFile();
-                this.uploadSuccessHandler(fileObj, uploadResult);
-
-            } else {
-                this.uploadChunk(fileObj);
             }
 
         } catch (error) {

@@ -198,7 +198,17 @@ class SystemUploadService extends Service
          * 检测是否上传完成
          */
         if ($params['index'] + 1 == $params['total']) {
+
             $fileData['status'] = YesnoEnum::YES;
+
+            /**
+             * 计算文件哈希值
+             */
+            $fileHash = UploadHelper::getFileHash($fileInfo['path']);
+
+            if ($fileHash != $fileInfo['hash']) {
+                throw new ServiceException('文件校验失败');
+            }
         }
 
         $this->SystemUploadRepository->updateById($fileInfo['fileId'], $fileData);

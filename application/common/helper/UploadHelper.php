@@ -43,6 +43,24 @@ class UploadHelper
     }
 
     /**
+     * 获取文件hash
+     * @param $savePath
+     * @return string
+     */
+    public static function getFileHash($savePath)
+    {
+        /**
+         * 设置脚本超时
+         */
+        set_time_limit(0);
+
+        /**
+         * 获取文件hash
+         */
+        return md5_file(static::getRootPath($savePath));
+    }
+
+    /**
      * 创建文件名
      * @param $savePath
      * @param $content

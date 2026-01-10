@@ -269,12 +269,12 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                                 </button>
                                             </div>
                                             <div id="progress">
-                                                {{d.progress}}%
+                                                <div class="progress-{{d.LAY_INDEX}}">{{d.progress}}%</div>
                                             </div>
                                             <div id="status">
                                                 {{#  if(d.status == 'ready'){ }}<span class="layui-badge layui-bg-blue">等待上传</span>{{#  } }}
                                                 {{#  if(d.status == 'hashing'){ }}<span class="layui-badge layui-bg-orange">正在校验</span>{{#  } }}
-                                                {{#  if(d.status == 'checking'){ }}<span class="layui-badge layui-bg-orange">准备上传</span>{{#  } }}
+                                                {{#  if(d.status == 'checking'){ }}<span class="layui-badge layui-bg-green">准备上传</span>{{#  } }}
                                                 {{#  if(d.status == 'uploading'){ }}<span class="layui-badge layui-bg-green">正在上传</span>{{#  } }}
                                                 {{#  if(d.status == 'success'){ }}<span class="layui-badge layui-bg-green">上传成功</span>{{#  } }}
                                                 {{#  if(d.status == 'error'){ }}<span class="layui-badge upload-tag-error">上传失败</span>{{#  } }}
@@ -299,6 +299,9 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                 area: ['800px', '600px'],
                                 content: template,
                                 success: function () {
+
+                                    const upload = $('#upload');
+                                    const select = $('.select-button');
 
                                     uploadData.uploader = new Uploader({
                                         concurrentFiles: 3,
@@ -340,12 +343,12 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         }
                                     });
 
-                                    const reloadRowData = function (file) {
+                                    const reloadRowData = function (fileObj) {
                                         table.updateRow('table', {
                                             related: true,
-                                            index: file.LAY_INDEX,
+                                            index: fileObj.LAY_INDEX,
                                             data: {
-                                                status: file.status
+                                                status: fileObj.status
                                             }
                                         });
                                     }
@@ -356,25 +359,29 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         uploadData.table.reloadData();
                                     });
 
-                                    uploadData.uploader.on('progress', function (file) {
-                                        reloadRowData(file);
+                                    uploadData.uploader.on('progress', function (fileObj) {
+                                        upload.find(`.progress-${fileObj.LAY_INDEX}`).text(`${fileObj.progress}%`);
                                     });
 
-                                    uploadData.uploader.on('hashCalculated', function (file) {
-                                        reloadRowData(file);
+                                    uploadData.uploader.on('hashCalculated', function (fileObj) {
+                                        reloadRowData(fileObj);
                                     });
 
-                                    uploadData.uploader.on('uploadStart', function (file) {
-                                        reloadRowData(file);
+                                    uploadData.uploader.on('uploadCheck', function (fileObj) {
+                                        reloadRowData(fileObj);
                                     });
 
-                                    uploadData.uploader.on('uploadSuccess', function (file) {
-                                        reloadRowData(file);
+                                    uploadData.uploader.on('uploadStart', function (fileObj) {
+                                        reloadRowData(fileObj);
                                     });
 
-                                    uploadData.uploader.on('uploadError', function (file, error) {
-                                        file.errorMsg = error.msg;
-                                        reloadRowData(file);
+                                    uploadData.uploader.on('uploadSuccess', function (fileObj) {
+                                        reloadRowData(fileObj);
+                                    });
+
+                                    uploadData.uploader.on('uploadError', function (fileObj, error) {
+                                        fileObj.errorMsg = error.msg;
+                                        reloadRowData(fileObj);
                                     });
 
                                     uploadData.uploader.on('allCompleted', function () {
@@ -391,8 +398,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         cols: [[
                                             {title: '文件名称', field: 'fileName'},
                                             {title: '文件大小', field: 'fileUnit', width: 120},
-                                            {title: '上传进度', width: 100, templet: '#progress'},
-                                            {title: '上传状态', width: 100, templet: "#status"},
+                                            {title: '上传进度', field: 'progress', width: 100, templet: '#progress'},
+                                            {title: '上传状态', field: 'status', width: 100, templet: "#status"},
                                             {title: '操作', toolbar: '#bar', width: 100}
                                         ]],
                                         page: false,
@@ -420,19 +427,12 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         const fileObj = obj.data;
 
                                         if (obj.event === 'delete') {
-                                            const index = uploadData.fileList.findIndex((fileData) => fileData.fileId === fileObj.fileId)
-
-                                            if (index !== -1) {
-                                                uploadData.fileList.splice(index, 1)
-                                                uploadData.uploader.removeFile(fileObj)
-                                            }
+                                            uploadData.fileList.splice(obj.index, 1);
+                                            uploadData.uploader.removeFile(fileObj);
                                         }
 
-                                        uploadData.table.reloadData()
+                                        uploadData.table.reloadData();
                                     });
-
-                                    const upload = $('#upload');
-                                    const select = $('.select-button');
 
                                     select.on('change', function () {
                                         for (const file of this.files) {

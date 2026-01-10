@@ -16,6 +16,7 @@ class Uploader {
             allCompleted: new Set(),
             uploadSuccess: new Set(),
             uploadError: new Set(),
+            uploadCheck: new Set(),
             uploadStart: new Set(),
             fileAdded: new Set(),
             hashCalculated: new Set()
@@ -83,7 +84,7 @@ class Uploader {
 
             fileObj.status = 'checking';
 
-            this.emit('uploadStart', fileObj);
+            this.emit('uploadCheck', fileObj);
 
             const checkResult = await this.config.requestHandlers.checkFile({
                 fileName: fileObj.fileName,
@@ -100,9 +101,12 @@ class Uploader {
                 this.concurrentFiles--;
                 this.scheduleNextWaitingFile();
                 this.uploadSuccessHandler(fileObj, checkResult);
+
             } else {
 
                 fileObj.status = 'uploading';
+
+                this.emit('uploadStart', fileObj);
 
                 if (checkResult.chunkIndex) {
                     fileObj.chunkIndex = checkResult.chunkIndex + 1;
@@ -123,6 +127,11 @@ class Uploader {
     async uploadChunk(fileObj) {
 
         try {
+
+            if(!this.fileMap.has(fileObj.fileId)) {
+                return false
+            }
+
             const startChunk = fileObj.chunkIndex * this.config.chunkSize;
             const endChunk = Math.min(startChunk + this.config.chunkSize, fileObj.fileSize);
             const fileChunk = fileObj.originFile.slice(startChunk, endChunk);
@@ -250,8 +259,8 @@ class Uploader {
             handlers.forEach(handler => {
                 try {
                     handler(...data);
-                } catch (err) {
-                    console.error(`${event} 事件处理器错误:`, err);
+                } catch (error) {
+                    console.error(error);
                 }
             });
         }

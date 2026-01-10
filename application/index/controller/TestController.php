@@ -19,13 +19,27 @@ use app\index\service\DataService;
 use app\index\service\LockService;
 use app\index\service\TestService;
 use app\index\service\UserService;
-use app\queue\producer\TestProducer;
+use app\queue\producer\MailProducer;
 use Exception;
 use think\exception\DbException;
 
 
 class TestController
 {
+    /**
+     * 邮件
+     * @return void
+     * @throws Exception
+     */
+    public function mailAction()
+    {
+        MailProducer::send([
+            'body'    => '测试邮件内容',
+            'subject' => '测试邮件主题',
+            'address' => '1628883533@qq.com',
+        ]);
+    }
+
     /**
      * sql封装
      * @return void
@@ -101,7 +115,7 @@ class TestController
      * 注入依赖测试
      * @throws Exception
      */
-    public function injectAction()
+    public function diAction()
     {
         dump(Dependency::getProxy(UserService::class)->sayName());
         dump(Dependency::getProxy(TestService::class)->sayName());
@@ -121,16 +135,6 @@ class TestController
 
         $manager2 = $ManagerRepostory->useSub(100)->getById(1);
         dump($manager2);
-    }
-
-    /**
-     * 队列测试
-     * @throws Exception
-     */
-    public function queueAction()
-    {
-        TestProducer::testPush(['queue' => 'push', 'userId' => rand(100, 999)]);
-        TestProducer::testDelay(['queue' => 'delay', 'userId' => rand(100, 999)], 10);
     }
 
     /**

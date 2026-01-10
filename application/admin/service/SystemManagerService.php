@@ -54,6 +54,10 @@ class SystemManagerService extends Service
             $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
         }
 
+        if (!empty($params['account'])) {
+            $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
+        }
+
         if (SystemManagerHelper::isNotSuper()) {
             $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
         }

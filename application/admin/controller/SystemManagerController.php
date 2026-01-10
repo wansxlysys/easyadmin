@@ -49,6 +49,7 @@ class SystemManagerController extends SystemController
                 'status'   => $request->get('status'),
                 'roleId'   => $request->get('roleId'),
                 'realName' => $request->get('realName'),
+                'account'  => $request->get('account'),
             ];
 
             $this->success('获取成功', '', $this->ManagerService->getPageManager($params));

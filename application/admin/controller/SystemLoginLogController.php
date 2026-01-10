@@ -37,11 +37,11 @@ class SystemLoginLogController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'menu'    => $request->get('menu'),
-                'page'    => $request->get('page'),
-                'limit'   => $request->get('limit'),
-                'status'  => $request->get('status'),
-                'account' => $request->get('account')
+                'page'     => $request->get('page'),
+                'limit'    => $request->get('limit'),
+                'status'   => $request->get('status'),
+                'account'  => $request->get('account'),
+                'realName' => $request->get('realName'),
             ];
 
             $this->success('获取成功', '', $this->SystemLoginLogService->getPageLog($params));

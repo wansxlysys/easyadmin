@@ -35,8 +35,8 @@ class SystemOperLogService extends Service
             $Wrapper->addWhere('log.status', '=', $params['status']);
         }
 
-        if (!empty($params['menu'])) {
-            $Wrapper->addWhere('log.menu', 'LIKE', $params['menu'] . '%');
+        if (!empty($params['menuName'])) {
+            $Wrapper->addWhere('menu.name', 'LIKE', $params['menuName'] . '%');
         }
 
         if (!empty($params['account'])) {

@@ -36,7 +36,7 @@ class SystemLoginLogService extends Service
             $Wrapper->addWhere('log.status', '=', $params['status']);
         }
 
-        if (!empty($params['username'])) {
+        if (!empty($params['account'])) {
             $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
         }
 

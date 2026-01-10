@@ -11,7 +11,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">菜单名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="menu" class="layui-input" placeholder="请输入菜单名称">
+                            <input type="text" name="menuName" class="layui-input" placeholder="请输入菜单名称">
                         </div>
                     </div>
                     <div class="layui-inline">

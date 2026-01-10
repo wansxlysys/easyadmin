@@ -1,5 +1,13 @@
 {extend name="common@layout/layout" /}
 
+{block name="css"}
+<style>
+    .easy-info pre {
+        font-family: 'Courier New', 'Consolas', 'Lucida Console', 'monospace';
+    }
+</style>
+{/block}
+
 {block name="content"}
 {include file="common@layout/breadcrumb" close="show" /}
 

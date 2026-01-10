@@ -9,15 +9,15 @@
             <form class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">登录账号</label>
+                        <label class="layui-form-label">管理员账号</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="username" class="layui-input" placeholder="请输入登录账号">
+                            <input type="text" name="account" class="layui-input" placeholder="请输入管理员账号">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">管理员姓名</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="realName" class="layui-input" placeholder="请输入登录姓名">
+                            <input type="text" name="realName" class="layui-input" placeholder="请输入管理员姓名">
                         </div>
                     </div>
                     <div class="layui-inline">

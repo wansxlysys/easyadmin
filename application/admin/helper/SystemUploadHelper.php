@@ -34,13 +34,23 @@ class SystemUploadHelper
     }
 
     /**
+     * 获取文件后缀
+     * @param $fileName
+     * @return string
+     */
+    public static function getExtension($fileName)
+    {
+        return pathinfo($fileName, PATHINFO_EXTENSION);
+    }
+
+    /**
      * 创建文件名
      * @param $fileName
      * @return string
      */
     public static function makeFileName($fileName)
     {
-        return md5(uniqid($fileName, true)) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+        return md5(uniqid($fileName, true)) . '.' . static::getExtension($fileName);
     }
 
     /**

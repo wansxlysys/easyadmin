@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2026-01-08 09:09:47
+-- 生成日期： 2026-01-12 15:39:24
 -- 服务器版本： 5.7.26-log
 -- PHP 版本： 7.0.9
 
@@ -65,7 +65,7 @@ CREATE TABLE `system_dict_data` (
   `dictId` bigint(20) UNSIGNED NOT NULL DEFAULT '0' COMMENT '字典ID',
   `label` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '字典标签',
   `value` text COLLATE utf8mb4_unicode_ci COMMENT '字典数据',
-  `style` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '字典样式',
+  `style` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '字典类名',
   `isDefault` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '是否默认：Y-是，N-否',
   `remark` text COLLATE utf8mb4_unicode_ci COMMENT '字典备注',
   `status` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '字典状态：Y-启用，N-禁用',
@@ -82,28 +82,32 @@ INSERT INTO `system_dict_data` (`dataId`, `dictId`, `label`, `value`, `style`, `
 (1, 1, '热门', 'hot', 'layui-bg-blue', 'Y', '热门新闻标签', 'Y', 100, '2025-05-26 14:03:13', '2026-01-07 10:02:51'),
 (2, 2, '铂金', 'bj', 'bule', 'Y', '铂金等级', 'Y', 100, '2025-05-26 14:17:09', '2025-05-29 10:29:44'),
 (3, 1, '推荐', 'rec', 'layui-bg-green', 'N', '推荐新闻标签', 'Y', 100, '2026-01-07 10:00:34', '2026-01-07 10:22:50'),
-(4, 3, 'video/mp4', 'video', '', 'Y', '视频', 'Y', 100, '2026-01-07 14:02:48', '2026-01-07 14:02:48'),
-(5, 3, 'video/mpeg', 'video', '', 'Y', '视频', 'Y', 100, '2026-01-07 14:03:12', '2026-01-07 14:03:20'),
-(6, 3, 'audio/mp3', 'audio', '', 'Y', '音频', 'Y', 100, '2026-01-07 14:03:49', '2026-01-07 14:03:49'),
-(7, 3, 'audio/mpeg', 'audio', '', 'Y', '音频', 'Y', 100, '2026-01-07 14:04:00', '2026-01-07 14:04:00'),
-(8, 3, 'audio/wav', 'audio', '', 'Y', '音频', 'Y', 100, '2026-01-07 14:04:07', '2026-01-07 14:04:07'),
-(9, 3, 'image/jpeg', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:27', '2026-01-07 14:04:27'),
-(10, 3, 'image/jpg', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:33', '2026-01-07 14:04:33'),
-(11, 3, 'image/png', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:37', '2026-01-07 14:04:37'),
-(12, 3, 'image/gif', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:41', '2026-01-07 14:04:41'),
-(13, 3, 'image/webp', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:47', '2026-01-07 14:04:47'),
-(14, 3, 'application/pdf', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:05:09', '2026-01-07 14:05:09'),
-(15, 3, 'application/msword', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:20', '2026-01-07 14:06:20'),
-(16, 3, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:28', '2026-01-07 14:06:28'),
-(17, 3, 'application/vnd.ms-excel', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:33', '2026-01-07 14:06:33'),
-(18, 3, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:40', '2026-01-07 14:06:40'),
-(19, 3, 'application/vnd.ms-powerpoint', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:45', '2026-01-07 14:06:45'),
-(20, 3, 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:51', '2026-01-07 14:06:51'),
-(21, 3, 'text/plain', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:07:00', '2026-01-07 14:07:00'),
-(22, 3, 'application/zip', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:45', '2026-01-07 14:07:45'),
-(23, 3, 'application/x-zip-compressed', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:50', '2026-01-07 14:07:50'),
-(24, 3, 'application/x-rar-compressed', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:54', '2026-01-07 14:07:54'),
-(25, 3, 'application/x-7z-compressed', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:59', '2026-01-07 14:07:59');
+(4, 3, 'mp4', 'video', '', 'Y', '视频', 'Y', 100, '2026-01-07 14:02:48', '2026-01-12 15:28:21'),
+(5, 3, 'mov', 'video', '', 'Y', '视频', 'Y', 100, '2026-01-07 14:03:12', '2026-01-12 15:33:41'),
+(6, 3, 'mp3', 'audio', '', 'Y', '音频', 'Y', 100, '2026-01-07 14:03:49', '2026-01-12 15:28:59'),
+(7, 3, 'ogg', 'audio', '', 'Y', '音频', 'Y', 100, '2026-01-07 14:04:00', '2026-01-12 15:33:13'),
+(8, 3, 'wav', 'audio', '', 'Y', '音频', 'Y', 100, '2026-01-07 14:04:07', '2026-01-12 15:30:18'),
+(9, 3, 'jpeg', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:27', '2026-01-12 15:30:23'),
+(10, 3, 'jpg', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:33', '2026-01-12 15:30:28'),
+(11, 3, 'png', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:37', '2026-01-12 15:30:31'),
+(12, 3, 'gif', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:41', '2026-01-12 15:30:37'),
+(13, 3, 'webp', 'image', '', 'Y', '图片', 'Y', 100, '2026-01-07 14:04:47', '2026-01-12 15:30:41'),
+(14, 3, 'pdf', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:05:09', '2026-01-12 15:30:45'),
+(15, 3, 'doc', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:20', '2026-01-12 15:31:03'),
+(16, 3, 'docx', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:28', '2026-01-12 15:31:30'),
+(17, 3, 'xls', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:33', '2026-01-12 15:31:36'),
+(18, 3, 'xlsx', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:40', '2026-01-12 15:31:41'),
+(19, 3, 'ppt', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:45', '2026-01-12 15:31:48'),
+(20, 3, 'pptx', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:06:51', '2026-01-12 15:31:52'),
+(21, 3, 'txt', 'doc', '', 'Y', '文档', 'Y', 100, '2026-01-07 14:07:00', '2026-01-12 15:32:02'),
+(22, 3, 'zip', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:45', '2026-01-12 15:32:07'),
+(23, 3, 'tar', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:50', '2026-01-12 15:32:16'),
+(24, 3, 'rar', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:54', '2026-01-12 15:32:22'),
+(25, 3, '7z', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:59', '2026-01-12 15:32:26'),
+(26, 4, 'host', 'smtp.qq.com', '', 'Y', '服务器地址', 'Y', 100, '2026-01-10 16:28:54', '2026-01-10 16:28:54'),
+(27, 4, 'port', '465', '', 'Y', '服务器端口', 'Y', 100, '2026-01-10 16:31:19', '2026-01-10 16:31:26'),
+(28, 4, 'password', 'iphxfarybutwdjdh', '', 'Y', '发送人授权码', 'Y', 100, '2026-01-10 16:29:27', '2026-01-10 16:33:20'),
+(29, 4, 'username', '1628883533@qq.com', '', 'Y', '发送人账号', 'Y', 100, '2026-01-10 16:29:08', '2026-01-10 16:29:08');
 
 -- --------------------------------------------------------
 
@@ -129,7 +133,8 @@ CREATE TABLE `system_dict_type` (
 INSERT INTO `system_dict_type` (`dictId`, `name`, `identify`, `status`, `remark`, `sort`, `createTime`, `updateTime`) VALUES
 (1, '新闻标签', 'newsTag', 'Y', '新闻标签', 100, '2025-05-26 11:32:00', '2026-01-07 10:00:18'),
 (2, '用户等级', 'userLevel', 'Y', '用户等级', 100, '2025-05-26 14:08:47', '2025-05-26 14:08:47'),
-(3, '文件类型', 'system.upload.type', 'Y', '上传文件类型', 100, '2026-01-07 14:02:15', '2026-01-07 16:04:52');
+(3, '文件类型', 'system.upload.type', 'Y', '上传文件类型', 100, '2026-01-07 14:02:15', '2026-01-07 16:04:52'),
+(4, '邮箱设置', 'system.mail.config', 'Y', '邮箱发送设置', 100, '2026-01-10 16:28:21', '2026-01-10 16:28:21');
 
 -- --------------------------------------------------------
 
@@ -175,7 +180,14 @@ INSERT INTO `system_login_log` (`logId`, `managerId`, `message`, `loginIp`, `sta
 (21, 1, '登录成功', '192.168.1.6', 1, '2026-01-06 14:39:18', '2026-01-06 14:39:18'),
 (22, 1, '登录成功', '192.168.1.6', 1, '2026-01-06 16:28:57', '2026-01-06 16:28:57'),
 (23, 1, '登录成功', '192.168.1.6', 1, '2026-01-07 11:56:16', '2026-01-07 11:56:16'),
-(24, 1, '登录成功', '192.168.1.6', 1, '2026-01-07 17:19:56', '2026-01-07 17:19:56');
+(24, 1, '登录成功', '192.168.1.6', 1, '2026-01-07 17:19:56', '2026-01-07 17:19:56'),
+(25, 10, '登录成功', '192.168.1.6', 1, '2026-01-08 09:11:43', '2026-01-08 09:11:43'),
+(26, 1, '登录成功', '192.168.1.6', 1, '2026-01-08 13:42:13', '2026-01-08 13:42:13'),
+(27, 1, '登录成功', '192.168.1.6', 1, '2026-01-09 14:05:02', '2026-01-09 14:05:02'),
+(28, 1, '登录成功', '192.168.1.6', 1, '2026-01-10 11:23:34', '2026-01-10 11:23:34'),
+(29, 1, '登录成功', '192.168.1.6', 1, '2026-01-10 11:30:00', '2026-01-10 11:30:00'),
+(30, 1, '登录成功', '192.168.1.6', 1, '2026-01-10 14:37:20', '2026-01-10 14:37:20'),
+(31, 1, '登录成功', '192.168.1.6', 1, '2026-01-12 08:38:14', '2026-01-12 08:38:14');
 
 -- --------------------------------------------------------
 
@@ -204,8 +216,8 @@ CREATE TABLE `system_manager` (
 --
 
 INSERT INTO `system_manager` (`managerId`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `isDelete`, `loginError`, `loginTime`, `deleteTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'N', 0, '2026-01-07 17:19:56', NULL, '2022-11-06 14:29:39', '2026-01-07 17:20:46'),
-(10, 6, '/upload/20251222/3f562f6e166e2d49c70a970b9af0bbd1.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 'N', 0, '2025-05-15 21:19:25', '2026-01-07 10:36:45', '2022-11-06 14:29:39', '2026-01-06 15:19:35');
+(1, 1, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'N', 0, '2026-01-12 08:38:14', NULL, '2022-11-06 14:29:39', '2026-01-12 09:43:23'),
+(10, 6, '/upload/image/20260108/3d264d32f3acac55ae09b5d5e815be9a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 'N', 0, '2026-01-08 09:11:43', '2026-01-07 10:36:45', '2022-11-06 14:29:39', '2026-01-08 09:17:31');
 
 -- --------------------------------------------------------
 
@@ -231,9 +243,9 @@ CREATE TABLE `system_manager_role` (
 --
 
 INSERT INTO `system_manager_role` (`roleId`, `name`, `identify`, `permission`, `remark`, `sort`, `isDelete`, `deleteTime`, `createTime`, `updateTime`) VALUES
-(1, '超级管理员', 'super', '75,128,141,72,73,81,85,86,74,82,83,84,1,114,121,122,150,151,152,145,99,2,159,160,161,162,163,164,165,166,167,168,69,76,80,79,134,142,157,153,154,155,156,158,169,170,143,144,147,137,136,138,148,149', '拥有最高权限', 10, 'N', NULL, '2022-11-06 14:28:28', '2025-12-19 09:39:44'),
+(1, '超级管理员', 'super', '75,128,141,144,148,154,155,72,73,81,85,86,74,82,83,84,147,1,114,121,122,150,151,152,145,99,2,159,160,161,162,163,164,165,166,167,168,69,76,80,79,134,142,157,143,153,156,158,169,170,137,136,138,149', '拥有最高权限', 10, 'N', NULL, '2022-11-06 14:28:28', '2026-01-12 09:39:21'),
 (5, '普通管理员', 'common', '75,128,141,72,73,81,85,86,74,82,83,84,1,114,121,122,150,151,152,145,99,2,69,76,80,79,134,142,157,153,154,155,156,158,143,144,147,137,136,138,148,149', '普通权限', 20, 'N', NULL, '2022-11-06 14:28:28', '2025-05-15 21:17:31'),
-(6, '部门管理员', 'department', '75,128,141,72,73,81,85,86,74,82,83,84', '部门管理员', 30, 'N', NULL, '2022-11-06 14:28:28', '2025-05-15 21:17:35');
+(6, '部门管理员', 'department', '75,128,141,72,73,81,85,86,74,82,83,84,157,153,156,158,169,170,143,147,137,136,138,149', '部门管理员', 30, 'N', NULL, '2022-11-06 14:28:28', '2026-01-08 09:12:45');
 
 -- --------------------------------------------------------
 
@@ -288,19 +300,19 @@ INSERT INTO `system_menu` (`menuId`, `parentId`, `name`, `icon`, `module`, `cont
 (134, 69, '菜单排序', 'fa-link', 'admin', 'SystemMenu', 'sort', '', 2, '', 1, 'Y', 100, '2022-11-06 14:28:59', '2023-10-24 13:49:50'),
 (136, 137, '系统信息', 'fa-link', 'admin', 'SystemIndex', 'system', '', 2, '', 1, 'N', 100, '2022-11-06 14:28:59', '2025-05-25 19:27:56'),
 (137, 157, '其他菜单', 'fa-link', 'admin', '', '', '', 2, '', 1, 'N', 100000, '2022-11-06 14:28:59', '2026-01-06 17:12:01'),
-(138, 137, '个人资料', 'fa-link', 'admin', 'SystemIndex', 'profile', '', 2, '', 1, 'Y', 100, '2022-11-06 14:28:59', '2023-10-24 10:34:03'),
+(138, 137, '个人资料', 'fa-link', 'admin', 'SystemIndex', 'profile', '', 2, '', 1, 'Y', 100, '2022-11-06 14:28:59', '2026-01-10 11:20:17'),
 (141, 75, 'UI组件', 'fa-pie-chart', 'admin', 'SystemIndex', 'components', '', 1, '', 1, 'N', 100, '2022-11-06 14:28:59', '2025-05-25 19:18:53'),
 (142, 69, '全部菜单', 'fa-link', 'admin', 'SystemMenu', 'getAll', '', 2, '', 1, 'N', 100, '2022-11-06 14:28:59', '2025-05-25 19:20:45'),
 (143, 157, '公共权限', 'fa-link', 'admin', '', '', '', 2, '', 1, 'N', 10000, '2022-11-06 14:28:59', '2025-05-25 19:30:33'),
 (144, 0, '文本编辑', 'fa-link', 'admin', 'SystemEditor', 'ueditor', '', 2, '', 1, 'N', 100, '2022-11-06 14:28:59', '2025-12-27 15:01:40'),
 (145, 0, '运维管理', 'fa-server', '', '', '', '', 1, '', 1, 'N', 20020, '2022-11-06 14:28:59', '2025-05-26 11:08:33'),
-(147, 143, '全部角色', 'fa-link', 'admin', 'SystemManagerRole', 'getAll', '', 2, '', 1, 'N', 100, '2023-03-15 14:17:55', '2026-01-06 17:11:51'),
+(147, 74, '角色列表', 'fa-link', 'admin', 'SystemManagerRole', 'getAll', '', 2, '', 1, 'N', 100, '2023-03-15 14:17:55', '2026-01-08 10:02:26'),
 (148, 144, '头像上传', 'fa-link', 'admin', 'SystemManager', 'avatar', '', 2, '', 1, 'N', 100, '2023-03-20 15:11:09', '2025-12-27 15:02:08'),
-(149, 137, '退出登录', 'fa-link', 'admin', 'SystemIndex', 'logout', '', 2, '', 1, 'N', 100, '2023-03-21 10:46:54', '2025-05-25 19:29:45'),
+(149, 137, '退出登录', 'fa-link', 'admin', 'SystemIndex', 'logout', '', 2, '', 1, 'N', 100, '2023-03-21 10:46:54', '2026-01-10 11:23:28'),
 (150, 1, '登录日志', 'fa-file-text', 'admin', 'SystemLoginLog', 'index', '', 1, '', 1, 'N', 100, '2023-03-21 11:55:24', '2025-05-25 19:19:22'),
 (151, 150, '日志详情', 'fa-link', 'admin', 'SystemLoginLog', 'detail', '', 2, '', 1, 'N', 100, '2023-03-21 12:01:11', '2025-05-25 19:19:41'),
 (152, 150, '日志清空', 'fa-link', 'admin', 'SystemLoginLog', 'clear', '', 2, '', 1, 'Y', 100, '2023-03-21 12:01:22', '2023-10-24 10:34:03'),
-(153, 157, '文件上传', 'fa-link', 'admin', '', '', '', 2, '', 1, 'N', 100, '2023-03-21 14:32:33', '2025-05-25 19:27:23'),
+(153, 143, '文件上传', 'fa-link', 'admin', '', '', '', 2, '', 1, 'N', 100, '2023-03-21 14:32:33', '2026-01-10 11:29:34'),
 (154, 144, '图片上传', 'fa-link', 'admin', 'SystemUpload', 'image', '', 2, '', 1, 'N', 100, '2023-03-21 14:32:51', '2025-12-27 15:01:49'),
 (155, 144, '文件上传', 'fa-link', 'admin', 'SystemUpload', 'file', '', 2, '', 1, 'N', 100, '2023-03-21 14:33:00', '2025-12-27 15:01:56'),
 (156, 153, '文件检测', 'fa-link', 'admin', 'SystemUpload', 'check', '', 2, '', 1, 'N', 100, '2023-03-21 14:33:07', '2025-05-25 19:30:27'),
@@ -690,7 +702,56 @@ INSERT INTO `system_oper_log` (`logId`, `menuId`, `managerId`, `message`, `reque
 (461, 159, 1, '修改成功', '192.168.1.6', '/admin/SystemSetting/update.html', '{\"type\":\"upload\",\"name\":\"上传大小\",\"identify\":\"limit\",\"value\":\"1\",\"remark\":\"上传文件大小限制，单位：mb，填 0 为不限制\",\"sort\":\"100\",\"settingId\":\"3\"}', 1, '2026-01-07 14:27:04', '2026-01-07 14:27:04'),
 (462, 159, 1, '修改成功', '192.168.1.6', '/admin/SystemSetting/update.html', '{\"type\":\"upload\",\"name\":\"上传大小\",\"identify\":\"limit\",\"value\":\"1024\",\"remark\":\"上传文件大小限制，单位：mb，填 0 为不限制\",\"sort\":\"100\",\"settingId\":\"3\"}', 1, '2026-01-07 14:28:22', '2026-01-07 14:28:22'),
 (463, 163, 1, '修改成功', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"文件类型\",\"identify\":\"system.upload.type\",\"remark\":\"上传文件类型\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"3\"}', 1, '2026-01-07 16:04:52', '2026-01-07 16:04:52'),
-(464, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"managerId\":\"1\"}', 1, '2026-01-07 17:20:46', '2026-01-07 17:20:46');
+(464, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"managerId\":\"1\"}', 1, '2026-01-07 17:20:46', '2026-01-07 17:20:46'),
+(465, 83, 1, '修改成功', '192.168.1.6', '/admin/SystemManagerRole/update.html', '{\"name\":\"部门管理员\",\"identify\":\"department\",\"sort\":\"30\",\"remark\":\"部门管理员\",\"roleId\":\"6\",\"permission\":\"75,128,141,72,73,81,85,86,74,82,83,84,157,153,156,158,169,170,143,147,137,136,138,149\"}', 1, '2026-01-08 09:12:45', '2026-01-08 09:12:45'),
+(466, 85, 1, '修改成功', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"6\",\"avatar\":\"\\/upload\\/image\\/20260107\\/7a8f2d15e3d298cd12feb59572c2f4e5.jpg\",\"realName\":\"测试管理员\",\"account\":\"test\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"10\"}', 1, '2026-01-08 09:13:32', '2026-01-08 09:13:32'),
+(467, 138, 10, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260108\\/3d264d32f3acac55ae09b5d5e815be9a.jpg\",\"realName\":\"测试管理员\",\"account\":\"test\",\"password\":\"\",\"managerId\":\"10\"}', 1, '2026-01-08 09:17:31', '2026-01-08 09:17:31'),
+(468, 80, 1, '修改成功', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"74\",\"name\":\"角色列表\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemManagerRole\",\"action\":\"getAll\",\"params\":\"\",\"record\":\"N\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"menuId\":\"147\"}', 1, '2026-01-08 10:02:26', '2026-01-08 10:02:26'),
+(469, 159, 1, '修改成功', '192.168.1.6', '/admin/SystemSetting/update.html', '{\"type\":\"upload\",\"name\":\"上传大小\",\"identify\":\"limit\",\"value\":\"0\",\"remark\":\"上传文件大小限制，单位：mb，填 0 为不限制\",\"sort\":\"100\",\"settingId\":\"3\"}', 1, '2026-01-09 09:17:45', '2026-01-09 09:17:45'),
+(470, 159, 1, '修改成功', '192.168.1.6', '/admin/SystemSetting/update.html', '{\"type\":\"system\",\"name\":\"系统名称\",\"identify\":\"name\",\"value\":\"EasyAdmin\",\"remark\":\"系统LOGO展示文字\",\"sort\":\"10\",\"settingId\":\"1\"}', 1, '2026-01-10 10:44:18', '2026-01-10 10:44:18'),
+(471, 159, 1, '修改成功', '192.168.1.6', '/admin/SystemSetting/update.html', '{\"type\":\"upload\",\"name\":\"上传大小\",\"identify\":\"limit\",\"value\":\"0\",\"remark\":\"上传文件大小限制，单位：mb，填 0 为不限制\",\"sort\":\"100\",\"settingId\":\"3\"}', 1, '2026-01-10 10:44:27', '2026-01-10 10:44:27'),
+(472, 159, 1, '修改成功', '192.168.1.6', '/admin/SystemSetting/update.html', '{\"type\":\"upload\",\"name\":\"上传大小\",\"identify\":\"limit\",\"value\":\"0\",\"remark\":\"上传文件大小限制，单位：mb，填 0 为不限制\",\"sort\":\"100\",\"settingId\":\"3\"}', 1, '2026-01-10 10:46:57', '2026-01-10 10:46:57'),
+(473, 80, 1, '修改成功', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"137\",\"name\":\"个人资料\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemIndex\",\"action\":\"profile1\",\"params\":\"\",\"record\":\"Y\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"menuId\":\"138\"}', 1, '2026-01-10 11:20:10', '2026-01-10 11:20:10'),
+(474, 80, 1, '修改成功', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"137\",\"name\":\"个人资料\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemIndex\",\"action\":\"profile\",\"params\":\"\",\"record\":\"Y\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"menuId\":\"138\"}', 1, '2026-01-10 11:20:17', '2026-01-10 11:20:17'),
+(475, 80, 1, '修改成功', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"137\",\"name\":\"退出登录\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemIndex\",\"action\":\"logout1\",\"params\":\"\",\"record\":\"N\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"menuId\":\"149\"}', 1, '2026-01-10 11:20:21', '2026-01-10 11:20:21'),
+(476, 80, 1, '修改成功', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"137\",\"name\":\"退出登录\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"SystemIndex\",\"action\":\"logout\",\"params\":\"\",\"record\":\"N\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"menuId\":\"149\"}', 1, '2026-01-10 11:23:28', '2026-01-10 11:23:28'),
+(477, 80, 1, '修改成功', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"143\",\"name\":\"文件上传\",\"icon\":\"fa-link\",\"module\":\"admin\",\"controller\":\"\",\"action\":\"\",\"params\":\"\",\"record\":\"N\",\"type\":\"2\",\"link\":\"\",\"target\":\"1\",\"sort\":\"100\",\"menuId\":\"153\"}', 1, '2026-01-10 11:29:34', '2026-01-10 11:29:34'),
+(478, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"managerId\":\"1\"}', 1, '2026-01-10 14:36:57', '2026-01-10 14:36:57'),
+(479, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"managerId\":\"1\"}', 1, '2026-01-10 14:37:11', '2026-01-10 14:37:11'),
+(480, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"managerId\":\"1\"}', 1, '2026-01-10 14:37:26', '2026-01-10 14:37:26'),
+(481, 162, 1, '添加成功', '192.168.1.6', '/admin/SystemDictType/create.html', '{\"name\":\"邮箱设置\",\"identify\":\"system.mail.config\",\"remark\":\"邮箱发送设置\",\"sort\":\"100\",\"status\":\"Y\"}', 1, '2026-01-10 16:28:21', '2026-01-10 16:28:21'),
+(482, 166, 1, '添加成功', '192.168.1.6', '/admin/SystemDictData/create.html', '{\"label\":\"host\",\"value\":\"smtp.qq.com\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"服务器地址\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"4\"}', 1, '2026-01-10 16:28:54', '2026-01-10 16:28:54'),
+(483, 166, 1, '添加成功', '192.168.1.6', '/admin/SystemDictData/create.html', '{\"label\":\"username\",\"value\":\"1628883533@qq.com\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"发送人账号\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"4\"}', 1, '2026-01-10 16:29:08', '2026-01-10 16:29:08'),
+(484, 166, 1, '添加成功', '192.168.1.6', '/admin/SystemDictData/create.html', '{\"label\":\"password\",\"value\":\"发送人授权码\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"发送人授权码\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"4\"}', 1, '2026-01-10 16:29:27', '2026-01-10 16:29:27'),
+(485, 166, 1, '添加成功', '192.168.1.6', '/admin/SystemDictData/create.html', '{\"label\":\"port\",\"value\":\"服务器端口\",\"style\":\"465\",\"isDefault\":\"Y\",\"remark\":\"服务器端口\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"4\"}', 1, '2026-01-10 16:31:19', '2026-01-10 16:31:19'),
+(486, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"port\",\"value\":\"465\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"服务器端口\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"29\"}', 1, '2026-01-10 16:31:26', '2026-01-10 16:31:26'),
+(487, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"password\",\"value\":\"iphxfarybutwdjdh\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"发送人授权码\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"28\"}', 1, '2026-01-10 16:33:20', '2026-01-10 16:33:20'),
+(488, 83, 1, '修改成功', '192.168.1.6', '/admin/SystemManagerRole/update.html', '{\"name\":\"超级管理员\",\"identify\":\"super\",\"sort\":\"10\",\"remark\":\"拥有最高权限\",\"roleId\":\"1\",\"permission\":\"75,128,141,144,148,154,155,72,73,81,85,86,74,82,83,84,147,1,114,121,122,150,151,152,145,99,2,159,160,161,162,163,164,165,166,167,168,69,76,80,79,134,142,157,143,153,156,158,169,170,137,136,138,149\"}', 1, '2026-01-12 09:39:21', '2026-01-12 09:39:21'),
+(489, 85, 1, '修改成功', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"******\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-01-12 09:43:23', '2026-01-12 09:43:23'),
+(490, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mp4\",\"value\":\"video\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"视频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"4\"}', 1, '2026-01-12 15:28:21', '2026-01-12 15:28:21'),
+(491, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mpg\",\"value\":\"video\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"视频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"5\"}', 1, '2026-01-12 15:28:54', '2026-01-12 15:28:54'),
+(492, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mp3\",\"value\":\"audio\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"音频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"6\"}', 1, '2026-01-12 15:28:59', '2026-01-12 15:28:59'),
+(493, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mpeg\",\"value\":\"audio\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"音频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"7\"}', 1, '2026-01-12 15:29:06', '2026-01-12 15:29:06'),
+(494, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"wav\",\"value\":\"audio\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"音频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"8\"}', 1, '2026-01-12 15:30:18', '2026-01-12 15:30:18'),
+(495, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"jpeg\",\"value\":\"image\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"图片\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"9\"}', 1, '2026-01-12 15:30:23', '2026-01-12 15:30:23'),
+(496, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"jpg\",\"value\":\"image\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"图片\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"10\"}', 1, '2026-01-12 15:30:28', '2026-01-12 15:30:28'),
+(497, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"png\",\"value\":\"image\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"图片\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"11\"}', 1, '2026-01-12 15:30:31', '2026-01-12 15:30:31'),
+(498, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"gif\",\"value\":\"image\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"图片\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"12\"}', 1, '2026-01-12 15:30:37', '2026-01-12 15:30:37'),
+(499, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"webp\",\"value\":\"image\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"图片\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"13\"}', 1, '2026-01-12 15:30:41', '2026-01-12 15:30:41'),
+(500, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"pdf\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"14\"}', 1, '2026-01-12 15:30:45', '2026-01-12 15:30:45'),
+(501, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"doc\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"15\"}', 1, '2026-01-12 15:31:03', '2026-01-12 15:31:03'),
+(502, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"docx\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"16\"}', 1, '2026-01-12 15:31:30', '2026-01-12 15:31:30'),
+(503, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"xls\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"17\"}', 1, '2026-01-12 15:31:36', '2026-01-12 15:31:36'),
+(504, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"xlsx\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"18\"}', 1, '2026-01-12 15:31:41', '2026-01-12 15:31:41'),
+(505, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"ppt\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"19\"}', 1, '2026-01-12 15:31:48', '2026-01-12 15:31:48'),
+(506, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"pptx\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"20\"}', 1, '2026-01-12 15:31:52', '2026-01-12 15:31:52'),
+(507, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"txt\",\"value\":\"doc\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"文档\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"21\"}', 1, '2026-01-12 15:32:02', '2026-01-12 15:32:02'),
+(508, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"zip\",\"value\":\"zip\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"压缩包\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"22\"}', 1, '2026-01-12 15:32:07', '2026-01-12 15:32:07'),
+(509, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"tar\",\"value\":\"zip\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"压缩包\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"23\"}', 1, '2026-01-12 15:32:16', '2026-01-12 15:32:16'),
+(510, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"rar\",\"value\":\"zip\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"压缩包\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"24\"}', 1, '2026-01-12 15:32:22', '2026-01-12 15:32:22'),
+(511, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"7z\",\"value\":\"zip\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"压缩包\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"25\"}', 1, '2026-01-12 15:32:26', '2026-01-12 15:32:26'),
+(512, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"ogg\",\"value\":\"audio\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"音频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"7\"}', 1, '2026-01-12 15:33:13', '2026-01-12 15:33:13'),
+(513, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mov\",\"value\":\"video\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"视频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"5\"}', 1, '2026-01-12 15:33:41', '2026-01-12 15:33:41');
 
 -- --------------------------------------------------------
 
@@ -705,7 +766,7 @@ CREATE TABLE `system_setting` (
   `identify` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '设置标识',
   `value` text COLLATE utf8mb4_unicode_ci COMMENT '设置数据',
   `remark` text COLLATE utf8mb4_unicode_ci COMMENT '设置备注',
-  `sort` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '设置排序',
+  `sort` bigint(20) UNSIGNED NOT NULL DEFAULT '0' COMMENT '设置排序',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统设置表';
@@ -715,9 +776,9 @@ CREATE TABLE `system_setting` (
 --
 
 INSERT INTO `system_setting` (`settingId`, `type`, `name`, `identify`, `value`, `remark`, `sort`, `createTime`, `updateTime`) VALUES
-(1, 'system', '系统名称', 'name', 'EasyAdmin', '系统LOGO展示文字', 10, '2023-10-24 10:33:41', '2025-05-15 21:14:30'),
+(1, 'system', '系统名称', 'name', 'EasyAdmin', '系统LOGO展示文字', 10, '2023-10-24 10:33:41', '2026-01-10 10:44:18'),
 (2, 'system', '系统标语', 'slogan', 'PHP后台快速开发系统', '系统登录页面展示标语', 20, '2023-10-24 10:33:41', '2026-01-07 14:16:55'),
-(3, 'upload', '上传大小', 'limit', '1024', '上传文件大小限制，单位：mb，填 0 为不限制', 100, '2026-01-07 14:18:33', '2026-01-07 14:28:22');
+(3, 'upload', '上传大小', 'limit', '0', '上传文件大小限制，单位：mb，填 0 为不限制', 100, '2026-01-07 14:18:33', '2026-01-10 10:46:57');
 
 -- --------------------------------------------------------
 
@@ -727,7 +788,7 @@ INSERT INTO `system_setting` (`settingId`, `type`, `name`, `identify`, `value`, 
 
 CREATE TABLE `system_upload` (
   `fileId` bigint(20) UNSIGNED NOT NULL COMMENT 'ID',
-  `managerId` bigint(20) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上传人ID',
+  `managerId` bigint(20) UNSIGNED NOT NULL DEFAULT '0' COMMENT '管理员ID',
   `hash` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件hash',
   `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件名称',
   `type` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件类型：image-图片，audio-音频，video-视频，doc-文档，zip-压缩包',
@@ -744,13 +805,12 @@ CREATE TABLE `system_upload` (
 --
 
 INSERT INTO `system_upload` (`fileId`, `managerId`, `hash`, `name`, `type`, `size`, `path`, `index`, `status`, `createTime`, `updateTime`) VALUES
-(5, 1, '4afa9551cb213f2ffa8d1ebc8d22056c', '134MB.zip', 'zip', 141243741, '/upload/zip/20260107/757e65835df573935d157852df8931d2.zip', 67, 'Y', '2026-01-07 17:15:14', '2026-01-07 17:40:59'),
 (6, 1, '7e5b1b87da3ad9581672260eae458d9e', '23.9MB.zip', 'zip', 24543864, '/upload/zip/20260107/1188e64749f1d18aacc20c8f21b3a3a5.zip', 11, 'Y', '2026-01-07 17:20:21', '2026-01-07 17:20:22'),
-(7, 1, '26ae9bea6b90e2285fda78d4fe256610', '7.79MB.zip', 'zip', 8179364, '/upload/zip/20260107/2d9a253b7b19a9d04fc83bb9f6f072ee.zip', 3, 'Y', '2026-01-07 17:20:21', '2026-01-07 17:20:22'),
+(7, 1, '26ae9bea6b90e2285fda78d4fe256610', '7.79MB.zip', 'zip', 8179364, '/upload/zip/20260107/2d9a253b7b19a9d04fc83bb9f6f072ee.zip', 3, 'Y', '2026-01-07 17:20:21', '2026-01-10 10:41:13'),
 (8, 1, '05a6f21f1064c45b2b9f5cfaf541144e', '2.jpg', 'image', 229185, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-07 17:20:36'),
-(9, 1, '8ddf582f610c68b1729111fd86d05ec1', '1.jpg', 'image', 329748, '/upload/image/20260107/fc57bf040ed46b8e46d99e62714eadd4.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-07 17:20:36'),
+(9, 1, '8ddf582f610c68b1729111fd86d05ec1', '1.jpg', 'image', 329748, '/upload/image/20260107/fc57bf040ed46b8e46d99e62714eadd4.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-12 15:37:15'),
 (10, 1, '628eebd9a0247ae4e336dcf3423eed05', '6.jpg', 'image', 113905, '/upload/image/20260107/7a8f2d15e3d298cd12feb59572c2f4e5.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-07 17:20:36'),
-(11, 1, 'a04a5e875119005077ff73d27109c450', 'e9078617052fe37689efe3699b534cd.jpg', 'image', 6608311, '/upload/image/20260107/eb2c001e3a7ac376a80792865e6e2419.jpg', 3, 'Y', '2026-01-07 17:20:36', '2026-01-07 17:20:36'),
+(11, 1, 'a04a5e875119005077ff73d27109c450', 'e9078617052fe37689efe3699b534cd.jpg', 'image', 6608311, '/upload/image/20260107/eb2c001e3a7ac376a80792865e6e2419.jpg', 3, 'Y', '2026-01-07 17:20:36', '2026-01-10 09:18:11'),
 (12, 1, 'c9d3cc0c061c6fef29e8fc48946e5ad4', 'xss.pdf', 'doc', 515, '/upload/doc/20260107/7aa6f66190c2f287bfba9b0e2f984898.pdf', 0, 'Y', '2026-01-07 17:21:05', '2026-01-07 17:21:05'),
 (13, 1, '60074ee8fa55d9b247389aa4b7c6e501', '空表格.xlsx', 'doc', 10050, '/upload/doc/20260107/816a7529e64fc67c4209ed5a263fa08d.xlsx', 0, 'Y', '2026-01-07 17:21:05', '2026-01-07 17:21:05'),
 (14, 1, '4f4988eddb5a0efb1fd20238c5adda21', '有图片文档.docx', 'doc', 565642, '/upload/doc/20260107/829a6a37034c5cfc8db9eb98cdbf0def.docx', 0, 'Y', '2026-01-07 17:21:05', '2026-01-07 17:21:05'),
@@ -759,7 +819,18 @@ INSERT INTO `system_upload` (`fileId`, `managerId`, `hash`, `name`, `type`, `siz
 (17, 1, '15b721f642553a1cc1875084d852e878', '6.76MB.mp4', 'video', 7096570, '/upload/video/20260107/6fbe5b3e6ad5459610d6f5e25974a9fa.mp4', 3, 'Y', '2026-01-07 17:21:17', '2026-01-07 17:21:18'),
 (18, 1, '7fc49e07c3c653634af0388714294b6a', '0.071MB.mp3', 'audio', 73395, '/upload/audio/20260107/c33f84e07403782726fea53b398cd31c.mp3', 0, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:21:30'),
 (19, 1, '74337e48216f38be269a170264dabda5', '3.76MB.mp3', 'audio', 3856713, '/upload/audio/20260107/7e077d903947a4a68b159446ddd3e58c.mp3', 1, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:21:31'),
-(20, 1, '83ab4018af750183a0598b84155f39a1', '14.6MB.wav', 'audio', 15400040, '/upload/audio/20260107/c124cb9581f80198bf42e8bb38324f29.wav', 7, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:40:52');
+(20, 1, '83ab4018af750183a0598b84155f39a1', '14.6MB.wav', 'audio', 15400040, '/upload/audio/20260107/c124cb9581f80198bf42e8bb38324f29.wav', 7, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:40:52'),
+(24, 10, '628eebd9a0247ae4e336dcf3423eed05', '6.jpg', 'image', 113905, '/upload/image/20260108/3d264d32f3acac55ae09b5d5e815be9a.jpg', 0, 'Y', '2026-01-08 09:17:27', '2026-01-08 09:17:27'),
+(28, 10, '4f242c6df32174ad5fb626a19f4a6bc7', '134MB.mp4', 'video', 141494824, '/upload/video/20260108/53634183c0105d5113cc04b11bda1f14.mp4', 67, 'Y', '2026-01-08 10:05:09', '2026-01-08 10:05:28'),
+(31, 1, '53610ff916c70b86cc3a028c2442638f', '1GB.zip', 'zip', 1391924697, '/upload/zip/20260109/93ece758fabbb5c9e9515d46038d0d6c.zip', 663, 'Y', '2026-01-09 09:19:12', '2026-01-10 09:05:29'),
+(53, 1, '5bc6b18f1a39acf3e07c199aab464235', '3GB.zip', 'zip', 3500432407, '/upload/zip/20260110/b7e5408bc21e2b3cf4db54d8d00279c5.zip', 1669, 'Y', '2026-01-10 10:20:33', '2026-01-10 10:31:45'),
+(55, 1, '4afa9551cb213f2ffa8d1ebc8d22056c', '134MB.zip', 'zip', 141243741, '/upload/zip/20260110/f5306b2155700b508fecf384405bfcce.zip', 67, 'Y', '2026-01-10 10:35:23', '2026-01-10 10:35:42'),
+(56, 1, '09e4b3b1fa93fb4c272cbc2b32f56ab1', 'png.jpg', 'image', 299407, '/upload/image/20260112/8f9d676f7c31b0fd81e3697647472c3f.jpg', 0, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
+(57, 1, 'e5d6ad8b882e551b820b6fed1f508f7f', 'bae86896d7c70a259655f88a2b9c096.jpg', 'image', 4729918, '/upload/image/20260112/520b872b8698c48d3468481460442113.jpg', 2, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
+(58, 1, '96ed7ee935cfa75e68133d4bf6bcdd2c', 'ok.png', 'image', 799322, '/upload/image/20260112/f674e2c59e65b5d8be4bf52d92b13711.png', 0, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
+(59, 1, '56a53cfe19ff3dd1bd39d4bd000f759d', 'f87cc47d58510d48d99da6cf8fe0ad8.png', 'image', 139527, '/upload/image/20260112/9eee3ce8e8db6580f534a73809a3f0b2.png', 0, 'Y', '2026-01-12 15:37:48', '2026-01-12 15:37:48'),
+(60, 1, '9d763437c428b3b05d60a15c64a66e53', '13.jpg', 'image', 25038, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', 0, 'Y', '2026-01-12 15:38:17', '2026-01-12 15:38:18'),
+(61, 1, 'beb95285d2741f5437d370fea46a67b9', 'idCard2.jpg', 'image', 227940, '/upload/image/20260112/a1ed43022a6094de2d9519723c94a3e9.jpg', 0, 'Y', '2026-01-12 15:38:18', '2026-01-12 15:38:18');
 
 --
 -- 转储表的索引
@@ -848,25 +919,25 @@ ALTER TABLE `queue_failed`
 -- 使用表AUTO_INCREMENT `queue_jobs`
 --
 ALTER TABLE `queue_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 使用表AUTO_INCREMENT `system_dict_data`
 --
 ALTER TABLE `system_dict_data`
-  MODIFY `dataId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=26;
+  MODIFY `dataId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=30;
 
 --
 -- 使用表AUTO_INCREMENT `system_dict_type`
 --
 ALTER TABLE `system_dict_type`
-  MODIFY `dictId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=4;
+  MODIFY `dictId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `system_login_log`
 --
 ALTER TABLE `system_login_log`
-  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=25;
+  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=32;
 
 --
 -- 使用表AUTO_INCREMENT `system_manager`
@@ -890,7 +961,7 @@ ALTER TABLE `system_menu`
 -- 使用表AUTO_INCREMENT `system_oper_log`
 --
 ALTER TABLE `system_oper_log`
-  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=465;
+  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=514;
 
 --
 -- 使用表AUTO_INCREMENT `system_setting`
@@ -902,7 +973,7 @@ ALTER TABLE `system_setting`
 -- 使用表AUTO_INCREMENT `system_upload`
 --
 ALTER TABLE `system_upload`
-  MODIFY `fileId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=21;
+  MODIFY `fileId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=62;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

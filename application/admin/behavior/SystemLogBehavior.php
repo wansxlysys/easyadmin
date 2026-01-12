@@ -26,32 +26,45 @@ class SystemLogBehavior
      * @param Response $response
      * @throws Exception
      */
-    public static function appEnd(Request $request, Response $response)
+    public function appEnd(Request $request, Response $response)
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if ($currentMenu && $currentMenu['record'] == YesnoEnum::YES) {
-
-            $data = $response->getData();
-
-            if (isset($data['code'])) {
-
-                $params = $request->post();
-
-                if (!empty($params['password'])) {
-                    $params['password'] = '******';
-                }
-
-                $log['message']    = $data['msg'];
-                $log['menuId']     = $currentMenu['menuId'];
-                $log['params']     = ArrayUtil::toJson($params);
-                $log['status']     = SystemOperLogEnum::translateCode($data['code']);
-                $log['managerId']  = SystemManagerHelper::getManagerId();
-                $log['requestIp']  = $request->ip();
-                $log['requestUrl'] = $request->url();
-
-                Dependency::getProxy(SystemOperLogService::class)->createLog($log);
-            }
+        if (!$currentMenu) {
+            return;
         }
+
+        if ($currentMenu['record'] == YesnoEnum::NO) {
+            return;
+        }
+
+        $data = $response->getData();
+
+        if (isset($data['code'])) {
+
+            $log['message']    = $data['msg'];
+            $log['menuId']     = $currentMenu['menuId'];
+            $log['params']     = $this->filterParams($request->post());
+            $log['status']     = SystemOperLogEnum::translateCode($data['code']);
+            $log['managerId']  = SystemManagerHelper::getManagerId();
+            $log['requestIp']  = $request->ip();
+            $log['requestUrl'] = $request->url();
+
+            Dependency::getProxy(SystemOperLogService::class)->createLog($log);
+        }
+    }
+
+    /**
+     * 过滤参数
+     * @param array $params
+     * @return string
+     */
+    protected function filterParams(array $params)
+    {
+        if (!empty($params['password'])) {
+            $params['password'] = '******';
+        }
+
+        return ArrayUtil::toJson($params);
     }
 }

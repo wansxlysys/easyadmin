@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\command\backup;
+namespace app\common\command\database;
 
 
 use Exception;

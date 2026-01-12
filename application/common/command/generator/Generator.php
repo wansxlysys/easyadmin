@@ -21,7 +21,7 @@ class Generator extends Command
      */
     protected function configure()
     {
-        $this->setName('system:generator')
+        $this->setName('generator:code')
             ->addOption('class', null, Option::VALUE_REQUIRED, "Class Name")
             ->addOption('module', null, Option::VALUE_REQUIRED, "Module Name")
             ->addOption('comment', null, Option::VALUE_REQUIRED, 'Comment Text')

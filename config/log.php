@@ -15,6 +15,8 @@
 return [
     // 日志记录方式，内置 file socket 支持扩展
     'type'        => 'File',
+    // 是否json格式
+    'json'        => true,
     // 日志保存目录
     'path'        => '',
     // 日志记录级别
@@ -22,9 +24,9 @@ return [
     // 单文件日志写入
     'single'      => false,
     // 独立日志级别
-    'apart_level' => [],
+    'apart_level' => ['error'],
     // 最大日志文件数量
-    'max_files'   => 50,
+    'max_files'   => 0,
     // 单个日志文件的大小限制
     'file_size'   => INF,
     // 日志的时间格式

@@ -25,7 +25,7 @@
             </li>
             <li class="layui-nav-item layui-nav-avatar">
                 <a href="javascript:">
-                    <img src="{$manager.avatar}" class="layui-nav-img">
+                    <img src="{$manager.avatar}" class="layui-nav-img layui-circle">
                     {$manager.realName}
                 </a>
                 <dl class="layui-nav-child" style="text-align: center">

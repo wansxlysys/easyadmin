@@ -34,7 +34,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">管理员密码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="password" lay-verify="required" placeholder="请输入管理员密码" class="layui-input">
+                        <input type="password" name="password" lay-verify="required" placeholder="请输入管理员密码" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">

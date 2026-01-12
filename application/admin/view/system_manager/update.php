@@ -34,7 +34,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">管理员密码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="password" placeholder="如无需修改请留空" class="layui-input">
+                        <input type="password" name="password" placeholder="如无需修改请留空" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">

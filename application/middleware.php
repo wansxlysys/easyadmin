@@ -2,9 +2,9 @@
 
 
 use app\http\middleware\RepeatMiddleware;
-use app\http\middleware\SystemLogMiddleware;
+use app\http\middleware\MonologMiddleware;
 
 return [
     RepeatMiddleware::class,
-    SystemLogMiddleware::class
+    MonologMiddleware::class
 ];

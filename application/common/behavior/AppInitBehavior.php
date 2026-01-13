@@ -4,6 +4,10 @@
 namespace app\common\behavior;
 
 
+use think\Db;
+
+use app\common\helper\LogHelper;
+
 class AppInitBehavior
 {
     /**
@@ -12,6 +16,8 @@ class AppInitBehavior
      */
     public function run()
     {
-
+        Db::listen(function ($sql, $time) {
+            LogHelper::debug('SQL Execute', ['sql' => $sql, 'time' => $time]);
+        });
     }
 }

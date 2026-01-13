@@ -8,11 +8,11 @@ use Exception;
 
 use think\facade\Env;
 use think\facade\Config;
-use think\facade\Log;
 use think\facade\Request;
 use think\exception\Handle;
 use think\exception\HttpException;
 
+use app\common\helper\LogHelper;
 use app\common\exception\ValidateException;
 
 class ExceptionHandler extends Handle
@@ -30,6 +30,15 @@ class ExceptionHandler extends Handle
      */
     public function render(Exception $e)
     {
+        /**
+         * 错误日志
+         */
+        LogHelper::error($e->getMessage(), [
+            'code'  => $e->getCode(),
+            'file'  => $e->getFile(),
+            'line'  => $e->getLine(),
+        ]);
+
         /**
          * 非调试模式设置
          */

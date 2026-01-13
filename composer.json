@@ -29,7 +29,8 @@
         "phpoffice/phpspreadsheet": "^1.28",
         "predis/predis": "^2.1",
         "ifsnop/mysqldump-php": "^2.12",
-        "guzzlehttp/guzzle": "^7.8"
+        "guzzlehttp/guzzle": "^7.8",
+        "monolog/monolog": "^2.11"
     },
     "autoload": {
         "psr-4": {

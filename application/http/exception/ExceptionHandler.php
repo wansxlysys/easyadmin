@@ -33,7 +33,9 @@ class ExceptionHandler extends Handle
         /**
          * 错误日志
          */
-        MonologHelper::error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}");
+        if (!$this->isIgnoreReport($e)) {
+            MonologHelper::error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}");
+        }
 
         /**
          * 非调试模式设置

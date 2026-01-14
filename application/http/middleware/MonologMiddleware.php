@@ -20,17 +20,21 @@ class MonologMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $log['host']      = $request->host();
-        $log['path']      = $request->path();
-        $log['method']    = $request->method();
-        $log['domain']    = $request->domain();
-        $log['params']    = $request->param();
-        $log['cookie']    = $request->cookie();
-        $log['userIp']    = $request->ip();
-        $log['referer']   = $request->header('referer');
-        $log['userAgent'] = $request->header('user-agent');
+        $log['Host']            = $request->host();
+        $log['Cookie']          = $request->cookie();
+        $log['Request-URL']     = $request->url();
+        $log['Request-Data']    = $request->param();
+        $log['Request-Method']  = $request->method();
+        $log['Content-Type']    = $request->header('Content-Type');
+        $log['Content-Length']  = $request->header('Content-Length');
+        $log['Connection']      = $request->header('Connection');
+        $log['Accept']          = $request->header('Accept');
+        $log['Accept-Encoding'] = $request->header('Accept-Encoding');
+        $log['Accept-Language'] = $request->header('Accept-Language');
+        $log['Referer']         = $request->header('Referer');
+        $log['User-Agent']      = $request->header('User-Agent');
 
-        LogHelper::info('请求日志', $log);
+        LogHelper::debug('Request Log', $log);
 
         return $next($request);
     }

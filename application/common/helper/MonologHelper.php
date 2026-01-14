@@ -28,19 +28,21 @@ class MonologHelper
 
     /**
      * Channel.
-     * @param string $name
+     * @param string $channel
      * @return Logger
      */
-    public static function channel(string $name = 'default'): Logger
+    public static function channel(string $channel = 'default'): Logger
     {
-        if (!isset(static::$instance[$name])) {
-            $config                  = config('monolog.')[$name];
-            $handlers                = self::handlers($config);
-            $processors              = self::processors($config);
-            static::$instance[$name] = new Logger($name, $handlers, $processors);
+        if (!isset(static::$instance[$channel])) {
+
+            $config     = config("monolog.$channel");
+            $handlers   = self::handlers($config);
+            $processors = self::processors($config);
+
+            static::$instance[$channel] = new Logger($channel, $handlers, $processors);
         }
 
-        return static::$instance[$name];
+        return static::$instance[$channel];
     }
 
     /**
@@ -54,6 +56,7 @@ class MonologHelper
         $handlerConfigs = $config['handlers'] ?? [[]];
 
         foreach ($handlerConfigs as $value) {
+
             $class           = $value['class'] ?? [];
             $constructor     = $value['constructor'] ?? [];
             $formatterConfig = $value['formatter'] ?? [];

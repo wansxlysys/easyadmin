@@ -4,7 +4,7 @@
 namespace app\http\exception;
 
 
-use Exception;
+use Throwable;
 
 use think\facade\Env;
 use think\facade\Config;
@@ -12,7 +12,7 @@ use think\facade\Request;
 use think\exception\Handle;
 use think\exception\HttpException;
 
-use app\common\helper\LogHelper;
+use app\common\helper\MonologHelper;
 use app\common\exception\ValidateException;
 
 class ExceptionHandler extends Handle
@@ -28,12 +28,12 @@ class ExceptionHandler extends Handle
     /*
      * 异常处理
      */
-    public function render(Exception $e)
+    public function render(Throwable $e)
     {
         /**
          * 错误日志
          */
-        LogHelper::error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}");
+        MonologHelper::error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}");
 
         /**
          * 非调试模式设置

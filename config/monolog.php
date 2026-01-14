@@ -32,5 +32,24 @@ return [
                 'constructor' => [32]
             ],
         ]
+    ],
+    'queue' => [
+        'handlers'   => [
+            [
+                'class'       => RotatingFileHandler::class,
+                'constructor' => [
+                    Env::get('runtime_path') . 'log/' . date('Ym') . '/queue.log', Logger::DEBUG,
+                ],
+                'formatter'   => [
+                    'class'       => LineFormatter::class,
+                    'constructor' => [null, 'Y-m-d H:i:s', true],
+                ],
+            ]
+        ],
+        'processors' => [
+            [
+                'class' => PsrLogMessageProcessor::class,
+            ]
+        ]
     ]
 ];

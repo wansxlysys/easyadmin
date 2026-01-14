@@ -19,7 +19,7 @@ use Monolog\Handler\FormattableHandlerInterface;
  * @method static void alert($message, array $context = [])
  * @method static void emergency($message, array $context = [])
  */
-class LogHelper
+class MonologHelper
 {
     /**
      * @var array

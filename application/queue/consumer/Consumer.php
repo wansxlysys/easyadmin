@@ -4,9 +4,11 @@
 namespace app\queue\consumer;
 
 
-use Exception;
+use Throwable;
 
 use think\queue\Job;
+
+use app\common\helper\MonologHelper;
 
 abstract class Consumer
 {
@@ -15,11 +17,23 @@ abstract class Consumer
      * 启动命令：php think queue:listen --sleep 5 --tries 3 --delay 5 --timeout 120
      * @param Job $job
      * @param $data
-     * @throws Exception
+     * @throws Throwable
      */
     public function fire(Job $job, $data)
     {
-        $this->{$data['method']}($job, $data);
+        try {
+
+            $this->{$data['method']}($job, $data['params']);
+
+        } catch (Throwable $e) {
+
+            /**
+             * 错误日志
+             */
+            MonologHelper::channel('queue')->error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}", $data);
+
+            throw $e;
+        }
     }
 
     /**

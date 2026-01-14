@@ -8,7 +8,7 @@ use Closure;
 
 use think\Request;
 
-use app\common\helper\LogHelper;
+use app\common\helper\MonologHelper;
 
 class MonologMiddleware
 {
@@ -34,7 +34,7 @@ class MonologMiddleware
         $log['Referer']         = $request->header('Referer');
         $log['User-Agent']      = $request->header('User-Agent');
 
-        LogHelper::debug('Request Log', $log);
+        MonologHelper::debug('Request Log', $log);
 
         return $next($request);
     }

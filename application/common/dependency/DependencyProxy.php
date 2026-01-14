@@ -4,7 +4,7 @@
 namespace app\common\dependency;
 
 
-use Throwable;
+use Exception;
 
 class DependencyProxy
 {
@@ -101,15 +101,15 @@ class DependencyProxy
                     $result = $proceed();
                 }
 
-            } catch (Throwable $throwable) {
+            } catch (Exception $e) {
                 /**
                  * 执行异常通知
                  */
                 if (method_exists($aspect, 'throw')) {
-                    call_user_func([$aspect, 'throw'], $methodName, $arguments, $throwable);
+                    call_user_func([$aspect, 'throw'], $methodName, $arguments, $e);
                 }
 
-                throw $throwable;
+                throw $e;
             }
 
             /**

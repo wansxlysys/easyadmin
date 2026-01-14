@@ -4,10 +4,11 @@
 namespace app\common\extend\rpc;
 
 
-use Throwable;
+use Exception;
 use RuntimeException;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class RpcClient
 {
@@ -99,7 +100,7 @@ class RpcClient
 
     /**
      * 发送请求
-     * @throws Throwable
+     * @throws Exception|GuzzleException
      */
     public function dispatch()
     {

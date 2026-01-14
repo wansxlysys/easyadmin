@@ -4,7 +4,7 @@
 namespace app\http\exception;
 
 
-use Throwable;
+use Exception;
 
 use think\facade\Env;
 use think\facade\Config;
@@ -28,7 +28,7 @@ class ExceptionHandler extends Handle
     /*
      * 异常处理
      */
-    public function render(Throwable $e)
+    public function render(Exception $e)
     {
         /**
          * 错误日志

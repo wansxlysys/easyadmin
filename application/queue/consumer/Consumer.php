@@ -4,7 +4,7 @@
 namespace app\queue\consumer;
 
 
-use Throwable;
+use Exception;
 
 use think\queue\Job;
 
@@ -17,7 +17,7 @@ abstract class Consumer
      * 启动命令：php think queue:listen --sleep 5 --tries 3 --delay 5 --timeout 120
      * @param Job $job
      * @param $payload
-     * @throws Throwable
+     * @throws Exception
      */
     public function fire(Job $job, $payload)
     {
@@ -25,7 +25,7 @@ abstract class Consumer
 
             $this->{$payload['method']}($job, $payload['params']);
 
-        } catch (Throwable $e) {
+        } catch (Exception $e) {
 
             /**
              * 错误日志

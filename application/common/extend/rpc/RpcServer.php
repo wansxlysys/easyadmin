@@ -4,7 +4,7 @@
 namespace app\common\extend\rpc;
 
 
-use Throwable;
+use Exception;
 use RuntimeException;
 
 class RpcServer
@@ -107,8 +107,8 @@ class RpcServer
                 $data = call_user_func_array([$class, $this->method], $this->params);
             }
 
-        } catch (Throwable $throwable) {
-            return $this->result($throwable->getCode(), '远程调用失败：' . $throwable->getMessage());
+        } catch (Exception $e) {
+            return $this->result($e->getCode(), '远程调用失败：' . $e->getMessage());
         }
 
         return $this->result(200, 'success', $data);

@@ -1,6 +1,7 @@
 <?php
 
 
+use Monolog\Processor\UidProcessor;
 use think\facade\Env;
 
 use Monolog\Logger;
@@ -14,7 +15,7 @@ return [
             [
                 'class'       => RotatingFileHandler::class,
                 'constructor' => [
-                    Env::get('runtime_path') . '/log/' . date('Ym') . ' /default.log', Logger::DEBUG,
+                    Env::get('runtime_path') . 'log/' . date('Ym') . '/default.log', Logger::DEBUG,
                 ],
                 'formatter'   => [
                     'class'       => LineFormatter::class,
@@ -25,7 +26,11 @@ return [
         'processors' => [
             [
                 'class' => PsrLogMessageProcessor::class,
-            ]
+            ],
+            [
+                'class'       => UidProcessor::class,
+                'constructor' => [32]
+            ],
         ]
     ]
 ];

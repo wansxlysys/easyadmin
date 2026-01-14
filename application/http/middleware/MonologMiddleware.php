@@ -13,7 +13,7 @@ use app\common\helper\LogHelper;
 class MonologMiddleware
 {
     /**
-     * 句柄
+     * 日志中间件
      * @param Request $request
      * @param Closure $next
      * @return mixed

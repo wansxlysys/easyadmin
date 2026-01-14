@@ -16,21 +16,21 @@ abstract class Consumer
      * 消费方法
      * 启动命令：php think queue:listen --sleep 5 --tries 3 --delay 5 --timeout 120
      * @param Job $job
-     * @param $data
+     * @param $payload
      * @throws Throwable
      */
-    public function fire(Job $job, $data)
+    public function fire(Job $job, $payload)
     {
         try {
 
-            $this->{$data['method']}($job, $data['params']);
+            $this->{$payload['method']}($job, $payload['params']);
 
         } catch (Throwable $e) {
 
             /**
              * 错误日志
              */
-            MonologHelper::channel('queue')->error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}", $data);
+            MonologHelper::channel('queue')->error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}", $payload);
 
             throw $e;
         }

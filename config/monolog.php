@@ -1,10 +1,10 @@
 <?php
 
 
-use Monolog\Processor\UidProcessor;
 use think\facade\Env;
 
 use Monolog\Logger;
+use Monolog\Processor\UidProcessor;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
@@ -33,7 +33,7 @@ return [
             ],
         ]
     ],
-    'queue' => [
+    'queue'   => [
         'handlers'   => [
             [
                 'class'       => RotatingFileHandler::class,

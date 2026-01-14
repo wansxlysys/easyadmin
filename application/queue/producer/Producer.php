@@ -6,6 +6,8 @@ namespace app\queue\producer;
 
 use think\Queue;
 
+use app\common\util\StringUtil;
+
 abstract class Producer
 {
     /**
@@ -18,7 +20,7 @@ abstract class Producer
      */
     public static function push($consumer, $method, $params, $queue = null)
     {
-        Queue::push($consumer . '@fire', ['method' => $method, 'params' => $params], $queue);
+        Queue::push($consumer . '@fire', static::buildData($method, $params), $queue);
     }
 
     /**
@@ -32,6 +34,17 @@ abstract class Producer
      */
     public static function delay($consumer, $method, $params, $delay, $queue = null)
     {
-        Queue::later($delay, $consumer . '@fire', ['method' => $method, 'params' => $params], $queue);
+        Queue::later($delay, $consumer . '@fire', static::buildData($method, $params), $queue);
+    }
+
+    /**
+     * 构建数据
+     * @param $method
+     * @param $params
+     * @return array
+     */
+    private static function buildData($method, $params)
+    {
+        return ['method' => $method, 'params' => $params, 'uniqid' => StringUtil::unique()];
     }
 }

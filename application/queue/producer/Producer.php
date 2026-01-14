@@ -45,6 +45,6 @@ abstract class Producer
      */
     private static function buildData($method, $params)
     {
-        return ['method' => $method, 'params' => $params, 'uniqid' => StringUtil::unique()];
+        return ['method' => $method, 'uniqid' => StringUtil::unique(), 'params' => $params];
     }
 }

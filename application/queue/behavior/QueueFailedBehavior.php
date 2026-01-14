@@ -24,6 +24,7 @@ class QueueFailedBehavior
         $failed['queue']    = $job->getQueue();
         $failed['consumer'] = $job->getName();
         $failed['payload']  = $rawBody['data'];
+        $failed['uniqid']   = $rawBody['data']['uniqid'];
 
         Dependency::getProxy(QueueFailedService::class)->createFailed($failed);
     }

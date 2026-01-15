@@ -4,6 +4,8 @@
 namespace app\common\render;
 
 
+use think\facade\View;
+
 class StepRender
 {
     /**
@@ -14,16 +16,17 @@ class StepRender
      */
     public static function render(array $process, $step)
     {
-        $render = '';
+        $template = '
+            <div class="easy-step">
+                {foreach $processes as $key => $process}
+                <div class="easy-step-item {if $step >= $key}easy-step-over{/if}">
+                    <div class="easy-step-item-number">{$key}</div>
+                    <div class="easy-step-item-title">{$process.title}</div>
+                    <div class="easy-step-item-tips">{$process.tips}</div>
+                </div>
+                {/foreach}
+            </div>';
 
-        foreach ($process as $key => $item) {
-            $render .= '<div class="easy-step-item ' . ($step >= $key ? 'easy-step-over' : '') . '">';
-            $render .= '    <div class="easy-step-item-number">' . $key . '</div>';
-            $render .= '    <div class="easy-step-item-title">' . $item['title'] . '</div>';
-            $render .= '    <div class="easy-step-item-tips">' . $item['tips'] . '</div>';
-            $render .= '</div>';
-        }
-
-        return '<div class="easy-step">' . $render . '</div>';
+        return View::display($template, ['step' => $step, 'processes' => $process]);
     }
 }

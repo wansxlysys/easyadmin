@@ -2,19 +2,12 @@
 
 {block name="content"}
 {include file="common@layout/breadcrumb" close="show" /}
-
-<?php
-/**
- * @noinspection PhpUndefinedVariableInspection
- */
-$manager = service('SystemManager', 'admin')->getByManagerId($log['managerId']);
-?>
-
 <div class="layui-fluid layui-content">
     <div class="layui-card">
         <div class="layui-card-header">{$currentMenu.name}</div>
         <div class="layui-card-body">
             <div class="easy-info">
+                {service:invoke class="SystemManager" method="getByManagerId" params="$log.managerId" value="manager" /}
                 <div class="easy-info-grid easy-info-grid-100 easy-info-grid-center">
                     <div class="easy-info-grid-left">管理员头像：</div>
                     <div class="easy-info-grid-right">

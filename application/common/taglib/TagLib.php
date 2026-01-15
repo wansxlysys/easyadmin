@@ -9,6 +9,21 @@ use app\common\exception\ServiceException;
 class TagLib extends \think\template\TagLib
 {
     /**
+     * 解析复制变量
+     * @param $tag
+     * @param $name
+     * @return string
+     */
+    public function parseVal($tag, $name)
+    {
+        if (!isset($tag[$name])) {
+            throw new ServiceException($name . '属性不能为空');
+        }
+
+        return '$' . $tag[$name];
+    }
+
+    /**
      * 将非变量和函数的字符串加上引号
      * @param $tag
      * @param $name

@@ -13,6 +13,7 @@
 // | 模板设置
 // +----------------------------------------------------------------------
 
+use app\common\taglib\Service;
 use app\common\taglib\Setting;
 use app\common\taglib\Dictionary;
 use app\common\taglib\Permission;
@@ -38,8 +39,9 @@ return [
     'taglib_end'      => '}',
     // 预先加载的标签库
     'taglib_pre_load' => implode(',', [
+        Service::class,
+        Setting::class,
         Permission::class,
         Dictionary::class,
-        Setting::class
     ])
 ];

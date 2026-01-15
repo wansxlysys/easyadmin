@@ -4,6 +4,8 @@
 namespace app\common\helper;
 
 
+use Exception;
+
 use Monolog\Logger;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\FormattableHandlerInterface;
@@ -114,6 +116,16 @@ class MonologHelper
         }
 
         return $result;
+    }
+
+    /**
+     * Exception.
+     * @param Exception $e
+     * @return string
+     */
+    public static function formatException(Exception $e)
+    {
+        return "{$e->getMessage()} in {$e->getFile()}:{$e->getLine()} \nStack trace:\n{$e->getTraceAsString()}";
     }
 
     /**

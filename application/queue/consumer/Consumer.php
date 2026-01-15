@@ -30,7 +30,7 @@ abstract class Consumer
             /**
              * 错误日志
              */
-            MonologHelper::channel('queue')->error("{$e->getMessage()} in {$e->getFile()}:{$e->getLine()}", $payload);
+            MonologHelper::error(MonologHelper::formatException($e), $payload);
 
             throw $e;
         }

@@ -7,7 +7,7 @@
         <div class="layui-card-header">{$currentMenu.name}</div>
         <div class="layui-card-body">
             <div class="easy-info">
-                {service:invoke class="SystemManager" method="getByManagerId" params="$log.managerId" value="manager" /}
+                {assign name="manager" value=":service('SystemManager')->getByManagerId($log.managerId)"}
                 <div class="easy-info-grid easy-info-grid-100 easy-info-grid-center">
                     <div class="easy-info-grid-left">管理员头像：</div>
                     <div class="easy-info-grid-right">

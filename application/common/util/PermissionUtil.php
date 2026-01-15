@@ -1,12 +1,10 @@
 <?php
 
 
-namespace app\common\helper;
+namespace app\common\util;
 
 
-use app\common\util\StringUtil;
-
-class PermissionHelper
+class PermissionUtil
 {
     /**
      * 权限检测

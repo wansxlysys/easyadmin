@@ -4,16 +4,14 @@
 namespace app\admin\helper;
 
 
-use think\facade\Session;
-
-use app\common\util\Md5Util;
-use app\common\util\StringUtil;
-use app\common\enum\YesnoEnum;
-use app\common\context\ContextHolder;
-use app\common\helper\PermissionHelper;
-
 use app\admin\enum\ManagerEnum;
 use app\admin\enum\ManagerRoleEnum;
+use app\common\context\ContextHolder;
+use app\common\enum\YesnoEnum;
+use app\common\util\Md5Util;
+use app\common\util\PermissionUtil;
+use app\common\util\StringUtil;
+use think\facade\Session;
 
 class SystemManagerHelper
 {
@@ -148,6 +146,6 @@ class SystemManagerHelper
      */
     public static function checkAccessByMenuId($menuId, $condition = 'and')
     {
-        return PermissionHelper::checkPermission(StringUtil::toArray($menuId), static::getPermission(), $condition);
+        return PermissionUtil::checkPermission(StringUtil::toArray($menuId), static::getPermission(), $condition);
     }
 }

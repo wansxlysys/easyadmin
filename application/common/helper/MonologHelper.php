@@ -6,6 +6,7 @@ namespace app\common\helper;
 
 use Exception;
 
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\FormattableHandlerInterface;
@@ -87,6 +88,10 @@ class MonologHelper
             $formatterConstructor = $formatterConfig['constructor'];
 
             $formatter = new $formatterClass(... array_values($formatterConstructor));
+
+            if ($handler instanceof RotatingFileHandler) {
+                $handler->setFilenameFormat('{date}/{filename}', 'Ym/d');
+            }
 
             $handler->setFormatter($formatter);
         }

@@ -15,7 +15,7 @@ return [
             [
                 'class'       => RotatingFileHandler::class,
                 'constructor' => [
-                    Env::get('runtime_path') . 'log/' . date('Ym') . '/default.log', Logger::DEBUG,
+                    Env::get('runtime_path') . 'log/default.log', Logger::DEBUG,
                 ],
                 'formatter'   => [
                     'class'       => LineFormatter::class,
@@ -38,7 +38,7 @@ return [
             [
                 'class'       => RotatingFileHandler::class,
                 'constructor' => [
-                    Env::get('runtime_path') . 'log/' . date('Ym') . '/queue.log', Logger::DEBUG,
+                    Env::get('runtime_path') . 'log/queue.log', Logger::DEBUG,
                 ],
                 'formatter'   => [
                     'class'       => LineFormatter::class,

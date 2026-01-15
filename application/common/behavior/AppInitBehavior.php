@@ -17,7 +17,7 @@ class AppInitBehavior
     public function run()
     {
         Db::listen(function ($sql, $time) {
-            MonologHelper::debug('SQL Execute', ['sql' => $sql, 'time' => $time]);
+            MonologHelper::debug('sql execute', ['sql' => $sql, 'time' => $time]);
         });
     }
 }

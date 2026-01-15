@@ -34,7 +34,7 @@ class MonologMiddleware
         $log['Referer']         = $request->header('Referer');
         $log['User-Agent']      = $request->header('User-Agent');
 
-        MonologHelper::debug('Request Log', $log);
+        MonologHelper::debug('request log', $log);
 
         return $next($request);
     }

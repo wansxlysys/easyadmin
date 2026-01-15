@@ -30,6 +30,7 @@
         easyLayout: "easyAdmin/easyLayout",
         easyUpload: "easyAdmin/easyUpload",
         easyCreate: "easyAdmin/easyCreate",
+        easyRewrite: "easyAdmin/easyRewrite",
         easyModule: "easyAdmin/easyModule",
         xmSelect: "xmSelect/xmSelect",
         layCascader: "layCascader/layCascader",

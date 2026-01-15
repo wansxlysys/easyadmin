@@ -94,15 +94,15 @@
         const layer = layui.layer;
         const easyAdmin = layui.easyAdmin;
 
-        $('.layui-nav-tree>.layui-nav-item a').on('click', function (event) {
+        jQuery('.layui-nav-tree>.layui-nav-item a').on('click', function (event) {
             event.preventDefault();
 
-            if ($(this).siblings('.layui-nav-child').length <= 0) {
-                const link = $(this).data("link");
-                const target = $(this).data('target');
+            if (jQuery(this).siblings('.layui-nav-child').length <= 0) {
+                const link = jQuery(this).data("link");
+                const target = jQuery(this).data('target');
 
                 if (target === 1) {
-                    $("#easyLayoutIframe").attr("src", link);
+                    jQuery("#easyLayoutIframe").attr("src", link);
                 } else if (target === 2) {
                     location.href = link;
                 } else if (target === 3) {
@@ -113,7 +113,7 @@
 
         util.event('lay-header-event', {
             outdent() {
-                $(".easy-layout").toggleClass("easy-layout-hide-side");
+                jQuery(".easy-layout").toggleClass("easy-layout-hide-side");
             },
             system() {
                 layer.open({
@@ -127,7 +127,7 @@
                 });
             },
             refresh() {
-                let $iframe = $("#easyLayoutIframe");
+                let $iframe = jQuery("#easyLayoutIframe");
                 $iframe.attr("src", $iframe.attr("src"));
             },
             fullscreen() {

@@ -51,7 +51,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             item.checked = options.checked.includes(item[setting.data.simpleData.idKey]);
         });
 
-        let tree = $.fn.zTree.init($(options.elem), setting, data);
+        let tree = $.fn.zTree.init(jQuery(options.elem), setting, data);
 
         if (options.ready) {
             options.ready(tree);

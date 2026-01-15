@@ -7,19 +7,19 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 面板分割
      */
-    $('.easy-split').each(function () {
+    jQuery('.easy-split').each(function () {
 
-        let direction = $(this).data('direction');
+        let direction = jQuery(this).data('direction');
 
         let elem = [];
         let size = [];
 
-        $(this).find('.split-item').each(function () {
+        jQuery(this).find('.split-item').each(function () {
             elem.push(this);
-            size.push($(this).data('size'));
+            size.push(jQuery(this).data('size'));
         });
 
-        $(this).addClass('split-' + direction);
+        jQuery(this).addClass('split-' + direction);
 
         Split(elem, {
             sizes: size,
@@ -32,7 +32,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 富文本编辑器
      */
-    $(".easy-ueditor").each(function () {
+    jQuery(".easy-ueditor").each(function () {
         easyBuilder.UEditor({
             elem: this
         });
@@ -41,9 +41,9 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 单图上传
      */
-    $(".layui-builder-image").each(function (key, item) {
+    jQuery(".layui-builder-image").each(function (key, item) {
         easyUpload.uploadImage({
-            elem: $(item)
+            elem: jQuery(item)
         }, {
             maxNum: 1,
             multiple: false
@@ -53,11 +53,11 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 多图上传
      */
-    $(".layui-builder-picture").each(function (key, item) {
+    jQuery(".layui-builder-picture").each(function (key, item) {
         easyUpload.uploadImage({
-            elem: $(item)
+            elem: jQuery(item)
         }, {
-            maxNum: $(item).data("max") || Infinity,
+            maxNum: jQuery(item).data("max") || Infinity,
             multiple: true
         });
     });
@@ -65,33 +65,33 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 文件上传
      */
-    $(".easy-builder-upload").each((key, item) => {
+    jQuery(".easy-builder-upload").each((key, item) => {
         easyUpload.uploadFile({
-            elem: $(item)
+            elem: jQuery(item)
         }, {
             multiple: true,
-            maxNum: $(item).data("max") || Infinity,
+            maxNum: jQuery(item).data("max") || Infinity,
         });
     });
 
     /**
      * alert关闭控制
      */
-    $(document).on('click', '.easy-alert-close', function () {
-        $(this).closest(".easy-alert").remove();
+    jQuery(document).on('click', '.easy-alert-close', function () {
+        jQuery(this).closest(".easy-alert").remove();
     });
 
     /**
      * 关闭当前所在弹出层
      */
-    $(document).on('click', '.easy-close-layer', function () {
+    jQuery(document).on('click', '.easy-close-layer', function () {
         parent.layer.close(parent.layer.getFrameIndex(window.name));
     });
 
     /**
      * 日期选择器
      */
-    $(document).on('click', '.easy-build-date', function () {
+    jQuery(document).on('click', '.easy-build-date', function () {
         laydate.render({
             elem: this,
             show: true
@@ -101,7 +101,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 时间选择器
      */
-    $(document).on('click', '.easy-build-time', function () {
+    jQuery(document).on('click', '.easy-build-time', function () {
         laydate.render({
             elem: this,
             show: true,
@@ -112,7 +112,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 日期时间选择器
      */
-    $(document).on('click', '.easy-build-datetime', function () {
+    jQuery(document).on('click', '.easy-build-datetime', function () {
         laydate.render({
             elem: this,
             show: true,
@@ -123,19 +123,19 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 创建预览图片
      */
-    $(".easy-preview").each((key, item) => {
-        const picture = $(item).data("picture");
+    jQuery(".easy-preview").each((key, item) => {
+        const picture = jQuery(item).data("picture");
         if (picture) {
             const srcList = picture.split(',');
 
             srcList.forEach(image => {
-                $(item).append('<img src="' + image + '">');
+                jQuery(item).append('<img src="' + image + '">');
             });
 
-            $(item).find('img').click(event => {
+            jQuery(item).find('img').click(event => {
                 top.layer.photos({
                     photos: {
-                        start: $(event.target).index(),
+                        start: jQuery(event.target).index(),
                         data: srcList.map(item => {
                             return {
                                 src: item
@@ -153,7 +153,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
      */
     const clipboard = new ClipboardJS('.easy-copy', {
         text: function (trigger) {
-            return $(trigger).attr('data-text');
+            return jQuery(trigger).attr('data-text');
         }
     });
 

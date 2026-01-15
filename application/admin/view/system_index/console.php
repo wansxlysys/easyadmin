@@ -218,7 +218,7 @@
             ]
         });
 
-        $(window).resize(function () {
+        jQuery(window).resize(function () {
             chartPie.resize();
             chartLine.resize();
         });

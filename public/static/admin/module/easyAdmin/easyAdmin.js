@@ -52,7 +52,7 @@ layui.define(function (exports) {
      * 删除弹出层透明类
      */
     easyAdmin.resetFrame = () => {
-        $(window.parent.document).find('.easy-frame').removeClass('easy-frame-transparent');
+        jQuery(window.parent.document).find('.easy-frame').removeClass('easy-frame-transparent');
     }
 
     /**

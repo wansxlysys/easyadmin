@@ -278,7 +278,7 @@
         const easyAdmin = layui.easyAdmin;
         const easyBuilder = layui.easyBuilder;
 
-        $('.upload').on('click', function () {
+        jQuery('.upload').on('click', function () {
             easyAdmin.openFileLayer({
                 fileType: ['image', 'video'],
                 selectFile: function (fileList) {

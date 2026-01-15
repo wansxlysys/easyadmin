@@ -106,20 +106,20 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                     createSelect: function () {
                         options.forEach((option) => {
                             if (setting.fileType.length == 0 || setting.fileType.includes(option.type)) {
-                                $('#allowType').append(`<option value="${option.type}">${option.value}</option>`);
+                                jQuery('#allowType').append(`<option value="${option.type}">${option.value}</option>`);
                             }
                         });
                         form.render('select');
                     },
                     findFileByEvent(event) {
-                        const index = $(event.currentTarget).closest('.attach-grid').index();
+                        const index = jQuery(event.currentTarget).closest('.attach-grid').index();
                         if (index !== -1) {
                             return popupData.fileList[index];
                         }
                     },
                     listenEvents: function () {
 
-                        const attachList = $('.attach-list');
+                        const attachList = jQuery('.attach-list');
 
                         form.on("submit(search)", (obj) => {
                             event.preventDefault();
@@ -137,16 +137,16 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         attachList.on('click', '.attach-thumb', (event) => {
                             const file = uploadService.findFileByEvent(event);
                             if (!setting.multiple) {
-                                $('.attach-upload').removeClass('attach-checked');
+                                jQuery('.attach-upload').removeClass('attach-checked');
                             }
 
-                            $(event.currentTarget).closest('.attach-upload').toggleClass('attach-checked');
+                            jQuery(event.currentTarget).closest('.attach-upload').toggleClass('attach-checked');
 
                             if (!setting.multiple) {
                                 popupData.checkedMap.clear();
                             }
 
-                            if ($(event.currentTarget).closest('.attach-upload').hasClass('attach-checked')) {
+                            if (jQuery(event.currentTarget).closest('.attach-upload').hasClass('attach-checked')) {
                                 popupData.checkedMap.set(file.fileId, file);
                             } else {
                                 popupData.checkedMap.delete(file.fileId);
@@ -179,7 +179,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
 
                         attachList.on('click', '.attach-look', (event) => {
-                            const index = $(event.currentTarget).closest('.attach-grid').index();
+                            const index = jQuery(event.currentTarget).closest('.attach-grid').index();
                             const file = popupData.fileList[index];
                             if (file.type == 'image') {
                                 const images = popupData.fileList.filter((item) => {
@@ -213,7 +213,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             }
                         });
 
-                        $('.confirm-button').on('click', () => {
+                        jQuery('.confirm-button').on('click', () => {
 
                             const checkedList = Array.from(
                                 popupData.checkedMap.values()
@@ -240,12 +240,12 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             layer.close(uploadLayer)
                         });
 
-                        $('.clear-button').on('click', () => {
+                        jQuery('.clear-button').on('click', () => {
                             popupData.checkedMap.clear();
                             uploadService.renderFile();
                         });
 
-                        $('.upload-button').on('click', () => {
+                        jQuery('.upload-button').on('click', () => {
                             const template = `
                                     <div id="upload">
                                         <div class="layui-hide">
@@ -300,8 +300,8 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                 content: template,
                                 success: function () {
 
-                                    const upload = $('#upload');
-                                    const select = $('.select-button');
+                                    const upload = jQuery('#upload');
+                                    const select = jQuery('.select-button');
 
                                     uploadData.uploader = new Uploader({
                                         concurrentFiles: 3,
@@ -419,7 +419,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         }
 
                                         if (obj.event === 'select') {
-                                            $('.select-button').trigger('click')
+                                            jQuery('.select-button').trigger('click')
                                         }
                                     });
 
@@ -442,7 +442,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     });
 
                                     upload.on('mouseenter', '.upload-tag-error', function (event) {
-                                        const index = $(event.currentTarget).closest('tr').index();
+                                        const index = jQuery(event.currentTarget).closest('tr').index();
                                         const file = uploadData.fileList[index];
                                         if (file.errorMsg) {
                                             uploadData.tipsIndex = layer.tips(file.errorMsg, event.currentTarget);
@@ -483,16 +483,16 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                     },
                     renderLoading: function () {
                         if (popupData.isLoading) {
-                            $('.attach-list').empty();
-                            $('.attach-load').html(`<div class="attach-loading">
+                            jQuery('.attach-list').empty();
+                            jQuery('.attach-load').html(`<div class="attach-loading">
                                                         <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>
                                                         <span>加载中</span>
                                                     </div>`);
                         } else {
                             if (popupData.fileTotal <= 0) {
-                                $('.attach-load').html(`<div class="attach-empty">暂无数据</div>`);
+                                jQuery('.attach-load').html(`<div class="attach-empty">暂无数据</div>`);
                             } else {
-                                $('.attach-load').empty();
+                                jQuery('.attach-load').empty();
                             }
                         }
                     },
@@ -513,7 +513,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                         });
                     },
                     renderFile: function () {
-                        $('.attach-list').html(popupData.fileList.map(file => {
+                        jQuery('.attach-list').html(popupData.fileList.map(file => {
                             return `
                                 <div class="attach-grid">
                                     <div class="attach-upload ${popupData.checkedMap.has(file.fileId) && 'attach-checked'}">

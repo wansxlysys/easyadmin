@@ -28,8 +28,8 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         options = $.extend(true, {}, defaultOptions, options);
         setting = $.extend(true, {}, defautlSetting, setting);
 
-        const initValue = $(options.elem).val();
-        const container = $(`<div class="easy-upload-image"></div>`);
+        const initValue = jQuery(options.elem).val();
+        const container = jQuery(`<div class="easy-upload-image"></div>`);
 
         const updateElement = () => {
             const template = `
@@ -60,21 +60,21 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
             }));
 
             if (imageList.length == 0) {
-                $(options.elem).val(null);
+                jQuery(options.elem).val(null);
             } else {
-                $(options.elem).val(imageList.join(','));
+                jQuery(options.elem).val(imageList.join(','));
             }
         }
 
         const findItemIndex = (target) => {
-            return $(target).closest('.easy-upload-image-item').index();
+            return jQuery(target).closest('.easy-upload-image-item').index();
         }
 
         if (initValue) {
             imageList = initValue.split(',');
         }
 
-        $(options.elem).after(container);
+        jQuery(options.elem).after(container);
 
         container.on('click', '.easy-upload-image-prev', (event) => {
             const index = findItemIndex(event.currentTarget);
@@ -151,8 +151,8 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         options = $.extend(true, {}, defaultOptions, options);
         setting = $.extend(true, {}, defautlSetting, setting);
 
-        const initValue = $(options.elem).val();
-        const container = $(`<div class="easy-upload-file"></div>`);
+        const initValue = jQuery(options.elem).val();
+        const container = jQuery(`<div class="easy-upload-file"></div>`);
 
         const updateElement = function () {
             const template = `
@@ -183,21 +183,21 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
             }));
 
             if (fileList.length == 0) {
-                $(options.elem).val(null);
+                jQuery(options.elem).val(null);
             } else {
-                $(options.elem).val(JSON.stringify(fileList));
+                jQuery(options.elem).val(JSON.stringify(fileList));
             }
         }
 
         const findItemIndex = function (target) {
-            return $(target).closest('.easy-upload-file-item').index();
+            return jQuery(target).closest('.easy-upload-file-item').index();
         }
 
         if (initValue) {
             fileList = JSON.parse(inputValue);
         }
 
-        $(options.elem).after(container);
+        jQuery(options.elem).after(container);
 
         container.on('click', '.easy-upload-file-prev', (event) => {
             const index = findItemIndex(event.currentTarget);

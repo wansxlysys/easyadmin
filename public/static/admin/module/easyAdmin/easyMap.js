@@ -14,7 +14,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
 
         options = $.extend(true, defaultOptions, options);
 
-        const wrapper = $(options.map.getContainer()).closest('.map-container');
+        const wrapper = jQuery(options.map.getContainer()).closest('.map-container');
         const suggestion = new TMap.service.Suggestion(options.setting);
 
         wrapper.prepend(
@@ -75,7 +75,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
         wrapper.find(".map-search-result").on("click", ".map-search-item", function () {
             wrapper.find(".map-search-result").empty();
 
-            const index = $(this).data('index');
+            const index = jQuery(this).data('index');
             const suggest = suggestList[index];
 
             options.map.setCenter(suggest.location);

@@ -153,7 +153,7 @@
 
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;
-        const captchaImg = $("#captchaImg");
+        const captchaImg = jQuery("#captchaImg");
 
         form.on('submit', function (obj) {
             event.preventDefault();

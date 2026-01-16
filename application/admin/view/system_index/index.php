@@ -25,8 +25,8 @@
             </li>
             <li class="layui-nav-item layui-nav-avatar">
                 <a href="javascript:">
-                    <img src="{$manager.avatar}" class="layui-nav-img layui-circle">
-                    {$manager.realName}
+                    <img src="{$loginManager.avatar}" class="layui-nav-img layui-circle">
+                    {$loginManager.realName}
                 </a>
                 <dl class="layui-nav-child" style="text-align: center">
                     <dd lay-header-event="profile"><a href="">个人资料</a></dd>

@@ -13,8 +13,8 @@ use app\common\dependency\Dependency;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemSettingHelper;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\service\SystemManagerService;
 use app\admin\service\SystemMenuService;
+use app\admin\service\SystemManagerService;
 use app\admin\service\SystemSettingService;
 use app\admin\behavior\SystemLogBehavior;
 
@@ -26,14 +26,14 @@ class SystemController extends CommonController
      */
     public function initialize()
     {
-        $manager       = Dependency::getProxy(SystemManagerService::class)->getManager();
         $currentMenu   = Dependency::getProxy(SystemMenuService::class)->getCurrentMenu();
+        $loginManager  = Dependency::getProxy(SystemManagerService::class)->getManager();
         $systemSetting = Dependency::getProxy(SystemSettingService::class)->getSystemSetting();
 
         /**
          * 设置缓存
          */
-        SystemManagerHelper::setManager($manager);
+        SystemManagerHelper::setManager($loginManager);
         SystemMenuHelper::setCurrentMenu($currentMenu);
         SystemSettingHelper::setSystemSetting($systemSetting);
 
@@ -49,8 +49,8 @@ class SystemController extends CommonController
             /**
              * 赋值视图变量
              */
-            $this->assign('manager', $manager);
             $this->assign('currentMenu', $currentMenu);
+            $this->assign('loginManager', $loginManager);
             $this->assign('systemSetting', $systemSetting);
 
             /**

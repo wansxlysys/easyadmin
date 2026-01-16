@@ -105,7 +105,7 @@
     <p class="jump">页面自动跳转，等待时间：<span id="wait">{$wait}</span> 秒</p>
     <p>
         <a href="javascript:void(0);" id="close" class="btn btn-grey">关闭</a>
-        <a href="{$url}" id="redirect" class="btn btn-primary">跳转</a>
+        <a href="javascript:void(0);" id="href" class="btn btn-primary">跳转</a>
     </p>
     <div class="easy-tips">
         <p>提示：等待时间结束后将会自动跳转，您也可以手动关闭或点击跳转</p>
@@ -114,13 +114,13 @@
 
 <script src="{:register_static('/admin/plugin/layui/layui.js')}"></script>
 <script type="text/javascript">
-    layui.use(['easyModule'], function () {
+    layui.use('jquery', function () {
 
-        const $ = layui.$;
-        const redirect = $("#redirect").attr("href");
+        const jQuery = layui.jquery;
         const index = parent.layer.getFrameIndex(window.name);
 
-        let wait = $("#wait").text();
+        let wait = '{$wait}';
+        let href = '{$url}';
 
         setInterval(() => {
             wait--;
@@ -128,13 +128,22 @@
                 if (index) {
                     parent.layer.close(index);
                 } else {
-                    location.href = redirect;
+                    top.location.href = href;
                 }
             }
-            $("#wait").text(wait);
+            console.log(wait)
+            jQuery("#wait").text(wait);
         }, 1000);
 
-        $("#close").click(() => {
+        jQuery("#href").click(() => {
+            if (index) {
+                parent.layer.close(index);
+            } else {
+                top.location.href = href;
+            }
+        });
+
+        jQuery("#close").click(() => {
             if (index) {
                 parent.layer.close(index);
             } else {

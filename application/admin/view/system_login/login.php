@@ -7,19 +7,16 @@
         height: 100%;
     }
 
-    #user-login {
-        height: 100%;
-        background: url("{:register_static('/admin/img/login.jpg')}") no-repeat center;
-        background-size: cover;
-    }
-
     .easy-user-login {
         position: relative;
         left: 0;
         top: 0;
         padding: 110px 0;
+        height: 100%;
         min-height: 100%;
-        box-sizing: border-box
+        box-sizing: border-box;
+        background: url("{:register_static('/admin/img/login.jpg')}") no-repeat center;
+        background-size: cover;
     }
 
     .easy-user-login-main {
@@ -107,7 +104,7 @@
 {/block}
 
 {block name="content"}
-<div class="easy-user-login" id="user-login">
+<div class="easy-user-login">
     <div class="easy-user-login-main">
         <div class="easy-user-login-box easy-user-login-header">
             <h2>{$systemSetting.name}</h2>
@@ -153,6 +150,7 @@
 
         const form = layui.form;
         const easyAdmin = layui.easyAdmin;
+
         const captchaImg = jQuery("#captchaImg");
 
         form.on('submit', function (obj) {

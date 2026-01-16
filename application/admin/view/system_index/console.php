@@ -34,7 +34,7 @@
         </div>
         <div class="easy-alert-content">
             <h3>欢迎登录</h3>
-            <p>欢迎使用 EasyAdmin 内容管理系统</p>
+            <p>欢迎使用{$systemSetting.name}</p>
         </div>
         <div class="easy-alert-close">
             <i class="fa fa-fw fa-close"></i>
@@ -148,31 +148,31 @@
                 {
                     name: '电子邮件',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [120, 132, 101, 134, 90, 230, 210]
                 },
                 {
                     name: '联盟广告',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [220, 182, 191, 234, 290, 330, 310]
                 },
                 {
                     name: '视频广告',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [289, 232, 201, 154, 190, 330, 410]
                 },
                 {
                     name: '直接访问',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [320, 368, 301, 289, 390, 168, 320]
                 },
                 {
                     name: '搜索引擎',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [820, 932, 901, 934, 879, 1330, 785]
                 }
             ]

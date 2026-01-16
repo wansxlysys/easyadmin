@@ -25,7 +25,7 @@
     }
 
     .layui-card-header .layui-badge {
-        margin-top: 12px;
+        margin-top: 2px;
     }
 </style>
 {/block}

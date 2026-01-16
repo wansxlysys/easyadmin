@@ -28,16 +28,12 @@
 <div class="layui-card">
     <div class="layui-card-body">
         <div class="system">
-            {volist name="$system" id="vo"}
+            {foreach $system as $key => $val}
             <div class="system-cell">
-                <div class="system-title">
-                    {$key}
-                </div>
-                <div class="system-value">
-                    {$vo}
-                </div>
+                <div class="system-title">{$key}</div>
+                <div class="system-value">{$val}</div>
             </div>
-            {/volist}
+            {/foreach}
         </div>
     </div>
 </div>

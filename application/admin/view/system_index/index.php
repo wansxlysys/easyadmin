@@ -44,7 +44,7 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-accordion>
-                {volist name="$menuTree" id="menu1"}
+                {foreach $menuTree as $menu1}
                 <li class="layui-nav-item {eq name='$menu1.menuId' value='75'}layui-nav-itemed{/eq}">
                     <a href="javascript:" data-link="{$menu1.url}" data-target="{$menu1.target}">
                         <i class="fa fa-fw {$menu1.icon}"></i>
@@ -52,7 +52,7 @@
                     </a>
                     {notempty name="$menu1.children"}
                     <dl class="layui-nav-child">
-                        {volist name="$menu1.children" id="menu2"}
+                        {foreach $menu1.children as $menu2}
                         <dd class="{eq name='$menu2.menuId' value='128'}layui-this{/eq}">
                             <a href="javascript:" data-link="{$menu2.url}" data-target="{$menu2.target}">
                                 <i class="fa fa-fw {$menu2.icon}"></i>
@@ -60,22 +60,22 @@
                             </a>
                             {notempty name="$menu2.children"}
                             <dl class="layui-nav-child">
-                                {volist name="$menu2.children" id="menu3"}
+                                {foreach $menu2.children as $menu3}
                                 <dd>
                                     <a href="javascript:" data-link="{$menu3.url}" data-target="{$menu3.target}">
                                         <i class="fa fa-fw {$menu3.icon}"></i>
                                         <span>{$menu3.name}</span>
                                     </a>
                                 </dd>
-                                {/volist}
+                                {/foreach}
                             </dl>
                             {/notempty}
                         </dd>
-                        {/volist}
+                        {/foreach}
                     </dl>
                     {/notempty}
                 </li>
-                {/volist}
+                {/foreach}
             </ul>
         </div>
     </div>
@@ -87,7 +87,6 @@
 
 {block name="js"}
 <script>
-
     layui.use(['easyModule'], function () {
 
         const util = layui.util;

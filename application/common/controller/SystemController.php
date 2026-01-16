@@ -33,8 +33,8 @@ class SystemController extends CommonController
         /**
          * 设置缓存
          */
-        SystemManagerHelper::setManager($loginManager);
         SystemMenuHelper::setCurrentMenu($currentMenu);
+        SystemManagerHelper::setManager($loginManager);
         SystemSettingHelper::setSystemSetting($systemSetting);
 
         if ($this->request->isAjax()) {

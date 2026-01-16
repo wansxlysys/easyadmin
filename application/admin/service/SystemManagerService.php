@@ -95,7 +95,7 @@ class SystemManagerService extends Service
      * @return array
      * @throws Exception
      */
-    public function getManager()
+    public function getLoginManager()
     {
         $Wrapper = new Wrapper();
 

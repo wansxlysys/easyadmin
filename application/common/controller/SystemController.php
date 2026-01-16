@@ -27,7 +27,7 @@ class SystemController extends CommonController
     public function initialize()
     {
         $currentMenu   = Dependency::getProxy(SystemMenuService::class)->getCurrentMenu();
-        $loginManager  = Dependency::getProxy(SystemManagerService::class)->getManager();
+        $loginManager  = Dependency::getProxy(SystemManagerService::class)->getLoginManager();
         $systemSetting = Dependency::getProxy(SystemSettingService::class)->getSystemSetting();
 
         /**

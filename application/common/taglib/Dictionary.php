@@ -11,12 +11,35 @@ class Dictionary extends TagLib
      * @var array[]
      */
     protected $tags = [
-        'list' => ['attr' => 'identify,value', 'close' => 1]
+        'tag'    => ['attr' => 'identify,value', 'close' => 0],
+        'list'   => ['attr' => 'name,identify,value', 'close' => 1],
+        'script' => ['attr' => 'id,identify,value', 'close' => 0],
     ];
 
     /**
-     * 权限检测
-     * {dictionary:list menu="1,2" condition="and"} {/dictionary:list}
+     * 字典列表
+     * {dictionary:list identify="identify" value="value"} {/dictionary:list}
+     * @param $tag
+     * @return string
+     */
+    public function tagTag($tag)
+    {
+        return <<<TEMPLATE
+    {php}
+        \$dictList = tag_parser('DictionaryParser')
+            ->add('identify', {$this->parseVar($tag, 'identify', true)})
+            ->add('value', {$this->parseVar($tag, 'value', false)})
+            ->getList(); 
+    {/php}
+    {foreach \$dictList as \$key => \$dict}}
+        <span class="layui-badge {\$dict.style}">{\$dict.label}</span>
+    {/foreach}
+TEMPLATE;
+    }
+
+    /**
+     * 字典列表
+     * {dictionary:list name="dict" identify="identify" value="value"} {/dictionary:list}
      * @param $tag
      * @param $content
      * @return string
@@ -30,9 +53,32 @@ class Dictionary extends TagLib
             ->add('value', {$this->parseVar($tag, 'value', false)})
             ->getList(); 
     {/php}
-    {volist name="\$dictList" id="dict"}
+    {foreach \$dictList as \$key => {$this->parseName($tag, 'name')}}
         $content
-    {/volist}
+    {/foreach}
+TEMPLATE;
+    }
+
+    /**
+     * 字典脚本
+     * {dictionary:script identify="identify" value="value"}
+     * @param $tag
+     * @return string
+     */
+    public function tagScript($tag)
+    {
+        return <<<TEMPLATE
+    {php}
+        \$dictList = tag_parser('DictionaryParser')
+                ->add('identify', {$this->parseVar($tag, 'identify', true)})
+                ->add('value', {$this->parseVar($tag, 'value', false)})
+                ->getList();
+    {/php}
+    <script type="text/html" id="{$this->parseVar($tag, 'id', true)}"> 
+        {foreach \$dictList as \$key => \$dict}
+            {{# if(d.status == '{\$dict.value}'){ }}<span class="layui-badge {\$dict.style}">{\$dict.label}</span>{{# } }}
+        {/foreach}
+    </script>
 TEMPLATE;
     }
 }

@@ -1,9 +1,4 @@
-<?php
-/**
- * @noinspection PhpUndefinedVariableInspection
- */
-$breadcrumbMenu = service('SystemMenu', 'admin')->getBreadcrumbMenu($currentMenu['menuId']);
-?>
+{assign name="breadcrumbMenu" value=":service('SystemMenu')->getBreadcrumbMenu($currentMenu.menuId)"}
 <div class="easy-breadcrumb">
     <div class="layui-breadcrumb">
         {volist name="$breadcrumbMenu" id="vo"}

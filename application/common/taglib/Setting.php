@@ -15,7 +15,7 @@ class Setting extends TagLib
     ];
 
     /**
-     * 权限检测
+     * 系统设置
      * {setting:value type="system" identify="name" /}
      * @param $tag
      * @param $content

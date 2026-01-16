@@ -14,7 +14,7 @@ class TagLib extends \think\template\TagLib
      * @param $name
      * @return string
      */
-    public function parseVal($tag, $name)
+    public function parseName($tag, $name)
     {
         if (!isset($tag[$name])) {
             throw new ServiceException($name . '属性不能为空');

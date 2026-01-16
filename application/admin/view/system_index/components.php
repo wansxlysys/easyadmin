@@ -3,12 +3,12 @@
 {block name="content"}
 <div class="layui-fluid layui-content">
 
-<!--    <div class="layui-card">-->
-<!--        <div class="layui-card-header">地图组件</div>-->
-<!--        <div class="layui-card-body">-->
-<!--            <div class="map" id="map"></div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="layui-card">-->
+    <!--        <div class="layui-card-header">地图组件</div>-->
+    <!--        <div class="layui-card-body">-->
+    <!--            <div class="map" id="map"></div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <div class="layui-card">
         <div class="layui-card-header">文件上传</div>
@@ -93,12 +93,22 @@
     <div class="layui-card">
         <div class="layui-card-header">字典调用</div>
         <div class="layui-card-body">
-            {dictionary:list identify="newsTag"}
-            {{#  if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{#  } }}
+
+            <!-- 输出标签列表 -->
+            {dictionary:list name="dict" identify="newsTag"}
+            {{# if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{# } }}
             {/dictionary:list}
-            {dictionary:list identify="newsTag" value="hot"}
-            {{#  if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{#  } }}
+
+            <!-- 输出指定标签列表 -->
+            {dictionary:list name="dict" identify="newsTag" value="hot"}
+            {{# if(d.status == '{$dict.value}'){ }}<span class="layui-badge {$dict.style}">{$dict.label}</span>{{# } }}
             {/dictionary:list}
+
+            <!-- 输出指定标签 -->
+            {dictionary:tag identify="newsTag" value="hot"}
+
+            <!-- 输出标签脚本 -->
+            {dictionary:script id="newsTag" identify="newsTag"}
         </div>
     </div>
 

@@ -87,6 +87,6 @@ class Generator extends Command
      */
     protected function getSavePath($module, $class, $layer)
     {
-        return Env::get('app_path') . $module . DIRECTORY_SEPARATOR . $layer . DIRECTORY_SEPARATOR . $class . ucfirst($layer) . '.php';
+        return Env::get('app_path') . $module . '/' . $layer . '/' . $class . ucfirst($layer) . '.php';
     }
 }

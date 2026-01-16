@@ -9,7 +9,7 @@ use Exception;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 
-use app\admin\enum\ManagerEnum;
+use app\admin\enum\SystemManagerEnum;
 use app\admin\enum\SystemLoginLogEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemLoginLogRepository;
@@ -45,7 +45,7 @@ class SystemLoginLogService extends Service
         }
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.managerId', '<>', SystemManagerEnum::SUPER_ID);
         }
 
         $Wrapper->setPage($params['page']);

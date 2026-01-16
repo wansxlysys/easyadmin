@@ -4,7 +4,7 @@
 namespace app\admin\enum;
 
 
-class ManagerRoleEnum
+class SystemManagerRoleEnum
 {
     /**
      * 超管角色名

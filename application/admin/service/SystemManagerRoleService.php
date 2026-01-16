@@ -11,7 +11,7 @@ use app\common\service\Service;
 use app\common\repository\Wrapper;
 use app\common\exception\ServiceException;
 
-use app\admin\enum\ManagerRoleEnum;
+use app\admin\enum\SystemManagerRoleEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemManagerRoleRepository;
 
@@ -69,7 +69,7 @@ class SystemManagerRoleService extends Service
         $Wrapper = new Wrapper();
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
+            $Wrapper->addWhere('identify', '<>', SystemManagerRoleEnum::SUPER_NAME);
         }
 
         $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
@@ -106,7 +106,7 @@ class SystemManagerRoleService extends Service
          */
         $role = $this->SystemManagerRoleRepository->getById($params['roleId']);
 
-        if ($role['identify'] == ManagerRoleEnum::SUPER_NAME) {
+        if ($role['identify'] == SystemManagerRoleEnum::SUPER_NAME) {
             throw new ServiceException('删除失败，禁止删除超管角色');
         }
 

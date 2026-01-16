@@ -4,7 +4,7 @@
 namespace app\admin\enum;
 
 
-class ManagerEnum
+class SystemManagerEnum
 {
     /**
      * 超级管理员ID

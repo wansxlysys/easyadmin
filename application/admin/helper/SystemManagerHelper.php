@@ -4,14 +4,16 @@
 namespace app\admin\helper;
 
 
-use app\admin\enum\ManagerEnum;
-use app\admin\enum\ManagerRoleEnum;
-use app\common\context\ContextHolder;
+use think\facade\Session;
+
 use app\common\enum\YesnoEnum;
 use app\common\util\Md5Util;
-use app\common\util\PermissionUtil;
 use app\common\util\StringUtil;
-use think\facade\Session;
+use app\common\util\PermissionUtil;
+use app\common\context\ContextHolder;
+
+use app\admin\enum\SystemManagerEnum;
+use app\admin\enum\SystemManagerRoleEnum;
 
 class SystemManagerHelper
 {
@@ -25,8 +27,8 @@ class SystemManagerHelper
     {
         $verifyCode = Md5Util::encrypt($account . $password);
 
-        Session::set(ManagerEnum::SESSION_ID, $managerId);
-        Session::set(ManagerEnum::SESSION_CODE, $verifyCode);
+        Session::set(SystemManagerEnum::SESSION_ID, $managerId);
+        Session::set(SystemManagerEnum::SESSION_CODE, $verifyCode);
     }
 
     /**
@@ -34,7 +36,7 @@ class SystemManagerHelper
      */
     public static function logout()
     {
-        Session::delete(ManagerEnum::SESSION_ID);
+        Session::delete(SystemManagerEnum::SESSION_ID);
     }
 
     /**
@@ -45,7 +47,7 @@ class SystemManagerHelper
      */
     public static function verify($account, $password)
     {
-        return Session::get(ManagerEnum::SESSION_CODE) == Md5Util::encrypt($account . $password);
+        return Session::get(SystemManagerEnum::SESSION_CODE) == Md5Util::encrypt($account . $password);
     }
 
     /**
@@ -54,7 +56,7 @@ class SystemManagerHelper
      */
     public static function getManagerId()
     {
-        return Session::get(ManagerEnum::SESSION_ID);
+        return Session::get(SystemManagerEnum::SESSION_ID);
     }
 
     /**
@@ -63,7 +65,7 @@ class SystemManagerHelper
      */
     public static function isLogin()
     {
-        return Session::has(ManagerEnum::SESSION_ID);
+        return Session::has(SystemManagerEnum::SESSION_ID);
     }
 
     /**
@@ -72,7 +74,7 @@ class SystemManagerHelper
      */
     public static function setManager($manager)
     {
-        ContextHolder::set(ManagerEnum::LOGIN_MANAGER, $manager);
+        ContextHolder::set(SystemManagerEnum::LOGIN_MANAGER, $manager);
     }
 
     /**
@@ -81,7 +83,7 @@ class SystemManagerHelper
      */
     public static function getManager()
     {
-        return ContextHolder::get(ManagerEnum::LOGIN_MANAGER);
+        return ContextHolder::get(SystemManagerEnum::LOGIN_MANAGER);
     }
 
     /**
@@ -108,7 +110,7 @@ class SystemManagerHelper
      */
     public static function isSuper()
     {
-        return static::getIdentify() == ManagerRoleEnum::SUPER_NAME;
+        return static::getIdentify() == SystemManagerRoleEnum::SUPER_NAME;
     }
 
     /**
@@ -117,7 +119,7 @@ class SystemManagerHelper
      */
     public static function isNotSuper()
     {
-        return static::getIdentify() != ManagerRoleEnum::SUPER_NAME;
+        return static::getIdentify() != SystemManagerRoleEnum::SUPER_NAME;
     }
 
     /**
@@ -126,7 +128,7 @@ class SystemManagerHelper
      */
     public static function isEnabled()
     {
-        return static::getManager()['status'] == ManagerEnum::STATUS_ENABLED;
+        return static::getManager()['status'] == SystemManagerEnum::STATUS_ENABLED;
     }
 
     /**

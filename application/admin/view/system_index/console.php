@@ -7,10 +7,6 @@
         height: 450px;
     }
 
-    .float-right {
-        float: right;
-    }
-
     .lay-big-font {
         font-size: 36px;
         line-height: 36px;
@@ -48,44 +44,44 @@
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    访问量<span class="layui-badge layui-badge-green float-right">今日</span>
+                    访问量<span class="layui-badge layui-badge-green easy-float-right">今日</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">25,848<span class="lay-small-font">次</span></p>
-                    <p>总访问量<span class="float-right">280 万</span></p>
+                    <p>总访问量<span class="easy-float-right">280 万</span></p>
                 </div>
             </div>
         </div>
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    销售金额<span class="layui-badge layui-bg-blue float-right">金额</span>
+                    销售金额<span class="layui-badge layui-bg-blue easy-float-right">金额</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">12,000<span class="lay-small-font">¥</span></p>
-                    <p>总销售额<span class="float-right">68 万</span></p>
+                    <p>总销售额<span class="easy-float-right">68 万</span></p>
                 </div>
             </div>
         </div>
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    订单量<span class="layui-badge layui-bg-orange float-right">本周</span>
+                    订单量<span class="layui-badge layui-bg-orange easy-float-right">本周</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">1,680<span class="lay-small-font">单</span></p>
-                    <p>转化率<span class="float-right">60%</span></p>
+                    <p>转化率<span class="easy-float-right">60%</span></p>
                 </div>
             </div>
         </div>
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    新增用户<span class="layui-badge layui-bg-green float-right">新增</span>
+                    新增用户<span class="layui-badge layui-bg-green easy-float-right">新增</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">128<span class="lay-small-font">人</span></p>
-                    <p>用户总数<span class="float-right">10800 人</span></p>
+                    <p>用户总数<span class="easy-float-right">10800 人</span></p>
                 </div>
             </div>
         </div>

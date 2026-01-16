@@ -19,8 +19,8 @@ class DictionaryParser
      */
     public function getList(array $params)
     {
-        $where[] = ['dict.status', '=', YesnoEnum::YES];
-        $where[] = ['type.status', '=', YesnoEnum::YES];
+        $where[] = ['dict.status', '=', YesnoEnum::Y];
+        $where[] = ['type.status', '=', YesnoEnum::Y];
         $where[] = ['type.identify', '=', $params['identify']];
 
         if (isset($params['value'])) {

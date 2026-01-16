@@ -62,7 +62,7 @@ class SystemManagerService extends Service
             $Wrapper->addWhere('manager.managerId', '<>', ManagerEnum::SUPER_ID);
         }
 
-        $Wrapper->addWhere('manager.isDelete', '=', YesnoEnum::NO);
+        $Wrapper->addWhere('manager.isDelete', '=', YesnoEnum::N);
 
         $field = [
             'manager.managerId', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
@@ -126,7 +126,7 @@ class SystemManagerService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('roleId', '=', $roleId);
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }
@@ -142,7 +142,7 @@ class SystemManagerService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('account', '=', $account);
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }

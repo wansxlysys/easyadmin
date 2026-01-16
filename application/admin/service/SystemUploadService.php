@@ -49,7 +49,7 @@ class SystemUploadService extends Service
             $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
         }
 
-        $Wrapper->addWhere('status', '=', YesnoEnum::YES);
+        $Wrapper->addWhere('status', '=', YesnoEnum::Y);
         $Wrapper->addWhere('managerId', '=', SystemManagerHelper::getManagerId());
 
         $Wrapper->setPage($params['page']);
@@ -133,11 +133,11 @@ class SystemUploadService extends Service
 
                 $fileExist = true;
 
-                if ($fileInfo['status'] == YesnoEnum::NO) {
+                if ($fileInfo['status'] == YesnoEnum::N) {
                     $result['chunkIndex'] = $fileInfo['index'];
                 }
 
-                if ($fileInfo['status'] == YesnoEnum::YES) {
+                if ($fileInfo['status'] == YesnoEnum::Y) {
                     $result['isFinish'] = true;
                 }
 
@@ -198,7 +198,7 @@ class SystemUploadService extends Service
          */
         if ($params['index'] + 1 == $params['total']) {
 
-            $fileData['status'] = YesnoEnum::YES;
+            $fileData['status'] = YesnoEnum::Y;
 
             /**
              * 计算文件哈希值

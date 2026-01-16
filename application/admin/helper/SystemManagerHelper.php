@@ -135,7 +135,7 @@ class SystemManagerHelper
      */
     public static function isDelete()
     {
-        return static::getManager()['isDelete'] == YesnoEnum::YES;
+        return static::getManager()['isDelete'] == YesnoEnum::Y;
     }
 
     /**

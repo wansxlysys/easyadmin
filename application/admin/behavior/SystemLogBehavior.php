@@ -34,7 +34,7 @@ class SystemLogBehavior
             return;
         }
 
-        if ($currentMenu['record'] == YesnoEnum::NO) {
+        if ($currentMenu['record'] == YesnoEnum::N) {
             return;
         }
 

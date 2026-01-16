@@ -47,7 +47,7 @@ class SystemManagerRoleService extends Service
             $Wrapper->addWhere('identify', 'LIKE', '%' . $params['identify'] . '%');
         }
 
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -72,7 +72,7 @@ class SystemManagerRoleService extends Service
             $Wrapper->addWhere('identify', '<>', ManagerRoleEnum::SUPER_NAME);
         }
 
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::NO);
+        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
         $Wrapper->addOrder('sort');
 
         return $this->SystemManagerRoleRepository->getAll($Wrapper);

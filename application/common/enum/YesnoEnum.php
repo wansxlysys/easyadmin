@@ -6,6 +6,6 @@ namespace app\common\enum;
 
 class YesnoEnum
 {
-    const YES = 'Y';
-    const NO  = 'N';
+    const Y = 'Y';
+    const N = 'N';
 }

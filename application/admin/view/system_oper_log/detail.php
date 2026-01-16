@@ -61,7 +61,7 @@
                 <div class="easy-info-grid easy-info-grid-100">
                     <div class="easy-info-grid-left">请求参数：</div>
                     <div class="easy-info-grid-right">
-                        <pre>{:json_encode(json_decode($log.params),JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)}</pre>
+                        <pre>{:json_encode(json_decode($log.params), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)}</pre>
                     </div>
                 </div>
             </div>

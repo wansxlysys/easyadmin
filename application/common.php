@@ -18,11 +18,13 @@ function register_static($url)
 
 /**
  * 标签解析函数
+ * @param $name
+ * @param $module
  * @return TagParser
  */
-function tag_parser($name, $layer = 'common')
+function tag_parser($name, $module = 'common')
 {
-    return new TagParser($name, $layer);
+    return new TagParser($name, $module);
 }
 
 /**
@@ -33,7 +35,7 @@ function tag_parser($name, $layer = 'common')
  */
 function service($name, $module = '')
 {
-    if (empty($layer)) {
+    if (empty($module)) {
         $module = request()->module();
     }
 
@@ -43,21 +45,21 @@ function service($name, $module = '')
 /**
  * 获取依赖层
  * @param $name
- * @param $common
+ * @param $module
  * @return object
  */
-function helper($name, $common)
+function helper($name, $module = '')
 {
-    return app()->model($name, 'helper', true, $common);
+    return app()->create($name, 'helper', true, $module);
 }
 
 /**
  * 获取依赖层
  * @param $name
- * @param $common
+ * @param $module
  * @return object
  */
-function util($name, $common)
+function util($name, $module = '')
 {
-    return app()->model($name, 'util', true, $common);
+    return app()->create($name, 'util', true, $module);
 }

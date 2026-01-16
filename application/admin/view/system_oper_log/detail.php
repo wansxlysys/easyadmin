@@ -38,8 +38,8 @@
                 <div class="easy-info-grid easy-info-grid-25">
                     <div class="easy-info-grid-left">操作状态：</div>
                     <div class="easy-info-grid-right">
-                        {eq name="$log.status" value="1"}<span class="layui-badge layui-bg-green">操作成功</span>{/eq}
-                        {eq name="$log.status" value="2"}<span class="layui-badge">操作失败</span>{/eq}
+                        {if $log.status == 1}<span class="layui-badge layui-bg-green">操作成功</span>{/if}
+                        {if $log.status == 2}<span class="layui-badge">操作失败</span>{/if}
                     </div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">

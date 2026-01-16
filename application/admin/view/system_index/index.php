@@ -45,7 +45,7 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-accordion>
                 {foreach $menuTree as $menu1}
-                <li class="layui-nav-item {eq name='$menu1.menuId' value='75'}layui-nav-itemed{/eq}">
+                <li class="layui-nav-item {if $menu1.menuId == 75}layui-nav-itemed{/if}">
                     <a href="javascript:" data-link="{$menu1.url}" data-target="{$menu1.target}">
                         <i class="fa fa-fw {$menu1.icon}"></i>
                         <span>{$menu1.name}</span>
@@ -53,7 +53,7 @@
                     {notempty name="$menu1.children"}
                     <dl class="layui-nav-child">
                         {foreach $menu1.children as $menu2}
-                        <dd class="{eq name='$menu2.menuId' value='128'}layui-this{/eq}">
+                        <dd class="{if $menu2.menuId == 128}layui-this{/if}">
                             <a href="javascript:" data-link="{$menu2.url}" data-target="{$menu2.target}">
                                 <i class="fa fa-fw {$menu2.icon}"></i>
                                 <span>{$menu2.name}</span>

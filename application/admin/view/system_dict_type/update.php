@@ -34,8 +34,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">字典状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="Y" title="启用" {eq name="$dict.status" value="Y"}checked{/eq}>
-                        <input type="radio" name="status" value="N" title="禁用" {eq name="$dict.status" value="N"}checked{/eq}>
+                        <input type="radio" name="status" value="Y" title="启用" {if $dict.status == 'Y'}checked{/if}>
+                        <input type="radio" name="status" value="N" title="禁用" {if $dict.status == 'N'}checked{/if}>
                     </div>
                 </div>
                 <div class="layui-form-item">

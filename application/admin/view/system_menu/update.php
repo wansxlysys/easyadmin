@@ -53,16 +53,16 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">日志记录</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="record" value="Y" title="开启" {eq name="$menu.record" value="Y" }checked{/eq}>
-                        <input type="radio" name="record" value="N" title="关闭" {eq name="$menu.record" value="N" }checked{/eq}>
+                        <input type="radio" name="record" value="Y" title="开启" {if $menu.record == 'Y'}checked{/if}>
+                        <input type="radio" name="record" value="N" title="关闭" {if $menu.record == 'N'}checked{/if}>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">菜单类型</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="type" value="1" title="菜单" lay-filter="type" {eq name="$menu.type" value="1" }checked{/eq}>
-                        <input type="radio" name="type" value="2" title="按钮" lay-filter="type" {eq name="$menu.type" value="2" }checked{/eq}>
-                        <input type="radio" name="type" value="3" title="外链" lay-filter="type" {eq name="$menu.type" value="3" }checked{/eq}>
+                        <input type="radio" name="type" value="1" title="菜单" lay-filter="type" {if $menu.type == 1}checked{/if}>
+                        <input type="radio" name="type" value="2" title="按钮" lay-filter="type" {if $menu.type == 2}checked{/if}>
+                        <input type="radio" name="type" value="3" title="外链" lay-filter="type" {if $menu.type == 3}checked{/if}>
                     </div>
                 </div>
                 <div class="layui-form-item layui-hide">
@@ -74,9 +74,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">跳转方式</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="target" value="1" title="默认" lay-filter="target" {eq name="$menu.target" value="1" }checked{/eq}>
-                        <input type="radio" name="target" value="2" title="当前" lay-filter="target" {eq name="$menu.target" value="2" }checked{/eq}>
-                        <input type="radio" name="target" value="3" title="新开" lay-filter="target" {eq name="$menu.target" value="3" }checked{/eq}>
+                        <input type="radio" name="target" value="1" title="默认" lay-filter="target" {if $menu.target == 1}checked{/if}>
+                        <input type="radio" name="target" value="2" title="当前" lay-filter="target" {if $menu.target == 2}checked{/if}>
+                        <input type="radio" name="target" value="3" title="新开" lay-filter="target" {if $menu.target == 3}checked{/if}>
                     </div>
                 </div>
                 <div class="layui-form-item">

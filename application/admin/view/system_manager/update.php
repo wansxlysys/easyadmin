@@ -40,9 +40,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">管理员状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="1" title="启用" {eq name="$manager.status" value="1"}checked{/eq}>
-                        <input type="radio" name="status" value="2" title="禁用" {eq name="$manager.status" value="2"}checked{/eq}>
-                        <input type="radio" name="status" value="3" title="锁定" {eq name="$manager.status" value="3"}checked{/eq}>
+                        <input type="radio" name="status" value="1" title="启用" {if $manager.status == 1}checked{/if}>
+                        <input type="radio" name="status" value="2" title="禁用" {if $manager.status == 2}checked{/if}>
+                        <input type="radio" name="status" value="3" title="锁定" {if $manager.status == 3}checked{/if}>
                     </div>
                 </div>
                 <div class="layui-form-item">

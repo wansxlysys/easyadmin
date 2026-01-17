@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2026-01-12 15:39:24
+-- 生成日期： 2026-01-17 08:39:35
 -- 服务器版本： 5.7.26-log
 -- PHP 版本： 7.0.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `easyadmin_v6`
+-- 数据库： `easyadmin_v8`
 --
 
 -- --------------------------------------------------------
@@ -31,11 +31,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `queue_failed` (
   `queueId` bigint(20) UNSIGNED NOT NULL COMMENT 'ID',
   `queue` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '队列名称',
+  `uniqid` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '唯一标识',
   `consumer` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '消费者',
   `payload` text COLLATE utf8mb4_unicode_ci COMMENT '队列数据',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='队执行失败表';
+
+--
+-- 转存表中的数据 `queue_failed`
+--
+
+INSERT INTO `queue_failed` (`queueId`, `queue`, `uniqid`, `consumer`, `payload`, `createTime`, `updateTime`) VALUES
+(2, 'default', '6704ba0b0aad05f1626bd0dc04b214d1', 'app\\queue\\consumer\\MailConsumer@fire', '{\"method\":\"sendMail\",\"params\":{\"body\":\"测试邮件内容\",\"subject\":\"测试邮件主题\",\"address\":\"1628883533@qq.com\"},\"uniqid\":\"6704ba0b0aad05f1626bd0dc04b214d1\"}', '2026-01-14 13:49:02', '2026-01-14 13:49:02');
 
 -- --------------------------------------------------------
 
@@ -104,7 +112,7 @@ INSERT INTO `system_dict_data` (`dataId`, `dictId`, `label`, `value`, `style`, `
 (23, 3, 'tar', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:50', '2026-01-12 15:32:16'),
 (24, 3, 'rar', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:54', '2026-01-12 15:32:22'),
 (25, 3, '7z', 'zip', '', 'Y', '压缩包', 'Y', 100, '2026-01-07 14:07:59', '2026-01-12 15:32:26'),
-(26, 4, 'host', 'smtp.qq.com', '', 'Y', '服务器地址', 'Y', 100, '2026-01-10 16:28:54', '2026-01-10 16:28:54'),
+(26, 4, 'host', 'smtp.qq.com', '', 'Y', '服务器地址', 'Y', 100, '2026-01-10 16:28:54', '2026-01-14 13:51:53'),
 (27, 4, 'port', '465', '', 'Y', '服务器端口', 'Y', 100, '2026-01-10 16:31:19', '2026-01-10 16:31:26'),
 (28, 4, 'password', 'iphxfarybutwdjdh', '', 'Y', '发送人授权码', 'Y', 100, '2026-01-10 16:29:27', '2026-01-10 16:33:20'),
 (29, 4, 'username', '1628883533@qq.com', '', 'Y', '发送人账号', 'Y', 100, '2026-01-10 16:29:08', '2026-01-10 16:29:08');
@@ -134,7 +142,8 @@ INSERT INTO `system_dict_type` (`dictId`, `name`, `identify`, `status`, `remark`
 (1, '新闻标签', 'newsTag', 'Y', '新闻标签', 100, '2025-05-26 11:32:00', '2026-01-07 10:00:18'),
 (2, '用户等级', 'userLevel', 'Y', '用户等级', 100, '2025-05-26 14:08:47', '2025-05-26 14:08:47'),
 (3, '文件类型', 'system.upload.type', 'Y', '上传文件类型', 100, '2026-01-07 14:02:15', '2026-01-07 16:04:52'),
-(4, '邮箱设置', 'system.mail.config', 'Y', '邮箱发送设置', 100, '2026-01-10 16:28:21', '2026-01-10 16:28:21');
+(4, '邮箱设置', 'system.mail.config', 'Y', '邮箱发送设置', 100, '2026-01-10 16:28:21', '2026-01-10 16:28:21'),
+(5, '系统设置', 'system.info.config', 'Y', '系统信息设置', 100, '2026-01-15 15:52:54', '2026-01-15 15:53:00');
 
 -- --------------------------------------------------------
 
@@ -187,7 +196,22 @@ INSERT INTO `system_login_log` (`logId`, `managerId`, `message`, `loginIp`, `sta
 (28, 1, '登录成功', '192.168.1.6', 1, '2026-01-10 11:23:34', '2026-01-10 11:23:34'),
 (29, 1, '登录成功', '192.168.1.6', 1, '2026-01-10 11:30:00', '2026-01-10 11:30:00'),
 (30, 1, '登录成功', '192.168.1.6', 1, '2026-01-10 14:37:20', '2026-01-10 14:37:20'),
-(31, 1, '登录成功', '192.168.1.6', 1, '2026-01-12 08:38:14', '2026-01-12 08:38:14');
+(31, 1, '登录成功', '192.168.1.6', 1, '2026-01-12 08:38:14', '2026-01-12 08:38:14'),
+(32, 1, '登录成功', '192.168.1.6', 1, '2026-01-14 10:48:41', '2026-01-14 10:48:41'),
+(33, 1, '登录成功', '192.168.1.6', 1, '2026-01-15 09:19:53', '2026-01-15 09:19:53'),
+(34, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:10:09', '2026-01-16 15:10:09'),
+(35, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:34:27', '2026-01-16 15:34:27'),
+(36, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:36:46', '2026-01-16 15:36:46'),
+(37, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:48:52', '2026-01-16 15:48:52'),
+(38, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:49:55', '2026-01-16 15:49:55'),
+(39, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:50:21', '2026-01-16 15:50:21'),
+(40, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:50:45', '2026-01-16 15:50:45'),
+(41, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 15:51:04', '2026-01-16 15:51:04'),
+(42, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 16:00:43', '2026-01-16 16:00:43'),
+(43, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 16:01:12', '2026-01-16 16:01:12'),
+(44, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 16:01:24', '2026-01-16 16:01:24'),
+(45, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 16:02:51', '2026-01-16 16:02:51'),
+(46, 1, '登录成功', '192.168.1.6', 1, '2026-01-16 16:03:00', '2026-01-16 16:03:00');
 
 -- --------------------------------------------------------
 
@@ -216,8 +240,8 @@ CREATE TABLE `system_manager` (
 --
 
 INSERT INTO `system_manager` (`managerId`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `isDelete`, `loginError`, `loginTime`, `deleteTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', '黎明', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'N', 0, '2026-01-12 08:38:14', NULL, '2022-11-06 14:29:39', '2026-01-12 09:43:23'),
-(10, 6, '/upload/image/20260108/3d264d32f3acac55ae09b5d5e815be9a.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 'N', 0, '2026-01-08 09:11:43', '2026-01-07 10:36:45', '2022-11-06 14:29:39', '2026-01-08 09:17:31');
+(1, 1, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', '超级管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'N', 0, '2026-01-16 16:03:00', NULL, '2022-11-06 14:29:39', '2026-01-16 16:03:00'),
+(10, 6, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 'N', 0, '2026-01-08 09:11:43', '2026-01-07 10:36:45', '2022-11-06 14:29:39', '2026-01-16 11:12:34');
 
 -- --------------------------------------------------------
 
@@ -751,7 +775,16 @@ INSERT INTO `system_oper_log` (`logId`, `menuId`, `managerId`, `message`, `reque
 (510, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"rar\",\"value\":\"zip\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"压缩包\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"24\"}', 1, '2026-01-12 15:32:22', '2026-01-12 15:32:22'),
 (511, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"7z\",\"value\":\"zip\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"压缩包\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"25\"}', 1, '2026-01-12 15:32:26', '2026-01-12 15:32:26'),
 (512, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"ogg\",\"value\":\"audio\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"音频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"7\"}', 1, '2026-01-12 15:33:13', '2026-01-12 15:33:13'),
-(513, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mov\",\"value\":\"video\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"视频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"5\"}', 1, '2026-01-12 15:33:41', '2026-01-12 15:33:41');
+(513, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"mov\",\"value\":\"video\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"视频\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"5\"}', 1, '2026-01-12 15:33:41', '2026-01-12 15:33:41'),
+(514, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"黎明\",\"account\":\"admin\",\"password\":\"\",\"managerId\":\"1\"}', 1, '2026-01-12 15:42:21', '2026-01-12 15:42:21'),
+(515, 138, 1, '修改成功', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"managerId\":\"1\"}', 1, '2026-01-12 15:42:34', '2026-01-12 15:42:34'),
+(516, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"host\",\"value\":\"smtp.qq.com1\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"服务器地址\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"26\"}', 1, '2026-01-14 09:38:27', '2026-01-14 09:38:27'),
+(517, 167, 1, '修改成功', '192.168.1.6', '/admin/SystemDictData/update.html', '{\"label\":\"host\",\"value\":\"smtp.qq.com\",\"style\":\"\",\"isDefault\":\"Y\",\"remark\":\"服务器地址\",\"sort\":\"100\",\"status\":\"Y\",\"dataId\":\"26\"}', 1, '2026-01-14 13:51:53', '2026-01-14 13:51:53'),
+(518, 85, 1, '修改成功', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-01-14 16:11:20', '2026-01-14 16:11:20'),
+(519, 162, 1, '添加成功', '192.168.1.6', '/admin/SystemDictType/create.html', '{\"name\":\"系统信息设置\",\"identify\":\"system.info.config\",\"remark\":\"系统信息设置\",\"sort\":\"100\",\"status\":\"Y\"}', 1, '2026-01-15 15:52:54', '2026-01-15 15:52:54'),
+(520, 163, 1, '修改成功', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"系统设置\",\"identify\":\"system.info.config\",\"remark\":\"系统信息设置\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"5\"}', 1, '2026-01-15 15:53:00', '2026-01-15 15:53:00'),
+(521, 85, 1, '修改成功', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-01-15 17:22:03', '2026-01-15 17:22:03'),
+(522, 85, 1, '修改成功', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"6\",\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"测试管理员\",\"account\":\"test\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"10\"}', 1, '2026-01-16 11:12:34', '2026-01-16 11:12:34');
 
 -- --------------------------------------------------------
 
@@ -829,7 +862,7 @@ INSERT INTO `system_upload` (`fileId`, `managerId`, `hash`, `name`, `type`, `siz
 (57, 1, 'e5d6ad8b882e551b820b6fed1f508f7f', 'bae86896d7c70a259655f88a2b9c096.jpg', 'image', 4729918, '/upload/image/20260112/520b872b8698c48d3468481460442113.jpg', 2, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
 (58, 1, '96ed7ee935cfa75e68133d4bf6bcdd2c', 'ok.png', 'image', 799322, '/upload/image/20260112/f674e2c59e65b5d8be4bf52d92b13711.png', 0, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
 (59, 1, '56a53cfe19ff3dd1bd39d4bd000f759d', 'f87cc47d58510d48d99da6cf8fe0ad8.png', 'image', 139527, '/upload/image/20260112/9eee3ce8e8db6580f534a73809a3f0b2.png', 0, 'Y', '2026-01-12 15:37:48', '2026-01-12 15:37:48'),
-(60, 1, '9d763437c428b3b05d60a15c64a66e53', '13.jpg', 'image', 25038, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', 0, 'Y', '2026-01-12 15:38:17', '2026-01-12 15:38:18'),
+(60, 1, '9d763437c428b3b05d60a15c64a66e53', '13.jpg', 'image', 25038, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', 0, 'Y', '2026-01-12 15:38:17', '2026-01-16 10:01:51'),
 (61, 1, 'beb95285d2741f5437d370fea46a67b9', 'idCard2.jpg', 'image', 227940, '/upload/image/20260112/a1ed43022a6094de2d9519723c94a3e9.jpg', 0, 'Y', '2026-01-12 15:38:18', '2026-01-12 15:38:18');
 
 --
@@ -913,13 +946,13 @@ ALTER TABLE `system_upload`
 -- 使用表AUTO_INCREMENT `queue_failed`
 --
 ALTER TABLE `queue_failed`
-  MODIFY `queueId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `queueId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=3;
 
 --
 -- 使用表AUTO_INCREMENT `queue_jobs`
 --
 ALTER TABLE `queue_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `system_dict_data`
@@ -931,13 +964,13 @@ ALTER TABLE `system_dict_data`
 -- 使用表AUTO_INCREMENT `system_dict_type`
 --
 ALTER TABLE `system_dict_type`
-  MODIFY `dictId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=5;
+  MODIFY `dictId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=6;
 
 --
 -- 使用表AUTO_INCREMENT `system_login_log`
 --
 ALTER TABLE `system_login_log`
-  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=32;
+  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=47;
 
 --
 -- 使用表AUTO_INCREMENT `system_manager`
@@ -961,7 +994,7 @@ ALTER TABLE `system_menu`
 -- 使用表AUTO_INCREMENT `system_oper_log`
 --
 ALTER TABLE `system_oper_log`
-  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=514;
+  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=523;
 
 --
 -- 使用表AUTO_INCREMENT `system_setting`

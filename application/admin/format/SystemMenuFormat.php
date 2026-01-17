@@ -6,7 +6,6 @@ namespace app\admin\format;
 
 use think\facade\Url;
 
-use app\common\util\ArrayUtil;
 use app\admin\enum\SystemMenuEnum;
 
 class SystemMenuFormat
@@ -35,12 +34,7 @@ class SystemMenuFormat
         if ($data['type'] == SystemMenuEnum::TYPE_LINK) {
             $data['url'] = $data['link'];
         } else {
-
-            $url[] = $data['module'];
-            $url[] = $data['controller'];
-            $url[] = $data['action'];
-
-            $data['url'] = Url::build(ArrayUtil::toString($url, '/'), $data['params']);
+            $data['url'] = Url::build($data['url'], $data['params']);
         }
 
         return $data;

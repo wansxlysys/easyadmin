@@ -98,15 +98,13 @@
             },
             cols: [[
                 {type: 'checkbox'},
-                {title: '菜单名称', field: 'name', minWidth: 240},
-                {title: "菜单模块", field: 'module'},
-                {title: "菜单控制器", field: 'controller'},
-                {title: "菜单操作", field: 'action'},
+                {title: '菜单名称', field: 'name', width: 240},
+                {title: "菜单URL", field: 'url'},
                 {title: "打开方式", field: 'target', toolbar: '#target', width: 140},
                 {title: "菜单类型", field: 'type', toolbar: '#type', width: 120},
                 {title: "日志记录", field: 'record', toolbar: '#record', width: 120},
                 {title: '菜单排序', field: 'sort', width: 120, edit: "text"},
-                {title: '操作', fixed: 'right', toolbar: '#bar', width: 180}
+                {title: '操作', fixed: 'right', toolbar: '#bar', width: 170}
             ]],
             page: false
         });

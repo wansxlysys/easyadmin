@@ -13,19 +13,17 @@ class SystemMenuValidate extends Validate
      * @var string[]
      */
     protected $rule = [
-        'menuId'     => 'require|number',
-        'parentId'   => 'number',
-        'name'       => 'require|max:32',
-        'icon'       => 'require|max:32',
-        'module'     => 'max:32',
-        'controller' => 'max:32',
-        'action'     => 'max:32',
-        'params'     => 'max:512',
-        'type'       => 'require|number',
-        'link'       => 'requireIf:type,3|max:256',
-        'target'     => 'require|number',
-        'record'     => 'require|max:1',
-        'sort'       => 'require|number',
+        'menuId'   => 'require|number',
+        'parentId' => 'number',
+        'name'     => 'require|max:32',
+        'icon'     => 'require|max:32',
+        'url'      => 'max:32',
+        'params'   => 'max:512',
+        'type'     => 'require|number',
+        'link'     => 'requireIf:type,3|max:256',
+        'target'   => 'require|number',
+        'record'   => 'require|max:1',
+        'sort'     => 'require|number',
     ];
 
     /**
@@ -40,9 +38,7 @@ class SystemMenuValidate extends Validate
         'name.max'        => '菜单名称不能超过32个字符',
         'icon.number'     => '图标不能为空',
         'icon.max'        => '图标不能超过32个字符',
-        'module.max'      => '模块不能超过32个字符',
-        'controller.max'  => '控制器不能超过32个字符',
-        'action.max'      => '操作不能超过32个字符',
+        'url.max'         => '模块不能超过32个字符',
         'params.max'      => '参数不能超过512个字符',
         'type.require'    => '菜单类型不能为空',
         'type.number'     => '菜单类型必须为正整数',
@@ -63,7 +59,7 @@ class SystemMenuValidate extends Validate
     public function sceneCreate()
     {
         return $this->only([
-            'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'record', 'sort'
+            'parentId', 'name', 'icon', 'url', 'params', 'type', 'link', 'target', 'record', 'sort'
         ]);
     }
 
@@ -74,7 +70,7 @@ class SystemMenuValidate extends Validate
     public function sceneUpdate()
     {
         return $this->only([
-            'menuId', 'parentId', 'name', 'icon', 'module', 'controller', 'action', 'params', 'type', 'link', 'target', 'record', 'sort'
+            'menuId', 'parentId', 'name', 'icon', 'url', 'params', 'type', 'link', 'target', 'record', 'sort'
         ]);
     }
 

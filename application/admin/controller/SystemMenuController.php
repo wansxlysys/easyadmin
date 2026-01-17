@@ -64,18 +64,16 @@ class SystemMenuController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'parentId'   => $request->post('parentId'),
-                'name'       => $request->post('name'),
-                'icon'       => $request->post('icon'),
-                'module'     => $request->post('module'),
-                'controller' => $request->post('controller'),
-                'action'     => $request->post('action'),
-                'params'     => $request->post('params'),
-                'type'       => $request->post('type'),
-                'link'       => $request->post('link'),
-                'target'     => $request->post('target'),
-                'record'     => $request->post('record'),
-                'sort'       => $request->post('sort'),
+                'parentId' => $request->post('parentId'),
+                'name'     => $request->post('name'),
+                'icon'     => $request->post('icon'),
+                'url'      => $request->post('url'),
+                'params'   => $request->post('params'),
+                'type'     => $request->post('type'),
+                'link'     => $request->post('link'),
+                'target'   => $request->post('target'),
+                'record'   => $request->post('record'),
+                'sort'     => $request->post('sort'),
             ];
 
             $this->SystemMenuValidate->scene('create')->verify($params);
@@ -98,19 +96,17 @@ class SystemMenuController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'menuId'     => $request->post('menuId'),
-                'parentId'   => $request->post('parentId'),
-                'name'       => $request->post('name'),
-                'icon'       => $request->post('icon'),
-                'module'     => $request->post('module'),
-                'controller' => $request->post('controller'),
-                'action'     => $request->post('action'),
-                'params'     => $request->post('params'),
-                'type'       => $request->post('type'),
-                'link'       => $request->post('link'),
-                'target'     => $request->post('target'),
-                'record'     => $request->post('record'),
-                'sort'       => $request->post('sort'),
+                'menuId'   => $request->post('menuId'),
+                'parentId' => $request->post('parentId'),
+                'name'     => $request->post('name'),
+                'icon'     => $request->post('icon'),
+                'url'      => $request->post('url'),
+                'params'   => $request->post('params'),
+                'type'     => $request->post('type'),
+                'link'     => $request->post('link'),
+                'target'   => $request->post('target'),
+                'record'   => $request->post('record'),
+                'sort'     => $request->post('sort'),
             ];
 
             $this->SystemMenuValidate->scene('update')->verify($params);

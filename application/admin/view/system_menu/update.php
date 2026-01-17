@@ -27,21 +27,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">菜单模块</label>
+                    <label class="layui-form-label">菜单URL</label>
                     <div class="layui-input-block">
-                        <input type="text" name="module" placeholder="请输入菜单模块" class="layui-input" value="{$menu.module}">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">菜单控制器</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="controller" placeholder="请输入菜单控制器" class="layui-input" value="{$menu.controller}">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">菜单操作</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="action" placeholder="请输入菜单操作" class="layui-input" value="{$menu.action}">
+                        <input type="text" name="url" placeholder="请输入菜单URL" class="layui-input" value="{$menu.url}">
                     </div>
                 </div>
                 <div class="layui-form-item">

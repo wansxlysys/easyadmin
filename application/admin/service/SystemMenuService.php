@@ -6,9 +6,8 @@ namespace app\admin\service;
 
 use Exception;
 
-use think\facade\Request;
-
 use app\common\util\TreeUtil;
+use app\common\util\RequestUtil;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 
@@ -79,13 +78,7 @@ class SystemMenuService extends Service
      */
     public function getCurrentMenu()
     {
-        $Wrapper = new Wrapper();
-
-        $Wrapper->addWhere('module', '=', Request::module());
-        $Wrapper->addWhere('controller', '=', Request::controller());
-        $Wrapper->addWhere('action', '=', Request::action());
-
-        return $this->SystemMenuRepository->getOne($Wrapper);
+        return $this->SystemMenuRepository->getByWhere(['url' => RequestUtil::getPath()]);
     }
 
     /**

@@ -49,7 +49,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">权限标识</label>
                     <div class="layui-input-block">
-                        <input type="text" name="identify" placeholder="请输入权限标识" class="layui-input">
+                        <input type="text" name="identify" placeholder="请输入权限标识" class="layui-input" value="{$menu.identify}">
                     </div>
                 </div>
                 <div class="layui-form-item">

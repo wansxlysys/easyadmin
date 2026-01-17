@@ -116,19 +116,32 @@
         <div class="layui-card-header">权限标签</div>
         <div class="layui-card-body">
 
-            {permission:check menuIds="1,2,1515151" condition="and"}
-            <h1>已授权</h1>
+            {permission:menu menuIds="1,2,1515151" condition="and"}
+            <h1>菜单ID已授权</h1>
             {else/}
-            <h1>未授权</h1>
-            {/permission:check}
+            <h1>菜单ID未授权</h1>
+            {/permission:menu}
             <br>
 
-            {permission:check menuIds="1,2,1515151" condition="or"}
-            <h1>已授权</h1>
+            {permission:menu menuIds="1,2,1515151" condition="or"}
+            <h1>菜单ID已授权</h1>
             {else/}
-            <h1>未授权</h1>
-            {/permission:check}
+            <h1>菜单ID未授权</h1>
+            {/permission:menu}
 
+            <br>
+            {permission:code identify="AdminSystemManagerCreate,AdminSystemManagerUpdate" condition="and"}
+            <h1>菜单编码已授权</h1>
+            {else/}
+            <h1>菜单编码未授权</h1>
+            {/permission:code}
+            <br>
+
+            {permission:code identify="AdminSystemManagerCreate,1515151" condition="or"}
+            <h1>菜单编码已授权</h1>
+            {else/}
+            <h1>菜单编码未授权</h1>
+            {/permission:code}
             <br>
         </div>
     </div>

@@ -96,12 +96,21 @@ class SystemManagerHelper
     }
 
     /**
-     * 获取权限
+     * 获取权限菜单
      * @return mixed|null
      */
-    public static function getPermission()
+    public static function getPermissionMenuIds()
     {
-        return static::getManager()['permission'];
+        return static::getManager()['permissionMenuIds'];
+    }
+
+    /**
+     * 获取权限编码
+     * @return mixed|null
+     */
+    public static function getPermissionMenuIdentify()
+    {
+        return static::getManager()['permissionMenuIdentify'];
     }
 
     /**
@@ -146,8 +155,19 @@ class SystemManagerHelper
      * @param string $condition
      * @return bool
      */
-    public static function checkAccessByMenuId($menuId, $condition = 'and')
+    public static function checkAccessByMenuIds($menuId, $condition = 'and')
     {
-        return PermissionUtil::checkPermission(StringUtil::toArray($menuId), static::getPermission(), $condition);
+        return PermissionUtil::checkPermission(StringUtil::toArray($menuId), static::getPermissionMenuIds(), $condition);
+    }
+
+    /**
+     * 通过菜单编码检测访问权限
+     * @param $menuId
+     * @param string $condition
+     * @return bool
+     */
+    public static function checkAccessByMenuIdentify($menuId, $condition = 'and')
+    {
+        return PermissionUtil::checkPermission(StringUtil::toArray($menuId), static::getPermissionMenuIdentify(), $condition);
     }
 }

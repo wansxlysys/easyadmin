@@ -8,8 +8,13 @@ use app\admin\helper\SystemManagerHelper;
 
 class PermissionParser
 {
-    public function check(array $params)
+    public function checkMenuIds(array $params)
     {
-        return SystemManagerHelper::checkAccessByMenuId($params['menuIds'], $params['condition']);
+        return SystemManagerHelper::checkAccessByMenuIds($params['menuIds'], $params['condition']);
+    }
+
+    public function checkIdentify(array $params)
+    {
+        return SystemManagerHelper::checkAccessByMenuIdentify($params['identify'], $params['condition']);
     }
 }

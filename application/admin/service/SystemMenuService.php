@@ -60,7 +60,7 @@ class SystemMenuService extends Service
 
         $Wrapper->setOrder(['sort' => 'asc']);
         $Wrapper->addWhere('type', 'in', [SystemMenuEnum::TYPE_MENU, SystemMenuEnum::TYPE_LINK]);
-        $Wrapper->addWhere('menuId', 'in', SystemManagerHelper::getPermission());
+        $Wrapper->addWhere('menuId', 'in', SystemManagerHelper::getPermissionMenuIds());
 
         $TreeArrayUtil = new TreeUtil();
 
@@ -69,6 +69,29 @@ class SystemMenuService extends Service
         return $TreeArrayUtil->toTree($this->SystemMenuRepository->getAll($Wrapper), function (&$item) {
             SystemMenuFormat::formatUrl($item);
         });
+    }
+
+    /**
+     * 获取权限编码
+     * @param $permissionIds
+     * @return array
+     * @throws Exception
+     */
+    public function getPermissionCode($permissionIds)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('menuId', 'in', $permissionIds);
+        $Wrapper->addField('identify');
+
+        $menuCode = [];
+        $menuList = $this->SystemMenuRepository->getAll($Wrapper);
+
+        foreach ($menuList as $menu) {
+            $menuCode[] = $menu['identify'];
+        }
+
+        return $menuCode;
     }
 
     /**

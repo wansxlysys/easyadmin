@@ -33,6 +33,12 @@ class SystemManagerService extends Service
     protected SystemLoginLogService $SystemLoginLogService;
 
     /**
+     * 系统菜单服务类
+     * @var SystemMenuService
+     */
+    protected SystemMenuService $SystemMenuService;
+
+    /**
      * 获取列表
      * @param array $params
      * @return array
@@ -109,7 +115,11 @@ class SystemManagerService extends Service
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
         if (!empty($manager['permission'])) {
-            $manager['permission'] = StringUtil::toArray($manager['permission']);
+            $manager['permissionMenuIds'] = StringUtil::toArray($manager['permission']);
+        }
+
+        if (!empty($manager['permission'])) {
+            $manager['permissionMenuIdentify'] = $this->SystemMenuService->getPermissionCode($manager['permission']);
         }
 
         return $manager;

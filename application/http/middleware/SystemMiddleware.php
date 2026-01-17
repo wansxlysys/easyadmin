@@ -74,7 +74,7 @@ class SystemMiddleware
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if (SystemManagerHelper::checkAccessByMenuId($currentMenu['menuId'])) {
+        if (SystemManagerHelper::checkAccessByMenuIds($currentMenu['menuId'])) {
             return true;
         }
 

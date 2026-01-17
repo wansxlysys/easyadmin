@@ -34,7 +34,7 @@ class SystemMenuFormat
         if ($data['type'] == SystemMenuEnum::TYPE_LINK) {
             $data['url'] = $data['link'];
         } else {
-            $data['url'] = Url::build($data['url'], $data['params']);
+            $data['url'] = Url::build($data['url']);
         }
 
         return $data;

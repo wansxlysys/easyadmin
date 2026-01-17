@@ -30,8 +30,10 @@
          */
         renderLink: function (type) {
             if (type == 3) {
+                jQuery("input[name=url]").closest(".layui-form-item").addClass("layui-hide");
                 jQuery("input[name=link]").attr('lay-verify', 'required').closest(".layui-form-item").removeClass("layui-hide");
             } else {
+                jQuery("input[name=url]").closest(".layui-form-item").removeClass("layui-hide");
                 jQuery("input[name=link]").removeAttr('lay-verify').closest(".layui-form-item").addClass("layui-hide");
             }
         },

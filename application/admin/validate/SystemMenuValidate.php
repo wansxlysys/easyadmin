@@ -18,7 +18,7 @@ class SystemMenuValidate extends Validate
         'name'     => 'require|max:32',
         'icon'     => 'require|max:32',
         'url'      => 'max:32',
-        'params'   => 'max:512',
+        'identify' => 'max:512',
         'type'     => 'require|number',
         'link'     => 'requireIf:type,3|max:256',
         'target'   => 'require|number',
@@ -39,7 +39,7 @@ class SystemMenuValidate extends Validate
         'icon.number'     => '图标不能为空',
         'icon.max'        => '图标不能超过32个字符',
         'url.max'         => '模块不能超过32个字符',
-        'params.max'      => '参数不能超过512个字符',
+        'identify.max'    => '参数不能超过512个字符',
         'type.require'    => '菜单类型不能为空',
         'type.number'     => '菜单类型必须为正整数',
         'link.requireIf'  => '外链地址不能为空',
@@ -59,7 +59,7 @@ class SystemMenuValidate extends Validate
     public function sceneCreate()
     {
         return $this->only([
-            'parentId', 'name', 'icon', 'url', 'params', 'type', 'link', 'target', 'record', 'sort'
+            'parentId', 'name', 'icon', 'url', 'identify', 'type', 'link', 'target', 'record', 'sort'
         ]);
     }
 
@@ -70,7 +70,7 @@ class SystemMenuValidate extends Validate
     public function sceneUpdate()
     {
         return $this->only([
-            'menuId', 'parentId', 'name', 'icon', 'url', 'params', 'type', 'link', 'target', 'record', 'sort'
+            'menuId', 'parentId', 'name', 'icon', 'url', 'identify', 'type', 'link', 'target', 'record', 'sort'
         ]);
     }
 

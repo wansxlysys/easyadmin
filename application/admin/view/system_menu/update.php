@@ -21,6 +21,14 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label layui-required">菜单类型</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="type" value="1" title="菜单" lay-filter="type" {if $menu.type == 1}checked{/if}>
+                        <input type="radio" name="type" value="2" title="按钮" lay-filter="type" {if $menu.type == 2}checked{/if}>
+                        <input type="radio" name="type" value="3" title="外链" lay-filter="type" {if $menu.type == 3}checked{/if}>
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label layui-required">菜单图标</label>
                     <div class="layui-input-block">
                         <input type="text" name="icon" lay-verify="required" placeholder="请输入菜单图标" class="layui-input" value="{$menu.icon}">
@@ -32,10 +40,16 @@
                         <input type="text" name="url" placeholder="请输入菜单URL" class="layui-input" value="{$menu.url}">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">菜单参数</label>
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">外链地址</label>
                     <div class="layui-input-block">
-                        <input type="text" name="params" placeholder="请输入菜单参数" class="layui-input" value="{$menu.params}">
+                        <input type="text" name="link" placeholder="请输入外链地址" class="layui-input" value="{$menu.link}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">权限标识</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="identify" placeholder="请输入权限标识" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -43,20 +57,6 @@
                     <div class="layui-input-block">
                         <input type="radio" name="record" value="Y" title="开启" {if $menu.record == 'Y'}checked{/if}>
                         <input type="radio" name="record" value="N" title="关闭" {if $menu.record == 'N'}checked{/if}>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">菜单类型</label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="type" value="1" title="菜单" lay-filter="type" {if $menu.type == 1}checked{/if}>
-                        <input type="radio" name="type" value="2" title="按钮" lay-filter="type" {if $menu.type == 2}checked{/if}>
-                        <input type="radio" name="type" value="3" title="外链" lay-filter="type" {if $menu.type == 3}checked{/if}>
-                    </div>
-                </div>
-                <div class="layui-form-item layui-hide">
-                    <label class="layui-form-label">外链地址</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="link" placeholder="请输入外链地址" class="layui-input" value="{$menu.link}">
                     </div>
                 </div>
                 <div class="layui-form-item">

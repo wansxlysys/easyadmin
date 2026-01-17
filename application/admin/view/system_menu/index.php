@@ -100,10 +100,12 @@
                 {type: 'checkbox'},
                 {title: '菜单名称', field: 'name', width: 240},
                 {title: "菜单URL", field: 'url'},
-                {title: "打开方式", field: 'target', toolbar: '#target', width: 140},
-                {title: "菜单类型", field: 'type', toolbar: '#type', width: 120},
-                {title: "日志记录", field: 'record', toolbar: '#record', width: 120},
-                {title: '菜单排序', field: 'sort', width: 120, edit: "text"},
+                {title: "权限标识", field: 'identify', width: 240},
+                {title: "打开方式", field: 'target', toolbar: '#target', width: 120},
+                {title: "菜单类型", field: 'type', toolbar: '#type', width: 110},
+                {title: "日志记录", field: 'record', toolbar: '#record', width: 110},
+                {title: '菜单排序', field: 'sort', width: 110, edit: "text"},
+                {title: '创建时间', field: 'createTime', width: 160},
                 {title: '操作', fixed: 'right', toolbar: '#bar', width: 170}
             ]],
             page: false

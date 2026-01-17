@@ -28,7 +28,7 @@ class Permission extends TagLib
     {if tag_parser('PermissionParser')
             ->add('menuIds', {$this->parseVar($tag, 'menuIds', true)})
             ->add('condition', {$this->parseVar($tag, 'condition', false, 'and')})
-            ->checkMenu()}
+            ->checkMenuIds()}
         $content
     {/if}
 TEMPLATE;
@@ -47,7 +47,7 @@ TEMPLATE;
     {if tag_parser('PermissionParser')
             ->add('identify', {$this->parseVar($tag, 'identify', true)})
             ->add('condition', {$this->parseVar($tag, 'condition', false, 'and')})
-            ->checkCode()}
+            ->checkIdentify()}
         $content
     {/if}
 TEMPLATE;

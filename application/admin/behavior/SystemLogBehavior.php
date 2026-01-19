@@ -30,16 +30,15 @@ class SystemLogBehavior
     {
         $currentMenu = SystemMenuHelper::getCurrentMenu();
 
-        if (!$currentMenu) {
-            return;
-        }
-
-        if ($currentMenu['record'] == YesnoEnum::N) {
+        if (!$currentMenu || $currentMenu['record'] == YesnoEnum::N) {
             return;
         }
 
         $data = $response->getData();
 
+        /**
+         * 判断返回数据是否有code字段
+         */
         if (isset($data['code'])) {
 
             $log['message']    = $data['msg'];

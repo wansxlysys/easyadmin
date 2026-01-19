@@ -26,7 +26,7 @@ class QueueRetry extends Command
     {
         $this->setName('queue:retry')
             ->addOption('queue', null, Option::VALUE_REQUIRED, 'Queue Name', 'default')
-            ->setDescription('Queue Retry');
+            ->setDescription('Retry failed queue');
     }
 
     /**

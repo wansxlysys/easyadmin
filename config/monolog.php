@@ -3,7 +3,6 @@
 
 use think\facade\Env;
 
-use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\RotatingFileHandler;

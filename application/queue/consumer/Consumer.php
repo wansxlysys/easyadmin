@@ -35,15 +35,4 @@ abstract class Consumer
             throw $e;
         }
     }
-
-    /**
-     * 消费失败
-     * @param $data
-     */
-    public function failed($data)
-    {
-        /**
-         * 消费方法抛出异常时触发
-         */
-    }
 }

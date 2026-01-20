@@ -90,4 +90,28 @@ class SystemSettingService extends Service
     {
         return $this->SystemSettingRepository->deleteById($settingId);
     }
+
+    /**
+     * 获取设置值
+     * @param $type
+     * @param $identify
+     * @param null $callback
+     * @return mixed
+     * @throws Exception
+     */
+    public function getSystemSettingValue($type, $identify, $callback = null)
+    {
+        $Wrapper = new Wrapper();
+
+        $Wrapper->addWhere('type', '=', $type);
+        $Wrapper->addWhere('identify', '=', $identify);
+
+        $setting = $this->SystemSettingRepository->getOne($Wrapper);
+
+        if ($setting) {
+            return $callback ? call_user_func($callback, $setting['value']) : $setting['value'];
+        }
+
+        throw new ServiceException('系统设置不存在');
+    }
 }

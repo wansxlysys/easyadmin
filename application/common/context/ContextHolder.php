@@ -44,13 +44,11 @@ class ContextHolder
             return static::$context[$name];
         }
 
-        if (is_null($callback)) {
+        if ($callback == null) {
             return null;
         }
 
-        static::$context[$name] = $callback();
-
-        return static::$context[$name];
+        return static::$context[$name] = $callback();
     }
 
     /**

@@ -2,6 +2,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
 
     const dropdown = layui.dropdown;
     const xmSelect = layui.xmSelect;
+    const easyAdmin = layui.easyAdmin;
     const easyHelper = layui.easyHelper;
     const layCascader = layui.layCascader;
 
@@ -252,7 +253,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 name: uiName,
                 title: '上传附件',
                 onclick: function () {
-                    easyLayout.openFileLayer({
+                    easyAdmin.openFileLayer({
                         multiple: true,
                         fileType: ['image', 'audio', 'video', 'doc', 'zip'],
                         selectFile(dataList) {
@@ -273,7 +274,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 name: uiName,
                 title: '上传图片',
                 onclick: function () {
-                    easyLayout.openFileLayer({
+                    easyAdmin.openFileLayer({
                         multiple: true,
                         fileType: ['image'],
                         selectFile(dataList) {

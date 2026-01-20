@@ -57,7 +57,7 @@ class TestController
 
     /**
      * lock测试
-     * @return int
+     * @return string
      */
     public function lockAction()
     {
@@ -65,13 +65,13 @@ class TestController
 
         if ($RedisLock->tryLock()) {
             try {
-                sleep(2);
+                return 'success';
             } catch (Exception $exception) {
                 $RedisLock->unlock();
             }
         }
 
-        return 2;
+        return 'error';
     }
 
     /**

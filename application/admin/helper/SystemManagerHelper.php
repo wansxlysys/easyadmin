@@ -4,6 +4,8 @@
 namespace app\admin\helper;
 
 
+use Exception;
+
 use think\facade\Session;
 
 use app\common\enum\YesnoEnum;
@@ -11,9 +13,11 @@ use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\PermissionUtil;
 use app\common\context\ContextHolder;
+use app\common\dependency\Dependency;
 
 use app\admin\enum\SystemManagerEnum;
 use app\admin\enum\SystemManagerRoleEnum;
+use app\admin\service\SystemManagerService;
 
 class SystemManagerHelper
 {
@@ -79,16 +83,20 @@ class SystemManagerHelper
 
     /**
      * 获取管理员
-     * @return mixed|null
+     * @return mixed
+     * @throws Exception
      */
     public static function getManager()
     {
-        return ContextHolder::get(SystemManagerEnum::LOGIN_MANAGER);
+        return ContextHolder::get(SystemManagerEnum::LOGIN_MANAGER, function () {
+            return Dependency::getProxy(SystemManagerService::class)->getLoginManager();
+        });
     }
 
     /**
      * 获取角色名称
      * @return mixed
+     * @throws Exception
      */
     public static function getIdentify()
     {
@@ -97,7 +105,8 @@ class SystemManagerHelper
 
     /**
      * 获取权限菜单
-     * @return mixed|null
+     * @return mixed
+     * @throws Exception
      */
     public static function getPermissionMenuIds()
     {
@@ -106,7 +115,8 @@ class SystemManagerHelper
 
     /**
      * 获取权限编码
-     * @return mixed|null
+     * @return mixed
+     * @throws Exception
      */
     public static function getPermissionMenuIdentify()
     {
@@ -116,6 +126,7 @@ class SystemManagerHelper
     /**
      * 是否为超级管理员
      * @return bool
+     * @throws Exception
      */
     public static function isSuper()
     {
@@ -125,6 +136,7 @@ class SystemManagerHelper
     /**
      * 是否非超级管理员
      * @return bool
+     * @throws Exception
      */
     public static function isNotSuper()
     {
@@ -134,6 +146,7 @@ class SystemManagerHelper
     /**
      * 检测账号是否被禁用
      * @return bool
+     * @throws Exception
      */
     public static function isEnabled()
     {
@@ -143,6 +156,7 @@ class SystemManagerHelper
     /**
      * 检测账号是否被删除
      * @return bool
+     * @throws Exception
      */
     public static function isDelete()
     {
@@ -154,6 +168,7 @@ class SystemManagerHelper
      * @param $menuId
      * @param string $condition
      * @return bool
+     * @throws Exception
      */
     public static function checkAccessByMenuIds($menuId, $condition = 'and')
     {
@@ -165,6 +180,7 @@ class SystemManagerHelper
      * @param $menuId
      * @param string $condition
      * @return bool
+     * @throws Exception
      */
     public static function checkAccessByMenuIdentify($menuId, $condition = 'and')
     {

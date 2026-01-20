@@ -28,7 +28,7 @@ class SystemLogBehavior
      */
     public function appEnd(Request $request, Response $response)
     {
-        $currentMenu = SystemMenuHelper::getCurrentMenu();
+        $currentMenu = SystemMenuHelper::getMenu();
 
         if (!$currentMenu || $currentMenu['record'] == YesnoEnum::N) {
             return;

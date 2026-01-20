@@ -8,14 +8,9 @@ use Exception;
 
 use think\facade\Hook;
 
-use app\common\dependency\Dependency;
-
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemSettingHelper;
 use app\admin\helper\SystemManagerHelper;
-use app\admin\service\SystemMenuService;
-use app\admin\service\SystemManagerService;
-use app\admin\service\SystemDictDataService;
 use app\admin\behavior\SystemLogBehavior;
 
 class SystemController extends CommonController
@@ -26,17 +21,6 @@ class SystemController extends CommonController
      */
     public function initialize()
     {
-        $currentMenu   = Dependency::getProxy(SystemMenuService::class)->getCurrentMenu();
-        $loginManager  = Dependency::getProxy(SystemManagerService::class)->getLoginManager();
-        $systemSetting = Dependency::getProxy(SystemDictDataService::class)->getSystemGlobalSetting();
-
-        /**
-         * 设置缓存
-         */
-        SystemMenuHelper::setMenu($currentMenu);
-        SystemManagerHelper::setManager($loginManager);
-        SystemSettingHelper::setSystemSetting($systemSetting);
-
         if ($this->request->isAjax()) {
 
             /**
@@ -49,9 +33,9 @@ class SystemController extends CommonController
             /**
              * 赋值视图变量
              */
-            $this->assign('currentMenu', $currentMenu);
-            $this->assign('loginManager', $loginManager);
-            $this->assign('systemSetting', $systemSetting);
+            $this->assign('currentMenu', SystemMenuHelper::getMenu());
+            $this->assign('loginManager', SystemManagerHelper::getManager());
+            $this->assign('systemSetting', SystemSettingHelper::getSystemSetting());
 
             /**
              * 赋值其他变量

@@ -35,11 +35,22 @@ class ContextHolder
     /**
      * 获取缓存
      * @param $name
+     * @param null $callback
      * @return mixed|null
      */
-    public static function get($name)
+    public static function get($name, $callback = null)
     {
-        return static::$context[$name] ?? null;
+        if (isset(static::$context[$name])) {
+            return static::$context[$name];
+        }
+
+        if (is_null($callback)) {
+            return null;
+        }
+
+        static::$context[$name] = $callback();
+
+        return static::$context[$name];
     }
 
     /**

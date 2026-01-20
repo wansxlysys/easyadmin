@@ -57,7 +57,7 @@ class SystemMiddleware
      */
     public function checkMenu()
     {
-        $currentMenu = SystemMenuHelper::getCurrentMenu();
+        $currentMenu = SystemMenuHelper::getMenu();
 
         if ($currentMenu) {
             return true;
@@ -72,7 +72,7 @@ class SystemMiddleware
      */
     public function checkAuth()
     {
-        $currentMenu = SystemMenuHelper::getCurrentMenu();
+        $currentMenu = SystemMenuHelper::getMenu();
 
         if (SystemManagerHelper::checkAccessByMenuIds($currentMenu['menuId'])) {
             return true;

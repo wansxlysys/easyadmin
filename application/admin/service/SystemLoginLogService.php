@@ -105,7 +105,7 @@ class SystemLoginLogService extends Service
      */
     public function loginError($loginIp, $managerId, $message)
     {
-        $data['status']    = SystemLoginLogEnum::STATUS_SUCCESS;
+        $data['status']    = SystemLoginLogEnum::STATUS_ERROR;
         $data['loginIp']   = $loginIp;
         $data['managerId'] = $managerId;
         $data['message']   = $message;

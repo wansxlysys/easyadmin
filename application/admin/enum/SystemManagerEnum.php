@@ -24,7 +24,7 @@ class SystemManagerEnum
     /**
      * 缓存标识
      */
-    const LOGIN_MANAGER = 'system:manager'; // 管理员
+    const LOGIN_MANAGER = 'system:manager:login'; // 管理员
 
     /**
      * 登录错误次数锁定

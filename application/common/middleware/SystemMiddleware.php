@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\http\middleware;
+namespace app\common\middleware;
 
 
 use Closure;
@@ -10,8 +10,8 @@ use Exception;
 use think\Request;
 use traits\controller\Jump;
 
-use app\admin\helper\SystemManagerHelper;
 use app\admin\helper\SystemMenuHelper;
+use app\admin\helper\SystemManagerHelper;
 
 class SystemMiddleware
 {

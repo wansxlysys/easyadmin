@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\http\exception;
+namespace app\common\exception;
 
 
 use Exception;
@@ -13,7 +13,6 @@ use think\exception\Handle;
 use think\exception\HttpException;
 
 use app\common\helper\MonologHelper;
-use app\common\exception\ValidateException;
 
 class ExceptionHandler extends Handle
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\http\middleware;
+namespace app\common\middleware;
 
 
 use Closure;

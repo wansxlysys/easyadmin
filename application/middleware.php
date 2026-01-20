@@ -1,8 +1,8 @@
 <?php
 
 
-use app\http\middleware\RepeatMiddleware;
-use app\http\middleware\MonologMiddleware;
+use app\common\middleware\MonologMiddleware;
+use app\common\middleware\RepeatMiddleware;
 
 return [
     MonologMiddleware::class,

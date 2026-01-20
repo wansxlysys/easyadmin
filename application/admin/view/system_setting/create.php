@@ -14,12 +14,6 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">设置分类</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="type" lay-verify="required" placeholder="请输入设置分类" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
                     <label class="layui-form-label layui-required">设置标识</label>
                     <div class="layui-input-block">
                         <input type="text" name="identify" lay-verify="required" placeholder="请输入设置标识" class="layui-input">

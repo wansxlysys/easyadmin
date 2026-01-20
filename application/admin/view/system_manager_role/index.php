@@ -73,7 +73,7 @@
                 {title: '角色标识', field: 'identify', width: 240},
                 {title: '角色备注', field: 'remark'},
                 {title: '角色排序', field: 'sort', width: 100},
-                {title: '操作', toolbar: '#bar', width: 180}
+                {title: '操作', toolbar: '#bar', width: 170}
             ]]
         });
 

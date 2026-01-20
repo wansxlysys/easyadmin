@@ -15,12 +15,6 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">设置分类</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="type" class="layui-input" placeholder="请输入设置分类">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
                         <label class="layui-form-label">设置标识</label>
                         <div class="layui-input-inline">
                             <input type="text" name="identify" class="layui-input" placeholder="请输入设置标识">
@@ -75,13 +69,12 @@
             toolbar: '#toolbar',
             cols: [[
                 {type: 'checkbox'},
-                {title: '设置名称', field: 'name', width: 240},
-                {title: '设置分类', field: 'type', width: 160},
-                {title: '设置标识', field: 'identify', width: 160},
+                {title: '设置名称', field: 'name', width: 180},
+                {title: '设置标识', field: 'identify', width: 260},
                 {title: '设置数据', field: 'value'},
                 {title: '设置备注', field: 'remark'},
                 {title: '设置排序', field: 'sort', width: 100},
-                {title: '操作', toolbar: '#bar', width: 180}
+                {title: '操作', toolbar: '#bar', width: 170}
             ]]
         });
 

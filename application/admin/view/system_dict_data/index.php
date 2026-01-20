@@ -86,7 +86,7 @@
                 {title: '是否默认', field: 'isDefault', width: 100, templet: "#isDefault"},
                 {title: '字典状态', field: 'status', width: 100, templet: "#status"},
                 {title: '字典排序', field: 'sort', width: 100},
-                {title: '操作', toolbar: '#bar', width: 180}
+                {title: '操作', toolbar: '#bar', width: 170}
             ]]
         });
 

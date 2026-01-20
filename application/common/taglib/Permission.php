@@ -36,7 +36,7 @@ TEMPLATE;
 
     /**
      * 权限检测
-     * {permission:code code="sadasasd,sadasda" condition="and"} 已授权 {else/} 未授权 {/permission:code}
+     * {permission:code identify="sadasasd,sadasda" condition="and"} 已授权 {else/} 未授权 {/permission:code}
      * @param $tag
      * @param $content
      * @return string

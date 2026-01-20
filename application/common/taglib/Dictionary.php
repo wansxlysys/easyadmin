@@ -12,8 +12,8 @@ class Dictionary extends TagLib
      */
     protected $tags = [
         'tag'    => ['attr' => 'identify,value', 'close' => 0],
-        'list'   => ['attr' => 'name,identify,value', 'close' => 1],
-        'script' => ['attr' => 'id,identify,value', 'close' => 0],
+        'list'   => ['attr' => 'identify,value,name', 'close' => 1],
+        'script' => ['attr' => 'identify,value,id', 'close' => 0],
     ];
 
     /**
@@ -74,7 +74,7 @@ TEMPLATE;
                 ->add('value', {$this->parseVar($tag, 'value', false)})
                 ->getList();
     {/php}
-    <script type="text/html" id="{$this->parseVar($tag, 'id', true)}"> 
+    <script type="text/html" id="{$this->parseVal($tag, 'id')}"> 
         {foreach \$dictList as \$key => \$dict}
             {{# if(d.status == '{\$dict.value}'){ }}<span class="layui-badge {\$dict.style}">{\$dict.label}</span>{{# } }}
         {/foreach}

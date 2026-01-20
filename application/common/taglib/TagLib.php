@@ -27,6 +27,21 @@ class TagLib extends \think\template\TagLib
      * 将非变量和函数的字符串加上引号
      * @param $tag
      * @param $name
+     * @return string
+     */
+    public function parseVal($tag, $name)
+    {
+        if (!isset($tag[$name])) {
+            throw new ServiceException($name . '属性不能为空');
+        }
+
+        return $tag[$name];
+    }
+
+    /**
+     * 将非变量和函数的字符串加上引号
+     * @param $tag
+     * @param $name
      * @param $require
      * @param string $default
      * @return string

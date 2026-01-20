@@ -23,11 +23,11 @@ class MonologMiddleware
         $log['Host']            = $request->host();
         $log['Cookie']          = $request->cookie();
         $log['Request-URL']     = $request->url();
-        $log['Request-Data']    = $request->param();
+        $log['Request-Param']   = $request->param();
         $log['Request-Method']  = $request->method();
+        $log['Connection']      = $request->header('Connection');
         $log['Content-Type']    = $request->header('Content-Type');
         $log['Content-Length']  = $request->header('Content-Length');
-        $log['Connection']      = $request->header('Connection');
         $log['Accept']          = $request->header('Accept');
         $log['Accept-Encoding'] = $request->header('Accept-Encoding');
         $log['Accept-Language'] = $request->header('Accept-Language');

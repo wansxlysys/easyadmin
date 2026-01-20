@@ -18,7 +18,7 @@ class ActionBeginBehavior
      */
     public function run(array $params)
     {
-        list($controller, $action) = $params;
+        list($controller) = $params;
 
         $reflectionClass = new ReflectionClass($controller);
 

@@ -96,16 +96,6 @@ class SystemSettingService extends Service
     }
 
     /**
-     * 获取设置数组
-     * @return array
-     * @throws Exception
-     */
-    public function getSystemSetting()
-    {
-        return $this->getSettingArray(SystemSettingEnum::TYPE_SYSTEM);
-    }
-
-    /**
      * 获取设置值
      * @param $type
      * @param $identify
@@ -127,23 +117,5 @@ class SystemSettingService extends Service
         }
 
         throw new ServiceException('系统设置不存在');
-    }
-
-    /**
-     * 通过设置类型获取设置数组
-     * @return array
-     * @throws Exception
-     */
-    private function getSettingArray($type)
-    {
-        $settingList = $this->SystemSettingRepository->getAllByWhere(['type' => $type]);
-
-        $resultList = [];
-
-        foreach ($settingList as $setting) {
-            $resultList[$setting['identify']] = $setting['value'];
-        }
-
-        return $resultList;
     }
 }

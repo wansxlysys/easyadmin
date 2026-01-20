@@ -107,8 +107,8 @@
 <div class="easy-user-login">
     <div class="easy-user-login-main">
         <div class="easy-user-login-box easy-user-login-header">
-            <h2>{$systemSetting.name}</h2>
-            <p>{$systemSetting.slogan}</p>
+            <h2>{$systemSetting.systemName}</h2>
+            <p>{$systemSetting.systemSlogan}</p>
         </div>
         <div class="easy-user-login-box easy-user-login-body layui-form">
             <form class="layui-form" autocomplete="off">

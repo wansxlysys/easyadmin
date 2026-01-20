@@ -34,7 +34,7 @@
         </div>
         <div class="easy-alert-content">
             <h3>欢迎登录</h3>
-            <p>欢迎使用{$systemSetting.name}</p>
+            <p>欢迎使用{$systemSetting.systemName}</p>
         </div>
         <div class="easy-alert-close">
             <i class="fa fa-fw fa-close"></i>

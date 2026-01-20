@@ -3,7 +3,7 @@
 {block name="content"}
 <div class="easy-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo layui-bg-black">{$systemSetting.name}</div>
+        <div class="layui-logo layui-bg-black">{$systemSetting.systemName}</div>
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item" lay-unselect lay-header-event="outdent">
                 <a href="javascript:">

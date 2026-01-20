@@ -14,7 +14,7 @@ use app\common\controller\CommonController;
 
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemManagerService;
-use app\admin\service\SystemSettingService;
+use app\admin\service\SystemDictDataService;
 use app\admin\validate\SystemManagerValidate;
 
 class SystemLoginController extends CommonController
@@ -26,16 +26,16 @@ class SystemLoginController extends CommonController
     protected SystemManagerService $SystemManagerService;
 
     /**
-     * 服务类
-     * @var SystemSettingService
-     */
-    protected SystemSettingService $SystemSettingService;
-
-    /**
      * 验证器
      * @var SystemManagerValidate
      */
     protected SystemManagerValidate $SystemManagerValidate;
+
+    /**
+     * 服务类
+     * @var SystemDictDataService
+     */
+    protected SystemDictDataService $SystemDictDataService;
 
     /**
      * 初始化
@@ -71,7 +71,7 @@ class SystemLoginController extends CommonController
         }
 
         return $this->fetch('', [
-            'systemSetting' => $this->SystemSettingService->getSystemSetting()
+            'systemSetting' => $this->SystemDictDataService->getSystemGlobalSetting()
         ]);
     }
 

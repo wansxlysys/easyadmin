@@ -95,7 +95,7 @@ class SystemDictDataService extends Service
      * @return array
      * @throws Exception
      */
-    public function getKeyMapSystemDictData($identify)
+    public function getKeyValueMapSystemDictData($identify)
     {
         $Wrapper = new Wrapper();
 
@@ -110,7 +110,7 @@ class SystemDictDataService extends Service
     }
 
     /**
-     * 获取字典键值对
+     * 获取字典值键对
      * @param $identify
      * @return array
      * @throws Exception
@@ -153,5 +153,21 @@ class SystemDictDataService extends Service
         }
 
         return null;
+    }
+
+    /**
+     * 获取全局设置
+     * @return array
+     * @throws Exception
+     */
+    public function getSystemGlobalSetting()
+    {
+        $dictData = $this->getKeyValueMapSystemDictData('system.global.setting');
+
+        if (isset($dictData['uploadLimit'])) {
+            $dictData['uploadLimit'] = intval($dictData['uploadLimit']);
+        }
+
+        return $dictData;
     }
 }

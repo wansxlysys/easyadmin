@@ -13,7 +13,7 @@ class SystemMenuHelper
      * 设置当前菜单
      * @param $currentMenu
      */
-    public static function setCurrentMenu($currentMenu)
+    public static function setMenu($currentMenu)
     {
         ContextHolder::set(SystemMenuEnum::CURRENT_MENU, $currentMenu);
     }

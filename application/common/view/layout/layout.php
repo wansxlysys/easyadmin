@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>{$systemSetting.name} - {$systemSetting.slogan}</title>
+    <title>{$systemSetting.systemName} - {$systemSetting.systemSlogan}</title>
     <link rel="stylesheet" href="{:register_static('/admin/plugin/layui/css/layui.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/plugin/fontawesome/css/all.css')}">
     <link rel="stylesheet" href="{:register_static('/admin/plugin/ztree/css/ztree.css')}">

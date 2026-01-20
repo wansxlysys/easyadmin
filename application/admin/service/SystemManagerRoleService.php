@@ -40,11 +40,11 @@ class SystemManagerRoleService extends Service
         $Wrapper = new Wrapper();
 
         if (!empty($params['name'])) {
-            $Wrapper->addWhere('name', 'LIKE', '%' . $params['name'] . '%');
+            $Wrapper->addWhere('name', 'LIKE', "{$params['name']}");
         }
 
         if (!empty($params['identify'])) {
-            $Wrapper->addWhere('identify', 'LIKE', '%' . $params['identify'] . '%');
+            $Wrapper->addWhere('identify', 'LIKE', "{$params['identify']}");
         }
 
         $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);

@@ -31,16 +31,12 @@ class SystemSettingService extends Service
     {
         $Wrapper = new Wrapper();
 
-        if (!empty($params['type'])) {
-            $Wrapper->addWhere('type', 'LIKE', '%' . $params['type'] . '%');
-        }
-
         if (!empty($params['name'])) {
-            $Wrapper->addWhere('name', 'LIKE', '%' . $params['name'] . '%');
+            $Wrapper->addWhere('name', 'LIKE', "{$params['name']}");
         }
 
         if (!empty($params['identify'])) {
-            $Wrapper->addWhere('identify', 'LIKE', '%' . $params['identify'] . '%');
+            $Wrapper->addWhere('identify', 'LIKE', "{$params['identify']}");
         }
 
         $Wrapper->setPage($params['page']);
@@ -93,29 +89,5 @@ class SystemSettingService extends Service
     public function deleteSetting($settingId)
     {
         return $this->SystemSettingRepository->deleteById($settingId);
-    }
-
-    /**
-     * 获取设置值
-     * @param $type
-     * @param $identify
-     * @param null $callback
-     * @return mixed
-     * @throws Exception
-     */
-    public function getSystemSettingValue($type, $identify, $callback = null)
-    {
-        $Wrapper = new Wrapper();
-
-        $Wrapper->addWhere('type', '=', $type);
-        $Wrapper->addWhere('identify', '=', $identify);
-
-        $setting = $this->SystemSettingRepository->getOne($Wrapper);
-
-        if ($setting) {
-            return $callback ? call_user_func($callback, $setting['value']) : $setting['value'];
-        }
-
-        throw new ServiceException('系统设置不存在');
     }
 }

@@ -12,7 +12,7 @@ use app\common\enum\YesnoEnum;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\PermissionUtil;
-use app\common\context\ContextHolder;
+use app\common\helper\ContextHelper;
 use app\common\dependency\Dependency;
 
 use app\admin\enum\SystemManagerEnum;
@@ -78,7 +78,7 @@ class SystemManagerHelper
      */
     public static function setManager($manager)
     {
-        ContextHolder::set(SystemManagerEnum::LOGIN_MANAGER, $manager);
+        ContextHelper::set(SystemManagerEnum::LOGIN_MANAGER, $manager);
     }
 
     /**
@@ -88,7 +88,7 @@ class SystemManagerHelper
      */
     public static function getManager()
     {
-        return ContextHolder::get(SystemManagerEnum::LOGIN_MANAGER, function () {
+        return ContextHelper::get(SystemManagerEnum::LOGIN_MANAGER, function () {
             return Dependency::getProxy(SystemManagerService::class)->getLoginManager();
         });
     }

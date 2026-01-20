@@ -9,7 +9,7 @@ use Exception;
 use app\admin\enum\SystemMenuEnum;
 use app\admin\service\SystemMenuService;
 
-use app\common\context\ContextHolder;
+use app\common\helper\ContextHelper;
 use app\common\dependency\Dependency;
 
 class SystemMenuHelper
@@ -21,7 +21,7 @@ class SystemMenuHelper
      */
     public static function getMenu()
     {
-        return ContextHolder::get(SystemMenuEnum::CURRENT_MENU, function () {
+        return ContextHelper::get(SystemMenuEnum::CURRENT_MENU, function () {
             return Dependency::getProxy(SystemMenuService::class)->getCurrentMenu();
         });
     }

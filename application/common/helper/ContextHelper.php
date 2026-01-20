@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\context;
+namespace app\common\helper;
 
 
-class ContextHolder
+class ContextHelper
 {
     /**
      * 缓存

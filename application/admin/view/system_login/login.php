@@ -15,7 +15,7 @@
         height: 100%;
         min-height: 100%;
         box-sizing: border-box;
-        background: url("{:register_static('/admin/img/login.jpg')}") no-repeat center;
+        background: url("{:static_url('/admin/img/login.jpg')}") no-repeat center;
         background-size: cover;
     }
 

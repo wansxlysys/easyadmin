@@ -108,7 +108,7 @@
 {/block}
 
 {block name="js"}
-<script src="{:register_static('/admin/plugin/echarts/echarts.min.js')}"></script>
+<script src="{:static_url('/admin/plugin/echarts/echarts.min.js')}"></script>
 <script>
     layui.use(['easyModule'], function () {
 

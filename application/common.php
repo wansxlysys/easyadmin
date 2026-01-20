@@ -11,7 +11,7 @@ use app\common\dependency\Dependency;
  * @param $url
  * @return string
  */
-function register_static($url)
+function static_url($url)
 {
     return config('system.static_path') . $url . '?v=' . config('system.version');
 }

@@ -112,7 +112,7 @@
     </div>
 </div>
 
-<script src="{:register_static('/admin/plugin/layui/layui.js')}"></script>
+<script src="{:static_url('/admin/plugin/layui/layui.js')}"></script>
 <script type="text/javascript">
     layui.use('jquery', function () {
 

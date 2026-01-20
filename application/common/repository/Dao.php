@@ -191,9 +191,12 @@ abstract class Dao
      */
     public function removeRecord(Wrapper $Wrapper)
     {
+        $data['isDelete']   = YesnoEnum::Y;
+        $data['deleteTime'] = DateTimeUtil::dateTime();
+
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
             ->where('isDelete', YesnoEnum::N)
-            ->update(['isDelete' => YesnoEnum::Y, 'deleteTime' => DateTimeUtil::dateTime()]);
+            ->update($data);
     }
 }

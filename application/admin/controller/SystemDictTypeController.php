@@ -125,7 +125,7 @@ class SystemDictTypeController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'id' => $request->post('id')
+                'dictId' => $request->post('dictId')
             ];
 
             $this->SystemDictTypeValidate->scene('delete')->verify($params);

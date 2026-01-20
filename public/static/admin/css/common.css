@@ -1,3 +1,71 @@
+/*****样式重置**********/
+body {
+    background-color: #f5f7f9;
+}
+
+input[readonly] {
+    cursor: pointer;
+}
+
+.layui-content {
+    padding: 15px;
+}
+
+.layui-circle,
+.layui-square {
+    object-fit: cover;
+}
+
+/**************************************表格*******************************/
+.layui-table-cell {
+    height: auto;
+}
+
+.layui-table {
+    color: #333;
+}
+
+/**************************************表单*******************************/
+label.layui-required:before {
+    content: "*";
+    color: red;
+    margin-right: 2px;
+}
+
+.layui-form-item > .layui-form-label {
+    width: 120px;
+}
+
+.layui-form-item > .layui-input-block {
+    margin-left: 150px;
+}
+
+/************************************选项卡*******************************/
+.layui-tab {
+    margin-top: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #f6f6f6;
+}
+
+.layui-tab .layui-tab-content {
+    padding: 10px 15px;
+    line-height: 24px;
+}
+
+.layui-tab .layui-tab-title {
+    margin: 0 10px;
+    border-bottom: 1px solid #f6f6f6;
+}
+
+.layui-tab .layui-tab-title li {
+    line-height: 42px;
+    margin-left: 10px;
+}
+
+.layui-tab .layui-tab-title li:first-child {
+    margin-left: 0;
+}
+
 /*******************公共样式***********************/
 .easy-float-left {
     float: left;

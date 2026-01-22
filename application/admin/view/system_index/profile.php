@@ -60,7 +60,7 @@
                 url: "{:url('admin/SystemIndex/profile')}",
                 data: obj.field,
                 success: function (result) {
-                    var lay = top.layer.alert(result.msg, {
+                    const lay = top.layer.alert(result.msg, {
                         icon: 1,
                     }, function () {
                         top.layer.close(lay);

@@ -84,12 +84,13 @@ class SystemMiddleware
     /**
      * 检测是否失效
      * @return bool|void
+     * @throws Exception
      */
     public function checkValid()
     {
         $manager = SystemManagerHelper::getManager();
 
-        if (SystemManagerHelper::verify($manager['account'], $manager['password'])) {
+        if (SystemManagerHelper::verifyPassword($manager['account'], $manager['password'])) {
             return true;
         }
 
@@ -101,6 +102,7 @@ class SystemMiddleware
     /**
      * 检测账号是否被禁用
      * @return bool|void
+     * @throws Exception
      */
     public function checkDelete()
     {
@@ -115,6 +117,7 @@ class SystemMiddleware
 
     /**
      * 检测账号是否被禁用
+     * @throws Exception
      */
     public function checkDisabled()
     {

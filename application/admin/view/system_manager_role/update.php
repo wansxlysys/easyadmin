@@ -20,9 +20,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label layui-required">角色排序</label>
+                    <label class="layui-form-label layui-required">角色级别</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sort" placeholder="请输入角色排序" class="layui-input" value="{$role.sort}">
+                        <input type="text" name="level" placeholder="请输入角色级别" class="layui-input" value="{$role.level}">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">

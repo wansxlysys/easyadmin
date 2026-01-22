@@ -49,7 +49,7 @@ class SystemManagerHelper
      * @param $password
      * @return bool
      */
-    public static function verify($account, $password)
+    public static function verifyPassword($account, $password)
     {
         return Session::get(SystemManagerEnum::SESSION_CODE) == Md5Util::encrypt($account . $password);
     }
@@ -73,15 +73,6 @@ class SystemManagerHelper
     }
 
     /**
-     * 设置管理员
-     * @param $manager
-     */
-    public static function setManager($manager)
-    {
-        ContextHelper::set(SystemManagerEnum::LOGIN_MANAGER, $manager);
-    }
-
-    /**
      * 获取管理员
      * @return mixed
      * @throws Exception
@@ -98,9 +89,19 @@ class SystemManagerHelper
      * @return mixed
      * @throws Exception
      */
-    public static function getIdentify()
+    public static function getRoleIdentify()
     {
-        return static::getManager()['identify'];
+        return static::getManager()['roleIdentify'];
+    }
+
+    /**
+     * 获取角色级别
+     * @return mixed
+     * @throws Exception
+     */
+    public static function getRoleLevel()
+    {
+        return static::getManager()['roleLevel'];
     }
 
     /**
@@ -130,7 +131,7 @@ class SystemManagerHelper
      */
     public static function isSuper()
     {
-        return static::getIdentify() == SystemManagerRoleEnum::SUPER_NAME;
+        return static::getRoleIdentify() == SystemManagerRoleEnum::SUPER_NAME;
     }
 
     /**
@@ -140,7 +141,7 @@ class SystemManagerHelper
      */
     public static function isNotSuper()
     {
-        return static::getIdentify() != SystemManagerRoleEnum::SUPER_NAME;
+        return static::getRoleIdentify() != SystemManagerRoleEnum::SUPER_NAME;
     }
 
     /**

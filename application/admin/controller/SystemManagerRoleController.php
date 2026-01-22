@@ -71,7 +71,7 @@ class SystemManagerRoleController extends SystemController
                 'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
-                'sort'       => $request->post('sort'),
+                'level'      => $request->post('level'),
             ];
 
             $this->SystemManagerRoleValidate->scene('create')->verify($params);
@@ -99,7 +99,7 @@ class SystemManagerRoleController extends SystemController
                 'identify'   => $request->post('identify'),
                 'remark'     => $request->post('remark'),
                 'permission' => $request->post('permission'),
-                'sort'       => $request->post('sort'),
+                'level'      => $request->post('level'),
             ];
 
             $this->SystemManagerRoleValidate->scene('update')->verify($params);

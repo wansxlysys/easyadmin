@@ -107,19 +107,20 @@ class SystemManagerService extends Service
 
         $Wrapper->setField([
             'manager.managerId', 'manager.roleId', 'manager.avatar', 'manager.realName', 'manager.account',
-            'manager.password', 'manager.status', 'manager.isDelete', 'role.identify', 'role.permission',
+            'manager.password', 'manager.status', 'manager.isDelete', 'role.identify roleIdentify',
+            'role.permission rolePermission', 'role.level roleLevel'
         ]);
 
         $Wrapper->addWhere('manager.managerId', '=', SystemManagerHelper::getManagerId());
 
         $manager = $this->ManagerRepository->getWithRole($Wrapper);
 
-        if (!empty($manager['permission'])) {
-            $manager['permissionMenuIds'] = StringUtil::toArray($manager['permission']);
+        if (!empty($manager['rolePermission'])) {
+            $manager['permissionMenuIds'] = StringUtil::toArray($manager['rolePermission']);
         }
 
-        if (!empty($manager['permission'])) {
-            $manager['permissionMenuIdentify'] = $this->SystemMenuService->getPermissionCode($manager['permission']);
+        if (!empty($manager['rolePermission'])) {
+            $manager['permissionMenuIdentify'] = $this->SystemMenuService->getPermissionCode($manager['rolePermission']);
         }
 
         return $manager;

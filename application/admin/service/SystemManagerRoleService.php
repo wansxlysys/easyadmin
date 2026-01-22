@@ -51,7 +51,7 @@ class SystemManagerRoleService extends Service
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
-        $Wrapper->addOrder('sort');
+        $Wrapper->addOrder('level');
 
         $page = $this->SystemManagerRoleRepository->getPage($Wrapper);
 
@@ -69,11 +69,11 @@ class SystemManagerRoleService extends Service
         $Wrapper = new Wrapper();
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('identify', '<>', SystemManagerRoleEnum::SUPER_NAME);
+            $Wrapper->addWhere('level', '>=', SystemManagerHelper::getRoleLevel());
         }
 
         $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
-        $Wrapper->addOrder('sort');
+        $Wrapper->addOrder('level');
 
         return $this->SystemManagerRoleRepository->getAll($Wrapper);
     }

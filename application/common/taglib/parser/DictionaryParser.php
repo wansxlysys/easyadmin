@@ -13,6 +13,7 @@ use app\common\enum\YesnoEnum;
 class DictionaryParser
 {
     /**
+     * 获取字典列表
      * @param array $params
      * @return array
      * @throws Exception

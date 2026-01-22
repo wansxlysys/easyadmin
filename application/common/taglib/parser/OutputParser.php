@@ -9,6 +9,7 @@ use app\common\util\ArrayUtil;
 class OutputParser
 {
     /**
+     * 获取输出脚本
      * @param array $params
      * @return string
      */

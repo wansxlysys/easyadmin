@@ -55,10 +55,11 @@ class UploadClean extends Command
 
         foreach ($fileList as $path) {
 
+            $savePath = $uploadPath . $path;
             $fileInfo = Db::name('system_upload')->where('path', $path)->find();
 
-            if (empty($fileInfo)) {
-                unlink($uploadPath . $path);
+            if (empty($fileInfo) && file_exists($savePath)) {
+                unlink($savePath);
             }
         }
 

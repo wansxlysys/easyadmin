@@ -18,7 +18,6 @@ class SettingParser
     public function getValue(array $params)
     {
         return Db::name('system_setting')
-            ->where('type', $params['type'])
             ->where('identify', $params['identify'])
             ->value('value');
     }

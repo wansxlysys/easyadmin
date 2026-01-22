@@ -11,12 +11,12 @@ class Setting extends TagLib
      * @var array[]
      */
     protected $tags = [
-        'value' => ['attr' => 'type,identify', 'close' => 0]
+        'value' => ['attr' => 'identify', 'close' => 0]
     ];
 
     /**
      * 系统设置
-     * {setting:value type="system" identify="name" /}
+     * {setting:value identify="system.captcha.enabled" /}
      * @param $tag
      * @param $content
      * @return string
@@ -26,7 +26,6 @@ class Setting extends TagLib
         return <<<TEMPLATE
     {php} 
         echo tag_parser('SettingParser')
-                ->add('type', {$this->parseVar($tag, 'type', true)})
                 ->add('identify', {$this->parseVar($tag, 'identify', true)})
                 ->getValue(); 
     {/php}

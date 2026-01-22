@@ -93,20 +93,14 @@ class SystemSettingService extends Service
 
     /**
      * 获取设置值
-     * @param $type
      * @param $identify
      * @param null $callback
      * @return mixed
      * @throws Exception
      */
-    public function getSystemSettingValue($type, $identify, $callback = null)
+    public function getSystemSettingValue($identify, $callback = null)
     {
-        $Wrapper = new Wrapper();
-
-        $Wrapper->addWhere('type', '=', $type);
-        $Wrapper->addWhere('identify', '=', $identify);
-
-        $setting = $this->SystemSettingRepository->getOne($Wrapper);
+        $setting = $this->SystemSettingRepository->getByWhere(['identify' => $identify]);
 
         if ($setting) {
             return $callback ? call_user_func($callback, $setting['value']) : $setting['value'];

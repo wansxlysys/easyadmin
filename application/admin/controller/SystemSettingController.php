@@ -46,7 +46,6 @@ class SystemSettingController extends SystemController
             $params = [
                 'page'     => $request->get('page'),
                 'limit'    => $request->get('limit'),
-                'type'     => $request->get('type'),
                 'name'     => $request->get('name'),
                 'identify' => $request->get('identify'),
             ];
@@ -68,7 +67,6 @@ class SystemSettingController extends SystemController
         if ($request->isAjax()) {
 
             $params = [
-                'type'     => $request->post('type'),
                 'name'     => $request->post('name'),
                 'identify' => $request->post('identify'),
                 'value'    => $request->post('value'),
@@ -97,7 +95,6 @@ class SystemSettingController extends SystemController
 
             $params = [
                 'settingId' => $request->post('settingId'),
-                'type'      => $request->post('type'),
                 'name'      => $request->post('name'),
                 'identify'  => $request->post('identify'),
                 'value'     => $request->post('value'),

@@ -13,8 +13,9 @@
 // | 应用设置
 // +----------------------------------------------------------------------
 
-use app\common\exception\ExceptionHandler;
 use think\facade\Env;
+
+use app\common\exception\ExceptionHandler;
 
 return [
     // 应用名称

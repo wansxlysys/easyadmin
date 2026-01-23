@@ -51,8 +51,8 @@ class Backup extends Command
 
             $output->writeln("备份成功");
 
-        } catch (Exception $Exception) {
-            $output->writeln("备份失败：{$Exception->getMessage()}");
+        } catch (Exception $e) {
+            $output->writeln("备份失败：{$e->getMessage()}");
         }
     }
 }

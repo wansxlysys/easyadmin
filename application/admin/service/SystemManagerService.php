@@ -276,14 +276,14 @@ class SystemManagerService extends Service
                 throw new ServiceException('登录失败，密码输入错误');
             }
 
-        } catch (Exception $exception) {
+        } catch (Exception $e) {
 
             /**
              * 登录失败日志
              */
-            $this->SystemLoginLogService->loginError($params['loginIp'], $manager['managerId'], $exception->getMessage());
+            $this->SystemLoginLogService->loginError($params['loginIp'], $manager['managerId'], $e->getMessage());
 
-            throw new ServiceException($exception->getMessage());
+            throw new ServiceException($e->getMessage());
         }
 
         /**

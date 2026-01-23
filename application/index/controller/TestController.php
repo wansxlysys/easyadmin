@@ -109,7 +109,7 @@ class TestController
         if ($RedisLock->tryLock()) {
             try {
                 return 'success';
-            } catch (Exception $exception) {
+            } catch (Exception $e) {
                 $RedisLock->unlock();
             }
         }

@@ -12,19 +12,19 @@ class SystemManagerEnum
     const SUPER_ID = 1;
 
     /**
-     * 缓存标识
+     * 登录管理员ID
      */
-    const SESSION_ID = 'system:manager:id'; // 缓存ID
+    const LOGIN_MANAGER_ID = 'system:login:managerId'; // 缓存ID
 
     /**
-     * session校验码标识
+     * 登录管理员校验码
      */
-    const SESSION_CODE = 'system:manager:verify'; // 校验码
+    const LOGIN_VERIFY_CODE = 'system:login:verifyCode'; // 校验码
 
     /**
-     * 缓存标识
+     * 登录管理员信息
      */
-    const LOGIN_MANAGER = 'system:manager:login'; // 管理员
+    const LOGIN_MANAGER = 'system:login:manager'; // 管理员
 
     /**
      * 登录错误次数锁定

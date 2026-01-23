@@ -31,8 +31,8 @@ class SystemManagerHelper
     {
         $verifyCode = Md5Util::encrypt($account . $password);
 
-        Session::set(SystemManagerEnum::SESSION_ID, $managerId);
-        Session::set(SystemManagerEnum::SESSION_CODE, $verifyCode);
+        Session::set(SystemManagerEnum::LOGIN_MANAGER_ID, $managerId);
+        Session::set(SystemManagerEnum::LOGIN_VERIFY_CODE, $verifyCode);
     }
 
     /**
@@ -40,7 +40,7 @@ class SystemManagerHelper
      */
     public static function logout()
     {
-        Session::delete(SystemManagerEnum::SESSION_ID);
+        Session::delete(SystemManagerEnum::LOGIN_MANAGER_ID);
     }
 
     /**
@@ -51,7 +51,7 @@ class SystemManagerHelper
      */
     public static function verifyPassword($account, $password)
     {
-        return Session::get(SystemManagerEnum::SESSION_CODE) == Md5Util::encrypt($account . $password);
+        return Session::get(SystemManagerEnum::LOGIN_VERIFY_CODE) == Md5Util::encrypt($account . $password);
     }
 
     /**
@@ -60,7 +60,7 @@ class SystemManagerHelper
      */
     public static function getManagerId()
     {
-        return Session::get(SystemManagerEnum::SESSION_ID);
+        return Session::get(SystemManagerEnum::LOGIN_MANAGER_ID);
     }
 
     /**
@@ -69,7 +69,7 @@ class SystemManagerHelper
      */
     public static function isLogin()
     {
-        return Session::has(SystemManagerEnum::SESSION_ID);
+        return Session::has(SystemManagerEnum::LOGIN_MANAGER_ID);
     }
 
     /**

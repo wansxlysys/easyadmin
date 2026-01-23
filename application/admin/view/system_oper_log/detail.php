@@ -55,7 +55,7 @@
                     <div class="easy-info-grid-right">{$log.createTime}</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-25">
-                    <div class="easy-info-grid-left">消耗时间：</div>
+                    <div class="easy-info-grid-left">请求耗时：</div>
                     <div class="easy-info-grid-right">{$log.costTime}秒</div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-100">

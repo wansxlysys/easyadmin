@@ -25,8 +25,8 @@ class MonologMiddleware
         $log['Host']            = $request->host();
         $log['Cookie']          = $request->cookie();
         $log['Request-URL']     = $request->url();
-        $log['Request-Param']   = $request->param();
         $log['Request-Method']  = $request->method();
+        $log['Request-Param']   = $this->filterParams($request->param());
         $log['Connection']      = $request->header('Connection');
         $log['Content-Type']    = $request->header('Content-Type');
         $log['Content-Length']  = $request->header('Content-Length');
@@ -40,5 +40,19 @@ class MonologMiddleware
         MonologHelper::debug('request log', $log);
 
         return $next($request);
+    }
+
+    /**
+     * 过滤参数
+     * @param $params
+     * @return mixed
+     */
+    private function filterParams($params)
+    {
+        if (!empty($params['password'])) {
+            $params['password'] = '******';
+        }
+
+        return $params;
     }
 }

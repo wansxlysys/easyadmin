@@ -13,6 +13,7 @@ use app\admin\enum\SystemManagerEnum;
 use app\admin\enum\SystemLoginLogEnum;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\repository\SystemLoginLogRepository;
+use think\facade\Request;
 
 class SystemLoginLogService extends Service
 {
@@ -81,15 +82,15 @@ class SystemLoginLogService extends Service
 
     /**
      * 登录成功
-     * @param $loginIp
      * @param $managerId
      * @param $message
      * @return int
      */
-    public function loginSuccess($loginIp, $managerId, $message)
+    public function loginSuccess($managerId, $message)
     {
         $data['status']    = SystemLoginLogEnum::STATUS_SUCCESS;
-        $data['loginIp']   = $loginIp;
+        $data['loginIp']   = Request::ip();
+        $data['userAgent'] = Request::header('User-Agent');
         $data['managerId'] = $managerId;
         $data['message']   = $message;
 
@@ -98,15 +99,15 @@ class SystemLoginLogService extends Service
 
     /**
      * 登录失败
-     * @param $loginIp
      * @param $managerId
      * @param $message
      * @return int
      */
-    public function loginError($loginIp, $managerId, $message)
+    public function loginError($managerId, $message)
     {
         $data['status']    = SystemLoginLogEnum::STATUS_ERROR;
-        $data['loginIp']   = $loginIp;
+        $data['loginIp']   = Request::ip();
+        $data['userAgent'] = Request::header('User-Agent');
         $data['managerId'] = $managerId;
         $data['message']   = $message;
 

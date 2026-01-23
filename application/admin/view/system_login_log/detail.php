@@ -38,6 +38,10 @@
                     </div>
                 </div>
                 <div class="easy-info-grid easy-info-grid-100">
+                    <div class="easy-info-grid-left">用户代理：</div>
+                    <div class="easy-info-grid-right">{$log.userAgent}</div>
+                </div>
+                <div class="easy-info-grid easy-info-grid-100">
                     <div class="easy-info-grid-left">登录详情：</div>
                     <div class="easy-info-grid-right">{$log.message}</div>
                 </div>

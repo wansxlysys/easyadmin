@@ -281,7 +281,7 @@ class SystemManagerService extends Service
             /**
              * 登录失败日志
              */
-            $this->SystemLoginLogService->loginError($params['loginIp'], $manager['managerId'], $e->getMessage());
+            $this->SystemLoginLogService->loginError($manager['managerId'], $e->getMessage());
 
             throw new ServiceException($e->getMessage());
         }
@@ -299,7 +299,7 @@ class SystemManagerService extends Service
         /**
          * 登录成功日志
          */
-        $this->SystemLoginLogService->loginSuccess($params['loginIp'], $manager['managerId'], '登录成功');
+        $this->SystemLoginLogService->loginSuccess($manager['managerId'], '登录成功');
 
         return true;
     }

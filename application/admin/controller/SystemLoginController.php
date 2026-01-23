@@ -58,7 +58,6 @@ class SystemLoginController extends CommonController
         if ($request->isAjax()) {
 
             $params = [
-                'loginIp'  => $request->ip(),
                 'account'  => $request->post('account'),
                 'password' => $request->post('password'),
                 'captcha'  => $request->post('captcha'),

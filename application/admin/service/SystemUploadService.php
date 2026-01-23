@@ -4,14 +4,16 @@
 namespace app\admin\service;
 
 
-use app\admin\helper\SystemManagerHelper;
-use app\admin\helper\SystemUploadHelper;
-use app\admin\repository\SystemUploadRepository;
-use app\common\enum\YesnoEnum;
-use app\common\exception\ServiceException;
-use app\common\repository\Wrapper;
-use app\common\service\Service;
 use Exception;
+
+use app\common\enum\YesnoEnum;
+use app\common\service\Service;
+use app\common\repository\Wrapper;
+use app\common\exception\ServiceException;
+
+use app\admin\helper\SystemUploadHelper;
+use app\admin\helper\SystemManagerHelper;
+use app\admin\repository\SystemUploadRepository;
 
 class SystemUploadService extends Service
 {

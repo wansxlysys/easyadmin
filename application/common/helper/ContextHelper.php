@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\Common\helper;
+namespace app\common\helper;
 
 
 class ContextHelper

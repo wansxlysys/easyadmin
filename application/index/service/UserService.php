@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\Index\service;
+namespace app\index\service;
 
 
 class UserService

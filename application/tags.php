@@ -1,10 +1,10 @@
 <?php
 
 
-use app\Common\behavior\AppInitBehavior;
-use app\Common\behavior\AppBeginBehavior;
-use app\Common\behavior\ActionBeginBehavior;
-use app\Queue\behavior\QueueFailedBehavior;
+use app\common\behavior\AppInitBehavior;
+use app\common\behavior\AppBeginBehavior;
+use app\common\behavior\ActionBeginBehavior;
+use app\queue\behavior\QueueFailedBehavior;
 
 return [
     // 应用初始化

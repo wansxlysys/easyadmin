@@ -1,11 +1,11 @@
 <?php
 
 
-use app\Queue\command\QueueRetry;
-use app\Admin\command\UploadClean;
+use app\queue\command\QueueRetry;
+use app\admin\command\UploadClean;
 
-use app\Common\command\database\Backup;
-use app\Common\command\generator\Generator;
+use app\common\command\database\Backup;
+use app\common\command\generator\Generator;
 
 return [
     'database:backup' => Backup::class,

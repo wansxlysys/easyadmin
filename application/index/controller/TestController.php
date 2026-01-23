@@ -5,6 +5,7 @@ namespace app\index\controller;
 
 
 use app\admin\repository\SystemManagerRepository;
+use app\common\builder\RelationBuilder;
 use app\common\dependency\Dependency;
 use app\common\dependency\DependencyAspect;
 use app\common\helper\RedisHelper;
@@ -26,6 +27,48 @@ use think\exception\DbException;
 
 class TestController
 {
+
+    /**
+     * 数据关联
+     * @return void
+     * @throws Exception
+     */
+    public function relationAction()
+    {
+        $managerList = db()->name('system_manager')->select();
+
+        $queryFn = function ($mainKeys) {
+            return db()->name('system_login_log')->whereIn('managerId', $mainKeys)->select();
+        };
+
+        $withOneList = RelationBuilder::from($managerList, 'managerId')
+            ->query($queryFn)
+            ->withOne('loginLog')->get();
+
+        $withManyList = RelationBuilder::from($managerList, 'managerId')
+            ->query($queryFn)
+            ->withMany('loginLog')->get();
+
+        $withOneFnList = RelationBuilder::from($managerList, 'managerId')
+            ->query($queryFn)
+            ->withOne(function (&$main, $with) {
+                $main['message'] = $with['message'];
+            })->get();
+
+        $withManyFnList = RelationBuilder::from($managerList, 'managerId')
+            ->query($queryFn)
+            ->withMany(function (&$main, $withList) {
+                foreach ($withList as $with) {
+                    $main['loginLog'][] = $with['message'];
+                }
+            })->get();
+
+        dump($withOneList);
+        dump($withManyList);
+        dump($withOneFnList);
+        dump($withManyFnList);
+    }
+
     /**
      * 邮件
      * @return void

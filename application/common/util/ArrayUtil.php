@@ -61,4 +61,40 @@ class ArrayUtil
 
         return array_reduce($array, $resolve, true);
     }
+
+    /**
+     * 数组分组
+     * @param $key
+     * @param $array
+     * @return array
+     */
+    public static function groupBy($key, $array)
+    {
+        $result = [];
+
+        foreach ($array as $item) {
+            $result[$key][] = $item;
+        }
+
+        return $result;
+    }
+
+    /**
+     * 唯一数组分组
+     * @param $key
+     * @param $array
+     * @return array
+     */
+    public static function uniqueBy($key, $array)
+    {
+        $result = [];
+
+        foreach ($array as $item) {
+            if (!isset($result[$key])) {
+                $result[$key] = $item;
+            }
+        }
+
+        return $result;
+    }
 }

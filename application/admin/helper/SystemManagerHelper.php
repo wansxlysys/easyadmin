@@ -1,23 +1,23 @@
 <?php
 
 
-namespace app\admin\helper;
+namespace app\Admin\helper;
 
 
 use Exception;
 
 use think\facade\Session;
 
-use app\common\enum\YesnoEnum;
-use app\common\util\Md5Util;
-use app\common\util\StringUtil;
-use app\common\util\PermissionUtil;
-use app\common\helper\ContextHelper;
-use app\common\dependency\Dependency;
+use app\Common\enum\YesnoEnum;
+use app\Common\util\Md5Util;
+use app\Common\util\StringUtil;
+use app\Common\util\PermissionUtil;
+use app\Common\helper\ContextHelper;
+use app\Common\dependency\Dependency;
 
-use app\admin\enum\SystemManagerEnum;
-use app\admin\enum\SystemManagerRoleEnum;
-use app\admin\service\SystemManagerService;
+use app\Admin\enum\SystemManagerEnum;
+use app\Admin\enum\SystemManagerRoleEnum;
+use app\Admin\service\SystemManagerService;
 
 class SystemManagerHelper
 {

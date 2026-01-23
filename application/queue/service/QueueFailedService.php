@@ -1,16 +1,16 @@
 <?php
 
 
-namespace app\queue\service;
+namespace app\Queue\service;
 
 
 use Exception;
 
-use app\common\service\Service;
-use app\common\repository\Wrapper;
+use app\Common\service\Service;
+use app\Common\repository\Wrapper;
 
-use app\queue\format\QueueFailedFormat;
-use app\queue\repository\QueueFailedRepository;
+use app\Queue\format\QueueFailedFormat;
+use app\Queue\repository\QueueFailedRepository;
 
 class QueueFailedService extends Service
 {

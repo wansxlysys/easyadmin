@@ -11,6 +11,7 @@ use think\Response;
 
 use app\common\enum\YesnoEnum;
 use app\common\util\ArrayUtil;
+use app\common\helper\DebugHelper;
 use app\common\dependency\Dependency;
 
 use app\admin\enum\SystemOperLogEnum;
@@ -45,9 +46,11 @@ class SystemLogBehavior
             $log['menuId']     = $currentMenu['menuId'];
             $log['params']     = $this->filterParams($request->post());
             $log['status']     = SystemOperLogEnum::translateCode($data['code']);
+            $log['costTime']   = DebugHelper::duration();
             $log['managerId']  = SystemManagerHelper::getManagerId();
             $log['requestIp']  = $request->ip();
             $log['requestUrl'] = $request->url();
+            $log['userAgent']  = $request->header('User-Agent');
 
             Dependency::getProxy(SystemOperLogService::class)->createLog($log);
         }

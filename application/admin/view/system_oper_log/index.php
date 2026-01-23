@@ -67,6 +67,10 @@
     {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">操作成功</span>{{#  } }}
     {{#  if(d.status == 2){ }}<span class="layui-badge">操作失败</span>{{#  } }}
 </script>
+
+<script type="text/html" id="costTime">
+    {{d.costTime}}秒
+</script>
 {/block}
 
 {block name="js"}
@@ -87,6 +91,7 @@
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
                 {title: '管理员账号', field: 'account', width: 140},
                 {title: '管理员姓名', field: 'realName', width: 140},
+                {title: '消耗时间', field: 'costTime', width: 120, templet: "#costTime"},
                 {title: '操作菜单', field: 'menuName', width: 140},
                 {title: '操作详情', field: 'message'},
                 {title: '请求地址', field: 'requestUrl'},

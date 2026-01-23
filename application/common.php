@@ -3,8 +3,8 @@
 
 use think\facade\App;
 
-use app\common\taglib\TagParser;
-use app\common\dependency\Dependency;
+use app\Common\taglib\TagParser;
+use app\Common\dependency\Dependency;
 
 /**
  * 引入静态文件并加入版本号

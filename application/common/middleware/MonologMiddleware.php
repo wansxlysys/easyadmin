@@ -8,6 +8,7 @@ use Closure;
 
 use think\Request;
 
+use app\common\helper\DebugHelper;
 use app\common\helper\MonologHelper;
 
 class MonologMiddleware
@@ -20,6 +21,7 @@ class MonologMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        $log['Ip']              = $request->ip();
         $log['Host']            = $request->host();
         $log['Cookie']          = $request->cookie();
         $log['Request-URL']     = $request->url();
@@ -33,6 +35,7 @@ class MonologMiddleware
         $log['Accept-Language'] = $request->header('Accept-Language');
         $log['Referer']         = $request->header('Referer');
         $log['User-Agent']      = $request->header('User-Agent');
+        $log['Cost-Time']       = DebugHelper::duration();
 
         MonologHelper::debug('request log', $log);
 

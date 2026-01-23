@@ -54,6 +54,14 @@
                     <div class="easy-info-grid-left">操作时间：</div>
                     <div class="easy-info-grid-right">{$log.createTime}</div>
                 </div>
+                <div class="easy-info-grid easy-info-grid-25">
+                    <div class="easy-info-grid-left">消耗时间：</div>
+                    <div class="easy-info-grid-right">{$log.costTime}秒</div>
+                </div>
+                <div class="easy-info-grid easy-info-grid-100">
+                    <div class="easy-info-grid-left">用户代理：</div>
+                    <div class="easy-info-grid-right">{$log.userAgent}</div>
+                </div>
                 <div class="easy-info-grid easy-info-grid-100">
                     <div class="easy-info-grid-left">操作信息：</div>
                     <div class="easy-info-grid-right">{$log.message}</div>

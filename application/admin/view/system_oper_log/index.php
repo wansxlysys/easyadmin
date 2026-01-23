@@ -91,11 +91,11 @@
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
                 {title: '管理员账号', field: 'account', width: 140},
                 {title: '管理员姓名', field: 'realName', width: 140},
-                {title: '请求耗时', field: 'costTime', width: 120, templet: "#costTime"},
                 {title: '操作菜单', field: 'menuName', width: 140},
                 {title: '操作详情', field: 'message'},
                 {title: '请求地址', field: 'requestUrl'},
                 {title: '请求IP', field: 'requestIp', width: 140},
+                {title: '请求耗时', field: 'costTime', width: 120, templet: "#costTime"},
                 {title: '请求状态', field: 'status', width: 100, templet: "#status"},
                 {title: '操作时间', field: 'createTime', width: 160},
                 {title: '操作', toolbar: '#bar', width: 100}

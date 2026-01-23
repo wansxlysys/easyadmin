@@ -9,7 +9,7 @@ use app\common\builder\RelationBuilder;
 use app\common\dependency\Dependency;
 use app\common\dependency\DependencyAspect;
 use app\common\helper\RedisHelper;
-use app\common\extend\lock\RedisLock;
+use app\common\extend\RedisLock\RedisLock;
 use app\common\util\ExcelUtil;
 use app\index\aspect\LockAspect;
 use app\index\aspect\RoleAspect;

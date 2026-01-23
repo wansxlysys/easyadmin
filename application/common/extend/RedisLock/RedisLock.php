@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\extend\lock;
+namespace app\common\extend\RedisLock;
 
 
 use app\common\helper\RedisHelper;

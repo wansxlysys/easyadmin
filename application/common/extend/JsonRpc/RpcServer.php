@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\common\extend\rpc;
+namespace app\common\extend\JsonRpc;
 
 
 use Exception;

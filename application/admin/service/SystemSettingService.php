@@ -4,13 +4,12 @@
 namespace app\admin\service;
 
 
-use app\common\exception\ServiceException;
 use Exception;
 
 use app\common\service\Service;
 use app\common\repository\Wrapper;
+use app\common\exception\ServiceException;
 
-use app\admin\enum\SystemSettingEnum;
 use app\admin\repository\SystemSettingRepository;
 
 class SystemSettingService extends Service

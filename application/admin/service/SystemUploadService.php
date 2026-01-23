@@ -30,12 +30,6 @@ class SystemUploadService extends Service
     protected SystemDictDataService $SystemDictDataService;
 
     /**
-     * 系统设置服务类
-     * @var SystemSettingService
-     */
-    protected SystemSettingService $SystemSettingService;
-
-    /**
      * 获取列表
      * @throws Exception
      */

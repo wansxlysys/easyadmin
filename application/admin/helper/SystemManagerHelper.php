@@ -80,7 +80,7 @@ class SystemManagerHelper
     public static function getManager()
     {
         return ContextHelper::get(SystemManagerEnum::LOGIN_MANAGER, function () {
-            return Dependency::getProxy(SystemManagerService::class)->getLoginManager();
+            return Dependency::getClass(SystemManagerService::class)->getLoginManager();
         });
     }
 

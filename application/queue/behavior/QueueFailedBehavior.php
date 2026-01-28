@@ -26,6 +26,6 @@ class QueueFailedBehavior
         $failed['payload']  = $rawBody['data'];
         $failed['uniqid']   = $rawBody['data']['uniqid'];
 
-        Dependency::getProxy(QueueFailedService::class)->createFailed($failed);
+        Dependency::getClass(QueueFailedService::class)->createFailed($failed);
     }
 }

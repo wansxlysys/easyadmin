@@ -39,7 +39,7 @@ class QueueRetry extends Command
     {
         $queue = $input->getOption('queue');
 
-        $QueueFiledService = Dependency::getProxy(QueueFailedService::class);
+        $QueueFiledService = Dependency::getClass(QueueFailedService::class);
 
         $failedList = $QueueFiledService->getListFailed($queue);
 

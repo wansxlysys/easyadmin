@@ -7,17 +7,11 @@ namespace app\index\controller;
 use app\admin\repository\SystemManagerRepository;
 use app\common\builder\RelationBuilder;
 use app\common\dependency\Dependency;
-use app\common\dependency\DependencyAspect;
 use app\common\helper\RedisHelper;
 use app\common\extend\RedisLock\RedisLock;
 use app\common\util\ExcelUtil;
-use app\index\aspect\LockAspect;
-use app\index\aspect\RoleAspect;
-use app\index\aspect\TestAspect;
-use app\index\aspect\UserAspect;
 use app\index\repository\UserRepository;
 use app\index\service\DataService;
-use app\index\service\LockService;
 use app\index\service\TestService;
 use app\index\service\UserService;
 use app\queue\producer\MailProducer;
@@ -127,42 +121,14 @@ class TestController
     }
 
     /**
-     * aop锁测试
-     * @return void
-     */
-    public function aspectAction()
-    {
-        DependencyAspect::register(LockService::class, '*', LockAspect::class);
-
-        $LockService = Dependency::getProxy(LockService::class);
-
-        $LockService->execute();
-    }
-
-    /**
-     * 动态代理测试
-     * @return void
-     */
-    public function proxyAction()
-    {
-        DependencyAspect::register(UserService::class, 'getName', UserAspect::class);
-        DependencyAspect::register(UserService::class, 'getName', RoleAspect::class);
-        DependencyAspect::register(UserService::class, 'getName', TestAspect::class);
-
-        $UserService = Dependency::getProxy(UserService::class);
-
-        dump($UserService->getName("张三"));
-    }
-
-    /**
      * 注入依赖测试
      * @throws Exception
      */
     public function diAction()
     {
-        dump(Dependency::getProxy(UserService::class)->sayName());
-        dump(Dependency::getProxy(TestService::class)->sayName());
-        dump(Dependency::getProxy(DataService::class)->sayName());
+        dump(Dependency::getClass(UserService::class)->sayName());
+        dump(Dependency::getClass(TestService::class)->sayName());
+        dump(Dependency::getClass(DataService::class)->sayName());
     }
 
     /**

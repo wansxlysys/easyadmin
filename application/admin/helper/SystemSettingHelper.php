@@ -22,7 +22,7 @@ class SystemSettingHelper
     public static function getSystemSetting()
     {
         return ContextHelper::get(SystemSettingEnum::SYSTEM_SETTING, function () {
-            return Dependency::getProxy(SystemDictDataService::class)->getSystemGlobalSetting();
+            return Dependency::getClass(SystemDictDataService::class)->getSystemGlobalSetting();
         });
     }
 }

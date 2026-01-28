@@ -21,7 +21,7 @@ class MailHelper
      */
     public static function sendMail(array $params)
     {
-        $mailConfig = Dependency::getProxy(SystemDictDataService::class)
+        $mailConfig = Dependency::getClass(SystemDictDataService::class)
             ->getKeyValueMapSystemDictData('system.mail.config');
 
         $PHPMailer = new PHPMailer(true);

@@ -10,12 +10,6 @@ use ReflectionException;
 class Dependency
 {
     /**
-     * 代理对象
-     * @var array
-     */
-    private static $proxys = [];
-
-    /**
      * 实例对象
      * @var array
      */
@@ -56,31 +50,6 @@ class Dependency
         static::injectProperties($instanceClass, $reflectionClass);
 
         return $instanceClass;
-    }
-
-    /**
-     * 获取动态代理对象
-     * @template T
-     * @param class-string<T> $className
-     * @return T
-     */
-    public static function getProxy($className)
-    {
-        if (isset(static::$proxys[$className])) {
-            return static::$proxys[$className];
-        }
-
-        /**
-         * 创建动态代理类
-         */
-        $proxyClass = new DependencyProxy(static::getClass($className), DependencyAspect::getAspect($className));
-
-        /**
-         * 放入容器
-         */
-        static::$proxys[$className] = $proxyClass;
-
-        return $proxyClass;
     }
 
     /**

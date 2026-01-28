@@ -39,7 +39,7 @@ function service($name, $module = '')
         $module = request()->module();
     }
 
-    return Dependency::getProxy(App::parseClass($module, 'service', $name));
+    return Dependency::getClass(App::parseClass($module, 'service', $name));
 }
 
 /**

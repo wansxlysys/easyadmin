@@ -52,7 +52,7 @@ class SystemLogBehavior
             $log['requestUrl'] = $request->url();
             $log['userAgent']  = $request->header('User-Agent');
 
-            Dependency::getProxy(SystemOperLogService::class)->createLog($log);
+            Dependency::getClass(SystemOperLogService::class)->createLog($log);
         }
     }
 

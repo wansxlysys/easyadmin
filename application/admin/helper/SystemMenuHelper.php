@@ -22,7 +22,7 @@ class SystemMenuHelper
     public static function getMenu()
     {
         return ContextHelper::get(SystemMenuEnum::CURRENT_MENU, function () {
-            return Dependency::getProxy(SystemMenuService::class)->getCurrentMenu();
+            return Dependency::getClass(SystemMenuService::class)->getCurrentMenu();
         });
     }
 }

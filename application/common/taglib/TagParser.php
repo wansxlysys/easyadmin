@@ -27,7 +27,7 @@ class TagParser
      */
     public function __construct($name, $layer = 'common')
     {
-        $this->Parser = Dependency::getProxy(sprintf('\app\%s\taglib\parser\%s', $layer, $name));
+        $this->Parser = Dependency::getClass(sprintf('\app\%s\taglib\parser\%s', $layer, $name));
     }
 
     /**

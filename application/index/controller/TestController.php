@@ -35,25 +35,25 @@ class TestController
             return db()->name('system_login_log')->whereIn('managerId', $mainKeys)->select();
         };
 
-        $withOneList = RelationBuilder::from($managerList, 'managerId')
+        $withOneList = RelationBuilder::of($managerList, 'managerId')
             ->query($queryFn)
             ->withOne('loginLog')->get();
 
-        $withManyList = RelationBuilder::from($managerList, 'managerId')
+        $withManyList = RelationBuilder::of($managerList, 'managerId')
             ->query($queryFn)
             ->withMany('loginLog')->get();
 
-        $withOneFnList = RelationBuilder::from($managerList, 'managerId')
+        $withOneFnList = RelationBuilder::of($managerList, 'managerId')
             ->query($queryFn)
-            ->withOne(function (&$main, $with) {
-                $main['message'] = $with['message'];
+            ->withOne(function (&$mainData, $withData) {
+                $mainData['message'] = $withData['message'];
             })->get();
 
-        $withManyFnList = RelationBuilder::from($managerList, 'managerId')
+        $withManyFnList = RelationBuilder::of($managerList, 'managerId')
             ->query($queryFn)
-            ->withMany(function (&$main, $withList) {
+            ->withMany(function (&$mainData, $withList) {
                 foreach ($withList as $with) {
-                    $main['loginLog'][] = $with['message'];
+                    $mainData['loginLog'][] = $with['message'];
                 }
             })->get();
 

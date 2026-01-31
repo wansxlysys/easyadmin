@@ -1,6 +1,7 @@
 {extend name="common@layout/layout" /}
 
 {block name="content"}
+{include file="common@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
 
     <!--    <div class="layui-card">-->

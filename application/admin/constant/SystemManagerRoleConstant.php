@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\admin\enum;
+namespace app\admin\constant;
 
 
-class SystemManagerRoleEnum
+class SystemManagerRoleConstant
 {
     /**
      * 超管角色名

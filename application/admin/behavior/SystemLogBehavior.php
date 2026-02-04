@@ -14,10 +14,10 @@ use app\common\helper\DebugHelper;
 use app\common\dependency\Dependency;
 use app\common\constant\YesnoConstant;
 
-use app\admin\enum\SystemOperLogEnum;
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemManagerHelper;
 use app\admin\service\SystemOperLogService;
+use app\admin\constant\SystemOperLogConstant;
 
 class SystemLogBehavior
 {
@@ -45,7 +45,7 @@ class SystemLogBehavior
             $log['message']    = $data['msg'];
             $log['menuId']     = $currentMenu['menuId'];
             $log['params']     = $this->filterParams($request->post());
-            $log['status']     = SystemOperLogEnum::translateCode($data['code']);
+            $log['status']     = SystemOperLogConstant::translateCode($data['code']);
             $log['costTime']   = DebugHelper::duration();
             $log['managerId']  = SystemManagerHelper::getManagerId();
             $log['requestIp']  = $request->ip();

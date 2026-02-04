@@ -6,7 +6,7 @@ namespace app\admin\helper;
 
 use think\facade\Env;
 
-use app\admin\enum\SystemUploadEnum;
+use app\admin\constant\SystemUploadConstant;
 
 use app\common\exception\ServiceException;
 
@@ -30,7 +30,7 @@ class SystemUploadHelper
      */
     public static function getSavePath($fileType, $fileName)
     {
-        return SystemUploadEnum::UPLOAD_DIR . '/' . $fileType . '/' . date('Ymd') . '/' . static::makeFileName($fileName);
+        return SystemUploadConstant::UPLOAD_DIR . '/' . $fileType . '/' . date('Ymd') . '/' . static::makeFileName($fileName);
     }
 
     /**

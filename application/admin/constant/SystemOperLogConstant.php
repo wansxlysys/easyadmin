@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\admin\enum;
+namespace app\admin\constant;
 
 
-class SystemOperLogEnum
+class SystemOperLogConstant
 {
     /**
      * 响应状态

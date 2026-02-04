@@ -15,9 +15,9 @@ use app\common\helper\ContextHelper;
 use app\common\dependency\Dependency;
 use app\common\constant\YesnoConstant;
 
-use app\admin\enum\SystemManagerEnum;
-use app\admin\enum\SystemManagerRoleEnum;
 use app\admin\service\SystemManagerService;
+use app\admin\constant\SystemManagerConstant;
+use app\admin\constant\SystemManagerRoleConstant;
 
 class SystemManagerHelper
 {
@@ -31,8 +31,8 @@ class SystemManagerHelper
     {
         $verifyCode = Md5Util::encrypt($account . $password);
 
-        Session::set(SystemManagerEnum::LOGIN_MANAGER_ID, $managerId);
-        Session::set(SystemManagerEnum::LOGIN_VERIFY_CODE, $verifyCode);
+        Session::set(SystemManagerConstant::LOGIN_MANAGER_ID, $managerId);
+        Session::set(SystemManagerConstant::LOGIN_VERIFY_CODE, $verifyCode);
     }
 
     /**
@@ -40,7 +40,7 @@ class SystemManagerHelper
      */
     public static function logout()
     {
-        Session::delete(SystemManagerEnum::LOGIN_MANAGER_ID);
+        Session::delete(SystemManagerConstant::LOGIN_MANAGER_ID);
     }
 
     /**
@@ -51,7 +51,7 @@ class SystemManagerHelper
      */
     public static function verifyPassword($account, $password)
     {
-        return Session::get(SystemManagerEnum::LOGIN_VERIFY_CODE) == Md5Util::encrypt($account . $password);
+        return Session::get(SystemManagerConstant::LOGIN_VERIFY_CODE) == Md5Util::encrypt($account . $password);
     }
 
     /**
@@ -60,7 +60,7 @@ class SystemManagerHelper
      */
     public static function getManagerId()
     {
-        return Session::get(SystemManagerEnum::LOGIN_MANAGER_ID);
+        return Session::get(SystemManagerConstant::LOGIN_MANAGER_ID);
     }
 
     /**
@@ -69,7 +69,7 @@ class SystemManagerHelper
      */
     public static function isLogin()
     {
-        return Session::has(SystemManagerEnum::LOGIN_MANAGER_ID);
+        return Session::has(SystemManagerConstant::LOGIN_MANAGER_ID);
     }
 
     /**
@@ -79,7 +79,7 @@ class SystemManagerHelper
      */
     public static function getManager()
     {
-        return ContextHelper::get(SystemManagerEnum::LOGIN_MANAGER, function () {
+        return ContextHelper::get(SystemManagerConstant::LOGIN_MANAGER, function () {
             return Dependency::getClass(SystemManagerService::class)->getLoginManager();
         });
     }
@@ -131,7 +131,7 @@ class SystemManagerHelper
      */
     public static function isSuper()
     {
-        return static::getRoleIdentify() == SystemManagerRoleEnum::SUPER_NAME;
+        return static::getRoleIdentify() == SystemManagerRoleConstant::SUPER_NAME;
     }
 
     /**
@@ -141,7 +141,7 @@ class SystemManagerHelper
      */
     public static function isNotSuper()
     {
-        return static::getRoleIdentify() != SystemManagerRoleEnum::SUPER_NAME;
+        return static::getRoleIdentify() != SystemManagerRoleConstant::SUPER_NAME;
     }
 
     /**
@@ -151,7 +151,7 @@ class SystemManagerHelper
      */
     public static function isEnabled()
     {
-        return static::getManager()['status'] == SystemManagerEnum::STATUS_ENABLED;
+        return static::getManager()['status'] == SystemManagerConstant::STATUS_ENABLED;
     }
 
     /**

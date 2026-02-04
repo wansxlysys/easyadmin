@@ -6,14 +6,15 @@ namespace app\admin\service;
 
 use Exception;
 
+use think\facade\Request;
+
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 
-use app\admin\enum\SystemManagerEnum;
-use app\admin\enum\SystemLoginLogEnum;
 use app\admin\helper\SystemManagerHelper;
+use app\admin\constant\SystemManagerConstant;
+use app\admin\constant\SystemLoginLogConstant;
 use app\admin\repository\SystemLoginLogRepository;
-use think\facade\Request;
 
 class SystemLoginLogService extends Service
 {
@@ -46,7 +47,7 @@ class SystemLoginLogService extends Service
         }
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('manager.managerId', '<>', SystemManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.managerId', '<>', SystemManagerConstant::SUPER_ID);
         }
 
         $Wrapper->setPage($params['page']);
@@ -88,7 +89,7 @@ class SystemLoginLogService extends Service
      */
     public function loginSuccess($managerId, $message)
     {
-        $data['status']    = SystemLoginLogEnum::STATUS_SUCCESS;
+        $data['status']    = SystemLoginLogConstant::STATUS_SUCCESS;
         $data['loginIp']   = Request::ip();
         $data['userAgent'] = Request::header('User-Agent');
         $data['managerId'] = $managerId;
@@ -105,7 +106,7 @@ class SystemLoginLogService extends Service
      */
     public function loginError($managerId, $message)
     {
-        $data['status']    = SystemLoginLogEnum::STATUS_ERROR;
+        $data['status']    = SystemLoginLogConstant::STATUS_ERROR;
         $data['loginIp']   = Request::ip();
         $data['userAgent'] = Request::header('User-Agent');
         $data['managerId'] = $managerId;

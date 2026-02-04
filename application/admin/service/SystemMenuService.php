@@ -11,9 +11,9 @@ use app\common\util\RequestUtil;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
 
-use app\admin\enum\SystemMenuEnum;
 use app\admin\format\SystemMenuFormat;
 use app\admin\helper\SystemManagerHelper;
+use app\admin\constant\SystemMenuConstant;
 use app\admin\repository\SystemMenuRepository;
 
 class SystemMenuService extends Service
@@ -59,7 +59,7 @@ class SystemMenuService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->setOrder(['sort' => 'asc']);
-        $Wrapper->addWhere('type', 'in', [SystemMenuEnum::TYPE_MENU, SystemMenuEnum::TYPE_LINK]);
+        $Wrapper->addWhere('type', 'in', [SystemMenuConstant::TYPE_MENU, SystemMenuConstant::TYPE_LINK]);
         $Wrapper->addWhere('menuId', 'in', SystemManagerHelper::getPermissionMenuIds());
 
         $TreeArrayUtil = new TreeUtil();

@@ -11,8 +11,8 @@ use app\common\repository\Wrapper;
 use app\common\constant\YesnoConstant;
 use app\common\exception\ServiceException;
 
-use app\admin\enum\SystemManagerRoleEnum;
 use app\admin\helper\SystemManagerHelper;
+use app\admin\constant\SystemManagerRoleConstant;
 use app\admin\repository\SystemManagerRoleRepository;
 
 class SystemManagerRoleService extends Service
@@ -106,7 +106,7 @@ class SystemManagerRoleService extends Service
          */
         $role = $this->SystemManagerRoleRepository->getById($params['roleId']);
 
-        if ($role['identify'] == SystemManagerRoleEnum::SUPER_NAME) {
+        if ($role['identify'] == SystemManagerRoleConstant::SUPER_NAME) {
             throw new ServiceException('删除失败，禁止删除超管角色');
         }
 

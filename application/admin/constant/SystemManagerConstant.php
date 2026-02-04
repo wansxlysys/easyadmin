@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\admin\enum;
+namespace app\admin\constant;
 
 
-class SystemManagerEnum
+class SystemManagerConstant
 {
     /**
      * 超级管理员ID

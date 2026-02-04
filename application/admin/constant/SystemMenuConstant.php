@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\admin\enum;
+namespace app\admin\constant;
 
 
-class SystemMenuEnum
+class SystemMenuConstant
 {
     /**
      * 菜单类型

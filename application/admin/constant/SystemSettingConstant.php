@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\admin\enum;
+namespace app\admin\constant;
 
 
-class SystemSettingEnum
+class SystemSettingConstant
 {
     /**
      * 缓存标识

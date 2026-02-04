@@ -14,8 +14,8 @@ use app\common\repository\Wrapper;
 use app\common\constant\YesnoConstant;
 use app\common\exception\ServiceException;
 
-use app\admin\enum\SystemManagerEnum;
 use app\admin\helper\SystemManagerHelper;
+use app\admin\constant\SystemManagerConstant;
 use app\admin\repository\SystemManagerRepository;
 
 class SystemManagerService extends Service
@@ -65,7 +65,7 @@ class SystemManagerService extends Service
         }
 
         if (SystemManagerHelper::isNotSuper()) {
-            $Wrapper->addWhere('manager.managerId', '<>', SystemManagerEnum::SUPER_ID);
+            $Wrapper->addWhere('manager.managerId', '<>', SystemManagerConstant::SUPER_ID);
         }
 
         $Wrapper->addWhere('manager.isDelete', '=', YesnoConstant::N);
@@ -208,7 +208,7 @@ class SystemManagerService extends Service
      */
     public function deleteManager(array $params)
     {
-        if ($params['managerId'] == SystemManagerEnum::SUPER_ID) {
+        if ($params['managerId'] == SystemManagerConstant::SUPER_ID) {
             throw new ServiceException('删除失败，超级管理员禁止删除');
         }
 
@@ -237,14 +237,14 @@ class SystemManagerService extends Service
             /**
              * 检测管理员是否被禁用
              */
-            if ($manager['status'] == SystemManagerEnum::STATUS_DISABLED) {
+            if ($manager['status'] == SystemManagerConstant::STATUS_DISABLED) {
                 throw new ServiceException('登录失败，管理员已被禁用');
             }
 
             /**
              * 检测管理员已被锁定
              */
-            if ($manager['status'] == SystemManagerEnum::STATUS_LOCKED) {
+            if ($manager['status'] == SystemManagerConstant::STATUS_LOCKED) {
                 throw new ServiceException('登录失败，管理员已被锁定');
             }
 
@@ -258,12 +258,12 @@ class SystemManagerService extends Service
                  */
                 $loginError = $manager['loginError'] + 1;
 
-                if ($loginError >= SystemManagerEnum::LOCK_LOGIN_ERROR_NUMBER) {
+                if ($loginError >= SystemManagerConstant::LOCK_LOGIN_ERROR_NUMBER) {
 
                     /**
                      * 更新管理员为锁定状态
                      */
-                    $this->ManagerRepository->updateById($manager['managerId'], ['status' => SystemManagerEnum::STATUS_LOCKED, 'loginError' => 0]);
+                    $this->ManagerRepository->updateById($manager['managerId'], ['status' => SystemManagerConstant::STATUS_LOCKED, 'loginError' => 0]);
 
                 } else {
 

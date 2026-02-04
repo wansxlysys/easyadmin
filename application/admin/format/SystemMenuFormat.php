@@ -6,7 +6,7 @@ namespace app\admin\format;
 
 use think\facade\Url;
 
-use app\admin\enum\SystemMenuEnum;
+use app\admin\constant\SystemMenuConstant;
 
 class SystemMenuFormat
 {
@@ -17,7 +17,7 @@ class SystemMenuFormat
      */
     public static function buildData(&$data)
     {
-        if ($data['type'] == SystemMenuEnum::TYPE_LINK) {
+        if ($data['type'] == SystemMenuConstant::TYPE_LINK) {
             $data['link'] = '';
         }
 
@@ -31,7 +31,7 @@ class SystemMenuFormat
      */
     public static function formatUrl(&$data)
     {
-        if ($data['type'] == SystemMenuEnum::TYPE_LINK) {
+        if ($data['type'] == SystemMenuConstant::TYPE_LINK) {
             $data['url'] = $data['link'];
         } else {
             $data['url'] = Url::build($data['url']);

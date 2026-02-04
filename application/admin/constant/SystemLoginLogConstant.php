@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\admin\enum;
+namespace app\admin\constant;
 
 
-class SystemLoginLogEnum
+class SystemLoginLogConstant
 {
     /**
      * 登录状态

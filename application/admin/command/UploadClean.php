@@ -17,7 +17,7 @@ use think\console\Command;
 use think\console\Input;
 use think\console\Output;
 
-use app\admin\enum\SystemUploadEnum;
+use app\admin\constant\SystemUploadConstant;
 
 class UploadClean extends Command
 {
@@ -41,7 +41,7 @@ class UploadClean extends Command
         $uploadPath = Env::get('root_path') . 'public';
 
         $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($uploadPath . SystemUploadEnum::UPLOAD_DIR, FilesystemIterator::SKIP_DOTS),
+            new RecursiveDirectoryIterator($uploadPath . SystemUploadConstant::UPLOAD_DIR, FilesystemIterator::SKIP_DOTS),
             RecursiveIteratorIterator::SELF_FIRST
         );
 

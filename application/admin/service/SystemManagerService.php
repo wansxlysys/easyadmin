@@ -9,9 +9,9 @@ use Exception;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\DateTimeUtil;
-use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
+use app\common\constant\YesnoConstant;
 use app\common\exception\ServiceException;
 
 use app\admin\enum\SystemManagerEnum;
@@ -68,7 +68,7 @@ class SystemManagerService extends Service
             $Wrapper->addWhere('manager.managerId', '<>', SystemManagerEnum::SUPER_ID);
         }
 
-        $Wrapper->addWhere('manager.isDelete', '=', YesnoEnum::N);
+        $Wrapper->addWhere('manager.isDelete', '=', YesnoConstant::N);
 
         $field = [
             'manager.managerId', 'manager.avatar', 'manager.account', 'manager.realName', 'manager.status',
@@ -137,7 +137,7 @@ class SystemManagerService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('roleId', '=', $roleId);
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
+        $Wrapper->addWhere('isDelete', '=', YesnoConstant::N);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }
@@ -153,7 +153,7 @@ class SystemManagerService extends Service
         $Wrapper = new Wrapper();
 
         $Wrapper->addWhere('account', '=', $account);
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
+        $Wrapper->addWhere('isDelete', '=', YesnoConstant::N);
 
         return $this->ManagerRepository->getOne($Wrapper);
     }

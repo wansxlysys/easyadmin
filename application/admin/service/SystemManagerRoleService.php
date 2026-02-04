@@ -6,9 +6,9 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
+use app\common\constant\YesnoConstant;
 use app\common\exception\ServiceException;
 
 use app\admin\enum\SystemManagerRoleEnum;
@@ -47,7 +47,7 @@ class SystemManagerRoleService extends Service
             $Wrapper->addWhere('identify', 'LIKE', "{$params['identify']}");
         }
 
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
+        $Wrapper->addWhere('isDelete', '=', YesnoConstant::N);
 
         $Wrapper->setPage($params['page']);
         $Wrapper->setLimit($params['limit']);
@@ -72,7 +72,7 @@ class SystemManagerRoleService extends Service
             $Wrapper->addWhere('level', '>=', SystemManagerHelper::getRoleLevel());
         }
 
-        $Wrapper->addWhere('isDelete', '=', YesnoEnum::N);
+        $Wrapper->addWhere('isDelete', '=', YesnoConstant::N);
         $Wrapper->addOrder('level');
 
         return $this->SystemManagerRoleRepository->getAll($Wrapper);

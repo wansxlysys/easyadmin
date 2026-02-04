@@ -8,8 +8,8 @@ use think\Db;
 use think\Paginator;
 use think\Exception;
 
-use app\common\enum\YesnoEnum;
 use app\common\util\DateTimeUtil;
+use app\common\constant\YesnoConstant;
 
 abstract class Dao
 {
@@ -191,12 +191,12 @@ abstract class Dao
      */
     public function removeRecord(Wrapper $Wrapper)
     {
-        $data['isDelete']   = YesnoEnum::Y;
+        $data['isDelete']   = YesnoConstant::Y;
         $data['deleteTime'] = DateTimeUtil::dateTime();
 
         return Db::name($this->getName())
             ->where($Wrapper->getWhere())
-            ->where('isDelete', YesnoEnum::N)
+            ->where('isDelete', YesnoConstant::N)
             ->update($data);
     }
 }

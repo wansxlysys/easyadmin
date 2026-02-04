@@ -6,9 +6,9 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
+use app\common\constant\YesnoConstant;
 
 use app\admin\repository\SystemDictDataRepository;
 
@@ -99,8 +99,8 @@ class SystemDictDataService extends Service
     {
         $Wrapper = new Wrapper();
 
-        $Wrapper->addWhere('dict.status', '=', YesnoEnum::Y);
-        $Wrapper->addWhere('type.status', '=', YesnoEnum::Y);
+        $Wrapper->addWhere('dict.status', '=', YesnoConstant::Y);
+        $Wrapper->addWhere('type.status', '=', YesnoConstant::Y);
         $Wrapper->addWhere('type.identify', '=', $identify);
         $Wrapper->addOrder('type.sort');
 
@@ -119,8 +119,8 @@ class SystemDictDataService extends Service
     {
         $Wrapper = new Wrapper();
 
-        $Wrapper->addWhere('dict.status', '=', YesnoEnum::Y);
-        $Wrapper->addWhere('type.status', '=', YesnoEnum::Y);
+        $Wrapper->addWhere('dict.status', '=', YesnoConstant::Y);
+        $Wrapper->addWhere('type.status', '=', YesnoConstant::Y);
         $Wrapper->addWhere('type.identify', '=', $identify);
         $Wrapper->addOrder('type.sort');
 
@@ -143,8 +143,8 @@ class SystemDictDataService extends Service
 
         $Wrapper->addWhere('dict.label', '=', $label);
         $Wrapper->addWhere('type.identify', '=', $identify);
-        $Wrapper->addWhere('dict.status', '=', YesnoEnum::Y);
-        $Wrapper->addWhere('type.status', '=', YesnoEnum::Y);
+        $Wrapper->addWhere('dict.status', '=', YesnoConstant::Y);
+        $Wrapper->addWhere('type.status', '=', YesnoConstant::Y);
 
         $dictData = $this->SystemDictDataRepository->getWithDictType($Wrapper);
 

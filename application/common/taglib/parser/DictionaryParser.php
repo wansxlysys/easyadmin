@@ -8,7 +8,7 @@ use Exception;
 
 use think\Db;
 
-use app\common\enum\YesnoEnum;
+use app\common\constant\YesnoConstant;
 
 class DictionaryParser
 {
@@ -20,8 +20,8 @@ class DictionaryParser
      */
     public function getList(array $params)
     {
-        $where[] = ['dict.status', '=', YesnoEnum::Y];
-        $where[] = ['type.status', '=', YesnoEnum::Y];
+        $where[] = ['dict.status', '=', YesnoConstant::Y];
+        $where[] = ['type.status', '=', YesnoConstant::Y];
         $where[] = ['type.identify', '=', $params['identify']];
 
         if (isset($params['value'])) {

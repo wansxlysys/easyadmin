@@ -1,10 +1,10 @@
 <?php
 
 
-namespace app\common\enum;
+namespace app\common\constant;
 
 
-class YesnoEnum
+class YesnoConstant
 {
     const Y = 'Y';
     const N = 'N';

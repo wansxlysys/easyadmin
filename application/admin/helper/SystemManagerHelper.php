@@ -8,12 +8,12 @@ use Exception;
 
 use think\facade\Session;
 
-use app\common\enum\YesnoEnum;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\PermissionUtil;
 use app\common\helper\ContextHelper;
 use app\common\dependency\Dependency;
+use app\common\constant\YesnoConstant;
 
 use app\admin\enum\SystemManagerEnum;
 use app\admin\enum\SystemManagerRoleEnum;
@@ -161,7 +161,7 @@ class SystemManagerHelper
      */
     public static function isDelete()
     {
-        return static::getManager()['isDelete'] == YesnoEnum::Y;
+        return static::getManager()['isDelete'] == YesnoConstant::Y;
     }
 
     /**

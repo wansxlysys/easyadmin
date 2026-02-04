@@ -6,9 +6,9 @@ namespace app\admin\service;
 
 use Exception;
 
-use app\common\enum\YesnoEnum;
 use app\common\service\Service;
 use app\common\repository\Wrapper;
+use app\common\constant\YesnoConstant;
 use app\common\exception\ServiceException;
 
 use app\admin\helper\SystemUploadHelper;
@@ -45,7 +45,7 @@ class SystemUploadService extends Service
             $Wrapper->addWhere('name', 'like', "%{$params['name']}%");
         }
 
-        $Wrapper->addWhere('status', '=', YesnoEnum::Y);
+        $Wrapper->addWhere('status', '=', YesnoConstant::Y);
         $Wrapper->addWhere('managerId', '=', SystemManagerHelper::getManagerId());
 
         $Wrapper->setPage($params['page']);
@@ -129,11 +129,11 @@ class SystemUploadService extends Service
 
                 $fileExist = true;
 
-                if ($fileInfo['status'] == YesnoEnum::N) {
+                if ($fileInfo['status'] == YesnoConstant::N) {
                     $result['chunkIndex'] = $fileInfo['index'];
                 }
 
-                if ($fileInfo['status'] == YesnoEnum::Y) {
+                if ($fileInfo['status'] == YesnoConstant::Y) {
                     $result['isFinish'] = true;
                 }
 
@@ -194,7 +194,7 @@ class SystemUploadService extends Service
          */
         if ($params['index'] + 1 == $params['total']) {
 
-            $fileData['status'] = YesnoEnum::Y;
+            $fileData['status'] = YesnoConstant::Y;
 
             /**
              * 计算文件哈希值

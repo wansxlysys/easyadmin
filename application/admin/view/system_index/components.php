@@ -131,14 +131,14 @@
             {/permission:menu}
 
             <br>
-            {permission:code identify="AdminSystemManagerCreate,AdminSystemManagerUpdate" condition="and"}
+            {permission:code identify="system.manager.create,system.manager.update" condition="and"}
             <h1>菜单编码已授权</h1>
             {else/}
             <h1>菜单编码未授权</h1>
             {/permission:code}
             <br>
 
-            {permission:code identify="AdminSystemManagerCreate,1515151" condition="or"}
+            {permission:code identify="system.manager.create,system.test.menu" condition="or"}
             <h1>菜单编码已授权</h1>
             {else/}
             <h1>菜单编码未授权</h1>

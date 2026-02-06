@@ -2,7 +2,6 @@
 
 
 use app\common\behavior\AppInitBehavior;
-use app\common\behavior\AppBeginBehavior;
 use app\common\behavior\ActionBeginBehavior;
 use app\queue\behavior\QueueFailedBehavior;
 
@@ -12,9 +11,7 @@ return [
         AppInitBehavior::class
     ],
     // 应用开始
-    'app_begin'    => [
-        AppBeginBehavior::class
-    ],
+    'app_begin'    => [],
     // 模块初始化
     'module_init'  => [],
     // 操作开始执行

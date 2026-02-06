@@ -31,7 +31,7 @@ class Dictionary extends TagLib
             ->add('value', {$this->parseVar($tag, 'value', false)})
             ->getList(); 
     {/php}
-    {foreach \$dictList as \$key => \$dict}}
+    {foreach \$dictList as \$key => \$dict}
         <span class="layui-badge {\$dict.style}">{\$dict.label}</span>
     {/foreach}
 TEMPLATE;

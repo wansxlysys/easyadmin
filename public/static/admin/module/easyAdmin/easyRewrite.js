@@ -30,8 +30,7 @@ layui.define(['table'], function (exports) {
                             toolbar = jQuery(colConfig.toolbar).html();
                         }
 
-                        const length = jQuery(toolbar).filter('button').length ||
-                            jQuery(toolbar).find('button').length;
+                        const length = jQuery(toolbar).filter('button').length || jQuery(toolbar).find('button').length;
 
                         if (toolbar && length) {
                             colConfig.width = length * 75 + 20;

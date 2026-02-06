@@ -12,7 +12,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
             }
         };
 
-        options = $.extend(true, defaultOptions, options);
+        options = jQuery.extend(true, defaultOptions, options);
 
         const wrapper = jQuery(options.map.getContainer()).closest('.map-container');
         const suggestion = new TMap.service.Suggestion(options.setting);
@@ -94,7 +94,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
             radius: 500
         }
 
-        options = $.extend(true, defaultOptions, options);
+        options = jQuery.extend(true, defaultOptions, options);
 
         const autoCircle = new TMap.MultiCircle({
             map: options.map,
@@ -125,7 +125,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
             map: null
         }
 
-        options = $.extend(true, defaultOptions, options);
+        options = jQuery.extend(true, defaultOptions, options);
 
         const markerStyle = new TMap.MarkerStyle({
             width: 26,
@@ -184,7 +184,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
             map: null
         }
 
-        options = $.extend(true, defaultOptions, options);
+        options = jQuery.extend(true, defaultOptions, options);
 
         const getAddress = layui.debounce((location) => {
             geocoder.getAddress({

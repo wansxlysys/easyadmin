@@ -25,8 +25,8 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
 
         let imageList = [];
 
-        options = $.extend(true, {}, defaultOptions, options);
-        setting = $.extend(true, {}, defautlSetting, setting);
+        options = jQuery.extend(true, {}, defaultOptions, options);
+        setting = jQuery.extend(true, {}, defautlSetting, setting);
 
         const initValue = jQuery(options.elem).val();
         const container = jQuery(`<div class="easy-upload-image"></div>`);
@@ -148,8 +148,8 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
 
         let fileList = [];
 
-        options = $.extend(true, {}, defaultOptions, options);
-        setting = $.extend(true, {}, defautlSetting, setting);
+        options = jQuery.extend(true, {}, defaultOptions, options);
+        setting = jQuery.extend(true, {}, defautlSetting, setting);
 
         const initValue = jQuery(options.elem).val();
         const container = jQuery(`<div class="easy-upload-file"></div>`);

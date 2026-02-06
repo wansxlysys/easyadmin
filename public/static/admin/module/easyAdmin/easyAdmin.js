@@ -38,7 +38,7 @@ layui.define(function (exports) {
             scrollbar: false
         };
 
-        return layer.open($.extend(true, defaults, options));
+        return layer.open(jQuery.extend(true, defaults, options));
     }
 
     /**
@@ -72,7 +72,7 @@ layui.define(function (exports) {
             type: 'GET'
         }
 
-        easyAdmin.ajaxHttp($.extend(true, defaults, config));
+        easyAdmin.ajaxHttp(jQuery.extend(true, defaults, config));
     }
 
     /**
@@ -87,7 +87,7 @@ layui.define(function (exports) {
             contentType: 'application/json',
         }
 
-        const setting = $.extend(true, {}, defaults, config);
+        const setting = jQuery.extend(true, {}, defaults, config);
 
         if (setting.contentType == defaults.contentType) {
             setting.data = JSON.stringify(setting.data);
@@ -111,7 +111,7 @@ layui.define(function (exports) {
         };
 
         let loading = null;
-        let options = $.extend(true, defaults, config);
+        let options = jQuery.extend(true, defaults, config);
 
         if (options.loading) {
             loading = easyAdmin.showLoading();
@@ -141,7 +141,7 @@ layui.define(function (exports) {
             top.layer.close(loading);
         }
 
-        $.ajax(options);
+        jQuery.ajax(options);
     }
 
     exports("easyAdmin", easyAdmin);

@@ -33,7 +33,7 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
                     }
                 };
 
-                easyBuilder.treeSelect($.extend(true, defaultOptions, options), $.extend(true, defaultSetting, setting), result.data);
+                easyBuilder.treeSelect(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
@@ -64,7 +64,7 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
                     },
                 };
 
-                easyBuilder.treeStruct($.extend(true, defaultOptions, options), $.extend(true, defaultSetting, setting), result.data);
+                easyBuilder.treeStruct(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
@@ -93,7 +93,7 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
                     }
                 };
 
-                easyBuilder.treeSelect($.extend(true, defaultOptions, options), $.extend(true, defaultSetting, setting), result.data);
+                easyBuilder.treeSelect(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
             }
         });
     }

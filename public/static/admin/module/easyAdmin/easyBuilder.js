@@ -38,8 +38,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             }
         };
 
-        options = $.extend(true, defaultOptions, options);
-        setting = $.extend(true, defaultSetting, setting);
+        options = jQuery.extend(true, defaultOptions, options);
+        setting = jQuery.extend(true, defaultSetting, setting);
 
         if (options.checked) {
             options.checked = options.checked.split(',').map(item => +item);
@@ -52,7 +52,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             item.checked = options.checked.includes(item[setting.data.simpleData.idKey]);
         });
 
-        let tree = $.fn.zTree.init(jQuery(options.elem), setting, data);
+        let tree = jQuery.fn.zTree.init(jQuery(options.elem), setting, data);
 
         if (options.ready) {
             options.ready(tree);
@@ -107,8 +107,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             }
         };
 
-        options = $.extend(true, defaultOptions, options);
-        setting = $.extend(true, defaultSetting, setting);
+        options = jQuery.extend(true, defaultOptions, options);
+        setting = jQuery.extend(true, defaultSetting, setting);
 
         if (options.append) {
             setting.data.unshift(options.append);
@@ -150,7 +150,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             className: 'easy-menu'
         };
 
-        options = $.extend(true, defaults, options);
+        options = jQuery.extend(true, defaults, options);
 
         options.data.forEach(item => {
             item.templet = `<i class="fa fa-fw ${item.icon}"></i><span>{{d.title}}</span>`;
@@ -187,8 +187,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             }
         };
 
-        options = $.extend(true, defaultOptions, options);
-        setting = $.extend(true, defaultSetting, setting);
+        options = jQuery.extend(true, defaultOptions, options);
+        setting = jQuery.extend(true, defaultSetting, setting);
 
         if (!options.checked) {
             options.checked = [];
@@ -290,8 +290,8 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             });
         });
 
-        options = $.extend(true, defaultOptions, options);
-        setting = $.extend(true, defaultSetting, setting);
+        options = jQuery.extend(true, defaultOptions, options);
+        setting = jQuery.extend(true, defaultSetting, setting);
 
         UE.getEditor(options.elem, setting);
     }

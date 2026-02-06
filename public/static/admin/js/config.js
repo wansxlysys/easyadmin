@@ -10,8 +10,8 @@
      * @param elem
      */
     function fixTableRowHeight(elem) {
-        $(elem).next().find('.layui-table-main tr').each((index, item) => {
-            $(".layui-table-fixed .layui-table-body tbody tr").eq(index).height($(item).height());
+        jQuery(elem).next().find('.layui-table-main tr').each((index, item) => {
+            jQuery(".layui-table-fixed .layui-table-body tbody tr").eq(index).height(jQuery(item).height());
         });
     }
 

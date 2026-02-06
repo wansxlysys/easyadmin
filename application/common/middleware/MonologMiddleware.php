@@ -8,7 +8,7 @@ use Closure;
 
 use think\Request;
 
-use app\common\helper\DebugHelper;
+use app\common\util\RequestUtil;
 use app\common\helper\MonologHelper;
 
 class MonologMiddleware
@@ -35,7 +35,7 @@ class MonologMiddleware
         $log['Accept-Language'] = $request->header('Accept-Language');
         $log['Referer']         = $request->header('Referer');
         $log['User-Agent']      = $request->header('User-Agent');
-        $log['Cost-Time']       = DebugHelper::duration();
+        $log['Cost-Time']       = RequestUtil::costTime();
 
         MonologHelper::debug('request log', $log);
 

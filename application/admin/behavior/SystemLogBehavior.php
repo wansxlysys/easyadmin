@@ -10,7 +10,7 @@ use think\Request;
 use think\Response;
 
 use app\common\util\ArrayUtil;
-use app\common\helper\DebugHelper;
+use app\common\util\RequestUtil;
 use app\common\dependency\Dependency;
 use app\common\constant\YesnoConstant;
 
@@ -46,7 +46,7 @@ class SystemLogBehavior
             $log['menuId']     = $currentMenu['menuId'];
             $log['params']     = $this->filterParams($request->post());
             $log['status']     = SystemOperLogConstant::translateCode($data['code']);
-            $log['costTime']   = DebugHelper::duration();
+            $log['costTime']   = RequestUtil::costTime();
             $log['managerId']  = SystemManagerHelper::getManagerId();
             $log['requestIp']  = $request->ip();
             $log['requestUrl'] = $request->url();

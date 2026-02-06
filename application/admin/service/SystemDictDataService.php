@@ -162,7 +162,7 @@ class SystemDictDataService extends Service
      */
     public function getSystemGlobalSetting()
     {
-        $dictData = $this->getKeyValueMapSystemDictData('system.global.setting');
+        $dictData = $this->getKeyValueMapSystemDictData('system.info.config');
 
         if (isset($dictData['uploadLimit'])) {
             $dictData['uploadLimit'] = intval($dictData['uploadLimit']);

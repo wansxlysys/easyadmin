@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="<?php echo static_url('/admin/css/exception.css'); ?>"/>
 </head>
 <body>
-<div class="content">
+<div class="container">
     <img src="<?php echo static_url('/admin/img/404.svg'); ?>" alt="">
-    <div class="content-r">
+    <div class="content">
         <h1>404</h1>
         <p>抱歉，您访问的页面不存</p>
         <a href="/" class="layui-btn">返回首页</a>

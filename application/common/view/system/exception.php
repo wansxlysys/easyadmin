@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="<?php echo static_url('/admin/css/exception.css'); ?>"/>
 </head>
 <body>
-<div class="content">
+<div class="container">
     <img src="<?php echo static_url('/admin/img/500.svg'); ?>" alt="">
-    <div class="content-r">
+    <div class="content">
         <h1>500</h1>
         <p>抱歉，服务器出错了</p>
         <a class="layui-btn" href="/">返回首页</a>

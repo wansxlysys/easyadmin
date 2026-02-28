@@ -5,7 +5,7 @@
 }
 
 .easy-message {
-    padding-top: 150px;
+    padding-top: 180px;
     background: #fff;
     text-align: center;
     height: 100vh;
@@ -19,7 +19,7 @@
 }
 
 .easy-message .image {
-    width: 180px;
+    width: 150px;
     margin-bottom: 30px;
 }
 

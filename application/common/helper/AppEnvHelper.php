@@ -23,7 +23,7 @@ class AppEnvHelper
      */
     public static function isTest()
     {
-        return self::getEnv() === 'test';
+        return static::getEnv() === 'test';
     }
 
     /**
@@ -32,7 +32,7 @@ class AppEnvHelper
      */
     public static function isProd()
     {
-        return self::getEnv() === 'prod';
+        return static::getEnv() === 'prod';
     }
 
     /**

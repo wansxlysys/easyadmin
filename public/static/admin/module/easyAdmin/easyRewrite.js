@@ -30,13 +30,19 @@ layui.define(['table'], function (exports) {
                             toolbar = jQuery(colConfig.toolbar).html();
                         }
 
-                        const length = jQuery(toolbar).filter('button').length || jQuery(toolbar).find('button').length;
+                        const buttonList = jQuery(toolbar).filter('button') || jQuery(toolbar).find('button');
 
-                        if (toolbar && length) {
-                            colConfig.width = length * 75 + 20;
+                        let customWidth = 0
+
+                        buttonList.each((key, button) => {
+                            customWidth += parseInt(jQuery(button).attr('dynamic-width')) || 75;
+                        });
+
+                        if (toolbar && buttonList.length) {
+                            colConfig.width = customWidth;
                         }
 
-                        return !(!toolbar || !length);
+                        return !(!toolbar || !buttonList.length);
                     }
 
                     return true;

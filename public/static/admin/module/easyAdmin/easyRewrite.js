@@ -30,19 +30,23 @@ layui.define(['table'], function (exports) {
                             toolbar = jQuery(colConfig.toolbar).html();
                         }
 
-                        const buttonList = jQuery(toolbar).filter('button') || jQuery(toolbar).find('button');
-
-                        let customWidth = 0
-
-                        buttonList.each((key, button) => {
-                            customWidth += parseInt(jQuery(button).attr('dynamic-width')) || 75;
-                        });
-
-                        if (toolbar && buttonList.length) {
-                            colConfig.width = customWidth;
+                        if (!toolbar) {
+                            return false;
                         }
 
-                        return !(!toolbar || !buttonList.length);
+                        const buttonList = jQuery(toolbar).filter('button') || jQuery(toolbar).find('button');
+
+                        if (!buttonList.length) {
+                            return false;
+                        }
+
+                        colConfig.width = 15;
+
+                        buttonList.each((key, button) => {
+                            colConfig.width += parseInt(jQuery(button).attr('dynamic-width')) + 15 || 75;
+                        });
+
+                        return true;
                     }
 
                     return true;

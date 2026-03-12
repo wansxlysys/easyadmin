@@ -9,7 +9,7 @@ use app\common\exception\ServiceException;
 class TagLib extends \think\template\TagLib
 {
     /**
-     * 解析复制变量
+     * 解析赋值变量
      * @param $tag
      * @param $name
      * @return string
@@ -24,7 +24,7 @@ class TagLib extends \think\template\TagLib
     }
 
     /**
-     * 将非变量和函数的字符串加上引号
+     * 获取变量值
      * @param $tag
      * @param $name
      * @return string

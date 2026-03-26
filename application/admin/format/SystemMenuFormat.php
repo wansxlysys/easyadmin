@@ -17,7 +17,7 @@ class SystemMenuFormat
      */
     public static function buildData(&$data)
     {
-        if ($data['type'] == SystemMenuConstant::TYPE_LINK) {
+        if ($data['type'] != SystemMenuConstant::TYPE_LINK) {
             $data['link'] = '';
         }
 

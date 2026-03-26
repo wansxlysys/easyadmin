@@ -16,7 +16,7 @@ class Generator extends Command
 {
     /**
      * 配置命令
-     * php think system:generator --module admin --class User --tableId userId --comment 用户管理
+     * php think generator:code --module admin --class User --tableId userId --comment 用户管理
      * @return void
      */
     protected function configure()

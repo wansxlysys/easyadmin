@@ -12,6 +12,29 @@
     <!--    </div>-->
 
     <div class="layui-card">
+        <div class="layui-card-header">主题色</div>
+        <div class="layui-card-body">
+            <button class="layui-btn">primary 主要</button>
+            <button class="layui-btn layui-btn-success">success 成功</button>
+            <button class="layui-btn layui-btn-danger">danger 危险</button>
+            <button class="layui-btn layui-btn-warning">warning 警告</button>
+            <button class="layui-btn layui-btn-info">info 信息</button>
+            <button class="layui-btn layui-btn-purple">purple 紫色</button>
+            <button class="layui-btn layui-btn-pink">pink 粉色</button>
+            <button class="layui-btn layui-btn-indigo">indigo 靛蓝</button>
+            <br><br>
+            <button class="layui-btn layui-btn-primary">primary 主要</button>
+            <button class="layui-btn layui-btn-primary layui-border-success">success 成功</button>
+            <button class="layui-btn layui-btn-primary layui-border-danger">danger 危险</button>
+            <button class="layui-btn layui-btn-primary layui-border-warning">warning 警告</button>
+            <button class="layui-btn layui-btn-primary layui-border-info">info 信息</button>
+            <button class="layui-btn layui-btn-primary layui-border-purple">purple 紫色</button>
+            <button class="layui-btn layui-btn-primary layui-border-pink">pink 粉色</button>
+            <button class="layui-btn layui-btn-primary layui-border-indigo">indigo 靛蓝</button>
+        </div>
+    </div>
+
+    <div class="layui-card">
         <div class="layui-card-header">文件上传</div>
         <div class="layui-card-body">
             <div class="layui-form-item">

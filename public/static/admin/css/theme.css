@@ -31,17 +31,21 @@
     background-color: var(--global-indigo-color);
 }
 
+.layui-btn-primary {
+    background-color: transparent !important;
+}
+
 /*背景*/
 .layui-bg-primary {
     background-color: var(--global-primary-color) !important;
 }
 
 .layui-bg-info {
-    background-color: var(--global-info-color);
+    background-color: var(--global-info-color) !important;
 }
 
 .layui-bg-danger {
-    background-color: var(--global-danger-color);
+    background-color: var(--global-danger-color) !important;
 }
 
 .layui-bg-success {
@@ -53,7 +57,7 @@
 }
 
 .layui-bg-purple {
-    background-color: var(--global-purple-color);
+    background-color: var(--global-purple-color) !important;
 }
 
 .layui-bg-pink {
@@ -140,6 +144,11 @@
 
 .layui-laypage .layui-laypage-curr .layui-laypage-em {
     background-color: var(--global-primary-color);
+}
+
+/*表格*/
+.layui-table-view .layui-table td[data-edit]:hover:after {
+    border-color: var(--global-primary-color);
 }
 
 /*级联选择器*/

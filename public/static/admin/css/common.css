@@ -1,21 +1,21 @@
 :root {
-    --global-primary-color: #2d8cf0;
-    --global-success-color: #19be6b;
-    --global-danger-color: #ed4014;
-    --global-warning-color: #ff9900;
-    --global-info-color: #00bcd4;
-    --global-purple-color: #9b59b6;
-    --global-pink-color: #ff6b81;
-    --global-indigo-color: #3f51b5;
+    --global-primary-color: #1890ff;
+    --global-success-color: #52c41a;
+    --global-danger-color: #ff4d4f;
+    --global-warning-color: #faad14;
+    --global-info-color: #13c2c2;
+    --global-purple-color: #722ed1;
+    --global-pink-color: #eb2f96;
+    --global-indigo-color: #2f54eb;
 
-    --global-primary-color-rgb: 45, 140, 240;
-    --global-success-color-rgb: 25, 190, 107;
-    --global-danger-color-rgb: 237, 64, 20;
-    --global-warning-color-rgb: 255, 153, 0;
-    --global-info-color-rgb: 0, 188, 212;
-    --global-purple-color-rgb: 155, 89, 182;
-    --global-pink-color-rgb: 255, 107, 129;
-    --global-indigo-color-rgb: 63, 81, 181;
+    --global-primary-color-rgb: 24, 144, 255;
+    --global-success-color-rgb: 82, 196, 26;
+    --global-danger-color-rgb: 255, 77, 79;
+    --global-warning-color-rgb: 250, 173, 20;
+    --global-info-color-rgb: 19, 194, 194;
+    --global-purple-color-rgb: 114, 46, 209;
+    --global-pink-color-rgb: 235, 47, 150;
+    --global-indigo-color-rgb: 47, 84, 235;
 }
 
 /*样式重置*/

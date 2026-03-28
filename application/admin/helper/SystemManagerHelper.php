@@ -45,13 +45,12 @@ class SystemManagerHelper
 
     /**
      * 验证
-     * @param $account
-     * @param $password
      * @return bool
+     * @throws Exception
      */
-    public static function verifyPassword($account, $password)
+    public static function verifyPassword()
     {
-        return Session::get(SystemManagerConstant::LOGIN_VERIFY_CODE) == Md5Util::encrypt($account . $password);
+        return Session::get(SystemManagerConstant::LOGIN_VERIFY_CODE) == Md5Util::encrypt(static::getManager()['account'] . static::getManager()['password']);
     }
 
     /**
@@ -149,9 +148,9 @@ class SystemManagerHelper
      * @return bool
      * @throws Exception
      */
-    public static function isEnabled()
+    public static function isDisabled()
     {
-        return static::getManager()['status'] == SystemManagerConstant::STATUS_ENABLED;
+        return static::getManager()['status'] != SystemManagerConstant::STATUS_ENABLED;
     }
 
     /**
@@ -159,7 +158,7 @@ class SystemManagerHelper
      * @return bool
      * @throws Exception
      */
-    public static function isDelete()
+    public static function isDeleted()
     {
         return static::getManager()['isDelete'] == YesnoConstant::Y;
     }

@@ -8,10 +8,12 @@ use Closure;
 use Exception;
 
 use think\Request;
+use think\facade\Hook;
 use traits\controller\Jump;
 
 use app\admin\helper\SystemMenuHelper;
 use app\admin\helper\SystemManagerHelper;
+use app\admin\behavior\SystemLogBehavior;
 
 class SystemMiddleware
 {
@@ -33,8 +35,9 @@ class SystemMiddleware
         $this->checkMenu();
         $this->checkAuth();
         $this->checkValid();
-        $this->checkDelete();
+        $this->checkDeleted();
         $this->checkDisabled();
+        $this->addAppEndHook();
 
         return $next($request);
     }
@@ -57,9 +60,7 @@ class SystemMiddleware
      */
     public function checkMenu()
     {
-        $currentMenu = SystemMenuHelper::getMenu();
-
-        if ($currentMenu) {
+        if (SystemMenuHelper::getMenu()) {
             return true;
         }
 
@@ -72,9 +73,7 @@ class SystemMiddleware
      */
     public function checkAuth()
     {
-        $currentMenu = SystemMenuHelper::getMenu();
-
-        if (SystemManagerHelper::checkAccessByMenuIds($currentMenu['menuId'])) {
+        if (SystemManagerHelper::checkAccessByMenuIds(SystemMenuHelper::getMenu()['menuId'])) {
             return true;
         }
 
@@ -88,9 +87,7 @@ class SystemMiddleware
      */
     public function checkValid()
     {
-        $manager = SystemManagerHelper::getManager();
-
-        if (SystemManagerHelper::verifyPassword($manager['account'], $manager['password'])) {
+        if (SystemManagerHelper::verifyPassword()) {
             return true;
         }
 
@@ -104,9 +101,9 @@ class SystemMiddleware
      * @return bool|void
      * @throws Exception
      */
-    public function checkDelete()
+    public function checkDeleted()
     {
-        if (!SystemManagerHelper::isDelete()) {
+        if (!SystemManagerHelper::isDeleted()) {
             return true;
         }
 
@@ -121,10 +118,23 @@ class SystemMiddleware
      */
     public function checkDisabled()
     {
-        if (SystemManagerHelper::isEnabled()) {
+        if (!SystemManagerHelper::isDisabled()) {
             return true;
         }
 
-        $this->error('账号被禁用');
+        SystemManagerHelper::logout();
+
+        $this->error('账号被禁用', 'admin/SystemLogin/login');
+    }
+
+    /**
+     * 添加请求结束钩子
+     * @return void
+     */
+    public function addAppEndHook()
+    {
+        if (request()->isAjax()) {
+            Hook::add('app_end', SystemLogBehavior::class);
+        }
     }
 }

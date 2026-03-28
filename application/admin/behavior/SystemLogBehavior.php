@@ -31,7 +31,10 @@ class SystemLogBehavior
     {
         $currentMenu = SystemMenuHelper::getMenu();
 
-        if (!$currentMenu || $currentMenu['record'] == YesnoConstant::N) {
+        /**
+         * 判断菜单是否需要记录日志
+         */
+        if ($currentMenu['record'] == YesnoConstant::N) {
             return;
         }
 

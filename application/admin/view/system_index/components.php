@@ -31,6 +31,15 @@
             <button class="layui-btn layui-btn-primary layui-border-purple">purple 紫色</button>
             <button class="layui-btn layui-btn-primary layui-border-pink">pink 粉色</button>
             <button class="layui-btn layui-btn-primary layui-border-indigo">indigo 靛蓝</button>
+            <br><br>
+            <span class="layui-badge">primary 主要</span>
+            <span class="layui-badge layui-bg-success">success 成功</span>
+            <span class="layui-badge layui-bg-danger">danger 危险</span>
+            <span class="layui-badge layui-bg-warning">warning 警告</span>
+            <span class="layui-badge layui-bg-info">info 信息</span>
+            <span class="layui-badge layui-bg-purple">purple 紫色</span>
+            <span class="layui-badge layui-bg-pink">pink 粉色</span>
+            <span class="layui-badge layui-bg-indigo">indigo 靛蓝</span>
         </div>
     </div>
 
@@ -40,7 +49,9 @@
             <div class="layui-form-item">
                 <label class="layui-form-label layui-required">文件选择</label>
                 <div class="layui-input-block">
-                    <button type="button" class="layui-btn upload">文件选择</button>
+                    <button type="button" class="layui-btn layui-btn-sm layui-bg-success upload">
+                        <i class="fa fa-fw fa-upload"></i>文件选择
+                    </button>
                 </div>
             </div>
             <div class="layui-form-item">

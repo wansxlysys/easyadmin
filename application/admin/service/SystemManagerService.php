@@ -80,9 +80,7 @@ class SystemManagerService extends Service
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('manager.managerId');
 
-        $page = $this->ManagerRepository->getPageWithRole($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->ManagerRepository->getPageWithRole($Wrapper);
     }
 
     /**

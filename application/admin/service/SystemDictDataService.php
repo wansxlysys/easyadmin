@@ -41,9 +41,7 @@ class SystemDictDataService extends Service
 
         $Wrapper->addOrder('sort');
 
-        $page = $this->SystemDictDataRepository->getPage($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemDictDataRepository->getPage($Wrapper);
     }
 
     /**
@@ -104,7 +102,7 @@ class SystemDictDataService extends Service
         $Wrapper->addWhere('type.identify', '=', $identify);
         $Wrapper->addOrder('type.sort');
 
-        $dictList = $this->SystemDictDataRepository->getListWithDictType($Wrapper);
+        $dictList = $this->SystemDictDataRepository->getAllWithDictType($Wrapper);
 
         return array_column($dictList, 'value', 'label');
     }
@@ -124,7 +122,7 @@ class SystemDictDataService extends Service
         $Wrapper->addWhere('type.identify', '=', $identify);
         $Wrapper->addOrder('type.sort');
 
-        $dictList = $this->SystemDictDataRepository->getListWithDictType($Wrapper);
+        $dictList = $this->SystemDictDataRepository->getAllWithDictType($Wrapper);
 
         return array_column($dictList, 'label', 'value');
     }

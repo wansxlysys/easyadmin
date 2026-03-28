@@ -53,9 +53,7 @@ class SystemUploadService extends Service
 
         $Wrapper->addOrder('updateTime', 'desc');
 
-        $page = $this->SystemUploadRepository->getPage($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemUploadRepository->getPage($Wrapper);
     }
 
     /**

@@ -4,11 +4,10 @@
 namespace app\admin\repository;
 
 
-use think\Db;
 use think\Exception;
-use think\Paginator;
 
 use app\common\repository\Wrapper;
+use app\common\builder\PageBuilder;
 use app\common\repository\Repository;
 
 class SystemOperLogRepository extends Repository
@@ -28,12 +27,12 @@ class SystemOperLogRepository extends Repository
     /**
      * 获取关联管理员列表
      * @param Wrapper $Wrapper
-     * @return Paginator
+     * @return array
      * @throws Exception
      */
     public function getPageWithInfo(Wrapper $Wrapper)
     {
-        return Db::name($this->getName())
+        $query = $this->getQuery()
             ->alias('log')
             ->join('system_manager manager', 'manager.managerId = log.managerId')
             ->join('system_menu menu', 'menu.menuId = log.menuId')
@@ -42,7 +41,8 @@ class SystemOperLogRepository extends Repository
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
-            ->order($Wrapper->getOrder())
-            ->paginate($Wrapper->getLimit());
+            ->order($Wrapper->getOrder());
+
+        return PageBuilder::build($query, $Wrapper->getPage(), $Wrapper->getLimit());
     }
 }

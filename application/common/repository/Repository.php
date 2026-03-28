@@ -6,10 +6,10 @@ namespace app\common\repository;
 
 use think\Db;
 use think\db\Query;
-use think\Paginator;
 use think\Exception;
 
 use app\common\util\DateTimeUtil;
+use app\common\builder\PageBuilder;
 use app\common\constant\YesnoConstant;
 
 abstract class Repository
@@ -43,20 +43,21 @@ abstract class Repository
     /**
      * 获取列表
      * @param Wrapper $Wrapper
-     * @return Paginator
+     * @return array
      * @throws Exception
      */
     public function getPage(Wrapper $Wrapper)
     {
-        return $this->getQuery()
+        $query = $this->getQuery()
             ->where($Wrapper->getWhere())
             ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
-            ->order($Wrapper->getOrder())
-            ->paginate($Wrapper->getLimit());
+            ->order($Wrapper->getOrder());
+
+        return PageBuilder::build($query, $Wrapper->getPage(), $Wrapper->getLimit());
     }
 
     /**

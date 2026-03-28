@@ -42,9 +42,7 @@ class SystemSettingService extends Service
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('sort');
 
-        $page = $this->SystemSettingRepository->getPage($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemSettingRepository->getPage($Wrapper);
     }
 
     /**

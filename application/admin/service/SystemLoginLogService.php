@@ -55,9 +55,7 @@ class SystemLoginLogService extends Service
         $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account']);
         $Wrapper->setOrder(['log.createTime' => 'desc']);
 
-        $page = $this->SystemLoginLogRepository->getPageWithManager($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemLoginLogRepository->getPageWithManager($Wrapper);
     }
 
     /**

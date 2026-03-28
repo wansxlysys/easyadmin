@@ -53,9 +53,7 @@ class SystemManagerRoleService extends Service
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('level');
 
-        $page = $this->SystemManagerRoleRepository->getPage($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemManagerRoleRepository->getPage($Wrapper);
     }
 
     /**

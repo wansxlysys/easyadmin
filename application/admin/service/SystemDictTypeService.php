@@ -39,9 +39,7 @@ class SystemDictTypeService extends Service
         $Wrapper->setLimit($params['limit']);
         $Wrapper->addOrder('sort');
 
-        $page = $this->SystemDictTypeRepository->getPage($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemDictTypeRepository->getPage($Wrapper);
     }
 
     /**

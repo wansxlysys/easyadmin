@@ -4,11 +4,10 @@
 namespace app\admin\repository;
 
 
-use think\Db;
 use think\Exception;
-use think\Paginator;
 
 use app\common\repository\Wrapper;
+use app\common\builder\PageBuilder;
 use app\common\repository\Repository;
 
 class SystemManagerRepository extends Repository
@@ -28,12 +27,12 @@ class SystemManagerRepository extends Repository
     /**
      * 获取列表
      * @param Wrapper $Wrapper
-     * @return Paginator
+     * @return array
      * @throws Exception
      */
     public function getPageWithRole(Wrapper $Wrapper)
     {
-        return Db::name($this->getName())
+        $query = $this->getQuery()
             ->alias('manager')
             ->join('system_manager_role role', 'role.roleId = manager.roleId')
             ->where($Wrapper->getWhere())
@@ -41,8 +40,9 @@ class SystemManagerRepository extends Repository
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
-            ->order($Wrapper->getOrder())
-            ->paginate($Wrapper->getLimit());
+            ->order($Wrapper->getOrder());
+
+        return PageBuilder::build($query, $Wrapper->getPage(), $Wrapper->getLimit());
     }
 
     /**
@@ -53,7 +53,7 @@ class SystemManagerRepository extends Repository
      */
     public function getWithRole(Wrapper $Wrapper)
     {
-        return Db::name($this->getName())
+        return $this->getQuery()
             ->alias('manager')
             ->join('system_manager_role role', 'role.roleId = manager.roleId')
             ->where($Wrapper->getWhere())

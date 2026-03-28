@@ -31,16 +31,14 @@ class SystemDictDataRepository extends Repository
      * @return array
      * @throws Exception
      */
-    public function getListWithDictType(Wrapper $Wrapper)
+    public function getAllWithDictType(Wrapper $Wrapper)
     {
-        return Db::name($this->getName())
+        return $this->getQuery()
             ->alias('dict')
             ->join('system_dict_type type', 'type.dictId = dict.dictId')
             ->where($Wrapper->getWhere())
             ->where($Wrapper->getAndOr())
             ->whereOr($Wrapper->getWhereOr())
-            ->page($Wrapper->getPage())
-            ->limit($Wrapper->getLimit())
             ->field($Wrapper->getField())
             ->group($Wrapper->getGroup())
             ->having($Wrapper->getHaving())
@@ -56,7 +54,7 @@ class SystemDictDataRepository extends Repository
      */
     public function getWithDictType(Wrapper $Wrapper)
     {
-        return Db::name($this->getName())
+        return $this->getQuery()
             ->alias('dict')
             ->join('system_dict_type type', 'type.dictId = dict.dictId')
             ->where($Wrapper->getWhere())

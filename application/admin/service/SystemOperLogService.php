@@ -52,9 +52,7 @@ class SystemOperLogService extends Service
         $Wrapper->setOrder(['log.logId' => 'desc']);
         $Wrapper->setField(['log.*', 'manager.avatar', 'manager.realName', 'manager.account', 'menu.name menuName']);
 
-        $page = $this->SystemOperLogRepository->getPageWithInfo($Wrapper);
-
-        return ['list' => $page->items(), 'total' => $page->total()];
+        return $this->SystemOperLogRepository->getPageWithInfo($Wrapper);
     }
 
     /**

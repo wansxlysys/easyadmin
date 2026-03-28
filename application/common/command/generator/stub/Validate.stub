@@ -13,8 +13,8 @@ class {{class}}Validate extends Validate
      * @var string[]
      */
     protected $rule = [
-        '{{tableId}}'    => 'require|number',
-        'name'  => 'require|max:32',
+        '{{tableId}}' => 'require|number',
+        'name' => 'require|max:32',
     ];
 
     /**
@@ -22,10 +22,10 @@ class {{class}}Validate extends Validate
      * @var string[]
      */
     protected $message = [
-        '{{tableId}}.require'    => 'ID不能为空',
-        '{{tableId}}.number'     => 'ID必须为正整数',
-        'name.require'  => '名称不能为空',
-        'name.max'      => '名称不能超过32个字符',
+        '{{tableId}}.require' => 'ID不能为空',
+        '{{tableId}}.number' => 'ID必须为正整数',
+        'name.require' => '名称不能为空',
+        'name.max' => '名称不能超过32个字符',
     ];
 
     /**

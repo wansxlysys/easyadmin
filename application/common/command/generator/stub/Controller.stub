@@ -49,7 +49,7 @@ class {{class}}Controller extends SystemController
                 'name'  => $request->get('name'),
             ];
 
-            $this->success('获取成功', '', $this->{{class}}Service->list{{class}}($params));
+            $this->success('获取成功', '', $this->{{class}}Service->getPage{{class}}($params));
         }
 
         return $this->fetch();

@@ -57,11 +57,11 @@ class SystemManagerService extends Service
         }
 
         if (!empty($params['realName'])) {
-            $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
+            $Wrapper->addWhere('manager.realName', 'LIKE', "%{$params['realName']}%");
         }
 
         if (!empty($params['account'])) {
-            $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
+            $Wrapper->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
         }
 
         if (SystemManagerHelper::isNotSuper()) {

@@ -1,4 +1,24 @@
-/*****样式重置**********/
+:root {
+    --global-primary-color: #2d8cf0;
+    --global-success-color: #19be6b;
+    --global-danger-color: #ed4014;
+    --global-warning-color: #ff9900;
+    --global-info-color: #00bcd4;
+    --global-purple-color: #9b59b6;
+    --global-pink-color: #ff6b81;
+    --global-indigo-color: #3f51b5;
+
+    --global-primary-color-rgb: 45, 140, 240;
+    --global-success-color-rgb: 25, 190, 107;
+    --global-danger-color-rgb: 237, 64, 20;
+    --global-warning-color-rgb: 255, 153, 0;
+    --global-info-color-rgb: 0, 188, 212;
+    --global-purple-color-rgb: 155, 89, 182;
+    --global-pink-color-rgb: 255, 107, 129;
+    --global-indigo-color-rgb: 63, 81, 181;
+}
+
+/*样式重置*/
 body {
     background-color: #f5f7f9;
 }
@@ -16,7 +36,7 @@ input[readonly] {
     object-fit: cover;
 }
 
-/**************************************表格*******************************/
+/*表格*/
 .layui-table-cell {
     height: auto;
 }
@@ -25,7 +45,7 @@ input[readonly] {
     color: #333;
 }
 
-/**************************************表单*******************************/
+/*表单*/
 label.layui-required:before {
     content: "*";
     color: red;
@@ -40,7 +60,7 @@ label.layui-required:before {
     margin-left: 150px;
 }
 
-/************************************选项卡*******************************/
+/*选项卡*/
 .layui-tab {
     margin-top: 0;
     background-color: #fff;
@@ -66,7 +86,7 @@ label.layui-required:before {
     margin-left: 0;
 }
 
-/*******************公共样式***********************/
+/*******公共样式***********/
 .easy-float-left {
     float: left;
 }
@@ -75,9 +95,9 @@ label.layui-required:before {
     float: right;
 }
 
-/******************左侧导航主题*********************/
+/*左侧导航主题*/
 .easy-layout .layui-bg-black {
-    background-color: #2c343f !important;
+    background-color: #191a23 !important;
 }
 
 .easy-layout .layui-nav-itemed > .layui-nav-child,
@@ -87,7 +107,7 @@ label.layui-required:before {
 
 .easy-layout .layui-side, .layui-nav,
 .easy-layout .layui-logo {
-    background-color: #2c343f;
+    background-color: #191a23;
 }
 
 .easy-layout .layui-nav-tree .layui-nav-item a {
@@ -107,7 +127,7 @@ label.layui-required:before {
     padding-left: 45px;
 }
 
-/*************************头部主题********************/
+/*头部主题*/
 .easy-layout .layui-header {
     background-color: #fff;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
@@ -117,22 +137,12 @@ label.layui-required:before {
     color: #333;
 }
 
-/************************布局底部***************/
-.easy-layout .layui-footer {
-    display: none; /*隐藏版权位置*/
-    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
-}
-
+/*布局底部*/
 .easy-layout.layui-layout-admin .layui-body {
     padding-bottom: 0;
 }
 
-.easy-layout.easy-layout-hide-side .layui-footer {
-    left: 0;
-}
-
-/************************隐藏菜单******************/
+/*隐藏菜单*/
 .easy-layout .layui-side,
 .easy-layout .layui-body,
 .easy-layout .layui-header .layui-logo,
@@ -151,15 +161,7 @@ label.layui-required:before {
     left: 0;
 }
 
-/*****************iframe******************/
-.easy-layout .easy-layout-iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/*********************加载等待*****************************/
+/*加载等待*/
 .easy-loading {
     color: #fff;
     padding: 5px 0;
@@ -169,7 +171,7 @@ label.layui-required:before {
     font-size: 28px;
 }
 
-/********************layui-form-item-button***************************/
+/*表单按钮*/
 .layui-form-item-button .layui-input-block {
     position: relative;
     padding-right: 95px;
@@ -181,7 +183,7 @@ label.layui-required:before {
     top: 0;
 }
 
-/***************************************面包屑导航********************************/
+/*面包屑导航*/
 .easy-breadcrumb {
     padding: 15px;
     background-color: #fff;
@@ -215,7 +217,14 @@ label.layui-required:before {
     background-color: #e7e7e7;
 }
 
-/*******************************弹出iframe框主题**************************/
+/*弹出iframe框主题*/
+.easy-layout .easy-layout-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 .easy-frame.layui-layer-border {
     border: none;
 }
@@ -232,7 +241,7 @@ label.layui-required:before {
     border: none;
 }
 
-/***********************xmSelect*******************/
+/*xmSelect*/
 xm-select > .xm-body {
     animation-name: layui-upbit !important;
 }
@@ -254,10 +263,10 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     -webkit-transition: none;
 }
 
-/********************弹出层*****************************/
+/*弹出层*/
 .easy-alert {
-    border: 1px solid #16b777;
-    background-color: #f0fffe;
+    border: 1px solid var(--global-primary-color);
+    background-color: rgba(var(--global-primary-color-rgb), 0.15);
     border-radius: 2px;
     position: relative;
     padding: 10px;
@@ -274,7 +283,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-alert .easy-alert-icon {
     width: 70px;
     float: left;
-    color: #16b777;
+    color: var(--global-primary-color);
 }
 
 .easy-alert .easy-alert-icon i {
@@ -290,13 +299,13 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-alert .easy-alert-content h3 {
-    color: #16b777;
+    color: var(--global-primary-color);
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .easy-alert .easy-alert-content p {
-    color: #16b777;
+    color: var(--global-primary-color);
 }
 
 .easy-alert .easy-alert-close {
@@ -328,43 +337,55 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     color: #666;
 }
 
-.easy-alert.easy-alert-normal {
-    border: 1px solid #1E9FFF;
-    background-color: #d6eeff;
+.easy-alert.easy-alert-primary {
+    border: 1px solid var(--global-primary-color);
+    background-color: rgba(var(--global-primary-color-rgb), 0.15);
 }
 
-.easy-alert.easy-alert-normal .easy-alert-icon,
-.easy-alert.easy-alert-normal .easy-alert-content h3,
-.easy-alert.easy-alert-normal .easy-alert-content p,
-.easy-alert.easy-alert-normal .easy-alert-close i {
-    color: #1E9FFF;
+.easy-alert.easy-alert-primary .easy-alert-icon,
+.easy-alert.easy-alert-primary .easy-alert-content h3,
+.easy-alert.easy-alert-primary .easy-alert-content p,
+.easy-alert.easy-alert-primary .easy-alert-close i {
+    color: var(--global-primary-color);
 }
 
-.easy-alert.easy-alert-warm {
-    border: 1px solid #FFB800;
-    background-color: #fff9e7;
+.easy-alert.easy-alert-success {
+    border: 1px solid var(--global-success-color);
+    background-color: rgba(var(--global-success-color-rgb), 0.15);
 }
 
-.easy-alert.easy-alert-warm .easy-alert-icon,
-.easy-alert.easy-alert-warm .easy-alert-content h3,
-.easy-alert.easy-alert-warm .easy-alert-content p,
-.easy-alert.easy-alert-warm .easy-alert-close i {
-    color: #FFB800;
+.easy-alert.easy-alert-success .easy-alert-icon,
+.easy-alert.easy-alert-success .easy-alert-content h3,
+.easy-alert.easy-alert-success .easy-alert-content p,
+.easy-alert.easy-alert-success .easy-alert-close i {
+    color: var(--global-success-color);
+}
+
+.easy-alert.easy-alert-warning {
+    border: 1px solid var(--global-warning-color);
+    background-color: rgba(var(--global-warning-color-rgb), 0.15);
+}
+
+.easy-alert.easy-alert-warning .easy-alert-icon,
+.easy-alert.easy-alert-warning .easy-alert-content h3,
+.easy-alert.easy-alert-warning .easy-alert-content p,
+.easy-alert.easy-alert-warning .easy-alert-close i {
+    color: var(--global-warning-color);
 }
 
 .easy-alert.easy-alert-danger {
-    border: 1px solid #FF5722;
-    background-color: #ffdacf;
+    border: 1px solid var(--global-danger-color);
+    background-color: rgba(var(--global-danger-color-rgb), 0.15);
 }
 
 .easy-alert.easy-alert-danger .easy-alert-icon,
 .easy-alert.easy-alert-danger .easy-alert-content h3,
 .easy-alert.easy-alert-danger .easy-alert-content p,
 .easy-alert.easy-alert-danger .easy-alert-close i {
-    color: #FF5722;
+    color: var(--global-danger-color);
 }
 
-/**************************************步骤条*******************************************/
+/***步骤条********/
 .easy-step {
     display: flex;
     justify-content: center;
@@ -387,7 +408,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-step .easy-step-over:before {
-    background-color: #16b777;
+    background-color: var(--global-primary-color);
 }
 
 .easy-step .easy-step-item:first-child:before {
@@ -402,11 +423,11 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .easy-step .easy-step-item .easy-step-item-number {
     width: 30px;
     height: 30px;
-    border: 1px solid #16b777;
+    border: 1px solid var(--global-primary-color);
     border-radius: 50%;
     overflow: hidden;
     font-size: 16px;
-    color: #16b777;
+    color: var(--global-primary-color);
     line-height: 30px;
     text-align: center;
     background-color: #fff;
@@ -416,7 +437,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-step .easy-step-over .easy-step-item-number {
-    background-color: #16b777;
+    background-color: var(--global-primary-color);
     color: #fff;
 }
 
@@ -428,7 +449,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-step .easy-step-over .easy-step-item-title {
-    color: #16b777;
+    color: var(--global-primary-color);
 }
 
 .easy-step .easy-step-item .easy-step-item-tips {
@@ -437,7 +458,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     color: #999;
 }
 
-/***********详情**************/
+/*详情*/
 .easy-info .easy-info-grid {
     display: flex;
     margin: 10px 0;
@@ -459,7 +480,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     padding-right: 15px;
 }
 
-/***********************************面板分割*************************************/
+/*面板分割*/
 .split {
     display: none;
 }
@@ -519,7 +540,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     border-right: 1px solid #ddd;
 }
 
-/*************************下拉菜单*********************************/
+/*下拉菜单*/
 .easy-menu .layui-menu {
     margin: 0;
 }
@@ -530,14 +551,14 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     border-bottom: 1px solid #eee;
 }
 
-/*************************联级选择器*********************************/
+/*联级选择器*/
 .el-input__inner {
     border-radius: 2px;
     height: 38px;
     line-height: 38px;
 }
 
-/****************图片预览**********************/
+/*图片预览*/
 .easy-preview {
     display: flex;
 }
@@ -551,7 +572,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     object-fit: cover;
 }
 
-/**************地图选择器************************/
+/*地图选择器*/
 .map {
     width: 100%;
     height: 550px;
@@ -569,7 +590,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 
 .map-search .map-search-container {
     display: flex;
-    border: 1px solid #16b777;
+    border: 1px solid var(--global-primary-color);
 }
 
 .map-search .map-search-input,
@@ -589,7 +610,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 .map-search .map-search-button {
     width: 60px;
     cursor: pointer;
-    background-color: #16b777;
+    background-color: var(--global-primary-color);
     color: #fff;
 }
 
@@ -633,7 +654,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     color: #999;
 }
 
-/********************附件上传*******************/
+/*附件上传*/
 .attach {
     padding: 20px !important;
 }
@@ -678,7 +699,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3AB449;
+    background-color: var(--global-primary-color);
     visibility: hidden;
     border-radius: 3px;
 }
@@ -688,7 +709,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .attach-upload.attach-checked {
-    border-color: #3AB449;
+    border-color: var(--global-primary-color);
 }
 
 .attach-name {
@@ -744,7 +765,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     text-align: center;
 }
 
-/****************图片上传*******************/
+/*图片上传*/
 .easy-upload-image,
 .easy-upload-image-list {
     display: flex;
@@ -805,8 +826,8 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
 }
 
 .easy-upload-image .easy-upload-image-btn button:hover {
-    border-color: #16b777;
-    color: #16b777;
+    border-color: var(--global-primary-color);
+    color: var(--global-primary-color);
 }
 
 .easy-upload-image .easy-upload-image-btn button[disabled]:hover {
@@ -815,7 +836,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     cursor: no-drop;
 }
 
-/****************文件上传******************/
+/*文件上传*/
 .easy-upload-file-btn {
     margin-top: 4px;
 }
@@ -870,7 +891,7 @@ xm-select > .xm-body .xm-body-tree .xm-tree-icon {
     margin: 0 10px;
 }
 
-/****************编辑器*******************/
+/*编辑器*/
 .edui-default .edui-for-uploadimage .edui-icon:before {
     content: "\edfc"
 }

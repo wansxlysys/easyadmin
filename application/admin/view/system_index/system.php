@@ -41,7 +41,6 @@
 
 {block name="js"}
 <script>
-
     layui.use(['easyModule'], function () {
 
     });

@@ -34,30 +34,30 @@
         <button class="layui-btn layui-btn-sm" lay-event="create">
             <i class="fa fa-fw fa-plus"></i>菜单添加
         </button>
-        <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="expand">
+        <button class="layui-btn layui-btn-sm layui-btn-warning" lay-event="expand">
             <i class="fa fa-fw fa-folder-open"></i>展开全部
         </button>
-        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="fold">
+        <button class="layui-btn layui-btn-sm layui-btn-success" lay-event="fold">
             <i class="fa fa-fw fa-folder"></i>收起全部
         </button>
     </div>
 </script>
 
 <script type="text/html" id="target">
-    {{#  if(d.target == 1){ }}<span class="layui-badge layui-bg-green">默认方式</span>{{#  } }}
-    {{#  if(d.target == 2){ }}<span class="layui-badge layui-bg-orange">当前窗口</span>{{#  } }}
-    {{#  if(d.target == 3){ }}<span class="layui-badge layui-bg-green">新的窗口</span>{{#  } }}
+    {{#  if(d.target == 1){ }}<span class="layui-badge layui-bg-success">默认方式</span>{{#  } }}
+    {{#  if(d.target == 2){ }}<span class="layui-badge layui-bg-warning">当前窗口</span>{{#  } }}
+    {{#  if(d.target == 3){ }}<span class="layui-badge layui-bg-primary">新的窗口</span>{{#  } }}
 </script>
 
 <script type="text/html" id="type">
-    {{#  if(d.type == 1){ }}<span class="layui-badge layui-bg-green">菜单</span>{{#  } }}
-    {{#  if(d.type == 2){ }}<span class="layui-badge layui-bg-orange">按钮</span>{{#  } }}
-    {{#  if(d.type == 3){ }}<span class="layui-badge">外链</span>{{#  } }}
+    {{#  if(d.type == 1){ }}<span class="layui-badge layui-bg-primary">菜单</span>{{#  } }}
+    {{#  if(d.type == 2){ }}<span class="layui-badge layui-bg-success">按钮</span>{{#  } }}
+    {{#  if(d.type == 3){ }}<span class="layui-badge layui-bg-warning">外链</span>{{#  } }}
 </script>
 
 <script type="text/html" id="record">
-    {{#  if(d.record == 'Y'){ }}<span class="layui-badge layui-bg-green">开启</span>{{#  } }}
-    {{#  if(d.record == 'N'){ }}<span class="layui-badge layui-bg-red">关闭</span>{{#  } }}
+    {{#  if(d.record == 'Y'){ }}<span class="layui-badge layui-bg-success">开启</span>{{#  } }}
+    {{#  if(d.record == 'N'){ }}<span class="layui-badge layui-bg-danger">关闭</span>{{#  } }}
 </script>
 
 <script type="text/html" id="bar">
@@ -72,7 +72,6 @@
 
 {block name="js"}
 <script>
-
     layui.use(['easyModule'], function () {
 
         const form = layui.form;

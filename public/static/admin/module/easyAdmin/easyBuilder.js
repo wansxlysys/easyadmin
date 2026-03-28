@@ -94,7 +94,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 }
             },
             theme: {
-                color: "#5FB878"
+                color: 'var(--global-primary-color)'
             },
             tree: {
                 show: true,

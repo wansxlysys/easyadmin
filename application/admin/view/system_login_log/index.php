@@ -58,14 +58,14 @@
 </script>
 
 <script type="text/html" id="bar">
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="detail">
+    <button class="layui-btn layui-btn-sm" lay-event="detail">
         <i class="fa fa-fw fa-search-plus"></i>详情
     </button>
 </script>
 
 <script type="text/html" id="status">
-    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">登录成功</span>{{#  } }}
-    {{#  if(d.status == 2){ }}<span class="layui-badge">登录失败</span>{{#  } }}
+    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-success">登录成功</span>{{#  } }}
+    {{#  if(d.status == 2){ }}<span class="layui-badge layui-bg-danger">登录失败</span>{{#  } }}
 </script>
 {/block}
 

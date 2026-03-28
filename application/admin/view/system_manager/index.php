@@ -67,9 +67,9 @@
 </script>
 
 <script type="text/html" id="status">
-    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
-    {{#  if(d.status == 2){ }}<span class="layui-badge">禁用</span>{{#  } }}
-    {{#  if(d.status == 3){ }}<span class="layui-badge layui-bg-orange">锁定</span>{{#  } }}
+    {{#  if(d.status == 1){ }}<span class="layui-badge layui-bg-success">启用</span>{{#  } }}
+    {{#  if(d.status == 2){ }}<span class="layui-badge layui-bg-danger">禁用</span>{{#  } }}
+    {{#  if(d.status == 3){ }}<span class="layui-badge layui-bg-warning">锁定</span>{{#  } }}
 </script>
 {/block}
 

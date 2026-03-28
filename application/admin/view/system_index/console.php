@@ -28,7 +28,7 @@
 
 {block name="content"}
 <div class="layui-fluid layui-content">
-    <div class="easy-alert easy-alert-normal">
+    <div class="easy-alert">
         <div class="easy-alert-icon">
             <i class="fa fa-fw fa-regular fa-face-grin-wide"></i>
         </div>
@@ -44,7 +44,7 @@
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    访问量<span class="layui-badge layui-badge-green easy-float-right">今日</span>
+                    访问量<span class="layui-badge layui-bg-danger easy-float-right">今日</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">25,848<span class="lay-small-font">次</span></p>
@@ -55,7 +55,7 @@
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    销售金额<span class="layui-badge layui-bg-blue easy-float-right">金额</span>
+                    销售金额<span class="layui-badge layui-bg-primary easy-float-right">金额</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">12,000<span class="lay-small-font">¥</span></p>
@@ -66,7 +66,7 @@
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    订单量<span class="layui-badge layui-bg-orange easy-float-right">本周</span>
+                    订单量<span class="layui-badge layui-bg-warning easy-float-right">本周</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">1,680<span class="lay-small-font">单</span></p>
@@ -77,7 +77,7 @@
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    新增用户<span class="layui-badge layui-bg-green easy-float-right">新增</span>
+                    新增用户<span class="layui-badge layui-bg-success easy-float-right">新增</span>
                 </div>
                 <div class="layui-card-body">
                     <p class="lay-big-font">128<span class="lay-small-font">人</span></p>

@@ -53,19 +53,18 @@
 </script>
 
 <script type="text/html" id="status">
-    {{#  if(d.status == 'Y'){ }}<span class="layui-badge layui-bg-green">启用</span>{{#  } }}
-    {{#  if(d.status == 'N'){ }}<span class="layui-badge">禁用</span>{{#  } }}
+    {{#  if(d.status == 'Y'){ }}<span class="layui-badge layui-bg-success">启用</span>{{#  } }}
+    {{#  if(d.status == 'N'){ }}<span class="layui-badge layui-bg-danger">禁用</span>{{#  } }}
 </script>
 
 <script type="text/html" id="isDefault">
-    {{#  if(d.isDefault == 'Y'){ }}<span class="layui-badge layui-bg-green">是</span>{{#  } }}
-    {{#  if(d.isDefault == 'N'){ }}<span class="layui-badge">否</span>{{#  } }}
+    {{#  if(d.isDefault == 'Y'){ }}<span class="layui-badge layui-bg-success">是</span>{{#  } }}
+    {{#  if(d.isDefault == 'N'){ }}<span class="layui-badge layui-bg-danger">否</span>{{#  } }}
 </script>
 {/block}
 
 {block name="js"}
 <script>
-
     layui.use(['easyModule'], function () {
 
         const form = layui.form;

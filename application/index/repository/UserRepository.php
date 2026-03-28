@@ -49,7 +49,7 @@ class UserRepository extends Repository
         }
 
         if (!empty($params['account'])) {
-            $db->where('account', 'like', '%' . $params['name'] . '%');
+            $db->where('account', 'like', "%{$params['name']}%");
         }
 
         $db->field('distinct manager.*, role.roleName, department.departmentName, oper.*, log.*');

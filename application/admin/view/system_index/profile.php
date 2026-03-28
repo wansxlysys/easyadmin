@@ -45,7 +45,6 @@
 
 {block name="js"}
 <script>
-
     layui.use(['easyModule'], function () {
 
         const form = layui.form;

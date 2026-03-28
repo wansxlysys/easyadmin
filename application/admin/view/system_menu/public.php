@@ -1,5 +1,4 @@
 <script>
-
     const menuData = {
         type: 1,
         parentId: 0

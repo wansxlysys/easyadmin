@@ -39,11 +39,11 @@ class SystemLoginLogService extends Service
         }
 
         if (!empty($params['account'])) {
-            $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
+            $Wrapper->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
         }
 
         if (!empty($params['realName'])) {
-            $Wrapper->addWhere('manager.realName', 'LIKE', $params['realName'] . '%');
+            $Wrapper->addWhere('manager.realName', 'LIKE', "%{$params['realName']}%");
         }
 
         if (SystemManagerHelper::isNotSuper()) {

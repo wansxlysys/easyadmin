@@ -1,0 +1,165 @@
+/*按钮*/
+.layui-btn {
+    background-color: var(--global-primary-color);
+}
+
+.layui-btn-info {
+    background-color: var(--global-info-color);
+}
+
+.layui-btn-danger {
+    background-color: var(--global-danger-color);
+}
+
+.layui-btn-success {
+    background-color: var(--global-success-color);
+}
+
+.layui-btn-warning {
+    background-color: var(--global-warning-color);
+}
+
+.layui-btn-purple {
+    background-color: var(--global-purple-color);
+}
+
+.layui-btn-pink {
+    background-color: var(--global-pink-color);
+}
+
+.layui-btn-indigo {
+    background-color: var(--global-indigo-color);
+}
+
+/*背景*/
+.layui-bg-primary {
+    background-color: var(--global-primary-color) !important;
+}
+
+.layui-bg-info {
+    background-color: var(--global-info-color);
+}
+
+.layui-bg-danger {
+    background-color: var(--global-danger-color);
+}
+
+.layui-bg-success {
+    background-color: var(--global-success-color) !important;
+}
+
+.layui-bg-warning {
+    background-color: var(--global-warning-color) !important;
+}
+
+.layui-bg-purple {
+    background-color: var(--global-purple-color);
+}
+
+.layui-bg-pink {
+    background-color: var(--global-pink-color) !important;
+}
+
+.layui-bg-indigo {
+    background-color: var(--global-indigo-color) !important;
+}
+
+/*边框*/
+.layui-border-primary {
+    border-color: var(--global-primary-color) !important;
+    color: var(--global-primary-color) !important;
+}
+
+.layui-border-success {
+    border-color: var(--global-success-color) !important;
+    color: var(--global-success-color) !important;
+}
+
+.layui-border-danger {
+    border-color: var(--global-danger-color) !important;
+    color: var(--global-danger-color) !important;
+}
+
+.layui-border-warning {
+    border-color: var(--global-warning-color) !important;
+    color: var(--global-warning-color) !important;
+}
+
+.layui-border-info {
+    border-color: var(--global-info-color) !important;
+    color: var(--global-info-color) !important;
+}
+
+.layui-border-purple {
+    border-color: var(--global-purple-color) !important;
+    color: var(--global-purple-color) !important;
+}
+
+.layui-border-pink {
+    border-color: var(--global-pink-color) !important;
+    color: var(--global-pink-color) !important;
+}
+
+.layui-border-indigo {
+    border-color: var(--global-indigo-color) !important;
+    color: var(--global-indigo-color) !important;
+}
+
+/*导航*/
+.layui-nav-tree .layui-nav-bar {
+    background-color: var(--global-primary-color);
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-nav-child dd.layui-this a,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this > a,
+.layui-nav-tree .layui-this > a:hover {
+    background-color: var(--global-primary-color);
+}
+
+/*表单*/
+.layui-form-radio:hover > *,
+.layui-form-radioed,
+.layui-form-radioed > i {
+    color: var(--global-primary-color);
+}
+
+.layui-input:focus, .layui-textarea:focus {
+    border-color: var(--global-primary-color) !important;
+}
+
+.layui-form-select dl dd.layui-this {
+    color: var(--global-primary-color);
+}
+
+/*分页*/
+.layui-laypage a:hover {
+    color: var(--global-primary-color);
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: var(--global-primary-color);
+}
+
+/*级联选择器*/
+.el-cascader .el-input.is-focus .el-input__inner,
+.el-cascader .el-input .el-input__inner:focus {
+    border-color: var(--global-primary-color);
+}
+
+.el-cascader-node.in-active-path, .el-cascader-node.is-active, .el-cascader-node.is-selectable.in-checked-path {
+    color: var(--global-primary-color);
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner,
+.el-radio__input.is-checked .el-radio__inner {
+    background-color: var(--global-primary-color);
+    border-color: var(--global-primary-color);
+}
+
+.el-radio__inner:hover,
+.el-checkbox__inner:hover {
+    border-color: var(--global-primary-color);
+}

@@ -35,7 +35,7 @@ class SystemMenuService extends Service
         $Wrapper = new Wrapper();
 
         if (!empty($params['name'])) {
-            $Wrapper->addWhere('name', 'LIKE', $params['name'] . '%');
+            $Wrapper->addWhere('name', 'LIKE', "%{$params['name']}%");
         }
 
         $Wrapper->setOrder(['sort' => 'asc']);

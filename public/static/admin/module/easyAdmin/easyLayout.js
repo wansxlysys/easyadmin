@@ -47,7 +47,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-danger clear-button">
                                 <i class="fa fa-fw fa-close"></i>取消
                             </button>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal upload-button">
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-success upload-button">
                                 <i class="fa fa-fw fa-upload"></i>上传
                             </button>
                         </div>
@@ -255,10 +255,10 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                                     <button class="layui-btn layui-btn-sm" lay-event="upload">
                                                         <i class="fa fa-fw fa-upload"></i>开始上传
                                                     </button>
-                                                    <button class="layui-btn layui-btn-sm layui-bg-blue" lay-event="select">
+                                                    <button class="layui-btn layui-btn-sm layui-btn-success" lay-event="select">
                                                         <i class="fa fa-fw fa-plus"></i>文件选择
                                                     </button>
-                                                    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="clear">
+                                                    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="clear">
                                                         <i class="fa fa-fw fa-close"></i>清空列表
                                                     </button>
                                                 </div>

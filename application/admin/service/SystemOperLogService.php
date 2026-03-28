@@ -36,11 +36,11 @@ class SystemOperLogService extends Service
         }
 
         if (!empty($params['menuName'])) {
-            $Wrapper->addWhere('menu.name', 'LIKE', $params['menuName'] . '%');
+            $Wrapper->addWhere('menu.name', 'LIKE', "%{$params['menuName']}%");
         }
 
         if (!empty($params['account'])) {
-            $Wrapper->addWhere('manager.account', 'LIKE', $params['account'] . '%');
+            $Wrapper->addWhere('manager.account', 'LIKE', "%{$params['account']}%");
         }
 
         if (SystemManagerHelper::isNotSuper()) {

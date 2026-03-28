@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="{:static_url('/admin/plugin/fontawesome/css/all.css')}">
     <link rel="stylesheet" href="{:static_url('/admin/plugin/ztree/css/ztree.css')}">
     <link rel="stylesheet" href="{:static_url('/admin/module/layCascader/layCascader.css')}">
+    <link rel="stylesheet" href="{:static_url('/admin/css/var.css')}">
     <link rel="stylesheet" href="{:static_url('/admin/css/common.css')}">
     <link rel="stylesheet" href="{:static_url('/admin/css/theme.css')}">
-    <link rel="stylesheet" href="{:static_url('/admin/css/application.css')}">
+    <link rel="stylesheet" href="{:static_url('/admin/css/main.css')}">
     {block name="css"}{/block}
 </head>
 

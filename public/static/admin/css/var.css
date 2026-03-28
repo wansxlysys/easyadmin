@@ -1,0 +1,19 @@
+:root {
+    --global-primary-color: #1890ff;
+    --global-success-color: #52c41a;
+    --global-danger-color: #ff4d4f;
+    --global-warning-color: #faad14;
+    --global-info-color: #13c2c2;
+    --global-purple-color: #722ed1;
+    --global-pink-color: #eb2f96;
+    --global-indigo-color: #2f54eb;
+
+    --global-primary-color-rgb: 24, 144, 255;
+    --global-success-color-rgb: 82, 196, 26;
+    --global-danger-color-rgb: 255, 77, 79;
+    --global-warning-color-rgb: 250, 173, 20;
+    --global-info-color-rgb: 19, 194, 194;
+    --global-purple-color-rgb: 114, 46, 209;
+    --global-pink-color-rgb: 235, 47, 150;
+    --global-indigo-color-rgb: 47, 84, 235;
+}

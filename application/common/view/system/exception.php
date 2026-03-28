@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>500</title>
     <link rel="stylesheet" href="<?php echo static_url('/admin/plugin/layui/css/layui.css'); ?>"/>
+    <link rel="stylesheet" href="<?php echo static_url('/admin/css/var.css'); ?>"/>
+    <link rel="stylesheet" href="<?php echo static_url('/admin/css/theme.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo static_url('/admin/css/exception.css'); ?>"/>
 </head>
 <body>

@@ -25,8 +25,8 @@ git clone https://gitee.com/wansxlysys/easyadmin.git
 
 启动服务
 
-1. 导入data/database/easyadmin.sql
-2. 复制.env.dev为.env并修改数据库连接配置
+1. 导入`data/database/easyadmin.sql`
+2. 复制`.env.dev`为`.env`并修改数据库连接配置
 3. 快速启动
 
 ~~~

@@ -4,12 +4,12 @@
 {include file="common@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
 
-    <!--    <div class="layui-card">-->
-    <!--        <div class="layui-card-header">地图组件</div>-->
-    <!--        <div class="layui-card-body">-->
-    <!--            <div class="map" id="map"></div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+        <div class="layui-card">
+            <div class="layui-card-header">地图组件</div>
+            <div class="layui-card-body">
+                <div class="map" id="map"></div>
+            </div>
+        </div>
 
     <div class="layui-card">
         <div class="layui-card-header">主题色</div>
@@ -32,7 +32,7 @@
             <button class="layui-btn layui-btn-primary layui-border-pink">pink 粉色</button>
             <button class="layui-btn layui-btn-primary layui-border-indigo">indigo 靛蓝</button>
             <br><br>
-            <span class="layui-badge">primary 主要</span>
+            <span class="layui-badge layui-bg-primary">primary 主要</span>
             <span class="layui-badge layui-bg-success">success 成功</span>
             <span class="layui-badge layui-bg-danger">danger 危险</span>
             <span class="layui-badge layui-bg-warning">warning 警告</span>
@@ -93,7 +93,7 @@
     <div class="layui-card">
         <div class="layui-card-header">图片预览</div>
         <div class="layui-card-body">
-            <div class="easy-preview" data-picture="/upload/image/20231024/47220acdd326647e029949627e49b197.jpg,/upload/image/20231024/cafe4106049840244c2ffd34e7d0de4a.jpg"></div>
+            <div class="easy-preview" data-picture="/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg"></div>
         </div>
     </div>
 
@@ -327,7 +327,7 @@
 {/block}
 
 {block name="js"}
-<!--<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service,geometry,tools&key=CD4BZ-URFWP-YRDDF-L6D4S-5WHCV-5TFP5"></script>-->
+<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service,geometry,tools&key=CD4BZ-URFWP-YRDDF-L6D4S-5WHCV-5TFP5"></script>
 <script>
     layui.use(['easyModule'], function () {
 
@@ -379,33 +379,33 @@
             filterable: false,
         }, data);
 
-        // const map = new TMap.Map('map', {
-        //     pitch: 0,
-        //     zoom: 14,
-        // });
-        //
-        // easyMap.autoMarker({
-        //     map: map
-        // });
-        //
-        // easyMap.autoSearch({
-        //     map: map
-        // });
-        //
-        // easyMap.autoLocation({
-        //     map: map
-        // });
-        //
-        // easyMap.autoCircle({
-        //     map: map
-        // })
-        //
-        // easyMap.autoAddress({
-        //     map: map,
-        //     change(data) {
-        //         console.log(data)
-        //     }
-        // });
+        const map = new TMap.Map('map', {
+            pitch: 0,
+            zoom: 14,
+        });
+
+        easyMap.autoMarker({
+            map: map
+        });
+
+        easyMap.autoSearch({
+            map: map
+        });
+
+        easyMap.autoLocation({
+            map: map
+        });
+
+        easyMap.autoCircle({
+            map: map
+        })
+
+        easyMap.autoAddress({
+            map: map,
+            change(data) {
+                console.log(data)
+            }
+        });
     });
 </script>
 {/block}

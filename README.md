@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-EasyAdmin 是基于 Layui 和 ThinkPHP5.1 框架开发的一套高效、灵活的后台管理系统。采用 RBAC权限模型，提供完善的系统管理功能和优雅的 UI 界面。
+EasyAdmin 是基于 Layui 和 ThinkPHP5.1 框架开发的一套高效、灵活的后台管理系统。采用 RBAC权限模型，支持大文件上分片上传，提供完善的系统管理功能和优雅的 UI 界面。
 
 > **运行环境要求**：PHP 7.4 及以上版本
 
@@ -121,3 +121,16 @@ easyadmin/
 欢迎提交 Issue 和 Pull Request 帮助项目成长！
 
 ---
+
+## 👀 项目预览
+![登录](https://gitee.com/wansxlysys/images/raw/master/easyadmin/login.png)
+
+![控制台](https://gitee.com/wansxlysys/images/raw/master/easyadmin/dashboard.png)
+
+![UI组件](https://gitee.com/wansxlysys/images/raw/master/easyadmin/components.png)
+
+![管理员](https://gitee.com/wansxlysys/images/raw/master/easyadmin/manager.png)
+
+![操作日志](https://gitee.com/wansxlysys/images/raw/master/easyadmin/oper.png)
+
+![文件上传](https://gitee.com/wansxlysys/images/raw/master/easyadmin/upload.png)

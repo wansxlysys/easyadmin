@@ -122,6 +122,10 @@
     background-color: var(--global-primary-color);
 }
 
+.layui-nav .layui-this:after, .layui-nav-bar {
+    background-color: var(--global-primary-color);
+}
+
 /*表单*/
 .layui-form-radio:hover > *,
 .layui-form-radioed,

@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- 主机： localhost
--- 生成日期： 2026-02-27 13:53:33
--- 服务器版本： 5.7.26-log
--- PHP 版本： 7.2.9
+-- 主机： 127.0.0.1
+-- 生成日期： 2026-03-29 10:19:21
+-- 服务器版本： 5.7.26
+-- PHP 版本： 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `easyadmin_v8`
+-- 数据库： `easyadmin`
 --
 
 -- --------------------------------------------------------
@@ -37,13 +37,6 @@ CREATE TABLE `queue_failed` (
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='队执行失败表';
-
---
--- 转存表中的数据 `queue_failed`
---
-
-INSERT INTO `queue_failed` (`queueId`, `queue`, `uniqid`, `consumer`, `payload`, `createTime`, `updateTime`) VALUES
-(2, 'default', '6704ba0b0aad05f1626bd0dc04b214d1', 'app\\queue\\consumer\\MailConsumer@fire', '{\"method\":\"sendMail\",\"params\":{\"body\":\"测试邮件内容\",\"subject\":\"测试邮件主题\",\"address\":\"1628883533@qq.com\"},\"uniqid\":\"6704ba0b0aad05f1626bd0dc04b214d1\"}', '2026-01-14 13:49:02', '2026-01-14 13:49:02');
 
 -- --------------------------------------------------------
 
@@ -160,27 +153,6 @@ CREATE TABLE `system_login_log` (
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统登录日志表';
 
---
--- 转存表中的数据 `system_login_log`
---
-
-INSERT INTO `system_login_log` (`logId`, `managerId`, `message`, `userAgent`, `loginIp`, `status`, `createTime`, `updateTime`) VALUES
-(52, 1, '登录失败，密码输入错误', NULL, '192.168.1.6', 2, '2026-01-20 13:55:47', '2026-01-20 13:55:47'),
-(53, 1, '登录成功', NULL, '192.168.1.6', 1, '2026-01-20 13:55:52', '2026-01-20 13:55:52'),
-(54, 1, '登录成功', NULL, '192.168.1.6', 1, '2026-01-22 10:48:29', '2026-01-22 10:48:29'),
-(55, 10, '登录成功', NULL, '192.168.1.6', 1, '2026-01-22 11:45:51', '2026-01-22 11:45:51'),
-(56, 1, '登录成功', NULL, '192.168.1.6', 1, '2026-01-23 14:14:27', '2026-01-23 14:14:27'),
-(57, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-01-23 16:57:30', '2026-01-23 16:57:30'),
-(58, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-01-27 15:36:07', '2026-01-27 15:36:07'),
-(59, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-01-28 11:47:47', '2026-01-28 11:47:47'),
-(60, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-01-31 09:47:22', '2026-01-31 09:47:22'),
-(61, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-01-31 15:40:59', '2026-01-31 15:40:59'),
-(62, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-02-04 09:55:05', '2026-02-04 09:55:05'),
-(63, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-02-05 14:16:46', '2026-02-05 14:16:46'),
-(64, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-02-07 09:13:26', '2026-02-07 09:13:26'),
-(65, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-02-07 09:22:52', '2026-02-07 09:22:52'),
-(66, 1, '登录成功', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', '192.168.1.6', 1, '2026-02-26 09:07:07', '2026-02-26 09:07:07');
-
 -- --------------------------------------------------------
 
 --
@@ -208,7 +180,7 @@ CREATE TABLE `system_manager` (
 --
 
 INSERT INTO `system_manager` (`managerId`, `roleId`, `avatar`, `realName`, `account`, `password`, `status`, `isDelete`, `loginError`, `loginTime`, `deleteTime`, `createTime`, `updateTime`) VALUES
-(1, 1, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', '超级管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'N', 0, '2026-02-26 09:07:07', NULL, '2022-11-06 14:29:39', '2026-02-26 09:07:07'),
+(1, 1, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', '超级管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'N', 0, '2026-03-29 09:43:28', NULL, '2022-11-06 14:29:39', '2026-03-29 09:43:28'),
 (10, 5, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', '测试管理员', 'test', '098f6bcd4621d373cade4e832627b4f6', 1, 'N', 0, '2026-01-22 11:45:51', '2026-01-07 10:36:45', '2022-11-06 14:29:39', '2026-02-07 09:29:54');
 
 -- --------------------------------------------------------
@@ -295,7 +267,7 @@ INSERT INTO `system_menu` (`menuId`, `parentId`, `name`, `icon`, `url`, `identif
 (142, 69, '全部菜单', 'fa-link', 'admin/SystemMenu/getAll', '', 2, '', 1, 'N', 100, '2022-11-06 14:28:59', '2025-05-25 19:20:45'),
 (143, 157, '公共权限', 'fa-link', '', '', 2, '', 1, 'N', 10000, '2022-11-06 14:28:59', '2025-05-25 19:30:33'),
 (144, 0, '文本编辑', 'fa-link', 'admin/SystemEditor/ueditor', '', 2, '', 1, 'N', 100, '2022-11-06 14:28:59', '2025-12-27 15:01:40'),
-(145, 0, '运维管理', 'fa-server', '', '', 1, '', 1, 'N', 20020, '2022-11-06 14:28:59', '2025-05-26 11:08:33'),
+(145, 0, '系统管理', 'fa-server', '', '', 1, '', 1, 'N', 20020, '2022-11-06 14:28:59', '2026-03-17 15:16:00'),
 (147, 74, '角色列表', 'fa-link', 'admin/SystemManagerRole/getAll', '', 2, '', 1, 'N', 100, '2023-03-15 14:17:55', '2026-01-08 10:02:26'),
 (148, 144, '头像上传', 'fa-link', 'admin/SystemManager/avatar', '', 2, '', 1, 'N', 100, '2023-03-20 15:11:09', '2025-12-27 15:02:08'),
 (149, 137, '退出登录', 'fa-link', 'admin/SystemIndex/logout', '', 2, '', 1, 'N', 100, '2023-03-21 10:46:54', '2026-01-10 11:23:28'),
@@ -342,28 +314,6 @@ CREATE TABLE `system_oper_log` (
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统日志表';
 
---
--- 转存表中的数据 `system_oper_log`
---
-
-INSERT INTO `system_oper_log` (`logId`, `menuId`, `managerId`, `message`, `costTime`, `userAgent`, `requestIp`, `requestUrl`, `params`, `status`, `createTime`, `updateTime`) VALUES
-(559, 122, 1, '清空成功', 0.103148, NULL, '192.168.1.6', '/admin/SystemOperLog/clear.html', '[]', 1, '2026-01-23 14:37:00', '2026-01-23 14:37:00'),
-(560, 138, 1, '修改成功', 0.076809, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemIndex/profile.html', '{\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"managerId\":\"1\"}', 1, '2026-01-23 14:42:23', '2026-01-23 14:42:23'),
-(561, 85, 1, '修改成功', 0.094303, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-01-28 11:48:01', '2026-01-28 11:48:01'),
-(562, 80, 1, '修改成功', 0.092018, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"73\",\"name\":\"管理员添加\",\"type\":\"2\",\"icon\":\"fa-link\",\"url\":\"admin\\/SystemManager\\/create\",\"link\":\"\",\"identify\":\"system.manager.create\",\"record\":\"Y\",\"target\":\"1\",\"sort\":\"10\",\"menuId\":\"81\"}', 1, '2026-02-04 09:58:46', '2026-02-04 09:58:46'),
-(563, 80, 1, '修改成功', 0.090363, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemMenu/update.html', '{\"parentId\":\"73\",\"name\":\"管理员修改\",\"type\":\"2\",\"icon\":\"fa-link\",\"url\":\"admin\\/SystemManager\\/update\",\"link\":\"\",\"identify\":\"system.manager.update\",\"record\":\"Y\",\"target\":\"1\",\"sort\":\"10\",\"menuId\":\"85\"}', 1, '2026-02-04 09:58:54', '2026-02-04 09:58:54'),
-(564, 85, 1, '修改成功', 0.115782, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-02-06 16:57:07', '2026-02-06 16:57:07'),
-(565, 85, 1, '修改成功', 0.079079, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-02-06 16:57:17', '2026-02-06 16:57:17'),
-(566, 85, 1, '修改成功', 0.077139, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-02-06 16:57:18', '2026-02-06 16:57:18'),
-(567, 163, 1, '修改成功', 0.07929, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"系统设置\",\"identify\":\"system.info.config\",\"remark\":\"系统全局设置\",\"sort\":\"100\",\"status\":\"Y\",\"dictId\":\"1\"}', 1, '2026-02-06 17:34:42', '2026-02-06 17:34:42'),
-(568, 163, 1, '修改成功', 0.101777, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"系统设置\",\"identify\":\"system.info.config\",\"remark\":\"系统全局设置\",\"sort\":\"10\",\"status\":\"Y\",\"dictId\":\"1\"}', 1, '2026-02-06 17:35:11', '2026-02-06 17:35:11'),
-(569, 163, 1, '修改成功', 0.079277, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"邮箱设置\",\"identify\":\"system.mail.config\",\"remark\":\"邮箱发送设置\",\"sort\":\"20\",\"status\":\"Y\",\"dictId\":\"4\"}', 1, '2026-02-06 17:35:14', '2026-02-06 17:35:14'),
-(570, 163, 1, '修改成功', 0.116497, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"文件类型\",\"identify\":\"system.upload.type\",\"remark\":\"上传文件类型\",\"sort\":\"30\",\"status\":\"Y\",\"dictId\":\"3\"}', 1, '2026-02-06 17:35:18', '2026-02-06 17:35:18'),
-(571, 163, 1, '修改成功', 0.087662, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"系统设置\",\"identify\":\"system.info.config\",\"remark\":\"系统信息设置\",\"sort\":\"10\",\"status\":\"Y\",\"dictId\":\"1\"}', 1, '2026-02-06 17:35:24', '2026-02-06 17:35:24'),
-(572, 163, 1, '修改成功', 0.101899, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemDictType/update.html', '{\"name\":\"系统设置\",\"identify\":\"system.info.config\",\"remark\":\"系统信息设置\",\"sort\":\"10\",\"status\":\"Y\",\"dictId\":\"1\"}', 1, '2026-02-07 09:29:42', '2026-02-07 09:29:42'),
-(573, 85, 1, '修改成功', 0.097293, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"5\",\"avatar\":\"\\/upload\\/image\\/20260107\\/7f2b4b3accbd276096d9e334a5a2c4e6.jpg\",\"realName\":\"测试管理员\",\"account\":\"test\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"10\"}', 1, '2026-02-07 09:29:54', '2026-02-07 09:29:54'),
-(574, 85, 1, '修改成功', 0.09153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '192.168.1.6', '/admin/SystemManager/update.html', '{\"roleId\":\"1\",\"avatar\":\"\\/upload\\/image\\/20260112\\/1275f923063e22a77b64352a1f834c6e.jpg\",\"realName\":\"超级管理员\",\"account\":\"admin\",\"password\":\"\",\"status\":\"1\",\"managerId\":\"1\"}', 1, '2026-02-07 09:29:57', '2026-02-07 09:29:57');
-
 -- --------------------------------------------------------
 
 --
@@ -401,38 +351,6 @@ CREATE TABLE `system_upload` (
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文件上传表';
-
---
--- 转存表中的数据 `system_upload`
---
-
-INSERT INTO `system_upload` (`fileId`, `managerId`, `hash`, `name`, `type`, `size`, `path`, `index`, `status`, `createTime`, `updateTime`) VALUES
-(6, 1, '7e5b1b87da3ad9581672260eae458d9e', '23.9MB.zip', 'zip', 24543864, '/upload/zip/20260107/1188e64749f1d18aacc20c8f21b3a3a5.zip', 11, 'Y', '2026-01-07 17:20:21', '2026-01-07 17:20:22'),
-(7, 1, '26ae9bea6b90e2285fda78d4fe256610', '7.79MB.zip', 'zip', 8179364, '/upload/zip/20260107/2d9a253b7b19a9d04fc83bb9f6f072ee.zip', 3, 'Y', '2026-01-07 17:20:21', '2026-01-31 10:01:41'),
-(8, 1, '05a6f21f1064c45b2b9f5cfaf541144e', '2.jpg', 'image', 229185, '/upload/image/20260107/7f2b4b3accbd276096d9e334a5a2c4e6.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-07 17:20:36'),
-(9, 1, '8ddf582f610c68b1729111fd86d05ec1', '1.jpg', 'image', 329748, '/upload/image/20260107/fc57bf040ed46b8e46d99e62714eadd4.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-12 15:37:15'),
-(10, 1, '628eebd9a0247ae4e336dcf3423eed05', '6.jpg', 'image', 113905, '/upload/image/20260107/7a8f2d15e3d298cd12feb59572c2f4e5.jpg', 0, 'Y', '2026-01-07 17:20:36', '2026-01-07 17:20:36'),
-(11, 1, 'a04a5e875119005077ff73d27109c450', 'e9078617052fe37689efe3699b534cd.jpg', 'image', 6608311, '/upload/image/20260107/eb2c001e3a7ac376a80792865e6e2419.jpg', 3, 'Y', '2026-01-07 17:20:36', '2026-01-10 09:18:11'),
-(12, 1, 'c9d3cc0c061c6fef29e8fc48946e5ad4', 'xss.pdf', 'doc', 515, '/upload/doc/20260107/7aa6f66190c2f287bfba9b0e2f984898.pdf', 0, 'Y', '2026-01-07 17:21:05', '2026-01-07 17:21:05'),
-(13, 1, '60074ee8fa55d9b247389aa4b7c6e501', '空表格.xlsx', 'doc', 10050, '/upload/doc/20260107/816a7529e64fc67c4209ed5a263fa08d.xlsx', 0, 'Y', '2026-01-07 17:21:05', '2026-01-07 17:21:05'),
-(14, 1, '4f4988eddb5a0efb1fd20238c5adda21', '有图片文档.docx', 'doc', 565642, '/upload/doc/20260107/829a6a37034c5cfc8db9eb98cdbf0def.docx', 0, 'Y', '2026-01-07 17:21:05', '2026-01-07 17:21:05'),
-(15, 1, 'e1edca1d29089138ffedc55a1574b529', '13.7MB.mp4', 'video', 14426736, '/upload/video/20260107/9691e7e5e12743ebf468c6c136b219ef.mp4', 6, 'Y', '2026-01-07 17:21:17', '2026-01-07 17:21:18'),
-(16, 1, '8493788d0f3c54adfaa065358e5f2296', '32.2MB.mp4', 'video', 33773387, '/upload/video/20260107/0411c4cb1907be0a04833464baf32373.mp4', 16, 'Y', '2026-01-07 17:21:17', '2026-01-07 17:21:20'),
-(17, 1, '15b721f642553a1cc1875084d852e878', '6.76MB.mp4', 'video', 7096570, '/upload/video/20260107/6fbe5b3e6ad5459610d6f5e25974a9fa.mp4', 3, 'Y', '2026-01-07 17:21:17', '2026-01-07 17:21:18'),
-(18, 1, '7fc49e07c3c653634af0388714294b6a', '0.071MB.mp3', 'audio', 73395, '/upload/audio/20260107/c33f84e07403782726fea53b398cd31c.mp3', 0, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:21:30'),
-(19, 1, '74337e48216f38be269a170264dabda5', '3.76MB.mp3', 'audio', 3856713, '/upload/audio/20260107/7e077d903947a4a68b159446ddd3e58c.mp3', 1, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:21:31'),
-(20, 1, '83ab4018af750183a0598b84155f39a1', '14.6MB.wav', 'audio', 15400040, '/upload/audio/20260107/c124cb9581f80198bf42e8bb38324f29.wav', 7, 'Y', '2026-01-07 17:21:30', '2026-01-07 17:40:52'),
-(24, 10, '628eebd9a0247ae4e336dcf3423eed05', '6.jpg', 'image', 113905, '/upload/image/20260108/3d264d32f3acac55ae09b5d5e815be9a.jpg', 0, 'Y', '2026-01-08 09:17:27', '2026-01-08 09:17:27'),
-(28, 10, '4f242c6df32174ad5fb626a19f4a6bc7', '134MB.mp4', 'video', 141494824, '/upload/video/20260108/53634183c0105d5113cc04b11bda1f14.mp4', 67, 'Y', '2026-01-08 10:05:09', '2026-01-08 10:05:28'),
-(31, 1, '53610ff916c70b86cc3a028c2442638f', '1GB.zip', 'zip', 1391924697, '/upload/zip/20260109/93ece758fabbb5c9e9515d46038d0d6c.zip', 663, 'Y', '2026-01-09 09:19:12', '2026-01-10 09:05:29'),
-(53, 1, '5bc6b18f1a39acf3e07c199aab464235', '3GB.zip', 'zip', 3500432407, '/upload/zip/20260110/b7e5408bc21e2b3cf4db54d8d00279c5.zip', 1669, 'Y', '2026-01-10 10:20:33', '2026-01-10 10:31:45'),
-(55, 1, '4afa9551cb213f2ffa8d1ebc8d22056c', '134MB.zip', 'zip', 141243741, '/upload/zip/20260110/f5306b2155700b508fecf384405bfcce.zip', 67, 'Y', '2026-01-10 10:35:23', '2026-01-10 10:35:42'),
-(56, 1, '09e4b3b1fa93fb4c272cbc2b32f56ab1', 'png.jpg', 'image', 299407, '/upload/image/20260112/8f9d676f7c31b0fd81e3697647472c3f.jpg', 0, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
-(57, 1, 'e5d6ad8b882e551b820b6fed1f508f7f', 'bae86896d7c70a259655f88a2b9c096.jpg', 'image', 4729918, '/upload/image/20260112/520b872b8698c48d3468481460442113.jpg', 2, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
-(58, 1, '96ed7ee935cfa75e68133d4bf6bcdd2c', 'ok.png', 'image', 799322, '/upload/image/20260112/f674e2c59e65b5d8be4bf52d92b13711.png', 0, 'Y', '2026-01-12 15:37:31', '2026-01-12 15:37:32'),
-(59, 1, '56a53cfe19ff3dd1bd39d4bd000f759d', 'f87cc47d58510d48d99da6cf8fe0ad8.png', 'image', 139527, '/upload/image/20260112/9eee3ce8e8db6580f534a73809a3f0b2.png', 0, 'Y', '2026-01-12 15:37:48', '2026-01-12 15:37:48'),
-(60, 1, '9d763437c428b3b05d60a15c64a66e53', '13.jpg', 'image', 25038, '/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg', 0, 'Y', '2026-01-12 15:38:17', '2026-01-16 10:01:51'),
-(61, 1, 'beb95285d2741f5437d370fea46a67b9', 'idCard2.jpg', 'image', 227940, '/upload/image/20260112/a1ed43022a6094de2d9519723c94a3e9.jpg', 0, 'Y', '2026-01-12 15:38:18', '2026-01-12 15:38:18');
 
 --
 -- 转储表的索引
@@ -515,7 +433,7 @@ ALTER TABLE `system_upload`
 -- 使用表AUTO_INCREMENT `queue_failed`
 --
 ALTER TABLE `queue_failed`
-  MODIFY `queueId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=3;
+  MODIFY `queueId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
 -- 使用表AUTO_INCREMENT `queue_jobs`
@@ -539,7 +457,7 @@ ALTER TABLE `system_dict_type`
 -- 使用表AUTO_INCREMENT `system_login_log`
 --
 ALTER TABLE `system_login_log`
-  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=67;
+  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
 -- 使用表AUTO_INCREMENT `system_manager`
@@ -563,7 +481,7 @@ ALTER TABLE `system_menu`
 -- 使用表AUTO_INCREMENT `system_oper_log`
 --
 ALTER TABLE `system_oper_log`
-  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=575;
+  MODIFY `logId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
 -- 使用表AUTO_INCREMENT `system_setting`
@@ -575,7 +493,7 @@ ALTER TABLE `system_setting`
 -- 使用表AUTO_INCREMENT `system_upload`
 --
 ALTER TABLE `system_upload`
-  MODIFY `fileId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=62;
+  MODIFY `fileId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

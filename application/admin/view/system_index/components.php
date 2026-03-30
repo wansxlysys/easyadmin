@@ -3,14 +3,12 @@
 {block name="content"}
 {include file="common@layout/breadcrumb" /}
 <div class="layui-fluid layui-content">
-
-        <div class="layui-card">
-            <div class="layui-card-header">地图组件</div>
-            <div class="layui-card-body">
-                <div class="map" id="map"></div>
-            </div>
+    <div class="layui-card">
+        <div class="layui-card-header">地图组件</div>
+        <div class="layui-card-body">
+            <div class="map" id="map"></div>
         </div>
-
+    </div>
     <div class="layui-card">
         <div class="layui-card-header">主题色</div>
         <div class="layui-card-body">

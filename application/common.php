@@ -4,7 +4,7 @@
 use think\facade\App;
 
 use app\common\taglib\TagParser;
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 
 /**
  * 引入静态文件并加入版本号
@@ -39,7 +39,7 @@ function service($name, $module = '')
         $module = request()->module();
     }
 
-    return Dependency::getClass(App::parseClass($module, 'service', $name));
+    return InjectHelper::getClass(App::parseClass($module, 'service', $name));
 }
 
 /**

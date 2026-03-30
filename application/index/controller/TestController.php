@@ -6,7 +6,7 @@ namespace app\index\controller;
 
 use app\admin\repository\SystemManagerRepository;
 use app\common\builder\RelationBuilder;
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 use app\common\helper\RedisHelper;
 use app\common\extend\RedisLock\RedisLock;
 use app\common\util\ExcelUtil;
@@ -126,9 +126,9 @@ class TestController
      */
     public function diAction()
     {
-        dump(Dependency::getClass(UserService::class)->sayName());
-        dump(Dependency::getClass(TestService::class)->sayName());
-        dump(Dependency::getClass(DataService::class)->sayName());
+        dump(InjectHelper::getClass(UserService::class)->sayName());
+        dump(InjectHelper::getClass(TestService::class)->sayName());
+        dump(InjectHelper::getClass(DataService::class)->sayName());
     }
 
     /**

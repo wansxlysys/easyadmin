@@ -10,7 +10,7 @@ use app\admin\service\SystemMenuService;
 use app\admin\constant\SystemMenuConstant;
 
 use app\common\helper\ContextHelper;
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 
 class SystemMenuHelper
 {
@@ -22,7 +22,7 @@ class SystemMenuHelper
     public static function getMenu()
     {
         return ContextHelper::get(SystemMenuConstant::CURRENT_MENU, function () {
-            return Dependency::getClass(SystemMenuService::class)->getCurrentMenu();
+            return InjectHelper::getClass(SystemMenuService::class)->getCurrentMenu();
         });
     }
 }

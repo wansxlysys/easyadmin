@@ -11,8 +11,8 @@ use think\facade\Session;
 use app\common\util\Md5Util;
 use app\common\util\StringUtil;
 use app\common\util\PermissionUtil;
+use app\common\helper\InjectHelper;
 use app\common\helper\ContextHelper;
-use app\common\dependency\Dependency;
 use app\common\constant\YesnoConstant;
 
 use app\admin\service\SystemManagerService;
@@ -79,7 +79,7 @@ class SystemManagerHelper
     public static function getManager()
     {
         return ContextHelper::get(SystemManagerConstant::LOGIN_MANAGER, function () {
-            return Dependency::getClass(SystemManagerService::class)->getLoginManager();
+            return InjectHelper::getClass(SystemManagerService::class)->getLoginManager();
         });
     }
 

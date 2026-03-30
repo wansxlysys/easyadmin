@@ -4,7 +4,7 @@
 namespace app\common\taglib;
 
 
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 
 class TagParser
 {
@@ -27,7 +27,7 @@ class TagParser
      */
     public function __construct($name, $layer = 'common')
     {
-        $this->Parser = Dependency::getClass(sprintf('\app\%s\taglib\parser\%s', $layer, $name));
+        $this->Parser = InjectHelper::getClass(sprintf('\app\%s\taglib\parser\%s', $layer, $name));
     }
 
     /**

@@ -8,7 +8,6 @@ use Exception;
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-use app\common\dependency\Dependency;
 use app\admin\service\SystemDictDataService;
 
 class MailHelper
@@ -21,7 +20,7 @@ class MailHelper
      */
     public static function sendMail(array $params)
     {
-        $mailConfig = Dependency::getClass(SystemDictDataService::class)
+        $mailConfig = InjectHelper::getClass(SystemDictDataService::class)
             ->getKeyValueMapSystemDictData('system.mail.config');
 
         $PHPMailer = new PHPMailer(true);

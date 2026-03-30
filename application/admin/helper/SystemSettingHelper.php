@@ -6,8 +6,8 @@ namespace app\admin\helper;
 
 use Exception;
 
+use app\common\helper\InjectHelper;
 use app\common\helper\ContextHelper;
-use app\common\dependency\Dependency;
 
 use app\admin\service\SystemDictDataService;
 use app\admin\constant\SystemSettingConstant;
@@ -22,7 +22,7 @@ class SystemSettingHelper
     public static function getSystemSetting()
     {
         return ContextHelper::get(SystemSettingConstant::SYSTEM_SETTING, function () {
-            return Dependency::getClass(SystemDictDataService::class)->getSystemGlobalSetting();
+            return InjectHelper::getClass(SystemDictDataService::class)->getSystemGlobalSetting();
         });
     }
 }

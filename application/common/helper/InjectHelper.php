@@ -1,13 +1,13 @@
 <?php
 
 
-namespace app\common\dependency;
+namespace app\common\helper;
 
 
 use ReflectionClass;
 use ReflectionException;
 
-class Dependency
+class InjectHelper
 {
     /**
      * 实例对象

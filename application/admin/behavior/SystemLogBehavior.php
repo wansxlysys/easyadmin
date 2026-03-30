@@ -11,7 +11,7 @@ use think\Response;
 
 use app\common\util\ArrayUtil;
 use app\common\util\RequestUtil;
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 use app\common\constant\YesnoConstant;
 
 use app\admin\helper\SystemMenuHelper;
@@ -55,7 +55,7 @@ class SystemLogBehavior
             $log['requestUrl'] = $request->url();
             $log['userAgent']  = $request->header('User-Agent');
 
-            Dependency::getClass(SystemOperLogService::class)->createLog($log);
+            InjectHelper::getClass(SystemOperLogService::class)->createLog($log);
         }
     }
 

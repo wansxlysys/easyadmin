@@ -12,7 +12,7 @@ use think\console\Output;
 use think\console\Command;
 use think\console\input\Option;
 
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 use app\queue\format\QueueFailedFormat;
 use app\queue\service\QueueFailedService;
 
@@ -39,7 +39,7 @@ class QueueRetry extends Command
     {
         $queue = $input->getOption('queue');
 
-        $QueueFiledService = Dependency::getClass(QueueFailedService::class);
+        $QueueFiledService = InjectHelper::getClass(QueueFailedService::class);
 
         $failedList = $QueueFiledService->getListFailed($queue);
 

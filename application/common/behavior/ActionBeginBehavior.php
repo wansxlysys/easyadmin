@@ -7,7 +7,7 @@ namespace app\common\behavior;
 use ReflectionClass;
 use ReflectionException;
 
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 
 class ActionBeginBehavior
 {
@@ -22,7 +22,7 @@ class ActionBeginBehavior
 
         $reflectionClass = new ReflectionClass($controller);
 
-        Dependency::injectMethods($controller, $reflectionClass);
-        Dependency::injectProperties($controller, $reflectionClass);
+        InjectHelper::injectMethods($controller, $reflectionClass);
+        InjectHelper::injectProperties($controller, $reflectionClass);
     }
 }

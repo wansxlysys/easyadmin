@@ -7,7 +7,7 @@ namespace app\queue\behavior;
 use think\queue\Job;
 
 use app\common\util\JsonUtil;
-use app\common\dependency\Dependency;
+use app\common\helper\InjectHelper;
 use app\queue\service\QueueFailedService;
 
 class QueueFailedBehavior
@@ -26,6 +26,6 @@ class QueueFailedBehavior
         $failed['payload']  = $rawBody['data'];
         $failed['uniqid']   = $rawBody['data']['uniqid'];
 
-        Dependency::getClass(QueueFailedService::class)->createFailed($failed);
+        InjectHelper::getClass(QueueFailedService::class)->createFailed($failed);
     }
 }

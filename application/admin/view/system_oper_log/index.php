@@ -89,7 +89,7 @@
             cols: [[
                 {type: 'checkbox'},
                 {title: '头像', field: 'avatar', width: 80, templet: "#avatar"},
-                {title: '管理员账号', field: 'account', width: 140},
+                {title: '管理员账号', field: 'account', width: 120},
                 {title: '管理员姓名', field: 'realName', width: 140},
                 {title: '操作菜单', field: 'menuName', width: 140},
                 {title: '操作详情', field: 'message'},

@@ -20,17 +20,17 @@ OneAdmin 是一套基于 Layui 和 ThinkPHP5.1 框架开发的高效、灵活的
 使用git下载
 
 ~~~
-git clone https://gitee.com/wansxlysys/oneadmin.git
+git clone https://gitee.com/wansxlysys/OneAdmin.git
 ~~~
 
 启动服务
 
-1. 导入`data/database/oneadmin.sql`
+1. 导入`data/database/OneAdmin.sql`
 2. 复制`.env.dev`为`.env`并修改数据库连接配置
 3. 快速启动
 
 ~~~
-cd oneadmin
+cd OneAdmin
 php think run
 ~~~
 
@@ -51,7 +51,7 @@ http://localhost:8000
 ## 📂 项目结构
 
 ```
-oneadmin/
+OneAdmin/
 ├── application/          # 应用目录
 │   ├── admin/           # 后台管理模块
 │   │   ├── controller/  # 控制器层
@@ -121,14 +121,14 @@ oneadmin/
 ---
 
 ## 👀 项目预览
-![登录](https://gitee.com/wansxlysys/images/raw/master/oneadmin/login.png)
+![登录](https://gitee.com/wansxlysys/images/raw/master/OneAdmin/login.png)
 
-![控制台](https://gitee.com/wansxlysys/images/raw/master/oneadmin/dashboard.png)
+![控制台](https://gitee.com/wansxlysys/images/raw/master/OneAdmin/dashboard.png)
 
-![UI组件](https://gitee.com/wansxlysys/images/raw/master/oneadmin/components.png)
+![UI组件](https://gitee.com/wansxlysys/images/raw/master/OneAdmin/components.png)
 
-![管理员](https://gitee.com/wansxlysys/images/raw/master/oneadmin/manager.png)
+![管理员](https://gitee.com/wansxlysys/images/raw/master/OneAdmin/manager.png)
 
-![操作日志](https://gitee.com/wansxlysys/images/raw/master/oneadmin/oper.png)
+![操作日志](https://gitee.com/wansxlysys/images/raw/master/OneAdmin/oper.png)
 
-![文件上传](https://gitee.com/wansxlysys/images/raw/master/oneadmin/upload.png)
+![文件上传](https://gitee.com/wansxlysys/images/raw/master/OneAdmin/upload.png)

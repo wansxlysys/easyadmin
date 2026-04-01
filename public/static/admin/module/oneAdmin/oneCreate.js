@@ -1,13 +1,13 @@
-layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], function (exports) {
+layui.define(['oneAdmin', 'oneBuilder', 'jquery', 'laydate', 'oneUpload'], function (exports) {
 
     const laydate = layui.laydate;
-    const easyUpload = layui.easyUpload;
-    const easyBuilder = layui.easyBuilder;
+    const oneUpload = layui.oneUpload;
+    const oneBuilder = layui.oneBuilder;
 
     /**
      * 面板分割
      */
-    jQuery('.easy-split').each(function () {
+    jQuery('.one-split').each(function () {
 
         let direction = jQuery(this).data('direction');
 
@@ -32,8 +32,8 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 富文本编辑器
      */
-    jQuery(".easy-ueditor").each(function () {
-        easyBuilder.UEditor({
+    jQuery(".one-ueditor").each(function () {
+        oneBuilder.UEditor({
             elem: this
         });
     });
@@ -42,7 +42,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
      * 单图上传
      */
     jQuery(".layui-builder-image").each(function (key, item) {
-        easyUpload.uploadImage({
+        oneUpload.uploadImage({
             elem: jQuery(item)
         }, {
             maxNum: 1,
@@ -54,7 +54,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
      * 多图上传
      */
     jQuery(".layui-builder-picture").each(function (key, item) {
-        easyUpload.uploadImage({
+        oneUpload.uploadImage({
             elem: jQuery(item)
         }, {
             maxNum: jQuery(item).data("max") || Infinity,
@@ -65,8 +65,8 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 文件上传
      */
-    jQuery(".easy-builder-upload").each((key, item) => {
-        easyUpload.uploadFile({
+    jQuery(".one-builder-upload").each((key, item) => {
+        oneUpload.uploadFile({
             elem: jQuery(item)
         }, {
             multiple: true,
@@ -77,21 +77,21 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * alert关闭控制
      */
-    jQuery(document).on('click', '.easy-alert-close', function () {
-        jQuery(this).closest(".easy-alert").remove();
+    jQuery(document).on('click', '.one-alert-close', function () {
+        jQuery(this).closest(".one-alert").remove();
     });
 
     /**
      * 关闭当前所在弹出层
      */
-    jQuery(document).on('click', '.easy-close-layer', function () {
+    jQuery(document).on('click', '.one-close-layer', function () {
         parent.layer.close(parent.layer.getFrameIndex(window.name));
     });
 
     /**
      * 日期选择器
      */
-    jQuery(document).on('click', '.easy-build-date', function () {
+    jQuery(document).on('click', '.one-build-date', function () {
         laydate.render({
             elem: this,
             show: true
@@ -101,7 +101,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 时间选择器
      */
-    jQuery(document).on('click', '.easy-build-time', function () {
+    jQuery(document).on('click', '.one-build-time', function () {
         laydate.render({
             elem: this,
             show: true,
@@ -112,7 +112,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 日期时间选择器
      */
-    jQuery(document).on('click', '.easy-build-datetime', function () {
+    jQuery(document).on('click', '.one-build-datetime', function () {
         laydate.render({
             elem: this,
             show: true,
@@ -123,7 +123,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 创建预览图片
      */
-    jQuery(".easy-preview").each((key, item) => {
+    jQuery(".one-preview").each((key, item) => {
         const picture = jQuery(item).data("picture");
         if (picture) {
             const srcList = picture.split(',');
@@ -151,7 +151,7 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 文本复制
      */
-    const clipboard = new ClipboardJS('.easy-copy', {
+    const clipboard = new ClipboardJS('.one-copy', {
         text: function (trigger) {
             return jQuery(trigger).attr('data-text');
         }
@@ -169,5 +169,5 @@ layui.define(['easyAdmin', 'easyBuilder', 'jquery', 'laydate', 'easyUpload'], fu
     /**
      * 导出
      */
-    exports("easyCreate", {});
+    exports("oneCreate", {});
 });

@@ -75,11 +75,11 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const form = layui.form;
         const table = layui.table;
-        const easyAdmin = layui.easyAdmin;
+        const oneAdmin = layui.oneAdmin;
 
         table.render({
             id: "table",
@@ -107,7 +107,7 @@
                 top.layer.confirm("确认清空日志吗？", {
                     icon: 3
                 }, function () {
-                    easyAdmin.ajaxPost({
+                    oneAdmin.ajaxPost({
                         url: "{:url('admin/SystemOperLog/clear')}",
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {
@@ -124,7 +124,7 @@
 
         table.on('tool(table)', function (obj) {
             if (obj.event === 'detail') {
-                easyAdmin.openFrame({
+                oneAdmin.openFrame({
                     content: "{:url('admin/SystemOperLog/detail')}?logId=" + obj.data.logId
                 });
             }

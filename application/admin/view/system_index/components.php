@@ -55,7 +55,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label layui-required">文件上传</label>
                 <div class="layui-input-block">
-                    <input type="hidden" class="easy-builder-upload">
+                    <input type="hidden" class="one-builder-upload">
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
     <div class="layui-card">
         <div class="layui-card-header">图片预览</div>
         <div class="layui-card-body">
-            <div class="easy-preview" data-picture="/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg"></div>
+            <div class="one-preview" data-picture="/upload/image/20260112/1275f923063e22a77b64352a1f834c6e.jpg"></div>
         </div>
     </div>
 
@@ -119,7 +119,7 @@
     <div class="layui-card">
         <div class="layui-card-header">富文本编辑器</div>
         <div class="layui-card-body">
-            <script class="easy-ueditor" type="text/plain"></script>
+            <script class="one-ueditor" type="text/plain"></script>
         </div>
     </div>
 
@@ -179,7 +179,7 @@
         </div>
     </div>
 
-    <div class="split easy-split" data-direction="horizontal">
+    <div class="split one-split" data-direction="horizontal">
         <div class="split-item" data-size="15">
             <div class="split-fill layui-card">
                 <div class="layui-card-header">面板分割</div>
@@ -236,7 +236,7 @@
 
     <br>
 
-    <div class="split easy-split" data-direction="vertical">
+    <div class="split one-split" data-direction="vertical">
         <div class="split-item" data-size="15">
             <div class="split-fill layui-card">
                 <div class="layui-card-header">面板分割</div>
@@ -300,21 +300,21 @@
                     <label class="layui-form-label layui-required">日期选择</label>
                     <div class="layui-input-block">
                         <input type="text" lay-verify="required" placeholder="请选择日期"
-                               class="layui-input easy-build-date">
+                               class="layui-input one-build-date">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">时间选择</label>
                     <div class="layui-input-block">
                         <input type="text" lay-verify="required" placeholder="请选择时间"
-                               class="layui-input easy-build-time">
+                               class="layui-input one-build-time">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-required">日期时间</label>
                     <div class="layui-input-block">
                         <input type="text" lay-verify="required" placeholder="请选择日期时间"
-                               class="layui-input easy-build-datetime">
+                               class="layui-input one-build-datetime">
                     </div>
                 </div>
             </form>
@@ -327,14 +327,14 @@
 {block name="js"}
 <script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service,geometry,tools&key=CD4BZ-URFWP-YRDDF-L6D4S-5WHCV-5TFP5"></script>
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
-        const easyMap = layui.easyMap;
-        const easyAdmin = layui.easyAdmin;
-        const easyBuilder = layui.easyBuilder;
+        const oneMap = layui.oneMap;
+        const oneAdmin = layui.oneAdmin;
+        const oneBuilder = layui.oneBuilder;
 
         jQuery('.upload').on('click', function () {
-            easyAdmin.openFileLayer({
+            oneAdmin.openFileLayer({
                 fileType: ['image', 'video'],
                 selectFile: function (fileList) {
                     console.log(fileList)
@@ -342,7 +342,7 @@
             })
         });
 
-        easyBuilder.dropMenu({
+        oneBuilder.dropMenu({
             elem: "#dropMenu",
             data: [{
                 icon: 'fa fa-fw fa-download',
@@ -369,7 +369,7 @@
             {id: 4, parentId: 3, name: '图稿'}
         ];
 
-        easyBuilder.cascader({
+        oneBuilder.cascader({
             elem: "#cascader",
             checked: [3, 4]
         }, {
@@ -382,23 +382,23 @@
             zoom: 14,
         });
 
-        easyMap.autoMarker({
+        oneMap.autoMarker({
             map: map
         });
 
-        easyMap.autoSearch({
+        oneMap.autoSearch({
             map: map
         });
 
-        easyMap.autoLocation({
+        oneMap.autoLocation({
             map: map
         });
 
-        easyMap.autoCircle({
+        oneMap.autoCircle({
             map: map
         })
 
-        easyMap.autoAddress({
+        oneMap.autoAddress({
             map: map,
             change(data) {
                 console.log(data)

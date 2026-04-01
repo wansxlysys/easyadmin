@@ -1,15 +1,15 @@
 layui.define(function (exports) {
 
-    const easyAdmin = {};
+    const oneAdmin = {};
 
     /**
      * 打开加载等待
      * @returns {*}
      */
-    easyAdmin.showLoading = () => {
+    oneAdmin.showLoading = () => {
 
         let html = `
-            <div class="easy-loading">
+            <div class="one-loading">
                 <i class='layui-icon layui-icon-loading-1 layui-anim layui-anim-rotate layui-anim-loop'></i>
                 <p>加载中</p>
             </div> 
@@ -26,7 +26,7 @@ layui.define(function (exports) {
      * @param options
      * @returns {s.index}
      */
-    easyAdmin.openFrame = (options) => {
+    oneAdmin.openFrame = (options) => {
 
         let defaults = {
             title: false,
@@ -34,7 +34,7 @@ layui.define(function (exports) {
             shade: 0,
             closeBtn: 0,
             area: ['100%', '100%'],
-            skin: "easy-frame easy-frame-transparent",
+            skin: "one-frame one-frame-transparent",
             scrollbar: false
         };
 
@@ -44,42 +44,42 @@ layui.define(function (exports) {
     /**
      * 关闭当前弹出层
      */
-    easyAdmin.closeFrame = () => {
+    oneAdmin.closeFrame = () => {
         parent.layer.close(parent.layer.getFrameIndex(window.name));
     }
 
     /**
      * 删除弹出层透明类
      */
-    easyAdmin.resetFrame = () => {
-        jQuery(window.parent.document).find('.easy-frame').removeClass('easy-frame-transparent');
+    oneAdmin.resetFrame = () => {
+        jQuery(window.parent.document).find('.one-frame').removeClass('one-frame-transparent');
     }
 
     /**
      * 删除弹出层透明类
      */
-    easyAdmin.openFileLayer = (configs) => {
-        top.easyLayout.openFileLayer(configs)
+    oneAdmin.openFileLayer = (configs) => {
+        top.oneLayout.openFileLayer(configs)
     }
 
     /**
      * get请求
      * @param config
      */
-    easyAdmin.ajaxGet = (config) => {
+    oneAdmin.ajaxGet = (config) => {
 
         let defaults = {
             type: 'GET'
         }
 
-        easyAdmin.ajaxHttp(jQuery.extend(true, defaults, config));
+        oneAdmin.ajaxHttp(jQuery.extend(true, defaults, config));
     }
 
     /**
      * post请求
      * @param config
      */
-    easyAdmin.ajaxPost = (config) => {
+    oneAdmin.ajaxPost = (config) => {
 
         let defaults = {
             data: {},
@@ -93,14 +93,14 @@ layui.define(function (exports) {
             setting.data = JSON.stringify(setting.data);
         }
 
-        easyAdmin.ajaxHttp(setting);
+        oneAdmin.ajaxHttp(setting);
     }
 
     /**
      * http请求
      * @param config
      */
-    easyAdmin.ajaxHttp = (config) => {
+    oneAdmin.ajaxHttp = (config) => {
 
         let defaults = {
             url: "",
@@ -114,7 +114,7 @@ layui.define(function (exports) {
         let options = jQuery.extend(true, defaults, config);
 
         if (options.loading) {
-            loading = easyAdmin.showLoading();
+            loading = oneAdmin.showLoading();
         }
 
         options.success = (result) => {
@@ -144,5 +144,5 @@ layui.define(function (exports) {
         jQuery.ajax(options);
     }
 
-    exports("easyAdmin", easyAdmin);
+    exports("oneAdmin", oneAdmin);
 });

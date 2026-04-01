@@ -40,7 +40,7 @@
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn" lay-submit>提交</button>
-                        <button type="button" class="layui-btn layui-btn-danger easy-close-layer">关闭</button>
+                        <button type="button" class="layui-btn layui-btn-danger one-close-layer">关闭</button>
                     </div>
                 </div>
             </form>
@@ -51,16 +51,16 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const form = layui.form;
-        const easyAdmin = layui.easyAdmin;
-        const easyHelper = layui.easyHelper;
-        const easyService = layui.easyService;
+        const oneAdmin = layui.oneAdmin;
+        const oneHelper = layui.oneHelper;
+        const oneService = layui.oneService;
 
         let permissionTree = null;
 
-        easyService.menuTreeStruct({
+        oneService.menuTreeStruct({
             elem: "#permission",
             ready: function (tree) {
                 permissionTree = tree;
@@ -74,7 +74,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            let permission = easyHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
+            let permission = oneHelper.objectColumn(permissionTree.getCheckedNodes(), 'id');
 
             if (permission.length <= 0) {
                 return layer.alert('请选择授权菜单', {
@@ -84,7 +84,7 @@
 
             obj.field.permission = permission.join(',');
 
-            easyAdmin.ajaxPost({
+            oneAdmin.ajaxPost({
                 url: "{:url('admin/SystemManagerRole/create')}",
                 data: obj.field,
                 success: function (result) {
@@ -93,7 +93,7 @@
                     }, function () {
                         parent.layui.table.reloadData("table");
                         top.layer.close(lay);
-                        easyAdmin.closeFrame();
+                        oneAdmin.closeFrame();
                     });
                 }
             });

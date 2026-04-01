@@ -1,15 +1,15 @@
-layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], function (exports) {
+layui.define(['form', 'table', 'layer', 'laypage', 'oneAdmin', 'oneHelper'], function (exports) {
 
     const form = layui.form;
     const table = layui.table;
     const layer = layui.layer;
     const laypage = layui.laypage;
-    const easyAdmin = layui.easyAdmin;
-    const easyHelper = layui.easyHelper;
+    const oneAdmin = layui.oneAdmin;
+    const oneHelper = layui.oneHelper;
 
-    const easyLayout = {};
+    const oneLayout = {};
 
-    easyLayout.openFileLayer = function (configs) {
+    oneLayout.openFileLayer = function (configs) {
 
         const template = `
                 <div class="layui-fluid layui-content attach">
@@ -161,7 +161,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                 placeholder: '请输入文件名',
                                 value: file.name
                             }, function (fileName, layKey) {
-                                easyAdmin.ajaxPost({
+                                oneAdmin.ajaxPost({
                                     url: apiUrl.renameFile,
                                     data: {
                                         fileName: fileName,
@@ -308,7 +308,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         requestHandlers: {
                                             checkFile(data) {
                                                 return new Promise((resolve, reject) => {
-                                                    easyAdmin.ajaxGet({
+                                                    oneAdmin.ajaxGet({
                                                         url: apiUrl.checkFile,
                                                         data: data,
                                                         alert: false,
@@ -324,7 +324,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                             },
                                             uploadFile(data) {
                                                 return new Promise((resolve, reject) => {
-                                                    easyAdmin.ajaxPost({
+                                                    oneAdmin.ajaxPost({
                                                         url: apiUrl.uploadFile,
                                                         data: data,
                                                         alert: false,
@@ -354,7 +354,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                     }
 
                                     uploadData.uploader.on('fileAdded', function (fileObj) {
-                                        fileObj.fileUnit = easyHelper.formatFileSize(fileObj.fileSize);
+                                        fileObj.fileUnit = oneHelper.formatFileSize(fileObj.fileSize);
                                         uploadData.fileList.push(fileObj);
                                         uploadData.table.reloadData();
                                     });
@@ -467,7 +467,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                     loadFileList: function () {
                         popupData.isLoading = true;
                         uploadService.renderLoading();
-                        easyAdmin.ajaxGet({
+                        oneAdmin.ajaxGet({
                             url: apiUrl.getListFile,
                             data: formData,
                             loading: false,
@@ -524,7 +524,7 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
                                         <div class="attach-tool">
                                             <span class="attach-rename">改名</span>
                                             <span class="attach-look">查看</span>
-                                            <span class="attach-addr easy-copy" data-text="${file.path}">复制</span>
+                                            <span class="attach-addr one-copy" data-text="${file.path}">复制</span>
                                         </div>
                                     </div>
                                     <div class="attach-name">${file.name}</div>
@@ -541,5 +541,5 @@ layui.define(['form', 'table', 'layer', 'laypage', 'easyAdmin', 'easyHelper'], f
         });
     };
 
-    exports("easyLayout", easyLayout);
+    exports("oneLayout", oneLayout);
 });

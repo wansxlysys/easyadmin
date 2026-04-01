@@ -17,12 +17,12 @@ class StepRender
     public static function render(array $process, $step)
     {
         $template = '
-            <div class="easy-step">
+            <div class="one-step">
                 {foreach $processes as $key => $process}
-                <div class="easy-step-item {if $step >= $key}easy-step-over{/if}">
-                    <div class="easy-step-item-number">{$key}</div>
-                    <div class="easy-step-item-title">{$process.title}</div>
-                    <div class="easy-step-item-tips">{$process.tips}</div>
+                <div class="one-step-item {if $step >= $key}one-step-over{/if}">
+                    <div class="one-step-item-number">{$key}</div>
+                    <div class="one-step-item-title">{$process.title}</div>
+                    <div class="one-step-item-tips">{$process.tips}</div>
                 </div>
                 {/foreach}
             </div>';

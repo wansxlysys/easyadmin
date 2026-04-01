@@ -55,11 +55,11 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const form = layui.form;
         const table = layui.table;
-        const easyAdmin = layui.easyAdmin;
+        const oneAdmin = layui.oneAdmin;
 
         table.render({
             id: "table",
@@ -78,7 +78,7 @@
 
         table.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
-                easyAdmin.openFrame({
+                oneAdmin.openFrame({
                     content: "{:url('admin/SystemManagerRole/create')}"
                 });
             }
@@ -87,7 +87,7 @@
         table.on('tool(table)', function (obj) {
 
             if (obj.event === "update") {
-                easyAdmin.openFrame({
+                oneAdmin.openFrame({
                     content: "{:url('admin/SystemManagerRole/update')}?roleId=" + obj.data.roleId
                 });
             }
@@ -96,7 +96,7 @@
                 top.layer.confirm('确定删除吗？', {
                     icon: 3,
                 }, function () {
-                    easyAdmin.ajaxPost({
+                    oneAdmin.ajaxPost({
                         url: "{:url('admin/SystemManagerRole/delete')}",
                         data: {
                             roleId: obj.data.roleId

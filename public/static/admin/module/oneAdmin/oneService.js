@@ -1,17 +1,17 @@
-layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
+layui.define(['oneAdmin', 'oneBuilder'], function (exports) {
 
-    const easyAdmin = layui.easyAdmin;
-    const easyBuilder = layui.easyBuilder;
+    const oneAdmin = layui.oneAdmin;
+    const oneBuilder = layui.oneBuilder;
 
-    const easyService = {};
+    const oneService = {};
 
     /**
      * 菜单树形选择器
      * @param options
      * @param setting
      */
-    easyService.menuTreeSelect = (options, setting) => {
-        easyAdmin.ajaxGet({
+    oneService.menuTreeSelect = (options, setting) => {
+        oneAdmin.ajaxGet({
             loading: false,
             url: apiUrl.getAllMenu,
             success(result) {
@@ -33,7 +33,7 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
                     }
                 };
 
-                easyBuilder.treeSelect(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
+                oneBuilder.treeSelect(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
@@ -43,8 +43,8 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
      * @param options
      * @param setting
      */
-    easyService.menuTreeStruct = (options, setting) => {
-        easyAdmin.ajaxGet({
+    oneService.menuTreeStruct = (options, setting) => {
+        oneAdmin.ajaxGet({
             loading: false,
             url: apiUrl.getAllMenu,
             success(result) {
@@ -64,7 +64,7 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
                     },
                 };
 
-                easyBuilder.treeStruct(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
+                oneBuilder.treeStruct(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
@@ -74,8 +74,8 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
      * @param options
      * @param setting
      */
-    easyService.roleSingleSelect = (options, setting) => {
-        easyAdmin.ajaxGet({
+    oneService.roleSingleSelect = (options, setting) => {
+        oneAdmin.ajaxGet({
             loading: false,
             url: apiUrl.getAllRole,
             success(result) {
@@ -93,10 +93,10 @@ layui.define(['easyAdmin', 'easyBuilder'], function (exports) {
                     }
                 };
 
-                easyBuilder.treeSelect(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
+                oneBuilder.treeSelect(jQuery.extend(true, defaultOptions, options), jQuery.extend(true, defaultSetting, setting), result.data);
             }
         });
     }
 
-    exports("easyService", easyService);
+    exports("oneService", oneService);
 });

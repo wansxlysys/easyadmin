@@ -71,11 +71,11 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyAdmin'], function () {
+    layui.use(['oneAdmin'], function () {
 
         const form = layui.form;
         const table = layui.table;
-        const easyAdmin = layui.easyAdmin;
+        const oneAdmin = layui.oneAdmin;
 
         table.render({
             id: "table",
@@ -100,7 +100,7 @@
                 top.layer.confirm("确认清空日志吗？", {
                     icon: 3
                 }, function () {
-                    easyAdmin.ajaxPost({
+                    oneAdmin.ajaxPost({
                         url: "{:url('admin/SystemLoginLog/clear')}",
                         success: function (result) {
                             const lay = top.layer.alert(result.msg, {
@@ -117,7 +117,7 @@
 
         table.on('tool(table)', function (obj) {
             if (obj.event === 'detail') {
-                easyAdmin.openFrame({
+                oneAdmin.openFrame({
                     content: "{:url('admin/SystemLoginLog/detail')}?logId=" + obj.data.logId
                 });
             }

@@ -1,11 +1,11 @@
 layui.define(function (exports) {
 
-    const easyHelper = {};
+    const oneHelper = {};
 
     /**
      * 数组转树形结构
      */
-    easyHelper.arrayToTree = (options, arrayList) => {
+    oneHelper.arrayToTree = (options, arrayList) => {
 
         const map = {};
         const result = [];
@@ -35,7 +35,7 @@ layui.define(function (exports) {
     /**
      * 获取数组对象的某一列
      */
-    easyHelper.objectColumn = (array, field) => {
+    oneHelper.objectColumn = (array, field) => {
         return array.map(item => {
             return item[field];
         });
@@ -44,7 +44,7 @@ layui.define(function (exports) {
     /**
      * 数组交换位置
      */
-    easyHelper.arraySwap = (array, a, b) => {
+    oneHelper.arraySwap = (array, a, b) => {
         const temp = array[a];
         array[a] = array[b];
         array[b] = temp;
@@ -54,7 +54,7 @@ layui.define(function (exports) {
     /**
      * 文件字节转MB和GB
      */
-    easyHelper.formatFileSize = function (bytes) {
+    oneHelper.formatFileSize = function (bytes) {
         if (bytes === 0) {
             return bytes + 'MB';
         }
@@ -71,5 +71,5 @@ layui.define(function (exports) {
         }
     }
 
-    exports("easyHelper", easyHelper);
+    exports("oneHelper", oneHelper);
 });

@@ -3,9 +3,9 @@ layui.define(['table'], function (exports) {
     const table = layui.table;
     const treeTable = layui.treeTable;
 
-    const easyRewrite = {};
+    const oneRewrite = {};
 
-    easyRewrite.rewriteLayuiTable = function (table) {
+    oneRewrite.rewriteLayuiTable = function (table) {
 
         const originalRender = table.render;
 
@@ -60,16 +60,16 @@ layui.define(['table'], function (exports) {
     /**
      * 重写表格渲染
      */
-    easyRewrite.rewriteTable = function () {
-        return easyRewrite.rewriteLayuiTable(table);
+    oneRewrite.rewriteTable = function () {
+        return oneRewrite.rewriteLayuiTable(table);
     }
 
     /**
      * 重写树形表格渲染
      */
-    easyRewrite.rewriteTreeTable = function () {
-        return easyRewrite.rewriteLayuiTable(treeTable);
+    oneRewrite.rewriteTreeTable = function () {
+        return oneRewrite.rewriteLayuiTable(treeTable);
     }
 
-    exports("easyRewrite", easyRewrite);
+    exports("oneRewrite", oneRewrite);
 });

@@ -1,12 +1,12 @@
-layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
+layui.define(['oneHelper', 'xmSelect', 'layCascader'], function (exports) {
 
     const dropdown = layui.dropdown;
     const xmSelect = layui.xmSelect;
-    const easyAdmin = layui.easyAdmin;
-    const easyHelper = layui.easyHelper;
+    const oneAdmin = layui.oneAdmin;
+    const oneHelper = layui.oneHelper;
     const layCascader = layui.layCascader;
 
-    const easyBuilder = {};
+    const oneBuilder = {};
 
     /**
      * 创建树结构选择器
@@ -14,7 +14,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
      * @param setting
      * @param data
      */
-    easyBuilder.treeStruct = (options, setting, data) => {
+    oneBuilder.treeStruct = (options, setting, data) => {
 
         const defaultOptions = {
             elem: '',
@@ -65,7 +65,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
      * @param data
      * @param setting
      */
-    easyBuilder.treeSelect = (options, setting, data) => {
+    oneBuilder.treeSelect = (options, setting, data) => {
 
         const defaultOptions = {
             elem: '',
@@ -120,7 +120,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             });
         } else {
             setting.tree.expandedKeys = [options.checked];
-            setting.data = easyHelper.arrayToTree({
+            setting.data = oneHelper.arrayToTree({
                 prop: {
                     idKey: options.prop.idKey,
                     pidKey: options.prop.pidKey
@@ -142,12 +142,12 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
      * 创建下拉菜单
      * @param options
      */
-    easyBuilder.dropMenu = (options) => {
+    oneBuilder.dropMenu = (options) => {
 
         const defaults = {
             show: false,
             align: 'right',
-            className: 'easy-menu'
+            className: 'one-menu'
         };
 
         options = jQuery.extend(true, defaults, options);
@@ -166,7 +166,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
      * @param data
      * @constructor
      */
-    easyBuilder.cascader = (options, setting, data) => {
+    oneBuilder.cascader = (options, setting, data) => {
 
         const defaultOptions = {
             elem: '',
@@ -200,7 +200,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
             setting.value = options.checked.split(',').map(val => +val);
         }
 
-        setting.options = easyHelper.arrayToTree({
+        setting.options = oneHelper.arrayToTree({
             prop: {
                 idKey: options.prop.idKey,
                 pidKey: options.prop.pidKey
@@ -220,7 +220,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
      * @param setting
      * @constructor
      */
-    easyBuilder.UEditor = (options, setting) => {
+    oneBuilder.UEditor = (options, setting) => {
 
         const defaultOptions = {
             elem: ''
@@ -253,7 +253,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 name: uiName,
                 title: '上传附件',
                 onclick: function () {
-                    easyAdmin.openFileLayer({
+                    oneAdmin.openFileLayer({
                         multiple: true,
                         fileType: ['image', 'audio', 'video', 'doc', 'zip'],
                         selectFile(dataList) {
@@ -274,7 +274,7 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
                 name: uiName,
                 title: '上传图片',
                 onclick: function () {
-                    easyAdmin.openFileLayer({
+                    oneAdmin.openFileLayer({
                         multiple: true,
                         fileType: ['image'],
                         selectFile(dataList) {
@@ -296,5 +296,5 @@ layui.define(['easyHelper', 'xmSelect', 'layCascader'], function (exports) {
         UE.getEditor(options.elem, setting);
     }
 
-    exports("easyBuilder", easyBuilder);
+    exports("oneBuilder", oneBuilder);
 });

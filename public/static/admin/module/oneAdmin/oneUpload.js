@@ -1,17 +1,17 @@
-layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
+layui.define(['laytpl', 'oneHelper', 'oneAdmin'], function (exports) {
 
     const laytpl = layui.laytpl;
-    const easyAdmin = layui.easyAdmin;
-    const easyHelper = layui.easyHelper;
+    const oneAdmin = layui.oneAdmin;
+    const oneHelper = layui.oneHelper;
 
-    const easyUpload = {};
+    const oneUpload = {};
 
     /**
      * 图片上传
      * @param options
      * @param setting
      */
-    easyUpload.uploadImage = function (options, setting) {
+    oneUpload.uploadImage = function (options, setting) {
 
         const defaultOptions = {
             elem: ''
@@ -29,24 +29,24 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         setting = jQuery.extend(true, {}, defautlSetting, setting);
 
         const initValue = jQuery(options.elem).val();
-        const container = jQuery(`<div class="easy-upload-image"></div>`);
+        const container = jQuery(`<div class="one-upload-image"></div>`);
 
         const updateElement = () => {
             const template = `
-                <div class="easy-upload-image-list">
+                <div class="one-upload-image-list">
                     {{# layui.each(d.imageList, function(index, path){ }}
-                    <div class="easy-upload-image-item">
-                        <div class="easy-upload-image-item-icon">
-                            <span class="easy-upload-image-prev fa fa-fw fa-circle-arrow-left"></span>
-                            <span class="easy-upload-image-next fa fa-fw fa-circle-arrow-right"></span>
-                            <span class="easy-upload-image-del fa fa-fw fa-trash"></span>
+                    <div class="one-upload-image-item">
+                        <div class="one-upload-image-item-icon">
+                            <span class="one-upload-image-prev fa fa-fw fa-circle-arrow-left"></span>
+                            <span class="one-upload-image-next fa fa-fw fa-circle-arrow-right"></span>
+                            <span class="one-upload-image-del fa fa-fw fa-trash"></span>
                         </div>
                         <img src="{{path}}">
                     </div>
                     {{#  }); }}
                 </div>
                 {{# if(d.setting.maxNum > d.imageList.length) { }}
-                <div class="easy-upload-image-btn">
+                <div class="one-upload-image-btn">
                     <button type="button">
                         <i class="fa-fw fa-regular fa-image"></i>
                     </button>
@@ -67,7 +67,7 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         }
 
         const findItemIndex = (target) => {
-            return jQuery(target).closest('.easy-upload-image-item').index();
+            return jQuery(target).closest('.one-upload-image-item').index();
         }
 
         if (initValue) {
@@ -76,29 +76,29 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
 
         jQuery(options.elem).after(container);
 
-        container.on('click', '.easy-upload-image-prev', (event) => {
+        container.on('click', '.one-upload-image-prev', (event) => {
             const index = findItemIndex(event.currentTarget);
             if (index > 0) {
-                easyHelper.arraySwap(imageList, index, index - 1);
+                oneHelper.arraySwap(imageList, index, index - 1);
                 updateElement();
             }
         });
 
-        container.on('click', '.easy-upload-image-next', (event) => {
+        container.on('click', '.one-upload-image-next', (event) => {
             const index = findItemIndex(event.currentTarget);
             if (index < imageList.length - 1) {
-                easyHelper.arraySwap(imageList, index, index + 1);
+                oneHelper.arraySwap(imageList, index, index + 1);
                 updateElement();
             }
         });
 
-        container.on('click', '.easy-upload-image-del', (event) => {
+        container.on('click', '.one-upload-image-del', (event) => {
             imageList.splice(findItemIndex(event.currentTarget), 1);
             updateElement();
         });
 
-        container.on('click', '.easy-upload-image-btn', () => {
-            easyAdmin.openFileLayer({
+        container.on('click', '.one-upload-image-btn', () => {
+            oneAdmin.openFileLayer({
                 multiple: setting.multiple,
                 maxNum: setting.maxNum,
                 fileType: setting.fileType,
@@ -134,7 +134,7 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
      * @param options
      * @param setting
      */
-    easyUpload.uploadFile = function (options, setting) {
+    oneUpload.uploadFile = function (options, setting) {
 
         const defaultOptions = {
             elem: ''
@@ -152,24 +152,24 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         setting = jQuery.extend(true, {}, defautlSetting, setting);
 
         const initValue = jQuery(options.elem).val();
-        const container = jQuery(`<div class="easy-upload-file"></div>`);
+        const container = jQuery(`<div class="one-upload-file"></div>`);
 
         const updateElement = function () {
             const template = `
                 {{# if(d.setting.maxNum > d.fileList.length) { }}
-                <button type="button" class="layui-btn layui-btn-sm easy-upload-file-btn">
+                <button type="button" class="layui-btn layui-btn-sm one-upload-file-btn">
                    <i class="fa fa-fw fa-upload"></i> 选择文件
                 </button>
                 {{# } }}
-                <div class="easy-upload-file-list">
+                <div class="one-upload-file-list">
                     {{# layui.each(d.fileList, function(index, item){ }}
-                    <div class="easy-upload-file-item">
-                        <div class="easy-upload-file-name">{{item.name}}</div>
-                        <div class="easy-upload-file-size">{{=d.easyHelper.formatFileSize(item.size)}}</div>
-                        <div class="easy-upload-file-tool">
-                            <span class="easy-upload-file-prev fa fa-fw fa-circle-arrow-up"></span>
-                            <span class="easy-upload-file-next fa fa-fw fa-circle-arrow-down"></span>
-                            <span class="easy-upload-file-del fa fa-fw fa-trash"></span>
+                    <div class="one-upload-file-item">
+                        <div class="one-upload-file-name">{{item.name}}</div>
+                        <div class="one-upload-file-size">{{=d.oneHelper.formatFileSize(item.size)}}</div>
+                        <div class="one-upload-file-tool">
+                            <span class="one-upload-file-prev fa fa-fw fa-circle-arrow-up"></span>
+                            <span class="one-upload-file-next fa fa-fw fa-circle-arrow-down"></span>
+                            <span class="one-upload-file-del fa fa-fw fa-trash"></span>
                         </div>
                     </div>
                     {{#  }); }}
@@ -179,7 +179,7 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
             container.html(laytpl(template).render({
                 setting: setting,
                 fileList: fileList,
-                easyHelper: easyHelper
+                oneHelper: oneHelper
             }));
 
             if (fileList.length == 0) {
@@ -190,7 +190,7 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         }
 
         const findItemIndex = function (target) {
-            return jQuery(target).closest('.easy-upload-file-item').index();
+            return jQuery(target).closest('.one-upload-file-item').index();
         }
 
         if (initValue) {
@@ -199,29 +199,29 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
 
         jQuery(options.elem).after(container);
 
-        container.on('click', '.easy-upload-file-prev', (event) => {
+        container.on('click', '.one-upload-file-prev', (event) => {
             const index = findItemIndex(event.currentTarget);
             if (index > 0) {
-                easyHelper.arraySwap(fileList, index, index - 1);
+                oneHelper.arraySwap(fileList, index, index - 1);
                 updateElement();
             }
         });
 
-        container.on('click', '.easy-upload-file-next', (event) => {
+        container.on('click', '.one-upload-file-next', (event) => {
             const index = findItemIndex(event.currentTarget);
             if (index < fileList.length - 1) {
-                easyHelper.arraySwap(fileList, index, index + 1);
+                oneHelper.arraySwap(fileList, index, index + 1);
                 updateElement();
             }
         });
 
-        container.on('click', '.easy-upload-file-del', (event) => {
+        container.on('click', '.one-upload-file-del', (event) => {
             fileList.splice(findItemIndex(event.currentTarget), 1);
             updateElement();
         });
 
-        container.on('click', '.easy-upload-file-btn', () => {
-            easyAdmin.openFileLayer({
+        container.on('click', '.one-upload-file-btn', () => {
+            oneAdmin.openFileLayer({
                 multiple: setting.multiple,
                 maxNum: setting.maxNum,
                 fileType: setting.fileType,
@@ -238,5 +238,5 @@ layui.define(['laytpl', 'easyHelper', 'easyAdmin'], function (exports) {
         updateElement();
     };
 
-    exports("easyUpload", easyUpload);
+    exports("oneUpload", oneUpload);
 });

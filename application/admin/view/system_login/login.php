@@ -7,7 +7,7 @@
         height: 100%;
     }
 
-    .easy-user-login {
+    .one-user-login {
         position: relative;
         left: 0;
         top: 0;
@@ -19,7 +19,7 @@
         background-size: cover;
     }
 
-    .easy-user-login-main {
+    .one-user-login-main {
         width: 380px;
         position: absolute;
         left: 50%;
@@ -33,15 +33,15 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3)
     }
 
-    .easy-user-login-box {
+    .one-user-login-box {
         padding: 20px
     }
 
-    .easy-user-login-header {
+    .one-user-login-header {
         text-align: center
     }
 
-    .easy-user-login-header h2 {
+    .one-user-login-header h2 {
         margin-top: 20px;
         margin-bottom: 10px;
         font-weight: 300;
@@ -49,16 +49,16 @@
         color: #000
     }
 
-    .easy-user-login-header p {
+    .one-user-login-header p {
         font-weight: 300;
         color: #666
     }
 
-    .easy-user-login-body .layui-form-item {
+    .one-user-login-body .layui-form-item {
         position: relative
     }
 
-    .easy-user-login-icon {
+    .one-user-login-icon {
         position: absolute;
         left: 1px;
         top: 1px;
@@ -68,67 +68,67 @@
         color: #666
     }
 
-    .easy-user-login-body .layui-form-item .layui-input {
+    .one-user-login-body .layui-form-item .layui-input {
         padding-left: 38px
     }
 
-    .easy-user-login-codeimg {
+    .one-user-login-codeimg {
         max-height: 38px;
         width: 100%;
         cursor: pointer;
         box-sizing: border-box
     }
 
-    .easy-user-login-footer span {
+    .one-user-login-footer span {
         padding: 0 5px
     }
 
-    .easy-user-login-footer a {
+    .one-user-login-footer a {
         padding: 0 5px;
         color: rgba(0, 0, 0, .5)
     }
 
-    .easy-user-login-footer a:hover {
+    .one-user-login-footer a:hover {
         color: rgba(0, 0, 0, 1)
     }
 
-    .easy-user-login-main[bgimg] {
+    .one-user-login-main[bgimg] {
         background-color: #fff;
         box-shadow: 0 0 5px rgba(0, 0, 0, .05)
     }
 
-    .easy-user-login-captcha {
+    .one-user-login-captcha {
         margin-left: 10px;
     }
 </style>
 {/block}
 
 {block name="content"}
-<div class="easy-user-login">
-    <div class="easy-user-login-main">
-        <div class="easy-user-login-box easy-user-login-header">
+<div class="one-user-login">
+    <div class="one-user-login-main">
+        <div class="one-user-login-box one-user-login-header">
             <h2>{$systemSetting.systemName}</h2>
             <p>{$systemSetting.systemSlogan}</p>
         </div>
-        <div class="easy-user-login-box easy-user-login-body layui-form">
+        <div class="one-user-login-box one-user-login-body layui-form">
             <form class="layui-form" autocomplete="off">
                 <div class="layui-form-item">
-                    <label class="easy-user-login-icon layui-icon layui-icon-username" for="account"></label>
+                    <label class="one-user-login-icon layui-icon layui-icon-username" for="account"></label>
                     <input type="text" name="account" id="account" lay-verify="required" placeholder="账号" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <label class="easy-user-login-icon layui-icon layui-icon-password" for="password"></label>
+                    <label class="one-user-login-icon layui-icon layui-icon-password" for="password"></label>
                     <input type="password" name="password" id="password" lay-verify="required" placeholder="密码" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-row">
                         <div class="layui-col-xs7">
-                            <label class="easy-user-login-icon layui-icon layui-icon-vercode" for="captcha"></label>
+                            <label class="one-user-login-icon layui-icon layui-icon-vercode" for="captcha"></label>
                             <input type="text" name="captcha" id="captcha" lay-verify="required" placeholder="验证码" class="layui-input">
                         </div>
                         <div class="layui-col-xs5">
-                            <div class="easy-user-login-captcha">
-                                <img src="{:url('admin/SystemLogin/captcha')}" class="easy-user-login-codeimg" id="captchaImg">
+                            <div class="one-user-login-captcha">
+                                <img src="{:url('admin/SystemLogin/captcha')}" class="one-user-login-codeimg" id="captchaImg">
                             </div>
                         </div>
                     </div>
@@ -145,16 +145,16 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const form = layui.form;
-        const easyAdmin = layui.easyAdmin;
+        const oneAdmin = layui.oneAdmin;
 
         const captchaImg = jQuery("#captchaImg");
 
         form.on('submit', function (obj) {
             event.preventDefault();
-            easyAdmin.ajaxPost({
+            oneAdmin.ajaxPost({
                 url: "{:url('admin/SystemLogin/login')}",
                 data: obj.field,
                 success: function (result) {

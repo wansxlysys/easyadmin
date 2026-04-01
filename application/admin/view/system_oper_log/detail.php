@@ -2,7 +2,7 @@
 
 {block name="css"}
 <style>
-    .easy-info pre {
+    .one-info pre {
         font-family: 'Courier New', 'Consolas', 'Lucida Console', 'monospace';
     }
 </style>
@@ -16,59 +16,59 @@
         <div class="layui-card-body">
             {assign name="menu" value=":service('SystemMenu')->getByMenuId($log.menuId)"}
             {assign name="manager" value=":service('SystemManager')->getByManagerId($log.managerId)"}
-            <div class="easy-info layui-row">
-                <div class="easy-info-grid easy-info-grid-center layui-col-xs12 layui-col-md12">
-                    <div class="easy-info-grid-left">管理员头像：</div>
-                    <div class="easy-info-grid-right">
+            <div class="one-info layui-row">
+                <div class="one-info-grid one-info-grid-center layui-col-xs12 layui-col-md12">
+                    <div class="one-info-grid-left">管理员头像：</div>
+                    <div class="one-info-grid-right">
                         <img src="{$manager.avatar}" width="35" height="35" class="layui-circle">
                     </div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">管理员姓名：</div>
-                    <div class="easy-info-grid-right">{$manager.realName}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">管理员姓名：</div>
+                    <div class="one-info-grid-right">{$manager.realName}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">管理员账号：</div>
-                    <div class="easy-info-grid-right">{$manager.account}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">管理员账号：</div>
+                    <div class="one-info-grid-right">{$manager.account}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">操作菜单：</div>
-                    <div class="easy-info-grid-right">{$menu.name}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">操作菜单：</div>
+                    <div class="one-info-grid-right">{$menu.name}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">操作状态：</div>
-                    <div class="easy-info-grid-right">
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">操作状态：</div>
+                    <div class="one-info-grid-right">
                         {if $log.status == 1}<span class="layui-badge layui-bg-success">操作成功</span>{/if}
                         {if $log.status == 2}<span class="layui-badge layui-bg-danger">操作失败</span>{/if}
                     </div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">请求地址：</div>
-                    <div class="easy-info-grid-right">{$log.requestUrl}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">请求地址：</div>
+                    <div class="one-info-grid-right">{$log.requestUrl}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">请求IP：</div>
-                    <div class="easy-info-grid-right">{$log.requestIp}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">请求IP：</div>
+                    <div class="one-info-grid-right">{$log.requestIp}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">操作时间：</div>
-                    <div class="easy-info-grid-right">{$log.createTime}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">操作时间：</div>
+                    <div class="one-info-grid-right">{$log.createTime}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md3">
-                    <div class="easy-info-grid-left">请求耗时：</div>
-                    <div class="easy-info-grid-right">{$log.costTime}秒</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md3">
+                    <div class="one-info-grid-left">请求耗时：</div>
+                    <div class="one-info-grid-right">{$log.costTime}秒</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md12">
-                    <div class="easy-info-grid-left">用户代理：</div>
-                    <div class="easy-info-grid-right">{$log.userAgent}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md12">
+                    <div class="one-info-grid-left">用户代理：</div>
+                    <div class="one-info-grid-right">{$log.userAgent}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md12">
-                    <div class="easy-info-grid-left">操作信息：</div>
-                    <div class="easy-info-grid-right">{$log.message}</div>
+                <div class="one-info-grid layui-col-xs12 layui-col-md12">
+                    <div class="one-info-grid-left">操作信息：</div>
+                    <div class="one-info-grid-right">{$log.message}</div>
                 </div>
-                <div class="easy-info-grid layui-col-xs12 layui-col-md12">
-                    <div class="easy-info-grid-left">请求参数：</div>
-                    <div class="easy-info-grid-right">
+                <div class="one-info-grid layui-col-xs12 layui-col-md12">
+                    <div class="one-info-grid-left">请求参数：</div>
+                    <div class="one-info-grid-right">
                         <pre>{:json_encode(json_decode($log.params), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)}</pre>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
     });
 </script>

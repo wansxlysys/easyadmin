@@ -16,7 +16,7 @@
          * 创建菜单选择器
          */
         renderMenuSelect: function () {
-            layui.easyService.menuTreeSelect({
+            layui.oneService.menuTreeSelect({
                 elem: "#menu",
                 checked: menuData.parentId
             }, {

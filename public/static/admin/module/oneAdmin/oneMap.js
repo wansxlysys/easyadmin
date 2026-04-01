@@ -1,8 +1,8 @@
-layui.define(['easyHelper', 'jquery'], function (exports) {
+layui.define(['oneHelper', 'jquery'], function (exports) {
 
-    const easyMap = {};
+    const oneMap = {};
 
-    easyMap.autoSearch = (options) => {
+    oneMap.autoSearch = (options) => {
         const defaultOptions = {
             map: null,
             setting: {
@@ -87,7 +87,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
     /**
      * 自动范围圈
      */
-    easyMap.autoCircle = (options) => {
+    oneMap.autoCircle = (options) => {
 
         const defaultOptions = {
             map: null,
@@ -119,7 +119,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
     /**
      * 自动标记点
      */
-    easyMap.autoMarker = (options) => {
+    oneMap.autoMarker = (options) => {
 
         const defaultOptions = {
             map: null
@@ -162,7 +162,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
     /**
      * IP定位
      */
-    easyMap.autoLocation = (options) => {
+    oneMap.autoLocation = (options) => {
 
         const IPLocation = new TMap.service.IPLocation()
 
@@ -176,7 +176,7 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
     /**
      * 自动获取地址
      */
-    easyMap.autoAddress = (options) => {
+    oneMap.autoAddress = (options) => {
 
         const geocoder = new TMap.service.Geocoder();
 
@@ -205,5 +205,5 @@ layui.define(['easyHelper', 'jquery'], function (exports) {
         return geocoder;
     }
 
-    exports("easyMap", easyMap);
+    exports("oneMap", oneMap);
 });

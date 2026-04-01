@@ -4,45 +4,45 @@
     padding: 0;
 }
 
-.easy-message {
+.one-message {
     padding-top: 180px;
     background: #fff;
     text-align: center;
     height: 100vh;
 }
 
-.easy-message h1 {
+.one-message h1 {
     font-size: 36px;
     color: #434e59;
     font-weight: normal;
     margin: 0 0 15px;
 }
 
-.easy-message .image {
+.one-message .image {
     width: 120px;
     margin-bottom: 30px;
 }
 
-.easy-message .tips-text {
+.one-message .tips-text {
     margin-bottom: 30px;
 }
 
-.easy-message .tips-text {
+.one-message .tips-text {
     font-size: 16px;
     color: rgba(0, 0, 0, 0.45);
     display: flex;
     justify-content: center;
 }
 
-.easy-message .wait-time {
+.one-message .wait-time {
     margin-right: 3px;
 }
 
-.easy-message .btn-group {
+.one-message .btn-group {
     display: flex;
     justify-content: center;
 }
 
-.easy-message .btn-group button:first-child {
+.one-message .btn-group button:first-child {
     margin-right: 15px;
 }

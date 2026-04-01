@@ -1,7 +1,7 @@
 {extend name="common@layout/layout" /}
 
 {block name="content"}
-<div class="easy-layout layui-layout-admin">
+<div class="one-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo layui-bg-black">{$systemSetting.systemName}</div>
         <ul class="layui-nav layui-layout-left">
@@ -80,18 +80,18 @@
         </div>
     </div>
     <div class="layui-body">
-        <iframe id="easyLayoutIframe" class="easy-layout-iframe" src="{:url('admin/SystemIndex/console')}"></iframe>
+        <iframe id="oneLayoutIframe" class="one-layout-iframe" src="{:url('admin/SystemIndex/console')}"></iframe>
     </div>
 </div>
 {/block}
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const util = layui.util;
         const layer = layui.layer;
-        const easyAdmin = layui.easyAdmin;
+        const oneAdmin = layui.oneAdmin;
 
         jQuery('.layui-nav-tree>.layui-nav-item a').on('click', function (event) {
             event.preventDefault();
@@ -101,7 +101,7 @@
                 const target = jQuery(this).data('target');
 
                 if (target === 1) {
-                    jQuery("#easyLayoutIframe").attr("src", link);
+                    jQuery("#oneLayoutIframe").attr("src", link);
                 } else if (target === 2) {
                     location.href = link;
                 } else if (target === 3) {
@@ -112,7 +112,7 @@
 
         util.event('lay-header-event', {
             outdent() {
-                jQuery(".easy-layout").toggleClass("easy-layout-hide-side");
+                jQuery(".one-layout").toggleClass("one-layout-hide-side");
             },
             system() {
                 layer.open({
@@ -126,7 +126,7 @@
                 });
             },
             refresh() {
-                let $iframe = jQuery("#easyLayoutIframe");
+                let $iframe = jQuery("#oneLayoutIframe");
                 $iframe.attr("src", $iframe.attr("src"));
             },
             fullscreen() {
@@ -138,13 +138,13 @@
             },
             profile() {
                 event.preventDefault();
-                frames[0].layui.easyAdmin.openFrame({
+                frames[0].layui.oneAdmin.openFrame({
                     content: "{:url('admin/SystemIndex/profile')}"
                 });
             },
             logout() {
                 event.preventDefault();
-                easyAdmin.ajaxPost({
+                oneAdmin.ajaxPost({
                     url: "{:url('admin/SystemIndex/logout')}",
                     success: function (result) {
                         top.layer.alert(result.msg, {

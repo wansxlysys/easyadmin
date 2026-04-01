@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="easy-message {if $code == 1}easy-success{else/}easy-error{/if}">
+<div class="one-message {if $code == 1}one-success{else/}one-error{/if}">
     {if $code == 1}
     <img class="image" src="<?php echo static_url('/admin/img/success.png'); ?>"/>
     {else/}

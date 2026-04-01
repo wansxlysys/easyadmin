@@ -48,7 +48,7 @@
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn" lay-submit>提交</button>
-                        <button type="button" class="layui-btn layui-btn-danger easy-close-layer">关闭</button>
+                        <button type="button" class="layui-btn layui-btn-danger one-close-layer">关闭</button>
                     </div>
                 </div>
             </form>
@@ -59,13 +59,13 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const form = layui.form;
-        const easyAdmin = layui.easyAdmin;
-        const easyService = layui.easyService;
+        const oneAdmin = layui.oneAdmin;
+        const oneService = layui.oneService;
 
-        easyService.roleSingleSelect({
+        oneService.roleSingleSelect({
             elem: '#role'
         }, {
             name: 'roleId',
@@ -75,7 +75,7 @@
         form.on('submit', function (obj) {
             event.preventDefault();
 
-            easyAdmin.ajaxPost({
+            oneAdmin.ajaxPost({
                 url: "{:url('admin/SystemManager/create')}",
                 data: obj.field,
                 success: function (result) {
@@ -84,7 +84,7 @@
                     }, function () {
                         parent.layui.table.reloadData("table");
                         top.layer.close(lay);
-                        easyAdmin.closeFrame();
+                        oneAdmin.closeFrame();
                     });
                 }
             });

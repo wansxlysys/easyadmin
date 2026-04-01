@@ -72,10 +72,10 @@
 
 {block name="js"}
 <script>
-    layui.use(['easyModule'], function () {
+    layui.use(['oneModule'], function () {
 
         const form = layui.form;
-        const easyAdmin = layui.easyAdmin;
+        const oneAdmin = layui.oneAdmin;
         const treeTable = layui.treeTable;
 
         treeTable.render({
@@ -112,7 +112,7 @@
 
         treeTable.on('toolbar(table)', function (obj) {
             if (obj.event === 'create') {
-                easyAdmin.openFrame({
+                oneAdmin.openFrame({
                     content: "{:url('admin/SystemMenu/create')}"
                 });
             }
@@ -127,7 +127,7 @@
         });
 
         treeTable.on('edit(table)', function (obj) {
-            easyAdmin.ajaxPost({
+            oneAdmin.ajaxPost({
                 url: "{:url('admin/SystemMenu/sort')}",
                 data: {
                     menuId: obj.data.menuId,
@@ -147,7 +147,7 @@
         treeTable.on('tool(table)', function (obj) {
 
             if (obj.event === 'update') {
-                easyAdmin.openFrame({
+                oneAdmin.openFrame({
                     content: "{:url('admin/SystemMenu/update')}?menuId=" + obj.data.menuId
                 });
             }
@@ -156,7 +156,7 @@
                 top.layer.confirm("确认删除吗？", {
                     icon: 3
                 }, function () {
-                    easyAdmin.ajaxPost({
+                    oneAdmin.ajaxPost({
                         url: "{:url('admin/SystemMenu/delete')}",
                         data: {
                             menuId: obj.data.menuId

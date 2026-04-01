@@ -110,7 +110,7 @@ easyadmin/
 | moment | 2.29.4 | https://github.com/moment/moment |
 | spark-md5 | 3.0.2  | https://github.com/satazor/js-spark-md5 |
 | split | 1.6.5  | https://github.com/satazor/js-spark-md5 |
-| ueditor-plus | 2.0.0  | https://gitee.com/modstart-lib/ueditor-plus |
+| ueditor-plus | 4.5.0   | https://gitee.com/modstart-lib/ueditor-plus |
 | zTree | 3.5.42 | https://github.com/zTree/zTree_v3 |
 ---
 
